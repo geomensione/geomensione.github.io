@@ -205,7 +205,7 @@ function setCanvas(){
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
 	document.getElementById('gameScreen').height = document.documentElement.clientHeight;
 	document.removeEventListener('keydown', start_hero);
-	document.addEventListener('keypress', move_hero, false);
+	document.addEventListener('keydown', move_hero, false);
 	document.addEventListener('mousedown', mouse_hero, false);
 	grid(lr['resolution']);
 	
@@ -251,8 +251,8 @@ function loop(){
 
 function end(){
 	clearInterval(cicle);
-	document.removeEventListener('keypress', move_hero);
-	document.addEventListener('keypress', start_hero, false);
+	document.removeEventListener('keydown', move_hero);
+	document.addEventListener('keydown', start_hero, false);
 	var enemy_length = lr['fallingitem'].length?lr['fallingitem'].length:0;
 	for(var i = 0;i<enemy_length;i++){
 		lr['fallingitem'].splice(i,1);
