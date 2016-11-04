@@ -131,7 +131,14 @@ function go_right(){
 			}
 }
 
+function reset_event(){
+	document.addEventListener('keydown', move_hero, false);
+}
+
 function move_hero(e){
+	document.removeEventListener('keydown', move_hero);
+	document.addEventListener('keypress', move_hero, false);
+	document.addEventListener('keyup', reset_event, false);
 	switch(e.keyCode) {
 		case 37: //leftarrow
 			go_left();				
