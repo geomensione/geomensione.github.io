@@ -235,7 +235,6 @@ function endloop(){
 	var mod = lr['text_end'].length-1;
 	lr['indexend']=0;
 	cicle = setInterval(function() {
-		l_r_hero();
 		var textindex = lr['indexend']%mod;
 		clear(lr['text_end'][textindex]);
 		lr['indexend'] = textindex+1;
@@ -257,6 +256,7 @@ function splashloop(){
 
 function loop(){
 	cicle = setInterval(function() {
+		l_r_hero();
 		clear(lr['textonscreen']);
 		update();
 		h.draw();
