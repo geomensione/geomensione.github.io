@@ -196,7 +196,6 @@ function splash(){
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
 	document.getElementById('gameScreen').height = document.documentElement.clientHeight;
 	document.addEventListener('keydown', start_hero, false);
-	document.addEventListener('keyup', reset_event, false);
 	lr['background'] = [['00','00'],['00','11'],['00','22'],['00','33'],['00','44'],['00','55'],['00','66'],['00','77'],['00','88'],['00','99'],['00','AA'],['00','BB'],['00','CC'],['00','DD'],['00','EE'],['00','FF']];
 	splashloop();
 }
@@ -220,6 +219,7 @@ function setCanvas(){
 	document.getElementById('gameScreen').height = document.documentElement.clientHeight;
 	document.removeEventListener('keydown', start_hero);
 	document.addEventListener('keydown', move_hero, false);
+	document.addEventListener('keyup', reset_event, false);
 	document.addEventListener('mousedown', mouse_hero, false);
 	grid(lr['resolution']);
 	
