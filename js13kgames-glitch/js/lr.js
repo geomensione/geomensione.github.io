@@ -132,23 +132,29 @@ function go_right(){
 }
 
 function reset_event(){
-	document.addEventListener('keydown', move_hero, false);
+	goLeft = goRight = false;
 }
 
 function move_hero(e){
-	document.removeEventListener('keydown', move_hero);
-	document.addEventListener('keypress', move_hero, false);
-	document.addEventListener('keyup', reset_event, false);
 	switch(e.keyCode) {
 		case 37: //leftarrow
-			go_left();				
+			goLeft = true;
+			//go_left();				
 			break;
 	    case 39: //rightarrow
-			go_right();
+			goRight=true;
+			//go_right();
 			break;
 		default:
 			console.log(e.keyCode);//38 arrowup, 40 arrow down
 	}
+}
+
+function l_r_hero(e){
+	if(goLeft)
+		go_left();				
+	if(goRight)
+		go_right();
 }
 
 function start_hero(e){
@@ -190,6 +196,7 @@ function splash(){
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
 	document.getElementById('gameScreen').height = document.documentElement.clientHeight;
 	document.addEventListener('keydown', start_hero, false);
+	document.addEventListener('keyup', reset_event, false);
 	lr['background'] = [['00','00'],['00','11'],['00','22'],['00','33'],['00','44'],['00','55'],['00','66'],['00','77'],['00','88'],['00','99'],['00','AA'],['00','BB'],['00','CC'],['00','DD'],['00','EE'],['00','FF']];
 	splashloop();
 }
@@ -228,6 +235,7 @@ function endloop(){
 	var mod = lr['text_end'].length-1;
 	lr['indexend']=0;
 	cicle = setInterval(function() {
+		l_r_hero();
 		var textindex = lr['indexend']%mod;
 		clear(lr['text_end'][textindex]);
 		lr['indexend'] = textindex+1;
