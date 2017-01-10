@@ -56,17 +56,29 @@ function drawText(text) {
 function clear(text){
 	var rx = lr['rx'];
 	var ry = lr['ry'];
-	if(text === ''){
-		var back_color = lr['index_background']%2;
-		for(var i = 0;i<rx;i++){
-			for(var d = 0;d<ry;d++){
-				var color = lr['background'][lr['size']][back_color];
-				lr['fb'][i][d] = [color, color, color];
+	switch(text){
+		case '':
+			var back_color = lr['index_background']%2;
+			for(var i = 0;i<rx;i++){
+				for(var d = 0;d<ry;d++){
+					var color = lr['background'][lr['size']][back_color];
+					lr['fb'][i][d] = [color, color, color];
+				}
 			}
-		}
-		lr['index_background'] = back_color+1;
-	}else{
-		drawText(text);
+			lr['index_background'] = back_color+1;
+			break;
+		case 'test':   
+			var back_color = lr['index_background']%2;
+			for(var i = 0;i<rx;i++){
+				for(var d = 0;d<ry;d++){
+					var color = lr['background'][lr['size']][back_color];
+					lr['fb'][i][d] = [color, color, color];
+				}
+			}
+			lr['index_background'] = back_color+1;
+			break;
+		default:
+			drawText(text);
 	}
 	
 }
@@ -236,7 +248,8 @@ function endloop(){
 	lr['indexend']=0;
 	cicle = setInterval(function() {
 		var textindex = lr['indexend']%mod;
-		clear(lr['text_end'][textindex]);
+		//clear(lr['text_end'][textindex]);
+		clear('test');
 		lr['indexend'] = textindex+1;
 		draw();
 		console.log('loop');
