@@ -260,7 +260,8 @@ function splashloop(){
 	var mod = lr['splashonscreen'].length-1;
 	cicle = setInterval(function() {
 		var textindex = lr['indexsplash']%mod;
-		clear(lr['splashonscreen'][textindex]);
+		//clear(lr['splashonscreen'][textindex]);
+		clear('test');
 		lr['indexsplash'] = textindex+1;
 		draw();
 		console.log('loop');
