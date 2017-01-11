@@ -68,14 +68,15 @@ function clear(text){
 			lr['index_background'] = back_color+1;
 			break;
 		case 'test':   
-			var back_color = lr['index_background']%2;
+			
 			for(var i = 0;i<rx;i++){
+				var back_color = i%2;
 				for(var d = 0;d<ry;d++){
 					var color = lr['background'][lr['size']][back_color];
+					back_color+=1;
 					lr['fb'][i][d] = [color, color, color];
 				}
 			}
-			lr['index_background'] = back_color+1;
 			break;
 		default:
 			drawText(text);
