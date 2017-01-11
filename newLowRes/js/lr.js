@@ -72,7 +72,7 @@ function clear(text){
 			for(var i = 0;i<rx;i++){
 				var back_color = i%2;
 				for(var d = 0;d<ry;d++){
-					var color = lr['background'][15][back_color];// B/N
+					var color = lr['background'][15][back_color%2];// B/N
 					back_color+=1;
 					lr['fb'][i][d] = [color, color, color];
 				}
