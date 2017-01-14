@@ -509,7 +509,7 @@ function hero(){
 		this.size = lr['res_sprites'][lr['size']];
 		for(var i = x,xoffset = x+lr['res_sprites'][lr['size']],i_s = 0;i<xoffset;i++,i_s++){
 			for(var ii = y,yoffset = y+lr['res_sprites'][lr['size']],ii_s = 0;ii<yoffset;ii++,ii_s++){
-				colorPixel(i,ii,newSprites[name][i_s].charAt(ii_s));
+				colorPixel(ii,i,newSprites[name][i_s].charAt(ii_s));
 			}
 		}
 	};
