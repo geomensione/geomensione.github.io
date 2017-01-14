@@ -509,17 +509,15 @@ function hero(){
 		this.size = lr['res_sprites'][lr['size']];
 		for(var i = x,xoffset = x+lr['res_sprites'][lr['size']],i_s = 0;i<xoffset;i++,i_s++){
 			for(var ii = y,yoffset = y+lr['res_sprites'][lr['size']],ii_s = 0;ii<yoffset;ii++,ii_s++){
-				if(sprites[name][i_s].charAt(ii_s) === '1'){
-					lr['fb'][ii][i] = ['FF', 'FF', 'FF'];
-				}
+				colorPixel(i,ii,newSprites[name][i_s].charAt(ii_s));
 			}
 		}
 	};
 	this.draw = function(){
-		this.drawSprite('hero'+lr['res_sprites'][lr['size']], lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
+		this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
 	};
 	this.create = function(){
-		lr['main_sprite'] = 'hero'+lr['res_sprites'][lr['size']];
+		lr['main_sprite'] = 'doc_boy';
 		lr['heroposx']=0;
 		lr['heroposy']=lr['ry']-lr['res_sprites'][lr['size']];
 	}
