@@ -1,4 +1,4 @@
-var sprites = {
+var newSprites = {
 'doc_boy':[
  '00000GGGGGG00000',
  '0111000110001110',
