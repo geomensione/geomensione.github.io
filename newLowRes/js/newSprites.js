@@ -27,6 +27,15 @@ function colorPixel(i,ii,c){
     case 'G':
       rgbColor = ['FF','FF','00'];
       break;
+    case 'A':
+      rgbColor = ['AA','AA','FF'];
+      break;
+    case 'P':
+      rgbColor = ['FF','AA','AA'];
+      break;
+    case 'p':
+      rgbColor = ['FF','77','77'];
+      break;
       
     
   }
