@@ -65,7 +65,7 @@ function clear(text){
 					lr['fb'][i][d] = [color, color, color];
 				}
 			}
-			lr['index_background'] = back_color+1;
+			//lr['index_background'] = back_color+1;
 			break;
 		case 'test':   
 			
