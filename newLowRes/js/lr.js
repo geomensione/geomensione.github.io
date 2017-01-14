@@ -153,23 +153,6 @@ function reset_event(){
 	goLeft = goRight = false;
 }
 
-function move_hero(e){
-	switch(e.keyCode) {
-		case 37: //leftarrow
-			goLeft = true;
-			//go_left();				
-			break;
-		case 38:
-			jump = true;
-			break;
-	    case 39: //rightarrow
-			goRight=true;
-			//go_right();
-			break;
-		default:
-			console.log(e.keyCode);//38 arrowup, 40 arrow down
-	}
-}
 
 function l_r_hero(e){
 	if(goLeft)
