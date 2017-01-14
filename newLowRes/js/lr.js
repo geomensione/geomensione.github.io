@@ -219,7 +219,7 @@ function setCanvas(){
 	lr['resolution'] = 48;
 	lr['framerate'] = 30;
 	lr['fallingitem'] = [];
-	lr['size'] = 0;
+	lr['size'] = 15;
 	lr['fortune'] = 10;
 	lr['time'] = 0;
 	lr['res_sprites'] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
