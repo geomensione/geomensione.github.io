@@ -22,26 +22,26 @@ var newSprites = {
 }
 
 function colorPixel(i,ii,c){
-  var rgbColor = [];
+  var rgbPixelColor = [];
   switch(c){
     case 'G':
-      rgbColor = ['FF','FF','00'];
+      rgbPixelColor = ['FF','FF','00'];
       break;
     case 'A':
-      rgbColor = ['AA','AA','FF'];
+      rgbPixelColor = ['AA','AA','FF'];
       break;
     case 'P':
-      rgbColor = ['FF','AA','AA'];
+      rgbPixelColor = ['FF','AA','AA'];
       break;
     case 'p':
-      rgbColor = ['FF','77','77'];
+      rgbPixelColor = ['FF','77','77'];
       break;
     case 'B':
-      rgbColor = ['00','00','00'];
+      rgbPixelColor = ['00','00','00'];
       break;
       
     
   }
-  lr['fb'][i][ii] = rgbColor;
+  lr['fb'][i][ii] = rgbPixelColor;
   
 }
