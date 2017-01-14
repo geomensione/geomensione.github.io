@@ -1,3 +1,5 @@
+"use strict";
+
 var lr = {};
 var cicle = {};
 var h = {};
@@ -153,6 +155,9 @@ function move_hero(e){
 		case 37: //leftarrow
 			goLeft = true;
 			//go_left();				
+			break;
+		case 38:
+			jump = true;
 			break;
 	    case 39: //rightarrow
 			goRight=true;
