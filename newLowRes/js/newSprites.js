@@ -1,3 +1,5 @@
+"use strict";
+
 var newSprites = {
 'doc_boy':[
  '00000GGGGGG00000',
