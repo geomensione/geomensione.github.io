@@ -1,3 +1,5 @@
+"use strict";
+
 var sprites = {
 'hero':[
  '0011111111111100',
