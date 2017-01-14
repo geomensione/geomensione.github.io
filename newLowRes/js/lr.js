@@ -6,7 +6,9 @@ var h = {};
 var armature_sound = new Audio("sounds/hit_armature.mp3");
 var glitch_sound = new Audio("sounds/hit_glitch.mp3");
 var spawn_sound = new Audio("sounds/spawn.mp3");
-var goLeft = goRight = jump = false;
+var goLeft = false
+    , goRight = false
+    , jump = false;
 
 function grid(r){
 	var w = lr['w'];
