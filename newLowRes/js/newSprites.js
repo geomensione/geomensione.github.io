@@ -36,6 +36,9 @@ function colorPixel(i,ii,c){
     case 'p':
       rgbColor = ['FF','77','77'];
       break;
+    default:
+      rgbColor = ['00','00','00'];
+      break;
       
     
   }
