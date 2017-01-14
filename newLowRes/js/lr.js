@@ -273,7 +273,7 @@ function loop(){
 	cicle = setInterval(function() {
 		l_r_hero();
 		clear(lr['textonscreen']);
-		update();
+		//update();
 		h.draw();
 		draw();
 	}, lr['framerate']);
