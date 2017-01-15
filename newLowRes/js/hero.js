@@ -26,6 +26,7 @@ function go_jump(){
 			lr['jump']+=1;
 		}else{
 			lr['descent'] = false;
+			jump = false;
 		}
 
 		
