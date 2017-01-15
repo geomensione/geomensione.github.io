@@ -14,7 +14,7 @@ function go_right(){
 }
 
 function jump(){
-	if(lr['jump']>0 and lr['descent'] === false){
+	if(lr['jump']>0 && lr['descent'] === false){
 		lr['heroposy']-=1;
 		lr['jump']-=1;
 	}else{
