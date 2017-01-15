@@ -196,7 +196,7 @@ function setCanvas(){
 	document.addEventListener('keyup', key_up, false);
 	document.addEventListener('mousedown', mouse_hero, false);
 	grid(lr['resolution']);
-	reset_event();
+	//reset_event();
 	audio(); 
 	h = new hero();
 	h.create();
