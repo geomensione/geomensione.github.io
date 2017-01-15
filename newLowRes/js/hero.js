@@ -1,3 +1,5 @@
+"use strict";
+
 function go_left(){
 	if((lr['heroposx']<=0) === false){
 		lr['heroposx']-=1;
