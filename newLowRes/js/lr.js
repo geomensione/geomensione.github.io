@@ -178,13 +178,14 @@ function setCanvas(){
 	lr['resolution'] = 48;
 	lr['framerate'] = 30;
 	lr['fallingitem'] = [];
-	lr['size'] = 15;
+	lr['size'] = 15;//starts from 0
 	lr['fortune'] = 10;
 	lr['time'] = 0;
 	lr['res_sprites'] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 	lr['textsize']=5;
 	lr['textonscreen']='';
 	lr['end'] = false;
+	lr['jump'] = lr['size'] + 1;
 	//lr['background'] = [['00','00'],['00','11'],['00','22'],['00','33'],['00','44'],['00','55'],['00','66'],['00','77'],['00','88'],['00','99'],['00','AA'],['00','BB'],['00','CC'],['00','DD'],['00','EE'],['00','FF']];
 	lr['index_background'] = 0;
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
