@@ -1,3 +1,5 @@
+"use strict";
+
 function move_hero(e){
 	switch(e.keyCode) {
 		case 37: //leftarrow
