@@ -24,9 +24,11 @@ function key_up(e){
 			goLeft = false;
 			//go_left();				
 			break;
+			/*
 		case 38:
 			jump = false;
 			break;
+			*/
 	    case 39: //rightarrow
 			goRight=false;
 			//go_right();
