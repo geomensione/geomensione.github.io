@@ -223,7 +223,7 @@ function setCanvas(){
 	document.getElementById('gameScreen').height = document.documentElement.clientHeight;
 	document.removeEventListener('keydown', start_hero);
 	document.addEventListener('keydown', move_hero, false);
-	document.addEventListener('keyup', reset_event, false);
+	document.addEventListener('keyup', key_up, false);
 	document.addEventListener('mousedown', mouse_hero, false);
 	grid(lr['resolution']);
 	reset_event();
