@@ -13,6 +13,25 @@ function go_right(){
 			}
 }
 
+function jump(){
+	if(lr['jump']>0 and lr['descent'] === false){
+		lr['heroposy']-=1;
+		lr['jump']-=1;
+	}else{
+		if(lr['descent'] === false){
+			lr['descent'] = true;
+		}
+		IF(lr['jump']<16){
+			lr['heroposy']+=1;
+			lr['jump']+=1;
+		}else{
+			lr['descent'] = false;
+		}
+
+		
+	}
+}
+
 function reset_event(){
 	goLeft = goRight = false;
 }
@@ -23,4 +42,6 @@ function l_r_hero(e){
 		go_left();				
 	if(goRight)
 		go_right();
+	if(jump)
+		jump();
 }
