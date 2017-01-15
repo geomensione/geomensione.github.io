@@ -516,7 +516,8 @@ function hero(){
 		}
 	};
 	this.draw = function(){
-		this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
+		//this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
+		this.drawSprite('doc_boy', lr['heroposy'], lr['heroposx']);
 	};
 	this.create = function(){
 		lr['main_sprite'] = 'doc_boy';
