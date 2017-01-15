@@ -33,3 +33,14 @@ function key_up(e){
 			console.log(e.keyCode);//38 arrowup, 40 arrow down
 	}
 }
+
+function start_hero(e){
+	switch(e.keyCode) {
+		case 83: //s
+			clearInterval(cicle);
+			setCanvas();				
+			break;
+		default:
+			console.log(e.keyCode);//38 arrowup, 40 arrow down
+	}
+}
