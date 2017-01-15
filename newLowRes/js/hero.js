@@ -21,7 +21,7 @@ function jump(){
 		if(lr['descent'] === false){
 			lr['descent'] = true;
 		}
-		IF(lr['jump']<16){
+		if(lr['jump']<16){
 			lr['heroposy']+=1;
 			lr['jump']+=1;
 		}else{
