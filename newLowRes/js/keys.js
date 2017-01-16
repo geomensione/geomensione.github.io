@@ -4,14 +4,14 @@ function move_hero(e){
 	switch(e.keyCode) {
 		case 37: //leftarrow
 			goLeft = true;
-			//go_left();				
+			lr['direction'] = 'L';			
 			break;
 		case 38:
 			jump = true;
 			break;
 	    case 39: //rightarrow
 			goRight=true;
-			//go_right();
+			lr['direction'] = 'R';
 			break;
 		default:
 			console.log(e.keyCode);//38 arrowup, 40 arrow down
