@@ -21,9 +21,23 @@ var newSprites = {
  '00PPAAAAAAAAPP00',
  '00PPAAAAAAAAPP00'
 ],
- per il nuovo personaggio ridimensionare il size
  'shark_hunter':[
-  ''
+  '0000WWWW000000V0',
+  '000WWWWWW00000V0',
+  '00WWWWWWWW0000V0',
+  '0WWWWWWWWWW000V0',
+  '0WWWWBWWBWW00V00',
+  '0WWWWWWWWWW00V00',
+  '0WWWWWWWWWW00V00',
+  '00WWWBBWWW000V00',
+  '000WWWWWW0000V00',
+  '0WWWWWWWWWWWW000',
+  '0W000WWWW0000000',
+  '0W000WWWWW000000',
+  '00000WWWWW000000',
+  '00W00WWWWWWW0000',
+  '0WWWWW00000W0W00',
+  '0W0000000000WW00'
  ]
 }
 
@@ -43,6 +57,12 @@ function colorPixel(i,ii,c){
       break;
     case 'B':
       lr['fb'][i][ii] = ['00','00','00'];
+      break;
+    case 'W':
+      lr['fb'][i][ii] = ['FF','FF','FF'];
+      break;
+    case 'V':
+      lr['fb'][i][ii] = ['FF','00','00'];
       break;
       
     
