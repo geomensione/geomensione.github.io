@@ -20,7 +20,11 @@ var newSprites = {
  '00PPAAAAAAAAPP00',
  '00PPAAAAAAAAPP00',
  '00PPAAAAAAAAPP00'
-]
+],
+ per il nuovo personaggio ridimensionare il size
+ 'shark_hunter':[
+  ''
+ ]
 }
 
 function colorPixel(i,ii,c){
