@@ -62,7 +62,7 @@ function colorPixel(i,ii,c){
       lr['fb'][i][ii] = ['FF','FF','FF'];
       break;
     case 'V':
-      lr['fb'][i][ii] = ['FF','00','00'];
+      lr['fb'][i][ii] = ['00','FF','00'];
       break;
       
     
