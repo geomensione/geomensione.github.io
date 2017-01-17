@@ -106,8 +106,9 @@ function colorPixel(i,ii,c){
   
 }
 
-function shark(){
-	
+function shark(start_pos_y){
+	this.posx = lr['ry'];
+	this.posy = start_pos_y;
 	this.velocity= 5;
 	this.drawSprite = function(name,x,y){
 		this.size = lr['res_sprites'][lr['size']];
