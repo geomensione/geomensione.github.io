@@ -120,12 +120,12 @@ function shark(start_pos_y){
 	};
 	this.draw = function(){
 		//this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
-		this.drawSprite('shark_L', lr['heroposy'], lr['heroposx']);
+		this.drawSprite('shark_L', lr['sharkposy'], lr['sharkposx']);
 	};
 	this.create = function(){
-		lr['main_sprite'] = 'doc_boy';
-		lr['heroposx']=0;
-		lr['heroposy']=lr['ry']-lr['res_sprites'][lr['size']];
+		lr['main_sprite'] = 'shark_l';
+		lr['heroposx']=lr['rx'];
+		lr['heroposy']=Math.floor(Math.random(lr['ry']));
 	}
 
 };
