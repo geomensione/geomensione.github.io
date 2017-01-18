@@ -121,7 +121,7 @@ function update(){
 			var a = new armature(rand(lr['rx']));
 			lr['fallingitem'].push(a);
 		}else{
-			var g = new glitch(rand(lr['rx']));
+			var g = new shark(rand(lr['ry']));
 			lr['fallingitem'].push(g);
 		}
 		spawn_sound.play();
@@ -235,7 +235,7 @@ function loop(){
 	cicle = setInterval(function() {
 		l_r_hero();
 		clear(lr['textonscreen']);
-		//update();
+		update();
 		h.draw();
 		draw();
 	}, lr['framerate']);
