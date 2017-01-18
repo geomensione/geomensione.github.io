@@ -57,7 +57,7 @@ var newSprites = {
 '00W0W00000WWWWW0',
 '00WW0000000000W0'
 ],
- 'shark_L':[
+ 'shark_R':[
  '0000000000000000',
   '0000000W00000000',
   '000000WW0000000W',
@@ -114,7 +114,7 @@ function shark(start_pos_y){
 		this.size = lr['res_sprites'][lr['size']];
 		for(var i = this.posx,xoffset = this.posx+lr['res_sprites'][lr['size']],i_s = 0;i<xoffset;i++,i_s++){
 			for(var ii = this.posy,yoffset = this.posy+lr['res_sprites'][lr['size']],ii_s = 0;ii<yoffset;ii++,ii_s++){
-				colorPixel(ii,i,newSprites[name][i_s].charAt(ii_s));
+				colorPixel(ii,i,newSprites['shark_R'][i_s].charAt(ii_s));
 			}
 		}
 		this.posy -= 1;
