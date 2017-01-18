@@ -110,23 +110,16 @@ function shark(start_pos_y){
 	this.posx = lr['ry'];
 	this.posy = start_pos_y;
 	this.velocity= 5;
-	this.drawSprite = function(name,x,y){
+	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']];
 		for(var i = x,xoffset = x+lr['res_sprites'][lr['size']],i_s = 0;i<xoffset;i++,i_s++){
 			for(var ii = y,yoffset = y+lr['res_sprites'][lr['size']],ii_s = 0;ii<yoffset;ii++,ii_s++){
 				colorPixel(ii,i,newSprites[name][i_s].charAt(ii_s));
 			}
 		}
+		this.posy -= 1;
 	};
-	this.draw = function(){
-		//this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
-		this.drawSprite('shark_L', lr['sharkposy'], lr['sharkposx']);
-	};
-	this.create = function(){
-		lr['main_sprite'] = 'shark_l';
-		lr['heroposx']=lr['rx'];
-		lr['heroposy']=Math.floor(Math.random(lr['ry']));
-	}
+	
 
 };
 
