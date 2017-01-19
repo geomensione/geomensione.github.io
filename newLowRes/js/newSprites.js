@@ -117,7 +117,7 @@ function shark(start_pos_y){
 				colorPixel(ii,i,newSprites['shark_R'][i_s].charAt(ii_s));
 			}
 		}
-		this.posy += 1;
+		this.posy -= 1;
 	};
 	
 
