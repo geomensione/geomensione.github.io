@@ -107,8 +107,8 @@ function colorPixel(i,ii,c){
 }
 
 function shark(start_pos_y){
-	this.posx = start_pos_y;
-	this.posy = lr['rx'];
+	this.posx = lr['rx'];
+	this.posy = start_pos_y;
 	this.velocity= 5;
 	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']];
@@ -117,7 +117,7 @@ function shark(start_pos_y){
 				colorPixel(ii,i,newSprites['shark_R'][i_s].charAt(ii_s));
 			}
 		}
-		this.posy -= 1;
+		this.posx -= 1;
 	};
 	
 
