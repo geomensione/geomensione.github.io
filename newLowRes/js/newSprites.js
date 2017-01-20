@@ -112,7 +112,7 @@ function shark(start_pos_y){
 	this.velocity= 5;
 	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']];
-		for(var i = this.posx,xoffset = this.posx+lr['res_sprites'][lr['size']],i_s = 0;i<xoffset;i++,i_s++){
+		for(var i = this.posx-lr['res_sprites'][lr['size']],xoffset = this.posx,i_s = 0;i>0;i--,i_s++){
 			for(var ii = this.posy,yoffset = this.posy+lr['res_sprites'][lr['size']],ii_s = 0;ii<yoffset;ii++,ii_s++){
 				colorPixel(i,ii,newSprites['shark_R'][ii_s].charAt(i_s));
 			}
