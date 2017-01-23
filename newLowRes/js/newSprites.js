@@ -107,15 +107,17 @@ function colorPixel(i,ii,c){
 }
 
 function shark(start_pos_y){
-	this.posx = lr['rx'];
+	this.posx = lr['rx']-lr['res_sprites'][lr['size']];
 	this.posy = start_pos_y;
 	this.velocity= 5;
 	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']];
-		if(this.posy+this.size <= lr['ry']){
+		if(this.posx+this.size <= 0){
 			var abortloop = false;
 			for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
 				for(var ii = this.posy,yoffset = this.posy+this.size,ii_s = 0;ii<yoffset && !abortloop;ii++,ii_s++){
+					colorPixel(i,ii,sprites['shark_L'][ii_s].charAt(i_s));
+					/*
 					if(lr['fb'][i] && lr['fb'][i][ii]){
 						if(sprites['hero'+this.size][ii_s].charAt(i_s) === '1'){
 							lr['fb'][i][ii] = ['FF', '00', '00'];
@@ -132,9 +134,10 @@ function shark(start_pos_y){
 						}
 						
 					}
+					*/
 				}
 			}
-			this.posy += 1;	
+			this.posx += 1;	
 		}else{
 			die(index);
 		}
