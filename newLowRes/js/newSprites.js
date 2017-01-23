@@ -111,12 +111,41 @@ function shark(start_pos_y){
 	this.posy = start_pos_y;
 	this.velocity= 5;
 	this.drawSprite = function(index){
+		this.size = lr['res_sprites'][lr['size']+1];
+		if(this.posy+this.size <= lr['ry']){
+			var abortloop = false;
+			for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
+				for(var ii = this.posy,yoffset = this.posy+this.size,ii_s = 0;ii<yoffset && !abortloop;ii++,ii_s++){
+					if(lr['fb'][i] && lr['fb'][i][ii]){
+						if(sprites['hero'+this.size][ii_s].charAt(i_s) === '1'){
+							lr['fb'][i][ii] = ['FF', '00', '00'];
+						}
+					}
+					if(((this.posx <= lr['heroposx'] && lr['heroposx'] <= this.posx+this.size) || (this.posx <= lr['heroposx']+this.size && lr['heroposx']+this.size <= this.posx+this.size)) && this.posy+this.size >= lr['heroposy']){
+						armature_sound.play();
+						hit('a');
+						abortloop=true;
+					}else{
+						if((this.posy+this.size) >= lr['ry']){
+							lr['fallingitem'].splice(index,1);
+							abortloop=true;
+						}
+						
+					}
+				}
+			}
+			this.posy += 1;	
+		}else{
+			die(index);
+		}
+		/*
 		this.size = lr['res_sprites'][lr['size']];
 		for(var i = this.posx-lr['res_sprites'][lr['size']],i_s = 0;i_s<16;i_s++){
 			for(var ii = this.posy,ii_s = 0;ii<16;ii++,ii_s++){
 				colorPixel(i,ii,newSprites['shark_R'][ii_s].charAt(i_s));
 			}
 		}
+		*/
 		this.posx -= 1;
 	};
 	
