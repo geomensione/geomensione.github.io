@@ -112,7 +112,7 @@ function shark(start_pos_y){
 	this.velocity= 5;
 	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']];
-		if(this.posx+this.size <= 0){
+		if(this.posx <= 0){
 			var abortloop = false;
 			for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
 				for(var ii = this.posy,yoffset = this.posy+this.size,ii_s = 0;ii<yoffset && !abortloop;ii++,ii_s++){
@@ -137,7 +137,7 @@ function shark(start_pos_y){
 					*/
 				}
 			}
-			this.posx += 1;	
+			this.posx -= 1;	
 		}else{
 			die(index);
 		}
