@@ -116,7 +116,7 @@ function shark(start_pos_y){
 			var abortloop = false;
 			for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
 				for(var ii = this.posy,yoffset = this.posy+this.size,ii_s = 0;ii<yoffset && !abortloop;ii++,ii_s++){
-					colorPixel(i,ii,sprites['shark_L'][ii_s].charAt(i_s));
+					colorPixel(i,ii,newSprites['shark_L'][ii_s].charAt(i_s));
 					/*
 					if(lr['fb'][i] && lr['fb'][i][ii]){
 						if(sprites['hero'+this.size][ii_s].charAt(i_s) === '1'){
