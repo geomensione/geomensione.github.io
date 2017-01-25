@@ -121,7 +121,7 @@ function update(){
 			var a = new armature(rand(lr['rx']));
 			lr['fallingitem'].push(a);
 		}else{
-			var g = new shark(rand(lr['ry']));
+			var g = new shark(rand(lr['ry']-lr['res_sprites'][lr['size']]));
 			lr['fallingitem'].push(g);
 		}
 		spawn_sound.play();
