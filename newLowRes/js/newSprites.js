@@ -123,9 +123,10 @@ function shark(start_pos_y){
 							lr['fb'][i][ii] = ['FF', '00', '00'];
 						}
 					}
+					*/
 					if(((this.posx <= lr['heroposx'] && lr['heroposx'] <= this.posx+this.size) || (this.posx <= lr['heroposx']+this.size && lr['heroposx']+this.size <= this.posx+this.size)) && this.posy+this.size >= lr['heroposy']){
 						armature_sound.play();
-						hit('a');
+						hit('s');
 						abortloop=true;
 					}else{
 						if((this.posy+this.size) >= lr['ry']){
@@ -134,7 +135,7 @@ function shark(start_pos_y){
 						}
 						
 					}
-					*/
+					
 				}
 			}
 			this.posx -= 1;	
