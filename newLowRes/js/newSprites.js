@@ -59,6 +59,24 @@ var newSprites = {
 ],
  'shark_R':[
  '0000000000000000',
+'00000000W0000000',
+'W0000000WW000000',
+'WW000000WW000000',
+'0WW0000WWWW00000',
+'0WWWWWWWWWWWWWWW',
+'00WWWWWWWWWWWWWW',
+'0WW0WWWWBWWWWWP0',
+'0WW00GWWWWWWW0P0',
+'WW00GGWWWWW0P000',
+'000GGGGWWW000000',
+'00GGG00WWWP00000',
+'0000000WWW000000',
+'00000000WWP00000',
+'000000000P000000',
+'0000000000000000'
+ ],
+ 'shark_L':[
+ '0000000000000000',
   '0000000W00000000',
   '000000WW0000000W',
   '000000WW000000WW',
@@ -75,6 +93,7 @@ var newSprites = {
   '000000P000000000',
   '0000000000000000'
  ]
+
 }
 
 function colorPixel(i,ii,c){
@@ -116,7 +135,7 @@ function shark(start_pos_y){
 			var abortloop = false;
 			for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
 				for(var ii = this.posy,yoffset = this.posy+this.size,ii_s = 0;ii<yoffset && !abortloop;ii++,ii_s++){
-					colorPixel(i,ii,newSprites['shark_R'][ii_s].charAt(i_s));
+					colorPixel(i,ii,newSprites['shark_L'][ii_s].charAt(i_s));
 					/*
 					if(lr['fb'][i] && lr['fb'][i][ii]){
 						if(sprites['hero'+this.size][ii_s].charAt(i_s) === '1'){
