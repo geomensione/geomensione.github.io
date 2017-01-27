@@ -159,7 +159,7 @@ function shark(start_pos_y){
 					
 				}
 			}
-			if(this.dir === 'L' && (this.posx-1>=0){
+			if(this.dir === 'L' && (this.posx-1)>=0){
 			   	this.posx -= 1;
 			}else{
 				if(this.posx-1<0){
