@@ -130,6 +130,7 @@ function shark(start_pos_y){
 	this.posy = start_pos_y;
 	this.velocity= 5;
 	this.name = 'shark_L';
+	this.dir = 'L';
 	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']];
 		if(this.posx >= 0){
@@ -158,7 +159,19 @@ function shark(start_pos_y){
 					
 				}
 			}
-			this.posx -= 1;	
+			if(this.dir === 'L' && (this.posx-1>=0){
+			   	this.posx -= 1;
+			}else{
+				if(this.posx-1<0){
+				this.dir = 'R';
+				}else{
+					if((this.posx+1)>lr['rx']){
+						this.dir = 'L';
+					}else{
+						this.posx+=1;
+					}
+				} 
+			}
 		}else{
 			die(index);
 		}
