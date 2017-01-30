@@ -19,12 +19,15 @@
   c.mt = c.moveTo;
   c.lt = c.lineTo;
   c.s = c.stroke;
+  c.bp = c.beginPath;
+  c.f = c.fill;
   de.mds = 'mousedown';
   de.mms = 'mousemove';
   de.mus = 'mouseup';
   
   function mm(e)
   {
+    c.bp();
     c.lt(e.clientX,e.clientY);
     c.s();
   }
@@ -35,7 +38,7 @@
     d.ae(de.mms,mm,false);
     d.ae(de.mus,function(e)
     {
-      
+      c.f();
       d.re(de.mms,mm);
       
     },false);
