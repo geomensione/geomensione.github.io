@@ -15,21 +15,27 @@
   var de = {};
   //register events
   de.ae = a.addEventListener;
+  de.re = a.removeEventListener;
   de.mt = c.moveTo;
   de.lt = c.lineTo;
   de.s = c.stroke;
-  de.ae('mousedown',function(e)
+  de.mds = 'mousedown';
+  de.mms = 'mousemove';
+  de.mus = 'mouseup';
+  de.md = de.ae(de.mds,function(e)
   {
     de.mt(e.clientX,e.clientY);
+    de.mm = de.ae(de.mms,function(e)
+    {
+      de.lt(e.clientX,e.clientY);
+    });
+    de.ae('mouseup',function(e)
+    {
+      de.re();
+      de.s();
+    });
   });
-  de.ae('mousemove',function(e)
-  {
-    de.lt(e.clientX,e.clientY);
-  });
-  de.ae('mouseup',function(e)
-  {
-    de.s();
-  });
+  
 </script>
 </body>
 </html>
