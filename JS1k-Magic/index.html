@@ -22,10 +22,10 @@
   de.mds = 'mousedown';
   de.mms = 'mousemove';
   de.mus = 'mouseup';
-  de.md = d.ae(de.mds,function(e)
+  d.md = d.ae(de.mds,function(e)
   {
     c.mt(e.clientX,e.clientY);
-    de.mm = d.ae(de.mms,function(e)
+    d.mm = d.ae(de.mms,function(e)
     {
       c.lt(e.clientX,e.clientY);
       c.s();
@@ -34,7 +34,7 @@
     {
       
       d.re(de.mms,d.mm);
-      d.re(de.mus,d.mu);
+      
     },false);
   },false);
   
