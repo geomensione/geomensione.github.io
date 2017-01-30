@@ -28,13 +28,14 @@
     de.mm = de.ae(de.mms,function(e)
     {
       de.lt(e.clientX,e.clientY);
-    });
-    de.ae('mouseup',function(e)
+    },false);
+    de.ae(de.mus,function(e)
     {
-      de.re();
       de.s();
-    });
-  });
+      de.re(de.mms,de.mm);
+      de.re(de.mus,de.mu);
+    },false);
+  },false);
   
 </script>
 </body>
