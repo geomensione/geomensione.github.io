@@ -24,11 +24,13 @@
   de.mds = 'mousedown';
   de.mms = 'mousemove';
   de.mus = 'mouseup';
-  
+  de.vs = {};
   function mm(e)
   {
-    c.bp();
-    c.lt(e.clientX,e.clientY);
+    var x = e.clientX;
+    var y = e.clientY;
+    c.lt(x,y);
+    de.vs.push({xx:x,yy:y});
     c.s();
   }
 
@@ -38,7 +40,13 @@
     d.ae(de.mms,mm,false);
     d.ae(de.mus,function(e)
     {
+      c.bp();
+      c.mt(de.vs[0].xx,de.vs[0].yy);
+      for(var i = 1;i<de.vs.length;i++){
+        c.lt(de.vs[i].xx,de.vs[i].yy);
+      }
       c.f();
+      de.vs = [];
       d.re(de.mms,mm);
       
     },false);
