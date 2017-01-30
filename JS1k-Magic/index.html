@@ -14,28 +14,28 @@
   //demo object
   var de = {};
   //register events
-  de.ae = a.addEventListener;
-  de.re = a.removeEventListener;
-  de.mt = c.moveTo;
-  de.lt = c.lineTo;
-  de.s = c.stroke;
+  d.ae = a.addEventListener;
+  d.re = a.removeEventListener;
+  c.mt = c.moveTo;
+  c.lt = c.lineTo;
+  c.s = c.stroke;
   de.mds = 'mousedown';
   de.mms = 'mousemove';
   de.mus = 'mouseup';
-  de.md = de.ae(de.mds,function(e)
+  de.md = d.ae(de.mds,function(e)
   {
-    de.mt(e.clientX,e.clientY);
-    de.mm = de.ae(de.mms,function(e)
+    c.mt(e.clientX,e.clientY);
+    de.mm = d.ae(de.mms,function(e)
     {
-      de.lt(e.clientX,e.clientY);
-    }.bind(this),false);
-    de.ae(de.mus,function(e)
+      c.lt(e.clientX,e.clientY);
+    },false);
+    d.ae(de.mus,function(e)
     {
-      de.s();
-      de.re(de.mms,de.mm);
-      de.re(de.mus,de.mu);
-    }.bind(this),false);
-  }.bind(this),false);
+      c.s();
+      d.re(de.mms,de.mm);
+      d.re(de.mus,de.mu);
+    },false);
+  },false);
   
 </script>
 </body>
