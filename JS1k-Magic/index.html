@@ -22,18 +22,21 @@
   de.mds = 'mousedown';
   de.mms = 'mousemove';
   de.mus = 'mouseup';
-  d.md = d.ae(de.mds,function(e)
+  
+  function mm(e)
+  {
+    c.lt(e.clientX,e.clientY);
+    c.s();
+  }
+
+  d.ae(de.mds,function(e)
   {
     c.mt(e.clientX,e.clientY);
-    d.mm = d.ae(de.mms,function(e)
-    {
-      c.lt(e.clientX,e.clientY);
-      c.s();
-    },false);
+    d.ae(de.mms,mm,false);
     d.ae(de.mus,function(e)
     {
       
-      d.re(de.mms,d.mm);
+      d.re(de.mms,mm);
       
     },false);
   },false);
