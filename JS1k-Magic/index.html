@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+<canvas></canvas>
+<script>
+  window.a = document.getElemenetsByTagName('canvas')[0];
+  window.b = document.getElemenetsByTagName('body')[0];
+  window.c = window.a.getContext('2d');
+  window.d = document;
+  
+  /*
+  JS1K start
+  */
+  //demo object
+  var de = {};
+  //register events
+  de.ae = c.addEventListener;
+  de.mt = c.moveTo;
+  de.lt = c.lineTo;
+  de.s = c.stroke;
+  de.ae('mousedown',function(e)
+  {
+    de.mt(e.clientX,e.clientY);
+  });
+  de.ae('mousemove',function(e)
+  {
+    de.lt(e.clientX,e.clientY);
+  });
+  de.ae('mouseup',function(e)
+  {
+    de.s();
+  });
+</script>
+</body>
+</html>
