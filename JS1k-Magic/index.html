@@ -27,6 +27,17 @@
   de.mms = 'mousemove';
   de.mus = 'mouseup';
   de.vs = [];
+  
+  function w(e) {
+    if(e.wheelDelta > 0){
+      c.lineWidth += 1;
+	  }else{
+      (c.lineWidth>0)?(c.lineWidth -= 1):c.lineWidth;
+	  }
+  }
+
+	
+  
   function mm(e)
   {
     var x = e.clientX;
@@ -36,6 +47,8 @@
     c.s();
   }
 
+  d.ae('onwheel',w);
+  
   d.ae(de.mds,function(e)
   {
     c.mt(e.clientX,e.clientY);
