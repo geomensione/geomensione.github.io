@@ -28,12 +28,8 @@
   de.mus = 'mouseup';
   de.vs = [];
   
-  function w(e) {
-    if(e.wheelDelta > 0){
-      c.lineWidth += 1;
-	  }else{
-      (c.lineWidth>0)?(c.lineWidth -= 1):c.lineWidth;
-	  }
+  function k(e) {
+    alert(JSON.stringify(e));
   }
 
 	
@@ -47,7 +43,7 @@
     c.s();
   }
 
-  d.ae('wheel',w);
+  d.ae('keydown',w);
   
   d.ae(de.mds,function(e)
   {
