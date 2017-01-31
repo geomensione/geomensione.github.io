@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Low Res Party!</title>
+<style>
+body{
+	margin: 0;
+	overflow: hidden;
+}
+canvas{
+	width: 100%;
+	height: 100%;
+}
+</style>
+</head>
+<body onload="setCanvas()">
+    <canvas id="gameScreen">
+      What, no canvas support? D:
+    </canvas>
+  <script>
+  window.a = document.getElementsByTagName('canvas')[0];
+  window.b = document.getElementsByTagName('body')[0];
+  window.c = window.a.getContext('2d');
+  window.d = document;
+  
+  /*
+  Start 1k low res
+  */
+  var g = {};
+  function setCanvas(){
+    g['w'] = document.documentElement.clientWidth;
+    g['h'] = document.documentElement.clientHeight;
+    lr['resolution'] = 48;
+    lr['framerate'] = 30;
+    lr['fallingitem'] = [];
+    lr['size'] = 16;
+    lr['fortune'] = 10;
+    lr['time'] = 0;
+    lr['res_sprites'] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+    lr['textsize']=5;
+    lr['textonscreen']='';
+    lr['end'] = false;
+    //lr['background'] = [['00','00'],['00','11'],['00','22'],['00','33'],['00','44'],['00','55'],['00','66'],['00','77'],['00','88'],['00','99'],['00','AA'],['00','BB'],['00','CC'],['00','DD'],['00','EE'],['00','FF']];
+    lr['index_background'] = 0;
+    document.getElementById('gameScreen').width = document.documentElement.clientWidth;
+    document.getElementById('gameScreen').height = document.documentElement.clientHeight;
+    document.removeEventListener('keydown', start_hero);
+    document.addEventListener('keydown', move_hero, false);
+    document.addEventListener('keyup', reset_event, false);
+    document.addEventListener('mousedown', mouse_hero, false);
+    grid(lr['resolution']);
+    reset_event();
+    audio(); 
+    h = new hero();
+    h.create();
+
+    loop();
+
+  }
+  </script>
+  
+</body></html>
