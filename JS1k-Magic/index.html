@@ -29,7 +29,16 @@
   de.vs = [];
   
   function k(e) {
-    alert(JSON.stringify(e));
+    switch(e.key)
+    {
+	    case '+':
+		    c.lineWidth += 1;
+		    break;
+	    case '-':
+		    if(c.lineWidth-1>0)
+		    	c.lineWidth -= 1;
+		    break;
+    }	
   }
 
 	
