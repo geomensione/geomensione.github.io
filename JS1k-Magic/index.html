@@ -37,11 +37,11 @@ canvas{
 		var h = g.h;
 		var ox, oy = 0;
 		if(h<w){
-			ox = Math.round(h/r);
+			ox = Math.round(h/g.r);
 			g.ry = Math.round(h/ox);
 			g.rx = Math.round(w/ox);
 		}else{
-			ox = Math.round(w/r);
+			ox = Math.round(w/g.r);
 			g.rx = Math.round(w/ox);
 			g.ry = Math.round(h/ox);
 		}
@@ -52,11 +52,37 @@ canvas{
 		for(var i = 0;i<rx;i++){
 			g.fb[i] = [];
 			for(var d = 0;d<ry;d++){
+				//qui setta il fb
 				g.fb[i][d] = ['00', '00', '00'];
 			}
 		}
+		d();
 	}
+	 
+	function d(){
+		var rx = g.rx;
+		var ry = g.ry;
+		var o = g.o;
+		var cx = 0, cy = 0;
+		for(var i = 0;i<rx;i++){
+			for(var d = 0;d<ry;d++){
+				c.fillStyle = "#"+g.fb[i][d][0]+g.fb[i][d][1]+g.fb[i][d][2];
+				c.fillRect(cx,cy,o,o);
+				cy += o;
+			}
+			cx += o;
+			cy = 0;
+		}
+	}
+
 	
+	function l(){
+		g.l = setInterval(function() {
+			gr();
+			d();
+		}, lr['framerate']);
+	}
+	 
 	//Init
 	g = {};
 	g.w = d.documentElement.clientWidth;
@@ -68,10 +94,7 @@ canvas{
 	g.j = g.s + 1;
 	g.d = false;
 	g.d = 'R';
-
 	gr();
-	h = new hero();
-	h.create();
 	loop();
 
  </script>
