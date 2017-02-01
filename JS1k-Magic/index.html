@@ -32,33 +32,28 @@ canvas{
 	*/
 	//functions
 
-	function m_h(e){
-		var k = e.keyCode;
-		if(k === 37)
-		{
-			goLeft = true;
-			g.d = 'L';	
+	function gr(){
+		var w = g.w;
+		var h = g.h;
+		var ox, oy = 0;
+		if(h<w){
+			ox = Math.round(h/r);
+			g.ry = Math.round(h/ox);
+			g.rx = Math.round(w/ox);
+		}else{
+			ox = Math.round(w/r);
+			g.rx = Math.round(w/ox);
+			g.ry = Math.round(h/ox);
 		}
-		if(k === 39)
-		{
-			goRight = true;
-			g.d = 'L';	
-		}
-		if(k === 38)
-		{
-			jump = true;	
-		}
-	}
-
-	function k_u(e){
-		var k = e.keyCode;
-		if(k === 37)
-		{
-			goLeft = false;
-		}
-		if(k === 39)
-		{
-			goRight=false;
+		g.o = ox;
+		g.fb = [];
+		var rx = g.rx;
+		var ry = g.ry;
+		for(var i = 0;i<rx;i++){
+			g.fb[i] = [];
+			for(var d = 0;d<ry;d++){
+				g.fb[i][d] = ['00', '00', '00'];
+			}
 		}
 	}
 	
@@ -74,9 +69,7 @@ canvas{
 	g.d = false;
 	g.d = 'R';
 
-	d.addEventListener('keydown', m_h, false);
-	d.addEventListener('keyup', k_u, false);
-	grid(g.r);
+	gr();
 	h = new hero();
 	h.create();
 	loop();
