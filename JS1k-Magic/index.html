@@ -30,6 +30,20 @@ canvas{
 	/*
 	JS1K start
 	*/
+	g.sh = [
+	  '0WWWWWWW',
+	  '0W0W0WW0',
+	  '0WWWWW00',
+	  '0WW0WW0W',
+	  '00WWWW0W',
+	  'WWWWWWWW',
+	  '0WW00WW0'
+	];
+	 
+	function cP(i,ii,c){
+		if(c === 'W')
+			lr['fb'][i][ii] = ['FF','FF','FF'];
+	}
 	
 	function gr(){
 		var w = g.w;
@@ -86,13 +100,10 @@ canvas{
 	g = {};
 	g.w = d.documentElement.clientWidth;
 	g.h = d.documentElement.clientHeight;
-	g.r = 48;
+	g.r = 24;
 	g.fr = 30;
 	g.fi = [];
-	g.s = 16;
-	g.j = g.s + 1;
-	g.d = false;
-	g.d = 'R';
+	g.s = 8;
 	gr();
 	loop();
 
