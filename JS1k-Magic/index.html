@@ -35,8 +35,6 @@ canvas{
 	g.w = d.documentElement.clientWidth;
 	g.h = d.documentElement.clientHeight;
 	g.r = 24;
-	g.fr = 30;
-	g.fi = [];
 	g.s = 8;
 	 
 	g.sh = [
@@ -54,6 +52,20 @@ canvas{
 			lr['fb'][i][ii] = ['FF','FF','FF'];
 	}
 	
+	function drh()
+	 {
+		var x = Math.floor(Math.random() * (g.rx-g.s));
+		var y = Math.floor(Math.random() * (g.ry-g.s));
+		for(xo = x+g.s;x<xo;x++)
+		{
+			for(yo = y+tg.s;y<yo;y++)
+			{
+				cP(x,y,g.sh[x].charAt(y));
+			}
+		}
+ 
+	 }
+		 
 	function gr(){
 		var w = g.w;
 		var h = g.h;
