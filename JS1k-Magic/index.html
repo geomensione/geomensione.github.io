@@ -30,6 +30,15 @@ canvas{
 	/*
 	JS1K start
 	*/
+	//Init
+	g = {};
+	g.w = d.documentElement.clientWidth;
+	g.h = d.documentElement.clientHeight;
+	g.r = 24;
+	g.fr = 30;
+	g.fi = [];
+	g.s = 8;
+	 
 	g.sh = [
 	  '0WWWWWWW',
 	  '0W0W0WW0',
@@ -96,14 +105,7 @@ canvas{
 		}, lr['framerate']);
 	}
 	 
-	//Init
-	g = {};
-	g.w = d.documentElement.clientWidth;
-	g.h = d.documentElement.clientHeight;
-	g.r = 24;
-	g.fr = 30;
-	g.fi = [];
-	g.s = 8;
+	
 	gr();
 	loop();
 
