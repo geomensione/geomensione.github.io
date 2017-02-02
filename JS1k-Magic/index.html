@@ -56,9 +56,9 @@ canvas{
 	 {
 		var x = Math.floor(Math.random() * (g.rx-g.s));
 		var y = Math.floor(Math.random() * (g.ry-g.s));
-		for(xo = x+g.s;x<xo;x++)
+		for(var xo = x+g.s;x<xo;x++)
 		{
-			for(yo = y+tg.s;y<yo;y++)
+			for(var yo = y+tg.s;y<yo;y++)
 			{
 				cP(x,y,g.sh[x].charAt(y));
 			}
