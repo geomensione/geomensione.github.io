@@ -37,7 +37,11 @@ canvas{
 	g.r = 24;
 	g.s = 8;
 	g.fr = 100;
-	 
+	
+	d.addEventListener('mousedown',function(e){
+		var imageData = c.getImageData(e.clientX, e.clientY, 1, 1);
+	}); 
+	
 	g.sh = [
 	  '0WWWWWWW',
 	  '0W0W0WW0',
