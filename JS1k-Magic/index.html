@@ -57,7 +57,7 @@ canvas{
 	  '00WWWW00',
 	  '0WW00WW0'
 	];
-	 
+	/*
 	function cP(i,ii,c){
 		if(c === 'W')
 			g.fb[i][ii] = ['FF','FF','FF'];
@@ -77,7 +77,7 @@ canvas{
 		}
  
 	 }
-		 
+	*/	 
 	function gr(){
 		var w = g.w;
 		var h = g.h;
@@ -118,6 +118,19 @@ canvas{
 			}
 			cx += o;
 			cy = 0;
+		}
+		
+		var x = Math.floor(Math.random() * (g.rx-g.s));
+		var y = Math.floor(Math.random() * (g.ry-g.s));
+		for(var xo = 0;xo<g.s;xo++)
+		{
+			for(var yo = 0;yo<g.s;yo++)
+			{
+				//cP(x+xo,y+yo,g.sh[yo].charAt(xo));
+				//cP(x+xo,y+yo,g.sh[yo][xo]);
+				if(g.sh[yo][xo] === 'W')
+					g.fb[x+xo][y+yo] = ['FF','FF','FF'];
+			}
 		}
 	}
 
