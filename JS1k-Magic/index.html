@@ -40,7 +40,7 @@ canvas{
 	
 	d.addEventListener('mousedown',function(e){
 		var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
-		if(iD[0]!==0){
+		if(iD.data[0]!==0){
 			clearInterval(g.l);
 		}
 	}); 
