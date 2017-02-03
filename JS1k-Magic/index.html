@@ -36,6 +36,7 @@ canvas{
 	g.h = d.documentElement.clientHeight;
 	g.r = 24;
 	g.s = 8;
+	g.fr = 100;
 	 
 	g.sh = [
 	  '0WWWWWWW',
@@ -114,14 +115,12 @@ canvas{
 	function l(){
 		g.l = setInterval(function() {
 			gr();
+			drh();
 			d();
-		}, lr['framerate']);
+		}, g.fr);
 	}
 	 
-	
-	gr();
-	drh();
-	dr();
+	l();
 
  </script>
 </body></html>
