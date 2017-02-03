@@ -50,8 +50,12 @@ canvas{
 	];
 	 
 	function cP(i,ii,c){
+		var f = 'FF', z = '00';
 		if(c === 'W')
-			g.fb[i][ii] = ['FF','FF','FF'];
+			if(g.hi)
+				g.fb[i][ii] = [f,z,z];
+			else
+				g.fb[i][ii] = [f,f,f];
 	}
 	
 	function drh()
