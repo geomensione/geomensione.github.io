@@ -60,7 +60,7 @@ canvas{
 		{
 			for(var yo = y+g.s;y<yo;y++)
 			{
-				cP(x,y,g.sh[x].charAt(y));
+				cP(x,y,g.sh[x%8].charAt(y%8));
 			}
 		}
  
