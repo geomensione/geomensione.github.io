@@ -41,7 +41,6 @@ canvas{
 	d.addEventListener('mousedown',function(e){
 		var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
 		if(iD[0]!==0){
-			g.hi=true;
 			clearInterval(g.l);
 		}
 	}); 
@@ -60,10 +59,7 @@ canvas{
 	function cP(i,ii,c){
 		var f = 'FF', z = '00';
 		if(c === 'W')
-			if(g.hi)
-				g.fb[i][ii] = [f,z,z];
-			else
-				g.fb[i][ii] = [f,f,f];
+			g.fb[i][ii] = [f,f,f];
 	}
 	
 	function drh()
