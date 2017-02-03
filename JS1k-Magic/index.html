@@ -56,11 +56,11 @@ canvas{
 	 {
 		var x = Math.floor(Math.random() * (g.rx-g.s));
 		var y = Math.floor(Math.random() * (g.ry-g.s));
-		for(var xo = x+g.s;x<xo;x++)
+		for(var xo = 0;x<g.s;x++)
 		{
-			for(var yo = y+g.s;y<yo;y++)
+			for(var yo = 0;y<g.s;y++)
 			{
-				cP(x,y,g.sh[x].charAt(y));
+				cP(x+xo,y+yo,g.sh[xo].charAt(yo));
 			}
 		}
  
