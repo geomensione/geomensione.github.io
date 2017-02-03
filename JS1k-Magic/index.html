@@ -39,7 +39,11 @@ canvas{
 	g.fr = 100;
 	
 	d.addEventListener('mousedown',function(e){
-		var imageData = c.getImageData(e.clientX, e.clientY, 1, 1);
+		var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
+		if(iD[0]!==0){
+			g.hi=true;
+			clearInterval(g.l);
+		}
 	}); 
 	
 	g.sh = [
