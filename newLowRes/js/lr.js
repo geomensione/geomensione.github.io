@@ -162,7 +162,7 @@ function splash(){
 	lr['index_background'] = 0;
 	lr['splashrate'] = 500;
 	lr['indexsplash'] = 0;
-	lr['splashonscreen'] = ['LOW RES', '', 'PARTY!', '', 'PRESS S', '', 'TO START', '', '' ];
+	lr['splashonscreen'] = ['NEW', 'LOW RES', 'PARTY!', '', 'PRESS S', '', 'TO START', '', '' ];
 	lr['text_end'] = ['END...', '', 'PRESS S', '', 'TO RESTART', '', '' ];
 	grid(lr['resolution']);
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
@@ -223,8 +223,8 @@ function splashloop(){
 	var mod = lr['splashonscreen'].length-1;
 	cicle = setInterval(function() {
 		var textindex = lr['indexsplash']%mod;
-		//clear(lr['splashonscreen'][textindex]);
-		clear('test');
+		clear(lr['splashonscreen'][textindex]);
+		//clear('test');
 		lr['indexsplash'] = textindex+1;
 		draw();
 		console.log('loop');
