@@ -162,7 +162,7 @@ function splash(){
 	lr['index_background'] = 0;
 	lr['splashrate'] = 500;
 	lr['indexsplash'] = 0;
-	lr['splashonscreen'] = ['NEW', 'LOW RES', 'PARTY!', '', 'PRESS S', '', 'TO START', '', '' ];
+	lr['splashonscreen'] = ['NEW', '', 'LOW RES', '', 'PARTY!', '', 'PRESS S', '', 'TO START', '', '' ];
 	lr['text_end'] = ['END...', '', 'PRESS S', '', 'TO RESTART', '', '' ];
 	grid(lr['resolution']);
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
