@@ -144,10 +144,12 @@ function audio(){
 }
 
 function mouse_hero(e){
-	if(e.x<(lr['w']/2))
-		go_left();
-	else
-		go_right();
+	jump=true;
+	
+}
+
+function mouse_up_hero(e){
+	jump=true;
 	
 }
 
@@ -196,6 +198,7 @@ function setCanvas(){
 	document.addEventListener('keydown', move_hero, false);
 	document.addEventListener('keyup', key_up, false);
 	document.addEventListener('mousedown', mouse_hero, false);
+	document.addEventListener('mouseup', mouse_up_hero, false);
 	grid(lr['resolution']);
 	//reset_event();
 	audio(); 
