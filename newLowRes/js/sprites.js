@@ -505,7 +505,7 @@ var rgb = {
 	'blue':['00','00','FF']
 }
 function hero(){
-	
+	this.frame=1;
 	this.velocity= 5;
 	this.drawSprite = function(name,x,y){
 		this.size = lr['res_sprites'][lr['size']];
@@ -517,7 +517,8 @@ function hero(){
 	};
 	this.draw = function(){
 		//this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
-		this.drawSprite('shark_hunter_'+lr['direction'], lr['heroposy'], lr['heroposx']);
+		this.drawSprite('shark_hunter_'+lr['direction']+'_'+(this.frame%2), lr['heroposy'], lr['heroposx']);
+		this.frame+=1;
 	};
 	this.create = function(){
 		lr['main_sprite'] = 'doc_boy';
