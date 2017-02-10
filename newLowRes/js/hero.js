@@ -13,6 +13,16 @@ function go_right(){
 			}
 }
 
+function fly()
+{
+	lr['jump']-=1;	
+}
+
+function fall()
+{
+	lr['jump']+=1;	
+}
+
 function go_jump(){
 	if(lr['jump']>0 && lr['descent'] === false){
 		lr['heroposy']-=1;
@@ -44,5 +54,7 @@ function l_r_hero(e){
 	if(goRight)
 		go_right();
 	if(jump)
-		go_jump();
+		fly();//go_jump();
+	else
+		fall();
 }
