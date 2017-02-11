@@ -162,13 +162,13 @@ function colorPixel(i,ii,c){
 }
 
 function shark(start_pos_y){
-	this.posx = lr['rx']-lr['res_sprites'][lr['size']];
+	this.posx = lr['rx']-lr['res_sprites'][lr['size']-1];
 	this.posy = start_pos_y;
 	this.velocity= 5;
 	this.name = 'shark_L';
 	this.dir = 'L';
 	this.drawSprite = function(index){
-		this.size = lr['res_sprites'][lr['size']];
+		this.size = lr['res_sprites'][lr['size']-1];
 		if(this.posx >= 0){
 			var abortloop = false;
 			for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
