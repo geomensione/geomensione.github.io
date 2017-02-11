@@ -518,7 +518,8 @@ function hero(){
 	this.draw = function(){
 		//this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
 		this.drawSprite('shark_hunter_'+lr['direction']+'_'+(this.frame%2), lr['heroposy'], lr['heroposx']);
-		this.frame = (this.frame === 1)?0:1;
+		if(!jump && !fall)
+			this.frame = (this.frame === 1)?0:1;
 	};
 	this.create = function(){
 		lr['main_sprite'] = 'doc_boy';
