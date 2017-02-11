@@ -15,7 +15,7 @@ function go_right(){
 
 function fly()
 {
-	if(lr['heroposy']-1>0)
+	if(lr['heroposy']>0)
 		lr['heroposy']-=1;
 	else
 		jump = false;
