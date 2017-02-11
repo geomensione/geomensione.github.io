@@ -123,7 +123,7 @@ function update(){
 			var a = new armature(rand(lr['rx']));
 			lr['fallingitem'].push(a);
 		}else{
-			var g = new shark(rand(lr['ry']-lr['res_sprites'][lr['size']]));
+			var g = new shark(rand(lr['ry']-lr['res_sprites'][lr['size']-1]));
 			lr['fallingitem'].push(g);
 		}
 		spawn_sound.play();
@@ -191,7 +191,7 @@ function setCanvas(){
 	lr['textsize']=5;
 	lr['textonscreen']='';
 	lr['end'] = false;
-	lr['jump'] = lr['size'] + 1;
+	lr['jump'] = lr['size'];
 	lr['descent'] = false;
 	lr['direction'] = 'R';
 	//lr['background'] = [['00','00'],['00','11'],['00','22'],['00','33'],['00','44'],['00','55'],['00','66'],['00','77'],['00','88'],['00','99'],['00','AA'],['00','BB'],['00','CC'],['00','DD'],['00','EE'],['00','FF']];
