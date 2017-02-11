@@ -16,7 +16,7 @@ function go_right(){
 function fly()
 {
 	if(lr['heroposy']-1>0)
-		lr['jump']-=1;
+		lr['heroposy']-=1;
 	else
 		jump = false;
 }
@@ -24,7 +24,7 @@ function fly()
 function fallfn()
 {
 	if(lr['heroposy']+lr['size']<lr['ry'])
-		lr['jump']+=1;
+		lr['heroposy']+=1;
 	else
 		fall=false;
 }
