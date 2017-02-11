@@ -15,12 +15,18 @@ function go_right(){
 
 function fly()
 {
-	lr['jump']-=1;	
+	if(lr['heroposy']-1>0)
+		lr['jump']-=1;
+	else
+		jump = false;
 }
 
 function fallfn()
 {
-	lr['jump']+=1;	
+	if(lr['heroposy']+lr['size']<lr['ry'])
+		lr['jump']+=1;
+	else
+		fall=false;
 }
 
 function go_jump(){
