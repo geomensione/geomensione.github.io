@@ -145,11 +145,13 @@ function audio(){
 
 function mouse_hero(e){
 	jump=true;
+	fall=false;
 	
 }
 
 function mouse_up_hero(e){
-	jump=true;
+	jump=false;
+	fall=true;
 	
 }
 
