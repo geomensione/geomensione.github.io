@@ -8,7 +8,8 @@ var glitch_sound = new Audio("sounds/hit_glitch.mp3");
 var spawn_sound = new Audio("sounds/spawn.mp3");
 var goLeft = false
     , goRight = false
-    , jump = false;
+    , jump = false
+    , fall = false;
 
 function grid(r){
 	var w = lr['w'];
