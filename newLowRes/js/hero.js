@@ -16,17 +16,29 @@ function go_right(){
 function fly()
 {
 	if(lr['heroposy']>0)
+	{
 		lr['heroposy']-=1;
+		lr['salita']=true;
+		
+	}
 	else
+	{
 		lr['jump'] = false;
+	}
 }
 
 function fallfn()
 {
 	if(lr['heroposy']+lr['size']<lr['ry'])
+	{
 		lr['heroposy']+=1;
+		lr['salita']=true;
+	}
 	else
+	{
 		lr['fall']=false;
+		lr['salita']=false;
+	}
 }
 
 function go_jump(){
