@@ -190,6 +190,7 @@ function setCanvas(){
 	lr['textonscreen']='';
 	lr['end'] = false;
 	lr['jump'] = false;
+	lr['salita'] = false;
 	lr['_jump'] = lr['size'];
 	lr['fall'] = false;
 	lr['descent'] = false;
