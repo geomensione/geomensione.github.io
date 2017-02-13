@@ -181,10 +181,13 @@ function shark(start_pos_y){
 						}
 					}
 					*/
-					if(((this.posx <= lr['heroposx'] && lr['heroposx'] <= this.posx+this.size) || (this.posx <= lr['heroposx']+this.size && lr['heroposx']+this.size <= this.posx+this.size)) && this.posy+this.size >= lr['heroposy']){
-						armature_sound.play();
+					if(((this.posx <= lr['heroposx']+lr['size'] && this.posy+lr['size']<lr['heroposy']+(lr['size']/2) && this.posy+lr['size']> lr['heroposy']){
+						console.log('colpito!');
+					    	/*
+					   	armature_sound.play();
 						hit('s');
 						abortloop=true;
+						*/
 					}else{
 						if((this.posy+this.size) >= lr['ry']){
 							lr['fallingitem'].splice(index,1);
