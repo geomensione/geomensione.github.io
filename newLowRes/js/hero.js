@@ -18,7 +18,7 @@ function fly()
 	if(lr['heroposy']>0)
 		lr['heroposy']-=1;
 	else
-		jump = false;
+		lr['jump'] = false;
 }
 
 function fallfn()
@@ -26,23 +26,23 @@ function fallfn()
 	if(lr['heroposy']+lr['size']<lr['ry'])
 		lr['heroposy']+=1;
 	else
-		fall=false;
+		lr['fall']=false;
 }
 
 function go_jump(){
 	if(lr['jump']>0 && lr['descent'] === false){
 		lr['heroposy']-=1;
-		lr['jump']-=1;
+		lr['_jump']-=1;
 	}else{
 		if(lr['descent'] === false){
 			lr['descent'] = true;
 		}
 		if(lr['jump']<16){
 			lr['heroposy']+=1;
-			lr['jump']+=1;
+			lr['_jump']+=1;
 		}else{
 			lr['descent'] = false;
-			jump = false;
+			lr['jump'] = false;
 		}
 
 		
