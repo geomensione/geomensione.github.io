@@ -7,9 +7,7 @@ var armature_sound = new Audio("sounds/hit_armature.mp3");
 var glitch_sound = new Audio("sounds/hit_glitch.mp3");
 var spawn_sound = new Audio("sounds/spawn.mp3");
 var goLeft = false
-    , goRight = false
-    , jump = false
-    , fall = false;
+    , goRight = false;
 
 function grid(r){
 	var w = lr['w'];
@@ -146,14 +144,14 @@ function audio(){
 }
 
 function mouse_hero(e){
-	jump=true;
-	fall=false;
+	lr['jump']=true;
+	lr['fall']=false;
 	
 }
 
 function mouse_up_hero(e){
-	jump=false;
-	fall=true;
+	lr['jump']=false;
+	lr['fall']=true;
 	
 }
 
@@ -191,7 +189,8 @@ function setCanvas(){
 	lr['textsize']=5;
 	lr['textonscreen']='';
 	lr['end'] = false;
-	lr['jump'] = lr['size'];
+	lr['jump'] = false;
+	lr['fall'] = false;
 	lr['descent'] = false;
 	lr['direction'] = 'R';
 	//lr['background'] = [['00','00'],['00','11'],['00','22'],['00','33'],['00','44'],['00','55'],['00','66'],['00','77'],['00','88'],['00','99'],['00','AA'],['00','BB'],['00','CC'],['00','DD'],['00','EE'],['00','FF']];
