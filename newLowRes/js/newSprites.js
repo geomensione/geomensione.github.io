@@ -180,8 +180,10 @@ function shark(start_pos_y){
 							lr['fb'][i][ii] = ['FF', '00', '00'];
 						}
 					}
-					*/
-					if(this.posx <= lr['heroposx']+lr['size'] && this.posy+lr['size']<lr['heroposy']+(lr['size']/2) && this.posy+lr['size']> lr['heroposy']){
+					
+					if(this.posx <= lr['heroposx']+lr['size'] && 
+					   this.posy+lr['size']<lr['heroposy']+(lr['size']/2) 
+					   && this.posy+lr['size']> lr['heroposy']){
 						console.log('colpito!');
 					    	/*
 					   	armature_sound.play();
