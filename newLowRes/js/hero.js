@@ -59,8 +59,8 @@ function l_r_hero(e){
 		go_left();				
 	if(goRight)
 		go_right();
-	if(jump)
+	if(lr['jump'])
 		fly();//go_jump();
-	if(fall)
+	if(lr['fall'])
 		fallfn();
 }
