@@ -153,25 +153,28 @@ var newSprites = {
 function colorPixel(i,ii,c){
   switch(c){
     case 'G':
-      lr['fb'][i][ii] = ['FF','FF','00'];
+      lr['fb'][i][ii] = ['00','FF','00'];
       break;
-    case 'A':
-      lr['fb'][i][ii] = ['AA','AA','FF'];
-      break;
-    case 'P':
-      lr['fb'][i][ii] = ['FF','AA','AA'];
-      break;
-    case 'p':
-      lr['fb'][i][ii] = ['FF','77','77'];
+    case 'R':
+      lr['fb'][i][ii] = ['FF','00','00'];
       break;
     case 'B':
-      lr['fb'][i][ii] = ['00','00','00'];
+      lr['fb'][i][ii] = ['00','00','FF'];
       break;
     case 'W':
       lr['fb'][i][ii] = ['FF','FF','FF'];
       break;
+    case 'K':
+      lr['fb'][i][ii] = ['00','00','00'];
+      break;
+    case 'Y':
+      lr['fb'][i][ii] = ['FF','FF','00'];
+      break;
     case 'V':
-      lr['fb'][i][ii] = ['00','FF','00'];
+      lr['fb'][i][ii] = ['FF','00','FF'];
+      break;
+    case 'C':
+      lr['fb'][i][ii] = ['00','FF','FF'];
       break;
       
     
