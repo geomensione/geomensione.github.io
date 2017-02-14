@@ -128,6 +128,24 @@ var newSprites = {
   '00000PWW00000000',
   '000000P000000000',
   '0000000000000000'
+ ],
+'blood_L':[
+  '0000000000000000',
+  '00R0000R0000R000',
+  '000R00RR0000R00R',
+  '000000R0R000R000',
+  '00000WWWW0000R00',
+  'WWWWWWWWWWWWWWW0',
+  'WWWWWWWWWWWWWW00',
+  '0PWWW0WBWWWW0WW0',
+  '0P0WWWWWWWG00WW0',
+  '000P0WWWWWGG00WW',
+  '000000WWWGGGG000',
+  '00000PWWW00GGG00',
+  '000000WWW0000000',
+  '00000PWW00000000',
+  '000000P000000000',
+  '0000000000000000'
  ]
 
 }
@@ -185,6 +203,7 @@ function shark(start_pos_y){
 					   this.posy+lr['size']<lr['heroposy']+(lr['size']/2) 
 					   && this.posy+lr['size']> lr['heroposy']){
 						console.log('colpito!');
+						this.name = 'blood_L';
 					    	/*
 					   	armature_sound.play();
 						hit('s');
