@@ -203,8 +203,8 @@ function shark(start_pos_y){
 					}
 					*/
 					if(this.posx <= lr['heroposx']+lr['size'] && 
-					   this.posy<=lr['heroposy']+(lr['size']/2) 
-					   && this.posy>= lr['heroposy']){
+					   (this.posy+4)<=lr['heroposy']+(lr['size']/2) 
+					   && (this.posy+4)>= lr['heroposy']){
 						console.log('colpito!');
 						this.name = 'blood_L';
 					    	/*
