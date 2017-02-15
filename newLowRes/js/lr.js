@@ -180,7 +180,7 @@ function setCanvas(){
 	lr['w'] = document.documentElement.clientWidth;
 	lr['h'] = document.documentElement.clientHeight;
 	lr['resolution'] = 48;
-	lr['framerate'] = 100;
+	lr['framerate'] = 50;
 	lr['fallingitem'] = [];
 	lr['size'] = 16;
 	lr['fortune'] = 10;
