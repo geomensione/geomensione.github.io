@@ -199,9 +199,11 @@ function setCanvas(){
 	lr['index_background'] = 0;
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
 	document.getElementById('gameScreen').height = document.documentElement.clientHeight;
+	/*
 	document.removeEventListener('keydown', start_hero);
 	document.addEventListener('keydown', move_hero, false);
 	document.addEventListener('keyup', key_up, false);
+	*/
 	document.addEventListener('mousedown', mouse_hero, false);
 	document.addEventListener('mouseup', mouse_up_hero, false);
 	grid(lr['resolution']);
