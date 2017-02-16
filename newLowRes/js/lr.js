@@ -57,6 +57,16 @@ function drawText(text) {
     }
 }
 
+function drawScore() {
+	var score = localStorage.score.toString();
+	var score_length = score.length;
+	var x = lr[rx]-5*score_length;
+	var y = 0;
+	for(var i=0; i < score_length; i++) {
+        	x += drawLetter(x, y, score.charAt(i), rgb['blue']) + 1;
+    	}
+}
+
 function clear(text){
 	var rx = lr['rx'];
 	var ry = lr['ry'];
@@ -195,6 +205,7 @@ function setCanvas(){
 	lr['fall'] = false;
 	lr['descent'] = false;
 	lr['direction'] = 'R';
+	localStorage['score'] = 0;
 	//lr['background'] = [['00','00'],['00','11'],['00','22'],['00','33'],['00','44'],['00','55'],['00','66'],['00','77'],['00','88'],['00','99'],['00','AA'],['00','BB'],['00','CC'],['00','DD'],['00','EE'],['00','FF']];
 	lr['index_background'] = 0;
 	document.getElementById('gameScreen').width = document.documentElement.clientWidth;
