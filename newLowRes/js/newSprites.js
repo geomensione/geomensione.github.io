@@ -208,6 +208,7 @@ function shark(start_pos_y){
 						console.log('colpito!');
 						this.name = 'blood_L';
 					    	abortloop=true;
+						localStorage.score++;
 						/*
 					   	armature_sound.play();
 						hit('s');
