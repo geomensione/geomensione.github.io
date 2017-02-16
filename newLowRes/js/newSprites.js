@@ -207,7 +207,9 @@ function shark(start_pos_y){
 					   && (this.posy+4)>= lr['heroposy']){
 						console.log('colpito!');
 						this.name = 'blood_L';
-					    	/*
+					    	hit('s');
+						abortloop=true;
+						/*
 					   	armature_sound.play();
 						hit('s');
 						abortloop=true;
