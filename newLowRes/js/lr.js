@@ -60,7 +60,7 @@ function drawText(text) {
 function drawScore() {
 	var score = localStorage.score.toString();
 	var score_length = score.length;
-	var x = lr[rx]-5*score_length;
+	var x = lr['rx']-5*score_length;
 	var y = 0;
 	for(var i=0; i < score_length; i++) {
         	x += drawLetter(x, y, score.charAt(i), rgb['blue']) + 1;
