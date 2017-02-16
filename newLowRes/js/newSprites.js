@@ -209,6 +209,7 @@ function shark(start_pos_y){
 						this.name = 'blood_L';
 					    	abortloop=true;
 						localStorage.score++;
+						die(index);
 						/*
 					   	armature_sound.play();
 						hit('s');
