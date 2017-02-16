@@ -258,6 +258,7 @@ function loop(){
 		clear(lr['textonscreen']);
 		update();
 		h.draw();
+		drawScore();
 		draw();
 	}, lr['framerate']);
 }
