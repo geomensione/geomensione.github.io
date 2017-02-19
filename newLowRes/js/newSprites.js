@@ -188,6 +188,7 @@ function shark(start_pos_y){
 	this.velocity= 5;
 	this.name = 'shark_L';
 	this.dir = 'L';
+	thid.blood = false;
 	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']-1];
 		if(this.posx >= 0){
@@ -206,9 +207,17 @@ function shark(start_pos_y){
 					   (this.posy+4)<=lr['heroposy']+(lr['size']/2) 
 					   && (this.posy+4)>= lr['heroposy']){
 						console.log('colpito!');
-						abortloop=true;
 						localStorage.score++;
-						die(index);
+						if(this.blood)
+						{
+							this.name = 'blood_L';
+						}
+						else
+						{
+							abortloop=true;
+							die(index);
+						}
+						
 						/*
 					   	armature_sound.play();
 						hit('s');
