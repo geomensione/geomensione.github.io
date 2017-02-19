@@ -188,7 +188,7 @@ function shark(start_pos_y){
 	this.velocity= 5;
 	this.name = 'shark_L';
 	this.dir = 'L';
-	this.blood = false;
+	this.blood = true;
 	this.drawSprite = function(index){
 		this.size = lr['res_sprites'][lr['size']-1];
 		if(this.posx >= 0){
@@ -211,6 +211,7 @@ function shark(start_pos_y){
 						if(this.blood)
 						{
 							this.name = 'blood_L';
+							this.blood=false;
 						}
 						else
 						{
