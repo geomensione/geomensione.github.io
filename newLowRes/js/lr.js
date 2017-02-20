@@ -41,9 +41,10 @@ function drawLetter(x, y, chr, c) {
     if(!l) { return 0; }
 	for(var i=0; i < l[0].length; i++) {
 		for(var j=0; j < l.length; j++) {
-			//if(l[j].charAt(i) === "1") {
-			lr['fb'][x+i][y+j] = [c[0],c[1],c[2]];
-			//}
+			//Disegna lo sprite opaco
+			if(l[j].charAt(i) === "1") {
+				lr['fb'][x+i][y+j] = [c[0],c[1],c[2]];
+			}
 		}
 	}
 	return l[0].length;
