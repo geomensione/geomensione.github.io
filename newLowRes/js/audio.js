@@ -1,7 +1,7 @@
 function soundtrack() {
 
     var timing = 250;
-    var notes = [ "C#", "D#", "F#", "D#"];
+    var notes = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "B"];
     var prevTime = tones.getTimeMS();
     var elapsed = 0;
 
