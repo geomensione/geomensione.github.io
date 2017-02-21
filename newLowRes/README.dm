@@ -8,3 +8,5 @@ data:audio/midi;base64,TVRoZAAAAAYAAQAHAeBNVHJrAAAAIgD/VAUAAAAAAAD/UQMIUq4A/1gEB
 
 https://freemidi.org/artist-1632-toto
 
+base64
+http://www.greywyvern.com/code/php/binary2base64
