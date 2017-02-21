@@ -16,7 +16,7 @@ function soundtrack() {
             while(elapsed > timing) elapsed -= timing;
             var note = notes[index];
             index = (index===0)?index+1:0;
-            tones.play(note, 3);
+            tones.play(note, 4);
         }
         prevTime = now;
         requestAnimationFrame(play);
