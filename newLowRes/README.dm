@@ -10,3 +10,6 @@ https://freemidi.org/artist-1632-toto
 
 base64
 http://www.greywyvern.com/code/php/binary2base64
+
+how build simple player with midi.js
+http://stackoverflow.com/questions/26910924/simple-midi-js-player-example
