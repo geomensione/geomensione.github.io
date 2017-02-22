@@ -27,17 +27,11 @@ function soundtrack() {
 function player()
 {
     MIDI.loader = new sketch.ui.Timer;
-    MIDI.loadPlugin({
-        onprogress: function(state, progress) {
-            MIDI.loader.setValue(progress * 100);
-        },
-        onsuccess: function() {
-            player = MIDI.Player;
-            player.timeWarp = 1; // speed the song is played back
-            player.loadFile(song[0], player.start);
-            
-        }
-    });
+    player = MIDI.Player;
+    player.timeWarp = 1; // speed the song is played back
+    player.loadFile(song[0], player.start);
+
+
 }
 
 var song = [
