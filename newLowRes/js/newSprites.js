@@ -226,7 +226,7 @@ function shark(start_pos_y){
 
 						}
 
-						}
+						
 						
 					}
 				}
