@@ -127,6 +127,8 @@ function rand(max) {
 }
 
 function update(){
+	if(lr.end)
+		end();
 	lr['time'] += 1;
 	lr['fortune'] = rand(5);
 	if(lr['time'] > lr['framerate']){
