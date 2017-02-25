@@ -524,7 +524,6 @@ function hero(){
 		else
 		{
 				this.drawSprite('blood_L', lr['heroposy'], lr['heroposx']);
-				end();
 		
 		}
 		if(!lr['jump'] && !lr['fall'] && !lr['salita'])
