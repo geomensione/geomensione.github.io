@@ -12,4 +12,9 @@ CATCH THE WIZARD! Ooh yes, I love make "teletext style" game! Very low resolutio
 
 https://geomensione.github.io/JS1k-Magic
 
+WIP
+
+https://geomensione.github.io/newLowRes
+
+
 
