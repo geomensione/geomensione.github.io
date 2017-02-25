@@ -517,7 +517,15 @@ function hero(){
 	};
 	this.draw = function(){
 		//this.drawSprite('doc_boy', lr['ry']-lr['res_sprites'][lr['size']], lr['heroposx']);
-		this.drawSprite('shark_hunter_'+lr['direction']+'_'+(this.frame%2), lr['heroposy'], lr['heroposx']);
+		if(!lr.end)
+		{
+				this.drawSprite('shark_hunter_'+lr['direction']+'_'+(this.frame%2), lr['heroposy'], lr['heroposx']);
+		}
+		else
+		{
+				this.drawSprite('blood_L', lr['heroposy'], lr['heroposx']);
+		
+		}
 		if(!lr['jump'] && !lr['fall'] && !lr['salita'])
 			this.frame = (this.frame === 1)?0:1;
 	};
