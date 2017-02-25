@@ -200,24 +200,24 @@ function shark(start_pos_y){
 					for(var ii = this.posy,yoffset = this.posy+this.size,ii_s = 0;ii<yoffset && !abortloop;ii++,ii_s++){
 						colorPixel(i,ii,newSprites[this.name][ii_s].charAt(i_s));
 						
-						if(this.posx <= lr['heroposx']+lr['size'] && 
-						   (this.posy+4)<=lr['heroposy']+(lr['size']/2) 
-						   && (this.posy+4)>= lr['heroposy']){
-							console.log('colpito!');
-                                                        if(!this.hit)
-							{
-								localStorage.score++;
-								this.hit=true;
-							}
-							this.name = 'blood_L';
-							this.blood=false;
-
-
-							/*
-							armature_sound.play();
-							hit('s');
-							abortloop=true;
-							*/
+						if(this.posx <= lr['heroposx']+lr['size'])
+						{
+							   if((this.posy+4)<=lr['heroposy']+(lr['size']/2) 
+							   	&& (this.posy+4)>= lr['heroposy']){
+								console.log('colpito!');
+								if(!this.hit)
+								{
+									localStorage.score++;
+									this.hit=true;
+								}
+								this.name = 'blood_L';
+								this.blood=false;
+							   }
+							   else if((this.posy+4)>=lr['heroposy']+(lr['size']/2) 
+							   	&& (this.posy+4)<= lr['heroposy']+lr.size)
+							   {
+							   	lr.end = true;
+							   }
 						}else{
 							if((this.posy+this.size) >= lr['ry']){
 								lr['fallingitem'].splice(index,1);
@@ -226,6 +226,8 @@ function shark(start_pos_y){
 
 						}
 
+						}
+						
 					}
 				}
 			}
