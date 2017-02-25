@@ -73,6 +73,7 @@ function clear(text){
 	var rx = lr['rx'];
 	var ry = lr['ry'];
 	switch(text){
+			/*
 		case '':
 			var back_color = lr['index_background']%2;
 			for(var i = 0;i<rx;i++){
@@ -84,6 +85,7 @@ function clear(text){
 			}
 			//lr['index_background'] = back_color+1;
 			break;
+			*/
 		case 'test':   
 			
 			for(var i = 0;i<rx;i++){
