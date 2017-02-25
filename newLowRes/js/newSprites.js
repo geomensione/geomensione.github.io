@@ -193,7 +193,9 @@ function shark(start_pos_y){
 		this.size = lr['res_sprites'][lr['size']-1];
 		if(this.posx >= 0){
 			var abortloop = false;
-			for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
+			if(this.blood)
+			{
+				for(var i = this.posx,xoffset = this.posx+this.size,i_s = 0;i<xoffset && !abortloop;i++,i_s++){
 				for(var ii = this.posy,yoffset = this.posy+this.size,ii_s = 0;ii<yoffset && !abortloop;ii++,ii_s++){
 					colorPixel(i,ii,newSprites[this.name][ii_s].charAt(i_s));
 					/*
@@ -207,17 +209,11 @@ function shark(start_pos_y){
 					   (this.posy+4)<=lr['heroposy']+(lr['size']/2) 
 					   && (this.posy+4)>= lr['heroposy']){
 						console.log('colpito!');
-						if(this.blood)
-						{
-							localStorage.score++;
-							this.name = 'blood_L';
-							this.blood=false;
-						}
-						else
-						{
-							abortloop=true;
-							die(index);
-						}
+
+						localStorage.score++;
+						this.name = 'blood_L';
+						this.blood=false;
+
 						
 						/*
 					   	armature_sound.play();
@@ -232,8 +228,14 @@ function shark(start_pos_y){
 						
 					}
 					
-				}
+				}	
 			}
+			else
+			{
+				abortloop=true;
+				die(index);
+			}
+			
 			if(this.dir === 'L' && (this.posx-1)>=0){
 			   	this.posx -= 1;
 			}else{
