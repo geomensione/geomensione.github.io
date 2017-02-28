@@ -22,3 +22,6 @@ http://stackoverflow.com/questions/26910924/simple-midi-js-player-example
 IDEAS
 
 hero become a shark whene hit one of it, and...
+
+music
+https://github.com/hermitsoft/jsSID
