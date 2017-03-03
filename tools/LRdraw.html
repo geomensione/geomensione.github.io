@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LRDraw</title>
+<style>
+body{
+	margin: 0;
+	overflow: hidden;
+}
+canvas{
+	width: 100%;
+	height: 100%;
+}
+</style>
+</head>
+<body>
+    <canvas id="tool">
+      What, no canvas support? D:
+    </canvas>
+ <script>
+	"use strict";
+	window.a = document.getElementsByTagName('canvas')[0];
+	window.b = document.getElementsByTagName('body')[0];
+	window.c = window.a.getContext('2d');
+	window.d = document;
+	a.width = window.innerWidth;
+	a.height = window.innerHeight;
+	/*
+	LRDraw tool start
+	*/
+	//Init
+	var g = {};
+	g.w = window.innerWidth;
+	g.h = window.innerHeight;
+	g.r = 24;
+	g.s = 8;
+	g.fr = 100;
+	
+  a.ontouchstart = (e) =>
+  {
+  
+  }
+  
+	a.onmousedown = function
+  
+  down = function(e){
+		var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
+		if(iD.data[0]!==0){
+			clearInterval(g.l);
+		}
+	}; 
+	
+	g.sh = [
+	  '0WWWWWWW',
+	  '0W0W0WW0',
+	  '0WWWWW00',
+	  '0WW0WW0W',
+	  '00WWWW0W',
+	  'WWWWWWWW',
+	  '00WWWW00',
+	  '0WW00WW0'
+	];
+		 
+	function gr(){
+		var w = g.w;
+		var h = g.h;
+		var ox, oy = 0;
+		if(h<w){
+			ox = Math.round(h/g.r);
+			g.ry = Math.round(h/ox);
+			g.rx = Math.round(w/ox);
+		}else{
+			ox = Math.round(w/g.r);
+			g.rx = Math.round(w/ox);
+			g.ry = Math.round(h/ox);
+		}
+		g.o = ox;
+		g.fb = [];
+		var rx = g.rx;
+		var ry = g.ry;
+		for(var i = 0;i<rx;i++){
+			g.fb[i] = [];
+			for(var d = 0;d<ry;d++){
+				//qui setta il fb
+				g.fb[i][d] = ['00', '00', '00'];
+			}
+		}
+		var x = Math.floor(Math.random() * (g.rx-g.s));
+		var y = Math.floor(Math.random() * (g.ry-g.s));
+		for(var xo = 0;xo<g.s;xo++)
+		{
+			for(var yo = 0;yo<g.s;yo++)
+			{
+				if(g.sh[yo][xo] === 'W')
+					g.fb[x+xo][y+yo] = ['FF','FF','FF'];
+			}
+		}
+		
+	}
+	 
+	function dr(){
+		var rx = g.rx;
+		var ry = g.ry;
+		var o = g.o;
+		var cx = 0, cy = 0;
+		for(var i = 0;i<rx;i++){
+			for(var d = 0;d<ry;d++){
+				c.fillStyle = "#"+g.fb[i][d][0]+g.fb[i][d][1]+g.fb[i][d][2];
+				c.fillRect(cx,cy,o,o);
+				cy += o;
+			}
+			cx += o;
+			cy = 0;
+		}
+		
+		
+	}
+	
+	function l(){
+		g.l = setInterval(function() {
+			gr();
+			dr();
+		}, g.fr);
+	}
+	 
+	l();
+ </script>
+</body></html>
