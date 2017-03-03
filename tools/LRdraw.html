@@ -38,16 +38,20 @@ canvas{
 	
   a.ontouchstart = (e) =>
   {
-  
+  	let x = e.originalEvent.touches[0].pageX;
+	let y = e.originalEvent.touches[0].pageY;
+	down(x,y);
   }
   
-	a.onmousedown = function
+  a.onmousedown = (e) =>
+  {
+  	let x = e.clientX;
+	let y = e.clientY;
+	down(x,y);
+  }
   
-  down = function(e){
-		var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
-		if(iD.data[0]!==0){
-			clearInterval(g.l);
-		}
+  down = function(x,y){
+		
 	}; 
 	
 	g.sh = [
