@@ -50,8 +50,11 @@ canvas{
 	down(x,y);
   }
   
-  down = function(x,y){
-		
+  down = (x,y) => {
+		let cx = x/g.o;
+	  	let cy = y/g.o;
+	  	c.fillStyle = "#FFFFFF"
+		c.fillRect(cx,cy,o,o);	
 	}; 
 	
 	g.sh = [
@@ -65,6 +68,7 @@ canvas{
 	  '0WW00WW0'
 	];
 		 
+	//create grid 
 	function gr(){
 		var w = g.w;
 		var h = g.h;
@@ -89,6 +93,7 @@ canvas{
 				g.fb[i][d] = ['00', '00', '00'];
 			}
 		}
+		/*
 		var x = Math.floor(Math.random() * (g.rx-g.s));
 		var y = Math.floor(Math.random() * (g.ry-g.s));
 		for(var xo = 0;xo<g.s;xo++)
@@ -99,6 +104,7 @@ canvas{
 					g.fb[x+xo][y+yo] = ['FF','FF','FF'];
 			}
 		}
+		*/
 		
 	}
 	 
@@ -119,7 +125,7 @@ canvas{
 		
 		
 	}
-	
+	/*
 	function l(){
 		g.l = setInterval(function() {
 			gr();
@@ -128,5 +134,7 @@ canvas{
 	}
 	 
 	l();
+	*/
+	 gr();
  </script>
 </body></html>
