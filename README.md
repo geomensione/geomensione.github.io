@@ -12,9 +12,15 @@ CATCH THE WIZARD! Ooh yes, I love make "teletext style" game! Very low resolutio
 
 https://geomensione.github.io/JS1k-Magic
 
-WIP
+newLowRes:
+
+Simple horizontally scrolling game
 
 https://geomensione.github.io/newLowRes
 
+tools:
 
+create teletext art!
+
+https://geomensione.github.io/tools
 
