@@ -40,18 +40,37 @@ body{
 	g.s = 8;
 	g.fr = 100;
 	
+	let touch = (e) =>
+	 {
+		let x = e.originalEvent.touches[0].pageX;
+		let y = e.originalEvent.touches[0].pageY;
+		down(x,y); 	
+	 }
   a.ontouchstart = (e) =>
   {
-  	let x = e.originalEvent.touches[0].pageX;
-	let y = e.originalEvent.touches[0].pageY;
+  	touch(e);
+  }
+  
+  let mouse = (e) =>
+  {
+  	let x = e.clientX;
+	let y = e.clientY;
 	down(x,y);
   }
   
   a.onmousedown = (e) =>
   {
-  	let x = e.clientX;
-	let y = e.clientY;
-	down(x,y);
+  	mouse(e);
+  }
+  
+  a.ontouchmove = (e) =>
+  {
+  	touch(e);
+  }
+  
+  a.onmousemove = (e) =>
+  {
+  	mouse(e);
   }
   
   function down(x,y){
