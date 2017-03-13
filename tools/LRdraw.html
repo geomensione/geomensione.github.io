@@ -104,8 +104,8 @@
 	 }
 	 
 	 function down(x,y){
-		let cx = Math.round(x/g.o);
-	  	let cy = Math.round(y/g.o);
+		let cx = Math.floor(x/g.o);
+	  	let cy = Math.floor(y/g.o);
 	  	c.fillStyle = "#"+g.color;
 		c.fillRect(cx*g.o,cy*g.o,g.o,g.o);	
 	 }; 
