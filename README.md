@@ -22,5 +22,5 @@ tools:
 
 create teletext art!
 
-https://geomensione.github.io/tools
+https://geomensione.github.io/tools/LRdraw.html
 
