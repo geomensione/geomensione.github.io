@@ -33,6 +33,8 @@
 	g.fr = 100;
 	g.color = '000000';
 	
+	localStorage.image = [];
+	 
 	let touch = (e) =>
 	 {
 		let x = e.originalEvent.touches[0].pageX;
@@ -169,7 +171,9 @@
 		var o = g.o;
 		var cx = 0, cy = 0;
 		for(var i = 0;i<rx;i++){
+			localStorage.image[i] = [];
 			for(var d = 0;d<ry;d++){
+				localStorage.image[i][d] = '000000';
 				c.fillStyle = "#"+g.fb[i][d][0]+g.fb[i][d][1]+g.fb[i][d][2];
 				c.fillRect(cx,cy,o,o);
 				cy += o;
