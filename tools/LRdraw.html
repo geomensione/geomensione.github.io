@@ -32,8 +32,6 @@
 	g.s = 8;
 	g.fr = 100;
 	g.color = '000000';
-	
-	localStorage.image = [];
 	 
 	let touch = (e) =>
 	 {
@@ -166,6 +164,7 @@
 	}
 	 
 	function dr(){
+		localStorage.image = [];
 		var rx = g.rx;
 		var ry = g.ry;
 		var o = g.o;
