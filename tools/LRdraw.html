@@ -109,21 +109,24 @@
 			case '7':
 				g.color = 'FFFFFF';
 				break;
-			case 's':
-				localStorage.textimage = JSON.stringify(g.textimage);
-				break;
-			case 'r':
-				g.textimage = JSON.parse(localStorage.textimage);
-				break;
-			case 'f':
-				g.level = 1;
-				break;
+			case 'a':
+				alert(JSON.stringify(g.textimage));
 			case 'b':
 				g.level = 0;
 				break;
 			case 'e':
 				g.color = g.background;
 				break;
+			case 'f':
+				g.level = 1;
+				break;
+			case 'r':
+				g.textimage = JSON.parse(localStorage.textimage);
+				break;
+			case 's':
+				localStorage.textimage = JSON.stringify(g.textimage);
+				break;
+			
 		}
 	 }
 	 
