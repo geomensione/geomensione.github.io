@@ -107,6 +107,9 @@
 			case 's':
 				localStorage.textimage = JSON.stringify(textimage);
 				break;
+			case 'r':
+				textimage = JSON.parse(localStorage.textimage);
+				break;
 		}
 	 }
 	 
