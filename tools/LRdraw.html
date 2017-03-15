@@ -110,10 +110,10 @@
 				g.color = 'FFFFFF';
 				break;
 			case 's':
-				localStorage.textimage = JSON.stringify(textimage);
+				localStorage.textimage = JSON.stringify(g.textimage);
 				break;
 			case 'r':
-				textimage = JSON.parse(localStorage.textimage);
+				g.textimage = JSON.parse(localStorage.textimage);
 				break;
 			case 'f':
 				g.level = 1;
@@ -122,7 +122,7 @@
 				g.level = 0;
 				break;
 			case 'e':
-				g.color = background;
+				g.color = g.background;
 				break;
 		}
 	 }
@@ -130,21 +130,10 @@
 	 function down(x,y){
 		let cx = Math.floor(x/g.o);
 	  	let cy = Math.floor(y/g.o);
-		textimage[cx][cy] = g.color;
+		g.textimage[cx][cy] = g.color;
 	  	c.fillStyle = "#"+g.color;
 		c.fillRect(cx*g.o,cy*g.o,g.o,g.o);	
 	 }; 
-	
-	 g.sh = [
-	  	'0WWWWWWW',
-	  	'0W0W0WW0',
-	  	'0WWWWW00',
-	  	'0WW0WW0W',
-	  	'00WWWW0W',
-	  	'WWWWWWWW',
-	  	'00WWWW00',
-	  	'0WW00WW0'
-	];
 		 
 	//create grid 
 	function gr(){
@@ -164,10 +153,10 @@
 		var rx = g.rx;
 		var ry = g.ry;
 		for(var i = 0;i<rx;i++){
-			textimage[i] = [];
+			g.textimage[i] = [];
 			for(var d = 0;d<ry;d++){
 				//qui setta il fb
-				textimage[i][d] = background;
+				g.textimage[i][d] = g.background;
 			}
 		}
 		/*
@@ -193,7 +182,7 @@
 		var cx = 0, cy = 0;
 		for(var i = 0;i<rx;i++){
 			for(var d = 0;d<ry;d++){
-				c.fillStyle = "#"+textimage[i][d];
+				c.fillStyle = "#"+g.textimage[i][d];
 				c.fillRect(cx,cy,o,o);
 				cy += o;
 			}
