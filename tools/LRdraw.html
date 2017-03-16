@@ -127,7 +127,8 @@
 				break;
 			case 'l':
 				localStorage.textimage = prompt('Insert image to load');
-				g.textimage = JSON.parse(localStorage.textimage);
+				if(localStorage.textimage)
+					g.textimage = JSON.parse(localStorage.textimage);
 				dr();
 				break;
 			case 'r':
