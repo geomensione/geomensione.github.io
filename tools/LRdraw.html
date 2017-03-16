@@ -78,36 +78,41 @@
 		g.draw = false;
 	 }
 
+	 g.set_foreground_background = (color) =>
+	 {
+		if(g.level === 1)
+			g.color = color;
+		else
+			g.background = color;
+	 }
+	 
 	 d.onkeydown = (e) =>
 	 {
 		switch(e.key)
 		{
 			case '0':
-				if(g.level === 1)
-					g.color = '000000';
-				else
-					g.background = '000000';
-				break;
+				g.set_foreground_background('000000');
+	 			break;
 			case '1':
-				g.color = 'FF0000';
+				g.set_foreground_background('FF0000');
 				break;
 			case '2':
-				g.color = '00FF00';
+				g.set_foreground_background('00FF00');
 				break;
 			case '3':
-				g.color = '0000FF';
+				g.set_foreground_background('0000FF');
 				break;
 			case '4':
-				g.color = 'FFFF00';
+				g.set_foreground_background('FFFF00');
 				break;
 			case '5':
-				g.color = 'FF00FF';
+				g.set_foreground_background('FF00FF');
 				break;
 			case '6':
-				g.color = '00FFFF';
+				g.set_foreground_background('00FFFF');
 				break;
 			case '7':
-				g.color = 'FFFFFF';
+				g.set_foreground_background('FFFFFF');
 				break;
 			case 'a':
 				alert(JSON.stringify(g.textimage));
@@ -121,9 +126,13 @@
 				g.level = 1;
 				break;
 			case 'l':
-				//prompt
+				localStorage.textimage = prompt('Insert image to load');
+				g.textimage = JSON.parse(localStorage.textimage);
+				dr();
+				break;
 			case 'r':
 				g.textimage = JSON.parse(localStorage.textimage);
+				dr();
 				break;
 			case 's':
 				localStorage.textimage = JSON.stringify(g.textimage);
