@@ -78,10 +78,11 @@
 
 	 g.set_foreground_background = (color) =>
 	 {
-		if(g.level === 1)
-			g.color = color;
-		else
-			g.background = color;
+		 let hex = g.fromCharToColorHex(color);
+		 if(g.level === 1)
+			g.color = hex;
+		 else
+			g.background = hex;
 	 }
 	 
 	 d.onkeydown = (e) =>
@@ -89,28 +90,28 @@
 		switch(e.key)
 		{
 			case '0':
-				g.set_foreground_background('000000');
+				g.set_foreground_background('b');
 	 			break;
 			case '1':
-				g.set_foreground_background('FF0000');
+				g.set_foreground_background('r');
 				break;
 			case '2':
-				g.set_foreground_background('00FF00');
+				g.set_foreground_background('g');
 				break;
 			case '3':
-				g.set_foreground_background('0000FF');
+				g.set_foreground_background('b');
 				break;
 			case '4':
-				g.set_foreground_background('FFFF00');
+				g.set_foreground_background('y');
 				break;
 			case '5':
-				g.set_foreground_background('FF00FF');
+				g.set_foreground_background('p');
 				break;
 			case '6':
-				g.set_foreground_background('00FFFF');
+				g.set_foreground_background('c');
 				break;
 			case '7':
-				g.set_foreground_background('FFFFFF');
+				g.set_foreground_background('w');
 				break;
 			case 'a':
 				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
@@ -176,7 +177,7 @@
 			g.textimage[i] = [];
 			for(var d = 0;d<ry;d++){
 				//qui setta il fb
-				g.textimage[i][d] = g.background;
+				g.textimage[i][d] = 'B';
 			}
 		}
 		/*
@@ -193,6 +194,29 @@
 		*/
 		
 	}
+	
+	g.fromCharToColorHex = (c) =>
+	{
+		switch(c)
+		{
+			case '0':
+				return '000000';
+			case '1':
+				return 'FF0000';
+			case '2':
+				return '00FF00';
+			case '3':
+				return '0000FF';
+			case '4':
+				return 'FFFF00';
+			case '5':
+				return 'FF00FF';
+			case '6':
+				return '00FFFF';
+			case '7':
+				return 'FFFFFF';
+		}
+	}
 	 
 	function dr(){
 		
@@ -202,7 +226,7 @@
 		var cx = 0, cy = 0;
 		for(var i = 0;i<rx;i++){
 			for(var d = 0;d<ry;d++){
-				c.fillStyle = "#"+g.textimage[i][d];
+				c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
 				c.fillRect(cx,cy,o,o);
 				cy += o;
 			}
