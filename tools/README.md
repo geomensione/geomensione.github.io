@@ -2,21 +2,21 @@ LRdraw:
 
 a tool to create low res art.
 First release use keyboard to call tools.
-- '0':
+- 'k':
 				draw using color black
-- '1':
+- 'r':
 				draw using color red
-- '2':
+- 'g':
 				draw using color green
-- '3':
+- 'b':
 				draw usign color blue
-- '4':
+- 'y':
 				draw usign color yellow
-- '5':
+- 'p':
 				draw usign color purple
-- '6':
+- 'c':
 				draw usign color cyan
-- '7':
+- 'w':
 				draw usign color white
 - 'a':
 				show the image in json format
