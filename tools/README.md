@@ -20,7 +20,7 @@ First release use keyboard to call tools.
 				draw usign color white
 - 'a':
 				show the image in json format
-- 'b':
+- 'd':
 				set background mode
 - 'c':
 				clear
