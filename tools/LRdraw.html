@@ -92,40 +92,40 @@
 	 {
 		switch(e.key)
 		{
-			case '0':
-				g.set_foreground_background('b');
+			case 'k':
+				g.set_foreground_background('0');
 	 			break;
-			case '1':
-				g.set_foreground_background('r');
+			case 'r':
+				g.set_foreground_background('1');
 				break;
-			case '2':
-				g.set_foreground_background('g');
+			case 'g':
+				g.set_foreground_background('2');
 				break;
-			case '3':
-				g.set_foreground_background('b');
+			case 'b':
+				g.set_foreground_background('3');
 				break;
-			case '4':
-				g.set_foreground_background('y');
+			case 'y':
+				g.set_foreground_background('4');
 				break;
-			case '5':
-				g.set_foreground_background('p');
+			case 'p':
+				g.set_foreground_background('5');
 				break;
-			case '6':
-				g.set_foreground_background('c');
+			case 'c':
+				g.set_foreground_background('6');
 				break;
-			case '7':
-				g.set_foreground_background('w');
+			case 'w':
+				g.set_foreground_background('7');
 				break;
 			case 'a':
 				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
 				var OpenWindow = window.open("child.html", "textimagewin", '');
 				OpenWindow.dataFromParent = JSON.stringify(g.textimage);
-			case 'b':
-				g.level = 0;
-				break;
 			case 'c':
 				gr();
 				dr();
+				break;
+			case 'd':
+				g.level = 0;
 				break;
 			case 'e':
 				g.color = g.background;
