@@ -79,9 +79,13 @@
 	 g.set_foreground_background = (color) =>
 	 {
 		 if(g.level === 1)
+		 {
 			g.color = color;
-		 else
+		 }else
+		 {
 			g.background = color;
+			 g.dr();
+		 }
 	 }
 	 
 	 d.onkeydown = (e) =>
