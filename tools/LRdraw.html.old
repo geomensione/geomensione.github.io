@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LRDraw</title>
+
+</head>
+<body>
+    <canvas>
+      What, no canvas support? D:
+    </canvas>
+	
+ <script>
+	"use strict";
+	window.a = document.getElementsByTagName('canvas')[0];
+	window.b = document.getElementsByTagName('body')[0];
+	window.c = window.a.getContext('2d');
+	window.d = document;
+	
+	/*
+	LRDraw tool start
+	*/
+	//Init
+	var g = {};
+	a.width = window.innerWidth;
+	a.height = window.innerHeight;
+	 
+	g.w = window.innerWidth;
+	g.h = window.innerHeight;
+	g.r = 24;
+	g.s = 8;
+	g.fr = 100;
+	g.color = '000000';
+	 
+	g.textimage = [];
+	g.background = 'FFFFFF';
+	g.level = 1;
+	 
+	let touch = (e) =>
+	 {
+		let x = e.originalEvent.touches[0].pageX;
+		let y = e.originalEvent.touches[0].pageY;
+		down(x,y); 	
+	 }
+	
+	 a.ontouchstart = (e) =>
+	 {
+		touch(e);
+	 }
+  
+	 let mouse = (e) =>
+	 {
+		let x = e.clientX;
+		let y = e.clientY;
+		down(x,y);
+	 }
+  
+	 a.onmousedown = (e) =>
+	 {
+		g.draw = true;
+		  mouse(e);
+	 }
+
+	 a.ontouchmove = (e) =>
+	 {
+		touch(e);
+	 }
+
+	 a.onmousemove = (e) =>
+	 {
+		if(g.draw)
+		  mouse(e);
+	 }
+
+	 a.onmouseup = (e) =>
+	 {
+		g.draw = false;
+	 }
+
+	 g.set_foreground_background = (color) =>
+	 {
+		if(g.level === 1)
+			g.color = color;
+		else
+			g.background = color;
+	 }
+	 
+	 d.onkeydown = (e) =>
+	 {
+		switch(e.key)
+		{
+			case '0':
+				g.set_foreground_background('000000');
+	 			break;
+			case '1':
+				g.set_foreground_background('FF0000');
+				break;
+			case '2':
+				g.set_foreground_background('00FF00');
+				break;
+			case '3':
+				g.set_foreground_background('0000FF');
+				break;
+			case '4':
+				g.set_foreground_background('FFFF00');
+				break;
+			case '5':
+				g.set_foreground_background('FF00FF');
+				break;
+			case '6':
+				g.set_foreground_background('00FFFF');
+				break;
+			case '7':
+				g.set_foreground_background('FFFFFF');
+				break;
+			case 'a':
+				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
+				var OpenWindow = window.open("child.html", "textimagewin", '');
+				OpenWindow.dataFromParent = JSON.stringify(g.textimage);
+				OpenWindow.init();
+			case 'b':
+				g.level = 0;
+				break;
+			case 'c':
+				gr();
+				dr();
+				break;
+			case 'e':
+				g.color = g.background;
+				break;
+			case 'f':
+				g.level = 1;
+				break;
+			case 'l':
+				localStorage.textimage = prompt('Insert image to load');
+				if(localStorage.textimage)
+					g.textimage = JSON.parse(localStorage.textimage);
+				dr();
+				break;
+			case 'r':
+				g.textimage = JSON.parse(localStorage.textimage);
+				dr();
+				break;
+			case 's':
+				localStorage.textimage = JSON.stringify(g.textimage);
+				break;
+			
+		}
+	 }
+	 
+	 function down(x,y){
+		let cx = Math.floor(x/g.o);
+	  	let cy = Math.floor(y/g.o);
+		g.textimage[cx][cy] = g.color;
+	  	c.fillStyle = "#"+g.color;
+		c.fillRect(cx*g.o,cy*g.o,g.o,g.o);	
+	 }; 
+		 
+	//create grid 
+	function gr(){
+		var w = g.w;
+		var h = g.h;
+		var ox, oy = 0;
+		if(h<w){
+			ox = Math.round(h/g.r);
+			g.ry = Math.round(h/ox);
+			g.rx = Math.round(w/ox);
+		}else{
+			ox = Math.round(w/g.r);
+			g.rx = Math.round(w/ox);
+			g.ry = Math.round(h/ox);
+		}
+		g.o = ox;
+		var rx = g.rx;
+		var ry = g.ry;
+		for(var i = 0;i<rx;i++){
+			g.textimage[i] = [];
+			for(var d = 0;d<ry;d++){
+				//qui setta il fb
+				g.textimage[i][d] = g.background;
+			}
+		}
+		/*
+		var x = Math.floor(Math.random() * (g.rx-g.s));
+		var y = Math.floor(Math.random() * (g.ry-g.s));
+		for(var xo = 0;xo<g.s;xo++)
+		{
+			for(var yo = 0;yo<g.s;yo++)
+			{
+				if(g.sh[yo][xo] === 'W')
+					g.fb[x+xo][y+yo] = ['FF','FF','FF'];
+			}
+		}
+		*/
+		
+	}
+	
+	fromCharToColorHex = (char) =>
+	{
+		
+	}
+	 
+	function dr(){
+		
+		var rx = g.rx;
+		var ry = g.ry;
+		var o = g.o;
+		var cx = 0, cy = 0;
+		for(var i = 0;i<rx;i++){
+			for(var d = 0;d<ry;d++){
+				c.fillStyle = "#"+g.textimage[i][d];
+				c.fillRect(cx,cy,o,o);
+				cy += o;
+			}
+			cx += o;
+			cy = 0;
+		}
+		
+		
+	}
+	/*
+	function l(){
+		g.l = setInterval(function() {
+			gr();
+			dr();
+		}, g.fr);
+	}
+	 
+	l();
+	*/
+	 gr();
+	 dr();
+ </script>
+</body></html>
