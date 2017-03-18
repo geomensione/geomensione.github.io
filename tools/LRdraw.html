@@ -78,11 +78,10 @@
 
 	 g.set_foreground_background = (color) =>
 	 {
-		 let hex = g.fromCharToColorHex(color);
 		 if(g.level === 1)
-			g.color = hex;
+			g.color = color;
 		 else
-			g.background = hex;
+			g.background = color;
 	 }
 	 
 	 d.onkeydown = (e) =>
@@ -215,6 +214,8 @@
 				return '00FFFF';
 			case '7':
 				return 'FFFFFF';
+			case 'B':
+				return g.fromCharToColorHex(g.background);
 		}
 	}
 	 
