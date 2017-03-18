@@ -151,7 +151,7 @@
 		let cx = Math.floor(x/g.o);
 	  	let cy = Math.floor(y/g.o);
 		g.textimage[cx][cy] = g.color;
-	  	c.fillStyle = "#"+g.color;
+	  	c.fillStyle = "#"+g.fromCharToColorHex(g.color);
 		c.fillRect(cx*g.o,cy*g.o,g.o,g.o);	
 	 }; 
 		 
