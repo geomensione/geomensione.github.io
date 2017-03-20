@@ -141,8 +141,8 @@
 				if(localStorage.textimage)
 				{
 					let data = JSON.parse(decodeURIComponent(localStorage.textimage));
-					g.textimage = data[0];
-					g.background = data[1];
+					g.textimage = JSON.parse(data[0]);
+					g.background = parseInt(data[1]);
 				}
 				dr();
 				break;
