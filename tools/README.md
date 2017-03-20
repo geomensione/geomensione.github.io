@@ -30,7 +30,7 @@ First release use keyboard to call tools.
 				set foreground mode
 - 'l':
 				load image from json
-- 'r':
+- 'R':
 				read image from localstorage
 - 's':
 				save image into localstorage
