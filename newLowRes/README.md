@@ -21,6 +21,8 @@ http://stackoverflow.com/questions/26910924/simple-midi-js-player-example
 
 IDEAS
 
+multi layer game, foreground and background, so the hero can jump into background, with very low res sprites, to kill shark that appears in the background
+big shark and big weapons?
 hero become a shark whene hit one of it, and...
 
 music
