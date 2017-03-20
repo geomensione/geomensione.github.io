@@ -122,7 +122,7 @@
 				data.push(JSON.stringify(g.textimage));
 				data.push(g.background);
 				var OpenWindow = window.open("child.html", "textimagewin", '');
-				OpenWindow.onload(function(){this.write(JSON.stringify(data))});
+				OpenWindow.onload = () => {this.write(JSON.stringify(data))};
 			case 'c':
 				gr();
 				dr();
