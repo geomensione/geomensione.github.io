@@ -140,7 +140,7 @@
 				localStorage.textimage = prompt('Insert image to load');
 				if(localStorage.textimage)
 				{
-					let data = decodeURIComponent(JSON.parse(localStorage.textimage));
+					let data = JSON.parse(decodeURIComponent(localStorage.textimage));
 					g.textimage = data[0];
 					g.background = data[1];
 				}
