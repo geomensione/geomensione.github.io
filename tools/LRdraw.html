@@ -117,11 +117,13 @@
 				g.set_foreground_background('7');
 				break;
 			case 'a':
-				http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
+				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
 				let data = []; 
 				data.push(JSON.stringify(g.textimage));
 				data.push(g.background);
-				var OpenWindow = window.open("data:text/json," + encodeURIComponent(JSON.stringify(data)), "_blank");
+				var OpenWindow = window.open('child.html','_blank','');
+				var text = document.createTextNode(JSON.stringify(data));
+				OpenWindow.document.body.appendChild(text);
 				break;
 			case 'c':
 				gr();
