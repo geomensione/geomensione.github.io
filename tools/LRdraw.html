@@ -123,6 +123,7 @@
 				data.push(g.background);
 				var OpenWindow = window.open("child.html", "textimagewin", '');
 				OpenWindow.dataFromParent = JSON.stringify(data);
+				OpenWindow.init();
 			case 'c':
 				gr();
 				dr();
