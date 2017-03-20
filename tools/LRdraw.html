@@ -121,7 +121,7 @@
 				let data = []; 
 				data.push(JSON.stringify(g.textimage));
 				data.push(g.background);
-				var OpenWindow = window.open(JSON.stringify(data));
+				var OpenWindow = window.open("data:text/json," + encodeURIComponent(JSON.stringify(data)), "_blank");
 				break;
 			case 'c':
 				gr();
