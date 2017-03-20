@@ -119,7 +119,7 @@
 			case 'a':
 				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
 				var OpenWindow = window.open("child.html", "textimagewin", '');
-				OpenWindow.dataFromParent = JSON.stringify(g.textimage);
+				OpenWindow.dataFromParent = [JSON.stringify(g.textimage),g.background];
 			case 'c':
 				gr();
 				dr();
@@ -136,7 +136,11 @@
 			case 'l':
 				localStorage.textimage = prompt('Insert image to load');
 				if(localStorage.textimage)
-					g.textimage = JSON.parse(localStorage.textimage);
+				{
+					let data = JSON.parse(localStorage.textimage);
+					g.textimage = data[0];
+					g.background = data[1];
+				}
 				dr();
 				break;
 			case 'R':
