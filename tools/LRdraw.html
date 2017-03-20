@@ -118,9 +118,11 @@
 				break;
 			case 'a':
 				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
-				let data = [JSON.stringify(g.textimage),g.background];
+				let data = []; 
+				data.push(JSON.stringify(g.textimage));
+				data.push(g.background);
 				var OpenWindow = window.open("child.html", "textimagewin", '');
-				OpenWindow.dataFromParent = data;
+				OpenWindow.dataFromParent = JSON.stringify(data);
 			case 'c':
 				gr();
 				dr();
