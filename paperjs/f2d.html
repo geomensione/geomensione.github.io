@@ -1,0 +1,46 @@
+<html>
+<head>
+<script type="text/javascript" src="http://paperjs.org/assets/js/paper.js"></script>
+</head>
+<body>
+<script type="text/paperscope">
+//var myPath;
+var myCircle;
+var point1, point2;
+var center;
+var circle;
+
+var textItem = new PointText({
+	content: 'Number of items',
+	point: new Point(20, 30),
+	fillColor: 'black',
+});
+
+function onMouseDown(event) {
+	myCircle = new Path.Circle({
+		center: event.point,
+		radius: 1
+	});
+	point1 = event.point;
+	myCircle.strokeColor = 'black';
+	center = new Point(myCircle.segments[1].point.x, 
+myCircle.segments[0].point.y);
+	
+}
+
+function onMouseDrag(event) {
+    var radius = (myCircle.segments[2].point.x - 
+myCircle.segments[0].point.x) / 2; 
+    var new_radius = event.point - center; 
+    myCircle.scale(new_radius.length/radius);
+	
+}
+
+function onMouseUp(event) {
+    textItem.content = 'number of items '+((project.activeLayer.children.length)-1);
+}
+
+
+</script>
+</body>
+</html>
