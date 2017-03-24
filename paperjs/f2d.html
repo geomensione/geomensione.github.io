@@ -1,5 +1,11 @@
 <html>
 <head>
+	<style>
+		#myCanvas{
+			width:100%;
+			height: 100%;
+		}
+	</style>
   <script src="js/paper-full.min.js"></script>
 <script type="text/paperscript" canvas="myCanvas">
 //var myPath;
@@ -42,6 +48,6 @@ function onMouseUp(event) {
 </script>
 </head>
 <body>
-<canvas id="myCanvas" width="100%" height="100%"></canvas>
+<canvas id="myCanvas" resize></canvas>
 </body>
 </html>
