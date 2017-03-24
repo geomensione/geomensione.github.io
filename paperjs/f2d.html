@@ -1,9 +1,7 @@
 <html>
 <head>
 <script type="text/javascript" src="http://paperjs.org/assets/js/paper.js"></script>
-</head>
-<body>
-<script type="text/paperscript">
+<script type="text/paperscript" canvas="myCanvas">
 //var myPath;
 var myCircle;
 var point1, point2;
@@ -42,5 +40,8 @@ function onMouseUp(event) {
 
 
 </script>
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
 </body>
 </html>
