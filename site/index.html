@@ -16,6 +16,10 @@
 	window.c = window.a.getContext('2d');
 	window.d = document;
 	
+	/*
+	LRDraw tool start
+	*/
+	//Init
 	var g = {};
 	a.width = window.innerWidth;
 	a.height = window.innerHeight;
@@ -26,50 +30,9 @@
 	g.s = 8;
 	g.fr = 100;
 	g.color = '0';
-	g.tmp = [
-			[
-				["B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","k","k","B","B","B","B","B","B"],
-				["B","b","b","b","b","b","B","c","c","c","c","c","B","B","y","y","y","y","k","B","B","B","B","B"],
-				["B","B","b","B","B","B","B","c","B","B","B","c","B","B","k","k","k","k","y","B","B","B","B","B"],
-				["B","B","B","b","B","B","B","c","B","B","B","c","B","B","y","y","y","y","k","B","B","B","B","B"],
-				["B","B","b","B","B","B","B","c","B","B","B","c","B","B","k","k","k","k","y","B","B","B","B","B"],
-				["B","b","b","b","b","b","B","B","c","c","c","c","B","B","y","y","y","y","k","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","k","B","B","B","B","B","k","k","B","k","k","B","B","B","B","B"],
-				["B","r","r","r","r","r","B","g","g","g","g","g","B","B","b","b","b","b","b","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","B","B","B","B","B","b","k","b","B","b","B","B","B","B","B"],
-				["B","B","y","y","y","B","B","p","p","p","p","p","B","B","b","B","k","k","b","B","B","B","B","B"],
-				["B","y","B","B","B","y","B","p","B","p","B","p","B","B","b","B","k","k","b","B","B","B","B","B"],
-				["B","y","B","B","B","y","B","p","B","B","B","p","B","B","k","B","B","k","k","B","B","B","B","B"],
-				["B","y","B","B","B","y","B","p","B","B","B","p","B","B","r","r","r","r","r","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","B","B","B","B","B","r","k","r","B","r","B","B","B","B","B"],
-				["B","g","g","g","g","g","B","B","w","w","w","w","B","B","r","B","r","B","r","B","B","B","B","B"],
-				["B","B","B","g","B","B","B","w","B","B","B","w","B","B","k","r","k","r","k","B","B","B","B","B"],
-				["B","B","B","g","B","B","B","w","B","B","B","w","B","B","B","k","B","k","B","B","B","B","B","B"],
-				["B","g","g","g","g","g","B","w","B","w","B","w","B","B","B","k","B","B","B","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","w","w","w","B","B","B","B","B","B","B","B","B","B","B","B"],
-				["B","p","p","p","p","p","B","B","B","B","B","B","B","B","c","c","c","c","c","B","B","B","B","B"],
-				["B","p","B","p","B","p","B","k","b","b","b","k","B","B","c","B","B","B","c","B","B","B","B","B"],
-				["B","p","B","B","B","p","B","b","B","B","B","b","B","B","c","B","B","B","c","B","B","B","B","B"],
-				["B","p","B","B","B","p","B","b","B","B","B","b","B","B","c","B","B","B","c","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","b","k","k","B","b","B","B","B","c","c","c","c","B","B","B","B","B"],
-				["B","c","c","c","c","c","B","B","b","b","b","B","B","B","B","B","B","B","B","B","B","B","B","B"],
-				["B","B","B","B","B","c","B","B","k","B","B","B","B","B","p","p","p","p","p","B","B","B","B","B"],
-				["B","B","B","B","B","c","B","y","y","y","y","y","B","B","p","B","p","B","p","B","B","B","B","B"],
-				["B","B","B","B","B","c","B","B","B","B","B","y","B","B","p","B","B","B","p","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","B","B","y","B","B","p","B","B","B","p","B","B","B","B","B"],
-				["B","w","w","w","w","w","B","B","B","B","B","y","B","B","B","B","B","B","k","B","B","B","B","B"],
-				["B","w","B","w","B","w","B","B","B","B","B","k","B","B","g","g","g","B","B","B","B","B","B","B"],
-				["B","w","B","B","B","w","B","r","r","r","r","r","B","B","B","B","B","g","B","B","B","B","B","B"],
-				["B","w","B","B","B","w","B","B","B","B","B","B","B","B","B","B","B","B","g","B","B","B","B","B"],
-				["B","k","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","g","B","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","B","B","B","B","B","g","g","g","B","B","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B"],
-				["B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B"]
-			],
-		0];
-	g.textimage = g.tmp[0];
-	g.background = g.tmp[1];
+	 
+	g.textimage = [];
+	g.background = '7';
 	g.level = 1;
 	 
 	let touch = (e) =>
@@ -149,6 +112,14 @@
 			case 'w':
 				g.set_foreground_background('7');
 				break;
+			case 'a':
+				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
+				let data = []; 
+				data.push(JSON.stringify(g.textimage));
+				data.push(g.background);
+				var OpenWindow = window.open('child.html','_blank','');
+				OpenWindow.document.writeln(JSON.stringify(data));
+				break;
 			case 'c':
 				gr();
 				dr();
@@ -161,7 +132,25 @@
 				break;
 			case 'f':
 				g.level = 1;
-				break;			
+				break;
+			case 'l':
+				localStorage.textimage = prompt('Insert image to load');
+				if(localStorage.textimage)
+				{
+					let data = JSON.parse(decodeURIComponent(localStorage.textimage));
+					g.textimage = JSON.parse(data[0]);
+					g.background = data[1];
+				}
+				dr();
+				break;
+			case 'R':
+				g.textimage = JSON.parse(localStorage.textimage);
+				dr();
+				break;
+			case 's':
+				localStorage.textimage = JSON.stringify(g.textimage);
+				break;
+			
 		}
 	 }
 	 
@@ -194,7 +183,6 @@
 		g.o = ox;
 		var rx = g.rx;
 		var ry = g.ry;
-		/*
 		for(var i = 0;i<rx;i++){
 			g.textimage[i] = [];
 			for(var d = 0;d<ry;d++){
@@ -202,7 +190,6 @@
 				g.textimage[i][d] = 'B';
 			}
 		}
-		*/
 		/*
 		var x = Math.floor(Math.random() * (g.rx-g.s));
 		var y = Math.floor(Math.random() * (g.ry-g.s));
@@ -222,21 +209,21 @@
 	{
 		switch(c)
 		{
-			case 'k':
+			case '0':
 				return '000000';
-			case 'r':
+			case '1':
 				return 'FF0000';
-			case 'g':
+			case '2':
 				return '00FF00';
-			case 'b':
+			case '3':
 				return '0000FF';
-			case 'y':
+			case '4':
 				return 'FFFF00';
-			case 'p':
+			case '5':
 				return 'FF00FF';
-			case 'c':
+			case '6':
 				return '00FFFF';
-			case 'w':
+			case '7':
 				return 'FFFFFF';
 			case 'B':
 				return g.fromCharToColorHex(g.background);
@@ -251,10 +238,7 @@
 		var cx = 0, cy = 0;
 		for(var i = 0;i<rx;i++){
 			for(var d = 0;d<ry;d++){
-				if(g.textimage[i][d])
-					c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
-				else
-					c.fillStyle = "#"+g.fromCharToColorHex('B');
+				c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
 				c.fillRect(cx,cy,o,o);
 				cy += o;
 			}
@@ -264,8 +248,17 @@
 		
 		
 	}
-  
+	/*
+	function l(){
+		g.l = setInterval(function() {
+			gr();
+			dr();
+		}, g.fr);
+	}
+	 
+	l();
+	*/
 	 gr();
-   dr();
+	 dr();
  </script>
 </body></html>
