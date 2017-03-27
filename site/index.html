@@ -251,7 +251,10 @@
 		var cx = 0, cy = 0;
 		for(var i = 0;i<rx;i++){
 			for(var d = 0;d<ry;d++){
-				c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
+				if(g.textimage[i][d])
+					c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
+				else
+					c.fillStyle = "#"+g.fromCharToColorHex('B');
 				c.fillRect(cx,cy,o,o);
 				cy += o;
 			}
