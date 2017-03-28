@@ -34,7 +34,8 @@
 	g.textimage = g.tmp[0];
 	g.background = g.tmp[1];
 	g.level = 1;
-	 
+	g.insertText = false;
+	g.text = '';
 	let touch = (e) =>
 	 {
 		let x = e.originalEvent.touches[0].pageX;
@@ -86,72 +87,91 @@
 	 
 	 d.onkeydown = (e) =>
 	 {
-		switch(e.key)
+		if(g.insertText)
 		{
-			case 'k':
-				g.set_foreground_background('0');
-	 			break;
-			case 'r':
-				g.set_foreground_background('1');
-				break;
-			case 'g':
-				g.set_foreground_background('2');
-				break;
-			case 'b':
-				g.set_foreground_background('3');
-				break;
-			case 'y':
-				g.set_foreground_background('4');
-				break;
-			case 'p':
-				g.set_foreground_background('5');
-				break;
-			case 'c':
-				g.set_foreground_background('6');
-				break;
-			case 'w':
-				g.set_foreground_background('7');
-				break;
-			case 'a':
-				//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
-				let data = []; 
-				data.push(g.textimage);
-				data.push(g.background);
-				var OpenWindow = window.open('child.html','_blank','');
-				OpenWindow.document.writeln(JSON.stringify(data));
-				break;
-			case 'c':
-				gr();
-				dr();
-				break;
-			case 'd':
-				g.level = 0;
-				break;
-			case 'e':
-				g.color = g.background;
-				break;
-			case 'f':
-				g.level = 1;
-				break;
-			case 'l':
-				localStorage.textimage = prompt('Insert image to load');
-				if(localStorage.textimage)
-				{
-					let data = JSON.parse(decodeURIComponent(localStorage.textimage));
-					g.textimage = JSON.parse(data[0]);
-					g.background = data[1];
-				}
-				dr();
-				break;
-			case 'R':
-				g.textimage = JSON.parse(localStorage.textimage);
-				dr();
-				break;
-			case 's':
-				localStorage.textimage = JSON.stringify(g.textimage);
-				break;
+			if(e.key === 'esc')
+			{
+				g.insertText = false;
+			}
+			else
+			{
+				g.text += e.key;
+			}
 			
 		}
+		else
+		{
+			switch(e.key)
+			{
+				case 'k':
+					g.set_foreground_background('0');
+					break;
+				case 'r':
+					g.set_foreground_background('1');
+					break;
+				case 'g':
+					g.set_foreground_background('2');
+					break;
+				case 'b':
+					g.set_foreground_background('3');
+					break;
+				case 'y':
+					g.set_foreground_background('4');
+					break;
+				case 'p':
+					g.set_foreground_background('5');
+					break;
+				case 'c':
+					g.set_foreground_background('6');
+					break;
+				case 'w':
+					g.set_foreground_background('7');
+					break;
+				case 'a':
+					//http://stackoverflow.com/questions/10472927/add-content-to-a-new-open-window
+					let data = []; 
+					data.push(g.textimage);
+					data.push(g.background);
+					var OpenWindow = window.open('child.html','_blank','');
+					OpenWindow.document.writeln(JSON.stringify(data));
+					break;
+				case 'c':
+					gr();
+					dr();
+					break;
+				case 'd':
+					g.level = 0;
+					break;
+				case 'e':
+					g.color = g.background;
+					break;
+				case 'f':
+					g.level = 1;
+					break;
+				case 'l':
+					localStorage.textimage = prompt('Insert image to load');
+					if(localStorage.textimage)
+					{
+						let data = JSON.parse(decodeURIComponent(localStorage.textimage));
+						g.textimage = JSON.parse(data[0]);
+						g.background = data[1];
+					}
+					dr();
+					break;
+				case 'R':
+					g.textimage = JSON.parse(localStorage.textimage);
+					dr();
+					break;
+				case 's':
+					localStorage.textimage = JSON.stringify(g.textimage);
+					break;
+				case 't':
+					g.insertText = true;
+					break;
+
+			} 
+		}
+		
 	 }
 	 
 	 function down(x,y){
