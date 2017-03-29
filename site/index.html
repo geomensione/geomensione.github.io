@@ -196,7 +196,7 @@
 		 {
 			g.cx = Math.floor(x/g.o);
 			g.cy = Math.floor(y/g.o);
-			g.textimage[cx][cy] = g.color;
+			g.textimage[g.cx][g.cy] = g.color;
 			c.fillStyle = "#"+g.fromCharToColorHex(g.color);
 			c.fillRect(g.cx*g.o,g.cy*g.o,g.o,g.o); 
 		 }
