@@ -35,7 +35,7 @@
 	g.background = g.tmp[1];
 	g.level = 1;
 	g.insertText = false;
-	g.text = '';
+	
 	let touch = (e) =>
 	 {
 		let x = e.originalEvent.touches[0].pageX;
@@ -167,12 +167,13 @@
 					break;
 				case 't':
 					case 't':
-					g.text = prompt('Insert image to load');
-					if(g.text)
+					text = prompt('Insert image to load');
+					if(text)
 					{
 						c.font = 'italic 40pt Calibri';
 						c.fillStyle = 'blue';
-						c.fillText('Hello World!', 100, 100);
+						
+						drawText(text);
 					}
 					break;
 
@@ -180,15 +181,24 @@
 		}
 		
 	 }
+	 function drawText(str){
+		 let sl = str.length;
+		 for(let i = 0;i<sl;i++)
+		 {
+		 	c.fillText(str[i], g.cx*g.o,g.cy*g.o);
+			g.cx++; 
+		 }
+	 
+	 }
 	 
 	 function down(x,y){
 		 if(g.level === 1)
 		 {
-			let cx = Math.floor(x/g.o);
-			let cy = Math.floor(y/g.o);
+			g.cx = Math.floor(x/g.o);
+			g.cy = Math.floor(y/g.o);
 			g.textimage[cx][cy] = g.color;
 			c.fillStyle = "#"+g.fromCharToColorHex(g.color);
-			c.fillRect(cx*g.o,cy*g.o,g.o,g.o); 
+			c.fillRect(g.cx*g.o,g.cy*g.o,g.o,g.o); 
 		 }
 			
 	 }; 
