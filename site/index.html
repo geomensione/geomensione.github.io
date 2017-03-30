@@ -277,8 +277,18 @@
 		var cx = 0, cy = 0;
 		for(var i = 0;i<rx;i++){
 			for(var d = 0;d<ry;d++){
-				c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
-				c.fillRect(cx,cy,o,o);
+				if(g.textimage[i][d].startsWith('*'))
+				{
+					c.font = 'italic '+g.r+'pt Calibri';
+					c.fillStyle = 'blue';
+					c.fillText(str[i], g.cx*g.o,g.cy*g.o);
+				}
+				else
+				{
+					c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
+					c.fillRect(cx,cy,o,o);
+				
+				}
 				cy += o;
 			}
 			cx += o;
