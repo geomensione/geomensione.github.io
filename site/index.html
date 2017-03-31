@@ -275,8 +275,8 @@
 		var ry = g.ry;
 		var o = g.o;
 		var cx = 0, cy = 0;
-		for(var i = 0;i<rx;i++){
-			for(var d = 0;d<ry;d++){
+		for(var i = 0;i<rx-1;i++){
+			for(var d = 0;d<ry-1;d++){
 				if(g.textimage[i][d].startsWith('*'))
 				{
 					c.font = 'italic '+g.r+'pt Calibri';
