@@ -280,7 +280,10 @@
 				if(g.textimage[i][d].startsWith('*'))
 				{
 					c.font = 'italic '+g.r+'pt Calibri';
-					c.fillStyle = 'blue';
+					//to avoid white background when load image
+					c.fillStyle = g.background;
+					c.fillRect(cx,cy,o,o);
+					c.fillStyle = g.color;
 					c.fillText(g.textimage[i][d][1], cx,cy);
 				}
 				else
