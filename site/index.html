@@ -277,7 +277,7 @@
 		var cx = 0, cy = 0;
 		for(var i = 0;i<rx-1;i++){
 			for(var d = 0;d<ry-1;d++){
-				if(g.textimage[i][d].startsWith('*'))
+				if(g.textimage[i] && g.textimage[i][d] && g.textimage[i][d].startsWith('*'))
 				{
 					c.font = 'italic '+g.r+'pt Calibri';
 					//to avoid white background when load image
