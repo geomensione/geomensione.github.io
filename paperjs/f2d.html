@@ -31,7 +31,6 @@ var textItem = new PointText({
 function onMouseDown(event) {
 	segment = path = null;
 	var hitResult = project.hitTest(event.point, hitOptions);
-	alert(hitResult);
 	if (!hitResult){
 		myCircle = new Path.Circle({
 			center: event.point,
