@@ -21,16 +21,43 @@ var textItem = new PointText({
 });
 
 function onMouseDown(event) {
-	myCircle = new Path.Circle({
-		center: event.point,
-		radius: 1
-	});
-	point1 = event.point;
-	var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
-	var hue = Math.random() * 360;
-	myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
-	myCircle.strokeColor = 'black';
-	center = new Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);	
+	segment = path = null;
+	var hitResult = project.hitTest(event.point, hitOptions);
+	if (!hitResult){
+		myCircle = new Path.Circle({
+			center: event.point,
+			radius: 1
+		});
+		point1 = event.point;
+		var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+		var hue = Math.random() * 360;
+		myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
+		myCircle.strokeColor = 'black';
+		center = new Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
+	}
+	
+	if (event.modifiers.shift) {
+		if (hitResult.type == 'segment') {
+			hitResult.segment.remove();
+		};
+		return;
+	}
+
+	if (hitResult) {
+		path = hitResult.item;
+		if (hitResult.type == 'segment') {
+			segment = hitResult.segment;
+		} else if (hitResult.type == 'stroke') {
+			var location = hitResult.location;
+			segment = path.insert(location.index + 1, event.point);
+			path.smooth();
+		}
+	}
+	movePath = hitResult.type == 'fill';
+	if (movePath)
+		project.activeLayer.addChild(hitResult.item);
+
+		
 }
 
 function onMouseMove(event){
@@ -40,11 +67,17 @@ function onMouseMove(event){
 }
 
 function onMouseDrag(event) {
-    var radius = (myCircle.segments[2].point.x - 
-myCircle.segments[0].point.x) / 2; 
-    var new_radius = event.point - center; 
-    myCircle.scale(new_radius.length/radius);
-	
+	if (segment) {
+		segment.point += event.delta;
+		path.smooth();
+	} else if (path) {
+		path.position += event.delta;
+	}else{
+	    	var radius = (myCircle.segments[2].point.x - 
+	    	myCircle.segments[0].point.x) / 2; 
+	    	var new_radius = event.point - center; 
+	    	myCircle.scale(new_radius.length/radius);
+	}
 }
 
 function onMouseUp(event) {
