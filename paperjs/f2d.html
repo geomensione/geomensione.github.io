@@ -27,9 +27,13 @@ function onMouseDown(event) {
 	});
 	point1 = event.point;
 	myCircle.strokeColor = 'black';
-	center = new Point(myCircle.segments[1].point.x, 
-myCircle.segments[0].point.y);
-	
+	center = new Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);	
+}
+
+function onMouseMove(event){
+	project.activeLayer.selected = false;
+	if (event.item)
+		event.item.selected = true;
 }
 
 function onMouseDrag(event) {
