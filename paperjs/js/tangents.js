@@ -1,11 +1,5 @@
-function getTangents(cx,cy,r,cx2,cy2,r2){
+function getTangents(x1,y1,r1,x2,y2,r2){
     	
-	var x1 = parseInt(nodes_array[i].getAttribute('cx'));
-	var y1 = parseInt(nodes_array[i].getAttribute('cy'));
-	var r1 = parseInt(nodes_array[i].getAttribute('rx'));
-	var x2 = parseInt(nodes_array[i+1].getAttribute('cx'));
-	var y2 = parseInt(nodes_array[i+1].getAttribute('cy'));
-	var r2 = parseInt(nodes_array[i+1].getAttribute('rx'));
 	if (r1 < r2){
 		var temp = r1;
 		r1 = r2;
