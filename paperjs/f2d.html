@@ -110,7 +110,13 @@ function onMouseUp(event) {
 		
 		myPath.closed = true;
 		console.log(JSON.stringify(childrens_array[i+1].segments));
-			}
+		var center1 = (childrens_array[i].segments[2].point - childrens_array[i].segments[0].point)/2;
+		var radius1 = childrens_array[i].segments[2].point.x - childrens_array[i].segments[0].point.x;
+		var center2 = (childrens_array[i+1].segments[2].point - childrens_array[i+1].segments[0].point)/2;
+		var radius2= childrens_array[i+1].segments[2].point.x - childrens_array[i+1].segments[0].point.x;
+		
+		getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+	}	
 
     }
     
