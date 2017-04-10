@@ -8,6 +8,8 @@
 	</style>
   <script src="js/paper-full.min.js"></script>
 <script type="text/paperscript" canvas="myCanvas">
+var skeleton = 1;
+var bone = 0;
 var hitOptions = {
 	segments: true,
 	stroke: true,
@@ -32,9 +34,11 @@ function onMouseDown(event) {
 	segment = path = null;
 	var hitResult = project.hitTest(event.point, hitOptions);
 	if (!hitResult){
+		bone++;
 		myCircle = new Path.Circle({
 			center: event.point,
-			radius: 1
+			radius: 1,
+			name: skeleton+'_'+bone+'_'+'f2d'
 		});
 		point1 = event.point;
 		var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
