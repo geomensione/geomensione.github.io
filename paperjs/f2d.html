@@ -102,10 +102,19 @@ function onMouseUp(event) {
     	for(var i = 1;i<children_array_length-1;i++)
     	{
 		console.log(JSON.stringify(childrens_array[i].segments));
+		var myPath = new Path();
+		myPath.strokeColor = 'black';
+		myPath.add(childrens_array[i].segments[0].point);
+		myPath.add(childrens_array[i].segments[1].point);
+		myPath.add(childrens_array[i].segments[2].point);
+		myPath.add(childrens_array[i].segments[3].point);
+
+		myPath.closed = true;
 		console.log(JSON.stringify(childrens_array[i+1].segments));
 			}
 
     }
+    
         
 }
 
