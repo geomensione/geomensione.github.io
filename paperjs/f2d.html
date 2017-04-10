@@ -105,7 +105,7 @@ function onMouseUp(event) {
 		var radius1 = childrens_array[i].radius;
 		var center2 = childrens_array[i+1].center;
 		var radius2 = childrens_array[i+1].radius;
-		var points = tangents(center1.x,center1.y,radius1,center2.x,center2.y,radius2);
+		var points = getTangents(center1.x,center1.y,radius1,center2.x,center2.y,radius2);
 		console.log(childrens_array[i].name);
 	}
 
