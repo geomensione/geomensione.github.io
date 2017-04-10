@@ -49,26 +49,6 @@ function getTangents(cx,cy,r,cx2,cy2,r2){
 	return [{x:poc2x,y:poc2y},{x:poc1x,y:poc1y},{x:poc4x,y:poc4y},{x:poc3x,y:poc3y}];
 
     				
-    				/*
-					//to put spheres on top
-					var f3dspheres = group.circles.innerHTML;
-					//var spheregroup = svgpaper.getElementById('f3dsphere_group');
-					group.group.removeChild(group.circles);
-			
-			  		group.circles = document.createElementNS(NS,"g");
-				  	group.circles.setAttribute('id', 'f3dsphere_group');
-				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
-				if(F3D_Polygon.selected_tool === 'select'){
-					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
-					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
-				}
-					  
-			
-				group.circles.innerHTML = f3dspheres;
-				group.group.appendChild(group.circles);	
-				*/
-    			}
-    		}else{
-    		}
+    				
     	
     	}
