@@ -46,7 +46,7 @@ function getTangents(cx,cy,r,cx2,cy2,r2){
 	var poc3x = vx + Math.cos(tan2angle)*t2; var poc3y = vy + Math.sin(tan2angle)*t2;
 	var poc4x = vx + Math.cos(tan2angle)*t1; var poc4y = vy + Math.sin(tan2angle)*t1;
 	
-	return [{x:poc2x,y:poc2y],{x:poc1x,y:poc1y},{x:poc4x,y:poc4y},{x:poc3x,y:poc3y}];
+	return [{x:poc2x,y:poc2y},{x:poc1x,y:poc1y},{x:poc4x,y:poc4y},{x:poc3x,y:poc3y}];
 
     				
     				/*
