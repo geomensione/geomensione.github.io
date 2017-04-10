@@ -101,17 +101,9 @@ function onMouseUp(event) {
     {
     	for(var i = 1;i<children_array_length-1;i++)
     	{
-		var center1 = childrens_array[i].center;
-		var radius1 = childrens_array[i].radius;
-		var center2 = childrens_array[i+1].center;
-		var radius2 = childrens_array[i+1].radius;
-		console.log(JSON.stringify(center1));
-		console.log(JSON.stringify(radius1));
-		console.log(JSON.stringify(center2));
-		console.log(JSON.stringify(radius2));
-		//var points = getTangents(center1.x,center1.y,radius1,center2.x,center2.y,radius2);
-		//console.log(childrens_array[i].name);
-	}
+		console.log(JSON.stringify(childrens_array[i]));
+		console.log(JSON.stringify(childrens_array[i+1]));
+			}
 
     }
         
