@@ -96,11 +96,15 @@ function onMouseUp(event) {
     textItem.content = 'number of items '+((project.activeLayer.children.length)-1);
     var childrens_array = project.activeLayer.children;
     var children_array_length = childrens_array.length;
-    for(var i = 0;i<children_array_length;i++)
+    if(children_array_length > 2)
     {
-    	console.log(childrens_array[i].name);
+    	for(var i = 1;i<children_array_length;i++)
+    	{
+		console.log(childrens_array[i].name);
+	}
+
     }
-    
+        
 }
 
 
