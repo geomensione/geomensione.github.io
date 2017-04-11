@@ -115,7 +115,16 @@ function onMouseUp(event) {
 		var center2 = childrens_array[i+1].position;
 		var radius2= (childrens_array[i+1].segments[2].point.x - childrens_array[i+1].segments[0].point.x)/2;
 		
-		getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+		let points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+		let points_length = points.length;
+		var myPathLine = new Path();
+		myPathLine.strokeColor = 'black';
+		
+		for(let p = 0;p<points_length;p++)
+		{
+			myPathLine.add(new Point(point[p].x, point[p].y));
+		
+		}
 	}	
 
     }
