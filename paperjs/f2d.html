@@ -94,40 +94,28 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp(event) {
-    textItem.content = 'number of items '+((project.activeLayer.children.length)-1);
-    var childrens_array = project.activeLayer.children;
-    var children_array_length = childrens_array.length;
-    if(children_array_length > 2)
-    {
-    	for(var i = 1;i<children_array_length-1;i++)
-    	{
-		console.log(JSON.stringify(childrens_array[i].segments));
-		var myPath = new Path();
-		myPath.strokeColor = 'black';
-		myPath.add(childrens_array[i].segments[0].point);
-		myPath.add(childrens_array[i].segments[1].point);
-		myPath.add(childrens_array[i].segments[2].point);
-		
-		myPath.closed = true;
-		console.log(JSON.stringify(childrens_array[i+1].segments));
-		var center1 = childrens_array[i].position;
-		var radius1 = (childrens_array[i].segments[2].point.x - childrens_array[i].segments[0].point.x)/2;
-		var center2 = childrens_array[i+1].position;
-		var radius2= (childrens_array[i+1].segments[2].point.x - childrens_array[i+1].segments[0].point.x)/2;
-		
-		var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
-		var points_length = points.length;
-		var myPathLine = new Path();
-		myPathLine.strokeColor = 'black';
-		
-		for(var p = 0;p<points_length;p++)
-		{
-			myPathLine.add(new Point(points[p].x, points[p].y));
-		
-		}
-	}	
+	textItem.content = 'number of items '+((project.activeLayer.children.length)-1);
+	var childrens_array = project.activeLayer.children;
+	var children_array_length = childrens_array.length;
 
-    }
+	var center1 = childrens_array[children_array_length-1].position;
+	var radius1 = (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[i].segments[0].point.x)/2;
+	var center2 = childrens_array[children_array_length].position;
+	var radius2= (childrens_array[children_array_length].segments[2].point.x - childrens_array[i+1].segments[0].point.x)/2;
+
+	var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+	var points_length = points.length;
+	var myPathLine = new Path();
+	myPathLine.strokeColor = 'black';
+
+	for(var p = 0;p<points_length;p++)
+	{
+		myPathLine.add(new Point(points[p].x, points[p].y));
+
+	}
+		
+
+    
     
         
 }
