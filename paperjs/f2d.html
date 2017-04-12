@@ -99,9 +99,9 @@ function onMouseUp(event) {
 	var children_array_length = childrens_array.length;
 
 	var center1 = childrens_array[children_array_length-1].position;
-	var radius1 = (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[i].segments[0].point.x)/2;
+	var radius1 = (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[children_array_length-1].segments[0].point.x)/2;
 	var center2 = childrens_array[children_array_length].position;
-	var radius2= (childrens_array[children_array_length].segments[2].point.x - childrens_array[i+1].segments[0].point.x)/2;
+	var radius2= (childrens_array[children_array_length].segments[2].point.x - childrens_array[children_array_length].segments[0].point.x)/2;
 
 	var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 	var points_length = points.length;
