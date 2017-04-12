@@ -97,27 +97,24 @@ function onMouseUp(event) {
 	textItem.content = 'number of items '+((project.activeLayer.children.length)-1);
 	var childrens_array = project.activeLayer.children;
 	var children_array_length = childrens_array.length;
-
-	var center1 = childrens_array[children_array_length-2].position;
-	var radius1 = (childrens_array[children_array_length-2].segments[2].point.x - childrens_array[children_array_length-2].segments[0].point.x)/2;
-	var center2 = childrens_array[children_array_length-1].position;
-	var radius2= (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[children_array_length-1].segments[0].point.x)/2;
-
-	var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
-	var points_length = points.length;
-	var myPathLine = new Path();
-	myPathLine.strokeColor = 'black';
-
-	for(var p = 0;p<points_length;p++)
+	if(children_array_length > 2)
 	{
-		myPathLine.add(new Point(points[p].x, points[p].y));
+		var center1 = childrens_array[children_array_length-2].position;
+		var radius1 = (childrens_array[children_array_length-2].segments[2].point.x - childrens_array[children_array_length-2].segments[0].point.x)/2;
+		var center2 = childrens_array[children_array_length-1].position;
+		var radius2= (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[children_array_length-1].segments[0].point.x)/2;
 
+		var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+		var points_length = points.length;
+		var myPathLine = new Path();
+		myPathLine.strokeColor = 'black';
+
+		for(var p = 0;p<points_length;p++)
+		{
+			myPathLine.add(new Point(points[p].x, points[p].y));
+
+		}
 	}
-		
-
-    
-    
-        
 }
 
 
