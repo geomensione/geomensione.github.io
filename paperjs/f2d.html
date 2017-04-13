@@ -8,115 +8,123 @@
 	</style>
   <script src="js/paper-full.min.js"></script>
   <script src="js/tangents.js"></script>
-<script type="text/paperscript" canvas="myCanvas">
-var skeleton = 1;
-var bone = 0;
-var hitOptions = {
-	segments: true,
-	stroke: true,
-	fill: true,
-	tolerance: 5
-};
-
-//var myPath;
-var myCircle;
-var point1, point2;
-var center;
-var circle;
-var segment = path = null;
-
-var textItem = new PointText({
-	content: 'Number of items',
-	point: new Point(20, 30),
-	fillColor: 'black',
-});
-
-function onMouseDown(event) {
-	segment = path = null;
-	var hitResult = project.hitTest(event.point, hitOptions);
-	if (!hitResult){
-		bone++;
-		myCircle = new Path.Circle({
-			center: event.point,
-			radius: 1,
-			name: skeleton+'_'+bone+'_'+'f2d'
-		});
-		point1 = event.point;
-		var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
-		var hue = Math.random() * 360;
-		myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
-		myCircle.strokeColor = 'black';
-		center = new Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
-	}
-	
-	if (event.modifiers.shift) {
-		if (hitResult.type == 'segment') {
-			hitResult.segment.remove();
+<script>
+	window.onload = function() {
+		// Get a reference to the canvas object
+		var canvas = document.getElementById('myCanvas');
+		// Create an empty project and a view for the canvas:
+		paper.setup(canvas);
+		var skeleton = 1;
+		var bone = 0;
+		var hitOptions = {
+			segments: true,
+			stroke: true,
+			fill: true,
+			tolerance: 5
 		};
-		return;
-	}
 
-	if (hitResult) {
-		path = hitResult.item;
-		if (hitResult.type == 'segment') {
-			segment = hitResult.segment;
-		} else if (hitResult.type == 'stroke') {
-			var location = hitResult.location;
-			segment = path.insert(location.index + 1, event.point);
-			path.smooth();
-		}
-	}
-	movePath = hitResult.type == 'fill';
-	if (movePath)
-		project.activeLayer.addChild(hitResult.item);
+		//var myPath;
+		var myCircle;
+		var point1, point2;
+		var center;
+		var circle;
+		var segment = path = null;
 
-		
-}
+		var textItem = new paper.PointText({
+			content: 'Number of items',
+			point: new Point(20, 30),
+			fillColor: 'black',
+		});
 
-function onMouseMove(event){
-	project.activeLayer.selected = false;
-	if (event.item)
-		event.item.selected = true;
-}
+		function onMouseDown(event) {
+			segment = path = null;
+			var hitResult = paper.project.hitTest(event.point, paper.hitOptions);
+			if (!hitResult){
+				bone++;
+				myCircle = new paper.Path.Circle({
+					center: event.point,
+					radius: 1,
+					name: skeleton+'_'+bone+'_'+'f2d'
+				});
+				point1 = event.point;
+				var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+				var hue = Math.random() * 360;
+				myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
+				myCircle.strokeColor = 'black';
+				center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
+			}
 
-function onMouseDrag(event) {
-	if (segment) {
-		segment.point += event.delta;
-		path.smooth();
-	} else if (path) {
-		path.position += event.delta;
-	}else{
-	    	var radius = (myCircle.segments[2].point.x - 
-	    	myCircle.segments[0].point.x) / 2; 
-	    	var new_radius = event.point - center; 
-	    	myCircle.scale(new_radius.length/radius);
-	}
-}
+			if (event.modifiers.shift) {
+				if (hitResult.type == 'segment') {
+					hitResult.segment.remove();
+				};
+				return;
+			}
 
-function onMouseUp(event) {
-	textItem.content = 'number of items '+((project.activeLayer.children.length)-1);
-	var childrens_array = project.activeLayer.children;
-	var children_array_length = childrens_array.length;
-	if(children_array_length > 2)
-	{
-		var center1 = childrens_array[children_array_length-2].position;
-		var radius1 = (childrens_array[children_array_length-2].segments[2].point.x - childrens_array[children_array_length-2].segments[0].point.x)/2;
-		var center2 = childrens_array[children_array_length-1].position;
-		var radius2= (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[children_array_length-1].segments[0].point.x)/2;
+			if (hitResult) {
+				path = hitResult.item;
+				if (hitResult.type == 'segment') {
+					segment = hitResult.segment;
+				} else if (hitResult.type == 'stroke') {
+					var location = hitResult.location;
+					segment = path.insert(location.index + 1, event.point);
+					path.smooth();
+				}
+			}
+			movePath = hitResult.type == 'fill';
+			if (movePath)
+				paper.project.activeLayer.addChild(hitResult.item);
 
-		var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
-		var points_length = points.length;
-		var myPathLine = new Path();
-		myPathLine.strokeColor = 'black';
-
-		for(var p = 0;p<points_length;p++)
-		{
-			myPathLine.add(new Point(points[p].x, points[p].y));
 
 		}
-	}
-}
 
+		function onMouseMove(event){
+			project.activeLayer.selected = false;
+			if (event.item)
+				event.item.selected = true;
+		}
+
+		function onMouseDrag(event) {
+			if (segment) {
+				segment.point += event.delta;
+				path.smooth();
+			} else if (path) {
+				path.position += event.delta;
+			}else{
+				var radius = (myCircle.segments[2].point.x - 
+				myCircle.segments[0].point.x) / 2; 
+				var new_radius = event.point - center; 
+				myCircle.scale(new_radius.length/radius);
+			}
+		}
+
+		function onMouseUp(event) {
+			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
+			var childrens_array = paper.project.activeLayer.children;
+			var children_array_length = childrens_array.length;
+			if(children_array_length > 2)
+			{
+				var center1 = childrens_array[children_array_length-2].position;
+				var radius1 = (childrens_array[children_array_length-2].segments[2].point.x - childrens_array[children_array_length-2].segments[0].point.x)/2;
+				var center2 = childrens_array[children_array_length-1].position;
+				var radius2= (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[children_array_length-1].segments[0].point.x)/2;
+
+				var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+				var points_length = points.length;
+				var myPathLine = new paper.Path();
+				myPathLine.strokeColor = 'black';
+
+				for(var p = 0;p<points_length;p++)
+				{
+					myPathLine.add(new paper.Point(points[p].x, points[p].y));
+
+				}
+			}
+		}
+
+		document.onmousedown = onMouseDown;
+		document.onmousemove = onMouseMove;
+		document.onmouseup = onMouseUp;
 
 </script>
 </head>
