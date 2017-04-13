@@ -29,6 +29,7 @@
 		var center;
 		var circle;
 		var segment = path = null;
+		var click = false;
 
 		var textItem = new paper.PointText({
 			content: 'Number of items',
@@ -37,6 +38,7 @@
 		});
 
 		function onMouseDown(event) {
+			click = true;
 			segment = path = null;
 			var hitResult = paper.project.hitTest(event.point, paper.hitOptions);
 			if (!hitResult){
@@ -82,6 +84,8 @@
 			project.activeLayer.selected = false;
 			if (event.item)
 				event.item.selected = true;
+			if(click)
+				onMouseDrag(event);
 		}
 
 		function onMouseDrag(event) {
