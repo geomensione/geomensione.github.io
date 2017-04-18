@@ -30,8 +30,12 @@ paperjs experiments
 
 https://geomensione.github.io/paperjs/f2d.html
 
-WIP site:
+site:
 
 my new site
 
 https://geomensione.github.io/site
+
+WIP alice:
+
+https://geomensione.github.io/alice
