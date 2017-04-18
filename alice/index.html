@@ -64,31 +64,31 @@
 		    	[["4","0","0"],["4","0","0"],["4","4","4"],["4","1","4"],["4","4","4"]]
 	    	];
 	    	function setPos(x,y){
-	    		this.my_x = x;
-			this.my_y = y;
+	    		my_x = x;
+			my_y = y;
 	    	};
 		function draw(f){
-			if(this.clicked > 5)
+			if(clicked > 5)
 			{
 				for(let px = 0;px<3;px++)
 				{
 					for(let py = 0;px<5;py++)
 					{
-						g.textimage[px+this.my_x][py+this.my_y] = frames[f][px][py];
+						g.textimage[px+my_x][py+my_y] = frames[f][px][py];
 					}
 
 				}
 			}
 			else
 			{
-				this.clicked++;
+				clicked++;
 			}
 			
 		}
 		function click(x,y){
-			if((this.my_x <= x && x <=this.my_x+3) && (this.my_y <= y && y <=this.my_y+5))
+			if((my_x <= x && x <=my_x+3) && (my_y <= y && y <=my_y+5))
 			{
-				this.clicked = 0;
+				clicked = 0;
 			}
 		}
 		return{
