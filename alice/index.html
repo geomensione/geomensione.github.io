@@ -74,7 +74,8 @@
 				{
 					for(let py = 0;px<5;py++)
 					{
-						g.textimage[px+my_x][py+my_y] = frames[f][px][py];
+						//g.textimage[px+my_x][py+my_y] = frames[f][px][py];
+						console.log(frames[f][px][py]);
 					}
 
 				}
@@ -391,7 +392,7 @@
 	 for(let f = 0, flame_coordinates_length = flame_coordinates.length;f<flame_coordinates_length;f++)
 	 {
 	 	flames_objs.push(new flames(flame_coordinates[f][0],flame_coordinates[f][1]));
-		 //flames_objs[f].draw(0);
+		 flames_objs[f].draw(0);
 	 }
 	 dr();
  </script>
