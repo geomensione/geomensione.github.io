@@ -57,6 +57,7 @@
 	let flames = function(x,y){
 	    	let my_x = 0;
 		let my_y = 0;
+		let clicked = 5;
 		let frames = [
 		    	[["0","4","0"],["0","4","0"],["4","4","4"],["4","1","4"],["4","4","4"]],
 		    	[["0","0","4"],["0","0","4"],["4","4","4"],["4","1","4"],["4","4","4"]],
@@ -67,13 +68,27 @@
 			this.my_y = y;
 	    	};
 		function draw(f){
-			for(let px = 0;px<3;px++)
+			if(this.clicked > 5)
 			{
-				for(let py = 0;px<5;py++)
+				for(let px = 0;px<3;px++)
 				{
-					g.textimage[px+this.my_x][py+this.my_y] = frames[f][px][py];
+					for(let py = 0;px<5;py++)
+					{
+						g.textimage[px+this.my_x][py+this.my_y] = frames[f][px][py];
+					}
+
 				}
-				
+			}
+			else
+			{
+				this.clicked++;
+			}
+			
+		}
+		function click(x,y){
+			if((this.my_x <= x && x <=this.my_x+3) && (this.my_y <= y && y <=this.my_y+5))
+			{
+				this.clicked = 0;
 			}
 		}
 		return{
