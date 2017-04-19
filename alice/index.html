@@ -99,6 +99,7 @@
 			if((my_x <= x && x <=my_x+3) && (my_y <= y && y <=my_y+5))
 			{
 				clicked = 0;
+				alert('clicked');
 			}
 		}
 		return{
@@ -267,6 +268,12 @@
 	 }
 	 
 	 function down(x,y){
+		 
+		 for(let f = 0, flame_coordinates_length = flame_coordinates.length;f<flame_coordinates_length;f++)
+		 {
+			 flames_objs[f].click(x,y);
+		 }
+		 
 		 if(g.level === 1)
 		 {
 			g.cx = Math.floor(x/g.o);
