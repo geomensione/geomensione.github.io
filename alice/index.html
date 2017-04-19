@@ -414,7 +414,7 @@
 			 promises.push(flames_objs[f].draw((frame+1)%3));
 		}
 		 //dr();
-		 Promise.All(promises).then(
+		 Promise.all(promises).then(
 		 	function(succ){
 				drawAll(frame+1);	
 			}
