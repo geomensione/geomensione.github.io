@@ -269,12 +269,13 @@
 	 }
 	 
 	 function down(x,y){
-		 
+		 let cx = Math.floor(x/g.o);
+		 let cy = Math.floor(y/g.o);
 		 for(let f = 0, flame_coordinates_length = flame_coordinates.length;f<flame_coordinates_length;f++)
 		 {
-			 flames_objs[f].click(x,y);
+			 flames_objs[f].click(cx,cy);
 		 }
-		 
+		 /*
 		 if(g.level === 1)
 		 {
 			g.cx = Math.floor(x/g.o);
@@ -284,6 +285,7 @@
 			c.fillStyle = "#"+g.fromCharToColorHex(g.color);
 			c.fillRect(g.cx*g.o,g.cy*g.o,g.o,g.o); 
 		 }
+		 */
 			
 	 }; 
 		 
