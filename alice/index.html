@@ -357,34 +357,36 @@
 	}
 	 
 	function dr(){
-		
-		var rx = g.rx;
-		var ry = g.ry;
-		var o = g.o;
-		var cx = 0, cy = 0;
-		for(var i = 0;i<rx-1;i++){
-			for(var d = 0;d<ry-1;d++){
-				if(g.textimage[i] && g.textimage[i][d] && g.textimage[i][d].startsWith('*'))
-				{
-					c.font = 'italic '+g.o+'pt Calibri';
-					//to avoid white background when load image
-					c.fillStyle = "#"+g.fromCharToColorHex(g.background);
-					c.fillRect(cx,cy,o,o); 
-					c.fillStyle = "#"+g.fromCharToColorHex(g.color);
-					c.fillText(g.textimage[i][d][1], cx,cy);
-					
+		return new Promise(function(resolve, reject){ 
+			var rx = g.rx;
+			var ry = g.ry;
+			var o = g.o;
+			var cx = 0, cy = 0;
+			for(var i = 0;i<rx-1;i++){
+				for(var d = 0;d<ry-1;d++){
+					if(g.textimage[i] && g.textimage[i][d] && g.textimage[i][d].startsWith('*'))
+					{
+						c.font = 'italic '+g.o+'pt Calibri';
+						//to avoid white background when load image
+						c.fillStyle = "#"+g.fromCharToColorHex(g.background);
+						c.fillRect(cx,cy,o,o); 
+						c.fillStyle = "#"+g.fromCharToColorHex(g.color);
+						c.fillText(g.textimage[i][d][1], cx,cy);
+
+					}
+					else
+					{
+						c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
+						c.fillRect(cx,cy,o,o);
+
+					}
+					cy += o;
 				}
-				else
-				{
-					c.fillStyle = "#"+g.fromCharToColorHex(g.textimage[i][d]);
-					c.fillRect(cx,cy,o,o);
-				
-				}
-				cy += o;
+				cx += o;
+				cy = 0;
 			}
-			cx += o;
-			cy = 0;
-		}
+			return resolve();
+		});
 		
 		
 	}
@@ -426,8 +428,8 @@
 		 //dr();
 		 Promise.all(promises).then(
 		 	function(succ){
-				dr();
-				drawAll(frame+1);
+				dr().then(drawAll(frame+1));
+				
 			}
 		 );
 		 
