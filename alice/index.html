@@ -385,6 +385,7 @@
 				cx += o;
 				cy = 0;
 			}
+			console.log('dr');
 			return resolve();
 		});
 		
@@ -423,6 +424,7 @@
 		 let promises = [];
 		for(let f = 0, flame_coordinates_length = flame_coordinates.length;f<flame_coordinates_length;f++)
 		 {
+			 console.log('drawall');
 			 promises.push(flames_objs[f].draw((frame+1)%3));
 		}
 		 //dr();
