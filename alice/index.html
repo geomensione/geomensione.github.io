@@ -15,7 +15,7 @@
 	window.b = document.getElementsByTagName('body')[0];
 	window.c = window.a.getContext('2d');
 	window.d = document;
-	
+	let candeline = 0;
 	/*
 	LRDraw tool start
 	*/
@@ -82,11 +82,18 @@
 		}
 		
 		function click(x,y){
-			if((my_x <= x && x <=my_x+3) && (my_y <= y && y <=my_y+5))
+			if(clicked > 5)
 			{
-				clicked = 0;
-				//alert('clicked');
+				if((my_x <= x && x <=my_x+3) && (my_y <= y && y <=my_y+5))
+				{
+					clicked = 0;
+					candeline+=1;
+					if(candeline >= 9)
+						alert('auguri!');
+					//alert('clicked');
+				}
 			}
+			
 		}
 		return{
 			setPos: setPos,
