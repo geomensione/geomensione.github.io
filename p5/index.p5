@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
+    <script>
+    var bodies = [];
+    var lastCircle = {};
+
+    function setup() {
+    createCanvas(720, 400);
+
+    };
+
+    function draw() {
+    background(200);
+
+
+    // Draw all paths
+    for( var i = 0; i < bodies.length; i++) {
+    bodies[i].display();
+    }
+    }
+
+    // Start it up
+    function mousePressed() {
+    if(bodies.length === 0)
+    bodies.push(new F2DBody());
+    lastCircle = new Circle(mouseX, mouseY);
+    bodies[bodies.length-1].circles.push(lastCircle);
+    }
+
+    function mouseDragged() {
+    let oldPos = lastCircle.getPosition();
+    lastCircle.setRadius(int(dist(mouseX, mouseY,oldPos.x,oldPos.y)));	  
+    }
+
+
+    // 
+    function mouseReleased() {
+
+    }
+
+    // A Path is a list of particles
+    function F2DBody() {
+    this.circles = [];
+    }
+
+
+
+
+    // Display plath
+    F2DBody.prototype.display = function() {
+    // Loop through backwards
+    for (var i = 0; i< this.circles.length - 1; i++) {
+    this.circles[i].display();
+    }
+
+    }  
+
+    // Particles along the path
+    function Circle(x, y, radius) {
+    this.position = createVector(x, y);
+    this.radius = radius;
+    }
+
+    // Draw particle and connect it with a line
+    // Draw a line to another
+    Circle.prototype.display = function(other) {
+    ellipse(this.position.x,this.position.y, this.radius*2, this.radius*2);    
+    }
+
+    Circle.prototype.setRadius = function(r) {  
+    this.radius = r;
+    }  
+
+    Circle.prototype.setPosition = function(x,y) {  
+    this.position = createVector(x, y);
+    }  
+
+    Circle.prototype.getPosition = function() {  
+    return this.position;
+    }  
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
