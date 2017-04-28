@@ -37,7 +37,7 @@
 			fillColor: 'black',
 		});
 
-		function onMouseDown(event) {
+		function onMouseDown(paper.event) {
 			click = true;
 			segment = path = null;
 			var hitResult = paper.project.hitTest(event.point, paper.hitOptions);
