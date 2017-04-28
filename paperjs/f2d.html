@@ -14,6 +14,7 @@
 		var canvas = document.getElementById('myCanvas');
 		// Create an empty project and a view for the canvas:
 		paper.setup(canvas);
+		var tool = new paper.Tool();
 		var skeleton = 1;
 		var bone = 0;
 		var hitOptions = {
@@ -37,7 +38,7 @@
 			fillColor: 'black',
 		});
 
-		function onMouseDown(paper.event) {
+		tool.onMouseDown = function(event) {
 			click = true;
 			segment = path = null;
 			var hitResult = paper.project.hitTest(event.point, paper.hitOptions);
