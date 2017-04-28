@@ -108,6 +108,7 @@
 			var children_array_length = childrens_array.length;
 			if(children_array_length > 2)
 			{
+				console.log(JSON.stringify(childrens_array));
 				var center1 = childrens_array[children_array_length-2].position;
 				var radius1 = (childrens_array[children_array_length-2].segments[2].point.x - childrens_array[children_array_length-2].segments[0].point.x)/2;
 				var center2 = childrens_array[children_array_length-1].position;
