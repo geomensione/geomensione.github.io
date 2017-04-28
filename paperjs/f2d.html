@@ -82,7 +82,7 @@
 
 		}
 
-		function onMouseMove(event){
+		tool.onMouseMove = function(event){
 			paper.project.activeLayer.selected = false;
 			if (event.item)
 				event.item.selected = true;
@@ -90,7 +90,7 @@
 				onMouseDrag(event);
 		}
 
-		function onMouseDrag(event) {
+		tool.onMouseDrag = function(event) {
 			if (segment) {
 				segment.point += event.delta;
 				path.smooth();
@@ -104,7 +104,7 @@
 			}
 		}
 
-		function onMouseUp(event) {
+		tool.onMouseUp = function(event) {
 			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 			var childrens_array = paper.project.activeLayer.children;
 			var children_array_length = childrens_array.length;
@@ -130,8 +130,8 @@
 		}
 
 		//document.onmousedown = onMouseDown;
-		document.onmousemove = onMouseMove;
-		document.onmouseup = onMouseUp;
+		//document.onmousemove = onMouseMove;
+		//document.onmouseup = onMouseUp;
 	}
 
 </script>
