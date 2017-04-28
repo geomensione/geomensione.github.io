@@ -41,7 +41,7 @@
 		tool.onMouseDown = function(event) {
 			click = true;
 			segment = path = null;
-			var hitResult = paper.project.hitTest(event.point, paper.hitOptions);
+			var hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
 			if (!hitResult){
 				bone++;
 				myCircle = new paper.Path.Circle({
