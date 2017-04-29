@@ -31,7 +31,7 @@
 		var circle;
 		var segment = path = null;
 		var click = false;
-
+		let sceneObjects = [];
 		var textItem = new paper.PointText({
 			content: 'Number of items',
 			point: new paper.Point(20, 30),
@@ -49,6 +49,7 @@
 					radius: 1,
 					name: skeleton+'_'+bone+'_'+'f2d'
 				});
+				
 				point1 = event.point;
 				var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
 				var hue = Math.random() * 360;
@@ -97,9 +98,10 @@
 			} else if (path) {
 				path.position += event.delta;
 			}else{
-				var radius = (myCircle.segments[2].point.x - 
-				myCircle.segments[0].point.x) / 2; 
-				var new_radius = event.point - center; 
+				var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
+				let my_x = event.point.x - center.x;
+				let my_y = event.point.y - center.y;
+				var new_radius = new paper.Point(my_x, my_y); 
 				myCircle.scale(new_radius.length/radius);
 			}
 		}
@@ -111,11 +113,12 @@
 			var children_array_length = childrens_array.length;
 			if(children_array_length > 2)
 			{
-				console.log(JSON.stringify(childrens_array));
-				var center1 = childrens_array[children_array_length-2].position;
-				var radius1 = (childrens_array[children_array_length-2].segments[2].point.x - childrens_array[children_array_length-2].segments[0].point.x)/2;
-				var center2 = childrens_array[children_array_length-1].position;
-				var radius2= (childrens_array[children_array_length-1].segments[2].point.x - childrens_array[children_array_length-1].segments[0].point.x)/2;
+				let now = skeleton+'_'+bone+'_'+'f2d';
+				let prev = skeleton+'_'+(bone-1)+'_'+'f2d';
+				var center1 = childrens_array[prev].position;
+				var radius1 = (childrens_array[prev].segments[2].point.x - childrens_array[prev].segments[0].point.x)/2;
+				var center2 = childrens_array[now].position;
+				var radius2= (childrens_array[now].segments[2].point.x - childrens_array[now].segments[0].point.x)/2;
 
 				var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 				var points_length = points.length;
