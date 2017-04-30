@@ -115,7 +115,9 @@
 
 				var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 				var points_length = points.length;
-				var myPathLine = new paper.Path();
+				var myPathLine = new paper.Path({
+					name: skeleton+'_'+bone+'-'+(bone-1)+'_'+'tangents'
+				});
 				myPathLine.strokeColor = 'black';
 
 				for(var p = 0;p<points_length;p++)
@@ -123,6 +125,7 @@
 					myPathLine.add(new paper.Point(points[p].x, points[p].y));
 
 				}
+				myPathLine.closed = true;
 			}
 		}
 		//document.onmousedown = onMouseDown;
