@@ -116,7 +116,9 @@
 				var points_length = points.length;
 				
 				function addTangentLine(index, color){
-					var myPathLine = new paper.Path();
+					var myPathLine = new paper.Path({
+						name: skeleton+'_'+bone+'-'+(bone-1)+'_tangents';
+					});
 					myPathLine.strokeColor = color;
 					myPathLine.add(new paper.Point(points[index].x, points[index].y));
 					myPathLine.add(new paper.Point(points[index+1].x, points[index+1].y));
