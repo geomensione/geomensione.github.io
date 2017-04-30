@@ -103,14 +103,15 @@
 			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 			var childrens_array = paper.project.activeLayer.children;
 			var children_array_length = childrens_array.length;
+			let radius1, radius2 = 0;
 			if(children_array_length > 2)
 			{
 				let now = skeleton+'_'+bone+'_'+'f2d';
 				let prev = skeleton+'_'+(bone-1)+'_'+'f2d';
 				var center1 = childrens_array[prev].position;
-				var radius1 = (childrens_array[prev].segments[2].point.x - childrens_array[prev].segments[0].point.x)/2;
+				radius1 = (childrens_array[prev].segments[2].point.x - childrens_array[prev].segments[0].point.x)/2;
 				var center2 = childrens_array[now].position;
-				var radius2= (childrens_array[now].segments[2].point.x - childrens_array[now].segments[0].point.x)/2;
+				radius2= (childrens_array[now].segments[2].point.x - childrens_array[now].segments[0].point.x)/2;
 				var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 				var points_length = points.length;
 				
@@ -120,8 +121,17 @@
 					myPathLine.add(new paper.Point(points[index].x, points[index].y));
 					myPathLine.add(new paper.Point(points[index+1].x, points[index+1].y));
 				}
-				addTangentLine(0,'black');
-				addTangentLine(2,'red');
+				if(radius1<radius2)
+				{
+					addTangentLine(0,'black');
+					addTangentLine(2,'red');
+				}
+				else
+				{
+					addTangentLine(2,'black');
+					addTangentLine(0,'red');
+				}
+				
 			}
 		}
 		//document.onmousedown = onMouseDown;
