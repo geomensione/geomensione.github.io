@@ -134,7 +134,7 @@
 				
 				if(!union.name)
 					union = childrens_array[prev].clone();
-				let union_with_tangents = union.unite(childrens_array[prev]);
+				let union_with_tangents = union.unite(childrens_array[tangentName]);
 				union = union_with_tangents.unite(childrens_array[now]);
 				
 			}
