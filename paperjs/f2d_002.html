@@ -113,12 +113,15 @@
 				var radius2= (childrens_array[now].segments[2].point.x - childrens_array[now].segments[0].point.x)/2;
 				var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 				var points_length = points.length;
-				var myPathLine = new paper.Path();
-				myPathLine.strokeColor = 'black';
-				for(var p = 0;p<points_length;p++)
-				{
-					myPathLine.add(new paper.Point(points[p].x, points[p].y));
+				
+				function addTangentLine(index, color){
+					var myPathLine = new paper.Path();
+					myPathLine.strokeColor = color;
+					myPathLine.add(new paper.Point(points[index].x, points[index].y));
+					myPathLine.add(new paper.Point(points[index+1].x, points[index+1].y));
 				}
+				addTangentLine(0,'black');
+				addTangentLine(2,'red');
 			}
 		}
 		//document.onmousedown = onMouseDown;
