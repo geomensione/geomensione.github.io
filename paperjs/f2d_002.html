@@ -117,8 +117,11 @@
 				var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 				var points_length = points.length;
 				let tangentName = skeleton+'_'+bone+'-'+(bone-1)+'_'+'tangents';
+				var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+				var hue = Math.random() * 360;
 				var myPathLine = new paper.Path({
-					name: tangentName
+					name: tangentName,
+					fillColor = { hue: hue, saturation: 1, lightness: lightness };
 				});
 				myPathLine.strokeColor = 'black';
 
