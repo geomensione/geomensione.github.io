@@ -41,19 +41,27 @@
 			segment = path = null;
 			var hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
 			if (!hitResult){
-				bone++;
-				myCircle = new paper.Path.Circle({
-					center: event.point,
-					radius: 1,
-					name: skeleton+'_'+bone+'_'+'f2d'
-				});
+				if(event.modifiers.control === true)
+				{
+					bone++;
+					myCircle = new paper.Path.Circle({
+						center: event.point,
+						radius: 1,
+						name: skeleton+'_'+bone+'_'+'f2d'
+					});
+
+					point1 = event.point;
+					var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+					var hue = Math.random() * 360;
+					myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
+					myCircle.strokeColor = 'black';
+					center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
+				}
+				else
+				{
+					return;
+				}
 				
-				point1 = event.point;
-				var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
-				var hue = Math.random() * 360;
-				myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
-				myCircle.strokeColor = 'black';
-				center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
 			}
 			if (event.modifiers.shift) {
 				if (hitResult.type == 'segment') {
