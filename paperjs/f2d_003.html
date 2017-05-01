@@ -65,7 +65,7 @@
 		var hitResult = project.hitTest(event.point, hitOptions);
 		if (!hitResult)
 		{
-			/*
+			
 			if(event.modifiers.control == true)
 			{
 				bone++;
@@ -82,7 +82,7 @@
 				myCircle.strokeColor = 'black';
 				center = new Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
 			}else
-			*/
+			
 			{
 				return;
 			}
@@ -123,7 +123,6 @@
 		} else if (path) {
 			path.position += event.delta;
 		}
-		/*
 		else if(event.modifiers.control == true){
 			var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
 			let my_x = event.point.x - center.x;
@@ -131,9 +130,9 @@
 			var new_radius = new Point(my_x, my_y); 
 			myCircle.scale(new_radius.length/radius);
 		}
-		*/
+		
 	}
-	/*
+	
 	function onMouseUp(event){
 		textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 		var childrens_array = project.activeLayer.children;
@@ -170,7 +169,7 @@
 
 		}
 	}
-	*/	
+		
 </script>
 </head>
 <body>
