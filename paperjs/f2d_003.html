@@ -141,7 +141,7 @@
 		textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 		var childrens_array = project.activeLayer.children;
 		var children_array_length = childrens_array.length;
-		/*
+		
 		if(children_array_length > 2)
 		{
 			let now = skeleton+'_'+bone+'_'+'f2d';
@@ -152,6 +152,7 @@
 			var radius2= (childrens_array[now].segments[2].point.x - childrens_array[now].segments[0].point.x)/2;
 			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 			var points_length = points.length;
+			/*
 			let tangentName = skeleton+'_'+bone+'-'+(bone-1)+'_'+'tangents';
 			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
 			var hue = Math.random() * 360;
@@ -170,9 +171,9 @@
 				union = childrens_array[prev].clone();
 			let union_with_tangents = union.unite(childrens_array[tangentName]);
 			union = union_with_tangents.unite(childrens_array[now]);
-
+			*/
 		}
-	*/
+	
 	}
 	
 		
