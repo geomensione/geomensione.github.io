@@ -49,7 +49,7 @@
 		}
 
 		function createBlob(center, maxRadius, points) {
-			var path = new paper.Path();
+			var path = new Path();
 			path.closed = true;
 			for (var i = 0; i < points; i++) {
 				var delta = new Point({
@@ -62,6 +62,8 @@
 			return path;
 		}
 
+		var segment, path;
+		var movePath = false;
 		function onMouseDown(event) {
 			segment = path = null;
 			var hitResult = project.hitTest(event.point, hitOptions);
