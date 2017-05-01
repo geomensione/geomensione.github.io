@@ -90,25 +90,25 @@
 				event.item.selected = true;
 		}
 		tool.onMouseDrag = function(event) {
-			if (segment) {
-				segment.point += event.delta;
-				path.smooth();
-			} else if (path) {
-				path.position += event.delta;
-			}else{
-				if(event.modifiers.control === true)
-				{
-					var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
-					let my_x = event.point.x - center.x;
-					let my_y = event.point.y - center.y;
-					var new_radius = new paper.Point(my_x, my_y); 
-					myCircle.scale(new_radius.length/radius);
-				}
-				else
-				{
-					return;
+			if(event.modifiers.control === true)
+			{
+				var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
+				let my_x = event.point.x - center.x;
+				let my_y = event.point.y - center.y;
+				var new_radius = new paper.Point(my_x, my_y); 
+				myCircle.scale(new_radius.length/radius);
+			}
+			else
+			{
+				if (segment) {
+					segment.point += event.delta;
+					path.smooth();
+				} else if (path) {
+					path.position += event.delta;
 				}
 			}
+			
+			
 		}
 		tool.onMouseUp = function(event) {
 			if(event.modifiers.control === true)
