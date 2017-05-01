@@ -12,14 +12,11 @@
 	var tool = {};
 	var segment, path;
 	var movePath = false;
-		
+	paper.install(window);	
 	window.onload = function() {
 		document.title = 'f2d_003';
-		// Get a reference to the canvas object
-		var canvas = document.getElementById('myCanvas');
-		// Create an empty project and a view for the canvas:
-		paper.setup(canvas);
-		tool = new paper.Tool();
+		paper.setup('myCanvas');
+		tool = new Tool();
 		var values = {
 			paths: 50,
 			minPoints: 5,
@@ -43,7 +40,7 @@
 			for (var i = 0; i < values.paths; i++) {
 				var radius = values.minRadius + Math.random() * radiusDelta;
 				var points = values.minPoints + Math.floor(Math.random() * pointsDelta);
-				var path = createBlob(paper.view.size * paper.Point.random(), radius, points);
+				var path = createBlob(view.size * Point.random(), radius, points);
 				var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
 				var hue = Math.random() * 360;
 				path.fillColor = { hue: hue, saturation: 1, lightness: lightness };
@@ -55,7 +52,7 @@
 			var path = new paper.Path();
 			path.closed = true;
 			for (var i = 0; i < points; i++) {
-				var delta = new paper.Point({
+				var delta = new Point({
 					length: (maxRadius * 0.5) + (Math.random() * maxRadius * 0.5),
 					angle: (360 / points) * i
 				});
@@ -67,7 +64,7 @@
 
 		function onMouseDown(event) {
 			segment = path = null;
-			var hitResult = paper.project.hitTest(event.point, hitOptions);
+			var hitResult = project.hitTest(event.point, hitOptions);
 			if (!hitResult)
 				return;
 
@@ -90,11 +87,11 @@
 			}
 			movePath = hitResult.type == 'fill';
 			if (movePath)
-				paper.project.activeLayer.addChild(hitResult.item);
+				project.activeLayer.addChild(hitResult.item);
 		}
 
 		function onMouseMove(event) {
-			paper.project.activeLayer.selected = false;
+			project.activeLayer.selected = false;
 			if (event.item)
 				event.item.selected = true;
 		}
@@ -112,7 +109,6 @@
 		tool.onMouseMove = onMouseMove;
 		tool.onMouseDrag = onMouseDrag;
 		
-		paper.view.draw();
 	}
 </script>
 </head>
