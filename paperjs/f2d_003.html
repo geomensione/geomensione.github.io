@@ -9,10 +9,10 @@
   <script src="js/paper-full.min.js"></script>
   <script src="js/tangents.js"></script>
 <script>
+	paper.install(window);	
 	var tool = {};
 	var segment, path;
 	var movePath = false;
-	paper.install(window);	
 	window.onload = function() {
 		document.title = 'f2d_003';
 		paper.setup('myCanvas');
