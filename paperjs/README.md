@@ -1,1 +1,5 @@
-http://paperjs.org/examples/hit-testing/
+001: cicles and tangents
+
+002: union while create
+
+003: wip
