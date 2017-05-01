@@ -30,7 +30,6 @@
 		var center;
 		var circle;
 		var segment = path = null;
-		var click = false;
 		let sceneObjects = [];
 		let union = {};
 		var textItem = new paper.PointText({
@@ -39,7 +38,6 @@
 			fillColor: 'black',
 		});
 		tool.onMouseDown = function(event) {
-			click = true;
 			segment = path = null;
 			var hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
 			if (!hitResult){
@@ -82,8 +80,6 @@
 			paper.project.activeLayer.selected = false;
 			if (event.item)
 				event.item.selected = true;
-			if(click)
-				tool.onMouseDrag(event);
 		}
 		tool.onMouseDrag = function(event) {
 			if (segment) {
@@ -100,7 +96,6 @@
 			}
 		}
 		tool.onMouseUp = function(event) {
-			click = false;
 			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 			var childrens_array = paper.project.activeLayer.children;
 			var children_array_length = childrens_array.length;
