@@ -96,7 +96,7 @@
 			} else if (path) {
 				path.position += event.delta;
 			}else{
-				if (event.modifiers.shift) {
+				if (event.modifiers.control) {
 					draw = true
 					var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
 					let my_x = event.point.x - center.x;
