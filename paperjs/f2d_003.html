@@ -42,9 +42,7 @@
 			click = true;
 			segment = path = null;
 			var hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
-			if (!hitResult){
-				return;
-			}
+			
 			if (event.modifiers.control) {
 				bone++;
 				myCircle = new paper.Path.Circle({
@@ -78,6 +76,9 @@
 				movePath = hitResult.type == 'fill';
 				if (movePath)
 					paper.project.activeLayer.addChild(hitResult.item);
+			}
+			if (!hitResult){
+				return;
 			}
 			
 		}
