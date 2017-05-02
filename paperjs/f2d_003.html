@@ -101,6 +101,7 @@
 		}
 		tool.onMouseUp = function(event) {
 			click = false;
+			path = {};
 			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 			var childrens_array = paper.project.activeLayer.children;
 			var children_array_length = childrens_array.length;
