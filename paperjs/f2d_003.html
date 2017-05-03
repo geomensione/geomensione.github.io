@@ -103,9 +103,8 @@
 			click = false;
 			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 			var childrens_array = paper.project.activeLayer.children;
-			var children_array_length = childrens_array.length;
 			
-			if(children_array_length > 2)
+			if(bone > 1)
 			{
 				let now = skeleton+'_'+bone+'_'+'f2d';
 				let prev = skeleton+'_'+(bone-1)+'_'+'f2d';
@@ -140,8 +139,9 @@
 			}
 		}
 		tool.onKeyDown = function(event) {
-		    if (event.key == 'b') {
+		    if (event.key == 'b' && bone !== 0) {
 			skeleton += 1;
+			bone = 0;
 		    }
 		}
 	}
