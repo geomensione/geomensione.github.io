@@ -139,9 +139,11 @@
 				
 			}
 		}
-		//document.onmousedown = onMouseDown;
-		//document.onmousemove = onMouseMove;
-		//document.onmouseup = onMouseUp;
+		tool.onKeyDown = function(event) {
+		    if (event.key == 'b') {
+			skeleton += 1;
+		    }
+		}
 	}
 </script>
 </head>
