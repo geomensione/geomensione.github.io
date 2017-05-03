@@ -142,6 +142,19 @@
 					let union_with_tangents = union.unite(childrens_array[tangentName]);
 					union = union_with_tangents.unite(childrens_array[now]);
 					//union.position = childrens_array[prev].position;
+					if(paper.project.layes.length === 1)
+					{
+						paper.project.layers.push(new paper.Layer({
+								children: [union],
+								name: 'union',
+								position: view.center
+							})
+						)
+					}
+					else
+					{
+						
+					}
 					draw=false;
 
 				}
