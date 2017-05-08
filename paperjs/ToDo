@@ -1,21 +1,26 @@
 ui key suggests
 
-keys handler
 
-create bodies -> layer
+create circle -> layer 0
+  tangent -> layer 1 (copy circle here) 
+    union -> layer 2
 
 scale circle
+  update tangent layer 1
 
 move circle
+  update tangent layer 1
 
-union "on demand" -> layer
+keys handler
+  boolean operations
+    union "on demand" -> layer
+    subtract
 
 move body/bodies
-
 rotate body/bodies
-
 scale body/bodies
+  transform group objects under
 
-boolean operations
+
 
 
