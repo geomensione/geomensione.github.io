@@ -141,12 +141,18 @@
 			}
 		}
 		tool.onKeyDown = function(event) {
-		    if (event.key == 'b' && bone !== 0) {
-			skeleton += 1;
-			bone = 0;
-		    }
+		    switch(event.key){
+			    case 'b':
+				if (bone !== 0) {
+					skeleton += 1;
+					bone = 0;
+				}
+				break;
+			    case 'u':
+					union.opacity = 1;
+					break;
+			}
 		}
-	}
 </script>
 </head>
 <body>
