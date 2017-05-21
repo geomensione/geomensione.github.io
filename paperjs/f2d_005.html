@@ -159,7 +159,7 @@
 		            case 's':
 				    	smoothItem.content = 'smooth type: my algorithm';
 				    	let not_smooth_points_array = [];
-				    	for(let i = 0, segments_length = union.segments.length;i<segments_length;i++){
+				    	for(let i = 0; i < union.segments.length; i++){
 						if(!union.segments[i].isSmooth())
 							not_smooth_points_array.push(union.segments[i].getPoint());
 						if(not_smooth_points_array.length > 2){
