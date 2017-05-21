@@ -156,13 +156,8 @@
 				   	else
 						union.opacity = 1;
 					break;
-		            case 'c':
-				    	union.smooth({type: 'continuous'});
-					break;
-			    case 'a':
-				    	union.smooth({type: 'asymmetric'});
-					break;
-			    case 't':
+		            case 's':
+				    	smoothItem.content = 'smooth type: catmull-rom, factor 1.0';
 				    	union.smooth({type: 'catmull-rom', factor: 1.0});
 					break;
 			    case 'g':
