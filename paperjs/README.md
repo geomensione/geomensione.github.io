@@ -4,4 +4,6 @@
 
 003: create circle pressing 'd' key and union shown pressing 'u' key
 
-004: WIP smooth union
+004: smooth union pressing 's' key (type catmull-rom, factor 1.0)
+
+005: WIP my smooth algorithm
