@@ -157,12 +157,19 @@
 						union.opacity = 1;
 					break;
 		            case 's':
-				    	smoothItem.content = 'smooth type: catmull-rom, factor 1.0';
-				    	union.smooth({type: 'catmull-rom', factor: 1.0});
+				    	smoothItem.content = 'smooth type: my algorithm';
+				    	let not_smooth_points_array = [];
+				    	for(let i = 0, segments_length = union.segments.length;i<segments_length;i++){
+						if(!union.segments[i].isSmooth())
+							not_smooth_points_array.push(union.segments[i].getPoint());
+						if(not_smooth_points_array.length > 2){
+						   var path = new Path.Arc(not_smooth_points_array[0], not_smooth_points_array[1], not_smooth_points_array[2]);
+					           path.strokeColor = 'red';
+						}
+						   
+					}
 					break;
-			    case 'g':
-				    	union.smooth({type: 'geometric', factor: 1.0});
-					break;
+			    
 				    
 			    
 			}
