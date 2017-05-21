@@ -38,6 +38,11 @@
 			point: new paper.Point(20, 30),
 			fillColor: 'black',
 		});
+		var smoothItem = new paper.PointText({
+			content: 'Smooth type',
+			point: new paper.Point(20, 50),
+			fillColor: 'black',
+		});
 		tool.onMouseDown = function(event) {
 			click = true;
 			segment = path = null;
@@ -151,6 +156,20 @@
 				   	else
 						union.opacity = 1;
 					break;
+		            case 'c':
+				    	union.smooth({type: 'continuous'});
+					break;
+			    case 'a':
+				    	union.smooth({type: 'asymmetric'});
+					break;
+			    case 't':
+				    	union.smooth({type: 'catmull-rom'});
+					break;
+			    case 'g':
+				    	union.smooth({type: 'geometric'});
+					break;
+				    
+			    
 			}
 		}
 	}
