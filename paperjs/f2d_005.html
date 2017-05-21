@@ -163,7 +163,7 @@
 						if(!union.segments[i].isSmooth())
 							not_smooth_points_array.push(union.segments[i].getPoint());
 						if(not_smooth_points_array.length > 2){
-							myCircle.removeSegment(i-1);
+							union.removeSegment(i-1);
 						   	not_smooth_points_array.length = 0;
 						}
 						   
