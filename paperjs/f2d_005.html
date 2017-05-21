@@ -163,7 +163,7 @@
 						if(!union.segments[i].isSmooth())
 							not_smooth_points_array.push(union.segments[i].getPoint());
 						if(not_smooth_points_array.length > 2){
-						   var path = new Path.Arc(not_smooth_points_array[0], not_smooth_points_array[1], not_smooth_points_array[2]);
+						   var path = new paper.Path.Arc(not_smooth_points_array[0], not_smooth_points_array[1], not_smooth_points_array[2]);
 					           path.strokeColor = 'red';
 						}
 						   
