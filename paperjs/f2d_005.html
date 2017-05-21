@@ -165,8 +165,8 @@
 						if(not_smooth_points_array.length > 2){
 							union.removeSegment(i-1);
 							union.segments[i-2].handleOut = union.segments[i-1].getPoint();
-							union.curveTo(union.segments[i-1],union.segments[i]);
-						   	not_smooth_points_array.length = 0;
+							union.segments[i].handleIn = union.segments[i-1].getPoint();
+							not_smooth_points_array.length = 0;
 						}
 						   
 					}
