@@ -33,6 +33,7 @@
 		var click = false;
 		let sceneObjects = [];
 		let union = {};
+		let path = {};
 		var textItem = new paper.PointText({
 			content: 'Number of items',
 			point: new paper.Point(20, 30),
@@ -94,7 +95,7 @@
 			if (segment) {
 				segment.point += event.delta;
 				path.smooth();
-			} else if (path) {
+			} else if (path.name) {
 				path.position += event.delta;
 			}else{
 				var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
