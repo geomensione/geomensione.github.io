@@ -96,7 +96,8 @@
 				segment.point += event.delta;
 				path.smooth();
 			} else if (path && path.name) {
-				path.position += event.delta;
+				path.position.x += event.delta.x;
+				path.position.y += event.delta.y;
 			}else{
 				var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
 				let my_x = event.point.x - center.x;
