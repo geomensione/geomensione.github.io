@@ -95,7 +95,7 @@
 			if (segment) {
 				segment.point += event.delta;
 				path.smooth();
-			} else if (path.name) {
+			} else if (path && path.name) {
 				path.position += event.delta;
 			}else{
 				var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
