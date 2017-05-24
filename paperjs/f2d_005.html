@@ -112,7 +112,7 @@
 			{
 				for(let s = 1;s<=skeleton;s++){
 					for(let b = 2;b<=bone;b++){
-						draw_tangents(s,b)
+						draw_tangents(childrens_array,s,b)
 					}
 				}
 			}
@@ -143,13 +143,13 @@
 			}
 		}
 		
-		function draw_tangents(sk,bo){
+		function draw_tangents(ca, sk,bo){
 			let now = sk+'_'+bo+'_'+'f2d';
 			let prev = sk+'_'+(bo-1)+'_'+'f2d';
-			var center1 = childrens_array[prev].position;
-			var radius1 = (childrens_array[prev].segments[2].point.x - childrens_array[prev].segments[0].point.x)/2;
-			var center2 = childrens_array[now].position;
-			var radius2= (childrens_array[now].segments[2].point.x - childrens_array[now].segments[0].point.x)/2;
+			var center1 = ca[prev].position;
+			var radius1 = (ca[prev].segments[2].point.x - ca[prev].segments[0].point.x)/2;
+			var center2 = ca[now].position;
+			var radius2= (ca[now].segments[2].point.x - ca[now].segments[0].point.x)/2;
 			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 			var points_length = points.length;
 			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
@@ -167,11 +167,11 @@
 			myPathLine.closed = true;
 
 			if(!union.name){
-				union = childrens_array[prev].clone();
+				union = ca[prev].clone();
 				union.opacity = 0;
 			}
-			let union_with_tangents = union.unite(childrens_array[tangentName]);
-			union = union_with_tangents.unite(childrens_array[now]);
+			let union_with_tangents = union.unite(ca[tangentName]);
+			union = union_with_tangents.unite(ca[now]);
 
 
 		}
