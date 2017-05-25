@@ -89,10 +89,10 @@
 			if (event.item)
 				event.item.selected = true;
 			if(click)
-				onMouseDrag(event);
+				tool.onMouseDrag(event);
 			
 		}
-		function onMouseDrag(event) {
+		tool.onMouseDrag = function(event) {
 			if (path && path.name) {
 				path.position.x += event.delta.x;
 				path.position.y += event.delta.y;
