@@ -129,11 +129,11 @@
 				}
 				break;
 			    case 'u':
-				    	if(union.opacity === 1)
-						union.opacity = 0.1;
-				   	else
-						union.opacity = 1;
-					break;
+				    if(union.name)
+				    	union.remove()
+				    else
+					doUnion();	
+				    break;
 		            case 's':
 				    	smoothItem.content = 'smooth type: catmull-rom, factor 1.0';
 				    	union.smooth({type: 'catmull-rom', factor: 1.0});
@@ -189,7 +189,6 @@
 			let now = s+'_'+b+'_'+'f2d';
 			let prev = s+'_'+(b-1)+'_'+'f2d';
 			union = childrens_array[prev].clone();
-			union.opacity = 0;
 			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
 			let union_with_tangents = union.unite(childrens_array[tangentName]);
 			union = union_with_tangents.unite(childrens_array[now]);
