@@ -37,6 +37,7 @@
 		var click = false;
 		let sceneObjects = [];
 		let union = {};
+	 	let childrens_array;
 		
 		var textItem = new paper.PointText({
 			content: 'Number of items',
@@ -88,10 +89,10 @@
 			if (event.item)
 				event.item.selected = true;
 			if(click)
-				tool.onMouseDrag(event);
+				onMouseDrag(event);
 			
 		}
-		tool.onMouseDrag = function(event) {
+		function onMouseDrag(event) {
 			if (path && path.name) {
 				path.position.x += event.delta.x;
 				path.position.y += event.delta.y;
@@ -106,7 +107,7 @@
 		tool.onMouseUp = function(event) {
 			click = false;
 			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
-			var childrens_array = paper.project.activeLayer.children;
+			childrens_array = paper.project.activeLayer.children;
 			path = {};
 			var childrens_array_length = childrens_array.length;
 
@@ -168,14 +169,29 @@
 			}
 			myPathLine.closed = true;
 
+			
+
+
+		}
+		
+		function doUnion(){
+			if(bone > 1)
+			{
+				for(let s = 1;s<=skeleton;s++){
+					for(let b = 2;b<=bone;b++){
+						union(childrens_array,s,b)
+					}
+				}
+			}
+		}
+		
+		function union(){
 			if(!union.name){
 				union = ca[prev].clone();
 				union.opacity = 0;
 			}
 			let union_with_tangents = union.unite(ca[tangentName]);
 			union = union_with_tangents.unite(ca[now]);
-
-
 		}
 	}
 </script>
