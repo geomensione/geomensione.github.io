@@ -179,19 +179,20 @@
 			{
 				for(let s = 1;s<=skeleton;s++){
 					for(let b = 2;b<=bone;b++){
-						union(childrens_array,s,b)
+						union_fn(s,b)
 					}
 				}
 			}
 		}
 		
-		function union(){
-			if(!union.name){
-				union = ca[prev].clone();
-				union.opacity = 0;
-			}
-			let union_with_tangents = union.unite(ca[tangentName]);
-			union = union_with_tangents.unite(ca[now]);
+		function union_fn(s,b){
+			let now = s+'_'+b+'_'+'f2d';
+			let prev = s+'_'+(b-1)+'_'+'f2d';
+			union = childrens_array[prev].clone();
+			union.opacity = 0;
+			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
+			let union_with_tangents = union.unite(childrens_array[tangentName]);
+			union = union_with_tangents.unite(childrens_array[now]);
 		}
 	}
 </script>
