@@ -21,10 +21,10 @@
 		if(path.name){
 			var radius = (path.segments[2].point.x - path.segments[0].point.x) / 2; 
 			if(evt.wheelDelta > 0){
-				scale(radius+increment/radius);
+				scale((radius+increment)/radius);
 			
 			}else{
-				scale(radius-increment/radius);
+				scale((radius-increment)/radius);
 			}
 		}
 	}
