@@ -86,17 +86,20 @@
 				myCircle.strokeColor = 'black';
 				myCircle.on('mousedown',function(){
 					click = true;
+					
+				});
+				
+				myCircle.on('mouseenter',function(){
 					path = this;
 				});
-				/*
-				myCircle.on('mousemove',function(){
-					if(click)
-						tool.onMouseDrag(event);
+				
+				myCircle.on('mouseleave',function(){
+					path = {};
 				});
-				*/
+				
 				myCircle.on('mouseup',function(){
 					click = false;
-					path = {};
+					
 				});
 				center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
 			}
