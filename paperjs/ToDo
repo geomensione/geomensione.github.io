@@ -1,23 +1,4 @@
-vengono aggiunti path che  non servono
-prima di ricalcolare le tangenti devo rimuovere quelle esistenti
-
-ui key suggests
-
-
-create circle -> layer 0
-  tangent -> layer 1 (copy circle here) 
-    union -> layer 2
-
-scale circle
-  update tangent layer 1
-
-move circle
-  update tangent layer 1
-
-keys handler
-  boolean operations
-    union "on demand" -> layer
-    subtract
+fix union che non viene eseguita su tutti gli elementi
 
 move body/bodies
 rotate body/bodies
