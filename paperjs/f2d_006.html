@@ -1,0 +1,232 @@
+<html>
+<head>
+	<style>
+		#myCanvas{
+			width:100%;
+			height: 100%;
+		}
+	</style>
+  <script src="js/paper.js"></script>
+  <script src="js/tangents.js"></script>
+<script>
+	var increment = 2;
+	
+	function scale(r){
+		path.scale(r);
+	}
+	
+	
+	
+	
+	
+	
+	window.onload = function() {
+		document.title = 'f2d_006';
+		// Get a reference to the canvas object
+		var canvas = document.getElementById('myCanvas');
+		// Create an empty project and a view for the canvas:
+		paper.setup(canvas);
+		var tool = new paper.Tool();
+		var skeleton = 1;
+		var bone = 0;
+		var hitOptions = {
+			segments: true,
+			stroke: true,
+			fill: true,
+			tolerance: 5
+		};
+		//var myPath;
+		var myCircle;
+		var point1, point2;
+		var center;
+		var circle;
+		var segment = path = null;
+		var click = false;
+		let sceneObjects = [];
+		let union = {};
+	 	let childrens_array;
+		
+		var textItem = new paper.PointText({
+			content: 'Number of items',
+			point: new paper.Point(20, 30),
+			fillColor: 'black',
+		});
+		var smoothItem = new paper.PointText({
+			content: 'Smooth type',
+			point: new paper.Point(20, 50),
+			fillColor: 'black',
+		});
+		
+		tool.onMouseDown = function(event) {
+			
+			//segment = path = null;
+			var hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
+			if (!hitResult){
+				bone++;
+				myCircle = new paper.Path.Circle({
+					center: event.point,
+					radius: 1,
+					name: skeleton+'_'+bone+'_'+'f2d'
+				});
+				
+				point1 = event.point;
+				var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+				var hue = Math.random() * 360;
+				myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
+				myCircle.strokeColor = 'black';
+				myCircle.oncreation = true;
+				myCircle.on('mousedown',function(){
+					click = true;
+					
+				});
+				
+				myCircle.on('mouseenter',function(){
+					if(!this.oncreation)
+						path = this;
+				});
+				
+				myCircle.on('mouseleave',function(){
+					path = {};
+				});
+				
+				myCircle.on('mouseup',function(){
+					click = false;
+					this.oncreation = false;
+					
+				});
+				center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
+			}
+			
+		}
+		tool.onMouseMove = function(event){
+			paper.project.activeLayer.selected = false;
+			if (event.item)
+				event.item.selected = true;
+			if(click)
+				tool.onMouseDrag(event);
+			
+		}
+		tool.onMouseDrag = function(event) {
+			if (path && path.name) {
+				path.position.x += event.delta.x;
+				path.position.y += event.delta.y;
+			}else{
+				var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
+				let my_x = event.point.x - center.x;
+				let my_y = event.point.y - center.y;
+				var new_radius = new paper.Point(my_x, my_y); 
+				myCircle.scale(new_radius.length/radius);
+			}
+		}
+		tool.onMouseUp = function(event) {
+			click = false;
+			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
+			childrens_array = paper.project.activeLayer.children;
+			path = {};
+			var childrens_array_length = childrens_array.length;
+			updateTangents();
+		}
+		tool.onKeyDown = function(event) {
+		    switch(event.key){
+			    case 'b':
+				if (bone !== 0) {
+					skeleton += 1;
+					bone = 0;
+				}
+				break;
+			    case 'u':
+				    if(union.name)
+				    	union.remove()
+				    else
+					doUnion();	
+				    break;
+		            case 's':
+				    	smoothItem.content = 'smooth type: catmull-rom, factor 1.0';
+				    	union.smooth({type: 'catmull-rom', factor: 1.0});
+					break;
+			    case 'g':
+				    	union.smooth({type: 'geometric', factor: 1.0});
+					break;
+				    
+			    
+			}
+		}
+		
+		function updateTangents(){
+			if(bone > 1)
+			{
+				for(let s = 1;s<=skeleton;s++){
+					for(let b = 2;b<=bone;b++){
+						draw_tangents(childrens_array,s,b)
+					}
+				}
+			}
+		}
+		
+		function draw_tangents(ca, sk,bo){
+			let now = sk+'_'+bo+'_'+'f2d';
+			let prev = sk+'_'+(bo-1)+'_'+'f2d';
+			var center1 = ca[prev].position;
+			var radius1 = (ca[prev].segments[2].point.x - ca[prev].segments[0].point.x)/2;
+			var center2 = ca[now].position;
+			var radius2= (ca[now].segments[2].point.x - ca[now].segments[0].point.x)/2;
+			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+			var points_length = points.length;
+			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
+			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+			var hue = Math.random() * 360;
+			if(paper.project.activeLayer.children[tangentName])
+			{
+				paper.project.activeLayer.children[tangentName].remove();
+			}
+			var myPathLine = new paper.Path({
+				name: tangentName,
+				fillColor: { hue: hue, saturation: 1, lightness: lightness }
+			});
+			myPathLine.strokeColor = 'black';
+			for(var p = 0;p<points_length;p++)
+			{
+				myPathLine.add(new paper.Point(points[p].x, points[p].y));
+			}
+			myPathLine.closed = true;
+			
+		}
+		
+		function doUnion(){
+			if(bone > 1)
+			{
+				for(let s = 1;s<=skeleton;s++){
+					for(let b = 2;b<=bone;b++){
+						union_fn(s,b)
+					}
+				}
+			}
+		}
+		
+		function union_fn(s,b){
+			let now = s+'_'+b+'_'+'f2d';
+			let prev = s+'_'+(b-1)+'_'+'f2d';
+			union = childrens_array[prev].clone();
+			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
+			let union_with_tangents = union.unite(childrens_array[tangentName]);
+			union = union_with_tangents.unite(childrens_array[now]);
+		}
+		
+		document.onwheel = function(evt){
+			if(path.name){
+				var radius = (path.segments[2].point.x - path.segments[0].point.x) / 2; 
+				if(evt.wheelDelta > 0){
+					scale((radius+increment)/radius);
+				}else{
+					scale((radius-increment)/radius);
+				}
+				updateTangents();
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
