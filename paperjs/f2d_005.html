@@ -15,16 +15,7 @@
 		path.scale(r);
 	}
 	
-	function updateTangents(){
-		if(bone > 1)
-		{
-			for(let s = 1;s<=skeleton;s++){
-				for(let b = 2;b<=bone;b++){
-					draw_tangents(childrens_array,s,b)
-				}
-			}
-		}
-	}
+	
 	
 	document.onwheel = function(evt){
 		
@@ -79,6 +70,18 @@
 			point: new paper.Point(20, 50),
 			fillColor: 'black',
 		});
+		
+		function updateTangents(){
+			if(bone > 1)
+			{
+				for(let s = 1;s<=skeleton;s++){
+					for(let b = 2;b<=bone;b++){
+						draw_tangents(childrens_array,s,b)
+					}
+				}
+			}
+		}
+		
 		tool.onMouseDown = function(event) {
 			
 			//segment = path = null;
