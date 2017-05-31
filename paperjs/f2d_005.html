@@ -85,13 +85,15 @@
 				var hue = Math.random() * 360;
 				myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
 				myCircle.strokeColor = 'black';
+				myCircle.oncreation = true;
 				myCircle.on('mousedown',function(){
 					click = true;
 					
 				});
 				
 				myCircle.on('mouseenter',function(){
-					path = this;
+					if(!this.oncreation)
+						path = this;
 				});
 				
 				myCircle.on('mouseleave',function(){
@@ -100,6 +102,7 @@
 				
 				myCircle.on('mouseup',function(){
 					click = false;
+					this.oncreation = false;
 					
 				});
 				center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
