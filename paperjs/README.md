@@ -6,4 +6,6 @@
 
 004: smooth union pressing 's' key (type catmull-rom, factor 1.0)
 
+005: move and scale circles
+
 
