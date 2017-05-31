@@ -17,19 +17,7 @@
 	
 	
 	
-	document.onwheel = function(evt){
-		
-		if(path.name){
-			var radius = (path.segments[2].point.x - path.segments[0].point.x) / 2; 
-			if(evt.wheelDelta > 0){
-				scale((radius+increment)/radius);
-			
-			}else{
-				scale((radius-increment)/radius);
-			}
-			updateTangents();
-		}
-	}
+	
 
 
 	
@@ -70,17 +58,6 @@
 			point: new paper.Point(20, 50),
 			fillColor: 'black',
 		});
-		
-		function updateTangents(){
-			if(bone > 1)
-			{
-				for(let s = 1;s<=skeleton;s++){
-					for(let b = 2;b<=bone;b++){
-						draw_tangents(childrens_array,s,b)
-					}
-				}
-			}
-		}
 		
 		tool.onMouseDown = function(event) {
 			
@@ -178,6 +155,17 @@
 			}
 		}
 		
+		function updateTangents(){
+			if(bone > 1)
+			{
+				for(let s = 1;s<=skeleton;s++){
+					for(let b = 2;b<=bone;b++){
+						draw_tangents(childrens_array,s,b)
+					}
+				}
+			}
+		}
+		
 		function draw_tangents(ca, sk,bo){
 			let now = sk+'_'+bo+'_'+'f2d';
 			let prev = sk+'_'+(bo-1)+'_'+'f2d';
@@ -228,6 +216,19 @@
 			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
 			let union_with_tangents = union.unite(childrens_array[tangentName]);
 			union = union_with_tangents.unite(childrens_array[now]);
+		}
+		
+		document.onwheel = function(evt){
+			if(path.name){
+				var radius = (path.segments[2].point.x - path.segments[0].point.x) / 2; 
+				if(evt.wheelDelta > 0){
+					scale((radius+increment)/radius);
+
+				}else{
+					scale((radius-increment)/radius);
+				}
+				updateTangents();
+			}
 		}
 	}
 </script>
