@@ -197,7 +197,7 @@
 			{
 				for(let s = 1;s<=skeleton;s++){
 					for(let b = 2;b<=bone;b++){
-						union_fn(s,b)
+						union_all(s,b)
 					}
 				}
 			}
@@ -207,6 +207,16 @@
 			let now = s+'_'+b+'_'+'f2d';
 			let prev = s+'_'+(b-1)+'_'+'f2d';
 			union = childrens_array[prev].clone();
+			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
+			let union_with_tangents = union.unite(childrens_array[tangentName]);
+			union = union_with_tangents.unite(childrens_array[now]);
+		}
+		
+		function union_all(s,b){
+			let now = s+'_'+b+'_'+'f2d';
+			let prev = s+'_'+(b-1)+'_'+'f2d';
+			if(!union.name)
+				union = childrens_array[prev].clone();
 			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
 			let union_with_tangents = union.unite(childrens_array[tangentName]);
 			union = union_with_tangents.unite(childrens_array[now]);
