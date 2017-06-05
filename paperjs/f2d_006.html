@@ -111,11 +111,14 @@
 				path.position.x += event.delta.x;
 				path.position.y += event.delta.y;
 			}else{
-				var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
-				let my_x = event.point.x - center.x;
-				let my_y = event.point.y - center.y;
-				var new_radius = new paper.Point(my_x, my_y); 
-				myCircle.scale(new_radius.length/radius);
+				if(myCircle.oncreation){
+					var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
+					let my_x = event.point.x - center.x;
+					let my_y = event.point.y - center.y;
+					var new_radius = new paper.Point(my_x, my_y); 
+					myCircle.scale(new_radius.length/radius);
+				}
+				
 			}
 		}
 		tool.onMouseUp = function(event) {
