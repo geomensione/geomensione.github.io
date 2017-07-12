@@ -1,3 +1,5 @@
+F2D (wip):
+
 001: cicles and tangents
 
 002: path union while create
@@ -11,3 +13,6 @@
 006: wip
 
 
+CHANGE (wip):
+
+change shape to finish the game!
