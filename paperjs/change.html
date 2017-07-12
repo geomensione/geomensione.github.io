@@ -15,7 +15,7 @@
 		// Create an empty project and a view for the canvas:
 		paper.setup(canvas);
 		
-		var floor = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(50, 50), new paper.Point(150, 100)));
+		var floor = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, document.innerHeight-50), new paper.Point(document.innerWidth, document.innerHeight-50)));
 		floor.fillColor = 'black';
 	}
 </script>
