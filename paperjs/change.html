@@ -25,7 +25,10 @@
 			if(!pathIndex)
 				pathIndex=paths.length-1;
 			paths[pathIndex].visibility = false;
-			pathIndex = (pathIndex<(paths.length-2))?(pathIndex+=1):0;
+			if(pathIndex<paths.length)
+				pathIndex++;
+			else
+				pathIndex=0;
 			paths[pathIndex].visibility = true;
 		}
 		
