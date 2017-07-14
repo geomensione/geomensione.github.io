@@ -10,6 +10,7 @@
 <script>
 	hero = function(){
 	    	var radius;
+		var floor_height;
 		var position;
 		
 		var rect;
@@ -34,13 +35,14 @@
 		
 		function init(paper_obj){
 			radius = 25;
+			floor_height = 100;
 			position = new paper_obj.Point(radius, radius);
 			function settingsPath(p){
 				p.visible = false;
 				paths.push(p);
 			}
 			
-			rect = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-25, position.y-25), new paper.Point(position.x+25, position.y+25)));
+			rect = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-radius, position.y-radius), new paper.Point(position.x+radius, position.y+radius)));
 			rect.fillColor = 'red';
 			settingsPath(rect);
 			
@@ -49,7 +51,7 @@
 			circ.fillColor = 'green';
 			settingsPath(circ);	
 			
-			elli = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-25, position.y-25), new paper.Point(position.x+25, position.y+25)));
+			elli = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-radius, position.y-radius), new paper.Point(position.x+radius, position.y+radius)));
 			elli.fillColor = 'blue';
 			settingsPath(elli);
 			
@@ -69,7 +71,8 @@
 		}
 	    	return{
 			init: init,
-			showNext: showNext
+			showNext: showNext,
+			floor: floor_height
 	    	}
 	};
 	window.onload = function() {
@@ -79,10 +82,11 @@
 		// Create an empty project and a view for the canvas:
 		paper.setup(canvas);
 		
-		var floor = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, window.innerHeight-100), new paper.Point(window.innerWidth, window.innerHeight)));
+		var hero_ob = new hero();
+		
+		var floor = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, window.innerHeight-hero_ob.floor), new paper.Point(window.innerWidth, window.innerHeight)));
 		floor.fillColor = 'black';
 		
-		var hero_ob = new hero();
 		hero_ob.init(paper);
 		
 		var tool = new paper.Tool();
