@@ -24,12 +24,12 @@
 		function showNext(){
 			if(!pathIndex)
 				pathIndex=paths.length-1;
-			paths[pathIndex].visibility = false;
+			paths[pathIndex].visible = false;
 			if(pathIndex<paths.length-1)
 				pathIndex++;
 			else
 				pathIndex=0;
-			paths[pathIndex].visibility = true;
+			paths[pathIndex].visible = true;
 		}
 		
 		function init(paper_obj){
