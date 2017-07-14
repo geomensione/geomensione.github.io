@@ -8,6 +8,43 @@
 	</style>
   <script src="js/paper.js"></script>
 <script>
+	hero = function(){
+	    	var radius;
+		var position;
+		
+		var rect;
+		var circ;
+		var elli;
+		var regpoly1;
+		var regpoly2;
+		var star;
+
+		function init(paper_obj){
+			radius = 25;
+			position = new paper_obj.Point(0, 0);
+			
+			rect = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-25, position.y-25), new paper.Point(position.x+25, position.y+25)));
+			rect.fillColor = 'red';
+
+			circ = new paper.Path.Circle(position, radius);
+			circ.fillColor = 'green';
+
+			elli = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-25, position.y-25), new paper.Point(position.x+25, position.y+25)));
+			elli.fillColor = 'blue';
+
+			regpoly1 = new paper.Path.RegularPolygon(position, 3, radius)
+			regpoly1.fillColor = 'orange';
+
+			regpoly2 = new paper.Path.RegularPolygon(position, 5, radius)
+			regpoly2.fillColor = 'orange';
+
+			star = new paper.Path.Star(position, 5, radius/2, radius)
+			star.fillColor = 'yellow';
+		}
+	    	return{
+			init: init,
+	    	}
+	};
 	window.onload = function() {
 		document.title = 'change';
 		// Get a reference to the canvas object
@@ -18,23 +55,8 @@
 		var floor = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, window.innerHeight-100), new paper.Point(window.innerWidth, window.innerHeight)));
 		floor.fillColor = 'black';
 		
-		var rect = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, 0), new paper.Point(50, 50)));
-		rect.fillColor = 'red';
-		
-		var circ = new paper.Path.Circle(new paper.Point(75, 25), 25);
-		circ.fillColor = 'green';
-		
-		var elli = new paper.Path.Ellipse(new paper.Rectangle(new paper.Point(100, 0), new paper.Point(150, 50)))
-		elli.fillColor = 'blue';
-		
-		var regpoly1 = new paper.Path.RegularPolygon(new paper.Point(175, 25), 3, 25)
-		regpoly1.fillColor = 'orange';
-		
-		var regpoly2 = new paper.Path.RegularPolygon(new paper.Point(225, 25), 5, 25)
-		regpoly2.fillColor = 'orange';
-		
-		var star = new paper.Path.Star(new paper.Point(275, 25), 5, 10, 25)
-		star.fillColor = 'yellow';
+		var hero_ob = new hero();
+		hero_ob.init(paper);
 	}
 </script>
 </head>
