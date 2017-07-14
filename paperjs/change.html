@@ -18,28 +18,51 @@
 		var regpoly1;
 		var regpoly2;
 		var star;
-
+		var paths = [];
+		
+		var pathIndex;
+		function showNext(){
+			if(!pathIndex)
+				pathIndex=paths.length;
+			paths[pathIndex].visibility = false;
+			pathIndex = (pathIndex<(paths.length-2))?(pathIndex+=1):0;
+			paths[pathIndex].visibility = true;
+		}
+		
 		function init(paper_obj){
 			radius = 25;
 			position = new paper_obj.Point(0, 0);
+			function settingsPath(p){
+				p.visible = false;
+				paths.push(p);
+			}
 			
 			rect = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-25, position.y-25), new paper.Point(position.x+25, position.y+25)));
 			rect.fillColor = 'red';
+			settingsPath(rect);
+			
 
 			circ = new paper.Path.Circle(position, radius);
 			circ.fillColor = 'green';
-
+			settingsPath(circ);	
+			
 			elli = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(position.x-25, position.y-25), new paper.Point(position.x+25, position.y+25)));
 			elli.fillColor = 'blue';
-
+			settingsPath(elli);
+			
 			regpoly1 = new paper.Path.RegularPolygon(position, 3, radius)
 			regpoly1.fillColor = 'orange';
-
+			settingsPath(regpoly1);
+			
 			regpoly2 = new paper.Path.RegularPolygon(position, 5, radius)
 			regpoly2.fillColor = 'orange';
-
+			settingsPath(regpoly2);
+			
 			star = new paper.Path.Star(position, 5, radius/2, radius)
 			star.fillColor = 'yellow';
+			settingsPath(star);
+			
+			showNext():
 		}
 	    	return{
 			init: init,
@@ -57,6 +80,17 @@
 		
 		var hero_ob = new hero();
 		hero_ob.init(paper);
+		
+		var tool = new paper.Tool();
+		
+		tool.onKeyDown = function(event) {
+		    switch(event.key){
+			    case ' ':
+				hero_ob.showNext();
+				break;
+			    
+			}
+		}
 	}
 </script>
 </head>
