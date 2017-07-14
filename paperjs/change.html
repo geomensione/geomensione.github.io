@@ -72,7 +72,9 @@
 	    	return{
 			init: init,
 			showNext: showNext,
-			floor: floor_height
+			floor: function(){
+				return floor_height;
+			}
 	    	}
 	};
 	window.onload = function() {
