@@ -23,7 +23,7 @@
 		var pathIndex;
 		function showNext(){
 			if(!pathIndex)
-				pathIndex=paths.length;
+				pathIndex=paths.length-1;
 			paths[pathIndex].visibility = false;
 			pathIndex = (pathIndex<(paths.length-2))?(pathIndex+=1):0;
 			paths[pathIndex].visibility = true;
