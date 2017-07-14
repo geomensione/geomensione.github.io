@@ -17,8 +17,24 @@
 		
 		var floor = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, window.innerHeight-100), new paper.Point(window.innerWidth, window.innerHeight)));
 		floor.fillColor = 'black';
-		var hero = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, 0), new paper.Point(50, 50)));
-		hero.fillColor = 'red';
+		
+		var rect = new paper.Path.Rectangle(new paper.Rectangle(new paper.Point(0, 0), new paper.Point(50, 50)));
+		rect.fillColor = 'red';
+		
+		var circ = new Path.Circle(new paper.Point(75, 25), 50);
+		circ.fillColor = 'green';
+		
+		var elli = new Path.Ellipse(new paper.Rectangle(new paper.Point(100, 0), new paper.Point(150, 50)))
+		elli.fillColor = 'blue';
+		
+		var regpoly1 = new Path.RegularPolygon(new paper.Point(175, 25), 3, 25)
+		regpoly1.fillColor = 'orange';
+		
+		var regpoly2 = new Path.RegularPolygon(new paper.Point(225, 25), 5, 25)
+		regpoly2.fillColor = 'orange';
+		
+		var star = new Path.Star(new paper.Point(275, 25), 5, 10, 25)
+		star.fillColor = 'yellow';
 	}
 </script>
 </head>
