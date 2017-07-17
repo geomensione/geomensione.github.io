@@ -24,7 +24,8 @@
 		var indexConstructors = -1;
 		var slope;
 		function showNext(){
-			World.remove(engine.world, [object]);
+			if(object)
+				World.remove(engine.world, [object]);
 			indexConstructors++;
 			switch(costructors[indexConstructors]){
 				case 'circle':
