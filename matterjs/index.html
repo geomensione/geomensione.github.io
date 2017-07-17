@@ -27,16 +27,16 @@
 			World.remove(engine.world, [object]);
 			indexConstructors++;
 			switch(costructors[indexConstructors]){
-				switch 'circle':
+				case 'circle':
 						object = Bodies.circle(position.x, position.y, radius);
 						break;
-				switch 'polygon':
+				case 'polygon':
 						object = Bodies.circle(position.x, position.y, 3, radius);
 						break;
-				switch 'rectangle':
+				case 'rectangle':
 						object = Bodies.rectangle(position.x-radius, position.y-radius, radius*2, radius*2);
 						break;
-				switch 'trapezoid':
+				case 'trapezoid':
 						object = Bodies.rectangle(position.x-radius, position.y-radius, radius*2, radius*2,slope);
 						break;
 			
