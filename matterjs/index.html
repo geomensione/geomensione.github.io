@@ -7,6 +7,70 @@
 </head>
 <body>
 <script>
+	var hero = function(){
+		var radius;
+		var floor_height;
+		var position;
+		var rect;
+		var circ;
+		var elli;
+		var regpoly1;
+		var regpoly2;
+		var star;
+		var paths = [];
+		var object;
+		var pathIndex;
+		var costructors = ['circle','polygon','rectangle','trapezoid'];
+		var indexConstructors = -1;
+		var slope;
+		function showNext(){
+			World.remove(engine.world, [object]);
+			indexConstructors++;
+			switch(costructors[indexConstructors]){
+				switch 'circle':
+						object = Bodies.circle(position.x, position.y, radius);
+						break;
+				switch 'polygon':
+						object = Bodies.circle(position.x, position.y, 3, radius);
+						break;
+				switch 'rectangle':
+						object = Bodies.rectangle(position.x-radius, position.y-radius, radius*2, radius*2);
+						break;
+				switch 'trapezoid':
+						object = Bodies.rectangle(position.x-radius, position.y-radius, radius*2, radius*2,slope);
+						break;
+			
+			}
+			World.add(engine.world, [object]);
+		}
+
+		function init(paper_obj){
+			radius = 25;
+			slope = 25;
+			floor_height = 100;
+			position = {x: radius, y:((window.innerHeight-floor_height)-radius))};
+			function settingsPath(p){
+				p.visible = false;
+				paths.push(p);
+			}
+
+			// create two boxes and a ground
+			var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+			// add all of the bodies to the world
+			World.add(engine.world, [ground]);
+
+			showNext();
+		}
+		return{
+			init: init,
+			showNext: showNext,
+			floor: function(){
+				return floor_height;
+			}
+		}
+	};
+	
 	// module aliases
 	var Engine = Matter.Engine,
 	    Render = Matter.Render,
@@ -22,20 +86,22 @@
 	    engine: engine
 	});
 
-	// create two boxes and a ground
-	var boxA = Bodies.rectangle(400, 200, 80, 80);
-	boxA.render.visible = false;
-	var boxB = Bodies.rectangle(450, 50, 80, 80);
-	var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
-
-	// add all of the bodies to the world
-	World.add(engine.world, [boxA, boxB, ground]);
-
+	var hero_ob = new hero();
+	hero_ob.init();
 	// run the engine
 	Engine.run(engine);
 
 	// run the renderer
 	Render.run(render);
+	
+	document.onKeyDown = function(event) {
+	    switch(event.key){
+		    case 'c':
+			hero_ob.showNext();
+			break;
+
+		}
+	}
 </script>
 </body>
 </html>
