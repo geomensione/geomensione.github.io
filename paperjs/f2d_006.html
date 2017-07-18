@@ -188,12 +188,15 @@
 			
 		}
 		tool.onKeyDown = function(event) {
+		    function newBody(){
+		    	if (bone !== 0) {
+				skeleton += 1;
+				bone = 0;
+			}
+		    }
 		    switch(event.key){
 			    case 'b':
-				if (bone !== 0) {
-					skeleton += 1;
-					bone = 0;
-				}
+				newBody();
 				break;
 			    case 'u':
 				    if(union.name)
@@ -210,6 +213,7 @@
 					break;
 		            case 'k':
 				    	sketch = true;
+				    	newBody();
 					break;
 				    
 			    
