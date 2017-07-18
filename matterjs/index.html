@@ -32,13 +32,13 @@
 						object = Bodies.circle(position.x, position.y, radius);
 						break;
 				case 'polygon':
-						object = Bodies.circle(position.x, position.y, 3, radius);
+						object = Bodies.polygon(position.x, position.y, 3, radius);
 						break;
 				case 'rectangle':
 						object = Bodies.rectangle(position.x-radius, position.y-radius, radius*2, radius*2);
 						break;
 				case 'trapezoid':
-						object = Bodies.rectangle(position.x-radius, position.y-radius, radius*2, radius*2,slope);
+						object = Bodies.trapezoid(position.x-radius, position.y-radius, radius*2, radius*2,slope);
 						break;
 			
 			}
