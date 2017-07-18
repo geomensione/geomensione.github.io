@@ -64,7 +64,7 @@
 			//segment = path = null;
 			hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
 			if (!hitResult && !sketch){
-				scene[skeleton]++;
+				scene[skeleton-1]++;
 				myCircle = new paper.Path.Circle({
 					center: event.point,
 					radius: 1,
