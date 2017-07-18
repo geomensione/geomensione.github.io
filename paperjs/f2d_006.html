@@ -147,7 +147,7 @@
 				let radiusIncrement = radius/numberOfNodesLength;
 				let newRadius = radius;
 				for(let i = 0;i<numberOfNodesLength;i++){
-					myCircle = new paper.Path.Circle({
+					var tentacol = new paper.Path.Circle({
 						center: new paper.Point(numberOfNodes[i].getPoint().x,numberOfNodes[i].getPoint().y),
 						radius: newRadius,
 						name: 'tentacol_'+i+'_'+'f2d'
