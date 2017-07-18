@@ -68,7 +68,7 @@
 				myCircle = new paper.Path.Circle({
 					center: event.point,
 					radius: 1,
-					name: skeleton+'_'+scene[skeleton]+'_'+'f2d'
+					name: skeleton+'_'+scene[skeleton-1]+'_'+'f2d'
 				});
 				
 				point1 = event.point;
@@ -153,7 +153,7 @@
 					let tentacol = new paper.Path.Circle({
 						center: new paper.Point(numberOfNodes[i].getPoint().x,numberOfNodes[i].getPoint().y),
 						radius: newRadius,
-						name: skeleton+'_'+scene[skeleton]+'_'+'f2d',
+						name: skeleton+'_'+scene[skeleton-1]+'_'+'f2d',
 						fillColor: { hue: hue, saturation: 1, lightness: lightness },
 						strokeColor: 'black',
 						oncreation: true
