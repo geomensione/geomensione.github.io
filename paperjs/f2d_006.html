@@ -26,9 +26,8 @@
 		var canvas = document.getElementById('myCanvas');
 		// Create an empty project and a view for the canvas:
 		paper.setup(canvas);
-		
+		var scene = [];
 		var skeleton = 1;
-		var bone = 0;
 		var hitOptions = {
 			segments: true,
 			stroke: true,
@@ -64,11 +63,11 @@
 			//segment = path = null;
 			hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
 			if (!hitResult && !sketch){
-				bone++;
+				scene[skeleton]++;
 				myCircle = new paper.Path.Circle({
 					center: event.point,
 					radius: 1,
-					name: skeleton+'_'+bone+'_'+'f2d'
+					name: skeleton+'_'+scene[skeleton]+'_'+'f2d'
 				});
 				
 				point1 = event.point;
@@ -149,11 +148,11 @@
 				for(let i = 0;i<numberOfNodesLength;i++){
 					let lightness = (Math.random() - 0.5) * 0.4 + 0.4;
 					let hue = Math.random() * 360;
-					bone++;
+					scene[skeleton]++;
 					let tentacol = new paper.Path.Circle({
 						center: new paper.Point(numberOfNodes[i].getPoint().x,numberOfNodes[i].getPoint().y),
 						radius: newRadius,
-						name: skeleton+'_'+bone+'_'+'f2d',
+						name: skeleton+'_'+scene[skeleton]+'_'+'f2d',
 						fillColor: { hue: hue, saturation: 1, lightness: lightness },
 						strokeColor: 'black',
 						oncreation: true
@@ -189,9 +188,9 @@
 		}
 		tool.onKeyDown = function(event) {
 		    function newBody(){
-		    	if (bone !== 0) {
+		    	if (scene[skeleton] !== 0) {
 				skeleton += 1;
-				bone = 0;
+				scene[skeleton] = 0;
 			}
 		    }
 		    switch(event.key){
@@ -221,10 +220,10 @@
 		}
 		
 		function updateTangents(){
-			if(bone > 1)
+			if(scene[skeleton] > 1)
 			{
 				for(let s = 1;s<=skeleton;s++){
-					for(let b = 2;b<=bone;b++){
+					for(let b = 2;b<=scene[skeleton];b++){
 						draw_tangents(childrens_array,s,b)
 					}
 				}
@@ -261,10 +260,10 @@
 		}
 		
 		function doUnion(){
-			if(bone > 1)
+			if(scene[skeleton] > 1)
 			{
 				for(let s = 1;s<=skeleton;s++){
-					for(let b = 2;b<=bone;b++){
+					for(let b = 2;b<=scene[skeleton];b++){
 						union_all(s,b)
 					}
 				}
