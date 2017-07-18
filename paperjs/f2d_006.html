@@ -157,6 +157,25 @@
 						strokeColor: 'black',
 						oncreation: true
 					});
+					tentacol.on('mousedown',function(){
+						click = true;
+
+					});
+
+					tentacol.on('mouseenter',function(){
+						if(!this.oncreation)
+							path = this;
+					});
+
+					tentacol.on('mouseleave',function(){
+						path = {};
+					});
+
+					tentacol.on('mouseup',function(){
+						click = false;
+						this.oncreation = false;
+
+					});
 					paper.project.activeLayer.addChild(tentacol);
 					bone++;
 					newRadius -= radiusIncrement;
