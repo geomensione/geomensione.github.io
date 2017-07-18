@@ -46,6 +46,7 @@
 		let union = {};
 	 	let childrens_array;
 		var sketch = false;
+		var hitResult;
 		
 		var textItem = new paper.PointText({
 			content: 'Number of items',
@@ -61,7 +62,7 @@
 		tool.onMouseDown = function(event) {
 			
 			//segment = path = null;
-			var hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
+			hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
 			if (!hitResult && !sketch){
 				bone++;
 				myCircle = new paper.Path.Circle({
