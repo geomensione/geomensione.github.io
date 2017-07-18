@@ -35,7 +35,7 @@
 			fill: true,
 			tolerance: 5
 		};
-		//var myPath;
+		var myPath;
 		var myCircle;
 		var point1, point2;
 		var center;
@@ -45,6 +45,7 @@
 		let sceneObjects = [];
 		let union = {};
 	 	let childrens_array;
+		var sketch = false;
 		
 		var textItem = new paper.PointText({
 			content: 'Number of items',
@@ -61,7 +62,7 @@
 			
 			//segment = path = null;
 			var hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
-			if (!hitResult){
+			if (!hitResult && !sketch){
 				bone++;
 				myCircle = new paper.Path.Circle({
 					center: event.point,
@@ -96,6 +97,9 @@
 				});
 				center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
 			}
+			if (!hitResult && sketch){
+				myPath = new paper.Path();		
+			}
 			
 		}
 		tool.onMouseMove = function(event){
@@ -107,27 +111,37 @@
 			
 		}
 		tool.onMouseDrag = function(event) {
-			if (path && path.name) {
-				path.position.x += event.delta.x;
-				path.position.y += event.delta.y;
-			}else{
-				if(myCircle.oncreation){
-					var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
-					let my_x = event.point.x - center.x;
-					let my_y = event.point.y - center.y;
-					var new_radius = new paper.Point(my_x, my_y); 
-					myCircle.scale(new_radius.length/radius);
+			if(!sketch){
+				if (path && path.name) {
+					path.position.x += event.delta.x;
+					path.position.y += event.delta.y;
+				}else{
+					if(myCircle.oncreation){
+						var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
+						let my_x = event.point.x - center.x;
+						let my_y = event.point.y - center.y;
+						var new_radius = new paper.Point(my_x, my_y); 
+						myCircle.scale(new_radius.length/radius);
+					}
+
 				}
-				
+			}else{
+				myPath.add(event.point);
 			}
+			
 		}
 		tool.onMouseUp = function(event) {
-			click = false;
-			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
-			childrens_array = paper.project.activeLayer.children;
-			path = {};
-			var childrens_array_length = childrens_array.length;
-			updateTangents();
+			if(!sketch){
+				click = false;
+				textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
+				childrens_array = paper.project.activeLayer.children;
+				path = {};
+				var childrens_array_length = childrens_array.length;
+				updateTangents();
+			}else{
+				myPath.simplify();
+			}
+			
 		}
 		tool.onKeyDown = function(event) {
 		    switch(event.key){
@@ -149,6 +163,9 @@
 					break;
 			    case 'g':
 				    	union.smooth({type: 'geometric', factor: 1.0});
+					break;
+		            case 'k':
+				    	sketch = true;
 					break;
 				    
 			    
