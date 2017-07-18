@@ -1,3 +1,5 @@
+made using http://paperjs.org/
+
 F2D (wip):
 
 001: cicles and tangents
