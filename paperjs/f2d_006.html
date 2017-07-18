@@ -149,7 +149,7 @@
 				for(let i = 0;i<numberOfNodesLength;i++){
 					let lightness = (Math.random() - 0.5) * 0.4 + 0.4;
 					let hue = Math.random() * 360;
-					scene[skeleton]++;
+					scene[skeleton-1]++;
 					let tentacol = new paper.Path.Circle({
 						center: new paper.Point(numberOfNodes[i].getPoint().x,numberOfNodes[i].getPoint().y),
 						radius: newRadius,
