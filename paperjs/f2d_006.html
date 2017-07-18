@@ -223,9 +223,9 @@
 		function updateTangents(){
 			if(scene[skeleton-1] > 1)
 			{
-				for(let s = 1;s<=skeleton;s++){
-					for(let b = 2;b<=scene[skeleton-1];b++){
-						draw_tangents(childrens_array,s,b)
+				for(let s = 0;s<=skeleton-1;s++){
+					for(let b = 1;b<=scene[skeleton-1];b++){
+						draw_tangents(childrens_array,s+1,b+1)
 					}
 				}
 			}
