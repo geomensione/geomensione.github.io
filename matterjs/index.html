@@ -29,7 +29,8 @@
 			indexConstructors++;
 			switch(costructors[indexConstructors]){
 				case 'circle':
-						object = Bodies.circle(position.x, position.y, radius);
+						//object = Bodies.circle(position.x, position.y, radius);
+						object = Bodies.circle(200, 200, radius);
 						break;
 				case 'polygon':
 						object = Bodies.polygon(position.x, position.y, 3, radius);
@@ -48,7 +49,7 @@
 		}
 
 		function init(paper_obj){
-			radius = 1;//25;
+			radius = 25;
 			slope = 25;
 			floor_height = 100;
 			position = {x: radius, y:(window.innerHeight-floor_height-radius)};
