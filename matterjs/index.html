@@ -27,6 +27,8 @@
 			if(object)
 				World.remove(engine.world, [object]);
 			indexConstructors++;
+			if (indexConstructors > costructors.length)
+				indexConstructors = 0;
 			switch(costructors[indexConstructors]){
 				case 'circle':
 						object = Bodies.circle(position.x, position.y, radius);
