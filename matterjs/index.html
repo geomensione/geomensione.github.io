@@ -20,7 +20,7 @@
 		var paths = [];
 		var object;
 		var pathIndex;
-		var costructors = ['circle','polygon','rectangle','trapezoid'];
+		var costructors = ['circle','polygon','rectangle'];
 		var indexConstructors = -1;
 		var slope;
 		function showNext(){
@@ -38,9 +38,6 @@
 						break;
 				case 'rectangle':
 						object = Bodies.rectangle(position.x-radius, position.y-radius, radius*2, radius*2);
-						break;
-				case 'trapezoid':
-						object = Bodies.trapezoid(position.x-radius, position.y-radius, radius*2, radius*2,slope);
 						break;
 			
 			}
