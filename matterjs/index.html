@@ -29,8 +29,7 @@
 			indexConstructors++;
 			switch(costructors[indexConstructors]){
 				case 'circle':
-						//object = Bodies.circle(position.x, position.y, radius);
-						object = Bodies.circle(200, 200, radius);
+						object = Bodies.circle(position.x, position.y, radius);
 						break;
 				case 'polygon':
 						object = Bodies.polygon(position.x, position.y, 3, radius);
@@ -52,7 +51,7 @@
 			radius = 25;
 			slope = 25;
 			floor_height = 100;
-			position = {x: radius, y:(window.innerHeight-floor_height-radius)};
+			position = {x: radius+100, y:(document.getElementByTagName('canvas')[0].innerHeight-floor_height-radius)};
 			function settingsPath(p){
 				p.visible = false;
 				paths.push(p);
