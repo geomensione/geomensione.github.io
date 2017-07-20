@@ -193,7 +193,7 @@
 		}
 		tool.onKeyDown = function(event) {
 		    function newBody(){
-		    	if (scene[skeleton] !== 0) {
+		    	if (scene[skeleton-1] !== 0) {
 				skeleton += 1;
 				scene[skeleton-1] = 0;
 			}
