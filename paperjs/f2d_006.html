@@ -269,8 +269,9 @@
 			if(scene[skeleton-1] > 1)
 			{
 				for(let s = 0;s<=skeleton-1;s++){
+					union = {};
 					for(let b = 1;b<=scene[s];b++){
-						union_all(s+1,b+1)
+						union_all(s+1,b+1);
 					}
 				}
 			}
