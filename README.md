@@ -28,7 +28,7 @@ paperjs:
 
 paperjs experiments
 
-https://geomensione.github.io/paperjs/f2d_007.html
+https://geomensione.github.io/paperjs/f2d_008.html
 
 wip paperjs game
 
