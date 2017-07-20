@@ -133,12 +133,12 @@
 			
 		}
 		tool.onMouseUp = function(event) {
+			childrens_array = paper.project.activeLayer.children;
+			var childrens_array_length = childrens_array.length;
 			if(!sketch){
 				click = false;
 				textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
-				childrens_array = paper.project.activeLayer.children;
 				path = {};
-				var childrens_array_length = childrens_array.length;
 				updateTangents();
 			}else{
 				myPath.simplify();
