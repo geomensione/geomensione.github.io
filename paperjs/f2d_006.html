@@ -46,6 +46,7 @@
 		let union = {};
 	 	let childrens_array;
 		var sketch = false;
+		var default_radius_sketch = 25;
 		
 		
 		var textItem = new paper.PointText({
@@ -141,7 +142,11 @@
 				updateTangents();
 			}else{
 				myPath.simplify();
-				let radius = (hitResult.item.segments[2].point.x - hitResult.item.segments[0].point.x) / 2;
+				let radius;
+				if(hitResult)
+					radius = (hitResult.item.segments[2].point.x - hitResult.item.segments[0].point.x) / 2;
+				else
+					radius = default_radius_sketch;
 				let numberOfNodes = myPath.segments;
 				let numberOfNodesLength = numberOfNodes.length;
 				let radiusIncrement = radius/numberOfNodesLength;
