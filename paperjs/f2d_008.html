@@ -51,7 +51,7 @@
 		let sceneObjects = [];
 		let union = {};
 	 	let childrens_array;
-		var sketch = false, rotation = false;
+		var sketch = false, rotation = false, extrude = false;
 		var default_radius_sketch = 25;
 		
 		
@@ -189,7 +189,9 @@
 					});
 					paper.project.activeLayer.addChild(tentacol);
 					
-					newRadius -= radiusIncrement;
+					if(!extrude)
+						newRadius -= radiusIncrement;
+					
 				}
 				sketch = false;
 				hitResoult = undefined;
@@ -231,6 +233,12 @@
 						rotation = false;
 				    	else
 				    		rotation = true;
+				    	break;
+			    case 'e':
+				    	if(extrude)
+						extrude = false;
+				    	else
+				    		extrude = true;
 				    	break;
 				    
 			    
