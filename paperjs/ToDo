@@ -1,6 +1,5 @@
-move body/bodies
 rotate body/bodies
-scale body/bodies
+
 transform group objects under
 
 
