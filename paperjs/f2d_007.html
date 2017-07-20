@@ -332,7 +332,8 @@
 				if(evt.wheelDelta > 0){
 					if(rotation)
 						rotate(5);
-					scale((radius+increment)/radius);
+					else
+						scale((radius+increment)/radius);
 				}else{
 					scale((radius-increment)/radius);
 				}
