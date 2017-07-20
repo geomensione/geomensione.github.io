@@ -16,7 +16,7 @@ F2D (wip):
 
 007: boolean union transform/s
 
-008: wip
+008: wip extrude
 
 
 CHANGE (wip):
