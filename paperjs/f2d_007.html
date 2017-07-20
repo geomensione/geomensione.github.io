@@ -15,6 +15,12 @@
 		path.scale(r);
 	}
 	
+	function rotate(r){
+		path.rotate(r);
+	}
+	
+	
+	
 	var hitResult;
 	var tool = new paper.Tool();
 	
@@ -45,7 +51,7 @@
 		let sceneObjects = [];
 		let union = {};
 	 	let childrens_array;
-		var sketch = false;
+		var sketch = false, rotation = false;
 		var default_radius_sketch = 25;
 		
 		
@@ -220,6 +226,12 @@
 				    	sketch = true;
 				    	newBody();
 					break;
+			    case 'r':
+				    	if(rotation)
+						rotation = false;
+				    	else
+				    		rotation = true;
+				    	breack;
 				    
 			    
 			}
@@ -318,6 +330,8 @@
 			if(path.name){
 				var radius = (path.segments[2].point.x - path.segments[0].point.x) / 2; 
 				if(evt.wheelDelta > 0){
+					if(rotation)
+						rotate(5);
 					scale((radius+increment)/radius);
 				}else{
 					scale((radius-increment)/radius);
