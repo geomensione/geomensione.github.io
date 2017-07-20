@@ -1,0 +1,352 @@
+<html>
+<head>
+	<style>
+		#myCanvas{
+			width:100%;
+			height: 100%;
+		}
+	</style>
+  <script src="js/paper.js"></script>
+  <script src="js/tangents.js"></script>
+<script>
+	var increment = 2;
+	
+	function scale(r){
+		path.scale(r);
+	}
+	
+	function rotate(r){
+		path.rotate(r);
+	}
+	
+	
+	
+	var hitResult;
+	var tool = new paper.Tool();
+	
+	
+	
+	window.onload = function() {
+		document.title = 'f2d_008';
+		// Get a reference to the canvas object
+		var canvas = document.getElementById('myCanvas');
+		// Create an empty project and a view for the canvas:
+		paper.setup(canvas);
+		var scene = [];
+		var skeleton = 1;
+		scene[skeleton-1]=0;
+		var hitOptions = {
+			segments: true,
+			stroke: true,
+			fill: true,
+			tolerance: 5
+		};
+		var myPath;
+		var myCircle;
+		var point1, point2;
+		var center;
+		var circle;
+		var segment = path = null;
+		var click = false;
+		let sceneObjects = [];
+		let union = {};
+	 	let childrens_array;
+		var sketch = false, rotation = false;
+		var default_radius_sketch = 25;
+		
+		
+		var textItem = new paper.PointText({
+			content: 'Number of items',
+			point: new paper.Point(20, 30),
+			fillColor: 'black',
+		});
+		var smoothItem = new paper.PointText({
+			content: 'Smooth type',
+			point: new paper.Point(20, 50),
+			fillColor: 'black',
+		});
+		
+		tool.onMouseDown = function(event) {
+			
+			//segment = path = null;
+			hitResult = paper.project.hitTest(event.point, paper.settings.hitTolerance);
+			if (!hitResult && !sketch){
+				scene[skeleton-1]++;
+				myCircle = new paper.Path.Circle({
+					center: event.point,
+					radius: 1,
+					name: skeleton+'_'+scene[skeleton-1]+'_'+'f2d'
+				});
+				
+				point1 = event.point;
+				var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+				var hue = Math.random() * 360;
+				myCircle.fillColor = { hue: hue, saturation: 1, lightness: lightness };
+				myCircle.strokeColor = 'black';
+				myCircle.oncreation = true;
+				myCircle.on('mousedown',function(){
+					click = true;
+					
+				});
+				
+				myCircle.on('mouseenter',function(){
+					if(!this.oncreation)
+						path = this;
+				});
+				
+				myCircle.on('mouseleave',function(){
+					path = {};
+				});
+				
+				myCircle.on('mouseup',function(){
+					click = false;
+					this.oncreation = false;
+					
+				});
+				center = new paper.Point(myCircle.segments[1].point.x, myCircle.segments[0].point.y);
+			}
+			if (sketch){
+				myPath = new paper.Path({strokeColor: 'black'});		
+			}
+			
+		}
+		tool.onMouseMove = function(event){
+			paper.project.activeLayer.selected = false;
+			if (event.item)
+				event.item.selected = true;
+			if(click)
+				tool.onMouseDrag(event);
+			
+		}
+		tool.onMouseDrag = function(event) {
+			if(!sketch){
+				if (path && path.name) {
+					path.position.x += event.delta.x;
+					path.position.y += event.delta.y;
+				}else{
+					if(myCircle.oncreation){
+						var radius = (myCircle.segments[2].point.x - myCircle.segments[0].point.x) / 2; 
+						let my_x = event.point.x - center.x;
+						let my_y = event.point.y - center.y;
+						var new_radius = new paper.Point(my_x, my_y); 
+						myCircle.scale(new_radius.length/radius);
+					}
+
+				}
+			}else{
+				myPath.add(event.point);
+			}
+			
+		}
+		tool.onMouseUp = function(event) {
+			childrens_array = paper.project.activeLayer.children;
+			var childrens_array_length = childrens_array.length;
+			if(!sketch){
+				click = false;
+				textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
+				path = {};
+				updateTangents();
+			}else{
+				myPath.simplify();
+				let radius;
+				if(hitResult)
+					radius = (hitResult.item.segments[2].point.x - hitResult.item.segments[0].point.x) / 2;
+				else
+					radius = default_radius_sketch;
+				let numberOfNodes = myPath.segments;
+				let numberOfNodesLength = numberOfNodes.length;
+				let radiusIncrement = radius/numberOfNodesLength;
+				let newRadius = radius;
+				for(let i = 0;i<numberOfNodesLength;i++){
+					let lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+					let hue = Math.random() * 360;
+					scene[skeleton-1]++;
+					let tentacol = new paper.Path.Circle({
+						center: new paper.Point(numberOfNodes[i].getPoint().x,numberOfNodes[i].getPoint().y),
+						radius: newRadius,
+						name: skeleton+'_'+scene[skeleton-1]+'_'+'f2d',
+						fillColor: { hue: hue, saturation: 1, lightness: lightness },
+						strokeColor: 'black',
+						oncreation: true
+					});
+					tentacol.on('mousedown',function(){
+						click = true;
+
+					});
+
+					tentacol.on('mouseenter',function(){
+						path = this;
+					});
+
+					tentacol.on('mouseleave',function(){
+						path = {};
+					});
+
+					tentacol.on('mouseup',function(){
+						click = false;
+						this.oncreation = false;
+
+					});
+					paper.project.activeLayer.addChild(tentacol);
+					
+					newRadius -= radiusIncrement;
+				}
+				sketch = false;
+				hitResoult = undefined;
+				path = undefined;
+				updateTangents();
+			}
+			
+		}
+		tool.onKeyDown = function(event) {
+		    function newBody(){
+		    	if (scene[skeleton-1] !== 0) {
+				skeleton += 1;
+				scene[skeleton-1] = 0;
+			}
+		    }
+		    switch(event.key){
+			    case 'b':
+				newBody();
+				break;
+			    case 'u':
+				    //if(union.name)
+				    //	union.remove()
+				    //else
+				    doUnion();	
+				    break;
+		            case 's':
+				    	smoothItem.content = 'smooth type: catmull-rom, factor 1.0';
+				    	union.smooth({type: 'catmull-rom', factor: 1.0});
+					break;
+			    case 'g':
+				    	union.smooth({type: 'geometric', factor: 1.0});
+					break;
+		            case 'k':
+				    	sketch = true;
+				    	newBody();
+					break;
+			    case 'r':
+				    	if(rotation)
+						rotation = false;
+				    	else
+				    		rotation = true;
+				    	break;
+				    
+			    
+			}
+		}
+		
+		function updateTangents(){
+			if(scene[skeleton-1] > 1)
+			{
+				for(let s = 0;s<=skeleton-1;s++){
+					for(let b = 1;b<scene[s];b++){
+						draw_tangents(childrens_array,s+1,b+1)
+					}
+				}
+			}
+		}
+		
+		function draw_tangents(ca, sk,bo){
+			let now = sk+'_'+bo+'_'+'f2d';
+			let prev = sk+'_'+(bo-1)+'_'+'f2d';
+			var center1 = ca[prev].position;
+			var radius1 = (ca[prev].segments[2].point.x - ca[prev].segments[0].point.x)/2;
+			var center2 = ca[now].position;
+			var radius2= (ca[now].segments[2].point.x - ca[now].segments[0].point.x)/2;
+			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+			var points_length = points.length;
+			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
+			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+			var hue = Math.random() * 360;
+			if(paper.project.activeLayer.children[tangentName])
+			{
+				paper.project.activeLayer.children[tangentName].remove();
+			}
+			var myPathLine = new paper.Path({
+				name: tangentName,
+				fillColor: { hue: hue, saturation: 1, lightness: lightness }
+			});
+			myPathLine.strokeColor = 'black';
+			for(var p = 0;p<points_length;p++)
+			{
+				myPathLine.add(new paper.Point(points[p].x, points[p].y));
+			}
+			myPathLine.closed = true;
+			
+		}
+		
+		function doUnion(){
+			if(scene[skeleton-1] > 1)
+			{
+				for(let s = 0;s<=skeleton-1;s++){
+					union = {};
+					for(let b = 1;b<=scene[s];b++){
+						union_all(s+1,b+1);
+					}
+				}
+			}
+		}
+		
+		function union_fn(s,b){
+			let now = s+'_'+b+'_'+'f2d';
+			let prev = s+'_'+(b-1)+'_'+'f2d';
+			union = childrens_array[prev].clone();
+			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
+			let union_with_tangents = union.unite(childrens_array[tangentName]);
+			union = union_with_tangents.unite(childrens_array[now]);
+		}
+		
+		function union_all(s,b){
+			let now = s+'_'+b+'_'+'f2d';
+			let prev = s+'_'+(b-1)+'_'+'f2d';
+			if(!union.name){
+				union = childrens_array[prev].clone();
+				
+			}
+			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
+			let union_with_tangents = union.unite(childrens_array[tangentName]);
+			union = union_with_tangents.unite(childrens_array[now]);
+			union.on('mousedown',function(){
+				click = true;
+
+			});
+
+			union.on('mouseenter',function(){
+				path = this;
+			});
+
+			union.on('mouseleave',function(){
+				path = {};
+			});
+
+			union.on('mouseup',function(){
+				click = false;
+			});
+		}
+		
+		document.onwheel = function(evt){
+			if(path.name){
+				var radius = (path.segments[2].point.x - path.segments[0].point.x) / 2; 
+				if(evt.wheelDelta > 0){
+					if(rotation)
+						rotate(5);
+					else
+						scale((radius+increment)/radius);
+				}else{
+					if(rotation)
+						rotate(-5);
+					else
+						scale((radius-increment)/radius);
+				}
+				updateTangents();
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
