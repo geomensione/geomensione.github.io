@@ -291,26 +291,27 @@
 			let prev = s+'_'+(b-1)+'_'+'f2d';
 			if(!union.name){
 				union = childrens_array[prev].clone();
-				union.on('mousedown',function(){
-					click = true;
-					
-				});
 				
-				union.on('mouseenter',function(){
-					path = this;
-				});
-				
-				union.on('mouseleave',function(){
-					path = {};
-				});
-				
-				union.on('mouseup',function(){
-					click = false;
-				});
 			}
 			let tangentName = s+'_'+b+'-'+(b-1)+'_'+'tangents';
 			let union_with_tangents = union.unite(childrens_array[tangentName]);
 			union = union_with_tangents.unite(childrens_array[now]);
+			union.on('mousedown',function(){
+				click = true;
+
+			});
+
+			union.on('mouseenter',function(){
+				path = this;
+			});
+
+			union.on('mouseleave',function(){
+				path = {};
+			});
+
+			union.on('mouseup',function(){
+				click = false;
+			});
 		}
 		
 		document.onwheel = function(evt){
