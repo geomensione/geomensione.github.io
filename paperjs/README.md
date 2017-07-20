@@ -14,7 +14,9 @@ F2D (wip):
 
 006: sketch features
 
-007: wip object/s transform/s
+007: boolean union transform/s
+
+008: wip
 
 
 CHANGE (wip):
