@@ -1,9 +1,7 @@
-union non è perfetta: dopo il primo corpo, nei successivi, salta sempre il primo cerchio
-
 move body/bodies
 rotate body/bodies
 scale body/bodies
-  transform group objects under
+transform group objects under
 
 
 
