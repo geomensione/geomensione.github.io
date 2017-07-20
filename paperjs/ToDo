@@ -1,6 +1,4 @@
-se creo un cerchio e poi un tentacolo, quando provo a creare le tangtenti da errore: il primo body è composto da un solo cerchio!
-
-add body
+dopo aver creato un tentacolo, se vado sopra all'ultimo cerchio, col mouse, lo muovo
 
 move body/bodies
 rotate body/bodies
