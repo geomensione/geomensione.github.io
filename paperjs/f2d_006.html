@@ -268,8 +268,8 @@
 		function doUnion(){
 			if(scene[skeleton-1] > 1)
 			{
-				for(let s = 1;s<=skeleton;s++){
-					for(let b = 2;b<=scene[s];b++){
+				for(let s = 0;s<=skeleton-1;s++){
+					for(let b = 1;b<=scene[s];b++){
 						union_all(s,b)
 					}
 				}
