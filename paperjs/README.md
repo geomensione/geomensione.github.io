@@ -12,7 +12,9 @@ F2D (wip):
 
 005: move and scale circles
 
-006: wip sketch features
+006: sketch features
+
+007: wip object/s transform/s
 
 
 CHANGE (wip):
