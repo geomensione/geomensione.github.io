@@ -335,7 +335,10 @@
 					else
 						scale((radius+increment)/radius);
 				}else{
-					scale((radius-increment)/radius);
+					if(rotation)
+						rotate(-5);
+					else
+						scale((radius-increment)/radius);
 				}
 				updateTangents();
 			}
