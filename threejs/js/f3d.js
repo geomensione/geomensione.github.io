@@ -303,7 +303,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 					//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 					scene.add( voxel );
 					mystroke[0] = voxel;
-					gest[0] = new Point(x,y);
+					//gest[0] = new Point(x,y);
 					_3dmaxX = voxel.position.x;
 					_3dminX = voxel.position.x;
 					_3dmaxZ = voxel.position.z;
