@@ -8,7 +8,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
 			var gest = new Array();
 			var draw_mode = false;
-			var r = new DollarRecognizer();
+			//var r = new DollarRecognizer();
 			var maxX, minX, maxY, minY, _3dmaxX, _3dminX, _3dmaxZ, _3dminZ = 0;
 			var objects = [];
 			var mystroke = new Array();
