@@ -16,6 +16,20 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			var circle_in_scene = 0;
 			
 			var points = [];
+var f3d = function(){
+	let oldX,oldY;
+	function Sphere(){
+		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
+		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+		return new THREE.Mesh( geometry, material );
+	}
+	return{
+		getOldCoord: function(){
+			return {x:oldX,y:oldY};
+		},
+		sphere: Sphere
+	}
+}
 			
 			init();
 			render();
@@ -286,12 +300,6 @@ function onDocumentMouseDown( event ) {
 	var x = event.clientX;
 	var y =  event.clientY;
 	mousedown(x,y);
-}
-
-function Sphere(){
-	var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-	var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-	return new THREE.Mesh( geometry, material );
 }
 
 function mousedown( x, y ) {
