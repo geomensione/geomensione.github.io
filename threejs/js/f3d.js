@@ -17,11 +17,15 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
 			var points = [];
 var f3d = function(){
+	let lastSphereCenterX;
+	let lastSphereCenterY;
 	let oldX,oldY;
+	let lastSphere;
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
 		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-		return new THREE.Mesh( geometry, material );
+		lastSphere new THREE.Mesh( geometry, material );
+		return lastSphere;
 	}
 	function distance(x1,y1,x2,y2){
 		var a = x1 - x2
@@ -31,8 +35,12 @@ var f3d = function(){
 	}
 	return{
 		setOldCoord: function(x,y){
-			oldX = x;
-			oldY = y;
+			oldX = = x;
+			oldY = lastSphereCenterY = y;
+		},
+		setLastSphereCenter: function(x,y){
+			lastSphereCenterX = x;
+			lastSphereCenterY = y;
 		},
 		getOldCoord: function(){
 			return {x:oldX,y:oldY};
@@ -40,6 +48,14 @@ var f3d = function(){
 		sphere: Sphere,
 		getMouseDistance: function(x,y){
 			return distamce(oldX,oldY,x,y);
+		},
+		setSphereScaleFromMouseDistance: function(x,y){
+			let min_r = distance(lastSphereCenterX,lastSphereCenterY,oldX,oldY);
+			let max_r = distance(lastSphereCenterX,lastSphereCenterY,x,y);
+			let scale = max_r/min_r;
+			lastSphere.scale.x = scale;
+			lastSphere.scale.y = scale;
+			lastSphere.scale.z = scale;
 		}
 	}
 }
@@ -225,6 +241,7 @@ function mousemove( x, y ) {
 	if( draw_mode ){
 
 		event.preventDefault();
+		f3d.setSphereScaleFromMouseDistance(x,y);
 
 
 		/*	
@@ -316,6 +333,8 @@ function onDocumentMouseDown( event ) {
 }
 
 function mousedown( x, y ) {
+	f3d.setOldCoord(x,y);
+	f3d.setLastSphereCenter(x,y);
 	draw_mode = true;
 	event.preventDefault();
 	maxX = minX = x;
