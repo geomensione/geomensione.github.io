@@ -343,6 +343,7 @@ var f3d = function(){
 		} else {
 			if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 			INTERSECTED = null;
+		}
 		render();	
 	}
 
