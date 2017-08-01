@@ -497,9 +497,9 @@ var f3d = function(){
 			if (min_r === 0)
 				min_r = 1;
 			let scale = max_r/min_r;
-			lastSphere.scale.x = scale;
-			lastSphere.scale.y = scale;
-			lastSphere.scale.z = scale;
+			this.lastSphere.scale.x = scale;
+			this.lastSphere.scale.y = scale;
+			this.lastSphere.scale.z = scale;
 		},
 		init: init,
 		render: render
