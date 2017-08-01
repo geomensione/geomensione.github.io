@@ -31,7 +31,7 @@ var f3d = function(){
 	var number_of_f3d_spheres = 1;
 	var INTERSECTED;
 			
-	function Sphere(x,y){
+	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
 		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 		lastSphere = new THREE.Mesh( geometry, material );
@@ -333,7 +333,7 @@ var f3d = function(){
 		
 		if ( intersects.length > 0 ) {
 			var intersect = intersects[ 0 ];
-			var voxel = f.sphere(x,y);
+			var voxel = f.sphere();
 			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
 			number_of_f3d_spheres += 1;
 			voxel.position.copy( intersect.point ).add( intersect.face.normal );
