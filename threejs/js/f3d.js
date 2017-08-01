@@ -23,8 +23,7 @@ var f3d = function(){
 	let lastSphere;
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-		//var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-		var material = new THREE.MeshBasicMaterial();
+		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 		lastSphere = new THREE.Mesh( geometry, material );
 		return lastSphere;
 	}
@@ -116,7 +115,7 @@ function init() {
 	directionalLight.position.set( 1, 0.75, 0.5 ).normalize();
 	scene.add( directionalLight );
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
-	renderer.setClearColor( 0xf0f0f0 );
+	//renderer.setClearColor( 0xf0f0f0 );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	container.appendChild( renderer.domElement );
