@@ -19,12 +19,12 @@ var f3d = function(){
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
 		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-		lastSphere = new THREE.Mesh( geometry, material );
-		lastSpere.position.x = x;
-		lastSpere.position.y = y;
-		lastSpere.position.z = 0;
+		this.lastSphere = new THREE.Mesh( geometry, material );
+		this.lastSpere.position.x = x;
+		this.lastSpere.position.y = y;
+		this.lastSpere.position.z = 0;
 		
-		return lastSphere;
+		return this.lastSphere;
 	}
 	function distance(x1,y1,x2,y2){
 		var a = x1 - x2
