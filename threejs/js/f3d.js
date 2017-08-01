@@ -29,6 +29,7 @@ var f3d = function(){
 	var objects = [];
 	var plane, cube;
 	var number_of_f3d_spheres = 1;
+	var INTERSECTED;
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
