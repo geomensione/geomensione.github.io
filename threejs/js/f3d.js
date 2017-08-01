@@ -346,7 +346,7 @@ function mousedown( x, y ) {
 	var intersects = raycaster.intersectObjects( objects );
 	if ( intersects.length > 0 ) {
 		var intersect = intersects[ 0 ];
-		var voxel = Sphere();
+		var voxel = f.sphere();
 		voxel.position.copy( intersect.point ).add( intersect.face.normal );
 		//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 		scene.add( voxel );
