@@ -331,8 +331,6 @@ var f3d = function(){
 			if ( INTERSECTED != intersects[ 0 ].object ) {
 				if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 				INTERSECTED = intersects[ 0 ].object;
-				INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-				INTERSECTED.material.emissive.setHex( 0xff0000 );
 				var intersect = intersects[ 0 ];
 				var voxel = f.sphere();
 				voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
