@@ -328,8 +328,6 @@ var f3d = function(){
 		var intersects = raycaster.intersectObjects( objects );
 		
 		if ( intersects.length > 0 ) {
-			if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-			INTERSECTED = intersects[ 0 ].object;
 			var intersect = intersects[ 0 ];
 			var voxel = f.sphere();
 			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
@@ -338,8 +336,7 @@ var f3d = function(){
 			//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 			scene.add( voxel );
 		} else {
-			if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-			INTERSECTED = null;
+			console.log('nothing here');
 		}
 		render();	
 	}
