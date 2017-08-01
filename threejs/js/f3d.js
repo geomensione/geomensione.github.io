@@ -24,7 +24,7 @@ var f3d = function(){
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
 		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-		lastSphere new THREE.Mesh( geometry, material );
+		lastSphere = new THREE.Mesh( geometry, material );
 		return lastSphere;
 	}
 	function distance(x1,y1,x2,y2){
