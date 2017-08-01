@@ -325,24 +325,24 @@ var f3d = function(){
 		mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 		raycaster.setFromCamera( mouse, camera );
 		var intersects = raycaster.intersectObjects( objects );
+		
 		if ( intersects.length > 0 ) {
-			var intersect = intersects[ 0 ];
-			var voxel = f.sphere();
-			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
-			number_of_f3d_spheres += 1;
-			voxel.position.copy( intersect.point ).add( intersect.face.normal );
-			//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-			scene.add( voxel );
-			mystroke[0] = voxel;
-			//gest[0] = new Point(x,y);
-			_3dmaxX = voxel.position.x;
-			_3dminX = voxel.position.x;
-			_3dmaxZ = voxel.position.z;
-			_3dminZ = voxel.position.z;
-
-			draw[0] = {x: voxel.position.x, z:voxel.position.z}; 
-
-		}
+			if ( INTERSECTED != intersects[ 0 ].object ) {
+				if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+				INTERSECTED = intersects[ 0 ].object;
+				INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+				INTERSECTED.material.emissive.setHex( 0xff0000 );
+				var intersect = intersects[ 0 ];
+				var voxel = f.sphere();
+				voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
+				number_of_f3d_spheres += 1;
+				voxel.position.copy( intersect.point ).add( intersect.face.normal );
+				//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
+				scene.add( voxel );
+			}
+		} else {
+			if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+			INTERSECTED = null;
 		render();	
 	}
 
