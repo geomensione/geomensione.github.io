@@ -28,6 +28,7 @@ var f3d = function(){
 	var mouse, raycaster, isShiftDown = false;
 	var objects = [];
 	var plane, cube;
+	var number_of_f3d_spheres = 1;
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
@@ -327,6 +328,8 @@ var f3d = function(){
 		if ( intersects.length > 0 ) {
 			var intersect = intersects[ 0 ];
 			var voxel = f.sphere();
+			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
+			number_of_f3d_spheres += 1;
 			voxel.position.copy( intersect.point ).add( intersect.face.normal );
 			//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 			scene.add( voxel );
