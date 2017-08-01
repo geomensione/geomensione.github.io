@@ -35,8 +35,8 @@ var f3d = function(){
 	}
 	return{
 		setOldCoord: function(x,y){
-			oldX = = x;
-			oldY = lastSphereCenterY = y;
+			oldX = x;
+			oldY = y;
 		},
 		setLastSphereCenter: function(x,y){
 			lastSphereCenterX = x;
