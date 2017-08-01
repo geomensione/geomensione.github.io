@@ -23,11 +23,24 @@ var f3d = function(){
 		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 		return new THREE.Mesh( geometry, material );
 	}
+	function distance(x1,y1,x2,y2){
+		var a = x1 - x2
+		var b = y1 - y2
+
+		return Math.sqrt( a*a + b*b );
+	}
 	return{
+		setOldCoord: function(x,y){
+			oldX = x;
+			oldY = y;
+		},
 		getOldCoord: function(){
 			return {x:oldX,y:oldY};
 		},
-		sphere: Sphere
+		sphere: Sphere,
+		getMouseDistance: function(x,y){
+			return distamce(oldX,oldY,x,y);
+		}
 	}
 }
 			
