@@ -429,9 +429,9 @@ function mouseup(  ){
 
 	draw_mode = false;
 	event.preventDefault();
-
-	var matched = r.Recognize(gest);
-	console.log(matched);
+	/*
+	//var matched = r.Recognize(gest);
+	//console.log(matched);
 	var geometry = new THREE.Geometry();
 	geometry.vertices.push( new THREE.Vector3( _3dminX, 1, _3dminZ ) );
 	geometry.vertices.push( new THREE.Vector3( _3dminX, 1, _3dmaxZ ) );
@@ -513,8 +513,9 @@ function mouseup(  ){
 			var line = new THREE.Line(geometry, material);
 			scene.add(line);
 
-
+	
 	}
+	*/
 //document.getElementById('coordinates').innerText =  '_3dmaxX '+_3dmaxX+' _3dminX '+_3dminX+' _3dmaxZ '+_3dmaxZ+' _3dminZ '+_3dminZ;	               
 	gest = new Array();
 	mystroke = new Array();
