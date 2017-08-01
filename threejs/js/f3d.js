@@ -229,7 +229,7 @@ var f3d = function(){
 		if( draw_mode ){
 
 			event.preventDefault();
-			f.setSphereScaleFromMouseDistance(x,y);
+			
 
 
 			/*	
@@ -249,32 +249,8 @@ var f3d = function(){
 			if ( intersects.length > 0 ) {
 
 				var intersect = intersects[ 0 ];
-
-				var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
-				voxel.position.copy( intersect.point ).add( intersect.face.normal );
-				//console.log(voxel);
-				//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-				scene.add( voxel );
-				mystroke[1] = voxel;
-				//gest[gest.length] = new Point(x,y);
-				// | is x, _ is z and / is y
-				if( voxel.position.x > _3dmaxX ){
-					_3dmaxX = voxel.position.x;
-				}
-				if( voxel.position.x < _3dminX ){
-					_3dminX = voxel.position.x;
-				}
-
-				if( voxel.position.z > _3dmaxZ ){
-					_3dmaxZ = voxel.position.z;
-				}
-
-				if( voxel.position.z < _3dminZ ){
-					_3dminZ = voxel.position.z;
-				}
-
-				draw[draw.length] = {x: voxel.position.x, z:voxel.position.z}; 
-
+				f.setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.y);
+				
 			}
 
 			render();	
