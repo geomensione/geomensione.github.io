@@ -59,6 +59,8 @@ var f3d = function(){
 		}
 	}
 }
+
+var f = new f3d();
 			
 			init();
 			render();
@@ -241,7 +243,7 @@ function mousemove( x, y ) {
 	if( draw_mode ){
 
 		event.preventDefault();
-		f3d.setSphereScaleFromMouseDistance(x,y);
+		f.setSphereScaleFromMouseDistance(x,y);
 
 
 		/*	
@@ -333,8 +335,8 @@ function onDocumentMouseDown( event ) {
 }
 
 function mousedown( x, y ) {
-	f3d.setOldCoord(x,y);
-	f3d.setLastSphereCenter(x,y);
+	f.setOldCoord(x,y);
+	f.setLastSphereCenter(x,y);
 	draw_mode = true;
 	event.preventDefault();
 	maxX = minX = x;
