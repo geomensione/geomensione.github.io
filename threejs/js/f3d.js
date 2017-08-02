@@ -280,8 +280,7 @@ var f3d = function(){
 	}
 
 	function mousedown( x, y ) {
-		setOldCoord(x,y);
-		setLastSphereCenter(x,y);
+		
 		draw_mode = true;
 		event.preventDefault();
 		maxX = minX = x;
@@ -295,6 +294,8 @@ var f3d = function(){
 			var voxel = sphere();
 			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
 			number_of_f3d_spheres += 1;
+			setOldCoord(intersect.point.x,intersect.point.z);
+			setLastSphereCenter(intersect.point.x,intersect.point.z);
 			voxel.position.copy( intersect.point ).add( intersect.face.normal );
 			//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 			scene.add( voxel );
@@ -472,16 +473,16 @@ var f3d = function(){
 			case 16: isShiftDown = false; break;
 		}
 	}
-
-	return{
-		setOldCoord: function(x,y){
+	function setOldCoord(x,y){
 			oldX = x;
 			oldY = y;
-		},
-		setLastSphereCenter: function(x,y){
-			lastSphereCenterX = x;
-			lastSphereCenterY = y;
-		},
+	}
+	
+	function setLastSphereCenter(x,y){
+		lastSphereCenterX = x;
+		lastSphereCenterY = y;
+	}
+	return{
 		getOldCoord: function(){
 			return {x:oldX,y:oldY};
 		},
