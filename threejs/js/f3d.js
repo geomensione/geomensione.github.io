@@ -232,7 +232,7 @@ var f3d = function(){
 			if ( intersects.length > 0 ) {
 
 				var intersect = intersects[ 0 ];
-				f.setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.y);
+				f.setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.z);
 				
 			}
 
