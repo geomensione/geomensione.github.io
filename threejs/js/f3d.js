@@ -291,7 +291,7 @@ var f3d = function(){
 		var intersects = raycaster.intersectObjects( objects );
 		
 		if ( intersects.length > 0 ) {
-			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_')){
+			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_') !== -1){
 				for(let o = 0,scene_children_length = scene.children.length;o<scene_children_length;o++){
 					if(scene.children[o].name === intersects[ 0 ].object.name)
 						indexPickedObject = o;
