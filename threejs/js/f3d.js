@@ -230,7 +230,7 @@ var f3d = function(){
 			var intersects = raycaster.intersectObjects( objects );
 
 			if(indexPickedObject){
-				scene.children[indexPickedObject].position.copy( intersects.point );
+				scene.children[indexPickedObject].position.copy( intersects[1].point );
 				
 			}else{
 				if ( intersects.length > 0 ) {
