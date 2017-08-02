@@ -292,8 +292,8 @@ var f3d = function(){
 		
 		if ( intersects.length > 0 ) {
 			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_')){
-				for(let o = 0,scene_children_length = scene.children.length;i<scene_children_length;i++){
-					if(scene.children[i].name === intersects[ 0 ].object.name)
+				for(let o = 0,scene_children_length = scene.children.length;o<scene_children_length;o++){
+					if(scene.children[o].name === intersects[ 0 ].object.name)
 						indexPickedObject = o;
 				}
 			}else{
