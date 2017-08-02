@@ -227,15 +227,20 @@ var f3d = function(){
 			mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 
 			raycaster.setFromCamera( mouse, camera );
-
 			var intersects = raycaster.intersectObjects( objects );
 
-			if ( intersects.length > 0 ) {
-
-				var intersect = intersects[ 0 ];
-				setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.z);
+			if(indexPickedObject){
+				scene.children[indexPickedObject].position.copy( intersects.point );
 				
+			}else{
+				if ( intersects.length > 0 ) {
+
+					var intersect = intersects[ 0 ];
+					setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.z);
+
+				}
 			}
+			
 
 			render();	
 		}else{
@@ -378,6 +383,7 @@ var f3d = function(){
 	function mouseup(  ){
 
 		draw_mode = false;
+		indexPickedObject = 0;
 		event.preventDefault();
 		/*
 		//var matched = r.Recognize(gest);
