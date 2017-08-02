@@ -22,7 +22,7 @@ var f3d = function(){
 		lastSphere = new THREE.Mesh( geometry, material );
 		
 		
-		return this.lastSphere;
+		return lastSphere;
 	}
 	function distance(x1,y1,x2,y2){
 		var a = x1 - x2
