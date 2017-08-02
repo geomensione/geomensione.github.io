@@ -227,7 +227,7 @@ var f3d = function(){
 
 			raycaster.setFromCamera( mouse, camera );
 
-			var intersects = raycaster.intersectObjects( objects );
+			var intersects = raycaster.intersectObjects( scene );
 
 			if ( intersects.length > 0 ) {
 
@@ -244,7 +244,7 @@ var f3d = function(){
 
 			raycaster.setFromCamera( mouse, camera );
 
-			var intersects = raycaster.intersectObjects( objects );
+			var intersects = raycaster.intersectObjects( scene );
 
 			if ( intersects.length > 0 ) {
 
@@ -287,7 +287,7 @@ var f3d = function(){
 		maxY = minY = y;
 		mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 		raycaster.setFromCamera( mouse, camera );
-		var intersects = raycaster.intersectObjects( objects );
+		var intersects = raycaster.intersectObjects( scene );
 		
 		if ( intersects.length > 0 ) {
 			var intersect = intersects[ 0 ];
