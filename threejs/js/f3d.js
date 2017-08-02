@@ -16,6 +16,8 @@ var f3d = function(){
 	var INTERSECTED;
 	var draw_mode = false;
 	var indexPickedObject;
+	var f3d_scene = [];
+	f3d_scene[0] = [];
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
@@ -311,6 +313,7 @@ var f3d = function(){
 				voxel.position.copy( intersect.point ).add( intersect.face.normal );
 				//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 				scene.add( voxel );
+				f3d_scene[0].push(scene.children.length-1);
 				objects.push( voxel );
 			}
 			
