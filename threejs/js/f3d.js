@@ -515,9 +515,9 @@ var f3d = function(){
 		if (min_r === 0)
 			min_r = 1;
 		let scale = max_r/min_r;
-		lastSphere.scale.x = scale;
-		lastSphere.scale.y = scale;
-		lastSphere.scale.z = scale;
+		lastSphere.scale.x += 0.1;
+		lastSphere.scale.y += 0.1;
+		lastSphere.scale.z += 0.1;
 	}
 	return{
 		getOldCoord: function(){
