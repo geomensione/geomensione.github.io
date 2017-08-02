@@ -15,6 +15,7 @@ var f3d = function(){
 	var number_of_f3d_spheres = 1;
 	var INTERSECTED;
 	var draw_mode = false;
+	var indexPickedObject;
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
@@ -290,16 +291,24 @@ var f3d = function(){
 		var intersects = raycaster.intersectObjects( objects );
 		
 		if ( intersects.length > 0 ) {
-			var intersect = intersects[ 0 ];
-			var voxel = Sphere();
-			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
-			number_of_f3d_spheres += 1;
-			setOldCoord(intersect.point.x,intersect.point.z);
-			setLastSphereCenter(intersect.point.x,intersect.point.z);
-			voxel.position.copy( intersect.point ).add( intersect.face.normal );
-			//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-			scene.add( voxel );
-			objects.push( voxel );
+			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_')){
+				for(let o = 0;scene_objects_length = scene.objects.length;i<scene_object_length;i++){
+					if(scene.objects[i].name === intersects[ 0 ].object.name)
+						indexPickedObject = o;
+				}
+			}else{
+				var intersect = intersects[ 0 ];
+				var voxel = Sphere();
+				voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
+				number_of_f3d_spheres += 1;
+				setOldCoord(intersect.point.x,intersect.point.z);
+				setLastSphereCenter(intersect.point.x,intersect.point.z);
+				voxel.position.copy( intersect.point ).add( intersect.face.normal );
+				//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
+				scene.add( voxel );
+				objects.push( voxel );
+			}
+			
 		} else {
 			console.log('nothing here');
 		}
