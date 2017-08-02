@@ -232,7 +232,7 @@ var f3d = function(){
 			if ( intersects.length > 0 ) {
 
 				var intersect = intersects[ 0 ];
-				f.setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.z);
+				setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.z);
 				
 			}
 
@@ -280,8 +280,8 @@ var f3d = function(){
 	}
 
 	function mousedown( x, y ) {
-		f.setOldCoord(x,y);
-		f.setLastSphereCenter(x,y);
+		setOldCoord(x,y);
+		setLastSphereCenter(x,y);
 		draw_mode = true;
 		event.preventDefault();
 		maxX = minX = x;
@@ -292,7 +292,7 @@ var f3d = function(){
 		
 		if ( intersects.length > 0 ) {
 			var intersect = intersects[ 0 ];
-			var voxel = f.sphere();
+			var voxel = sphere();
 			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
 			number_of_f3d_spheres += 1;
 			voxel.position.copy( intersect.point ).add( intersect.face.normal );
