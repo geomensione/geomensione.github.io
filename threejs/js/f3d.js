@@ -291,7 +291,7 @@ var f3d = function(){
 		
 		if ( intersects.length > 0 ) {
 			var intersect = intersects[ 0 ];
-			var voxel = sphere();
+			var voxel = Sphere();
 			voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
 			number_of_f3d_spheres += 1;
 			setOldCoord(intersect.point.x,intersect.point.z);
