@@ -19,7 +19,7 @@ var f3d = function(){
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
 		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-		this.lastSphere = new THREE.Mesh( geometry, material );
+		lastSphere = new THREE.Mesh( geometry, material );
 		
 		
 		return this.lastSphere;
