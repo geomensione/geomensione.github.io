@@ -227,7 +227,7 @@ var f3d = function(){
 
 			raycaster.setFromCamera( mouse, camera );
 
-			var intersects = raycaster.intersectObjects( scene.children );
+			var intersects = raycaster.intersectObjects( objects );
 
 			if ( intersects.length > 0 ) {
 
@@ -244,7 +244,7 @@ var f3d = function(){
 
 			raycaster.setFromCamera( mouse, camera );
 
-			var intersects = raycaster.intersectObjects( scene.children );
+			var intersects = raycaster.intersectObjects( objects );
 
 			if ( intersects.length > 0 ) {
 
@@ -287,7 +287,7 @@ var f3d = function(){
 		maxY = minY = y;
 		mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 		raycaster.setFromCamera( mouse, camera );
-		var intersects = raycaster.intersectObjects( scene.children );
+		var intersects = raycaster.intersectObjects( objects );
 		
 		if ( intersects.length > 0 ) {
 			var intersect = intersects[ 0 ];
@@ -299,6 +299,7 @@ var f3d = function(){
 			voxel.position.copy( intersect.point ).add( intersect.face.normal );
 			//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 			scene.add( voxel );
+			objects.push( voxel );
 		} else {
 			console.log('nothing here');
 		}
