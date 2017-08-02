@@ -482,6 +482,17 @@ var f3d = function(){
 		lastSphereCenterX = x;
 		lastSphereCenterY = y;
 	}
+	
+	function setSphereScaleFromMouseDistance(x,y){
+		let min_r = distance(lastSphereCenterX,lastSphereCenterY,oldX,oldY);
+		let max_r = distance(lastSphereCenterX,lastSphereCenterY,x,y);
+		if (min_r === 0)
+			min_r = 1;
+		let scale = max_r/min_r;
+		this.lastSphere.scale.x = scale;
+		this.lastSphere.scale.y = scale;
+		this.lastSphere.scale.z = scale;
+	}
 	return{
 		getOldCoord: function(){
 			return {x:oldX,y:oldY};
@@ -489,16 +500,6 @@ var f3d = function(){
 		sphere: Sphere,
 		getMouseDistance: function(x,y){
 			return distamce(oldX,oldY,x,y);
-		},
-		setSphereScaleFromMouseDistance: function(x,y){
-			let min_r = distance(lastSphereCenterX,lastSphereCenterY,oldX,oldY);
-			let max_r = distance(lastSphereCenterX,lastSphereCenterY,x,y);
-			if (min_r === 0)
-				min_r = 1;
-			let scale = max_r/min_r;
-			this.lastSphere.scale.x = scale;
-			this.lastSphere.scale.y = scale;
-			this.lastSphere.scale.z = scale;
 		},
 		init: init,
 		render: render
