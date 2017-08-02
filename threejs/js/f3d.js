@@ -384,7 +384,7 @@ var f3d = function(){
 	}
 
 	function interpolateSpheres(){
-		console.log('interpolateSpheres');
+		console.log(JSON.stringify(scene));
 	}
 	
 	function mouseup(  ){
