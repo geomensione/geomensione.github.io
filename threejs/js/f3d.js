@@ -415,6 +415,7 @@ var f3d = function(){
 					token_scale_y = scale_y_diff/numberOfTokens;
 					token_scale_z = scale_z_diff/numberOfTokens;
 				}
+				var group = new THREE.Group();
 				//s<numberOfTokens-1, perché altrimenti la penultima sfera sarebbe grande come l'ultima
 				for(let s = 0;s<numberOfTokens-1;s++){
 					let sphere = f.sphere();
@@ -425,8 +426,9 @@ var f3d = function(){
 					sphere.scale.y = scene.children[f3d_scene[0][i]].scale.y - token_scale_y*(s+1);
 					sphere.scale.z = scene.children[f3d_scene[0][i]].scale.z - token_scale_z*(s+1);
 					sphere.name = 'interpolation';
-					scene.add(sphere);
+					group.add( sphere );
 				}
+				scene.add(group);
 					
 			}
 			//ciclo fra tutte le sfere
