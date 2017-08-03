@@ -418,12 +418,12 @@ var f3d = function(){
 				//s<numberOfTokens-1, perché altrimenti la penultima sfera sarebbe grande come l'ultima
 				for(let s = 0;s<numberOfTokens-1;s++){
 					let sphere = f.sphere();
-					sphere.position.x = scene.children[f3d_scene[0][i]].position.x + token_position_x*(s+1);
-					sphere.position.y = scene.children[f3d_scene[0][i]].position.y + token_position_y*(s+1);
-					sphere.position.z = scene.children[f3d_scene[0][i]].position.z + token_position_z*(s+1);
-					sphere.scale.x = scene.children[f3d_scene[0][i]].scale.x + token_scale_x*(s+1);
-					sphere.scale.y = scene.children[f3d_scene[0][i]].scale.y + token_scale_y*(s+1);
-					sphere.scale.z = scene.children[f3d_scene[0][i]].scale.z + token_scale_z*(s+1);
+					sphere.position.x = scene.children[f3d_scene[0][i]].position.x - token_position_x*(s+1);
+					sphere.position.y = scene.children[f3d_scene[0][i]].position.y - token_position_y*(s+1);
+					sphere.position.z = scene.children[f3d_scene[0][i]].position.z - token_position_z*(s+1);
+					sphere.scale.x = scene.children[f3d_scene[0][i]].scale.x - token_scale_x*(s+1);
+					sphere.scale.y = scene.children[f3d_scene[0][i]].scale.y - token_scale_y*(s+1);
+					sphere.scale.z = scene.children[f3d_scene[0][i]].scale.z - token_scale_z*(s+1);
 					scene.add(sphere);
 				}
 					
