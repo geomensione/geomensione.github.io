@@ -388,6 +388,32 @@ var f3d = function(){
 		var scene = f.getScene();
 		var f3d_scene = f.getF3dScene();
 		if(f3d_scene[0].length > 1){
+			for(let i = 0,f3d_scene_length = f3d_scene[0].length;i<f3d_scene_length-1;i++){
+				let x_diff = scene[f3d_scene[0][i]].position.x - scene[f3d_scene[0][i+1]].position.x;
+				let y_diff = scene[f3d_scene[0][i]].position.y - scene[f3d_scene[0][i+1]].position.y;
+				let z_diff = scene[f3d_scene[0][i]].position.z - scene[f3d_scene[0][i+1]].position.z;
+				let scale_x_diff = scene[f3d_scene[0][i]].scale.x - scene[f3d_scene[0][i+1]].scale.x;
+				let scale_y_diff = scene[f3d_scene[0][i]].scale.y - scene[f3d_scene[0][i+1]].scale.y;
+				let scale_z_diff = scene[f3d_scene[0][i]].scale.z - scene[f3d_scene[0][i+1]].scale.z;
+				let token_position_x,token_position_y,token_position_z, token_scale_x,token_scale_y,token_scale_z;
+				let distance = Math.sqrt(x_diff * x_diff + y_diff * y_diff + z_diff * z_diff);
+				if(distance > 50){
+					token_position_x = x_diff/5;
+					token_position_y = y_diff/5;
+					token_position_z = z_diff/5;
+					token_scale_x = scale_x_diff/5;
+					token_scale_y = scale_y_diff/5;
+					token_scale_z = scale_z_diff/5;
+				}else{
+					token_position_x = x_diff/3;
+					token_position_y = y_diff/3;
+					token_position_z = z_diff/3;
+					token_scale_x = scale_x_diff/3;
+					token_scale_y = scale_y_diff/3;
+					token_scale_z = scale_z_diff/3;
+				}
+					
+			}
 			//ciclo fra tutte le sfere
 			//retta che connette le due sfere
 			//a secoda della sua lunghezza creo n token, sia posizione che scala
