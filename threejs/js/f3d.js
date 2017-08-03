@@ -18,7 +18,7 @@ var f3d = function(){
 	var draw_mode = false;
 	var indexPickedObject;
 	var f3d_scene = [];
-	f3d_scene[0] = [];
+	var f3d_scene[0] = [];
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
@@ -385,6 +385,8 @@ var f3d = function(){
 	}
 
 	function interpolateSpheres(){
+		var scene = f.getScene();
+		var f3d_scene = f.getF3dScene();
 		console.log(JSON.stringify(scene));
 	}
 	
@@ -529,7 +531,13 @@ var f3d = function(){
 			return distamce(oldX,oldY,x,y);
 		},
 		init: init,
-		render: render
+		render: render,
+		getScene: function(){
+			return scene;
+		},
+		getF3dScene: function(){
+			return f3d_scene;
+		}
 	}
 }
 
