@@ -110,13 +110,13 @@ var f3d = function(){
 	function onDocumentMobileMouseMove( event ){
 		var x = event.targetTouches[0].pageX;
 		var y = event.targetTouches[0].pageY;
-		mousemove(x,y);
+		mousemove(event, x,y);
 	}
 
 	function onDocumentMouseMove( event ) {
 		var x = event.clientX;
 		var y =  event.clientY;
-		mousemove(x,y);
+		mousemove(event, x,y);
 	}
 
 	function sketch(){
@@ -212,7 +212,7 @@ var f3d = function(){
 	}
 
 
-	function mousemove( x, y ) {
+	function mousemove( event, x, y ) {
 		if( draw_mode ){
 
 			event.preventDefault();
@@ -279,16 +279,16 @@ var f3d = function(){
 	function onDocumentMobileMouseDown( event ){
 		var x = event.targetTouches[0].pageX;
 		var y = event.targetTouches[0].pageY;
-		mousedown(x,y);
+		mousedown(event, x,y);
 	}
 
 	function onDocumentMouseDown( event ) {
 		var x = event.clientX;
 		var y =  event.clientY;
-		mousedown(x,y);
+		mousedown(event, x,y);
 	}
 
-	function mousedown( x, y ) {
+	function mousedown( event, x, y ) {
 		
 		draw_mode = true;
 		event.preventDefault();
@@ -325,12 +325,12 @@ var f3d = function(){
 	}
 
 	function onDocumentMobileMouseUp( event ){
-		mouseup();
+		mouseup(event);
 	}
 
 	function onDocumentMouseUp( event ){
 
-		mouseup();
+		mouseup(event);
 	}
 
 	function draw_circle_link(){
@@ -388,7 +388,7 @@ var f3d = function(){
 		console.log(JSON.stringify(scene));
 	}
 	
-	function mouseup(  ){
+	function mouseup( event ){
 
 		draw_mode = false;
 		indexPickedObject = 0;
