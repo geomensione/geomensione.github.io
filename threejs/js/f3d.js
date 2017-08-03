@@ -18,7 +18,7 @@ var f3d = function(){
 	var draw_mode = false;
 	var indexPickedObject;
 	var f3d_scene = [];
-	var f3d_scene[0] = [];
+	f3d_scene[0] = [];
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
