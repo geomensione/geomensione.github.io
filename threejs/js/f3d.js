@@ -450,6 +450,7 @@ var f3d = function(){
 			for(let g = 0, scene_children_length = scene.children.length;g<scene_children_length;g++){
 				if(scene.children[g].type === 'Group'){
 					scene.remove(scene.children[g]);
+					scene_children_length = scene.children.length;
 				}
 			}
 		}
