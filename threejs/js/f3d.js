@@ -391,6 +391,8 @@ var f3d = function(){
 			//ciclo fra tutte le sfere
 			//retta che connette le due sfere
 			//a secoda della sua lunghezza creo n token, sia posizione che scala
+			//scene.children[f3d_scene[0][i]].position
+			//scene.children[f3d_scene[0][i]].scale
 			//creo n sfere di posizione token e scala += token_scala
 		}
 		console.log(JSON.stringify(scene));
