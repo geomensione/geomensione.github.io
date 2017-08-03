@@ -387,6 +387,12 @@ var f3d = function(){
 	function interpolateSpheres(){
 		var scene = f.getScene();
 		var f3d_scene = f.getF3dScene();
+		if(f3d_scene[0].length > 1){
+			//ciclo fra tutte le sfere
+			//retta che connette le due sfere
+			//a secoda della sua lunghezza creo n token, sia posizione che scala
+			//creo n sfere di posizione token e scala += token_scala
+		}
 		console.log(JSON.stringify(scene));
 	}
 	
