@@ -444,7 +444,15 @@ var f3d = function(){
 	function mouseup( event ){
 
 		draw_mode = false;
-		indexPickedObject = 0;
+		if(indexPickedObject || indexPickedObject !== undefined){
+			indexPickedObject = 0;
+			var scene = f.getScene();
+			for(let g = 0, scene_children_length = scene.children.length;g<scene_children_length;g++){
+				if(scene.children[g].type === 'Group'){
+					scene.remove(scene.children[g]);
+				}
+			}
+		}
 		event.preventDefault();
 		if(f3d_scene[0].length > 1){
 			interpolateSpheres();
