@@ -424,7 +424,7 @@ var f3d = function(){
 					sphere.scale.x = scene.children[f3d_scene[0][i]].scale.x - token_scale_x*(s+1);
 					sphere.scale.y = scene.children[f3d_scene[0][i]].scale.y - token_scale_y*(s+1);
 					sphere.scale.z = scene.children[f3d_scene[0][i]].scale.z - token_scale_z*(s+1);
-					shere.name = 'interpolation';
+					sphere.name = 'interpolation';
 					scene.add(sphere);
 				}
 					
