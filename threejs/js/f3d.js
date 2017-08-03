@@ -397,20 +397,34 @@ var f3d = function(){
 				let scale_z_diff = scene.children[f3d_scene[0][i]].scale.z - scene.children[f3d_scene[0][i+1]].scale.z;
 				let token_position_x,token_position_y,token_position_z, token_scale_x,token_scale_y,token_scale_z;
 				let distance = Math.sqrt(x_diff * x_diff + y_diff * y_diff + z_diff * z_diff);
+				let numberOfTokens;
 				if(distance > 50){
-					token_position_x = x_diff/5;
-					token_position_y = y_diff/5;
-					token_position_z = z_diff/5;
-					token_scale_x = scale_x_diff/5;
-					token_scale_y = scale_y_diff/5;
-					token_scale_z = scale_z_diff/5;
+					numberOfTokens = 5;
+					token_position_x = x_diff/numberOfTokens;
+					token_position_y = y_diff/numberOfTokens;
+					token_position_z = z_diff/numberOfTokens;
+					token_scale_x = scale_x_diff/numberOfTokens;
+					token_scale_y = scale_y_diff/numberOfTokens;
+					token_scale_z = scale_z_diff/numberOfTokens;
 				}else{
-					token_position_x = x_diff/3;
-					token_position_y = y_diff/3;
-					token_position_z = z_diff/3;
-					token_scale_x = scale_x_diff/3;
-					token_scale_y = scale_y_diff/3;
-					token_scale_z = scale_z_diff/3;
+					numberOfTokens = 3;
+					token_position_x = x_diff/numberOfTokens;
+					token_position_y = y_diff/numberOfTokens;
+					token_position_z = z_diff/numberOfTokens;
+					token_scale_x = scale_x_diff/numberOfTokens;
+					token_scale_y = scale_y_diff/numberOfTokens;
+					token_scale_z = scale_z_diff/numberOfTokens;
+				}
+				//s<numberOfTokens-1, perché altrimenti la penultima sfera sarebbe grande come l'ultima
+				for(let s = 0;s<numberOfTokens-1;s++){
+					let sphere = f.sphere();
+					sphere.position.x = scene.children[f3d_scene[0][i]].position.x + token_position_x*(s+1);
+					sphere.position.y = scene.children[f3d_scene[0][i]].position.y + token_position_y*(s+1);
+					sphere.position.z = scene.children[f3d_scene[0][i]].position.z + token_position_z*(s+1);
+					sphere.scale.x = scene.children[f3d_scene[0][i]].scale.x + token_scale_x*(s+1);
+					sphere.scale.y = scene.children[f3d_scene[0][i]].scale.y + token_scale_y*(s+1);
+					sphere.scale.z = scene.children[f3d_scene[0][i]].scale.z + token_scale_z*(s+1);
+					scene.add(sphere);
 				}
 					
 			}
