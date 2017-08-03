@@ -449,6 +449,10 @@ var f3d = function(){
 			var scene = f.getScene();
 			for(let g = 0, scene_children_length = scene.children.length;g<scene_children_length;g++){
 				if(scene.children[g].type === 'Group'){
+					for(let c = 0,group_children_length = scene.children[g].children.length;c<group_children_length;c++){
+						scene.remove(scene.children[g].children[c]);	
+						group_children_length = scene.children[g].children.length	
+					}
 					scene.remove(scene.children[g]);
 					scene_children_length = scene.children.length;
 				}
