@@ -87,7 +87,6 @@ var f3d = function(){
 		renderer.setClearColor( 0xf0f0f0 );
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
-		renderer.autoClear = true;
 		container.appendChild( renderer.domElement );
 		group = new THREE.Group();
 		scene.add(group);
@@ -459,11 +458,11 @@ var f3d = function(){
 			}
 			
 		}
-		
+		renderer.clear();
 		if(f3d_scene[0].length > 1){
 			interpolateSpheres();
 		}
-		render();
+		
 		/*
 		//var matched = r.Recognize(gest);
 		//console.log(matched);
