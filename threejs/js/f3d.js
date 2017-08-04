@@ -464,6 +464,7 @@ var f3d = function(){
 		if(f3d_scene[0].length > 1){
 			interpolateSpheres();
 		}
+		render();
 		/*
 		//var matched = r.Recognize(gest);
 		//console.log(matched);
