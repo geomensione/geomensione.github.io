@@ -215,7 +215,7 @@ var f3d = function(){
 	function mousemove( event, x, y ) {
 		if( draw_mode ){
 
-			event.preventDefault();
+			
 			
 
 
@@ -247,7 +247,7 @@ var f3d = function(){
 
 			render();	
 		}else{
-			event.preventDefault();
+			
 
 			mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 
@@ -291,7 +291,7 @@ var f3d = function(){
 	function mousedown( event, x, y ) {
 		
 		draw_mode = true;
-		event.preventDefault();
+		
 		maxX = minX = x;
 		maxY = minY = y;
 		mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
@@ -460,7 +460,7 @@ var f3d = function(){
 				}
 			}
 		}
-		event.preventDefault();
+		
 		if(f3d_scene[0].length > 1){
 			interpolateSpheres();
 		}
