@@ -19,6 +19,7 @@ var f3d = function(){
 	var indexPickedObject;
 	var f3d_scene = [];
 	f3d_scene[0] = [];
+	var group;
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
@@ -87,6 +88,8 @@ var f3d = function(){
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		container.appendChild( renderer.domElement );
+		group = new THREE.Group();
+		scene.add(group);
 		document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 		document.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
 		document.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -387,7 +390,7 @@ var f3d = function(){
 	function interpolateSpheres(){
 		var scene = f.getScene();
 		var f3d_scene = f.getF3dScene();
-		var group = new THREE.Group();
+		
 		if(f3d_scene[0].length > 1){
 			for(let i = 0,f3d_scene_length = f3d_scene[0].length;i<f3d_scene_length-1;i++){
 				let x_diff = scene.children[f3d_scene[0][i]].position.x - scene.children[f3d_scene[0][i+1]].position.x;
@@ -432,7 +435,6 @@ var f3d = function(){
 				
 					
 			}
-			scene.add(group);
 			//ciclo fra tutte le sfere
 			//retta che connette le due sfere
 			//a secoda della sua lunghezza creo n token, sia posizione che scala
@@ -449,16 +451,11 @@ var f3d = function(){
 		if(indexPickedObject || indexPickedObject !== undefined){
 			indexPickedObject = 0;
 			var scene = f.getScene();
-			for(let g = 0, scene_children_length = scene.children.length;g<scene_children_length;g++){
-				if(scene.children[g].type === 'Group'){
-					for(let c = 0,group_children_length = scene.children[g].children.length;c<group_children_length;c++){
-						scene.remove(scene.children[g].children[c]);	
-						group_children_length = scene.children[g].children.length	
-					}
-					scene.remove(scene.children[g]);
-					scene_children_length = scene.children.length;
-				}
+			for(let c = 0,group_children_length = group.children.length;c<group_children_length;c++){
+				scene.remove(group.children[c]);	
+				group_children_length = group.children.length	
 			}
+			
 		}
 		
 		if(f3d_scene[0].length > 1){
