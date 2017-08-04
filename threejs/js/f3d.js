@@ -435,6 +435,7 @@ var f3d = function(){
 				
 					
 			}
+			render();
 			//ciclo fra tutte le sfere
 			//retta che connette le due sfere
 			//a secoda della sua lunghezza creo n token, sia posizione che scala
