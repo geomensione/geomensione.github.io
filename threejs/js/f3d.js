@@ -387,6 +387,7 @@ var f3d = function(){
 	function interpolateSpheres(){
 		var scene = f.getScene();
 		var f3d_scene = f.getF3dScene();
+		var group = new THREE.Group();
 		if(f3d_scene[0].length > 1){
 			for(let i = 0,f3d_scene_length = f3d_scene[0].length;i<f3d_scene_length-1;i++){
 				let x_diff = scene.children[f3d_scene[0][i]].position.x - scene.children[f3d_scene[0][i+1]].position.x;
@@ -415,7 +416,7 @@ var f3d = function(){
 					token_scale_y = scale_y_diff/numberOfTokens;
 					token_scale_z = scale_z_diff/numberOfTokens;
 				}
-				var group = new THREE.Group();
+				
 				//s<numberOfTokens-1, perché altrimenti la penultima sfera sarebbe grande come l'ultima
 				for(let s = 0;s<numberOfTokens-1;s++){
 					let sphere = f.sphere();
@@ -428,9 +429,10 @@ var f3d = function(){
 					sphere.name = 'interpolation';
 					group.add( sphere );
 				}
-				scene.add(group);
+				
 					
 			}
+			scene.add(group);
 			//ciclo fra tutte le sfere
 			//retta che connette le due sfere
 			//a secoda della sua lunghezza creo n token, sia posizione che scala
