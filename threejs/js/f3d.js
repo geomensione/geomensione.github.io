@@ -1,4 +1,4 @@
-//17:42
+//17:20
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
 var f3d = function(){
