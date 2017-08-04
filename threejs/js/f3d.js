@@ -87,6 +87,7 @@ var f3d = function(){
 		renderer.setClearColor( 0xf0f0f0 );
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.autoClear = true;
 		container.appendChild( renderer.domElement );
 		group = new THREE.Group();
 		scene.add(group);
