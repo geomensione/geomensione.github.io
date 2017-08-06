@@ -452,10 +452,11 @@ var f3d = function(){
 		if(indexPickedObject || indexPickedObject !== undefined){
 			indexPickedObject = 0;
 			var scene = f.getScene();
-			for(let c = 0,group_children_length = group.children.length;c<group_children_length;c++){
-				scene.remove(group.children[c]);	
-				//group_children_length = group.children.length	
-			}
+			group.children.map(
+				function(e){
+					scene.remove(e);	
+				}			
+			)
 			
 		}
 		renderer.clear();
