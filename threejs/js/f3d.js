@@ -459,7 +459,7 @@ var f3d = function(){
 			)
 			
 		}
-		renderer.clear();
+		render();
 		if(f3d_scene[0].length > 1){
 			interpolateSpheres();
 		}
