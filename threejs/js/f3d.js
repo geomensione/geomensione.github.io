@@ -453,7 +453,7 @@ var f3d = function(){
 			indexPickedObject = 0;
 			var scene = f.getScene();
 			for(let c = 0,group_children_length = group.children.length;c<group_children_length;c++){
-				group.remove(group.children[c]);	
+				scene.remove(group.children[c]);	
 				//group_children_length = group.children.length	
 			}
 			
