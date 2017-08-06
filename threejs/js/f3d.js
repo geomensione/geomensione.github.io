@@ -454,7 +454,7 @@ var f3d = function(){
 			var scene = f.getScene();
 			for(let c = 0,group_children_length = group.children.length;c<group_children_length;c++){
 				group.remove(group.children[c]);	
-				group_children_length = group.children.length	
+				//group_children_length = group.children.length	
 			}
 			
 		}
