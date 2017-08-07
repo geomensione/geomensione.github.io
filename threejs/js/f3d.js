@@ -453,9 +453,8 @@ var f3d = function(){
 		if(indexPickedObject || indexPickedObject !== undefined){
 			indexPickedObject = 0;
 			var scene = f.getScene();
-			for(let i = group.children.length-1;i>=0;i--){
-				scene.remove(group.children[i]);
-			}			
+			group.children.length = 0;
+						
 		}
 		render();
 		if(f3d_scene[0].length > 1){
