@@ -404,13 +404,13 @@ var f3d = function(){
 				let distance = Math.sqrt(x_diff * x_diff + y_diff * y_diff + z_diff * z_diff);
 				let numberOfTokens;
 				switch(true){
-					case (distance > 200):
+					case (distance > 600):
 						numberOfTokens = 20;
 						break;
-					case (distance > 150):
+					case (distance > 400):
 						numberOfTokens = 15;
 						break;
-					case (distance > 100):
+					case (distance > 200):
 						numberOfTokens = 10;
 						break;
 					case (distance > 50):
