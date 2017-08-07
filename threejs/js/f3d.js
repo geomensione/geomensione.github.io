@@ -403,15 +403,24 @@ var f3d = function(){
 				let token_position_x,token_position_y,token_position_z, token_scale_x,token_scale_y,token_scale_z;
 				let distance = Math.sqrt(x_diff * x_diff + y_diff * y_diff + z_diff * z_diff);
 				let numberOfTokens;
-				if(distance > 100){
-					numberOfTokens = 10;
+				switch(true){
+					case (distance > 200):
+						numberOfTokens = 20;
+						break;
+					case (distance > 150):
+						numberOfTokens = 15;
+						break;
+					case (distance > 100):
+						numberOfTokens = 10;
+						break;
+					case (distance > 50):
+						numberOfTokens = 5;
+						break;
+					default:
+						numberOfTokens = 3;
+						break;
 				}
-				if(distance > 50){
-					numberOfTokens = 5;
 				
-				}else{
-					numberOfTokens = 3;
-				}
 				token_position_x = x_diff/numberOfTokens;
 				token_position_y = y_diff/numberOfTokens;
 				token_position_z = z_diff/numberOfTokens;
