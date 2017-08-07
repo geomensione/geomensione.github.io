@@ -403,23 +403,21 @@ var f3d = function(){
 				let token_position_x,token_position_y,token_position_z, token_scale_x,token_scale_y,token_scale_z;
 				let distance = Math.sqrt(x_diff * x_diff + y_diff * y_diff + z_diff * z_diff);
 				let numberOfTokens;
+				if(distance > 100){
+					numberOfTokens = 10;
+				}
 				if(distance > 50){
 					numberOfTokens = 5;
-					token_position_x = x_diff/numberOfTokens;
-					token_position_y = y_diff/numberOfTokens;
-					token_position_z = z_diff/numberOfTokens;
-					token_scale_x = scale_x_diff/numberOfTokens;
-					token_scale_y = scale_y_diff/numberOfTokens;
-					token_scale_z = scale_z_diff/numberOfTokens;
+				
 				}else{
 					numberOfTokens = 3;
-					token_position_x = x_diff/numberOfTokens;
-					token_position_y = y_diff/numberOfTokens;
-					token_position_z = z_diff/numberOfTokens;
-					token_scale_x = scale_x_diff/numberOfTokens;
-					token_scale_y = scale_y_diff/numberOfTokens;
-					token_scale_z = scale_z_diff/numberOfTokens;
 				}
+				token_position_x = x_diff/numberOfTokens;
+				token_position_y = y_diff/numberOfTokens;
+				token_position_z = z_diff/numberOfTokens;
+				token_scale_x = scale_x_diff/numberOfTokens;
+				token_scale_y = scale_y_diff/numberOfTokens;
+				token_scale_z = scale_z_diff/numberOfTokens;
 				
 				//s<numberOfTokens-1, perché altrimenti la penultima sfera sarebbe grande come l'ultima
 				for(let s = 0;s<numberOfTokens-1;s++){
