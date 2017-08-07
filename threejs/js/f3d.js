@@ -103,6 +103,7 @@ var f3d = function(){
 	}
 	function render() {
 		renderer.render( scene, camera );
+		requestAnimationFrame(render);
 	}
 	function onWindowResize() {
 		camera.aspect = window.innerWidth / window.innerHeight;
