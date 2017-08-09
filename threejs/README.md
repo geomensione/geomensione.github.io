@@ -1,2 +1,3 @@
 todo:
-  get bounding box sphere (o usare la scala per interpolare le sfere?) -> uso scale
+  scala ingrandisce solo
+  se scelgo una sfera di tipo interpolate, la trasformo in una f3d_sphere (aggiungo la fera alla scena e poi memorizzo il riferimento in f3d_scene?)
