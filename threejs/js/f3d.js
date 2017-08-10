@@ -58,6 +58,7 @@ var f3d = function(){
 		cubeGeo = new THREE.BoxGeometry( 2, 2, 2 );
 		cubeMaterial = new THREE.MeshLambertMaterial( { color: 0xfeb74c, map: new THREE.TextureLoader().load( "textures/square-outline-textured.png" ) } );
 		// grid
+		/*
 		var size = 500, step = 10;
 		var geometry = new THREE.Geometry();
 		for ( var i = - size; i <= size; i += step ) {
@@ -69,6 +70,7 @@ var f3d = function(){
 		var material = new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2, transparent: true } );
 		var line = new THREE.LineSegments( geometry, material );
 		scene.add( line );
+		*/
 		//
 		raycaster = new THREE.Raycaster();
 		mouse = new THREE.Vector2();
