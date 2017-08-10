@@ -332,7 +332,8 @@ var f3d = function(){
 						let first = scene.children.slice(0,token_objId+1);
 						let second = scene.children.slice(token_objId+1,scene.children.length);
 						scene.children.length = 0;
-						scene = first.children.concat(obj).concat(second);
+						let tmp = first.concat(obj)
+						scene.children = tmp.concat(second);
 						indexPickedObject = objId;
 					}
 						
