@@ -300,7 +300,7 @@ var f3d = function(){
 		maxY = minY = y;
 		mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 		raycaster.setFromCamera( mouse, camera );
-		var intersects = raycaster.intersectObjects( scene.children );
+		var intersects = raycaster.intersectObjects( scene.children, true );
 		
 		if ( intersects.length > 0 ) {
 			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_') !== -1){
