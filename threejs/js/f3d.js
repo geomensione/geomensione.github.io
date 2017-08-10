@@ -332,7 +332,11 @@ var f3d = function(){
 						let first = scene.children.slice(0,f3d_scene[0][token_objId]+1);
 						let second = scene.children.slice(f3d_scene[0][token_objId]+1,scene.children.length);
 						scene.children.length = 0;
-						let tmp = first.concat(obj)
+						let tmp = first.concat(obj);
+						second.map(function(e){
+							let str = e.name.split('_');
+							e.name = str[0]+'_'+(parseInt(str[1])+1);
+						})
 						scene.children = tmp.concat(second);
 						indexPickedObject = objId;
 					}
