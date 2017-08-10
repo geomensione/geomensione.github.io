@@ -100,11 +100,18 @@ var f3d = function(){
 		document.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
 		//
 		window.addEventListener( 'resize', onWindowResize, false );
+		Array.prototype.insertAt = function(pos,val){
+			let first = this.slice(0,pos+1);
+			let second = this.slice(pos+1,this.length);
+			return first.concat(val).concat(second);
+		}
 	}
+	
 	function render() {
 		renderer.render( scene, camera );
 		
 	}
+	
 	function onWindowResize() {
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix();
@@ -321,11 +328,7 @@ var f3d = function(){
 						scene.add( obj );
 						let objId = scene.children.length-1;
 						let token_objId = intersects[ 0 ].object.name.split('_')[1];
-						let first_token_f3d_scene = f3d_scene[0].slice(0,token_objId+1);
-						let second_token_f3d_scene = f3d_scene[0].slice(token_objId+1,f3d_scene[0].length);
-						first_token_f3d_scene.push(objId);
-						first_token_f3d_scene.concat(second_token_f3d_scene);
-						f3d_scene[0] = first_token_f3d_scene.slice(0);
+						f3d_scene[0] = f3d_scene[0].insertAt(token_objId,objId);
 						indexPickedObject = objId;
 					}
 						
