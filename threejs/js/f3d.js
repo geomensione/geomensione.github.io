@@ -329,6 +329,10 @@ var f3d = function(){
 						let objId = scene.children.length-1;
 						let token_objId = intersects[ 0 ].object.name.split('_')[1];
 						f3d_scene[0] = f3d_scene[0].insertAt(token_objId,objId);
+						let first = scene.children.slice(0,token_objId+1);
+						let second = scene.children.slice(token_objId+1,scene.children.length);
+						scene.children.length = 0;
+						scene = first.children.concat(obj).concat(second);
 						indexPickedObject = objId;
 					}
 						
