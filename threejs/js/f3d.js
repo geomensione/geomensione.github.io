@@ -420,7 +420,8 @@ var f3d = function(){
 				let token_position_x,token_position_y,token_position_z, token_scale_x,token_scale_y,token_scale_z;
 				let distance = Math.sqrt(x_diff * x_diff + y_diff * y_diff + z_diff * z_diff);
 				let numberOfTokens;
-				numberOfTokens = distance/50;
+				//todo: calcolare il numero dei tokens in base alla dimensione delle due sfere
+				numberOfTokens = distance/60;
 				
 				token_position_x = x_diff/numberOfTokens;
 				token_position_y = y_diff/numberOfTokens;
