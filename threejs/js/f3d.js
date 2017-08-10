@@ -322,21 +322,21 @@ var f3d = function(){
 			}else if(intersects[ 0 ].object.name.indexOf('interpolation_') !== -1){
 				for(let o = 0,group_children_length = group.children.length;o<group_children_length;o++){
 					if(group.children[o].name === intersects[ 0 ].object.name){
-						let obj = group.children[o].clone();
-						obj.name = 'f3d_sphere_' + number_of_f3d_spheres;
-						number_of_f3d_spheres += 1;
-						scene.add( obj );
 						let objId = scene.children.length-1;
 						let token_objId = intersects[ 0 ].object.name.split('_')[1];
 						f3d_scene[0] = f3d_scene[0].insertAt(token_objId,objId);
 						let first = scene.children.slice(0,f3d_scene[0][token_objId]+1);
 						let second = scene.children.slice(f3d_scene[0][token_objId]+1,scene.children.length);
-						scene.children.length = 0;
+						let obj = group.children[o].clone();
+						obj.name = 'f3d_sphere_' + (parseInt(token_objId)+1);
+						number_of_f3d_spheres += 1;
+						scene.add( obj );						
 						let tmp = first.concat(obj);
 						second.map(function(e){
 							let str = e.name.split('_');
 							e.name = str[0]+'_'+(parseInt(str[1])+1);
 						})
+						scene.children.length = 0;
 						scene.children = tmp.concat(second);
 						indexPickedObject = objId;
 					}
