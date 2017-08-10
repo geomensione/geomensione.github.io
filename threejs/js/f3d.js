@@ -76,7 +76,7 @@ var f3d = function(){
 		geometry.rotateX( - Math.PI / 2 );
 		plane = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { visible: false } ) );
 		scene.add( plane );
-		objects.push( plane );
+		//objects.push( plane );
 		// Lights
 		var ambientLight = new THREE.AmbientLight( 0x606060 );
 		scene.add( ambientLight );
@@ -234,7 +234,7 @@ var f3d = function(){
 			mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 
 			raycaster.setFromCamera( mouse, camera );
-			var intersects = raycaster.intersectObjects( objects );
+			var intersects = raycaster.intersectObjects( scene.children );
 
 			if(indexPickedObject){
 				scene.children[indexPickedObject].position.copy( intersects[1].point );
@@ -257,7 +257,7 @@ var f3d = function(){
 
 			raycaster.setFromCamera( mouse, camera );
 
-			var intersects = raycaster.intersectObjects( objects );
+			var intersects = raycaster.intersectObjects( scene.children );
 
 			if ( intersects.length > 0 ) {
 
@@ -332,7 +332,7 @@ var f3d = function(){
 				//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 				scene.add( voxel );
 				f3d_scene[0].push(scene.children.length-1);
-				objects.push( voxel );
+				//objects.push( voxel );
 			}
 			
 		} else {
