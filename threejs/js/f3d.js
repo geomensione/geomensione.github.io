@@ -330,7 +330,7 @@ var f3d = function(){
 						let obj = group.children[o].clone();
 						obj.name = 'f3d_sphere_' + (parseInt(token_objId)+1);
 						number_of_f3d_spheres += 1;
-						scene.add( obj );						
+						//scene.add( obj );						
 						let tmp = first.concat(obj);
 						second.map(function(e){
 							let str = e.name.split('_');
