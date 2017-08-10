@@ -237,7 +237,11 @@ var f3d = function(){
 			var intersects = raycaster.intersectObjects( scene.children );
 
 			if(indexPickedObject){
-				scene.children[indexPickedObject].position.copy( intersects[1].point );
+				for(let i = 0,intersect_length = intersects.length;i<intersect_length;i++){
+					if(intersects[i].object.name.indexOf('f3d_sphere_') !== -1)
+						scene.children[indexPickedObject].position.copy( intersects[i].object.point );
+				}
+				
 				
 			}else{
 				if ( intersects.length > 0 ) {
