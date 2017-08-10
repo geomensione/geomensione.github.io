@@ -315,7 +315,9 @@ var f3d = function(){
 						obj.name = 'f3d_sphere_' + number_of_f3d_spheres;
 						number_of_f3d_spheres += 1;
 						scene.add( obj );
-						f3d_scene[0].push(scene.children.length-1);
+						let objId = scene.children.length-1;
+						f3d_scene[0].push(objId);
+						indexPickedObject = objId;
 					}
 						
 				}
