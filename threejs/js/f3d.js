@@ -320,7 +320,7 @@ var f3d = function(){
 						number_of_f3d_spheres += 1;
 						scene.add( obj );
 						let objId = scene.children.length-1;
-						let token_objId = intersects[ 0 ].object.name.split('_');
+						let token_objId = intersects[ 0 ].object.name.split('_')[1];
 						let first_token_f3d_scene = f3d_scene[0].slice(0,token_objId+1);
 						let second_token_f3d_scene = f3d_scene[0].slice(token_objId+1,f3d_scene[0].length);
 						first_token_f3d_scene.push(objId);
