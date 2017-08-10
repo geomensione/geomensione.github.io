@@ -311,11 +311,10 @@ var f3d = function(){
 			}else if(intersects[ 0 ].object.name.indexOf('interpolation_') !== -1){
 				for(let o = 0,group_children_length = group.children.length;o<group_children_length;o++){
 					if(group.children[o].name === intersects[ 0 ].object.name){
-						indexPickedObject = o;
 						let obj = group.children[o].clone();
 						obj.name = 'f3d_sphere_' + number_of_f3d_spheres;
 						number_of_f3d_spheres += 1;
-						scene.add( voxel );
+						scene.add( obj );
 						f3d_scene[0].push(scene.children.length-1);
 					}
 						
