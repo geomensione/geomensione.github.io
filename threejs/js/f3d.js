@@ -342,7 +342,7 @@ var f3d = function(){
 						})
 						scene.children.length = 0;
 						scene.children = tmp.concat(second);
-						f3d_scene[0].push(f3d_scene[0][f3d_scene[0].length]+1);
+						f3d_scene[0].push(f3d_scene[0][f3d_scene[0].length-1]+1);
 						indexPickedObject = objId;
 					}
 						
