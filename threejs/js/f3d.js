@@ -325,7 +325,7 @@ var f3d = function(){
 		var intersects = raycaster.intersectObjects( scene.children, true );
 		
 		if ( intersects.length > 0 ) {
-			intersects.map(function(e){info2.innerHTML += e.object.name;)});
+			//intersects.map(function(e){info2.innerHTML += e.object.name;)});
 			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_') !== -1){
 				for(let o = 0,scene_children_length = scene.children.length;o<scene_children_length;o++){
 					if(scene.children[o].name === intersects[ 0 ].object.name)
