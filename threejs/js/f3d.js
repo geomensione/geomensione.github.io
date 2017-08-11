@@ -103,7 +103,7 @@ var f3d = function(){
 		//
 		window.addEventListener( 'resize', onWindowResize, false );
 		Array.prototype.insertAt = function(pos,val){
-			let first = this.slice(0,pos+1);
+			let first = this.slice(0,pos);
 			let second = this.slice(pos+1,this.length);
 			return first.concat(val).concat(second);
 		}
