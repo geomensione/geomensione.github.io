@@ -254,7 +254,7 @@ var f3d = function(){
 			raycaster.setFromCamera( mouse, camera );
 			var intersects = raycaster.intersectObjects( scene.children );
 
-			if(indexPickedObject){
+			if(indexPickedObject || indexPickedObject === 0){
 				for(let i = 0,intersect_length = intersects.length;i<intersect_length;i++){
 					if(intersects[i].object.name.length === 0)
 						scene.children[f3d_scene[0][indexPickedObject]].position.copy( intersects[i].point );
