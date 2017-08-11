@@ -324,9 +324,11 @@ var f3d = function(){
 			}else if(intersects[ 0 ].object.name.indexOf('interpolation_') !== -1){
 				for(let o = 0,group_children_length = group.children.length;o<group_children_length;o++){
 					if(group.children[o].name === intersects[ 0 ].object.name){
-						let objId = scene.children.length-1;
+						//ottendo id sfera dal gruppo
+						//clono l'oggetto
+						//lo inserisco nella scena
+						//aggiungo un l'id alla f3d_scene(basta aggiungere, come ultimo elemento, l'ultimo id incrementato di uno)
 						let token_objId = intersects[ 0 ].object.name.split('_')[1];
-						f3d_scene[0] = f3d_scene[0].insertAt(token_objId,objId);
 						let first = scene.children.slice(0,f3d_scene[0][token_objId]+1);
 						let second = scene.children.slice(f3d_scene[0][token_objId]+1,scene.children.length);
 						let obj = group.children[o].clone();
@@ -340,6 +342,7 @@ var f3d = function(){
 						})
 						scene.children.length = 0;
 						scene.children = tmp.concat(second);
+						f3d_scene[0].push(f3d_scene[0][f3d_scene[0].length]+1);
 						indexPickedObject = objId;
 					}
 						
