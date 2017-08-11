@@ -332,7 +332,7 @@ var f3d = function(){
 			);
 			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_') !== -1){
 				for(let o = 0,scene_children_length = scene.children.length;o<scene_children_length;o++){
-					let index_f3d_sphere = intersects[ 0 ].object.name.split('_')[2];
+					let index_f3d_sphere = parseInt(intersects[ 0 ].object.name.split('_')[2])-1;
 					if(scene.children[o].name === intersects[ 0 ].object.name)
 						indexPickedObject = index_f3d_sphere;
 				}
