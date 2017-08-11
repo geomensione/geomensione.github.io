@@ -22,9 +22,9 @@ var f3d = function(){
 	var group;
 	var info, info2;
 			
-	function Sphere(){
+	function Sphere(color){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-		var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+		var material = new THREE.MeshBasicMaterial( {color: color} );
 		lastSphere = new THREE.Mesh( geometry, material );
 		
 		
@@ -364,7 +364,7 @@ var f3d = function(){
 				}
 			}else{
 				var intersect = intersects[ 0 ];
-				var voxel = Sphere();
+				var voxel = Sphere(0xffff00);
 				voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
 				number_of_f3d_spheres += 1;
 				setOldCoord(intersect.point.x,intersect.point.z);
@@ -469,7 +469,7 @@ var f3d = function(){
 				
 				//s<numberOfTokens-1, perché altrimenti la penultima sfera sarebbe grande come l'ultima
 				for(let s = 0;s<numberOfTokens-1;s++){
-					let sphere = f.sphere();
+					let sphere = f.sphere(0xff0000);
 					sphere.position.x = scene.children[f3d_scene[0][i]].position.x - token_position_x*(s+1);
 					sphere.position.y = scene.children[f3d_scene[0][i]].position.y - token_position_y*(s+1);
 					sphere.position.z = scene.children[f3d_scene[0][i]].position.z - token_position_z*(s+1);
