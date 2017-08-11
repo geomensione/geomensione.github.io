@@ -257,7 +257,7 @@ var f3d = function(){
 			if(indexPickedObject){
 				for(let i = 0,intersect_length = intersects.length;i<intersect_length;i++){
 					if(intersects[i].object.name.length === 0)
-						scene.children[indexPickedObject].position.copy( intersects[i].point );
+						scene.children[f3d_scene[0][indexPickedObject]].position.copy( intersects[i].point );
 				}
 				
 				
