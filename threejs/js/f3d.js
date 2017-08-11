@@ -348,6 +348,7 @@ var f3d = function(){
 						let second = scene.children.slice(f3d_scene[0][token_objId]+1,scene.children.length);
 						let obj = group.children[o].clone();
 						obj.name = 'f3d_sphere_' + (parseInt(token_objId)+1);
+						obj.material.color = {r:1,g:1,b:0};
 						number_of_f3d_spheres += 1;
 						//scene.add( obj );						
 						let tmp = first.concat(obj);
