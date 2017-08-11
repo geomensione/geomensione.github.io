@@ -324,7 +324,7 @@ var f3d = function(){
 			}else if(intersects[ 0 ].object.name.indexOf('interpolation_') !== -1){
 				for(let o = 0,group_children_length = group.children.length;o<group_children_length;o++){
 					if(group.children[o].name === intersects[ 0 ].object.name){
-						let objId = scene.children.length;
+						let objId = scene.children.length-1;
 						let token_objId = intersects[ 0 ].object.name.split('_')[1];
 						f3d_scene[0] = f3d_scene[0].insertAt(token_objId,objId);
 						let first = scene.children.slice(0,f3d_scene[0][token_objId]+1);
