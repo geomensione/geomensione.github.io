@@ -332,8 +332,9 @@ var f3d = function(){
 			);
 			if(intersects[ 0 ].object.name.indexOf('f3d_sphere_') !== -1){
 				for(let o = 0,scene_children_length = scene.children.length;o<scene_children_length;o++){
+					let index_f3d_sphere = intersects[ 0 ].object.name.split('_')[2];
 					if(scene.children[o].name === intersects[ 0 ].object.name)
-						indexPickedObject = o;
+						indexPickedObject = index_f3d_sphere;
 				}
 			}else if(intersects[ 0 ].object.name.indexOf('interpolation_') !== -1){
 				for(let o = 0,group_children_length = group.children.length;o<group_children_length;o++){
