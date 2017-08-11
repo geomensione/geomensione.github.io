@@ -20,6 +20,7 @@ var f3d = function(){
 	var f3d_scene = [];
 	f3d_scene[0] = [];
 	var group;
+	var info, info2;
 			
 	function Sphere(){
 		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
@@ -38,13 +39,21 @@ var f3d = function(){
 	function init() {
 		container = document.createElement( 'div' );
 		document.body.appendChild( container );
-		var info = document.createElement( 'div' );
+		info = document.createElement( 'div' );
 		info.style.position = 'absolute';
 		info.style.top = '10px';
 		info.style.width = '100%';
 		info.style.textAlign = 'center';
-		info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> - voxel painter - webgl<br><strong>click</strong>: add voxel, <strong>shift + click</strong>: remove voxel';
+		info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a>';
 		container.appendChild( info );
+		info2 = document.createElement( 'div' );
+		info2.style.position = 'absolute';
+		info2.style.top = '30px';
+		info2.style.width = '100%';
+		info2.style.textAlign = 'center';
+		info2.innerHTML = 'selezione';
+		container.appendChild( info2 );
+		
 		camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 		camera.position.set(0, 1000, 0 );
 		camera.lookAt( new THREE.Vector3() );
