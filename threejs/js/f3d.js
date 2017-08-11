@@ -336,7 +336,7 @@ var f3d = function(){
 						let tmp = first.concat(obj);
 						second.map(function(e){
 							let str = e.name.split('_');
-							e.name = str[0]+'_'+(parseInt(str[1])+1);
+							e.name = str[0]+'_'+str[1]+'_'+(parseInt(str[2])+1);
 						})
 						scene.children.length = 0;
 						scene.children = tmp.concat(second);
