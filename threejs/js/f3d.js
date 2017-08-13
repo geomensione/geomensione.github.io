@@ -9,7 +9,6 @@ var f3d = function(){
 	var container;
 	var camera, scene, renderer, rollOverGeo;
 	var rollOverMesh, rollOverMaterial;
-	var cubeGeo, cubeMaterial;
 	var mouse, raycaster, isShiftDown = false;
 	var objects = [];
 	var plane, cube;
@@ -63,27 +62,26 @@ var f3d = function(){
 		rollOverMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, opacity: 0.5, transparent: true } );
 		rollOverMesh = new THREE.Mesh( rollOverGeo, rollOverMaterial );
 		//scene.add( rollOverMesh );
-		// cubes
-		cubeGeo = new THREE.BoxGeometry( 2, 2, 2 );
-		cubeMaterial = new THREE.MeshLambertMaterial( { color: 0xfeb74c, map: new THREE.TextureLoader().load( "textures/square-outline-textured.png" ) } );
 		// grid
-		/*
-		var size = 500, step = 10;
+		
+		var sizeH = window.innerHeight, sizeW = window.innerWidth, step = 100;
 		var geometry = new THREE.Geometry();
-		for ( var i = - size; i <= size; i += step ) {
-			geometry.vertices.push( new THREE.Vector3( - size, 0, i ) );
-			geometry.vertices.push( new THREE.Vector3(   size, 0, i ) );
-			geometry.vertices.push( new THREE.Vector3( i, 0, - size ) );
-			geometry.vertices.push( new THREE.Vector3( i, 0,   size ) );
+		for ( var i = -sizeH; i <= sizeH; i += step ) {
+			geometry.vertices.push( new THREE.Vector3( -sizeW, 0, i ) );
+			geometry.vertices.push( new THREE.Vector3(   sizeW, 0, i ) );
+		}
+		for ( var i = -sizeW; i <= sizeW; i += step ) {
+			geometry.vertices.push( new THREE.Vector3( i, 0, -sizeH ) );
+			geometry.vertices.push( new THREE.Vector3( i, 0,   sizeH ) );
 		}
 		var material = new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2, transparent: true } );
 		var line = new THREE.LineSegments( geometry, material );
 		scene.add( line );
-		*/
+		
 		//
 		raycaster = new THREE.Raycaster();
 		mouse = new THREE.Vector2();
-		var geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
+		var geometry = new THREE.PlaneBufferGeometry( 2000, 2000 );
 		geometry.rotateX( - Math.PI / 2 );
 		plane = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { visible: false } ) );
 		scene.add( plane );
@@ -254,21 +252,14 @@ var f3d = function(){
 			raycaster.setFromCamera( mouse, camera );
 			var intersects = raycaster.intersectObjects( scene.children );
 
-			if(indexPickedObject || indexPickedObject === 0){
-				for(let i = 0,intersect_length = intersects.length;i<intersect_length;i++){
-					if(intersects[i].object.name.length === 0)
-						scene.children[f3d_scene[0][indexPickedObject]].position.copy( intersects[i].point );
-				}
-				
-				
-			}else{
-				if ( intersects.length > 0 ) {
+			
+			if ( intersects.length > 0 ) {
 
-					var intersect = intersects[ 0 ];
-					setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.z);
+				var intersect = intersects[ 0 ];
+				setSphereScaleFromMouseDistance(intersect.point.x,intersect.point.z);
 
-				}
 			}
+		
 			
 
 			render();	
@@ -283,24 +274,18 @@ var f3d = function(){
 
 			if ( intersects.length > 0 ) {
 
-				var intersect = intersects[ 0 ];
-
-				//document.getElementById('coordinates').innerText = 'x= '+intersect.point.x+', y= '+intersect.point.y+', z= '+intersect.point.z;
+				if(indexPickedObject || indexPickedObject === 0){
+					for(let i = 0,intersect_length = intersects.length;i<intersect_length;i++){
+						if(intersects[i].object.name.length === 0)
+							scene.children[f3d_scene[0][indexPickedObject]].position.copy( intersects[i].point );
+					}
+					
+					
+				}
 
 			}
+			
 		}
-		/*
-		event.preventDefault();
-		mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
-		raycaster.setFromCamera( mouse, camera );
-		var intersects = raycaster.intersectObjects( objects );
-		if ( intersects.length > 0 ) {
-			var intersect = intersects[ 0 ];
-			rollOverMesh.position.copy( intersect.point ).add( intersect.face.normal );
-			rollOverMesh.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-		}
-		render();
-		*/
 	}
 	function onDocumentMobileMouseDown( event ){
 		var x = event.targetTouches[0].pageX;
@@ -316,7 +301,6 @@ var f3d = function(){
 
 	function mousedown( event, x, y ) {
 		
-		draw_mode = true;
 		
 		maxX = minX = x;
 		maxY = minY = y;
@@ -364,6 +348,7 @@ var f3d = function(){
 						
 				}
 			}else{
+				draw_mode = true;
 				var intersect = intersects[ 0 ];
 				var voxel = Sphere(0xffff00);
 				voxel.name = 'f3d_sphere_' + number_of_f3d_spheres;
@@ -491,14 +476,14 @@ var f3d = function(){
 			//scene.children[f3d_scene[0][i]].scale
 			//creo n sfere di posizione token e scala += token_scala
 		}
-		console.log(JSON.stringify(scene));
+		//console.log(JSON.stringify(scene));
 	}
 	
 	function mouseup( event ){
 	        info2.innerHTML = '';
 		draw_mode = false;
 		if(indexPickedObject || indexPickedObject !== undefined){
-			indexPickedObject = 0;
+			indexPickedObject = undefined;
 			var scene = f.getScene();
 			group.children.length = 0;
 						
