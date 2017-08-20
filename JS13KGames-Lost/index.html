@@ -1,153 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Rescue the hero!</title>
-<style>
-body{
-	margin: 0;
-	overflow: hidden;
-}
-canvas{
-	width: 100%;
-	height: 100%;
-}
-</style>
-</head>
-<body>
-    <canvas id="gameScreen">
-      What, no canvas support? D:
-    </canvas>
- <script>
-	"use strict";
-
-	window.a = document.getElementsByTagName('canvas')[0];
-	window.b = document.getElementsByTagName('body')[0];
-	window.c = window.a.getContext('2d');
-	window.d = document;
-	a.width = window.innerWidth;
-	a.height = window.innerHeight;
-
-	/*
-	JS1K start
-	*/
-	//Init layers
-	var la = [], 
-		fr = 100, 
-		g = {}, 
-		b = {}, 
-		l_i,
-		sh = [
-			'W0W00000',
-			'W0WW0000',
-			'WWWWW000',
-			'WWW0WWWW',
-			'WWW0WWWW',
-			'WWWWW000',
-			'W0WW0000',
-			'w0W00000',
-		];
-	//foreground layer
-	g.w = window.innerWidth;
-	g.h = window.innerHeight;
-	//resolution
-	g.r = 24;
-	//sprite dimension
-	g.s = 8;
-	//frames
-	la[0]=g;
-	
-	b.w = window.innerWidth;
-	b.h = window.innerHeight;
-	//resolution
-	b.r = 48;
-	//sprite dimension
-	b.s = 1;
-	//frames
-	la[1]=b;
-	a.onmousedown = function(e){
-		var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
-		if(iD.data[0]!==0){
-			clearInterval(l_i);
-		}
-	}; 
-	
-	
-    //create grid
-	function gr(){
-		for(let l = 0,la_l=la.length;l<la_l;l++){
-			var w = la[l].w;
-			var h = la[l].h;
-			var ox, oy = 0;
-			if(h<w){
-				ox = Math.round(h/la[l].r);
-				la[l].ry = Math.round(h/ox);
-				la[l].rx = Math.round(w/ox);
-			}else{
-				ox = Math.round(w/la[l].r);
-				la[l].rx = Math.round(w/ox);
-				la[l].ry = Math.round(h/ox);
+	<head>
+		<title>Rescue the hero!</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
 			}
-			//offset
-			la[l].o = ox;
-			//frame buffer
-			la[l].fb = [];
-			var rx = la[l].rx;
-			var ry = la[l].ry;
-			for(var i = 0;i<rx;i++){
-				la[l].fb[i] = [];
-				for(var d = 0;d<ry;d++){
-					//clear all
-					la[l].fb[i][d] = ['00', '00', '00'];
-				}
+			canvas{
+				width: 100%;
+				height: 100%;
 			}
-			//randomlly draw main character
-			var x = Math.floor(Math.random() * (la[l].rx-la[l].s));
-			var y = Math.floor(Math.random() * (la[l].ry-la[l].s));
-			for(var xo = 0;xo<la[l].s;xo++)
-			{
-				for(var yo = 0;yo<la[l].s;yo++)
-				{
-					if(sh[yo][xo] === 'W')
-						la[l].fb[x+xo][y+yo] = ['FF','FF','FF'];
-				}
-			}
-			
-		}
-		
-	}
-	//draw pixel using canvas api
-	function dr(){
-		for(let l = 0,la_l=la.length;l<la_l;l++){
-			var rx = la[l].rx;
-			var ry = la[l].ry;
-			var o = la[l].o;
-			var cx = 0, cy = 0;
-			for(var i = 0;i<rx;i++){
-				for(var d = 0;d<ry;d++){
-					if(la[l].fb[i][d][0] === 'FF'){
-						c.fillStyle = "#"+la[l].fb[i][d][0]+la[l].fb[i][d][1]+la[l].fb[i][d][2];
-						c.fillRect(cx,cy,o,o);
-					}
-					cy += o;
-				}
-				cx += o;
-				cy = 0;
-			}
-		}
-		
-		
-	}
-	//every frame value, draw scene
-	function l(){
-		l_i = setInterval(function() {
-			c.fillStyle = "rgb(0, 0, 0)";
-			c.fillRect(0,0,la[0].w,la[0].h);
-			gr();
-			dr();
-		}, fr);
-	}
-	 
-	l();
-
- </script>
-</body></html>
+		</style>
+	</head>
+	<body>
+		<canvas id="gameScreen">
+			What, no canvas support? D:
+		</canvas>
+		<script src="game.js"></script>
+	</body>
+</html>
