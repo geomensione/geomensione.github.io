@@ -128,13 +128,13 @@ b.d_fn = function(){
                 c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                 c.fillRect(cx,cy,o,o);
             }
-            if(d<ry)
+            if((d+1)<ry)
                 d += 1;
             else
                 d = 0;
             cy += o;
         }
-        if(i<rx)
+        if((i+1)<rx)
             i += 1;
         else
             i = 0;
