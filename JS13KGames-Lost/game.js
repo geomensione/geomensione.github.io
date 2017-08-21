@@ -146,8 +146,11 @@ b.d_fn = function(){
 la[0]=b;
 //frames
 la[1]=g;
-a.onkeydown = function(e){
-    la[0].mx += 1;
+d.onkeydown = function(e){
+    if((la[0].mx+1)<la[0].rx)
+        la[0].mx += 1;
+    else
+        la[0].mx = 0;
 }; 
 
 
