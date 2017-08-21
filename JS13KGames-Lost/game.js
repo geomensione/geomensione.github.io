@@ -88,7 +88,8 @@ b.do = 0;
 b.sts = 50;
 
 //start point when move background
-b.mx = b.my = 0;
+b.mx = 0;
+b.my = 0;
 b.fb_fn = function(){
     if(!this.do){
         this.do = 1;
@@ -121,8 +122,16 @@ b.d_fn = function(){
         cy = 0,
         x_l = rx,
         y_l = ry;
-    for(let i = b.mx;i<rx;i++){
-        for(let d = b.my;d<ry;d++){
+    for(let i = this.mx,l = 0;l<rx;){
+        if(i<rx)
+            i += 1;
+        else
+            i = 0;
+        for(let d = this.my,ll=0;ll<ry;){
+            if(d<ry)
+                d += 1;
+            else
+                d = 0;
             if(this.fb[i][d][0] !== '00'){
                 c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                 c.fillRect(cx,cy,o,o);
@@ -138,10 +147,7 @@ la[0]=b;
 //frames
 la[1]=g;
 a.onkeydown = function(e){
-    var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
-    if(iD.data[0]!==0){
-        clearInterval(l_i);
-    }
+    la[0].mx += 1;
 }; 
 
 
