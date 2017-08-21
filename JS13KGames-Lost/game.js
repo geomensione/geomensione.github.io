@@ -122,12 +122,12 @@ b.d_fn = function(){
         cy = 0,
         x_l = rx,
         y_l = ry;
-    for(let i = this.mx,l = 0;l<rx;){
+    for(let i = this.mx,l = 0;l<rx;l++){
         if(i<rx)
             i += 1;
         else
             i = 0;
-        for(let d = this.my,ll=0;ll<ry;){
+        for(let d = this.my,ll=0;ll<ry;ll++){
             if(d<ry)
                 d += 1;
             else
