@@ -123,21 +123,21 @@ b.d_fn = function(){
         x_l = rx,
         y_l = ry;
     for(let i = this.mx,l = 0;l<rx;l++){
-        if(i<rx)
-            i += 1;
-        else
-            i = 0;
         for(let d = this.my,ll=0;ll<ry;ll++){
-            if(d<ry)
-                d += 1;
-            else
-                d = 0;
             if(this.fb[i][d][0] !== '00'){
                 c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                 c.fillRect(cx,cy,o,o);
             }
+            if(d<ry)
+                d += 1;
+            else
+                d = 0;
             cy += o;
         }
+        if(i<rx)
+            i += 1;
+        else
+            i = 0;
         cx += o;
         cy = 0;
     }
