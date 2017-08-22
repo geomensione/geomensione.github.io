@@ -18,7 +18,7 @@ var la = [],
     bo = {},
     l_i,
     sh = {
-         37:[  'W0W00000',
+         39:[  'W0W00000',
             'W0WW0000',
             'WWWWW000',
             'WWW0WWWW',
@@ -26,7 +26,7 @@ var la = [],
             'WWWWW000',
             'W0WW0000',
             'W0W00000'],
-        40:[
+        38:[
             '000WW000',
             '000WW000',
             '000WW000',
@@ -35,7 +35,7 @@ var la = [],
             'WWWWWWWW',
             '00WWWW00',
             'WWWWWWWW'],
-        39:[
+        37:[
             '00000W0W',
             '0000WW0W',
             '000WWWWW',
@@ -44,7 +44,7 @@ var la = [],
             '000WWWWW',
             '0000WW0W',
             '00000W0W'],
-        38:[
+        40:[
             'WWWWWWWW',
             '00WWWW00',
             'WWWWWWWW',
