@@ -284,8 +284,8 @@ function right(la){
 
 function doInt(x,y){
     //divide screen vertically in 3 parts
-    let portx = ls[0].w/3;
-    let porty = ls[0].h/2;
+    let portx = la[0].w/3;
+    let porty = la[0].h/2;
     let dir;
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
