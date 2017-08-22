@@ -247,15 +247,26 @@ la[0]=bo;
 la[1]=b;
 //frames
 la[2]=g;
+/*
+left arrow	37
+up arrow	38
+right arrow	39
+down arrow	40
+*/
+
+function down(la){
+    if((la[l].my+la[l].sp)<la[l].ry)
+        return la[l].my + la[l].sp;
+    else
+        return 0;
+}
+
 d.onkeydown = function(e){
     e = e || window.event;
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             if (e.keyCode == '40') {
-                if((la[l].my+la[l].sp)<la[l].ry)
-                    la[l].my += la[l].sp;
-               else
-                    la[l].my = 0;
+               la[l].my = down(la);
             }
             if (e.keyCode == '38') {
                 if((la[l].my-la[l].sp)>0)
