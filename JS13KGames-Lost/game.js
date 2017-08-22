@@ -286,25 +286,30 @@ function doInt(x,y){
     //divide screen vertically in 3 parts
     let portx = x/3;
     let porty = y/2;
+    let dir;
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             if (x < portx) {
                la[l].mx = left(la[l]);
+               dir = 37;
             }
             else if (x > (portx*2)) {
                 la[l].mx = right(la[l]);
+                dir = 39;
             }
             else if (x > porx) {
                if (y < porty) {
                    la[l].my = down(la[l]);
+                   dir = 40;
                 }
                 else{
                     la[l].my = up(la[l]);
+                    dir = 38;
                 }
             }
         }else{
             if(la[l].dir){
-                la[l].dir = e.keyCode;
+                la[l].dir = dir;
             }
         }
     }
