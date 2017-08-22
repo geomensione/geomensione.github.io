@@ -279,7 +279,7 @@ function right(la){
     if((la.mx+la.sp)<la.rx)
             return la[l].mx + la[l].sp;
        else
-            return = 0;
+            return 0;
 }
 
 d.onkeydown = function(e){
