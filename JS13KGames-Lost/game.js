@@ -176,7 +176,7 @@ bo.fb_fn = function(){
         for(let s = 0;s<this.sts;s++){
             let x = Math.floor(Math.random() * (this.rx-this.s));
             let y = Math.floor(Math.random() * (this.ry-this.s));
-            this.fb[x][y] = ['00','00','AA'];       
+            this.fb[x][y] = ['11','00','AA'];       
         }
     }
     
