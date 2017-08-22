@@ -270,14 +270,14 @@ function up(la){
 
 function left(la){
     if((la.mx-la.sp)>0)
-            return la[l].mx - la[l].sp;
+            return la.mx - la.sp;
     else
-            return la[l].rx-la[l].sp;
+            return la.rx-la.sp;
 }
 
 function right(la){
     if((la.mx+la.sp)<la.rx)
-            return la[l].mx + la[l].sp;
+            return la.mx + la.sp;
        else
             return 0;
 }
