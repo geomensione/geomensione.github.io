@@ -282,6 +282,39 @@ function right(la){
             return 0;
 }
 
+function doInt(x,y){
+    //divide screen vertically in 3 parts
+    let portx = x/3;
+    let porty = y/2;
+    for(let l = 0,la_l=la.length;l<la_l;l++){
+        if(la[l].sp){
+            if (x < portx) {
+               la[l].mx = left(la[l]);
+            }
+            else if (x > (portx*2)) {
+                la[l].mx = right(la[l]);
+            }
+            else if (x > porx) {
+               if (y < porty) {
+                   la[l].my = down(la[l]);
+                }
+                else{
+                    la[l].my = up(la[l]);
+                }
+            }
+        }else{
+            if(la[l].dir){
+                la[l].dir = e.keyCode;
+            }
+        }
+    }
+}; 
+
+d.onmousedown = function int(e){
+    let x = e.clientX;
+    let y = e.clientY;
+    doInt(x,y);
+};
 d.onkeydown = function(e){
     e = e || window.event;
     for(let l = 0,la_l=la.length;l<la_l;l++){
