@@ -223,33 +223,33 @@ la[2]=g;
 d.onkeydown = function(e){
     e = e || window.event;
     for(let l = 0,la_l=la.length;l<la_l;l++){
-        if (e.keyCode == '38') {
-            if((la[l].my+la[l].sp)<la[l].ry)
-                la[l].my += la[l].sp;
-           else
-                la[l].my = 0;
-        }
-        if (e.keyCode == '40') {
-            if((la[l].my-la[l].sp)>0)
-                la[0].my -= la[l].sp;
-           else
-                la[l].my = la[l].ry-1;
-        }
-        if (e.keyCode == '37') {
-           if((la[l].mx-la[l].sp)>0)
-                la[l].mx -= la[l].sp;
-           else
-                la[l].mx = la[l].rx-la[l].sp;
-        }
-        if (e.keyCode == '39') {
-           if((la[l].mx+la[l].sp)<la[l].rx)
-                la[l].mx += la[l].sp;
-           else
-                la[l].mx = 0;
+        if(la[l].sp){
+            if (e.keyCode == '38') {
+                if((la[l].my+la[l].sp)<la[l].ry)
+                    la[l].my += la[l].sp;
+               else
+                    la[l].my = 0;
+            }
+            if (e.keyCode == '40') {
+                if((la[l].my-la[l].sp)>0)
+                    la[0].my -= la[l].sp;
+               else
+                    la[l].my = la[l].ry-1;
+            }
+            if (e.keyCode == '37') {
+               if((la[l].mx-la[l].sp)>0)
+                    la[l].mx -= la[l].sp;
+               else
+                    la[l].mx = la[l].rx-la[l].sp;
+            }
+            if (e.keyCode == '39') {
+               if((la[l].mx+la[l].sp)<la[l].rx)
+                    la[l].mx += la[l].sp;
+               else
+                    la[l].mx = 0;
+            }
         }
     }
-    
-    
 }; 
 
 
