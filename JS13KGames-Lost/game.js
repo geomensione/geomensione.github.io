@@ -219,10 +219,34 @@ la[1]=b;
 //frames
 la[2]=g;
 d.onkeydown = function(e){
-    if((la[0].mx+1)<la[0].rx)
-        la[0].mx += 1;
-    else
-        la[0].mx = 0;
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        if((la[0].my+1)<la[0].ry)
+            la[0].my += 1;
+       else
+            la[0].my = 0;
+    }
+    if (e.keyCode == '40') {
+        if((la[0].my-1)>la[0].ry)
+            la[0].my -= 1;
+       else
+            la[0].my = la[0].ry;
+    }
+    if (e.keyCode == '37') {
+       if((la[0].mx-1)>la[0].rx)
+            la[0].mx -= 1;
+       else
+            la[0].mx = la[0].rx;
+    }
+    if (e.keyCode == '39') {
+       if((la[0].mx+1)<la[0].rx)
+            la[0].mx += 1;
+       else
+            la[0].mx = 0;
+    }
+    
+    
 }; 
 
 
