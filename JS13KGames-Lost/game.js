@@ -293,7 +293,7 @@ d.onkeydown = function(e){
                 la[l].my = up(la[l]);
             }
             if (e.keyCode == '37') {
-               la[l].my = left(la[l]);
+               la[l].mx = left(la[l]);
             }
             if (e.keyCode == '39') {
                la[l].mx = right();
