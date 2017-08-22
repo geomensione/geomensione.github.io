@@ -255,8 +255,8 @@ down arrow	40
 */
 
 function down(la){
-    if((la[l].my+la[l].sp)<la[l].ry)
-        return la[l].my + la[l].sp;
+    if((la.my+la.sp)<la.ry)
+        return la.my + la.sp;
     else
         return 0;
 }
@@ -266,7 +266,7 @@ d.onkeydown = function(e){
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             if (e.keyCode == '40') {
-               la[l].my = down(la);
+               la[l].my = down(la[l]);
             }
             if (e.keyCode == '38') {
                 if((la[l].my-la[l].sp)>0)
