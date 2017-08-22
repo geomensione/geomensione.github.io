@@ -232,7 +232,7 @@ d.onkeydown = function(e){
             }
             if (e.keyCode == '40') {
                 if((la[l].my-la[l].sp)>0)
-                    la[0].my -= la[l].sp;
+                    la[l].my -= la[l].sp;
                else
                     la[l].my = la[l].ry-1;
             }
