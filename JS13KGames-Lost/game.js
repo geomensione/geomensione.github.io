@@ -61,7 +61,7 @@ g.h = window.innerHeight;
 g.r = 24;
 //sprite dimension
 g.s = 8;
-b.dir = 39;
+g.dir = 39;
 g.fb_fn = function(){
     this.fb = [];
     let rx = this.rx,
