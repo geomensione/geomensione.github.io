@@ -251,13 +251,13 @@ d.onkeydown = function(e){
     e = e || window.event;
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
-            if (e.keyCode == '38') {
+            if (e.keyCode == '40') {
                 if((la[l].my+la[l].sp)<la[l].ry)
                     la[l].my += la[l].sp;
                else
                     la[l].my = 0;
             }
-            if (e.keyCode == '40') {
+            if (e.keyCode == '38') {
                 if((la[l].my-la[l].sp)>0)
                     la[l].my -= la[l].sp;
                else
