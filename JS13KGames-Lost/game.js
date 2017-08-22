@@ -296,7 +296,7 @@ d.onkeydown = function(e){
                la[l].mx = left(la[l]);
             }
             if (e.keyCode == '39') {
-               la[l].mx = right();
+               la[l].mx = right(la[l]);
             }
         }else{
             if(la[l].dir){
