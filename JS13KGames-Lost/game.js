@@ -231,7 +231,7 @@ d.onkeydown = function(e){
         if((la[0].my-1)>la[0].ry)
             la[0].my -= 1;
        else
-            la[0].my = la[0].ry;
+            la[0].my = la[0].ry-1;
     }
     if (e.keyCode == '37') {
        if((la[0].mx-1)>la[0].rx)
