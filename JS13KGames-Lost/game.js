@@ -234,10 +234,10 @@ d.onkeydown = function(e){
             la[0].my = la[0].ry-1;
     }
     if (e.keyCode == '37') {
-       if((la[0].mx-1)>la[0].rx)
+       if((la[0].mx-1)>0)
             la[0].mx -= 1;
        else
-            la[0].mx = la[0].rx;
+            la[0].mx = la[0].rx-1;
     }
     if (e.keyCode == '39') {
        if((la[0].mx+1)<la[0].rx)
