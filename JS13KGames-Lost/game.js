@@ -87,7 +87,8 @@ b.s = 1;
 b.do = 0;
 //number of stars
 b.sts = 50;
-
+//offset
+b.sp = 2;
 //start point when move background
 b.mx = 0;
 b.my = 0;
@@ -154,7 +155,8 @@ bo.s = 1;
 bo.do = 0;
 //number of stars
 bo.sts = 50;
-
+//offset
+bo.sp = 2;
 //start point when move background
 bo.mx = 0;
 bo.my = 0;
@@ -220,30 +222,31 @@ la[1]=b;
 la[2]=g;
 d.onkeydown = function(e){
     e = e || window.event;
-
-    if (e.keyCode == '38') {
-        if((la[0].my+1)<la[0].ry)
-            la[0].my += 1;
-       else
-            la[0].my = 0;
-    }
-    if (e.keyCode == '40') {
-        if((la[0].my-1)>0)
-            la[0].my -= 1;
-       else
-            la[0].my = la[0].ry-1;
-    }
-    if (e.keyCode == '37') {
-       if((la[0].mx-1)>0)
-            la[0].mx -= 1;
-       else
-            la[0].mx = la[0].rx-1;
-    }
-    if (e.keyCode == '39') {
-       if((la[0].mx+1)<la[0].rx)
-            la[0].mx += 1;
-       else
-            la[0].mx = 0;
+    for(let l = 0,la_l=la.length;l<la_l;l++){
+        if (e.keyCode == '38') {
+            if((la[l].my+la[l].sp)<la[l].ry)
+                la[l].my += la[l].sp;
+           else
+                la[l].my = 0;
+        }
+        if (e.keyCode == '40') {
+            if((la[l].my-la[l].sp)>0)
+                la[0].my -= la[l].sp;
+           else
+                la[l].my = la[l].ry-1;
+        }
+        if (e.keyCode == '37') {
+           if((la[l].mx-la[l].sp)>0)
+                la[l].mx -= la[l].sp;
+           else
+                la[l].mx = la[l].rx-la[l].sp;
+        }
+        if (e.keyCode == '39') {
+           if((la[l].mx+la[l].sp)<la[l].rx)
+                la[l].mx += la[l].sp;
+           else
+                la[l].mx = 0;
+        }
     }
     
     
