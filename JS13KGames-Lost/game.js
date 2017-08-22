@@ -156,7 +156,7 @@ bo.do = 0;
 //number of stars
 bo.sts = 50;
 //offset
-bo.sp = 4;
+bo.sp = 1;
 //start point when move background
 bo.mx = 0;
 bo.my = 0;
