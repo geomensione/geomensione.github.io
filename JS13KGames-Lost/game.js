@@ -17,16 +17,43 @@ var la = [],
     b = {},
     bo = {},
     l_i,
-    sh = [
-        'W0W00000',
-        'W0WW0000',
-        'WWWWW000',
-        'WWW0WWWW',
-        'WWW0WWWW',
-        'WWWWW000',
-        'W0WW0000',
-        'W0W00000',
-    ];
+    sh = {
+         39:[  'W0W00000',
+            'W0WW0000',
+            'WWWWW000',
+            'WWW0WWWW',
+            'WWW0WWWW',
+            'WWWWW000',
+            'W0WW0000',
+            'W0W00000'],
+        38:[
+            '000WW000',
+            '000WW000',
+            '000WW000',
+            '00WWWW00',
+            '0WW00WW0',
+            'WWWWWWWW',
+            '00WWWW00',
+            'WWWWWWWW'],
+        37:[
+            '00000W0W',
+            '0000WW0W',
+            '000WWWWW',
+            'WWWW0WWW',
+            'WWWW0WWW',
+            '000WWWWW',
+            '0000WW0W',
+            '00000W0W'],
+        40:[
+            'WWWWWWWW',
+            '00WWWW00',
+            'WWWWWWWW',
+            '0WW00WW0',
+            '00WWWW00',
+            '000WW000',
+            '000WW000',
+            '000WW000']
+    };
 //foreground layer
 g.w = window.innerWidth;
 g.h = window.innerHeight;
@@ -52,7 +79,7 @@ g.fb_fn = function(){
     {
         for(let yo = 0;yo<this.s;yo++)
         {
-            if(sh[yo][xo] === 'W')
+            if(sh[this.dir][yo][xo] === 'W')
                 this.fb[x+xo][y+yo] = ['FF','FF','FF'];
         }
     }
@@ -248,6 +275,8 @@ d.onkeydown = function(e){
                else
                     la[l].mx = 0;
             }
+        }else{
+            la[l].dir = e.keyCode;
         }
     }
 }; 
