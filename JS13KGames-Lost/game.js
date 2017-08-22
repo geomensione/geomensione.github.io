@@ -88,7 +88,7 @@ b.do = 0;
 //number of stars
 b.sts = 50;
 //offset
-b.sp = 2;
+b.sp = 1;
 //start point when move background
 b.mx = 0;
 b.my = 0;
