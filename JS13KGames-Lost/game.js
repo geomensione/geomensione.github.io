@@ -25,7 +25,7 @@ var la = [],
         'WWW0WWWW',
         'WWWWW000',
         'W0WW0000',
-        'w0W00000',
+        'W0W00000',
     ];
 //foreground layer
 g.w = window.innerWidth;
