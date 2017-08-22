@@ -298,7 +298,7 @@ function doInt(x,y){
                 dir = '39';
             }
             else if (x > portx) {
-               if (y < porty) {
+               if (y > porty) {
                    la[l].my = down(la[l]);
                    dir = '40';
                 }
