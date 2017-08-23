@@ -17,7 +17,7 @@ var la = [],
     b = {},
     bo = {},
     l_i,
-    mousepressed = false;
+    mousepressed = false,
     sh = {
          39:[  'W0W00000',
             'W0WW0000',
