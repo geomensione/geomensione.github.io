@@ -333,13 +333,13 @@ function updateCoord(x,y){
 
 el.ontouchstart = function(e){
     mousepressed = true;
-    doInt(e.touches[0].pageX,e.touches[0].pageY);
+    doInt(e.changedTouches[0].pageX,e.changedTouches[0].pageY);
 }
 el.ontouchend = function(e){
     mousepressed = false;
 }
 el.ontouchmove = function(e){
-    updateCoord(e.touches[0].pageX, e.touches[0].pageY);
+    updateCoord(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
 }
 
 d.onmousemove = function(e){
