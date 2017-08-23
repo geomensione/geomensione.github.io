@@ -17,6 +17,7 @@ var la = [],
     b = {},
     bo = {},
     l_i,
+    mousepressed = false;
     sh = {
          39:[  'W0W00000',
             'W0WW0000',
@@ -285,20 +286,25 @@ function right(la){
 function doInt(x,y){
     //divide screen vertically in 3 parts
     let portx = la[0].w/3;
+    //divide screen horizontally in 2 parts
     let porty = la[0].h/2;
     let dir;
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
-            if (x < portx) {
+            la[l].x = x || la[l].x;
+            la[l].y = y || la[l].y;
+            
+            if (la[l].x < portx) {
                dir = '37';
                la[l].mx = left(la[l]);
             }
-            else if (x > (portx*2)) {
+            //x > 2/3 screen width
+            else if (la[l].x > (portx*2)) {
                 dir = '39';
                 la[l].mx = right(la[l]);
             }
-            else if (x > portx) {
-               if (y > porty) {
+            else if (la[l].x > portx) {
+               if (la[l].y > porty) {
                    dir = '40';
                    la[l].my = down(la[l]);
                 }
@@ -315,11 +321,26 @@ function doInt(x,y){
     }
 }; 
 
-d.onmousedown = function int(e){
+d.onmousemove = function(e){
+    let x = e.clientX;
+    let y = e.clientY;
+    for(let l = 0,la_l=la.length;l<la_l;l++){
+        la[l].x = x;
+        la[l].y = y;
+    }
+};
+
+d.onmouseup = function(e){
+    mousepressed = false;
+};
+
+d.onmousedown = function(e){
+    mousepressed = true;
     let x = e.clientX;
     let y = e.clientY;
     doInt(x,y);
 };
+
 d.onkeydown = function(e){
     e = e || window.event;
     for(let l = 0,la_l=la.length;l<la_l;l++){
@@ -370,6 +391,8 @@ function gr(){
 }
 //draw pixel using canvas api
 function dr(){
+    if(mousepressed)
+        doInt();
     for(let l = 0,la_l=la.length;l<la_l;l++){
         la[l].d_fn();
     }
