@@ -323,8 +323,6 @@ function doInt(x,y){
 
 function updateCoord(x,y){
     if(mousepressed){
-        let x = e.clientX;
-        let y = e.clientY;
         for(let l = 0,la_l=la.length;l<la_l;l++){
             la[l].x = x;
             la[l].y = y;
