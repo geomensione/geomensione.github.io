@@ -311,12 +311,12 @@ sh = {
             '000WW000',
             '000WW000']
     };
-
+//tl -> text layer
 function drawText(tl) {
 	var x = 1;
 	var y = 1;
 	for(var i=0; i < tl.sc.length; i++) {
-		x += drawLetter(el, x, y, tl.sc.charAt(i), [['EE'],['EE'],['11']]) + 1;
+		x += drawLetter(tl, x, y, tl.sc.charAt(i), [['EE'],['EE'],['11']]) + 1;
 	}
 }
 
