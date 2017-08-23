@@ -321,13 +321,29 @@ function doInt(x,y){
     }
 }; 
 
-d.onmousemove = function(e){
-    let x = e.clientX;
-    let y = e.clientY;
-    for(let l = 0,la_l=la.length;l<la_l;l++){
-        la[l].x = x;
-        la[l].y = y;
+function updateCoord(x,y){
+    if(mousepressed){
+        let x = e.clientX;
+        let y = e.clientY;
+        for(let l = 0,la_l=la.length;l<la_l;l++){
+            la[l].x = x;
+            la[l].y = y;
+        }
     }
+}
+
+d.touchstart = function(e){
+    mousepressed = true;
+}
+d.touchend = function(e){
+    mousepressed = false;
+}
+d.touchmove = function(e){
+    updateCoord(e.pageX, e.pageY);
+}
+
+d.onmousemove = function(e){
+    updateCoord(e.clientX, e.clientY);    
 };
 
 d.onmouseup = function(e){
