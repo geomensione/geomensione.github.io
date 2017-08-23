@@ -333,6 +333,7 @@ function updateCoord(x,y){
 
 el.ontouchstart = function(e){
     mousepressed = true;
+    doInt(e.pageX,e.pageY);
 }
 el.ontouchend = function(e){
     mousepressed = false;
