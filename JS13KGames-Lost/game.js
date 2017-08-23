@@ -290,21 +290,21 @@ function doInt(x,y){
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             if (x < portx) {
-               la[l].mx = left(la[l]);
                dir = '37';
+               la[l].mx = left(la[l]);
             }
             else if (x > (portx*2)) {
-                la[l].mx = right(la[l]);
                 dir = '39';
+                la[l].mx = right(la[l]);
             }
             else if (x > portx) {
                if (y > porty) {
-                   la[l].my = down(la[l]);
                    dir = '40';
+                   la[l].my = down(la[l]);
                 }
                 else{
-                    la[l].my = up(la[l]);
                     dir = '38';
+                    la[l].my = up(la[l]);
                 }
             }
         }else{
