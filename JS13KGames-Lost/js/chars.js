@@ -312,17 +312,17 @@ sh = {
             '000WW000']
     };
 
-function drawText(text) {
+function drawText(tl) {
 	var x = 1;
 	var y = 1;
-	for(var i=0; i < text.length; i++) {
-		x += drawLetter(x, y, text.charAt(i), rgb['blue']) + 1;
+	for(var i=0; i < tl.sc.length; i++) {
+		x += drawLetter(el, x, y, tl.sc.charAt(i), [['EE'],['EE'],['11']]) + 1;
 	}
 }
 
-function drawLetter(x, y, chr, c) {
+function drawLetter(tl, x, y, chr, c) {
 	var l = chars[chr];
-    if(!l) { return 0; }
+    	if(!l) { return 0; }
 	for(var i=0; i < l[0].length; i++) {
 		for(var j=0; j < l.length; j++) {
 			if(l[j].charAt(i) === "1") {
