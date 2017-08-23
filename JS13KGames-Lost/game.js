@@ -332,13 +332,13 @@ function updateCoord(x,y){
     }
 }
 
-d.touchstart = function(e){
+d.ontouchstart = function(e){
     mousepressed = true;
 }
-d.touchend = function(e){
+d.ontouchend = function(e){
     mousepressed = false;
 }
-d.touchmove = function(e){
+d.ontouchmove = function(e){
     updateCoord(e.pageX, e.pageY);
 }
 
