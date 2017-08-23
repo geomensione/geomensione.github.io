@@ -18,7 +18,7 @@ var la = [],
     bo = {},
     l_i,
     mousepressed = false,
-    el = document.body;
+    el = d.body,
     sh = {
          39:[  'W0W00000',
             'W0WW0000',
