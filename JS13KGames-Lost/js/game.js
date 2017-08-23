@@ -13,14 +13,59 @@ JS1K start
 //Init layers
 var la = [], 
     fr = 100, 
+    t = {}, 
     g = {}, 
     b = {},
     bo = {},
     l_i,
     mousepressed = false,
     el = d.documentElement;
-    
-//foreground layer
+
+//start text layer
+t.w = window.innerWidth;
+t.h = window.innerHeight;
+//resolution
+t.r = 24;
+//sprite dimension
+t.s = 5;
+//score
+t.sc = '00000000';
+t.fb_fn = function(){
+    this.fb = [];
+    let rx = this.rx,
+        ry = this.ry;
+    for(let i = 0;i<rx;i++){
+        this.fb[i] = [];
+        for(let d = 0;d<ry;d++){
+            //clear all
+            this.fb[i][d] = ['00', '00', '00'];
+        }
+    }
+    drawText(this);
+}
+
+t.d_fn = function(){
+    let rx = this.rx,
+        ry = this.ry,
+        o = this.o,
+        cx = 0, 
+        cy = 0;
+    for(let i = 0;i<rx;i++){
+        for(let d = 0;d<ry;d++){
+            if(this.fb[i][d][0] !== '00'){
+                c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+                c.fillRect(cx,cy,o,o);
+            }
+            cy += o;
+        }
+        cx += o;
+        cy = 0;
+    }
+}    
+//end text layer
+
+
+//start foreground layer
 g.w = window.innerWidth;
 g.h = window.innerHeight;
 //resolution
@@ -69,7 +114,9 @@ g.d_fn = function(){
         cy = 0;
     }
 }    
+//enf foreground layer
 
+//start background layer
 b.w = window.innerWidth;
 b.h = window.innerHeight;
 //resolution
@@ -137,7 +184,9 @@ b.d_fn = function(){
         cy = 0;
     }
 }
+//end background layer
 
+//start bottom layer
 bo.w = window.innerWidth;
 bo.h = window.innerHeight;
 //resolution
@@ -205,7 +254,7 @@ bo.d_fn = function(){
         cy = 0;
     }
 }    
-
+//end bottom layer
 
 //bottom
 la[0]=bo;
@@ -213,6 +262,9 @@ la[0]=bo;
 la[1]=b;
 //frames
 la[2]=g;
+//text
+la[3]=t;
+
 /*
 left arrow	37
 up arrow	38
