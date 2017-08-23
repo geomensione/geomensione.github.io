@@ -18,6 +18,7 @@ var la = [],
     bo = {},
     l_i,
     mousepressed = false,
+    el = document.body;
     sh = {
          39:[  'W0W00000',
             'W0WW0000',
@@ -330,13 +331,13 @@ function updateCoord(x,y){
     }
 }
 
-d.ontouchstart = function(e){
+el.ontouchstart = function(e){
     mousepressed = true;
 }
-d.ontouchend = function(e){
+el.ontouchend = function(e){
     mousepressed = false;
 }
-d.ontouchmove = function(e){
+el.ontouchmove = function(e){
     updateCoord(e.pageX, e.pageY);
 }
 
