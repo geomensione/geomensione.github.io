@@ -29,7 +29,7 @@ t.r = 24;
 //sprite dimension
 t.s = 5;
 //score
-t.sc = '00000000';
+t.sc = '00000';
 t.fb_fn = function(){
     this.fb = [];
     let rx = this.rx,
