@@ -9,11 +9,12 @@ h.s = 5;
 
 function random(range, negative){
     var num = Math.floor(Math.random()*20); // this will get a number between 1 and 99;
-    num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; //
+    if(negative)
+        num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; //
     return num;
 }
 
-function setRandomValue(){
+h.setRandomValue = function(){
     h.qy = random(20,true);
     h.qx = random(20,true);
     h.cx = random(this.rx);
