@@ -19,7 +19,10 @@ var la = [],
     bo = {},
     l_i,
     mousepressed = false,
-    el = d.documentElement;
+    el = d.documentElement,
+    //quadrant
+    qx = 0,
+    qy = 0;
 
 //start text layer
 t.w = window.innerWidth;
@@ -29,7 +32,7 @@ t.r = 36;
 //sprite dimension
 t.s = 5;
 //score
-t.sc = '00000';
+t.sc = qx+' '+qy;
 t.fb_fn = function(){
     this.fb = [];
     let rx = this.rx,
@@ -273,31 +276,39 @@ down arrow	40
 */
 
 function down(la){
-    if((la.my+la.sp)<la.ry)
+    if((la.my+la.sp)<la.ry){
         return la.my + la.sp;
-    else
+    }else{
+        qy--;
         return 0;
+    }
 }
 
 function up(la){
-   if((la.my-la.sp)>0)
+   if((la.my-la.sp)>0){
         return la.my - la.sp;
-   else
+   }else{
+        qy++;
         return la.ry-1;
+   }
 }
 
 function left(la){
-    if((la.mx-la.sp)>0)
+    if((la.mx-la.sp)>0){
             return la.mx - la.sp;
-    else
-            return la.rx-la.sp;
+    }else{
+        qx--;
+        return la.rx-la.sp;
+    }
 }
 
 function right(la){
-    if((la.mx+la.sp)<la.rx)
+    if((la.mx+la.sp)<la.rx){
             return la.mx + la.sp;
-       else
-            return 0;
+    }else{
+        qx--;
+        return 0;
+    }
 }
 
 function doInt(x,y){
