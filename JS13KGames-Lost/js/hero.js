@@ -8,7 +8,7 @@ h.s = 5;
 //score
 
 function random(range, negative){
-    var num = Math.floor(Math.random()*20); // this will get a number between 1 and 99;
+    var num = Math.floor(Math.random()*range); // this will get a number between 1 and 99;
     if(negative)
         num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; //
     return num;
