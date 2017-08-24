@@ -6,7 +6,22 @@ h.r = 36;
 //sprite dimension
 h.s = 5;
 //score
-h.sc = '';
+
+function random(range, negative){
+    var num = Math.floor(Math.random()*20); // this will get a number between 1 and 99;
+    num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; //
+    return num;
+}
+
+function setRandomValue(){
+    h.qy = random(20,true);
+    h.qx = random(20,true);
+    h.cx = random(this.rx);
+    h.cy = random(this.ry);
+}
+
+setRandomValue();
+
 h.fb_fn = function(){
     this.fb = [];
     let rx = this.rx,
