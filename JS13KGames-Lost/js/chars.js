@@ -311,6 +311,12 @@ sh = {
             '000WW000',
             '000WW000']
     };
+
+var hero = {0:['00W00',
+	      'WWWWW',
+	      '00W00',
+	      '0W0W0',
+	      'W000W']};
 //tl -> text layer
 function drawText(tl) {
 	var x = 1;
