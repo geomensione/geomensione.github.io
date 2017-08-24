@@ -25,7 +25,7 @@ var la = [],
 t.w = window.innerWidth;
 t.h = window.innerHeight;
 //resolution
-t.r = 24;
+t.r = 36;
 //sprite dimension
 t.s = 5;
 //score
