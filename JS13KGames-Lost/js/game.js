@@ -168,7 +168,8 @@ function down(la){
     if((la.my+la.sp)<la.ry){
         return la.my + la.sp;
     }else{
-        qy--;
+        if(this.update_quadrant)
+            qy--;
         return 0;
     }
 }
@@ -177,8 +178,9 @@ function up(la){
    if((la.my-la.sp)>0){
         return la.my - la.sp;
    }else{
-        qy++;
-        return la.ry-1;
+       if(this.update_quadrant)
+            qy++;
+       return la.ry-1;
    }
 }
 
@@ -186,7 +188,8 @@ function left(la){
     if((la.mx-la.sp)>0){
             return la.mx - la.sp;
     }else{
-        qx--;
+        if(this.update_quadrant)
+            qx--;
         return la.rx-la.sp;
     }
 }
@@ -195,7 +198,8 @@ function right(la){
     if((la.mx+la.sp)<la.rx){
             return la.mx + la.sp;
     }else{
-        qx--;
+        if(this.update_quadrant)
+            qx--;
         return 0;
     }
 }
