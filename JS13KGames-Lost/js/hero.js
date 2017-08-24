@@ -18,12 +18,19 @@ function setRandomValue(){
     h.qx = random(20,true);
     h.cx = random(this.rx);
     h.cy = random(this.ry);
+    this.picked = false;
 }
-
-setRandomValue();
 
 h.fb_fn = function(){
     this.fb = [];
+    //if I've grabbed hero,I set position of the new one
+    if(this.picked){
+        setRandomValue();
+    }else{
+        //create variable to decide when recreate quadrant position and coordinates of hero
+        this.picked = false;
+        setRandomValue()
+    }
     let rx = this.rx,
         ry = this.ry;
     for(let i = 0;i<rx;i++){
