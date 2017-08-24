@@ -6,7 +6,7 @@ t.r = 36;
 //sprite dimension
 t.s = 5;
 //score
-t.sc = qx+' '+qy;
+t.sc = '';
 t.fb_fn = function(){
     this.fb = [];
     let rx = this.rx,
@@ -18,6 +18,7 @@ t.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
+    this.sc = qx+' '+qy;
     drawText(this);
 }
 
