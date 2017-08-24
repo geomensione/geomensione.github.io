@@ -41,8 +41,17 @@ h.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
-    this.sc = qx+' '+qy;
-    drawText(this);
+    if(this.qx === qx && this.qy === qy){
+        for(let xo = 0;xo<this.s;xo++)
+        {
+            for(let yo = 0;yo<this.s;yo++)
+            {
+                if(sh[this.dir][yo][xo] === 'W')
+                    this.fb[this.cx+xo][this.cy+yo] = ['FF','FF','FF'];
+            }
+        }
+    }
+    
 }
 
 h.d_fn = function(){
