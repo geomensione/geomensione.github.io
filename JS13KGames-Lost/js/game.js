@@ -128,8 +128,8 @@ bo.d_fn = function(){
         cy = 0,
         x_l = rx,
         y_l = ry;
-    for(let i = mx,l = 0;l<rx;l++){
-        for(let d = my,ll=0;ll<ry;ll++){
+    for(let i = this.mx,l = 0;l<rx;l++){
+        for(let d = this.my,ll=0;ll<ry;ll++){
             if(this.fb[i][d][0] !== '00'){
                 c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                 c.fillRect(cx,cy,o,o);
