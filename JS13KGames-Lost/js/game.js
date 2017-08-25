@@ -19,9 +19,7 @@ var la = [],
     bo = {},
     h = {},
     l_i,
-    //start point when move background
-    mx = 0,
-    my = 0,
+    
     dir = 39,
     mousepressed = false,
     el = d.documentElement,
@@ -95,6 +93,9 @@ bo.do = 0;
 bo.sts = 50;
 //offset
 bo.sp = 1;
+//start point when move background
+bo.mx = 0,
+bo.my = 0,
 bo.fb_fn = function(){
     if(!this.do){
         this.do = 1;
@@ -127,8 +128,8 @@ bo.d_fn = function(){
         cy = 0,
         x_l = rx,
         y_l = ry;
-    for(let i = mx,l = 0;l<rx;l++){
-        for(let d = my,ll=0;ll<ry;ll++){
+    for(let i = this.mx,l = 0;l<rx;l++){
+        for(let d = this.my,ll=0;ll<ry;ll++){
             if(this.fb[i][d][0] !== '00'){
                 c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                 c.fillRect(cx,cy,o,o);
@@ -168,8 +169,8 @@ down arrow	40
 */
 
 function down(la){
-    if((my+la.sp)<la.ry){
-        return my + la.sp;
+    if((la.my+la.sp)<la.ry){
+        return la.my + la.sp;
     }else{
         if(la.update_quadrant)
             qy--;
@@ -178,8 +179,8 @@ function down(la){
 }
 
 function up(la){
-   if((my-la.sp)>0){
-        return my - la.sp;
+   if((la.my-la.sp)>0){
+        return la.my - la.sp;
    }else{
         //if(la.my>0)
         if(la.update_quadrant)
@@ -189,8 +190,8 @@ function up(la){
 }
 
 function left(la){
-    if((mx-la.sp)>0){
-            return mx - la.sp;
+    if((la.mx-la.sp)>0){
+            return la.mx - la.sp;
     }else{
         //if(la.mx>0)
         if(la.update_quadrant)
@@ -200,8 +201,8 @@ function left(la){
 }
 
 function right(la){
-    if((mx+la.sp)<la.rx){
-            return mx + la.sp;
+    if((la.mx+la.sp)<la.rx){
+            return la.mx + la.sp;
     }else{
         if(la.update_quadrant)
             qx--;
@@ -221,21 +222,21 @@ function doInt(x,y){
             
             if (la[l].x < portx) {
                dir = '37';
-               mx = left(la[l]);
+               la.mx = left(la[l]);
             }
             //x > 2/3 screen width
             else if (la[l].x > (portx*2)) {
                 dir = '39';
-                mx = right(la[l]);
+                la.mx = right(la[l]);
             }
             else if (la[l].x > portx) {
                if (la[l].y > porty) {
                    dir = '40';
-                   my = down(la[l]);
+                   la.my = down(la[l]);
                 }
                 else{
                     dir = '38';
-                    my = up(la[l]);
+                    la.my = up(la[l]);
                 }
             }
         }
@@ -282,16 +283,16 @@ d.onkeydown = function(e){
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             if (e.keyCode == '40') {
-               my = down(la[l]);
+               la[l].my = down(la[l]);
             }
             if (e.keyCode == '38') {
-                my = up(la[l]);
+                la[l].my = up(la[l]);
             }
             if (e.keyCode == '37') {
-               mx = left(la[l]);
+               la[l].mx = left(la[l]);
             }
             if (e.keyCode == '39') {
-               mx = right(la[l]);
+               la[l].mx = right(la[l]);
             }
         }else{
             dir = e.keyCode;
