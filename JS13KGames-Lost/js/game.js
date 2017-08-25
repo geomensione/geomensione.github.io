@@ -288,23 +288,28 @@ d.onmousedown = function(e){
 
 d.onkeydown = function(e){
     e = e || window.event;
+    let dir = '';
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             if (e.keyCode == '40') {
                la[l].my = down(la[l]);
+                dir = '40';
             }
             if (e.keyCode == '38') {
                 la[l].my = up(la[l]);
+                dir = '38';
             }
             if (e.keyCode == '37') {
                la[l].mx = left(la[l]);
+                dir = '37';
             }
             if (e.keyCode == '39') {
                la[l].mx = right(la[l]);
+                dir = '39';
             }
         }else{
             if(la[l].dir){
-                la[l].dir = e.keyCode;
+                la[l].dir = dir;
             }
         }
     }
