@@ -288,16 +288,16 @@ d.onkeydown = function(e){
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             if (e.keyCode == '40') {
-               my = down(la[l]);
+               la[l].my = down(la[l]);
             }
             if (e.keyCode == '38') {
-                my = up(la[l]);
+                la[l].my = up(la[l]);
             }
             if (e.keyCode == '37') {
-               mx = left(la[l]);
+               la[l].mx = left(la[l]);
             }
             if (e.keyCode == '39') {
-               mx = right(la[l]);
+               la[l].mx = right(la[l]);
             }
         }else{
             if(la[l].dir){
