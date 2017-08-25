@@ -208,7 +208,7 @@ function right(la){
             return la.mx + la.sp;
     }else{
         if(la.update_quadrant)
-            qx--;
+            qx++;
         return 0;
     }
 }
