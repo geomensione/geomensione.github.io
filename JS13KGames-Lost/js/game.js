@@ -181,9 +181,9 @@ function up(la){
    if((la.my-la.sp)>0){
         return la.my - la.sp;
    }else{
-        if(la.my>0)
-            if(la.update_quadrant)
-                qy++;
+        //if(la.my>0)
+        if(la.update_quadrant)
+            qy++;
        return la.ry-1;
    }
 }
@@ -192,9 +192,9 @@ function left(la){
     if((la.mx-la.sp)>0){
             return la.mx - la.sp;
     }else{
-        if(la.mx>0)
-            if(la.update_quadrant)
-                qx--;
+        //if(la.mx>0)
+        if(la.update_quadrant)
+            qx--;
         return la.rx-la.sp;
     }
 }
