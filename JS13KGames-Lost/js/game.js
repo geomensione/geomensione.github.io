@@ -97,8 +97,8 @@ bo.sts = 50;
 //offset
 bo.sp = 1;
 //start point when move background
-b.mx = 0;
-b.my = 0;
+bo.mx = 0;
+bo.my = 0;
 bo.fb_fn = function(){
     if(!this.do){
         this.do = 1;
