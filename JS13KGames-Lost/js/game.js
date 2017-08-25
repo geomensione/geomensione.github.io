@@ -162,7 +162,7 @@ la[2]=g;
 //text
 la[3]=t;
 //hero
-la[4]=h;
+//la[4]=h;
 
 /*
 left arrow	37
