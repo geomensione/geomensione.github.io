@@ -169,8 +169,8 @@ down arrow	40
 */
 
 function down(la){
-    if((my+la.sp)<la.ry){
-        return my + la.sp;
+    if((this.my+la.sp)<la.ry){
+        return this.my + la.sp;
     }else{
         if(la.update_quadrant)
             qy--;
@@ -179,8 +179,8 @@ function down(la){
 }
 
 function up(la){
-   if((my-la.sp)>0){
-        return my - la.sp;
+   if((this.my-la.sp)>0){
+        return this.my - la.sp;
    }else{
         //if(la.my>0)
         if(la.update_quadrant)
@@ -191,7 +191,7 @@ function up(la){
 
 function left(la){
     if((mx-la.sp)>0){
-            return mx - la.sp;
+            return this.mx - la.sp;
     }else{
         //if(la.mx>0)
         if(la.update_quadrant)
@@ -202,7 +202,7 @@ function left(la){
 
 function right(la){
     if((mx+la.sp)<la.rx){
-            return mx + la.sp;
+            return this.mx + la.sp;
     }else{
         if(la.update_quadrant)
             qx--;
@@ -223,21 +223,21 @@ function doInt(x,y){
             
             if (la[l].x < portx) {
                dir = '37';
-               mx = left(la[l]);
+               la[l].mx = left(la[l]);
             }
             //x > 2/3 screen width
             else if (la[l].x > (portx*2)) {
                 dir = '39';
-                mx = right(la[l]);
+                la[l].mx = right(la[l]);
             }
             else if (la[l].x > portx) {
                if (la[l].y > porty) {
                    dir = '40';
-                   my = down(la[l]);
+                   la[l].my = down(la[l]);
                 }
                 else{
                     dir = '38';
-                    my = up(la[l]);
+                    la[l].my = up(la[l]);
                 }
             }
         }else{
