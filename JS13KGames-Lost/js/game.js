@@ -22,7 +22,7 @@ var la = [],
     //start point when move background
     mx = 0,
     my = 0,
-
+    dir = 39,
     mousepressed = false,
     el = d.documentElement,
     //quadrant
@@ -39,7 +39,6 @@ g.h = window.innerHeight;
 g.r = 24;
 //sprite dimension
 g.s = 8;
-g.dir = 39;
 g.fb_fn = function(){
     this.fb = [];
     let rx = this.rx,
@@ -57,7 +56,7 @@ g.fb_fn = function(){
     {
         for(let yo = 0;yo<this.s;yo++)
         {
-            if(sh[this.dir][yo][xo] === 'W')
+            if(sh[dir][yo][xo] === 'W')
                 this.fb[x+xo][y+yo] = ['FF','FF','FF'];
         }
     }
@@ -215,7 +214,6 @@ function doInt(x,y){
     let portx = la[0].w/3;
     //divide screen horizontally in 2 parts
     let porty = la[0].h/2;
-    let dir;
     for(let l = 0,la_l=la.length;l<la_l;l++){
         if(la[l].sp){
             la[l].x = x || la[l].x;
@@ -239,10 +237,6 @@ function doInt(x,y){
                     dir = '38';
                     my = up(la[l]);
                 }
-            }
-        }else{
-            if(la[l].dir){
-                la[l].dir = dir;
             }
         }
     }
@@ -300,9 +294,7 @@ d.onkeydown = function(e){
                mx = right(la[l]);
             }
         }else{
-            if(la[l].dir){
-                la[l].dir = e.keyCode;
-            }
+            dir = e.keyCode;
         }
     }
 }; 
