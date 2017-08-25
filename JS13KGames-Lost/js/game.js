@@ -169,8 +169,8 @@ down arrow	40
 */
 
 function down(la){
-    if((this.my+la.sp)<la.ry){
-        return this.my + la.sp;
+    if((la.my+la.sp)<la.ry){
+        return la.my + la.sp;
     }else{
         if(la.update_quadrant)
             qy--;
@@ -179,8 +179,8 @@ function down(la){
 }
 
 function up(la){
-   if((this.my-la.sp)>0){
-        return this.my - la.sp;
+   if((la.my-la.sp)>0){
+        return la.my - la.sp;
    }else{
         //if(la.my>0)
         if(la.update_quadrant)
@@ -190,8 +190,8 @@ function up(la){
 }
 
 function left(la){
-    if((mx-la.sp)>0){
-            return this.mx - la.sp;
+    if((la.mx-la.sp)>0){
+            return la.mx - la.sp;
     }else{
         //if(la.mx>0)
         if(la.update_quadrant)
@@ -201,8 +201,8 @@ function left(la){
 }
 
 function right(la){
-    if((mx+la.sp)<la.rx){
-            return this.mx + la.sp;
+    if((la.mx+la.sp)<la.rx){
+            return la.mx + la.sp;
     }else{
         if(la.update_quadrant)
             qx--;
