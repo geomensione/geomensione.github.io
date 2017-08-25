@@ -6,6 +6,7 @@ h.r = 36;
 //sprite dimension
 h.s = 5;
 //score
+h.hero = true;
 
 function random(range, negative){
     var num = Math.floor(Math.random()*range); // this will get a number between 1 and 99;
