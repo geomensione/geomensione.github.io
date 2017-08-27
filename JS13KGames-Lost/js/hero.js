@@ -25,9 +25,8 @@ h.setRandomValue = function(){
 h.fb_fn = function(){
     this.fb = [];
     //if I've grabbed hero,I set position of the new one
-    if(!this.picked){
+    if(this.picked === undefined || this.picked){
         this.setRandomValue();
-        this.picked = false;
     }
     let rx = this.rx,
         ry = this.ry;
