@@ -59,16 +59,19 @@ h.d_fn = function(){
         o = this.o,
         cx = 0, 
         cy = 0;
-    for(let i = sx;i<rx;i++){
-        for(let d = sy;d<ry;d++){
-            if(this.fb[i][d][0] !== '00'){
-                c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
-                c.fillRect(cx,cy,o,o);
+    //draw the sprite in fb
+    if(this.qx === qx && this.qy === qy){
+        for(let i = sx;i<rx;i++){
+            for(let d = sy;d<ry;d++){
+                if(this.fb[i][d][0] !== '00'){
+                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+                    c.fillRect(cx,cy,o,o);
+                }
+                cy += o;
             }
-            cy += o;
+            cx += o;
+            cy = 0;
         }
-        cx += o;
-        cy = 0;
     }
 }    
 //end text layer
