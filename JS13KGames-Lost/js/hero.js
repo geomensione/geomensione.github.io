@@ -27,10 +27,7 @@ h.fb_fn = function(){
     //if I've grabbed hero,I set position of the new one
     if(this.picked){
         this.setRandomValue();
-    }else{
-        //create variable to decide when recreate quadrant position and coordinates of hero
         this.picked = false;
-        this.setRandomValue()
     }
     let rx = this.rx,
         ry = this.ry;
