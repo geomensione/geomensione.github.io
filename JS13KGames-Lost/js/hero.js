@@ -41,12 +41,13 @@ h.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
+    //draw the sprite in fb
     if(this.qx === qx && this.qy === qy){
         for(let xo = 0;xo<this.s;xo++)
         {
             for(let yo = 0;yo<this.s;yo++)
             {
-                if(sh[this.dir][yo][xo] === 'W')
+                if(hero[0][yo][xo] === 'W')
                     this.fb[this.cx+xo][this.cy+yo] = ['FF','FF','FF'];
             }
         }
@@ -60,8 +61,8 @@ h.d_fn = function(){
         o = this.o,
         cx = 0, 
         cy = 0;
-    for(let i = 0;i<rx;i++){
-        for(let d = 0;d<ry;d++){
+    for(let i = sx;i<rx;i++){
+        for(let d = sy;d<ry;d++){
             if(this.fb[i][d][0] !== '00'){
                 c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                 c.fillRect(cx,cy,o,o);
