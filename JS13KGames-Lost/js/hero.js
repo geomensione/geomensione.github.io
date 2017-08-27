@@ -46,7 +46,7 @@ h.fb_fn = function(){
             for(let yo = 0;yo<this.s;yo++)
             {
                 if(hero[0][yo][xo] === 'W')
-                    this.fb[this.cx+xo][this.cy+yo] = ['FF','FF','FF'];
+                    this.fb[this.cx+xo][this.cy+yo] = ['00','FF','00'];
             }
         }
     }
