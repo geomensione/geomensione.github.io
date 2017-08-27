@@ -22,7 +22,9 @@ var la = [],
     //start point when move background
     mx = 0,
     my = 0,
-
+    //shared data
+    sx = 0,
+    sy = 0,
     mousepressed = false,
     el = d.documentElement,
     //quadrant
@@ -243,6 +245,8 @@ function doInt(x,y){
                     la[l].my = up(la[l]);
                 }
             }
+            sx = la[l].mx;
+            sy = la[l].my;
         }else{
             if(la[l].dir){
                 la[l].dir = dir;
@@ -307,6 +311,8 @@ d.onkeydown = function(e){
                la[l].mx = right(la[l]);
                 dir = '39';
             }
+            sx = la[l].mx;
+            sy = la[l].my;
         }else{
             if(la[l].dir){
                 la[l].dir = dir;
