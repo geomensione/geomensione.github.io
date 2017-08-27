@@ -17,8 +17,8 @@ function random(range, negative){
 h.setRandomValue = function(){
     //h.qy = random(20,true);
     //h.qx = random(20,true);
-    h.qy = 1;
-    h.qx = 1;
+    h.qy = 0;
+    h.qx = 0;
     h.cx = random(this.rx);
     h.cy = random(this.ry);
     this.picked = false;
