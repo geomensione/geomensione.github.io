@@ -313,11 +313,11 @@ d.onkeydown = function(e){
             }
             sx = la[l].mx;
             sy = la[l].my;
-        }else{
-            if(la[l].dir){
-                la[l].dir = dir;
-            }
         }
+        if(la[l].dir){
+            la[l].dir = dir;
+        }
+
     }
 }; 
 
