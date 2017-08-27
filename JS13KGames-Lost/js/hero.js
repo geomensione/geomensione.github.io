@@ -39,8 +39,11 @@ h.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
+    function checkQuadrant(x,y){
+        return (this.qx === x && this.qy === y);
+    }
     //draw the sprite in fb
-    if(this.qx === qx && this.qy === qy){
+    if(checkQuadrant(qx,qy) || checkQuadrant(qx-1,qy) || checkQuadrant(qx+1,qy) || checkQuadrant(qx,qy-1) || checkQuadrant(qx,qy+1)){
         for(let xo = 0;xo<this.s;xo++)
         {
             for(let yo = 0;yo<this.s;yo++)
