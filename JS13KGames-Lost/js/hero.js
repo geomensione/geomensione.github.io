@@ -40,10 +40,10 @@ h.fb_fn = function(){
         }
     }
     function checkQuadrant(x,y){
-        return (this.qx === x && this.qy === y);
+        return (this.qx === x && this.qy === y) || (this.qx === x-1 && this.qy === y) || (this.qx === x+1 && this.qy === y) || (this.qx === x && this.qy === y-1) || (this.qx === x && this.qy === y+1);
     }
     //draw the sprite in fb
-    if(checkQuadrant(qx,qy) || checkQuadrant(qx-1,qy) || checkQuadrant(qx+1,qy) || checkQuadrant(qx,qy-1) || checkQuadrant(qx,qy+1)){
+    if(checkQuadrant(qx,qy)){
         for(let xo = 0;xo<this.s;xo++)
         {
             for(let yo = 0;yo<this.s;yo++)
