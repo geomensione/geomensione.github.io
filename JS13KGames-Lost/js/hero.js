@@ -39,20 +39,15 @@ h.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
-    function checkQuadrant(x,y){
-        return (this.qx === x && this.qy === y) || ((this.qx-1) === x && this.qy === y) || ((this.qx+1) === x && this.qy === y) || (this.qx === x && (this.qy-1) === y) || (this.qx === x && (this.qy+1) === y);
-    }
-    //draw the sprite in fb
-    if(checkQuadrant(qx,qy)){
-        for(let xo = 0;xo<this.s;xo++)
+    for(let xo = 0;xo<this.s;xo++)
+    {
+        for(let yo = 0;yo<this.s;yo++)
         {
-            for(let yo = 0;yo<this.s;yo++)
-            {
-                if(hero[0][yo][xo] === 'W')
-                    this.fb[this.cx+xo][this.cy+yo] = ['11','FF','00'];
-            }
+            if(hero[0][yo][xo] === 'W')
+                this.fb[this.cx+xo][this.cy+yo] = ['11','FF','00'];
         }
     }
+    
     
 }
 
@@ -63,7 +58,11 @@ h.d_fn = function(){
         cx = 0, 
         cy = 0;
     //draw the sprite in fb
-    if(this.qx === qx && this.qy === qy){
+    function checkQuadrant(x,y){
+        return (this.qx === x && this.qy === y) || ((this.qx-1) === x && this.qy === y) || ((this.qx+1) === x && this.qy === y) || (this.qx === x && (this.qy-1) === y) || (this.qx === x && (this.qy+1) === y);
+    }
+    //draw the sprite in fb
+    if(checkQuadrant(qx,qy)){
         for(let i = sx;i<rx;i++){
             for(let d = sy;d<ry;d++){
                 if(this.fb[i][d][0] !== '00'){
@@ -76,5 +75,6 @@ h.d_fn = function(){
             cy = 0;
         }
     }
+    
 }    
 //end text layer
