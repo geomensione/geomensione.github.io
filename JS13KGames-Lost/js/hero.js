@@ -40,7 +40,7 @@ h.fb_fn = function(){
         }
     }
     function checkQuadrant(x,y){
-        return (this.qx === x && this.qy === y) || (this.qx === x-1 && this.qy === y) || (this.qx === x+1 && this.qy === y) || (this.qx === x && this.qy === y-1) || (this.qx === x && this.qy === y+1);
+        return (this.qx === x && this.qy === y) || ((this.qx-1) === x && this.qy === y) || ((this.qx+1) === x && this.qy === y) || (this.qx === x && (this.qy-1) === y) || (this.qx === x && (this.qy+1) === y);
     }
     //draw the sprite in fb
     if(checkQuadrant(qx,qy)){
