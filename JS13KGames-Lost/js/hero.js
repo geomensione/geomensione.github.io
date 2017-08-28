@@ -2,7 +2,7 @@
 h.w = window.innerWidth;
 h.h = window.innerHeight;
 //resolution
-h.r = 36;
+h.r = 48;
 //sprite dimension
 h.s = 5;
 //score
