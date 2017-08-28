@@ -339,7 +339,8 @@ function drawLetter(tl, x, y, chr, c) {
 	for(var i=0; i < l[0].length; i++) {
 		for(var j=0; j < l.length; j++) {
 			if(l[j].charAt(i) === "1") {
-				tl['fb'][x+i][y+j] = c;
+				if(tl['fb'] && tl['fb'][x+i] && tl['fb'][x+i][y+j])
+					tl['fb'][x+i][y+j] = c;
 			}
 		}
 	}
