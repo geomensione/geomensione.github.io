@@ -54,7 +54,7 @@ function down(la){
         return la.my + la.sp;
     }else{
         if(la.update_quadrant)
-            qy--;
+            qx--;
         return 0;
     }
 }
@@ -65,7 +65,7 @@ function up(la){
    }else{
         //if(la.my>0)
         if(la.update_quadrant)
-            qy++;
+            qx++;
        return la.ry-1;
    }
 }
@@ -76,7 +76,7 @@ function left(la){
     }else{
         //if(la.mx>0)
         if(la.update_quadrant)
-            qx--;
+            qy--;
         return la.rx-la.sp;
     }
 }
@@ -86,7 +86,7 @@ function right(la){
             return la.mx + la.sp;
     }else{
         if(la.update_quadrant)
-            qx++;
+            qy++;
         return 0;
     }
 }
