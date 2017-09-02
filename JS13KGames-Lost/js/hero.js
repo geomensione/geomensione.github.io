@@ -17,8 +17,8 @@ function random(range, negative){
 h.setRandomValue = function(){
     //h.qy = random(20,true);
     //h.qx = random(20,true);
-    h.qy = 0;
-    h.qx = 0;
+    h.quy = 0;
+    h.qux = 0;
     h.cx = random(this.rx);
     h.cy = random(this.ry);
     this.picked = false;
@@ -68,7 +68,7 @@ h.d_fn = function(){
             for(let i = 0;i<sx;i++){
                 for(let d = 0;d<sy;d++){
         */
-        return (this.qx === x && this.qy === y);
+        return (this.qux === x && this.quy === y);
     }
     let init_i,init_d,condition_i,condition_d = 0;
     //draw the sprite in fb
