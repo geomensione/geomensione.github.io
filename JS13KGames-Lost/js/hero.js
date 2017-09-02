@@ -63,8 +63,8 @@ h.d_fn = function(){
     }
     //draw the sprite in fb
     if(checkQuadrant(qx,qy)){
-        for(let i = 0;i<sx;i++){
-            for(let d = 0;d<sy;d++){
+        for(let i = sx;i<rx;i++){
+            for(let d = sy;d<ry;d++){
                 /*
                 if(this.fb[i][d][0] !== '00'){
                     c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
