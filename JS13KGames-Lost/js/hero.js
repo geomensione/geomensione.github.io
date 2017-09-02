@@ -58,7 +58,7 @@ h.d_fn = function(){
         cx = 0, 
         cy = 0;
     //draw the sprite in fb
-    function checkQuadrant(x,y){
+    function checkQuadrant(me,x,y){
         /*
         to print correctly hero quadrant we need to change loop conditions:
         1-I'm in the same quadrant and I'm going down or right 
@@ -68,17 +68,17 @@ h.d_fn = function(){
             for(let i = 0;i<sx;i++){
                 for(let d = 0;d<sy;d++){
         */
-        return (this.qux === x && this.quy === y);
+        return (me.qux === x && me.quy === y);
     }
     let init_i,init_d,condition_i,condition_d = 0;
     //draw the sprite in fb
-    if(checkQuadrant(qx,qy)){
+    if(checkQuadrant(this,qx,qy)){
         init_i = sx;
         init_d = sy;
         condition_i = rx;
         condition_d = ry;
     }else{
-        if(checkQuadrant(qx-1,qy) || checkQuadrant(qx,qy+1) || checkQuadrant(qx-1,qy+1)){
+        if(checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy+1)){
             init_i = 0;
             init_d = 0;
             condition_i = sx;
