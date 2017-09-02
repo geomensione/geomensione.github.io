@@ -79,10 +79,10 @@ h.d_fn = function(){
         condition_d = ry;
     }else{
         if(checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy+1)){
-            init_i = 0;
-            init_d = 0;
-            condition_i = rx-(rx-sx);
-            condition_d = ry-(ry-sy);
+            init_i = rx-(rx-sx);
+            init_d = ry-(ry-sy);
+            condition_i = sx;
+            condition_d = sy;
         }
     }
     
