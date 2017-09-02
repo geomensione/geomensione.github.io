@@ -68,25 +68,38 @@ h.d_fn = function(){
             for(let i = 0;i<sx;i++){
                 for(let d = 0;d<sy;d++){
         */
-        return (this.qx === x && this.qy === y) || ((this.qx-1) === x && this.qy === y) || ((this.qx+1) === x && this.qy === y) || (this.qx === x && (this.qy-1) === y) || (this.qx === x && (this.qy+1) === y);
+        return (this.qx === x && this.qy === y);
     }
+    let init_i,init_d,condition_i,condition_d = 0;
     //draw the sprite in fb
     if(checkQuadrant(qx,qy)){
-        for(let i = sx;i<rx;i++){
-            for(let d = sy;d<ry;d++){
-                /*
-                if(this.fb[i][d][0] !== '00'){
-                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
-                    c.fillRect(cx,cy,o,o);
-                }
-                */
-                c.fillStyle = "rgba(0,255,0,0.5)";
-                c.fillRect(cx,cy,o,o);
-                cy += o;
-            }
-            cx += o;
-            cy = 0;
+        init_i = sx;
+        init_d = sy;
+        condition_i = rx;
+        condition_d = ry;
+    }else{
+        if(checkQuadrant(qx-1,qy) || checkQuadrant(qx,qy+1) || checkQuadrant(qx-1,qy+1)){
+            init_i = 0;
+            init_d = 0;
+            condition_i = sx;
+            condition_d = sy;
         }
+    }
+    
+    for(let i = init_i;i<condition_i;i++){
+        for(let d = init_d;d<condition_d;d++){
+            /*
+            if(this.fb[i][d][0] !== '00'){
+                c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+                c.fillRect(cx,cy,o,o);
+            }
+            */
+            c.fillStyle = "rgba(0,255,0,0.5)";
+            c.fillRect(cx,cy,o,o);
+            cy += o;
+        }
+        cx += o;
+        cy = 0;
     }
     
 }    
