@@ -73,8 +73,8 @@ h.d_fn = function(){
     let init_i,init_d,condition_i,condition_d = 0;
     //draw the sprite in fb
     if(checkQuadrant(this,qx,qy)){
-        init_i = 0;
-        init_d = 0;
+        init_i = sx;
+        init_d = sy;
         condition_i = rx
         condition_d = ry;
     }else{
