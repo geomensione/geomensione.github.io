@@ -78,7 +78,8 @@ h.d_fn = function(){
         condition_i = rx;
         condition_d = ry;
     }else{
-        if(checkQuadrant(this,qx,qy-1) || checkQuadrant(this,qx+1,qy) || checkQuadrant(this,qx+1,qy-1)){
+        //check if I'am in the right, or up, or both quadrant
+        if(checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx-1,qy+1)){
             init_i = rx;
             init_d = ry;
             condition_i = sx;
