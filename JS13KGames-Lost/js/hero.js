@@ -80,10 +80,10 @@ h.d_fn = function(){
     }else{
         //check if I'am in the right, or up, or both quadrant
         if(checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx-1,qy+1)){
-            init_i = 0;
-            init_d = 0;
-            condition_i = sx;
-            condition_d = sy;
+            init_i = sx;
+            init_d = sy;
+            condition_i = rx;
+            condition_d = ry;
         }
     }
     
