@@ -73,9 +73,9 @@ h.d_fn = function(){
     let init_i,init_d,condition_i,condition_d = 0;
     //draw the sprite in fb
     if(checkQuadrant(this,qx,qy)){
-        init_i = sx;
-        init_d = sy;
-        condition_i = rx;
+        init_i = 0;
+        init_d = 0;
+        condition_i = rx-5;
         condition_d = ry;
     }else{
         //check if I'am in the right, or up, or both quadrant
