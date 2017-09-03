@@ -82,8 +82,8 @@ h.d_fn = function(){
         if(checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx-1,qy+1)){
             init_i = 0;
             init_d = 0;
-            condition_i = sx;
-            condition_d = sy;
+            condition_i = (sx !== 0)?sx:0;
+            condition_d = (sy !== 0)?sy:0;
         }
     }
     
