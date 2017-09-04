@@ -81,8 +81,7 @@ h.d_fn = function(){
     if(checkQuadrant(this,qx-1,qy)){
         init_i = 0;
         init_d = 0;
-        cx = (rx - sx)*o;
-        cy = (ry + sy)*o;
+        
     }
 
     //check if I'am in the left
