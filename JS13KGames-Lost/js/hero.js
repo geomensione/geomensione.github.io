@@ -71,20 +71,33 @@ h.d_fn = function(){
         return (me.qux === x && me.quy === y);
     }
     let init_i,init_d,condition_i,condition_d = 0;
-    //draw the sprite in fb
-    if(checkQuadrant(this,qx,qy)){
+    
+    init_i = sx;
+    init_d = sy;
+    condition_i = rx
+    condition_d = ry;
+
+    if(checkQuadrant(this,qx-1,qy)){
+        init_i = 0;
+        init_d = 0;
+        cx = (rx - sx)*o;
+        cy = (ry + sy)*o;
+    }
+
+    //check if I'am in the right
+    if(checkQuadrant(this,qx,qy+1)){
+        init_i = 0;
+        init_d = sy;
+        cx = (rx - sx)*o;
+        cy = (ry + sy)*o;
+    }
+
+    //check if I'am in the right, or up
+    if(checkQuadrant(this,qx-1,qy+1)){
         init_i = sx;
         init_d = sy;
-        condition_i = rx
-        condition_d = ry;
-    }else{
-        //check if I'am in the right, or up, or both quadrant
-        if(checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx-1,qy+1)){
-            init_i = sx;
-            init_d = sy;
-            condition_i = rx;
-            condition_d = ry;
-        }
+        cx = (rx - sx)*o;
+        cy = (ry + sy)*o;
     }
     
     for(let i = init_i;i<condition_i;i++){
