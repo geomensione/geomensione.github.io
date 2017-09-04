@@ -56,7 +56,8 @@ h.d_fn = function(){
         ry = this.ry,
         o = this.o,
         cx = 0, 
-        cy = 0;
+        cy = 0,
+        reset_cy = 0;
     //draw the sprite in fb
     function checkQuadrant(me,x,y){
         /*
@@ -74,17 +75,19 @@ h.d_fn = function(){
     
     init_i = sx;
     init_d = sy;
-    condition_i = rx
+    condition_i = rx;
     condition_d = ry;
 
     //check if I'am in up quadrant
+    
     if(checkQuadrant(this,qx-1,qy)){
-        init_i = sx;
-        init_d = 0;
-        cx = (rx - sx)*o;
-        cy = (ry + sy)*o;
+        init_d = ry-sy;
+        reset_cy = (ry - sy)*o;
+        //init_i = 0;
+        //condition_d = ry;
+        cy = (ry - sy)*o;
     }
-
+    
     //check if I'am in the left
     if(checkQuadrant(this,qx,qy+1)){
         init_i = 0;
@@ -95,8 +98,9 @@ h.d_fn = function(){
 
     //check if I'am in the left up
     if(checkQuadrant(this,qx-1,qy+1)){
-        init_i = sx;
-        init_d = sy;
+        reset_cy = (ry - sy)*o;
+        init_i = 0;
+        init_d = sy-sy;
         cx = (rx - sx)*o;
         cy = (ry + sy)*o;
     }
@@ -114,7 +118,7 @@ h.d_fn = function(){
             cy += o;
         }
         cx += o;
-        cy = 0;
+        cy = reset_cy;
     }
     
 }    
