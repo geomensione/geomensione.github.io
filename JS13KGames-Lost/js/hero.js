@@ -79,10 +79,10 @@ h.d_fn = function(){
 
     //check if I'am in up quadrant
     if(checkQuadrant(this,qx-1,qy)){
-        init_i = 0;
+        init_i = sx;
         init_d = 0;
-        condition_i = sx;
-        condition_d = sy;
+        cx = (rx - sx)*o;
+        cy = (ry + sy)*o;
     }
 
     //check if I'am in the left
