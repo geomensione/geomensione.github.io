@@ -77,6 +77,7 @@ h.d_fn = function(){
     condition_i = rx
     condition_d = ry;
 
+    //check if I'am in up quadrant
     if(checkQuadrant(this,qx-1,qy)){
         init_i = 0;
         init_d = 0;
@@ -84,7 +85,7 @@ h.d_fn = function(){
         cy = (ry + sy)*o;
     }
 
-    //check if I'am in the right
+    //check if I'am in the left
     if(checkQuadrant(this,qx,qy+1)){
         init_i = 0;
         init_d = sy;
@@ -92,7 +93,7 @@ h.d_fn = function(){
         cy = (ry + sy)*o;
     }
 
-    //check if I'am in the right, or up
+    //check if I'am in the left up
     if(checkQuadrant(this,qx-1,qy+1)){
         init_i = sx;
         init_d = sy;
