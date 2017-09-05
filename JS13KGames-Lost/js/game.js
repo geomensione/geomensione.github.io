@@ -37,10 +37,11 @@ la[0]=bo;
 la[1]=b;
 //frames
 la[2]=g;
-//text
-la[3]=t;
 //hero
-la[4]=h;
+la[3]=h;
+//text
+la[4]=t;
+
 
 /*
 left arrow	37
