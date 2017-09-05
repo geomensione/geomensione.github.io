@@ -134,7 +134,7 @@ h.d_fn = function(){
                 cy += o;
             }
             cx += o;
-            cy = reset_cy;
+            cy = 0;
             
         }
     }
