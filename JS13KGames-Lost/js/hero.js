@@ -119,21 +119,26 @@ h.d_fn = function(){
             cx = (rx - sx)*o;
             cy = (ry + sy)*o;
         }
-
+        let x,y;
         for(let i = init_i;i<condition_i;i++){
+            x=0;
             for(let d = init_d;d<condition_d;d++){
+                y=0;
                 if(this.fb[i][d][0] !== '00'){
                     this.hit(cx,cy,1,1,function(){});
-                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+                    c.fillStyle = "#"+this.fb[x][y][0]+this.fb[x][y][1]+this.fb[x][y][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
                     c.fillStyle = "rgba(0,255,0,0.1)";
                     c.fillRect(cx,cy,o,o);
                 }
                 cy += o;
+                y++;
             }
             cx += o;
+            x++;
             cy = reset_cy;
+            y=0;
         }
     }
 }    
