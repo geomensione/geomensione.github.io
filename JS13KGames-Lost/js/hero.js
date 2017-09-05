@@ -109,14 +109,16 @@ h.d_fn = function(){
 
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
-                /*
+                
                 if(this.fb[i][d][0] !== '00'){
                     c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                     c.fillRect(cx,cy,o,o);
+                }else{
+                    c.fillStyle = "rgba(0,255,0,0.5)";
+                    c.fillRect(cx,cy,o,o);
                 }
-                */
-                c.fillStyle = "rgba(0,255,0,0.5)";
-                c.fillRect(cx,cy,o,o);
+                
+                
                 cy += o;
             }
             cx += o;
