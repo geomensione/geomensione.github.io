@@ -113,7 +113,7 @@ h.d_fn = function(){
 
         //check if I'am in the left up
         if(checkQuadrant(this,qx-1,qy+1)){
-            reset_cy = (ry - sy)*o;
+            reset_cy = (rx - sx)*o;
             init_i = 0;
             init_d = sy-sy;
             cx = (rx - sx)*o;
@@ -130,8 +130,6 @@ h.d_fn = function(){
                     c.fillStyle = "rgba(0,255,0,0.1)";
                     c.fillRect(cx,cy,o,o);
                 }
-                
-                
                 cy += o;
             }
             cx += o;
