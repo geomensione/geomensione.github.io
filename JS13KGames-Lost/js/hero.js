@@ -122,7 +122,7 @@ h.d_fn = function(){
 
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
-                
+                this.hit(cx,cy,1,1,function(){});
                 if(this.fb[i][d][0] !== '00'){
                     c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                     c.fillRect(cx,cy,o,o);
