@@ -52,7 +52,7 @@ h.fb_fn = function(){
 }
 
 h.hit = function(x,y,width,height,fn){
-    var imgd = context.getImageData(x, y, width, height);
+    var imgd = c.getImageData(x, y, width, height);
     var pix = imgd.data;
 
     // Loop over each pixel and invert the color.
