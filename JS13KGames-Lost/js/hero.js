@@ -114,7 +114,7 @@ h.d_fn = function(){
                     c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
-                    c.fillStyle = "rgba(0,255,0,0.5)";
+                    c.fillStyle = "rgba(0,255,0,0.1)";
                     c.fillRect(cx,cy,o,o);
                 }
                 
