@@ -132,7 +132,6 @@ h.d_fn = function(){
                     c.fillRect(cx,cy,o,o);
                 }
                 cy += o;
-                y++;
             }
             cx += o;
             cy = reset_cy;
