@@ -71,55 +71,57 @@ h.d_fn = function(){
         */
         return (me.qux === x && me.quy === y);
     }
-    let init_i,init_d,condition_i,condition_d = 0;
     
-    init_i = sx;
-    init_d = sy;
-    condition_i = rx;
-    condition_d = ry;
+    if(checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy+1) || checkQuadrant(this,qx,qy)){
+        let init_i,init_d,condition_i,condition_d = 0;
 
-    //check if I'am in up quadrant
-    
-    if(checkQuadrant(this,qx-1,qy)){
-        init_d = ry-sy;
-        reset_cy = (ry - sy)*o;
-        //init_i = 0;
-        //condition_d = ry;
-        cy = (ry - sy)*o;
-    }
-    
-    //check if I'am in the left
-    if(checkQuadrant(this,qx,qy+1)){
-        init_i = 0;
+        init_i = sx;
         init_d = sy;
-        cx = (rx - sx)*o;
-        cy = (ry + sy)*o;
-    }
+        condition_i = rx;
+        condition_d = ry;
 
-    //check if I'am in the left up
-    if(checkQuadrant(this,qx-1,qy+1)){
-        reset_cy = (ry - sy)*o;
-        init_i = 0;
-        init_d = sy-sy;
-        cx = (rx - sx)*o;
-        cy = (ry + sy)*o;
-    }
-    
-    for(let i = init_i;i<condition_i;i++){
-        for(let d = init_d;d<condition_d;d++){
-            /*
-            if(this.fb[i][d][0] !== '00'){
-                c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
-                c.fillRect(cx,cy,o,o);
-            }
-            */
-            c.fillStyle = "rgba(0,255,0,0.5)";
-            c.fillRect(cx,cy,o,o);
-            cy += o;
+        //check if I'am in up quadrant
+
+        if(checkQuadrant(this,qx-1,qy)){
+            init_d = ry-sy;
+            reset_cy = (ry - sy)*o;
+            //init_i = 0;
+            //condition_d = ry;
+            cy = (ry - sy)*o;
         }
-        cx += o;
-        cy = reset_cy;
+
+        //check if I'am in the left
+        if(checkQuadrant(this,qx,qy+1)){
+            init_i = 0;
+            init_d = sy;
+            cx = (rx - sx)*o;
+            cy = (ry + sy)*o;
+        }
+
+        //check if I'am in the left up
+        if(checkQuadrant(this,qx-1,qy+1)){
+            reset_cy = (ry - sy)*o;
+            init_i = 0;
+            init_d = sy-sy;
+            cx = (rx - sx)*o;
+            cy = (ry + sy)*o;
+        }
+
+        for(let i = init_i;i<condition_i;i++){
+            for(let d = init_d;d<condition_d;d++){
+                /*
+                if(this.fb[i][d][0] !== '00'){
+                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+                    c.fillRect(cx,cy,o,o);
+                }
+                */
+                c.fillStyle = "rgba(0,255,0,0.5)";
+                c.fillRect(cx,cy,o,o);
+                cy += o;
+            }
+            cx += o;
+            cy = reset_cy;
+        }
     }
-    
 }    
 //end text layer
