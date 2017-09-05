@@ -113,7 +113,7 @@ h.d_fn = function(){
 
         //check if I'am in the left up
         if(checkQuadrant(this,qx-1,qy+1)){
-            reset_cy = (rx - sx)*o;
+            reset_cy = (ry - sy)*o;
             init_i = 0;
             init_d = sy-sy;
             cx = (rx - sx)*o;
