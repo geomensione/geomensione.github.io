@@ -120,12 +120,10 @@ h.d_fn = function(){
             cy = (ry + sy)*o;
         }
         for(let i = init_i;i<condition_i;i++){
-            cx=0;
             for(let d = init_d;d<condition_d;d++){
-                cy=0;
                 if(this.fb[i][d][0] !== '00'){
                     this.hit(cx,cy,1,1,function(){});
-                    c.fillStyle = "#"+this.fb[cx][cy][0]+this.fb[cx][cy][1]+this.fb[cx][cy][2];
+                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
                     c.fillStyle = "rgba(0,255,0,0.1)";
