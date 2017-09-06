@@ -70,6 +70,8 @@ h.d_fn = function(){
         o = this.o,
         cx = 0, 
         cy = 0,
+        i_o = 0,
+        d_o = 0,
         reset_cy = 0;
     //draw the sprite in fb
     function checkQuadrant(me,x,y){
@@ -88,18 +90,21 @@ h.d_fn = function(){
     if(checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy+1) || checkQuadrant(this,qx,qy)){
         let init_i,init_d,condition_i,condition_d = 0;
 
+        
         init_i = sx;
         init_d = sy;
         condition_i = rx;
         condition_d = ry;
+
+        if(checkQuadrant(this,qx,qy)){
+            //
+        }
 
         //check if I'am in up quadrant
 
         if(checkQuadrant(this,qx-1,qy)){
             init_d = ry-sy;
             reset_cy = (ry - sy)*o;
-            //init_i = 0;
-            //condition_d = ry;
             cy = (ry - sy)*o;
         }
 
@@ -109,6 +114,7 @@ h.d_fn = function(){
             init_d = sy;
             cx = (rx - sx)*o;
             cy = (ry + sy)*o;
+            
         }
 
         //check if I'am in the left up
@@ -121,17 +127,20 @@ h.d_fn = function(){
         }
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
-                if(this.fb[i][d][0] !== '00'){
+                if(this.fb[i_o][d_o][0] !== '00'){
                     this.hit(cx,cy,1,1,function(){});
-                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+                    c.fillStyle = "#"+this.fb[i_o][d_o][0]+this.fb[i_o][d_o][1]+this.fb[i_o][d_o][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
                     c.fillStyle = "rgba(0,255,0,0.1)";
                     c.fillRect(cx,cy,o,o);
                 }
+                d_o++;
                 cy += o;
             }
             cx += o;
+            i_o++;
+            d_o = 0;
             cy = reset_cy;
             
         }
