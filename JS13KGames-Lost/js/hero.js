@@ -138,7 +138,8 @@ h.d_fn = function(){
                     c.fillStyle = "rgba(0,255,0,0.1)";
                     c.fillRect(cx,cy,o,o);
                 }
-                d_o++;
+                if((d_o+1)<condition_d)
+                    d_o++;
                 cy += o;
             }
             cx += o;
