@@ -128,6 +128,8 @@ h.d_fn = function(){
         }
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
+                if(!this.fb[i_o][d_o][0])
+                    console.log('not exist '+i_o+', '+i_d);
                 if(this.fb[i_o][d_o][0] !== '00'){
                     this.hit(cx,cy,1,1,function(){});
                     c.fillStyle = "#"+this.fb[i_o][d_o][0]+this.fb[i_o][d_o][1]+this.fb[i_o][d_o][2];
