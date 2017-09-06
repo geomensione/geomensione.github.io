@@ -97,8 +97,10 @@ h.d_fn = function(){
         condition_d = ry;
 
         if(checkQuadrant(this,qx,qy)){
-            i_o=init_i;
-            d_o=init_d;
+            init_d=sy;
+            init_i=sx;
+            i_o=sx;
+            d_o=ry-sy-1;
         }
 
         //check if I'am in up quadrant
@@ -125,6 +127,8 @@ h.d_fn = function(){
             init_d = sy-sy;
             cx = (rx - sx)*o;
             cy = (ry + sy)*o;
+            reset_cy = (ry - sy)*o;
+            
         }
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
@@ -143,7 +147,8 @@ h.d_fn = function(){
                 cy += o;
             }
             cx += o;
-            i_o++;
+            if((i_o+1)<condition_i)
+                i_o++;
             d_o = 0;
             cy = reset_cy;
             
