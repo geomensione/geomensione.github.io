@@ -97,7 +97,8 @@ h.d_fn = function(){
         condition_d = ry;
 
         if(checkQuadrant(this,qx,qy)){
-            //
+            i_o=sx;
+            d_o=sy;
         }
 
         //check if I'am in up quadrant
