@@ -88,7 +88,7 @@ h.d_fn = function(){
         condition_d = ry;
 
         if(checkQuadrant(this,qx,qy)){
-            init_d=sy;
+            init_d=0;
             init_i=sx;
             i_o=0;
             d_o=sy;
