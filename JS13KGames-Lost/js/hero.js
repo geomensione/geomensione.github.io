@@ -91,7 +91,7 @@ h.d_fn = function(){
             init_d=sy;
             init_i=sx;
             i_o=sx;
-            d_o=ry-sy-1;
+            d_o=0;
         }
 
         //check if I'am in up quadrant
