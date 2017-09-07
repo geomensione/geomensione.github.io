@@ -95,7 +95,7 @@ h.d_fn = function(){
         }
 
         //check if I'am in up quadrant
-
+        //wrong <- ->
         if(checkQuadrant(this,qx-1,qy)){
             init_d = ry-sy;
             reset_cy = (ry - sy)*o;
@@ -112,6 +112,7 @@ h.d_fn = function(){
         }
 
         //check if I'am in the left up
+        //wrong v ^
         if(checkQuadrant(this,qx-1,qy+1)){
             //reset_cy = (ry - sy)*o;
             init_i = 0;
