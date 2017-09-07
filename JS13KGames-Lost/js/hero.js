@@ -75,15 +75,6 @@ h.d_fn = function(){
         reset_cy = 0;
     //draw the sprite in fb
     function checkQuadrant(me,x,y){
-        /*
-        to print correctly hero quadrant we need to change loop conditions:
-        1-I'm in the same quadrant and I'm going down or right 
-            for(let i = sx;i<rx;i++){
-                for(let d = sy;d<ry;d++){
-        2-up or left 
-            for(let i = 0;i<sx;i++){
-                for(let d = 0;d<sy;d++){
-        */
         return (me.qux === x && me.quy === y);
     }
     
