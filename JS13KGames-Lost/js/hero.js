@@ -90,7 +90,7 @@ h.d_fn = function(){
         if(checkQuadrant(this,qx,qy)){
             init_d=sy;
             init_i=sx;
-            i_o=sx;
+            i_o=rx-sx-1;
             d_o=sy;
         }
 
