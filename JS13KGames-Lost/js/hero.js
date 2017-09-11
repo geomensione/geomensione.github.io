@@ -120,8 +120,8 @@ h.d_fn = function(){
             //reset_cy = (ry - sy)*o;
             
         }
-        for(let i = init_i;i<condition_i;i+=this.sp){
-            for(let d = init_d;d<condition_d;d+=this.sp){
+        for(let i = init_i;i<condition_i;i++){
+            for(let d = init_d;d<condition_d;d++){
                 if(!(this.fb[i] && this.fb[i][d] && this.fb[i][d][0]))
                     console.log('not exist '+i+', '+d);
                 if(this.fb[i][d][0] !== '00'){
