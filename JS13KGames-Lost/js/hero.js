@@ -134,11 +134,13 @@ h.d_fn = function(){
                     c.fillStyle = "rgba(0,255,0,0.1)";
                     c.fillRect(cx,cy,o,o);
                 }
-                d_o+=this.sp;
+                if(d_o+this.sp < ry)
+                    d_o+=this.sp;
                 cy += o;
             }
             cx += o;
-            i_o+=this.sp;
+            if(i_o+this.sp < rx)
+                i_o+=this.sp;
             d_o = 0;
             cy = reset_cy;
             
