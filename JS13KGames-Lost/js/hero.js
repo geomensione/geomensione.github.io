@@ -88,38 +88,37 @@ h.d_fn = function(){
         condition_d = ry;
         //wrong <- ->
         if(checkQuadrant(this,qx,qy)){
-            init_d=sy;
-            init_i=sx;
-            i_o=rx-sx-1;
-            d_o=sy;
+            //init_d=sy;
+            //init_i=sx;
+            //i_o=rx-sx-1;
+            //d_o=sy;
         }
 
         //check if I'am in up quadrant
         //wrong v ^
         if(checkQuadrant(this,qx-1,qy)){
-            init_d = sy;
-            reset_cy = (ry - sy)*o;
-            cy = (ry - sy)*o;
+            //init_d = sy;
+            //reset_cy = (ry - sy)*o;
+            //cy = (ry - sy)*o;
         }
 
         //check if I'am in the left
         if(checkQuadrant(this,qx,qy+1)){
-            init_i = 0;
-            init_d = sy;
-            cx = (rx - sx)*o;
-            cy = (ry + sy)*o;
+            //init_i = 0;
+            //init_d = sy;
+            //cx = (rx - sx)*o;
+            //cy = (ry + sy)*o;
             
         }
 
         //check if I'am in the left up
         
         if(checkQuadrant(this,qx-1,qy+1)){
+            //init_i = 0;
+            //init_d = 0;
+            //cx = (rx - sx)*o;
+            //cy = (ry + sy)*o;
             //reset_cy = (ry - sy)*o;
-            init_i = 0;
-            init_d = 0;
-            cx = (rx - sx)*o;
-            cy = (ry + sy)*o;
-            reset_cy = (ry - sy)*o;
             
         }
         for(let i = init_i;i<condition_i;i++){
