@@ -88,10 +88,8 @@ h.d_fn = function(){
         condition_d = ry;
         //wrong <- ->
         if(checkQuadrant(this,qx,qy)){
-            init_d=rx-sx-1;
-            init_i=ry-sy-1;
-            //i_o=rx-sx-1;
-            //d_o=sy;
+            condition_i = rx-sx-1;
+            condition_d = ry-sy-1;
         }
 
         //check if I'am in up quadrant
