@@ -121,24 +121,24 @@ h.d_fn = function(){
         }
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
-                if(!(this.fb[i_o] && this.fb[i_o][d_o] && this.fb[i_o][d_o][0]))
-                    console.log('not exist '+i_o+', '+d_o);
-                if(this.fb[i_o][d_o][0] !== '00'){
+                if(!(this.fb[i] && this.fb[i][d] && this.fb[i][d][0]))
+                    console.log('not exist '+i+', '+d);
+                if(this.fb[i][d][0] !== '00'){
                     this.hit(cx,cy,1,1,function(){});
-                    c.fillStyle = "#"+this.fb[i_o][d_o][0]+this.fb[i_o][d_o][1]+this.fb[i_o][d_o][2];
+                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
                     c.fillStyle = "rgba(0,255,0,0.1)";
                     c.fillRect(cx,cy,o,o);
                 }
-                if((d_o+1)<condition_d)
-                    d_o++;
+                //if((d_o+1)<condition_d)
+                //    d_o++;
                 cy += o;
             }
             cx += o;
-            if((i_o+1)<condition_i)
-                i_o++;
-            d_o = 0;
+            //if((i_o+1)<condition_i)
+            //    i_o++;
+            //d_o = 0;
             cy = reset_cy;
             
         }
