@@ -88,7 +88,7 @@ h.d_fn = function(){
         condition_d = ry;
         //wrong <- ->
         if(checkQuadrant(this,qx,qy)){
-            init_d=0;
+            init _d=0;
             init_i=0;
             //i_o=rx-sx-1;
             //d_o=sy;
