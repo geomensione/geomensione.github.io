@@ -6,6 +6,7 @@ h.r = 48;
 //sprite dimension
 h.s = 5;
 //score
+h.sp = 2;
 
 function random(range, negative){
     var num = Math.floor(Math.random()*range); // this will get a number between 1 and 99;
@@ -119,8 +120,8 @@ h.d_fn = function(){
             //reset_cy = (ry - sy)*o;
             
         }
-        for(let i = init_i;i<condition_i;i++){
-            for(let d = init_d;d<condition_d;d++){
+        for(let i = init_i;i<condition_i;i+=this.sp){
+            for(let d = init_d;d<condition_d;d+=this.sp){
                 if(!(this.fb[i] && this.fb[i][d] && this.fb[i][d][0]))
                     console.log('not exist '+i+', '+d);
                 if(this.fb[i][d][0] !== '00'){
