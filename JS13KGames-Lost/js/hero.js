@@ -6,6 +6,7 @@ h.r = 48;
 //sprite dimension
 h.s = 5;
 //score
+h.sp = 2;
 
 function random(range, negative){
     var num = Math.floor(Math.random()*range); // this will get a number between 1 and 99;
@@ -90,7 +91,7 @@ h.d_fn = function(){
             condition_i = rx-sx;
             condition_d = ry-sy;
             
-        }
+  }
 
         //check if I'am in up quadrant
         //wrong v ^
@@ -109,6 +110,10 @@ h.d_fn = function(){
         //check if I'am in the left up
         
         if(checkQuadrant(this,qx-1,qy+1)){
+            //init_i = 0;
+            //init_d = 0;
+            //cx = (rx - sx)*o;
+            //cy = (ry + sy)*o;
             //reset_cy = (ry - sy)*o;
             //init_i = 0;
             //init_d = 0;
