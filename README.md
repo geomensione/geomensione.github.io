@@ -56,7 +56,7 @@ WIP fast3d
 
 https://geomensione.github.io/threejs
 
-JS13KGames Lost
+WIP JS13KGames Lost ... NOT FINISHED
 
 https://geomensione.github.io/JS13KGames-Lost
 
