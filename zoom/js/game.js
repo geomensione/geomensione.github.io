@@ -32,15 +32,7 @@ var la = [],
     qy = 0;
 
 //bottom
-la[0]=bo;
-//background
-la[1]=b;
-//frames
-la[2]=g;
-//hero
-la[3]=h;
-//text
-la[4]=t;
+la[0]=ma;
 
 
 /*
