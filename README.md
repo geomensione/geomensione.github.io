@@ -64,3 +64,7 @@ WIP... webglStudio plugin
 
 https://geomensione.github.io/webglStudio
 
+
+Lectures
+
+http://gameprogrammingpatterns.com/contents.html
