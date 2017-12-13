@@ -23,7 +23,6 @@ class Canvas2D {
 }
 
 class Canvas3D {
-	var me;
 	constructor(){
 		
 		this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
