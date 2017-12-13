@@ -24,7 +24,7 @@ class Canvas2D {
 
 class Canvas3D {
 	constructor(){
-		d = document;
+		var d = document;
 		this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 		this.camera.position.set(0, 1000, 0 );
 		this.camera.lookAt( new THREE.Vector3() );
