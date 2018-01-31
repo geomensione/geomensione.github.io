@@ -4,9 +4,15 @@
 <body>
 
 <script>
-  function printObject(o){
+  function consoleObject(o){
     console.log(JSON.stringify(o));
   }
+  
+  function printObject(o){
+    document.writeln(JSON.stringify(o));
+  }
+  
+  
 
   function shuffle(array) {
     let counter = array.length;
