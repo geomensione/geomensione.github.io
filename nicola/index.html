@@ -4,11 +4,20 @@
 <body>
 
 <script>
+function printObject(o){
+  console.log(JSON.stringify(o));
+}
+  
 var loghi = [];
+
 for(var i = 1;i<=500;i++){
-  loghi.push({immagine:'immagine'+i+'.png'.nome:'nome'+i});
+  loghi.push({immagine:'immagine'+i+'.png',nome:'nome'+i});
 }
 
+printObject(loghi);
+  /*
+  oggetto
+  */
 </script>
 </body>
 </html>
