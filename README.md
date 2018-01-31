@@ -64,6 +64,10 @@ WIP... webglStudio plugin
 
 https://geomensione.github.io/webglStudio
 
+WIP... nicola game
+
+https://geomensione.github.io/nicola
+
 
 # Lectures
 
