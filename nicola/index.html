@@ -4,19 +4,52 @@
 <body>
 
 <script>
-function printObject(o){
-  console.log(JSON.stringify(o));
-}
+  function printObject(o){
+    console.log(JSON.stringify(o));
+  }
+
+  function shuffle(array) {
+    let counter = array.length;
+
+    // While there are elements in the array
+    while (counter > 0) {
+      // Pick a random index
+      let index = Math.floor(Math.random() * counter);
+
+      // Decrease counter by 1
+      counter--;
+
+      // And swap the last element with it
+      let temp = array[counter];
+      array[counter] = array[index];
+      array[index] = temp;
+    }
+
+    return array;
+  }
+
   
-var loghi = [];
+  var loghi = [];
+  var indexes = [];
+  var fatte = {};
 
-for(var i = 1;i<=500;i++){
-  loghi.push({immagine:'immagine'+i+'.png',nome:'nome'+i});
-}
+  for(var i = 1;i<=500;i++){
+    loghi.push({immagine:'immagine'+i+'.png',nome:'nome'+i});
+    indexes[i] = i;
+  }
 
-printObject(loghi);
+  printObject(loghi);
+  printObject(indexes);
+  indexes = shuffle(indexes);
+  printObject(indexes);
+  
+
   /*
-  oggetto
+  printObject(loghi);
+  
+  oggetto immagini
+  oggetto indici random
+  oggetto fatte
   */
 </script>
 </body>
