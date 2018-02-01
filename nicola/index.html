@@ -83,8 +83,10 @@
     document.writeln(JSON.stringify(o));
   }
   
+  function fuzzy(){}
+  
   function risposta(value){
-      document.selectElementsByClassName('button').forEach(function(e){e.className.split(' ').lenght > 2?e.className -= " buttonSelect":;});
+      document.selectElementsByClassName('button').forEach(function(e){e.className.split(' ').lenght > 2?e.className -= " buttonSelect":fuzzy()});
       switch{
         case 1:
           document.selectElementsByClassName('uno')[0].className += " buttonSelect";
