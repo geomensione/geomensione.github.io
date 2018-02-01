@@ -86,19 +86,19 @@
   function fuzzy(){}
   
   function risposta(value){
-      document.selectElementsByClassName('button').forEach(function(e){e.className.split(' ').lenght > 2?e.className -= " buttonSelect":fuzzy()});
+      document.getElementsByClassName('button').forEach(function(e){e.className.split(' ').lenght > 2?e.className -= " buttonSelect":fuzzy()});
       switch(value){
         case 1:
-          document.selectElementsByClassName('uno')[0].className += " buttonSelect";
+          document.getElementsByClassName('uno')[0].className += " buttonSelect";
           break;
         case 2:
-          document.selectElementsByClassName('2')[0].className += " buttonSelect";
+          document.getElementsByClassName('2')[0].className += " buttonSelect";
           break;
         case 3:
-          document.selectElementsByClassName('tre')[0].className += " buttonSelect";
+          document.getElementsByClassName('tre')[0].className += " buttonSelect";
           break;
         case 4:
-          document.selectElementsByClassName('quattro')[0].className += " buttonSelect";
+          document.getElementsByClassName('quattro')[0].className += " buttonSelect";
           break;
         default:
           console.log('numero non supportato');
