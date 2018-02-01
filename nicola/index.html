@@ -36,6 +36,10 @@
     .quattro{
       background-color: yellow;
     }
+    
+    .selectButton{
+      background-color: white;
+    }
   </style>
 </head>
 <body>
@@ -46,24 +50,24 @@
       </div>
       <div class="row">
         <div class="column">
-          <div class="button uno">
+          <div class="button uno" onclick="risposta(1)">
             risposta 1
           </div>
         </div>
         <div class="column">
-          <div class="button due">
+          <div class="button due" onclick="risposta(2)">
             risposta 2
           </div>
         </div>
       </div>
       <div class="row">
         <div class="column">
-          <div class="button tre">
+          <div class="button tre" onclick="risposta(3)">
             risposta 3
           </div>
         </div>
         <div class="column">
-          <div class="button quattro">
+          <div class="button quattro" onclick="risposta(4)">
             risposta 4
           </div>
         </div>
@@ -79,7 +83,25 @@
     document.writeln(JSON.stringify(o));
   }
   
-  
+  function risposta(value){
+      document.selectElementsByClassName('button').forEach(function(e){e.className.split(' ').lenght > 2?e.className -= " buttonSelect":;});
+      switch{
+        case 1:
+          document.selectElementsByClassName('uno')[0].className += " buttonSelect";
+          break;
+        case 2:
+          document.selectElementsByClassName('2')[0].className += " buttonSelect";
+          break;
+        case 3:
+          document.selectElementsByClassName('tre')[0].className += " buttonSelect";
+          break;
+        case 4:
+          document.selectElementsByClassName('quattro')[0].className += " buttonSelect";
+          break;
+        default:
+          console.log('numero non supportato');
+      }
+  }
 
   function shuffle(array) {
     let counter = array.length;
