@@ -68,6 +68,10 @@ WIP... nicola game
 
 https://geomensione.github.io/nicola
 
+WIP... JS1k 2018 coin mine
+
+https://geomensione.github.io/JS1k_2018_coin_mine
+
 
 # Lectures
 
