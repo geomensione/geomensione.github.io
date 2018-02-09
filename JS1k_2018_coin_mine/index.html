@@ -22,8 +22,11 @@
 	g.h = {s:20, x:0, y:g.w.innerHeight - 50};
 	
 	a.onmousemove = (e) => {
-		(g.c.u)?g:
-		g.c.x = e.clientX,g.c.y = e.clientY;
+		if(!g.c.u){
+			g.c.x = e.clientX;
+			g.c.y = e.clientY;
+		}
+		
 	}; 
 	a.onmouseup = (e) => {
 		g.c.u = 1;
