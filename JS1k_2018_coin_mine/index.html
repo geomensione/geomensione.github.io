@@ -18,6 +18,7 @@
 	g = {};
 	g.wi = window;
 	g.mr = Math.round;
+	g.mra = Math.random;
 	g.mf = Math.floor;
 	g.w = g.wi.innerWidth;
 	g.h = g.wi.innerHeight;
@@ -67,8 +68,8 @@
 				g.fb[i][d] = ['00', '00', '00'];
 			}
 		}
-		x = g.mf(g.mr() * (g.rx-g.s));
-		y = g.mf(g.mr() * (g.ry-g.s));
+		x = g.mf(g.mra() * (g.rx-g.s));
+		y = g.mf(g.mra() * (g.ry-g.s));
 		for(xo = 0;xo<g.s;xo++)
 		{
 			for(yo = 0;yo<g.s;yo++)
