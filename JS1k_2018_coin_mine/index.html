@@ -43,18 +43,18 @@
 		c.beginPath();
 		//se x === 0 incremento, altrimenti se non ho superato la larghezza della pagina incremento, altrimenti aumento
 		(!g.h.x)?
-			g.h.x+=30
+			g.h.x+=40
 			:
 			(g.h.x>g.w.innerWidth)?
 				g.h.x=0
 				:
-				g.h.x+=30;
+				g.h.x+=40;
 		c.strokeStyle = 'white';
 		c.strokeRect(g.h.x,g.h.y,40,10);
 		c.fillStyle = "white";
 		c.font = "30px Arial";
 		c.fillText(g.hi+'',100,500);
-		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+30) && (g.c.y+g.c.s) >= g.h.y)
+		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+40) && (g.c.y+g.c.s) >= g.h.y)
 			g.hit(h);
 		
 	}
