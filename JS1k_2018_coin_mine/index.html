@@ -25,12 +25,15 @@
 	a.onmousemove = (e) => {
 		if(!g.c.u){
 			g.c.x = e.clientX;
-			g.c.y = e.clientY;
+			
 		}
 		
 	}; 
 	a.onmouseup = (e) => {
 		g.c.u = 1;
+	}
+	g.init = () => {
+	   g.c.y = 100;
 	}
 	g.gr = () => {
 		
@@ -58,7 +61,7 @@
 	g.dr = () => {
 		(g.c.u)?
 		(g.c.y>g.w.innerHeight)?
-			g.c.y=g.c.u=0
+			g.c.y=100,g.c.u=0
 		:
 		g.c.y+=20
 		:
@@ -71,6 +74,7 @@
 	}
 	
 	g.l = () => {
+		g.init();
 		g.lo = setInterval(function() {
 			g.gr();
 			g.dr();
@@ -80,6 +84,7 @@
 	g.hit = () => {
 		g.c.u = 0;
 		g.hi += 1;
+		g.init();
 	}
 	g.l();
 
