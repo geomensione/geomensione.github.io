@@ -17,7 +17,6 @@
 	//Init
 	g = {};
 	g.fr = 100;
-	g.w = window;
 	g.c = {s:20, x:0, y:0};
 	
 	a.onmousemove = function(e){
@@ -25,8 +24,9 @@
 		g.c.y = e.clientY;
 	}; 
 	function gr(){
+		c.beginPath();
 		c.fillStyle = '#000000';
-		c.fillRect(0,0,g.w.innerWidth,g.w.innerHeight);
+		c.fillRect(0,0,a.width,a.height);
 	}
 	function dr() {
 		c.arc(g.c.x, g.c.y, g.c.s, 0, 2 * Math.PI, false);
