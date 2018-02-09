@@ -38,12 +38,12 @@
 		c.beginPath();
 		//se x === 0 incremento, altrimenti se non ho superato la larghezza della pagina incremento, altrimenti aumento
 		(!g.h.x)?
-			g.h.x+=10
+			g.h.x+=20
 			:
 			(g.h.x>g.w.innerWidth)?
 				g.h.x=0
 				:
-				g.h.x+=10;
+				g.h.x+=20;
 		c.strokeStyle = 'green';
 		c.strokeRect(g.h.x,g.h.y,40,10);
 		
