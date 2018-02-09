@@ -33,8 +33,7 @@
 		g.c.u = 1;
 	}
 	g.gr = () => {
-		c.font = "30px Arial";
-		c.fillText(g.hi+'',10,50);
+		
 		c.beginPath();
 		c.fillStyle = 'black';
 		c.fillRect(0,0,a.width,a.height);
@@ -49,8 +48,9 @@
 				g.h.x+=30;
 		c.strokeStyle = 'white';
 		c.strokeRect(g.h.x,g.h.y,40,10);
-		//controllo se hit
-		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+30))
+		c.font = "30px Arial";
+		c.fillText(g.hi+'',10,50);
+		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+30) && )
 			g.hit();
 		
 	}
