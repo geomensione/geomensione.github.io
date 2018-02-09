@@ -47,7 +47,7 @@
 		c.strokeStyle = 'white';
 		c.strokeRect(g.h.x,g.h.y,40,10);
 		//controllo se hit
-		(g.c.x >== g.h.x && g.c.x+g.c.s <== g.h.x)
+		(g.c.x >== g.h.x && (g.c.x+g.c.s) <== (g.h.x+30))
 		
 	}
 	g.dr = () => {
