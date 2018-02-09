@@ -48,9 +48,10 @@
 				g.h.x+=30;
 		c.strokeStyle = 'white';
 		c.strokeRect(g.h.x,g.h.y,40,10);
+		c.fillStyle = "white";
 		c.font = "30px Arial";
 		c.fillText(g.hi+'',10,50);
-		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+30) && g.c.y >= g.h.y-5 && (g.c.y) <= (g.h.y+5))
+		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+30) && (g.c.y+g.c.s) >= g.h.y)
 			g.hit();
 		
 	}
