@@ -69,8 +69,9 @@
 		c.arc(g.c.x, g.c.y, g.c.s, 0, 2 * Math.PI, false);
 		
 		c.fillStyle = 'white';
-		c.fill()
-		
+		c.fill();
+		c.strokeStyle = 'black';
+		c.arc(g.c.x, g.c.y, g.c.s-5, 0, 0.5 * Math.PI, false);
 	}
 	
 	g.l = () => {
