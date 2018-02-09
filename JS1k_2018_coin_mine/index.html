@@ -34,7 +34,7 @@
 		(!g.h.x)?
 			g.h.x+=10
 			:
-			(!g.h.x%g.w.innerWidth)?
+			(g.h.x>g.w.innerWidth)?
 				g.h.x=0
 				:
 				g.h.x+=10;
