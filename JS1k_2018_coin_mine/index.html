@@ -20,7 +20,7 @@
 	g.w = window;
 	g.c = {s:20, x:0, y:0};
 	g.h = {s:20, x:0, y:g.w.innerHeight - 50};
-	g.col = 'white';
+	
 	a.onmousemove = (e) => {
 		if(!g.c.u){
 			g.c.x = e.clientX;
@@ -33,7 +33,7 @@
 	}
 	function gr(){
 		c.beginPath();
-		c.fillStyle = g.col;
+		c.fillStyle = 'black';
 		c.fillRect(0,0,a.width,a.height);
 		c.beginPath();
 		//se x === 0 incremento, altrimenti se non ho superato la larghezza della pagina incremento, altrimenti aumento
@@ -44,7 +44,7 @@
 				g.h.x=0
 				:
 				g.h.x+=30;
-		c.strokeStyle = g.col;
+		c.strokeStyle = 'white';
 		c.strokeRect(g.h.x,g.h.y,40,10);
 		
 	}
