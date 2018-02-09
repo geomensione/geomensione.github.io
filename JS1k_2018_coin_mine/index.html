@@ -55,13 +55,13 @@
 		c.font = "30px Arial";
 		c.fillText(g.hi+'',100,500);
 		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+30) && (g.c.y+g.c.s) >= g.h.y)
-			g.hit();
+			g.hit(h);
 		
 	}
 	g.dr = () => {
 		(g.c.u)?
 		(g.c.y>g.w.innerHeight)?
-			g.c.y=100,g.c.u=0
+			g.hit()
 		:
 		g.c.y+=20
 		:
@@ -81,10 +81,11 @@
 		}, g.fr);
 	}
 	
-	g.hit = () => {
+	g.hit = (h) => {
 		g.c.u = 0;
-		g.hi += 1;
 		g.init();
+		if(h)
+		g.hi += 1;
 	}
 	g.l();
 
