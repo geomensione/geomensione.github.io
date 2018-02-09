@@ -21,10 +21,13 @@
 	g.c = {s:20, x:0, y:0};
 	g.h = {s:20, x:0, y:g.w.innerHeight - 50};
 	
-	a.onmousemove = function(e){
+	a.onmousemove = (e) => {
 		g.c.x = e.clientX;
 		g.c.y = e.clientY;
 	}; 
+	a.onmouseup = (e) => {
+		g.c.u = 1;
+	}
 	function gr(){
 		c.beginPath();
 		c.fillStyle = '#000000';
@@ -43,9 +46,16 @@
 		
 	}
 	function dr() {
+		(g.c.u)?
+		(g.c.y>g.w.innerHeight)?
+			g.c.y=0,g.c.u=0;
+		:
+		g.c.y+=20;
 		c.arc(g.c.x, g.c.y, g.c.s, 0, 2 * Math.PI, false);
+		
 		c.fillStyle = 'white';
-		c.fill();
+		c.fill()
+		
 	}
 	
 	function l(){
