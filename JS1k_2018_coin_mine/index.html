@@ -16,8 +16,11 @@
 	*/
 	//Init
 	g = {};
-	g.w = window.innerWidth;
-	g.h = window.innerHeight;
+	g.wi = window;
+	g.mr = Math.round;
+	g.mf = Math.floor;
+	g.w = g.wi.innerWidth;
+	g.h = g.wi.innerHeight;
 	g.r = 24;
 	g.s = 8;
 	g.fr = 100;
@@ -45,13 +48,13 @@
 		h=g.h;
 		ox=oy = 0;
 		if(h<w){
-			ox = Math.round(h/g.r);
-			g.ry = Math.round(h/ox);
-			g.rx = Math.round(w/ox);
+			ox = g.mr(h/g.r);
+			g.ry = g.mr(h/ox);
+			g.rx = g.mr(w/ox);
 		}else{
-			ox = Math.round(w/g.r);
-			g.rx = Math.round(w/ox);
-			g.ry = Math.round(h/ox);
+			ox = g.mr(w/g.r);
+			g.rx = g.mr(w/ox);
+			g.ry = g.mr(h/ox);
 		}
 		g.o = ox;
 		g.fb = [];
@@ -64,8 +67,8 @@
 				g.fb[i][d] = ['00', '00', '00'];
 			}
 		}
-		x = Math.floor(Math.random() * (g.rx-g.s));
-		y = Math.floor(Math.random() * (g.ry-g.s));
+		x = g.mf(g.mr() * (g.rx-g.s));
+		y = g.mf(g.mr() * (g.ry-g.s));
 		for(xo = 0;xo<g.s;xo++)
 		{
 			for(yo = 0;yo<g.s;yo++)
