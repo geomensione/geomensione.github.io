@@ -21,6 +21,8 @@
 	g.c = {s:20, x:0, y:0};
 	g.h = {s:80, x:0, y:g.w.innerHeight - 50};
 	g.hi = 0;
+	c.sr = c.strokeRect;
+	c.bp = c.beginPath;
 	
 	a.onmousemove = (e) => {
 		if(!g.c.u){
@@ -37,10 +39,10 @@
 	}
 	g.gr = () => {
 		
-		c.beginPath();
+		c.bp();
 		c.fillStyle = 'black';
 		c.fillRect(0,0,a.width,a.height);
-		c.beginPath();
+		c.bp();
 		(!g.h.x)?
 			g.h.x+=40
 			:
@@ -49,9 +51,9 @@
 				:
 				g.h.x+=40;
 		c.strokeStyle = 'white';
-		c.strokeRect(g.h.x,g.h.y,g.h.s,10);
-		c.strokeRect(g.h.x-10,g.h.y-10,g.h.s+20,10+20);
-		c.strokeRect(g.h.x-10,g.h.y+20,g.h.s+20,10+20);
+		c.sr(g.h.x,g.h.y,g.h.s,10);
+		c.sr(g.h.x-10,g.h.y-10,g.h.s+20,10+20);
+		c.sr(g.h.x-10,g.h.y+20,g.h.s+20,10+20);
 		c.fillStyle = "white";
 		c.font = "30px Arial";
 		c.fillText(g.hi+'',100,500);
@@ -71,7 +73,7 @@
 		
 		c.fillStyle = 'white';
 		c.fill();
-		c.beginPath();
+		c.bp();
 		c.strokeStyle = 'black';
 		c.arc(g.c.x, g.c.y, g.c.s-10, 0, 1.8 * Math.PI, false);
 		c.stroke();
