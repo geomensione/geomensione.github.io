@@ -87,7 +87,7 @@
   
   function risposta(value){
       var buttons = document.getElementsByClassName('button');
-      for(let but = 0; b<buttons.length;b++){
+      for(let but = 0; but<buttons.length;but++){
         buttons[but].className.split(' ').lenght > 2?but.className -= " selectButton":fuzzy();
         if(but === buttons.length-1)
           switch(value){
