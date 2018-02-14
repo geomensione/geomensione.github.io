@@ -87,26 +87,27 @@
   
   function risposta(value){
       var buttons = document.getElementsByClassName('button');
-      for(but in buttons){
-        if((but+'').length === 1)
-          buttons[but].className.split(' ').lenght > 2?but.className -= " selectButton":fuzzy();
+      for(let but = 0; b<buttons.length;b++){
+        buttons[but].className.split(' ').lenght > 2?but.className -= " selectButton":fuzzy();
+        if(but === buttons.length-1)
+          switch(value){
+            case 1:
+              document.getElementsByClassName('uno')[0].className += " selectButton";
+              break;
+            case 2:
+              document.getElementsByClassName('due')[0].className += " selectButton";
+              break;
+            case 3:
+              document.getElementsByClassName('tre')[0].className += " selectButton";
+              break;
+            case 4:
+              document.getElementsByClassName('quattro')[0].className += " selectButton";
+              break;
+            default:
+              console.log('numero non supportato');
+          }
       }
-      switch(value){
-        case 1:
-          document.getElementsByClassName('uno')[0].className += " selectButton";
-          break;
-        case 2:
-          document.getElementsByClassName('due')[0].className += " selectButton";
-          break;
-        case 3:
-          document.getElementsByClassName('tre')[0].className += " selectButton";
-          break;
-        case 4:
-          document.getElementsByClassName('quattro')[0].className += " selectButton";
-          break;
-        default:
-          console.log('numero non supportato');
-      }
+      
   }
 
   function shuffle(array) {
