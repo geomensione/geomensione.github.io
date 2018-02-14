@@ -86,7 +86,10 @@
   function fuzzy(){}
   
   function risposta(value){
-      document.getElementsByClassName('button').forEach(function(e){e.className.split(' ').lenght > 2?e.className -= " buttonSelect":fuzzy()});
+      var buttons = document.getElementsByClassName('button');
+      for(but in buttons){
+        but.className.split(' ').lenght > 2?but.className -= " buttonSelect":fuzzy();
+      }
       switch(value){
         case 1:
           document.getElementsByClassName('uno')[0].className += " buttonSelect";
