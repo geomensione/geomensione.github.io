@@ -1,3 +1,4 @@
+//https://code.tutsplus.com/tutorials/build-your-first-javascript-library--net-26796
 gms = (function(){
   var gms = {
       d: document,
