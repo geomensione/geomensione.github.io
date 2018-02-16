@@ -25,7 +25,7 @@ gms.prototype.getAllFromClass = (str,i) => {
 gms.prototype.removeClass = (el,cls) => {
   if(typeof el === 'string')
     el = this.getFromClass(el);
-  el.classList.contains(cls))?el.classList.remove(cls):fuzzy();
+  el.classList.contains(cls)?el.classList.remove(cls):fuzzy();
 };
 //add css class
 gms.prototype.addClass = (el,cls) => {
