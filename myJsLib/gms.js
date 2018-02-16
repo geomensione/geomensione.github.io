@@ -1,4 +1,5 @@
 //https://code.tutsplus.com/tutorials/build-your-first-javascript-library--net-26796
+//https://github.com/andrew8088/dome/blob/master/src/dome.js
 gms = (function(){
   var gms = {
       d: document,
