@@ -74,7 +74,7 @@ https://geomensione.github.io/JS1k_2018_coin_mine
 
 My JS library
 
-https://geomensione.github.io/myjslib/gms.js
+https://geomensione.github.io/myJsLib/gms.js
 
 # Lectures
 
