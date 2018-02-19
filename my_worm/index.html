@@ -38,15 +38,15 @@ canvas{
 	
 	a.onmousedown = function(e){
 		if(e.clientX < a.width/3)
-			w.left();
+			worm.left();
 		else	
 			if(e.clientX > (a.width/3)*2)
-				w.right();
+				worm.right();
 			else
 				if(e.clientY > a.height/2)
-					w.down();
+					worm.down();
 				else
-					w.up();
+					worm.up();
 	}; 
 	
 	var worm = {};
