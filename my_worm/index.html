@@ -118,6 +118,19 @@ canvas{
 		if((this.body[worm.length].x + 1) <= g.rx)
 			this.body[worm.length].x++;
 	}
+	var seed = {};
+	seed.draw = () => {
+		if(!this.x){
+			this.x = Math.floor(Math.random() * (g.rx-g.s));
+			this.y = Math.floor(Math.random() * (g.ry-g.s))};
+		}
+		if(g.fb[this.x][this.y] !== ['FF','FF','FF'])
+			g.fb[this.x][this.y] = ['FF','00','00'];
+	}
+	seed.hit = () => {
+		delete this.x;
+		delete this.y;
+	}
 	function gr(){
 		var w = g.w;
 		var h = g.h;
@@ -143,6 +156,7 @@ canvas{
 			}
 		}
 		worm.draw();
+		seed.draw();
 		/*
 		var x = Math.floor(Math.random() * (g.rx-g.s));
 		var y = Math.floor(Math.random() * (g.ry-g.s));
