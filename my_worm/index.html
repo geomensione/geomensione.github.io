@@ -49,9 +49,9 @@ canvas{
 					w.up();
 	}; 
 	
-	var w = {};
+	var worm = {};
 	
-	w.draw = () => {
+	worm.draw = () => {
 		if(!this.x && !this.y){
 			this.x = Math.floor(Math.random() * (g.rx-g.s));
 			this.y = Math.floor(Math.random() * (g.ry-g.s));
@@ -66,19 +66,19 @@ canvas{
 			}
 		}
 	}
-	w.up = () => {
+	worm.up = () => {
 		if((this.y - 1)>=0)
 			this.y--
 	}
-	w.down = () => {
+	worm.down = () => {
 		if((this.y + 1)<=g.ry)
 			this.y++
 	}
-	w.left = () => {
+	worm.left = () => {
 		if((this.x - 1) >= 0)
 			this.x--;
 	}
-	w.right = () => {
+	worm.right = () => {
 		if((this.x + 1) <= g.rx)
 			this.x++;
 	}
@@ -106,7 +106,7 @@ canvas{
 				g.fb[i][d] = ['00', '00', '00'];
 			}
 		}
-		w.draw();
+		worm.draw();
 		/*
 		var x = Math.floor(Math.random() * (g.rx-g.s));
 		var y = Math.floor(Math.random() * (g.ry-g.s));
