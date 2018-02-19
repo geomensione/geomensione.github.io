@@ -60,9 +60,10 @@ canvas{
 	var worm = {};
 	
 	worm.draw = () => {
-		if(!this.x && !this.y){
-			this.x = Math.floor(Math.random() * (g.rx-g.s));
-			this.y = Math.floor(Math.random() * (g.ry-g.s));
+		if(!this.body){
+			this.body = [];
+			var coord = {x: Math.floor(Math.random() * (g.rx-g.s)),y: Math.floor(Math.random() * (g.ry-g.s))};
+			this.body.push(coord);
 		}
 		switch(worm.dir){
 			case 'left':
@@ -78,13 +79,9 @@ canvas{
 				worm.down();
 				break;
 		}
-		for(var xo = 0;xo<g.s;xo++)
+		for(var b = 0;c<this.body.length;b++)
 		{
-			for(var yo = 0;yo<g.s;yo++)
-			{
-				//if(g.sh[yo][xo] === 'W')
-				g.fb[this.x+xo][this.y+yo] = ['FF','FF','FF'];
-			}
+			g.fb[this.body[b].x][this.body[b].y] = ['FF','FF','FF'];
 		}
 	}
 	worm.up = () => {
