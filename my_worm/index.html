@@ -36,17 +36,25 @@ canvas{
 	g.s = 1;
 	g.fr = 100;
 	
-	a.onmousedown = function(e){
-		if(e.clientX < a.width/3)
-			worm.left();
+	function direction(x,y){
+		if(x < a.width/3)
+			worm.dir = 'left';
 		else	
-			if(e.clientX > (a.width/3)*2)
-				worm.right();
+			if(x > (a.width/3)*2)
+				worm.dir = 'right';
 			else
-				if(e.clientY > a.height/2)
-					worm.down();
+				if(y > a.height/2)
+					worm.dir = 'down';
 				else
-					worm.up();
+					worm.dir = 'up';
+	}
+	 
+	a.ontouchstart = function(e){
+		direction(e.touch[0].clientX,e.touch[0].clientY);
+	}
+	
+	a.onmousedown = function(e){
+		direction(e.clientX,e.clientY);
 	}; 
 	
 	var worm = {};
@@ -56,7 +64,20 @@ canvas{
 			this.x = Math.floor(Math.random() * (g.rx-g.s));
 			this.y = Math.floor(Math.random() * (g.ry-g.s));
 		}
-		
+		switch(worm.dir){
+			case 'left':
+				worm.left();
+				break;
+			case 'right':
+				worm.right();
+				break;
+			case 'up':
+				worm.up();
+				break;
+			case 'down':
+				worm.down();
+				break;
+		}
 		for(var xo = 0;xo<g.s;xo++)
 		{
 			for(var yo = 0;yo<g.s;yo++)
