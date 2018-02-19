@@ -84,21 +84,22 @@ canvas{
 			g.fb[this.body[b].x][this.body[b].y] = ['FF','FF','FF'];
 		}
 	}
+	worm.length = 0;
 	worm.up = () => {
-		if((this.y - 1)>=0)
-			this.y--
+		if((this.body[worm.length].y - 1)>=0)
+			this.body[worm.length].y--
 	}
 	worm.down = () => {
-		if((this.y + 1)<=g.ry)
-			this.y++
+		if((this.body[worm.length].y + 1)<=g.ry)
+			this.body[worm.length].y++
 	}
 	worm.left = () => {
-		if((this.x - 1) >= 0)
-			this.x--;
+		if((this.body[worm.length].x - 1) >= 0)
+			this.body[worm.length].x--;
 	}
 	worm.right = () => {
-		if((this.x + 1) <= g.rx)
-			this.x++;
+		if((this.body[worm.length].x + 1) <= g.rx)
+			this.body[worm.length].x++;
 	}
 	function gr(){
 		var w = g.w;
