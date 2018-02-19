@@ -55,7 +55,24 @@ canvas{
 	
 	a.onmousedown = function(e){
 		direction(e.clientX,e.clientY);
-	}; 
+	};
+	 
+	w.onkeydown = function(e){
+		switch(e.key){
+			case 37:
+				worm.dir = 'left';
+				break;
+			case 38:
+				worm.dir = 'up';
+				break;
+			case 39:
+				worm.dir = 'right';
+				break;
+			case 40:
+				worm.dir = 'down';
+				break;
+		}
+	}
 	
 	var worm = {};
 	
