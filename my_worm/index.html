@@ -88,7 +88,10 @@ canvas{
 			}
 			if(this.length>1)
 				for(let l = 0;l<this.length-1;l++)
-					this.body[l+1] = this.body[l];
+					if(this.body[l+1])
+						this.body[l+1] = this.body[l];
+					else
+						this.body.push(this.body[l]);
 			switch(this.dir){
 				case 'left':
 					this.left();
