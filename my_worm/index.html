@@ -147,6 +147,9 @@ canvas{
 			},
 			getDir: () => {
 				return this.dir;
+			},
+			incrementLength: () => {
+				this.length++;
 			}
 		}
 	};
@@ -168,6 +171,7 @@ canvas{
 			
 		}
 		this.hit = () => {
+			worm.incrementLength();
 			delete this.x;
 			delete this.y;
 		}
