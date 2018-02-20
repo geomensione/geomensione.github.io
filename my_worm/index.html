@@ -74,83 +74,94 @@ canvas{
 		}
 	}
 	
-	var worm = {};
+	var worm = function(){
+		this.draw = () => {
+			if(!this.body){
+				this.body = [];
+				var coord = {x: Math.floor(Math.random() * (g.rx-g.s)),y: Math.floor(Math.random() * (g.ry-g.s))};
+				this.body.push(coord);
+			}
+			if(this.length>1)
+				for(let l = 0;l<this.length-1;l++)
+					this.body[l+1] = this.body[l];
+			switch(this.dir){
+				case 'left':
+					this.left();
+					break;
+				case 'right':
+					this.right();
+					break;
+				case 'up':
+					this.up();
+					break;
+				case 'down':
+					this.down();
+					break;
+			}
+			//inizio a disegnare dalla coda
+			for(var b = this.body.length-1;b>=0;b--)
+			{
+				if(g.fb[this.body[b].x][this.body[b].y][0] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === 'FF')
+					this.end();
+				else 
+					if(g.fb[this.body[b].x][this.body[b].y][0] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === '00' && g.fb[this.body[b].x][this.body[b].y][1] === '00')
+						seed.hit();
+					else
+						g.fb[this.body[b].x][this.body[b].y] = ['FF','FF','FF'];
+			}
+		}
+		this.length = 0;
+		this.up = () => {
+			if((this.body[0].y - 1)>=0)
+				this.body[0].y--
+			else
+				this.body[0].y = g.ry-1;
+		}
+		this.down = () => {
+			if((this.body[0].y + 1)<g.ry)
+				this.body[0].y++
+			else
+				this.body[0].y = 0;
+		}
+		this.left = () => {
+			if((this.body[0].x - 1) >= 0)
+				this.body[0].x--;
+			else
+				this.body[0].x = g.rx-1;
+		}
+		this.right = () => {
+			if((this.body[0].x + 1) < g.rx)
+				this.body[0].x++;
+			else
+				this.body[0].x = 0;
+		}
+		return{
+			draw: draw
+		}
+	};
 	
-	worm.draw = () => {
-		if(!this.body){
-			this.body = [];
-			var coord = {x: Math.floor(Math.random() * (g.rx-g.s)),y: Math.floor(Math.random() * (g.ry-g.s))};
-			this.body.push(coord);
+	
+	var seed = function(){
+		this.draw = () => {
+			if(!this.x){
+				this.x = Math.floor(Math.random() * (g.rx-g.s));
+				this.y = Math.floor(Math.random() * (g.ry-g.s));
+			}
+			if(g.fb[this.x][this.y] !== ['FF','FF','FF'])
+				g.fb[this.x][this.y] = ['FF','00','00'];
+			else
+				this.draw();
 		}
-		if(this.length>1)
-			for(let l = 0;l<this.length-1;l++)
-				this.body[l+1] = this.body[l];
-		switch(worm.dir){
-			case 'left':
-				worm.left();
-				break;
-			case 'right':
-				worm.right();
-				break;
-			case 'up':
-				worm.up();
-				break;
-			case 'down':
-				worm.down();
-				break;
+		this.hit = () => {
+			delete this.x;
+			delete this.y;
 		}
-		//inizio a disegnare dalla coda
-		for(var b = this.body.length-1;b>=0;b--)
-		{
-			if(g.fb[this.body[b].x][this.body[b].y][0] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === 'FF')
-				this.end();
-			else 
-				if(g.fb[this.body[b].x][this.body[b].y][0] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === '00' && g.fb[this.body[b].x][this.body[b].y][1] === '00')
-					seed.hit();
-				else
-					g.fb[this.body[b].x][this.body[b].y] = ['FF','FF','FF'];
+		return{
+			draw: draw,
+			hit: hit
 		}
-	}
-	worm.length = 0;
-	worm.up = () => {
-		if((this.body[0].y - 1)>=0)
-			this.body[0].y--
-		else
-			this.body[0].y = g.ry-1;
-	}
-	worm.down = () => {
-		if((this.body[0].y + 1)<g.ry)
-			this.body[0].y++
-		else
-			this.body[0].y = 0;
-	}
-	worm.left = () => {
-		if((this.body[0].x - 1) >= 0)
-			this.body[0].x--;
-		else
-			this.body[0].x = g.rx-1;
-	}
-	worm.right = () => {
-		if((this.body[0].x + 1) < g.rx)
-			this.body[0].x++;
-		else
-			this.body[0].x = 0;
-	}
-	var seed = {};
-	seed.draw = () => {
-		if(!this.x){
-			this.x = Math.floor(Math.random() * (g.rx-g.s));
-			this.y = Math.floor(Math.random() * (g.ry-g.s));
-		}
-		if(g.fb[this.x][this.y] !== ['FF','FF','FF'])
-			g.fb[this.x][this.y] = ['FF','00','00'];
-		else
-			this.draw();
-	}
-	seed.hit = () => {
-		delete this.x;
-		delete this.y;
-	}
+	};
+	
 	function gr(){
 		var w = g.w;
 		var h = g.h;
@@ -175,8 +186,8 @@ canvas{
 				g.fb[i][d] = ['00', '00', '00'];
 			}
 		}
-		worm.draw();
-		seed.draw();
+		g_worm.draw();
+		g_seed.draw();
 		/*
 		var x = Math.floor(Math.random() * (g.rx-g.s));
 		var y = Math.floor(Math.random() * (g.ry-g.s));
@@ -209,8 +220,10 @@ canvas{
 		
 		
 	}
-	
+	var g_worm, g_seed;
 	function l(){
+		g_worm = new worm();
+		g_seed = new seed();
 		g.l = setInterval(function() {
 			gr();
 			dr();
