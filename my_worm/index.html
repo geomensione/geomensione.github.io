@@ -76,6 +76,11 @@ canvas{
 	
 	var worm = function(){
 		this.draw = () => {
+			if(!this.dir){
+				let dir_strings = ['up','down','left','right'];
+				var random_dir = Math.floor(Math.random() * dir_strings.length);
+				this.dir = dir_strings[random_dir];
+			}
 			if(!this.body){
 				this.body = [];
 				var coord = {x: Math.floor(Math.random() * (g.rx-g.s)),y: Math.floor(Math.random() * (g.ry-g.s))};
