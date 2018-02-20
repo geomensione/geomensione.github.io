@@ -105,18 +105,26 @@ canvas{
 	worm.up = () => {
 		if((this.body[worm.length].y - 1)>=0)
 			this.body[worm.length].y--
+		else
+			this.body[worm.length].y = g.ry;
 	}
 	worm.down = () => {
 		if((this.body[worm.length].y + 1)<=g.ry)
 			this.body[worm.length].y++
+		else
+			this.body[worm.length].y = 0;
 	}
 	worm.left = () => {
 		if((this.body[worm.length].x - 1) >= 0)
 			this.body[worm.length].x--;
+		else
+			this.body[worm.length].x = g.rx;
 	}
 	worm.right = () => {
 		if((this.body[worm.length].x + 1) <= g.rx)
 			this.body[worm.length].x++;
+		else
+			this.body[worm.length].x = 0;
 	}
 	var seed = {};
 	seed.draw = () => {
