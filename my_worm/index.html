@@ -78,7 +78,7 @@ canvas{
 		this.draw = () => {
 			if(!this.dir){
 				let dir_strings = ['up','down','left','right'];
-				var random_dir = Math.floor(Math.random() * dir_strings.length);
+				let random_dir = Math.floor(Math.random() * dir_strings.length);
 				this.dir = dir_strings[random_dir];
 			}
 			if(!this.body){
