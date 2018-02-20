@@ -38,15 +38,15 @@ canvas{
 	
 	function direction(x,y){
 		if(x < a.width/3)
-			g_worm.dir = 'left';
+			g_worm.setDir('left');
 		else	
 			if(x > (a.width/3)*2)
-				g_worm.dir = 'right';
+				g_worm.setDir('right');
 			else
 				if(y > a.height/2)
-					g_worm.dir = 'down';
+					g_worm.setDir('down');
 				else
-					g_worm.dir = 'up';
+					g_worm.setDir('up');
 	}
 	 
 	d.ontouchstart = function(e){
@@ -60,16 +60,16 @@ canvas{
 	d.onkeydown = function(e){
 		switch(e.keyCode){
 			case 37:
-				g_worm.dir = 'left';
+				g_worm.setDir('left');
 				break;
 			case 38:
-				g_worm.dir = 'up';
+				g_worm.setDir('up');
 				break;
 			case 39:
-				g_worm.dir = 'right';
+				g_worm.setDir('right');
 				break;
 			case 40:
-				g_worm.dir = 'down';
+				g_worm.setDir('down');
 				break;
 		}
 	}
@@ -141,7 +141,13 @@ canvas{
 				this.body[0].x = 0;
 		}
 		return{
-			draw: this.draw
+			draw: this.draw,
+			setDir: (str) => {
+				this.dir=str;
+			},
+			getDir: () => {
+				return this.dir;
+			}
 		}
 	};
 	
