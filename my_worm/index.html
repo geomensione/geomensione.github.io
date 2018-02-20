@@ -136,7 +136,7 @@ canvas{
 				this.body[0].x = 0;
 		}
 		return{
-			draw: draw
+			draw: this.draw
 		}
 	};
 	
@@ -157,8 +157,8 @@ canvas{
 			delete this.y;
 		}
 		return{
-			draw: draw,
-			hit: hit
+			draw: this.draw,
+			hit: this.hit
 		}
 	};
 	
