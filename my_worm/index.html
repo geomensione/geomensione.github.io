@@ -122,7 +122,7 @@ canvas{
 	seed.draw = () => {
 		if(!this.x){
 			this.x = Math.floor(Math.random() * (g.rx-g.s));
-			this.y = Math.floor(Math.random() * (g.ry-g.s))};
+			this.y = Math.floor(Math.random() * (g.ry-g.s));
 		}
 		if(g.fb[this.x][this.y] !== ['FF','FF','FF'])
 			g.fb[this.x][this.y] = ['FF','00','00'];
