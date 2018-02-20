@@ -147,7 +147,7 @@ canvas{
 				this.x = Math.floor(Math.random() * (g.rx-g.s));
 				this.y = Math.floor(Math.random() * (g.ry-g.s));
 			}
-			if(g.fb[this.x][this.y] !== ['FF','FF','FF'])
+			if(g.fb[this.x][this.y][0] !== 'FF' && g.fb[this.x][this.y][1] !== 'FF' && g.fb[this.x][this.y][2] !== 'FF')
 				g.fb[this.x][this.y] = ['FF','00','00'];
 			else
 				this.draw();
