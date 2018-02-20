@@ -134,6 +134,8 @@ canvas{
 		}
 		if(g.fb[this.x][this.y] !== ['FF','FF','FF'])
 			g.fb[this.x][this.y] = ['FF','00','00'];
+		else
+			this.draw();
 	}
 	seed.hit = () => {
 		delete this.x;
