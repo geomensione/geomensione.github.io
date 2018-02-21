@@ -36,6 +36,14 @@ canvas{
 	g.s = 1;
 	g.fr = 100;
 	
+	function copy(j){
+		var k = Object.keys(j);
+		var r = {};
+		for(let l = 0;l<k.length;l++)
+			r[k[l]]=j[k[l]];
+		return r;
+	}
+	 
 	function direction(x,y){
 		if(x < a.width/3)
 			g_worm.setDir('left');
@@ -91,7 +99,7 @@ canvas{
 					if(this.body[l+1]){
 						this.body[l+1] = this.body[l];
 					}else{
-						var point = this.body[l];
+						var point = copy(this.body[l]);
 						this.body.push(point);
 					}
 			switch(this.dir){
