@@ -116,17 +116,18 @@ canvas{
 					this.down(0);
 					break;
 			}
-			//inizio a disegnare dalla coda
-			for(var b = this.body.length-1;b>=0;b--)
-			{
-				if(g.fb[this.body[b].x][this.body[b].y][0] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === 'FF')
-					this.end();
-				else 
-					if(g.fb[this.body[b].x][this.body[b].y][0] === 'FF' && g.fb[this.body[b].x][this.body[b].y][1] === '00' && g.fb[this.body[b].x][this.body[b].y][1] === '00')
-						seed.hit();
-					else
+			if(g.fb[this.body[0].x][this.body[0].y][0] === 'FF' && g.fb[this.body[0].x][this.body[0].y][1] === 'FF' && g.fb[this.body[0].x][this.body[0].y][1] === 'FF')
+				this.end();
+			else 
+				if(g.fb[this.body[0].x][this.body[0].y][0] === 'FF' && g.fb[this.body[0].x][this.body[0].y][1] === '00' && g.fb[this.body[0].x][this.body[0].y][1] === '00')
+					seed.hit();
+				else
+					//inizio a disegnare dalla coda
+					for(var b = this.body.length-1;b>=0;b--)
+					{
 						g.fb[this.body[b].x][this.body[b].y] = ['FF','FF','FF'];
-			}
+					}		
+			
 		}
 		this.length = 1;
 		this.up = (i) => {
