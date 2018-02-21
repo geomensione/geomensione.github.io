@@ -94,16 +94,16 @@ canvas{
 						this.body.push(this.body[l]);
 			switch(this.dir){
 				case 'left':
-					this.left();
+					this.left(0);
 					break;
 				case 'right':
-					this.right();
+					this.right(0);
 					break;
 				case 'up':
-					this.up();
+					this.up(0);
 					break;
 				case 'down':
-					this.down();
+					this.down(0);
 					break;
 			}
 			//inizio a disegnare dalla coda
@@ -119,29 +119,29 @@ canvas{
 			}
 		}
 		this.length = 1;
-		this.up = () => {
-			if((this.body[0].y - 1)>=0)
-				this.body[0].y--
+		this.up = (i) => {
+			if((this.body[i].y - 1)>=0)
+				this.body[i].y--
 			else
-				this.body[0].y = g.ry-1;
+				this.body[i].y = g.ry-1;
 		}
-		this.down = () => {
-			if((this.body[0].y + 1)<g.ry)
-				this.body[0].y++
+		this.down = (i) => {
+			if((this.body[i].y + 1)<g.ry)
+				this.body[i].y++
 			else
-				this.body[0].y = 0;
+				this.body[i].y = 0;
 		}
-		this.left = () => {
-			if((this.body[0].x - 1) >= 0)
-				this.body[0].x--;
+		this.left = (i) => {
+			if((this.body[i].x - 1) >= 0)
+				this.body[i].x--;
 			else
-				this.body[0].x = g.rx-1;
+				this.body[i].x = g.rx-1;
 		}
-		this.right = () => {
-			if((this.body[0].x + 1) < g.rx)
-				this.body[0].x++;
+		this.right = (i) => {
+			if((this.body[i].x + 1) < g.rx)
+				this.body[i].x++;
 			else
-				this.body[0].x = 0;
+				this.body[i].x = 0;
 		}
 		return{
 			draw: this.draw,
