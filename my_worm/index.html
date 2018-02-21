@@ -88,10 +88,12 @@ canvas{
 			}
 			if(this.length>1)
 				for(let l = 0;l<this.length-1;l++)
-					if(this.body[l+1])
+					if(this.body[l+1]){
 						this.body[l+1] = this.body[l];
-					else
-						this.body.push(this.body[l]);
+					}else{
+						var point = this.body[l];
+						this.body.push(point);
+					}
 			switch(this.dir){
 				case 'left':
 					this.left(0);
