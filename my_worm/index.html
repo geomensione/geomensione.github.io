@@ -95,9 +95,9 @@ canvas{
 				this.body.push(coord);
 			}
 			if(this.length>1)
-				for(let l = 0;l<this.length-1;l++)
-					if(this.body[l+1]){
-						this.body[l+1] = copy(this.body[l]);
+				for(let l = this.length-1;l>=1;l--)
+					if(this.body[l]){
+						this.body[l] = copy(this.body[l-1]);
 					}else{
 						var point = copy(this.body[l]);
 						this.body.push(point);
