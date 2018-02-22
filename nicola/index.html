@@ -51,24 +51,24 @@
       </div>
       <div class="row">
         <div class="column">
-          <div class="button uno" onclick="risposta(1)">
+          <div class="button uno" onclick="risposta(this,1)">
             risposta 1
           </div>
         </div>
         <div class="column">
-          <div class="button due" onclick="risposta(2)">
+          <div class="button due" onclick="risposta(this,2)">
             risposta 2
           </div>
         </div>
       </div>
       <div class="row">
         <div class="column">
-          <div class="button tre" onclick="risposta(3)">
+          <div class="button tre" onclick="risposta(this,3)">
             risposta 3
           </div>
         </div>
         <div class="column">
-          <div class="button quattro" onclick="risposta(4)">
+          <div class="button quattro" onclick="risposta(this,4)">
             risposta 4
           </div>
         </div>
@@ -87,7 +87,7 @@
   
   function fuzzy(){}
   
-  function risposta(value){
+  function risposta(button,value){
       var buttons = document.getElementsByClassName('button');
       for(let but = 0; but<buttons.length;but++){
         (buttons[but].classList.contains('selectButton'))?buttons[but].classList.remove('selectButton'):fuzzy();
@@ -109,7 +109,7 @@
               console.log('numero non supportato');
           }
       }
-    if(this.innerText === g.loghi[g.indexSelection].immagine)
+    if(g.loghi[g.indexSelection].immagine.indexOf(button.innerText) !== -1)
       alert('INDOVINATO!')
       
   }
