@@ -135,7 +135,7 @@
   g.loghi = [];
   g.indexes = [];
   g.fatte = {};
-
+  varr indexToString = ['uno','due','tre','quattro'];
   for(var i = 1;i<=500;i++){
     g.loghi.push({immagine:'immagine'+i+'.png',nome:'nome'+i});
     g.indexes[i-1] = i;
@@ -154,6 +154,14 @@
   g.question = () => {
     let i = Math.round(Math.random() * g.loghi.length);
     g.ctx.fillText(g.loghi[i].immagine,10,50);
+    let ii = Math.round(Math.random() * g.loghi.length);
+    let iii = Math.round(Math.random() * g.loghi.length);
+    let iiii = Math.round(Math.random() * g.loghi.length);
+    var domande = shuffle([i,ii,iii,iiii]);
+    for(let d = 0;d<domande.length;d++){
+      document.getElementsByClassName(indexToString[d])[0].text = g.loghi[domande[d]].nome;
+    }
+    
   }
   
   g.question();
