@@ -165,6 +165,7 @@
     for(let but = 0; but<buttons.length;but++){
       removeSelectionButton(buttons,but);
     }
+    g.ctx.clear();
     g.indexSelection = Math.round(Math.random() * g.loghi.length);
     g.ctx.fillText(g.loghi[g.indexSelection].immagine,10,50);
     let ii = Math.round(Math.random() * g.loghi.length);
