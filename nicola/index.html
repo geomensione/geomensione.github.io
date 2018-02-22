@@ -109,8 +109,10 @@
               console.log('numero non supportato');
           }
       }
-    if(g.loghi[g.indexSelection].immagine.indexOf(button.innerText.split('_')[1]) !== -1)
-      alert('INDOVINATO!')
+    if(g.loghi[g.indexSelection].immagine.indexOf(button.innerText.split('_')[1]) !== -1){
+      array.splice(g.indexSelection, 1);
+    }
+    g.question();
       
   }
 
@@ -162,7 +164,6 @@
     let iiii = Math.round(Math.random() * g.loghi.length);
     var domande = shuffle([g.indexSelection,ii,iii,iiii]);
     for(let d = 0;d<domande.length;d++){
-      //da testare
       document.getElementsByClassName(indexToString[d])[0].innerText = g.loghi[domande[d]].nome;
     }
     
