@@ -109,7 +109,7 @@
               console.log('numero non supportato');
           }
       }
-    if(g.loghi[g.indexSelection].immagine.indexOf(button.innerText) !== -1)
+    if(g.loghi[g.indexSelection].immagine.indexOf(button.innerText.split('_')[1]) !== -1)
       alert('INDOVINATO!')
       
   }
@@ -140,7 +140,7 @@
   g.fatte = {};
   var indexToString = ['uno','due','tre','quattro'];
   for(var i = 1;i<=500;i++){
-    g.loghi.push({immagine:'immagine'+i+'.png',nome:'nome'+i});
+    g.loghi.push({immagine:'immagine'+i+'.png',nome:'nome_'+i});
     g.indexes[i-1] = i;
   }
   g.ctx = c.getContext('2d');
