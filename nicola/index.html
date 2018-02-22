@@ -131,25 +131,25 @@
     return array;
   }
 
-  
-  var loghi = [];
-  var indexes = [];
-  var fatte = {};
+  var g = {};
+  g.loghi = [];
+  g.indexes = [];
+  g.fatte = {};
 
   for(var i = 1;i<=500;i++){
     loghi.push({immagine:'immagine'+i+'.png',nome:'nome'+i});
     indexes[i-1] = i;
   }
 
-  consoleObject(loghi);
-  consoleObject(indexes);
-  indexes = shuffle(indexes);
-  consoleObject(indexes);
+  consoleObject(g.loghi);
+  consoleObject(g.indexes);
+  indexes = shuffle(g.indexes);
+  consoleObject(g.indexes);
   
-  gc = document.getElementsByClassName;
-  il = gc('imgLogo')[0];
-  c.width = il.width;
-  c.height = il.height;
+  g.gc = document.getElementsByClassName;
+  g.il = g.gc('imgLogo')[0];
+  c.width = g.il.width;
+  c.height = g.il.height;
 
   /*
   printObject(loghi);
