@@ -159,6 +159,7 @@
     let iiii = Math.round(Math.random() * g.loghi.length);
     var domande = shuffle([i,ii,iii,iiii]);
     for(let d = 0;d<domande.length;d++){
+      //da testare
       document.getElementsByClassName(indexToString[d])[0].innerText = g.loghi[domande[d]].nome;
     }
     
