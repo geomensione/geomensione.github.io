@@ -91,6 +91,10 @@
     (buttons[but].classList.contains('selectButton'))?buttons[but].classList.remove('selectButton'):fuzzy();
   }
   
+  g.end = ()=>{
+    alert('HAI PERSO! il tuo punteggio: '+g.score);
+  }
+  
   function risposta(button,value){
       var buttons = document.getElementsByClassName('button');
       for(let but = 0; but<buttons.length;but++){
@@ -114,10 +118,12 @@
           }
       }
     if(g.loghi[g.indexSelection].immagine.indexOf(button.innerText.split('_')[1]) !== -1){
+      clearTimeout(g.to);
       g.loghi.splice(g.indexSelection, 1);
+      g.score++;
       g.question();
     }else{
-      alert('HAI PERSO!');
+      g.end();
     }
     
       
@@ -147,6 +153,7 @@
   g.loghi = [];
   g.indexes = [];
   g.fatte = {};
+  g.score=0;
   var indexToString = ['uno','due','tre','quattro'];
   for(var i = 1;i<=500;i++){
     g.loghi.push({immagine:'immagine'+i+'.png',nome:'nome_'+i});
@@ -164,6 +171,9 @@
   c.height = g.il.clientHeight;
   
   g.question = () => {
+    g.to = setTimeout(()=>{
+      g.end();
+    },10000);
     var buttons = document.getElementsByClassName('button');
     for(let but = 0; but<buttons.length;but++){
       removeSelectionButton(buttons,but);
