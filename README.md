@@ -1,5 +1,3 @@
-# geomensione.github.io
-
 js13kgames-glitch: 
 
 LOW RES PARTY! Old style low res game: reach last evolution of the hero, but... WATCH OUT to the glitches!
@@ -83,7 +81,7 @@ My JS library
 
 [https://geomensione.github.io/myJsLib/gms.js](https://geomensione.github.io/myJsLib/gms.js)
 
-# Lectures
+Lectures
 
 [http://gameprogrammingpatterns.com/contents.html](http://gameprogrammingpatterns.com/contents.html)
 
