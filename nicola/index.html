@@ -91,10 +91,6 @@
     (buttons[but].classList.contains('selectButton'))?buttons[but].classList.remove('selectButton'):fuzzy();
   }
   
-  g.end = ()=>{
-    alert('HAI PERSO! il tuo punteggio: '+g.score);
-  }
-  
   function risposta(button,value){
       var buttons = document.getElementsByClassName('button');
       for(let but = 0; but<buttons.length;but++){
@@ -150,6 +146,9 @@
   }
 
   var g = {};
+  g.end = ()=>{
+    alert('HAI PERSO! il tuo punteggio: '+g.score);
+  }
   g.loghi = [];
   g.indexes = [];
   g.fatte = {};
