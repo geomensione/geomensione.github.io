@@ -140,7 +140,8 @@
     g.loghi.push({immagine:'immagine'+i+'.png',nome:'nome'+i});
     g.indexes[i-1] = i;
   }
-
+  g.ctx = c.getContext('2d');
+  g.ctx.font = "30px Arial";
   consoleObject(g.loghi);
   consoleObject(g.indexes);
   indexes = shuffle(g.indexes);
@@ -149,6 +150,11 @@
   g.il = document.getElementsByClassName('imgLogo')[0];
   c.width = g.il.clientWidth;
   c.height = g.il.clientHeight;
+  
+  g.question = () => {
+    let i = Math.random() * g.loghi.length;
+    ctx.fillText(g.loghi[i].immagine,10,50);
+  }
 
   /*
   printObject(loghi);
