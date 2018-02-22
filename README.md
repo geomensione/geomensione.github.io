@@ -72,7 +72,7 @@ JS1k 2018 coin mine
 
 https://geomensione.github.io/JS1k_2018_coin_mine
 
-WIP... my worm game
+My worm game
 
 https://geomensione.github.io/my_worm
 
