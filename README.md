@@ -45,27 +45,11 @@ Compleanno alice:
 
 [https://geomensione.github.io/alice](https://geomensione.github.io/alice)
 
-WIP p5:
-
-[https://geomensione.github.io/p5](https://geomensione.github.io/p5)
-
-WIP matterjs game:
-
-[https://geomensione.github.io/matterjs](https://geomensione.github.io/matterjs)
-
-WIP fast3d
-
-[https://geomensione.github.io/threejs](https://geomensione.github.io/threejs)
-
 JS13KGames Lost ... NOT FINISHED
 
 [https://geomensione.github.io/JS13KGames-Lost](https://geomensione.github.io/JS13KGames-Lost)
 
-WIP... webglStudio plugin
-
-[https://geomensione.github.io/webglStudio](https://geomensione.github.io/webglStudio)
-
-WIP... nicola game
+nicola game
 
 [https://geomensione.github.io/nicola](https://geomensione.github.io/nicola)
 
@@ -81,7 +65,27 @@ My JS library
 
 [https://geomensione.github.io/myJsLib/gms.js](https://geomensione.github.io/myJsLib/gms.js)
 
+WIP
+
+p5:
+
+[https://geomensione.github.io/p5](https://geomensione.github.io/p5)
+
+matterjs game:
+
+[https://geomensione.github.io/matterjs](https://geomensione.github.io/matterjs)
+
+fast3d
+
+[https://geomensione.github.io/threejs](https://geomensione.github.io/threejs)
+
+webglStudio plugin
+
+[https://geomensione.github.io/webglStudio](https://geomensione.github.io/webglStudio)
+
 Lectures
+
+game programming patterns
 
 [http://gameprogrammingpatterns.com/contents.html](http://gameprogrammingpatterns.com/contents.html)
 
