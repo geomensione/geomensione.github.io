@@ -35,7 +35,7 @@ index.html:
             
         </div>
         <script type="text/javascript" src="cordova.js"></script>
-		<script type="text/javascript" src="lib/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="lib/angularjs/angular.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
