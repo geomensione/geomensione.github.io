@@ -1,0 +1,1 @@
+cordova && angular without ionic!
