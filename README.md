@@ -83,6 +83,10 @@ webglStudio plugin
 
 [https://geomensione.github.io/webglStudio](https://geomensione.github.io/webglStudio)
 
+noionic
+
+cordova and android, without ionic
+
 Lectures
 
 game programming patterns
