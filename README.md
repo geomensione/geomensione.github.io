@@ -85,7 +85,7 @@ webglStudio plugin
 
 noionic
 
-cordova and android, without ionic
+(android project bootstrap) cordova and android, without ionic
 
 Lectures
 
