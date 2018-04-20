@@ -11,6 +11,7 @@
       setInterval(function() {
         x.clearRect(0, 0, c.width, c.height);
         g.l=['P','R'];
+        g.nc = Math.ceil(c.width/24);
         x.font='24px Arial';
         x.fillStyle='red';
         g.li=g.li||0;
@@ -18,7 +19,7 @@
         g.li=(g.li+1)%2;
         if(!g.offset)
           g.offset=0
-        for(let c = 0;c<20;c++){  
+        for(let c = 0;c<g.nc;c++){  
           x.fillText('@',20*c-g.offset,70);
         }
         g.offset=(g.offset+8)%24;
