@@ -8,6 +8,11 @@
       x=c.getContext('2d');
       c.width = window.innerWidth;
       g = {};
+      h = {};
+      h.h = 0;
+      h.draw = () => {
+        x.fillText(g.l[g.li],50,50-h.h);
+      }
       setInterval(function() {
         x.clearRect(0, 0, c.width, c.height);
         g.l=['P','R'];
