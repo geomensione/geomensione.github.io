@@ -12,7 +12,8 @@
       h.h = 50;
       h.draw = () => {
         if(g.j)
-          h.h+=1
+          if(h.h>0)
+            h.h-=1
         else
           if(h.h<50)
             h.h++;
