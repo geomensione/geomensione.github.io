@@ -11,12 +11,14 @@
       h = {};
       h.h = 50;
       h.draw = () => {
-        if(g.j)
+        if(g.j){
           if(h.h>0)
             h.h-=10
-        else
+        }else{
           if(h.h<50)
             h.h+=10;
+        }
+        
         x.fillText(g.l[g.li],50,h.h);
       }
       addEventListener('keydown',() => {
