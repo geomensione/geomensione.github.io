@@ -11,8 +11,19 @@
       h = {};
       h.h = 0;
       h.draw = () => {
+        if(g.j)
+          h.h+=1
+        else
+          if(h.h<50)
+            h.h++;
         x.fillText(g.l[g.li],50,50-h.h);
       }
+      addEventListener('keydown',() => {
+        g.j = true;
+      });
+      addEventListener('keydown',() => {
+        g.j = false;
+      });
       setInterval(function() {
         x.clearRect(0, 0, c.width, c.height);
         g.l=['P','R'];
