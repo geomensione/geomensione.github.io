@@ -1,0 +1,18 @@
+<html>
+  <head></head>
+  <body>
+    <canvas id=c height="768"></canvas>
+    <script>
+      x=c.getContext('2d');
+      c.width = window.innerWidth;
+      setInterval(function() {
+        x.width|=0;
+        r=new Date%255;
+        o=new Date%c.width;
+        x.font=(255-r)+'px Arial';
+        x.fillStyle='rgba('+r+','+(255-r)+','+r+',0.5)';
+        x.fillText(o+'',o,o);  
+      }, 200);
+    </script>
+  </body>
+</html>
