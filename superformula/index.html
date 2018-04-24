@@ -64,7 +64,7 @@
   var ctx = c.getContext("2d");
   ctx.fillStyle = "#FF0000";
   for(var p = 0; p < points_length;p++){
-    (p === 0)?ctx.moveTo(p.x, p.y):ctx.lineTo(p.x, p.y);
+    (p === 0)?ctx.moveTo(points[p].x, points[p].y):ctx.lineTo(points[p].x, points[p].y);
  
   }
   ctx.stroke();
