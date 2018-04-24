@@ -97,6 +97,11 @@ noionic
 
 (android project bootstrap) cordova and android, without ionic
 
+superformula
+
+[https://geomensione.github.io/superformula](https://geomensione.github.io/superformula)
+
+
 Lectures
 
 game programming patterns
