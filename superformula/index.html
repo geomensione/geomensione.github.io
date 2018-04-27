@@ -95,25 +95,7 @@ window.dispatchEvent(new Event("resize"));
 
 </script>
   <script>
-    function superformula(){
-      var uno = parseFloat(document.getElementById('uno').value);
-      var due = parseFloat(document.getElementById('due').value);
-      var tre = parseFloat(document.getElementById('tre').value);
-      var quattro = parseFloat(document.getElementById('quattro').value);
-      
-      var points = Superformula(uno,due,tre,quattro);
-      var points_length = points.length;
-      var ctx = c.getContext("2d");
-      ctx.clearRect(0, 0, c.width, c.height);
-      ctx.fillStyle = "#FF0000";
-      for(var p = 0; p < points_length;p++){
-        (p === 0)?ctx.moveTo(points[p].x, points[p].y):ctx.lineTo(points[p].x, points[p].y);
-
-      }
-      ctx.stroke();
-
-    }
-    superformula();
+    render(1);
     </script>
 </body>
 </html>
