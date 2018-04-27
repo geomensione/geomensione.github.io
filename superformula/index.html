@@ -82,7 +82,9 @@ function render(now) {
 }
 
 function frame(now) {
-  render(1);
+  alert(now)
+  render(now);
+  window.requestAnimationFrame(frame);
 }
 
 function resize() {
@@ -90,6 +92,7 @@ function resize() {
   canvas.height = window.innerHeight;
 }
 
+window.requestAnimationFrame(frame);
 window.addEventListener("resize", resize);
 window.dispatchEvent(new Event("resize"));
 
