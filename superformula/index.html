@@ -3,6 +3,10 @@
 <body>
 <canvas id=c>
 </canvas>
+  <input type='text' id="uno" value="1" onchange="superformula()"></input>
+  <input type='text' id="due" value="2" onchange="superformula()"></input>
+  <input type='text' id="tre" value="3" onchange="superformula()"></input>
+  <input type='text' id="quattro" value="4" onchange="superformula()"></input>
 <script>
 
 (function() {
@@ -59,15 +63,24 @@
 })();
 </script>
   <script>
-  var points = Superformula(30,4.5,100,100);
-  var points_length = points.length;
-  var ctx = c.getContext("2d");
-  ctx.fillStyle = "#FF0000";
-  for(var p = 0; p < points_length;p++){
-    (p === 0)?ctx.moveTo(points[p].x, points[p].y):ctx.lineTo(points[p].x, points[p].y);
- 
-  }
-  ctx.stroke();
-  </script>
+    function superformula(){
+      var uno = document.getElementById('uno').value;
+      var due = document.getElementById('due').value;
+      var tre = document.getElementById('tre').value;
+      var quattro = document.getElementById('quattro').value;
+      
+      var points = Superformula(uno,due,tre,quattro);
+      var points_length = points.length;
+      var ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.fillStyle = "#FF0000";
+      for(var p = 0; p < points_length;p++){
+        (p === 0)?ctx.moveTo(points[p].x, points[p].y):ctx.lineTo(points[p].x, points[p].y);
+
+      }
+      ctx.stroke();
+
+    }
+    </script>
 </body>
 </html>
