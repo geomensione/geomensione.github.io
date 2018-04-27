@@ -64,10 +64,10 @@
 </script>
   <script>
     function superformula(){
-      var uno = parseInt(document.getElementById('uno').value);
-      var due = parseInt(document.getElementById('due').value);
-      var tre = parseInt(document.getElementById('tre').value);
-      var quattro = parseInt(document.getElementById('quattro').value);
+      var uno = parseFloat(document.getElementById('uno').value);
+      var due = parseFloat(document.getElementById('due').value);
+      var tre = parseFloat(document.getElementById('tre').value);
+      var quattro = parseFloat(document.getElementById('quattro').value);
       
       var points = Superformula(uno,due,tre,quattro);
       var points_length = points.length;
