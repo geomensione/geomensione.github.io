@@ -9,58 +9,90 @@
   <input type='text' id="quattro" value="4" onchange="superformula()"></input>
 <script>
 
-(function() {
+// @see: https://en.wikipedia.org/wiki/Superformula
+const canvas = c,
+      context = canvas.getContext("2d");
 
-  var root = this;
+const SCALE = 150;
+const VALUES = [];
+for (let index = 0; index < 30; index++) {
+  VALUES.push((Math.random() * 20000) + 100);
+}
 
-  var previousSuperformula = root.Superformula;
+function superformula(phi,a,b,m,n1,n2,n3) {
+  return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
+}
 
-  var NP = 360, phi = Math.PI * 2 / NP;
-
-  var Superformula = root.Superformula = function(m, n1, n2, n3) {
-
-    var points = [];
-    for (var i = 0; i <= NP; i++) {
-      points.push(new Point(m, n1, n2, n3, phi * i));
-    }
-
-    return points;
-
-  };
-
-  Superformula.noConflict = function() {
-
-    root.Superformula = previousSuperformula;
-    return this;
-
-  };
-
-  var Point = function(m, n1, n2, n3, phi) {
-
-    var r, t1, t2, a = 1, b = 2;
-
-    t1 = Math.cos(m * phi / 4) / a;
-    t1 = Math.abs(t1);
-    t1 = Math.pow(t1, n2);
-
-    t2 = Math.sin(m * phi / 4) / b;
-    t2 = Math.abs(t2);
-    t2 = Math.pow(t2, n3);
-
-    r = Math.pow(t1 + t2, 1 / n1);
-
-    if (Math.abs(r) === 0) {
-      this.x = 0;
-      this.y = 0;
+function renderFormula(now, t1, t2, t3, i) {
+  const s1 = now / t1;
+  const s2 = now / t2;
+  const s3 = now / t3;
+  
+  const a = Math.abs(Math.sin(s1));
+  const b = Math.abs(Math.sin(s1));
+  
+  const m = Math.abs(Math.sin(s2) * 50);
+  const n1 = Math.abs(Math.sin(s3) * 50);
+  const n2 = Math.abs(Math.sin(s2) * 50);
+  const n3 = Math.abs(Math.sin(s1) * 50);
+  
+  context.beginPath();
+  for (let index = 0; index < 360; index++) {
+    const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
+    const x = Math.cos(index / 360 * Math.PI * 2) * radius * SCALE;
+    const y = Math.sin(index / 360 * Math.PI * 2) * radius * SCALE;
+    if (index === 0) {
+      context.moveTo(x,y);
     } else {
-      r = 1 / r;
-      this.x = r * Math.cos(phi);
-      this.y = r * Math.sin(phi);
+      context.lineTo(x,y);
     }
+  }
+  context.closePath();
+  
+  context.globalCompositeOperation = "lighten";
+  
+  context.shadowColor = "#0cf";
+  context.shadowBlur = 32;
+  
+  context.lineWidth = i;
+  context.strokeStyle = "#fff";
+  context.stroke();
+}
 
-  };
+function render(now) {
+  const s1 = now / 1000;
+  const s2 = now / 250;
+  const s3 = now / 500;
+  
+  const a = Math.abs(Math.sin(s1));
+  const b = Math.abs(Math.sin(s1));
+  
+  const m = Math.abs(Math.sin(s2) * 50);
+  const n1 = Math.abs(Math.sin(s3) * 50);
+  const n2 = Math.abs(Math.sin(s2) * 50);
+  const n3 = Math.abs(Math.sin(s1) * 50);
+  
+  context.clearRect(0,0,canvas.width,canvas.height);
+  context.save();
+  context.translate(canvas.width * 0.5, canvas.height * 0.5);
+  for (let index = 0; index < VALUES.length; index += 3) {
+    renderFormula(now, VALUES[index], VALUES[index+1], VALUES[index+2], index + 1);
+  }
+  context.restore();
+}
 
-})();
+function frame(now) {
+  render(now);
+}
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener("resize", resize);
+window.dispatchEvent(new Event("resize"));
+
 </script>
   <script>
     function superformula(){
