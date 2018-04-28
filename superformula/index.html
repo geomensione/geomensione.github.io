@@ -5,7 +5,8 @@
   <input type='text' id="due" value="2" onchange="getFrame()"></input>
   <input type='text' id="tre" value="3" onchange="getFrame()"></input>
   <input type='text' id="quattro" value="4" onchange="getFrame()"></input>
-  <input type='text' id="scale" value="150" onchange="getFrame()"></input>
+  <input type='text' id="scalea" value="150" onchange="getFrame()"></input>
+  <input type='text' id="scaleb" value="150" onchange="getFrame()"></input>
 <canvas id=c>
 </canvas>
   
@@ -41,9 +42,10 @@ function renderFormula(now, t1, t2, t3, i) {
   context.beginPath();
   for (let index = 0; index < 360; index++) {
     const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
-    const scale = document.getElementById('scale').value;
-    const x = Math.cos(index / 360 * Math.PI * 2) * radius * scale;
-    const y = Math.sin(index / 360 * Math.PI * 2) * radius * scale;
+    const a = document.getElementById('scalea').value;
+    const b = document.getElementById('scaleb').value;
+    const x = Math.cos(index / 360 * Math.PI * 2) * radius * a;
+    const y = Math.sin(index / 360 * Math.PI * 2) * radius * b;
     if (index === 0) {
       context.moveTo(x,y);
     } else {
@@ -79,7 +81,6 @@ function render(now) {
   context.clearRect(0,0,canvas.width,canvas.height);
   context.save();
   context.translate(canvas.width * 0.5, canvas.height * 0.5);
-  const uno = document.getElementById('uno').value;
   const due = document.getElementById('due').value;
   const tre = document.getElementById('tre').value;
   const quattro = document.getElementById('quattro').value;
@@ -88,14 +89,13 @@ function render(now) {
     renderFormula(now, VALUES[index], VALUES[index+1], VALUES[index+2], index + 1);
   }
   */
-  renderFormula(now, uno, due, tre, quattro);
+  renderFormula(now, due, tre, quattro,1);
   context.restore();
 }
 
-function frame(now) {
-  console.log(now)
-  render(now);
-  //window.requestAnimationFrame(frame);
+function frame() {
+  const uno = document.getElementById(uno).value;
+  render(uno);
 }
 
 function resize() {
@@ -109,7 +109,7 @@ function getFrame(){
   window.dispatchEvent(new Event("resize"));
 }
 
-  getFrame();
+  frame();
 </script>
 </body>
 </html>
