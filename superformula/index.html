@@ -3,10 +3,12 @@
 <body>
 <canvas id=c>
 </canvas>
-  <input type='text' id="uno" value="1" onchange="superformula()"></input>
-  <input type='text' id="due" value="2" onchange="superformula()"></input>
-  <input type='text' id="tre" value="3" onchange="superformula()"></input>
-  <input type='text' id="quattro" value="4" onchange="superformula()"></input>
+  <input type='text' id="uno" value="1" onchange="getFrame()"></input>
+  <input type='text' id="due" value="2" onchange="getFrame()"></input>
+  <input type='text' id="tre" value="3" onchange="getFrame()"></input>
+  <input type='text' id="quattro" value="4" onchange="getFrame()"></input>
+  <input type='text' id="scale" value="150" onchange="getFrame()"></input>
+  
 <script>
 
 // @see: https://en.wikipedia.org/wiki/Superformula
@@ -39,8 +41,9 @@ function renderFormula(now, t1, t2, t3, i) {
   context.beginPath();
   for (let index = 0; index < 360; index++) {
     const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
-    const x = Math.cos(index / 360 * Math.PI * 2) * radius * SCALE;
-    const y = Math.sin(index / 360 * Math.PI * 2) * radius * SCALE;
+    const scale = document.getElementById('scale').value;
+    const x = Math.cos(index / 360 * Math.PI * 2) * radius * scale;
+    const y = Math.sin(index / 360 * Math.PI * 2) * radius * scale;
     if (index === 0) {
       context.moveTo(x,y);
     } else {
@@ -60,6 +63,7 @@ function renderFormula(now, t1, t2, t3, i) {
 }
 
 function render(now) {
+  /*
   const s1 = now / 1000;
   const s2 = now / 250;
   const s3 = now / 500;
@@ -71,13 +75,20 @@ function render(now) {
   const n1 = Math.abs(Math.sin(s3) * 50);
   const n2 = Math.abs(Math.sin(s2) * 50);
   const n3 = Math.abs(Math.sin(s1) * 50);
-  
+  */
   context.clearRect(0,0,canvas.width,canvas.height);
   context.save();
   context.translate(canvas.width * 0.5, canvas.height * 0.5);
+  const uno = document.getElementById('uno').value;
+  const due = document.getElementById('due').value;
+  const tre = document.getElementById('tre').value;
+  const quattro = document.getElementById('quattro').value;
+  /*
   for (let index = 0; index < VALUES.length; index += 3) {
     renderFormula(now, VALUES[index], VALUES[index+1], VALUES[index+2], index + 1);
   }
+  */
+  renderFormula(now, uno, due, tre, quattro);
   context.restore();
 }
 
@@ -92,13 +103,13 @@ function resize() {
   canvas.height = window.innerHeight;
 }
 
-window.requestAnimationFrame(frame);
-window.addEventListener("resize", resize);
-window.dispatchEvent(new Event("resize"));
+function getFrame(){
+  window.requestAnimationFrame(frame);
+  window.addEventListener("resize", resize);
+  window.dispatchEvent(new Event("resize"));
+}
 
+  getFrame();
 </script>
-  <script>
-    render(1);
-    </script>
 </body>
 </html>
