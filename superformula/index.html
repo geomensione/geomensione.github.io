@@ -42,10 +42,10 @@ function renderFormula(now, t1, t2, t3, i) {
   context.beginPath();
   for (let index = 0; index < 360; index++) {
     const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
-    const a = document.getElementById('scalea').value;
-    const b = document.getElementById('scaleb').value;
-    const x = Math.cos(index / 360 * Math.PI * 2) * radius * a;
-    const y = Math.sin(index / 360 * Math.PI * 2) * radius * b;
+    const scalea = document.getElementById('scalea').value;
+    const scaleb = document.getElementById('scaleb').value;
+    const x = Math.cos(index / 360 * Math.PI * 2) * radius * scalea;
+    const y = Math.sin(index / 360 * Math.PI * 2) * radius * scaleb;
     if (index === 0) {
       context.moveTo(x,y);
     } else {
