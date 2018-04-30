@@ -2,19 +2,65 @@
 <head></head>
 <body>
   a,b,m,n1,n2,n3
-  <input type='text' id="a" value="1" ></input>
-  <input type='text' id="b" value="2" ></input>
+  
   <input type='text' id="m" value="3" ></input>
   <input type='text' id="n1" value="4" ></input>
   <input type='text' id="n2" value="5" ></input>
   <input type='text' id="n3" value="6" ></input>
+  <input type='text' id="a" value="1" ></input>
+  <input type='text' id="b" value="2" ></input>
   <input type='button' id="addShape" value="add shape" onclick="renderFormula()"></input>
+  <input type='button' value="asterisk" onclick="renderFormula(12, 0.3, 0, 10, 1, 1)"></input>
+  <input type='button' value="bean" onclick="renderFormula(2, 1, 4, 8, 1, 1)"></input>
+  <input type='button' value="butterfly" onclick="renderFormula(3, 1, 6, 2, 0.6, 1)"></input>
+  <input type='button' value="circle" onclick="renderFormula(4, 2, 2, 2, 1, 1)"></input>
+  <input type='button' value="clover" onclick="renderFormula(6, 0.3, 0, 10, 1, 1)"></input>
+  <input type='button' value="cloverFour" onclick="renderFormula(8, 10, -1, -8, 1, 1)"></input>
+  <input type='button' value="cross" onclick="renderFormula(8, 1.3, 0.01, 8, 1, 1)"></input>
+  <input type='button' value="diamond" onclick="renderFormula(4, 1, 1, 1, 1, 1)"></input>
+  <input type='button' value="drop" onclick="renderFormula(1, 0.5, 0.5, 0.5, 1, 1)"></input>
+  <input type='button' value="ellipse" onclick="renderFormula(4, 2, 2, 2, 9, 6)"></input>
+  <input type='button' value="gear" onclick="renderFormula(19, 100, 50, 50, 1, 1)"></input>
+  <input type='button' value="heart" onclick="renderFormula(1, 0.8, 1, -8, 1, 0.18)"></input>
+  <input type='button' value="heptagon" onclick="renderFormula(7, 1000, 400, 400, 1, 0.18)"></input>
+  <input type='button' value="hexagon" onclick="renderFormula(6, 1000, 400, 400, 1, 1)"></input>
+  <input type='button' value="malteseCross" onclick="renderFormula(8, 0.9, 0.1, 100, 1, 1)"></input>
+  <input type='button' value="pentagon" onclick="renderFormula(5, 1000, 600, 600, 1, 1)"></input>
+  <input type='button' value="rectangle" onclick="renderFormula(4, 100, 100, 100, 2, 1)"></input>
+  <input type='button' value="roundedStar" onclick="renderFormula(5, 2, 7, 7, 2, 1)"></input>
+  <input type='button' value="square" onclick="renderFormula(4, 100, 100, 100, 1, 1)"></input>
+  <input type='button' value="star" onclick="renderFormula(5, 30, 100, 100, 1, 1)"></input>
+  <input type='button' value="triangle" onclick="renderFormula(3, 100, 200, 200, 1, 1)"></input>
 
 <canvas id=c>
 </canvas>
   
 <script>
 
+var types = {
+  asterisk: {m: 12, n1: .3, n2: 0, n3: 10, a: 1, b: 1},
+  bean: {m: 2, n1: 1, n2: 4, n3: 8, a: 1, b: 1},
+  butterfly: {m: 3, n1: 1, n2: 6, n3: 2, a: .6, b: 1},
+  circle: {m: 4, n1: 2, n2: 2, n3: 2, a: 1, b: 1},
+  clover: {m: 6, n1: .3, n2: 0, n3: 10, a: 1, b: 1},
+  cloverFour: {m: 8, n1: 10, n2: -1, n3: -8, a: 1, b: 1},
+  cross: {m: 8, n1: 1.3, n2: .01, n3: 8, a: 1, b: 1},
+  diamond: {m: 4, n1: 1, n2: 1, n3: 1, a: 1, b: 1},
+  drop: {m: 1, n1: .5, n2: .5, n3: .5, a: 1, b: 1},
+  ellipse: {m: 4, n1: 2, n2: 2, n3: 2, a: 9, b: 6},
+  gear: {m: 19, n1: 100, n2: 50, n3: 50, a: 1, b: 1},
+  heart: {m: 1, n1: .8, n2: 1, n3: -8, a: 1, b: .18},
+  heptagon: {m: 7, n1: 1000, n2: 400, n3: 400, a: 1, b: 1},
+  hexagon: {m: 6, n1: 1000, n2: 400, n3: 400, a: 1, b: 1},
+  malteseCross: {m: 8, n1: .9, n2: .1, n3: 100, a: 1, b: 1},
+  pentagon: {m: 5, n1: 1000, n2: 600, n3: 600, a: 1, b: 1},
+  rectangle: {m: 4, n1: 100, n2: 100, n3: 100, a: 2, b: 1},
+  roundedStar: {m: 5, n1: 2, n2: 7, n3: 7, a: 1, b: 1},
+  square: {m: 4, n1: 100, n2: 100, n3: 100, a: 1, b: 1},
+  star: {m: 5, n1: 30, n2: 100, n3: 100, a: 1, b: 1},
+  triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
+};
+  
 var context = c.getContext("2d");
 
 const SCALE = 150;
@@ -27,13 +73,21 @@ function superformula(phi,a,b,m,n1,n2,n3) {
   return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
 }
 
-function renderFormula() {
-  var a = document.getElementById('a').value;
-  var b = document.getElementById('b').value;
-  var m = document.getElementById('m').value;
-  var n1 = document.getElementById('n1').value;
-  var n2 = document.getElementById('n2').value;
-  var n3 = document.getElementById('n3').value;
+function renderFormula(m,n1,n2,n3,a,b) {
+  var a,b,m,n1,n2,n3;
+  
+  if(!a)
+    a = document.getElementById('a').value;
+  if(!b)
+    b = document.getElementById('b').value;
+  if(!m)
+    m = document.getElementById('m').value;
+  if(!n1)
+    n1 = document.getElementById('n1').value;
+  if(!n2)
+    n2 = document.getElementById('n2').value;
+  if(!n3)
+    n3 = document.getElementById('n3').value;
   
   context.beginPath();
   for (let index = 0; index < 360; index++) {
