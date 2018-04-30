@@ -27,7 +27,7 @@ function mousemovefn(e){
   var y = e.clientY;
   var shapes_length = shapes.length;
   for(let s = 0; s < shapes_length;s++)
-    shapes[s].hit(x,y);
+    shapes[s].drawOnly(x,y);
   
 }
   
@@ -93,13 +93,18 @@ function returnShape(now, t1, t2, t3, i) {
     return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
   }
   
+  function drawOnly(x,y){
+    context.translate(canvas.width * 0.5, canvas.height * 0.5);
+    draw(x,y);
+  }
+  
   function draw(mx,my){
     if(!mx)
       mx = 0;
     if(!my)
       my = 0;
     var points_length = points.length;
-    //context.translate(canvas.width * 0.5, canvas.height * 0.5);
+    
     context.beginPath();
     for (let index = 0; index < points_length; index++) {
       var point = points[index];
