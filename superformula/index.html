@@ -23,48 +23,13 @@ for (let index = 0; index < 30; index++) {
   VALUES.push((Math.random() * 20000) + 100);
 }
 
-function superformula(phi,a,b,m,n1,n2,n3) {
-  
-  return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
-}
+var shapes = [];
   
 
 function renderFormula(now, t1, t2, t3, i) {
-  const s1 = now / t1;
-  const s2 = now / t2;
-  const s3 = now / t3;
-  
-  const a = Math.abs(Math.sin(s1));
-  const b = Math.abs(Math.sin(s1));
-  
-  const m = Math.abs(Math.sin(s2) * 50);
-  const n1 = Math.abs(Math.sin(s3) * 50);
-  const n2 = Math.abs(Math.sin(s2) * 50);
-  const n3 = Math.abs(Math.sin(s1) * 50);
-  
-  context.beginPath();
-  for (let index = 0; index < 360; index++) {
-    const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
-    const scalea = document.getElementById('scalea').value;
-    const scaleb = document.getElementById('scaleb').value;
-    const x = Math.cos(index / 360 * Math.PI * 2) * radius * scalea;
-    const y = Math.sin(index / 360 * Math.PI * 2) * radius * scaleb;
-    if (index === 0) {
-      context.moveTo(x,y);
-    } else {
-      context.lineTo(x,y);
-    }
-  }
-  context.closePath();
-  
-  //context.globalCompositeOperation = "lighten";
-  
-  //context.shadowColor = "#0cf";
-  //context.shadowBlur = 32;
-  
-  context.lineWidth = 1;
-  context.strokeStyle = "#000";
-  context.stroke();
+  var s = new returnShape(now, t1, t2, t3, i);
+  s.draw();
+  shapes.push(s);
 }
 
 function render(now) {
@@ -113,7 +78,74 @@ function getFrame(){
   window.dispatchEvent(new Event("resize"));
 }
 
-  frame();
+function returnShape(now, t1, t2, t3, i) {
+  var points = [];
+  var maxX = 0, minX = 0, maxY = 0, minY = 0;
+  function superformula(phi,a,b,m,n1,n2,n3) { 
+    return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
+  }
+  
+  function draw(mx,my){
+    if(!mx)
+      mx = 0;
+    if(!my)
+      my = 0;
+    var points_length = points.length;
+    context.beginPath();
+    for (let index = 0; index < points_length; index++) {
+      var point = points[index];
+      if (index === 0) {
+        context.moveTo(point._x+mx,point._y+my);
+      } else {
+        context.lineTo(point._x+mx,point._y.my);
+      }
+    }
+    context.closePath();
+    context.lineWidth = 1;
+    context.strokeStyle = "#000";
+    context.stroke();
+  }
+  function setPoint(x,y){
+    points.push({_x:x, _y:y});
+    if(x>maxX)
+      maxX = x;
+    if(x<minX)
+      minX = x;
+    if(y>maxY)
+      maxY = y;
+    if(Y<minY)
+      minY = y;
+  }
+  function move(x,y){
+    this.draw(x,y);
+  }
+  
+  const s1 = now / t1;
+  const s2 = now / t2;
+  const s3 = now / t3;
+  
+  const a = Math.abs(Math.sin(s1));
+  const b = Math.abs(Math.sin(s1));
+  
+  const m = Math.abs(Math.sin(s2) * 50);
+  const n1 = Math.abs(Math.sin(s3) * 50);
+  const n2 = Math.abs(Math.sin(s2) * 50);
+  const n3 = Math.abs(Math.sin(s1) * 50);
+  
+  //context.beginPath();
+  for (let index = 0; index < 360; index++) {
+    const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
+    const scalea = document.getElementById('scalea').value;
+    const scaleb = document.getElementById('scaleb').value;
+    const x = Math.cos(index / 360 * Math.PI * 2) * radius * scalea;
+    const y = Math.sin(index / 360 * Math.PI * 2) * radius * scaleb;
+    this.setPoint(x,y);
+    
+  }
+  
+}
+
+frame();
 </script>
 </body>
 </html>
