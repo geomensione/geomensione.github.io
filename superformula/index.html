@@ -75,9 +75,9 @@ function render(now) {
   const n2 = Math.abs(Math.sin(s2) * 50);
   const n3 = Math.abs(Math.sin(s1) * 50);
   
-  context.clearRect(0,0,canvas.width,canvas.height);
+  context.clearRect(0,0,c.width,c.height);
   context.save();
-  context.translate(canvas.width * 0.5, canvas.height * 0.5);
+  context.translate(c.width * 0.5, c.height * 0.5);
   for (let index = 0; index < VALUES.length; index += 3) {
     renderFormula(now, VALUES[index], VALUES[index+1], VALUES[index+2], index + 1);
   }
