@@ -98,6 +98,7 @@ function returnShape(now, t1, t2, t3, i) {
     if(!my)
       my = 0;
     var points_length = points.length;
+    context.translate(canvas.width * 0.5, canvas.height * 0.5);
     context.beginPath();
     for (let index = 0; index < points_length; index++) {
       var point = points[index];
