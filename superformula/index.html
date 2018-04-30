@@ -137,6 +137,7 @@ function returnShape(now, t1, t2, t3, i) {
   function hit(x,y){
     //da rivedere, ogni volta ridisegna tutte le figure ad ogni mouse move
     var oldSelected = selected;
+    console.log(`x ${x}, y ${y}, maxX ${maxX}, minX ${minX}, maxY ${maxY}, minY ${minY} `);
     if(x<maxX && x>minX && y<maxY && y > minY){
       colorStroke = '#F00';
       selected = true;
@@ -144,7 +145,6 @@ function returnShape(now, t1, t2, t3, i) {
       colorStroke = '#000';
       selected = false;
     }
-    console.log('oldselect ' + oldSelected + ', ' + selected);
     if(oldSelected !== selected)
       drawOnly();
   }
