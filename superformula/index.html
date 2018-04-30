@@ -17,15 +17,8 @@
 const canvas = c,
       context = canvas.getContext("2d");
 
-const SCALE = 150;
-const VALUES = [];
-for (let index = 0; index < 30; index++) {
-  VALUES.push((Math.random() * 20000) + 100);
-}
-
 var shapes = [];
   
-
 function renderFormula(now, t1, t2, t3, i) {
   var s = new returnShape(now, t1, t2, t3, i);
   s.draw();
@@ -81,6 +74,9 @@ function getFrame(){
 function returnShape(now, t1, t2, t3, i) {
   var points = [];
   var maxX = 0, minX = 0, maxY = 0, minY = 0;
+  var colorStroke = "#000";
+  var lineWidth = 1;
+  var selected = false;
   function superformula(phi,a,b,m,n1,n2,n3) { 
     return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
   }
@@ -101,8 +97,8 @@ function returnShape(now, t1, t2, t3, i) {
       }
     }
     context.closePath();
-    context.lineWidth = 1;
-    context.strokeStyle = "#000";
+    context.lineWidth = lineWidth;
+    context.strokeStyle = colorStroke;
     context.stroke();
   }
   function setPoint(x,y){
@@ -118,6 +114,14 @@ function returnShape(now, t1, t2, t3, i) {
   }
   function move(x,y){
     this.draw(x,y);
+  }
+  
+  function hit(x,y){
+    if(x<maxX && x>minX && y<maxY && y > minY){
+      colorStroke = '#F00';
+      draw();
+      selected = true;
+    }
   }
   
   const s1 = now / t1;
@@ -143,7 +147,8 @@ function returnShape(now, t1, t2, t3, i) {
     
   }
   return{
-    draw: draw
+    draw: draw,
+    hit: hit
   }
 }
 
