@@ -7,6 +7,8 @@
   <input type='text' id="quattro" value="4" onchange="getFrame()"></input>
   <input type='text' id="scalea" value="150" onchange="getFrame()"></input>
   <input type='text' id="scaleb" value="150" onchange="getFrame()"></input>
+  <input type='button' id="addShape" value="150" onclick="getFrame()"></input>
+
 <canvas id=c>
 </canvas>
   
@@ -46,7 +48,11 @@ function mouseupfn(e){
 }
   
 function renderFormula(now, t1, t2, t3, i) {
-  var s = new returnShape(now, t1, t2, t3, i);
+  const uno = document.getElementById('uno').value;
+  const due = document.getElementById('due').value;
+  const tre = document.getElementById('tre').value;
+  const quattro = document.getElementById('quattro').value;
+  var s = new returnShape(uno, due, tre, quattro, 1);
   s.draw();
   shapes.push(s);
 }
@@ -55,15 +61,13 @@ function render(now) {
   resize();
   context.clearRect(0,0,canvas.width,canvas.height);
   context.save();
-  const due = document.getElementById('due').value;
-  const tre = document.getElementById('tre').value;
-  const quattro = document.getElementById('quattro').value;
-  renderFormula(now, due, tre, quattro,1);
   context.restore();
+  var shapes_length = shapes.length;
+  for(let s = 0; s < shapes_length;s++)
+    shapes[s].draw();
 }
 
 function frame() {
-  const uno = document.getElementById('uno').value;
   render(uno);
 }
 
