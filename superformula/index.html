@@ -83,25 +83,22 @@ function returnShape(now, t1, t2, t3, i) {
   var colorStroke = "#000";
   var lineWidth = 1;
   var selected = false;
+  var moveX, moveY = 0;
   
   function superformula(phi,a,b,m,n1,n2,n3) { 
     return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
   }
   
-  function draw(mx,my){
-    if(!mx)
-      mx = 0;
-    if(!my)
-      my = 0;
+  function draw(){
     var points_length = points.length;
     
     context.beginPath();
     for (let index = 0; index < points_length; index++) {
       var point = points[index];
       if (index === 0) {
-        context.moveTo(point._x+mx,point._y+my);
+        context.moveTo(point._x+moveX,point._y+moveY);
       } else {
-        context.lineTo(point._x+mx,point._y+my);
+        context.lineTo(point._x+moveX,point._y+moveY);
       }
     }
     context.closePath();
@@ -123,7 +120,8 @@ function returnShape(now, t1, t2, t3, i) {
   }
   
   function move(x,y){
-    this.draw(x,y);
+    moveX = x;
+    moveY = y;
   }
   
   function hit(x,y){
