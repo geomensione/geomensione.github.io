@@ -112,7 +112,7 @@ function renderFormula(m,n1,n2,n3,a,b) {
   context.stroke();
 }
 
-function render() {
+function render(m,n1,n2,n3,a,b) {
   const s1 = uno / 1000;
   const s2 = uno / 250;
   const s3 = uno / 500;
@@ -129,7 +129,7 @@ function render() {
   context.save();
   context.translate(c.width * 0.5, c.height * 0.5);
   //for (let index = 0; index < VALUES.length; index += 3) {
-  renderFormula();
+  renderFormula(m,n1,n2,n3,a,b);
   //}
   context.restore();
 }
@@ -145,9 +145,9 @@ function resize() {
   c.height = window.innerHeight;
 }
 
-window.requestAnimationFrame(frame);
-window.addEventListener("resize", resize);
-window.dispatchEvent(new Event("resize"));
+//window.requestAnimationFrame(frame);
+//window.addEventListener("resize", resize);
+//window.dispatchEvent(new Event("resize"));
 
 
 </script>
