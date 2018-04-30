@@ -28,7 +28,6 @@ var mousedown = false;
 function mousemovefn(e){
   var x = e.clientX;
   var y = e.clientY;
-  context.clearRect(0,0,canvas.width,canvas.height);
   var shapes_length = shapes.length;
   for(let s = 0; s < shapes_length;s++)
     if(mousedown)
@@ -171,7 +170,7 @@ function returnShape(now, t1, t2, t3, i) {
   }
 }
 
-frame();
+getFrame();
 </script>
 </body>
 </html>
