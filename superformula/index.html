@@ -69,6 +69,7 @@ function render(now) {
 
 function frame() {
   render(uno);
+  window.requestAnimationFrame(frame);
 }
 
 function resize() {
