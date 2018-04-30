@@ -14,134 +14,19 @@
   
 <script>
 
+var context = c.getContext("2d");
 
-  // @see: https://en.wikipedia.org/wiki/Superformula
-  //
-const canvas = c,
-      context = canvas.getContext("2d");
-
-c.addEventListener('mousemove',mousemovefn);
-c.addEventListener('mousedown',mousedownfn);
-c.addEventListener('mouseup',mouseupfn);
-
-var shapes = [];
-var mousedown = false;
-  
-function mousemovefn(e){
-  var x = e.clientX;
-  var y = e.clientY;
-  var shapes_length = shapes.length;
-  for(let s = 0; s < shapes_length;s++)
-    if(mousedown)
-      shapes[s].move(x,y);
-    else
-      shapes[s].hit(x,y);
-  
-}
-  
-function mousedownfn(e){
-  mousedown = true;
-}
- 
-function mouseupfn(e){
-  mousedown = false;
-}
-  
-function renderFormula(e) {
-  const uno = document.getElementById('uno').value;
-  const due = document.getElementById('due').value;
-  const tre = document.getElementById('tre').value;
-  const quattro = document.getElementById('quattro').value;
-  var s = new returnShape(uno, due, tre, quattro, 1);
-  //s.draw();
-  shapes.push(s);
+const SCALE = 150;
+const VALUES = [];
+for (let index = 0; index < 30; index++) {
+  VALUES.push((Math.random() * 20000) + 100);
 }
 
-function render(now) {
-  resize();
-  context.clearRect(0,0,canvas.width,canvas.height);
-  var shapes_length = shapes.length;
-  for(let s = 0; s < shapes_length;s++)
-    shapes[s].draw();
+function superformula(phi,a,b,m,n1,n2,n3) {
+  return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
 }
 
-function frame() {
-  render(uno);
-  window.requestAnimationFrame(frame);
-}
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-function returnShape(now, t1, t2, t3, i) {
-  var points = [];
-  var maxX = 0, minX = 0, maxY = 0, minY = 0;
-  var colorStroke = "#000";
-  var lineWidth = 1;
-  var selected = false;
-  var moveX, moveY = 0;
-  
-  function superformula(phi,a,b,m,n1,n2,n3) { 
-    return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
-  }
-  
-  function draw(){
-    var points_length = points.length;
-    
-    context.beginPath();
-    for (let index = 0; index < points_length; index++) {
-      var point = points[index];
-      if (index === 0) {
-        context.moveTo(point._x+moveX,point._y+moveY);
-      } else {
-        context.lineTo(point._x+moveX,point._y+moveY);
-      }
-    }
-    context.closePath();
-    context.lineWidth = lineWidth;
-    context.strokeStyle = colorStroke;
-    context.stroke();
-  }
-  
-  function setPoint(x,y){
-    points.push({_x:x, _y:y});
-    if(x>maxX)
-      maxX = x;
-    if(x<minX)
-      minX = x;
-    if(y>maxY)
-      maxY = y;
-    if(y<minY)
-      minY = y;
-  }
-  
-  function move(x,y){
-    if(selected){
-      moveX = x;
-      moveY = y;
-    }
-    
-  }
-  
-  function hit(x,y){
-    //da rivedere, ogni volta ridisegna tutte le figure ad ogni mouse move
-    var oldSelected = selected;
-    minX += moveX;
-    maxX += moveX;
-    minY += moveY;
-    maxY += moveY;
-    
-    if(x<maxX && x>minX && y<maxY && y > minY){
-      colorStroke = '#F00';
-      selected = true;
-    }else{
-      colorStroke = '#000';
-      selected = false;
-    }
-  }
-  
+function renderFormula(now, t1, t2, t3, i) {
   const s1 = now / t1;
   const s2 = now / t2;
   const s3 = now / t3;
@@ -154,27 +39,66 @@ function returnShape(now, t1, t2, t3, i) {
   const n2 = Math.abs(Math.sin(s2) * 50);
   const n3 = Math.abs(Math.sin(s1) * 50);
   
-  //context.beginPath();
+  context.beginPath();
   for (let index = 0; index < 360; index++) {
     const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
-    const scalea = document.getElementById('scalea').value;
-    const scaleb = document.getElementById('scaleb').value;
-    const x = Math.cos(index / 360 * Math.PI * 2) * radius * scalea;
-    const y = Math.sin(index / 360 * Math.PI * 2) * radius * scaleb;
-    setPoint(x,y);
-    
+    const x = Math.cos(index / 360 * Math.PI * 2) * radius * SCALE;
+    const y = Math.sin(index / 360 * Math.PI * 2) * radius * SCALE;
+    if (index === 0) {
+      context.moveTo(x,y);
+    } else {
+      context.lineTo(x,y);
+    }
   }
-  return{
-    draw: draw,
-    hit: hit,
-    move: move
-  }
+  context.closePath();
+  
+  context.globalCompositeOperation = "lighten";
+  
+  context.shadowColor = "#0cf";
+  context.shadowBlur = 32;
+  
+  context.lineWidth = i;
+  context.strokeStyle = "#fff";
+  context.stroke();
 }
 
+function render(now) {
+  const s1 = now / 1000;
+  const s2 = now / 250;
+  const s3 = now / 500;
   
+  const a = Math.abs(Math.sin(s1));
+  const b = Math.abs(Math.sin(s1));
+  
+  const m = Math.abs(Math.sin(s2) * 50);
+  const n1 = Math.abs(Math.sin(s3) * 50);
+  const n2 = Math.abs(Math.sin(s2) * 50);
+  const n3 = Math.abs(Math.sin(s1) * 50);
+  
+  context.clearRect(0,0,canvas.width,canvas.height);
+  context.save();
+  context.translate(canvas.width * 0.5, canvas.height * 0.5);
+  for (let index = 0; index < VALUES.length; index += 3) {
+    renderFormula(now, VALUES[index], VALUES[index+1], VALUES[index+2], index + 1);
+  }
+  context.restore();
+}
+
+function frame(now) {
+  
+  render(now);
+  window.requestAnimationFrame(frame);  
+}
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
 window.requestAnimationFrame(frame);
 window.addEventListener("resize", resize);
 window.dispatchEvent(new Event("resize"));
+
 
 </script>
 </body>
