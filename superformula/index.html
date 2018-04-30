@@ -133,13 +133,12 @@ function returnShape(now, t1, t2, t3, i) {
     //da rivedere, ogni volta ridisegna tutte le figure ad ogni mouse move
     if(x<maxX && x>minX && y<maxY && y > minY){
       colorStroke = '#F00';
-      draw();
       selected = true;
     }else{
       colorStroke = '#000';
-      draw();
       selected = false;
     }
+    frame();
   }
   
   const s1 = now / t1;
