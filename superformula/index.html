@@ -1,12 +1,13 @@
 <html>
 <head></head>
 <body>
-  <input type='text' id="uno" value="1" ></input>
-  <input type='text' id="due" value="2" ></input>
-  <input type='text' id="tre" value="3" ></input>
-  <input type='text' id="quattro" value="4" ></input>
-  <input type='text' id="scalea" value="150" ></input>
-  <input type='text' id="scaleb" value="150" ></input>
+  a,b,m,n1,n2,n3
+  <input type='text' id="a" value="1" ></input>
+  <input type='text' id="b" value="2" ></input>
+  <input type='text' id="m" value="3" ></input>
+  <input type='text' id="n1" value="4" ></input>
+  <input type='text' id="n2" value="5" ></input>
+  <input type='text' id="n3" value="6" ></input>
   <input type='button' id="addShape" value="add shape" onclick="renderFormula()"></input>
 
 <canvas id=c>
@@ -26,18 +27,13 @@ function superformula(phi,a,b,m,n1,n2,n3) {
   return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
 }
 
-function renderFormula(now, t1, t2, t3, i) {
-  const s1 = now / t1;
-  const s2 = now / t2;
-  const s3 = now / t3;
-  
-  const a = Math.abs(Math.sin(s1));
-  const b = Math.abs(Math.sin(s1));
-  
-  const m = Math.abs(Math.sin(s2) * 50);
-  const n1 = Math.abs(Math.sin(s3) * 50);
-  const n2 = Math.abs(Math.sin(s2) * 50);
-  const n3 = Math.abs(Math.sin(s1) * 50);
+function renderFormula() {
+  var a = document.getElementById('a').value;
+  var b = document.getElementById('b').value;
+  var m = document.getElementById('m').value;
+  var n1 = document.getElementById('n1').value;
+  var n2 = document.getElementById('n2').value;
+  var n3 = document.getElementById('n3').value;
   
   context.beginPath();
   for (let index = 0; index < 360; index++) {
@@ -62,10 +58,10 @@ function renderFormula(now, t1, t2, t3, i) {
   context.stroke();
 }
 
-function render(now) {
-  const s1 = now / 1000;
-  const s2 = now / 250;
-  const s3 = now / 500;
+function render() {
+  const s1 = uno / 1000;
+  const s2 = uno / 250;
+  const s3 = uno / 500;
   
   const a = Math.abs(Math.sin(s1));
   const b = Math.abs(Math.sin(s1));
@@ -78,15 +74,15 @@ function render(now) {
   context.clearRect(0,0,c.width,c.height);
   context.save();
   context.translate(c.width * 0.5, c.height * 0.5);
-  for (let index = 0; index < VALUES.length; index += 3) {
-    renderFormula(now, VALUES[index], VALUES[index+1], VALUES[index+2], index + 1);
-  }
+  //for (let index = 0; index < VALUES.length; index += 3) {
+  renderFormula();
+  //}
   context.restore();
 }
 
 function frame(now) {
-  
-  render(now);
+  uno = now;
+  render();
   window.requestAnimationFrame(frame);  
 }
 
