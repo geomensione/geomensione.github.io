@@ -120,15 +120,21 @@ function returnShape(now, t1, t2, t3, i) {
   }
   
   function move(x,y){
-    moveX = x;
-    moveY = y;
+    if(selected){
+      moveX = x;
+      moveY = y;
+    }
+    
   }
   
   function hit(x,y){
     //da rivedere, ogni volta ridisegna tutte le figure ad ogni mouse move
     var oldSelected = selected;
-    x += moveX;
-    y += moveY;
+    minX += moveX;
+    maxX += moveX;
+    minY += moveY;
+    maxY += moveY;
+    
     if(x<maxX && x>minX && y<maxY && y > minY){
       colorStroke = '#F00';
       selected = true;
