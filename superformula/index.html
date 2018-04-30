@@ -93,11 +93,6 @@ function returnShape(now, t1, t2, t3, i) {
     return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
   }
   
-  function drawOnly(x,y){
-    context.translate(canvas.width * 0.5, canvas.height * 0.5);
-    draw(x,y);
-  }
-  
   function draw(mx,my){
     if(!mx)
       mx = 0;
@@ -146,7 +141,7 @@ function returnShape(now, t1, t2, t3, i) {
       selected = false;
     }
     if(oldSelected !== selected)
-      drawOnly();
+      draw();
   }
   
   const s1 = now / t1;
@@ -173,7 +168,6 @@ function returnShape(now, t1, t2, t3, i) {
   }
   return{
     draw: draw,
-    drawOnly: drawOnly,
     hit: hit
   }
 }
