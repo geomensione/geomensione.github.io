@@ -23,9 +23,41 @@ for (let index = 0; index < 30; index++) {
   VALUES.push((Math.random() * 20000) + 100);
 }
 
-function superformula(phi,a,b,m,n1,n2,n3) {
-  return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
+function superformula(i,a,b,m,n1,n2,n3) {
+  var t = m * (i * dt - Math.PI) / 4;
+  t = Math.pow(Math.abs(Math.pow(Math.abs(Math.cos(t) / a), n2)
+    + Math.pow(Math.abs(Math.sin(t) / b), n3)), -1 / n1);
+  if (t > r) r = t;
+  return t;
+  //return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
 }
+  
+function _superformulaPath(params, n, diameter) {
+    var i = -1,
+        dt = 2 * Math.PI / n,
+        t,
+        r = 0,
+        x,
+        y,
+        points = [];
+
+    while (++i < n) {
+      t = params.m * (i * dt - Math.PI) / 4;
+      t = Math.pow(Math.abs(Math.pow(Math.abs(Math.cos(t) / params.a), params.n2)
+        + Math.pow(Math.abs(Math.sin(t) / params.b), params.n3)), -1 / params.n1);
+      if (t > r) r = t;
+      points.push(t);
+    }
+
+    r = diameter * Math.SQRT1_2 / r;
+    i = -1; while (++i < n) {
+      x = (t = points[i] * r) * Math.cos(i * dt);
+      y = t * Math.sin(i * dt);
+      points[i] = [Math.abs(x) < 1e-6 ? 0 : x, Math.abs(y) < 1e-6 ? 0 : y];
+    }
+
+    return _line(points) + "Z";
+  }
 
 function renderFormula(now, t1, t2, t3, i) {
   const s1 = now / t1;
