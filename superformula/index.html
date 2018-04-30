@@ -113,6 +113,7 @@ function renderFormula(m,n1,n2,n3,a,b) {
 }
 
 function render(m,n1,n2,n3,a,b) {
+  
   const s1 = uno / 1000;
   const s2 = uno / 250;
   const s3 = uno / 500;
@@ -146,8 +147,8 @@ function resize() {
 }
 
 //window.requestAnimationFrame(frame);
-//window.addEventListener("resize", resize);
-//window.dispatchEvent(new Event("resize"));
+window.addEventListener("resize", resize);
+window.dispatchEvent(new Event("resize"));
 
 
 </script>
