@@ -17,7 +17,15 @@
 const canvas = c,
       context = canvas.getContext("2d");
 
+c.addEventListener('mousemove',mousemovefn);
+
 var shapes = [];
+
+function mousemovefn(e){
+  var x = e.clientX;
+  var y = e.clientY;
+  
+}
   
 function renderFormula(now, t1, t2, t3, i) {
   var s = new returnShape(now, t1, t2, t3, i);
@@ -117,10 +125,15 @@ function returnShape(now, t1, t2, t3, i) {
   }
   
   function hit(x,y){
+    //da rivedere, ogni volta ridisegna tutte le figure ad ogni mouse move
     if(x<maxX && x>minX && y<maxY && y > minY){
       colorStroke = '#F00';
       draw();
       selected = true;
+    }else{
+      colorStroke = '#000';
+      draw();
+      selected = false;
     }
   }
   
