@@ -76,12 +76,6 @@ function resize() {
   canvas.height = window.innerHeight;
 }
 
-function getFrame(){
-  window.requestAnimationFrame(frame);
-  window.addEventListener("resize", resize);
-  window.dispatchEvent(new Event("resize"));
-}
-
 function returnShape(now, t1, t2, t3, i) {
   var points = [];
   var maxX = 0, minX = 0, maxY = 0, minY = 0;
@@ -174,7 +168,11 @@ function returnShape(now, t1, t2, t3, i) {
   }
 }
 
-getFrame();
+  
+window.requestAnimationFrame(frame);
+window.addEventListener("resize", resize);
+window.dispatchEvent(new Event("resize"));
+
 </script>
 </body>
 </html>
