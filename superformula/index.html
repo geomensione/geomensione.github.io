@@ -81,16 +81,29 @@ function renderFormula(m,n1,n2,n3,a,b) {
   
   if(!a)
     a = document.getElementById('a').value;
+  else
+    document.getElementById('a').value = a;
+    
   if(!b)
     b = document.getElementById('b').value;
+  else
+    document.getElementById('b').value = b;
   if(!m)
     m = document.getElementById('m').value;
+  else
+    document.getElementById('m').value = m;
   if(!n1)
     n1 = document.getElementById('n1').value;
+  else
+    document.getElementById('n1').value = n1;
   if(!n2)
     n2 = document.getElementById('n2').value;
+  else
+    document.getElementById('n2').value = n2;
   if(!n3)
     n3 = document.getElementById('n3').value;
+  else
+    document.getElementById('n3').value = n3;
   var moveX = 200;
   var moveY = 200;
   context.beginPath();
