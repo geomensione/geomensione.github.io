@@ -91,12 +91,13 @@ function renderFormula(m,n1,n2,n3,a,b) {
     n2 = document.getElementById('n2').value;
   if(!n3)
     n3 = document.getElementById('n3').value;
-  
+  var moveX = 200;
+  var moveY = 200;
   context.beginPath();
   for (let index = 0; index < 360; index++) {
     const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
-    const x = Math.cos(index / 360 * Math.PI * 2) * radius * SCALE;
-    const y = Math.sin(index / 360 * Math.PI * 2) * radius * SCALE;
+    const x = Math.cos(index / 360 * Math.PI * 2) * radius * SCALE + moveX;
+    const y = Math.sin(index / 360 * Math.PI * 2) * radius * SCALE + moveY;
     if (index === 0) {
       context.moveTo(x,y);
     } else {
