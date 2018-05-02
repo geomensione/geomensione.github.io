@@ -74,6 +74,9 @@ function superformula(phi,a,b,m,n1,n2,n3) {
 }
 
 function renderFormula(m,n1,n2,n3,a,b) {
+  context.clearRect(0,0,c.width,c.height);
+  context.save();
+  
   var a,b,m,n1,n2,n3;
   
   if(!a)
@@ -110,6 +113,8 @@ function renderFormula(m,n1,n2,n3,a,b) {
   context.lineWidth = 1;
   context.strokeStyle = "#000";
   context.stroke();
+  
+  context.restore();
 }
 
 function render(m,n1,n2,n3,a,b) {
