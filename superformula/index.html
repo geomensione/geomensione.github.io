@@ -63,74 +63,81 @@ var types = {
   
 var context = c.getContext("2d");
 
-const SCALE = 2;
-const VALUES = [];
-for (let index = 0; index < 30; index++) {
-  VALUES.push((Math.random() * 20000) + 100);
-}
+//const SCALE = 2;
+//const VALUES = [];
+//for (let index = 0; index < 30; index++) {
+//  VALUES.push((Math.random() * 20000) + 100);
+//}
 
-function superformula(phi,a,b,m,n1,n2,n3) {
-  return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
-}
 
-function renderFormula(m,n1,n2,n3,a,b) {
-  context.clearRect(0,0,c.width,c.height);
-  context.save();
-  
-  var a,b,m,n1,n2,n3;
-  
-  if(!a)
-    a = document.getElementById('a').value;
-  else
-    document.getElementById('a').value = a;
+
+  function superformulaobj(){
+    var a,b,m,n1,n2,n3;
+    var points = [];
+    var moveX = 200;
+    var moveY = 200;
+    var lineWidth = 1;
+    var color = '#000';
     
-  if(!b)
-    b = document.getElementById('b').value;
-  else
-    document.getElementById('b').value = b;
-  if(!m)
-    m = document.getElementById('m').value;
-  else
-    document.getElementById('m').value = m;
-  if(!n1)
-    n1 = document.getElementById('n1').value;
-  else
-    document.getElementById('n1').value = n1;
-  if(!n2)
-    n2 = document.getElementById('n2').value;
-  else
-    document.getElementById('n2').value = n2;
-  if(!n3)
-    n3 = document.getElementById('n3').value;
-  else
-    document.getElementById('n3').value = n3;
-  var moveX = 200;
-  var moveY = 200;
-  context.beginPath();
-  for (let index = 0; index < 360; index++) {
-    const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
-    const x = Math.cos(index / 360 * Math.PI * 2) * radius * SCALE + moveX;
-    const y = Math.sin(index / 360 * Math.PI * 2) * radius * SCALE + moveY;
-    if (index === 0) {
-      context.moveTo(x,y);
-    } else {
-      context.lineTo(x,y);
+    function superformula(phi,a,b,m,n1,n2,n3) {
+      return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
+    }
+    
+    function renderFormula(m,n1,n2,n3,a,b) {
+      context.clearRect(0,0,c.width,c.height);
+      context.save();
+      
+      if(!a)
+        a = document.getElementById('a').value;
+      else
+        document.getElementById('a').value = a;
+
+      if(!b)
+        b = document.getElementById('b').value;
+      else
+        document.getElementById('b').value = b;
+      if(!m)
+        m = document.getElementById('m').value;
+      else
+        document.getElementById('m').value = m;
+      if(!n1)
+        n1 = document.getElementById('n1').value;
+      else
+        document.getElementById('n1').value = n1;
+      if(!n2)
+        n2 = document.getElementById('n2').value;
+      else
+        document.getElementById('n2').value = n2;
+      if(!n3)
+        n3 = document.getElementById('n3').value;
+      else
+        document.getElementById('n3').value = n3;
+      
+      context.beginPath();
+      for (let index = 0; index < 360; index++) {
+        const radius = superformula(index / 360 * Math.PI * 2,a,b,m,n1,n2,n3);
+        const x = Math.cos(index / 360 * Math.PI * 2) * radius + moveX;
+        const y = Math.sin(index / 360 * Math.PI * 2) * radius + moveY;
+        if (index === 0) {
+          context.moveTo(x,y);
+        } else {
+          context.lineTo(x,y);
+        }
+      }
+      context.closePath();
+
+      context.lineWidth = lineWidth;
+      context.strokeStyle = color;
+      context.stroke();
+
+      context.restore();
+    }
+    return{
+      renderFormula: renderFormula
     }
   }
-  context.closePath();
-  
-  //context.globalCompositeOperation = "lighten";
-  
-  //context.shadowColor = "#0cf";
-  //context.shadowBlur = 32;
-  
-  context.lineWidth = 1;
-  context.strokeStyle = "#000";
-  context.stroke();
-  
-  context.restore();
-}
 
+/*
 function render(m,n1,n2,n3,a,b) {
   
   const s1 = uno / 1000;
@@ -159,7 +166,8 @@ function frame(now) {
   render();
   window.requestAnimationFrame(frame);  
 }
-
+*/
+  
 function resize() {
   c.width = window.innerWidth;
   c.height = window.innerHeight;
