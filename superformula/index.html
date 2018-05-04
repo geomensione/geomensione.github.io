@@ -72,6 +72,10 @@ var scene = [];
     scene.push(sf);
   }
 
+  function hit(x,y){
+    
+  }
+  
   function superformulaobj(){
     var a,b,m,n1,n2,n3;
     var points = [];
@@ -80,6 +84,7 @@ var scene = [];
     var lineWidth = 1;
     var color = '#000';
     var numberOfPoints = 360;
+    var minX, maxX, minY, maxY = 0;
     
     function superformula(phi,a,b,m,n1,n2,n3) {
       return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
@@ -123,6 +128,14 @@ var scene = [];
           const radius = superformula(index / numberOfPoints * Math.PI * 2,a,b,m,n1,n2,n3);
           x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
           y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
+          if(x<minX)
+            minX=x;
+          if(x>maxX)
+            maxX=x;
+          if(y<minY)
+            minY=y;
+          if(x>maxX)
+            maxX=x;
         }else{
           x = points[index]._x;
           y = points[index]._y;
@@ -136,11 +149,9 @@ var scene = [];
       }
       
       context.closePath();
-
       context.lineWidth = lineWidth;
       context.strokeStyle = color;
       context.stroke();
-
       context.restore();
     }
     return{
