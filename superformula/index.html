@@ -70,11 +70,10 @@ var scene = [];
     else
       sf.renderFormula();
     scene.push(sf);
+    render();
   }
 
-  function hit(x,y){
-    
-  }
+  
   
   function superformulaobj(){
     var a,b,m,n1,n2,n3;
@@ -83,16 +82,46 @@ var scene = [];
     var moveY = 200;
     var lineWidth = 1;
     var color = '#000';
+    var selected_color = '#F00';
     var numberOfPoints = 360;
     var minX, maxX, minY, maxY = 0;
+    var select = false;
+    
+    function hit(x,y){
+      if(x<=maxX && x>=minX && y<=maxY && y>=minY)
+        select = true;
+      else
+        select = false;
+    }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
       return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
     }
     
+    
+    function drawFormula(m,n1,n2,n3,a,b) {
+      context.beginPath();
+      var points_length = points.length;
+      for (let index = 0; index < numberOfPoints; index++) {
+        var x,y;
+        x = points[index]._x;
+        y = points[index]._y;
+        if (index === 0) {
+          context.moveTo(x,y);
+        } else {
+          context.lineTo(x,y);
+        }
+      }
+      context.closePath();
+      context.lineWidth = lineWidth;
+      if(select)
+        context.strokeStyle = color;
+      else
+        context.strokeStyle = selected_color;
+      context.stroke();
+    }
+    
     function renderFormula(m,n1,n2,n3,a,b) {
-      context.clearRect(0,0,c.width,c.height);
-      context.save();
       
       if(!a)
         a = document.getElementById('a').value;
@@ -120,75 +149,37 @@ var scene = [];
       else
         document.getElementById('n3').value = n3;
       
-      context.beginPath();
-      var points_length = points.length;
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
-        if(points_length === 0){
-          const radius = superformula(index / numberOfPoints * Math.PI * 2,a,b,m,n1,n2,n3);
-          x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
-          y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
-          if(x<minX)
-            minX=x;
-          if(x>maxX)
-            maxX=x;
-          if(y<minY)
-            minY=y;
-          if(x>maxX)
-            maxX=x;
-        }else{
-          x = points[index]._x;
-          y = points[index]._y;
-        }
-        if (index === 0) {
-          context.moveTo(x,y);
-        } else {
-          context.lineTo(x,y);
-        }
+        const radius = superformula(index / numberOfPoints * Math.PI * 2,a,b,m,n1,n2,n3);
+        x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
+        y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
+        
+        if(x<minX)
+          minX=x;
+        if(x>maxX)
+          maxX=x;
+        if(y<minY)
+          minY=y;
+        if(x>maxX)
+          maxX=x;
+
         points.push({_x:x,_y:y});
       }
-      
-      context.closePath();
-      context.lineWidth = lineWidth;
-      context.strokeStyle = color;
-      context.stroke();
-      context.restore();
     }
     return{
       renderFormula: renderFormula
     }
   }
 
-/*
-function render(m,n1,n2,n3,a,b) {
-  
-  const s1 = uno / 1000;
-  const s2 = uno / 250;
-  const s3 = uno / 500;
-  
-  const a = Math.abs(Math.sin(s1));
-  const b = Math.abs(Math.sin(s1));
-  
-  const m = Math.abs(Math.sin(s2) * 50);
-  const n1 = Math.abs(Math.sin(s3) * 50);
-  const n2 = Math.abs(Math.sin(s2) * 50);
-  const n3 = Math.abs(Math.sin(s1) * 50);
-  
-  context.clearRect(0,0,c.width,c.height);
-  context.save();
-  context.translate(c.width * 0.5, c.height * 0.5);
-  //for (let index = 0; index < VALUES.length; index += 3) {
-  renderFormula(m,n1,n2,n3,a,b);
-  //}
-  context.restore();
-}
 
-function frame(now) {
-  uno = now;
-  render();
-  window.requestAnimationFrame(frame);  
+function render() {
+  context.clearRect(0,0,c.width,c.height);
+      
+  var scene_length = scene.length;
+  for(let o = 0;o<scene_length;o++)
+    o.drawFormula();
 }
-*/
   
 function resize() {
   c.width = window.innerWidth;
