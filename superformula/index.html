@@ -166,14 +166,21 @@ document.addEventListener('mousemove',(e)=>{
         x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
         y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
         
-        if(x<this.x())
+        if(index===0){
           this.sx(x);
-        if(x>this.X())
           this.sX(x);
-        if(y<this.y())
           this.sy(y);
-        if(y>this.Y())
           this.sY(y);
+        }else{
+          if(x<this.x())
+            this.sx(x);
+          if(x>this.X())
+            this.sX(x);
+          if(y<this.y())
+            this.sy(y);
+          if(y>this.Y())
+            this.sY(y);
+        }
 
         points.push({_x:x,_y:y});
       }
