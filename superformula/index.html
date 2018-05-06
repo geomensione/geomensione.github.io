@@ -236,10 +236,13 @@ document.addEventListener('mouseup',(e)=>{
 
 function render() {
   context.clearRect(0,0,c.width,c.height);
-      
+  context.save();
+  
   var scene_length = scene.length;
   for(let o = 0;o<scene_length;o++)
     scene[o].drawFormula();
+  
+  context.restore();
 }
   
 function resize() {
