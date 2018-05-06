@@ -63,6 +63,7 @@ var types = {
   
 var context = c.getContext("2d");
 var scene = [];
+var selectedObject;
 function AddRenderFormula(m,n1,n2,n3,a,b){
   var sf = new superformulaobj();
   if(m && n1 && n2 && n3 && a && b)
@@ -78,10 +79,25 @@ document.addEventListener('mousemove',(e)=>{
   let x = e.clientX;
   let y = e.clientY;
   var scene_length = scene.length;
-  for(let o = 0;o<scene_length;o++)
+  for(let o = 0;o<scene_length;o++){
     ret = scene[o].hit(x,y);
-    if(ret)
+    if(ret){
+      selectedObject = o;
+      if(mouseDown)
+        scene[o].move(x,y);
       render();
+    }else{
+      selectedObject = undefined;
+    }
+  }
+})
+
+document.addEventListener('mousedown',(e)=>{
+  mouseDown = true;
+})
+  
+document.addEventListener('mouseup',(e)=>{
+  mouseDown = false;
 })
   
   function superformulaobj(){
@@ -95,6 +111,7 @@ document.addEventListener('mousemove',(e)=>{
     var numberOfPoints = 360;
     var minX = 0, maxX = 0, minY = 0, maxY = 0;
     var select = false;
+    var offsetX,offsetY;
     
     function hit(x,y){
       if(x<=this.X() && x>=this.x() && y<=this.Y() && y>=this.y())
@@ -103,6 +120,16 @@ document.addEventListener('mousemove',(e)=>{
         select = false;
       console.log(`x: ${x}, y: ${y}, maxX: ${this.X()}, minX: ${this.x()}, maxY: ${this.Y()}, minY: ${this.y()}, select:${select}`)
       return select;
+    }
+    
+    function move(x,y){
+      if(!offsetX && !offsetY){
+        offsetX = x;
+        offsetY = y;
+      }else{
+        moveX = offsetX-x;
+        moveY = offsetY-y;
+      }
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
@@ -196,7 +223,8 @@ document.addEventListener('mousemove',(e)=>{
       sx: (x)=>{ minX=x; },
       sX: (X)=>{ maxX=X; },
       sy: (y)=>{ minY=y; },
-      sY: (Y)=>{ maxY=Y; }
+      sY: (Y)=>{ maxY=Y; },
+      move: move
     }
   }
 
