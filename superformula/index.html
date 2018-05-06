@@ -115,9 +115,9 @@ var scene = [];
       context.closePath();
       context.lineWidth = lineWidth;
       if(select)
-        context.strokeStyle = color;
-      else
         context.strokeStyle = selected_color;
+      else
+        context.strokeStyle = color;
       context.stroke();
     }
     
