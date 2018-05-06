@@ -79,7 +79,7 @@ matterjs game:
 
 [https://geomensione.github.io/matterjs](https://geomensione.github.io/matterjs)
 
-phaser game:
+phaser3 game:
 
 [https://geomensione.github.io/phaser](https://geomensione.github.io/phaser)
 
