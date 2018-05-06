@@ -166,14 +166,14 @@ document.addEventListener('mousemove',(e)=>{
         x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
         y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
         
-        if(x<this.minX)
-          this.minX=x;
-        if(x>this.maxX)
-          this.maxX=x;
-        if(y<this.minY)
-          this.minY=y;
-        if(x>this.maxX)
-          this.maxX=x;
+        if(x<this.x())
+          this.sx(x);
+        if(x>this.X())
+          this.sX(x);
+        if(y<this.y())
+          this.sy(y);
+        if(y>this.Y())
+          this.sY(y);
 
         points.push({_x:x,_y:y});
       }
@@ -185,7 +185,11 @@ document.addEventListener('mousemove',(e)=>{
       x: ()=>{ return minX; },
       X: ()=>{ return maxX; },
       y: ()=>{ return minY; },
-      Y: ()=>{ return maxY; }
+      Y: ()=>{ return maxY; },
+      sx: (x)=>{ minX=x; },
+      sX: (X)=>{ maxX=X; },
+      sy: (y)=>{ minY=y; },
+      sY: (Y)=>{ maxY=Y; }
     }
   }
 
