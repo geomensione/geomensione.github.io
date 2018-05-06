@@ -166,14 +166,14 @@ var scene = [];
         x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
         y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
         
-        if(x<minX)
-          minX=x;
-        if(x>maxX)
-          maxX=x;
-        if(y<minY)
-          minY=y;
-        if(x>maxX)
-          maxX=x;
+        if(x<this.minX)
+          this.minX=x;
+        if(x>this.maxX)
+          this.maxX=x;
+        if(y<this.minY)
+          this.minY=y;
+        if(x>this.maxX)
+          this.maxX=x;
 
         points.push({_x:x,_y:y});
       }
