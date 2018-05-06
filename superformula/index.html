@@ -97,7 +97,7 @@ document.addEventListener('mousemove',(e)=>{
     var select = false;
     
     function hit(x,y){
-      if(x<=(this.X()+moveX) && x>=(this.x()+moveX) && y<=(this.Y()+moveY) && y>=(this.y()+moveY))
+      if(x<=this.X() && x>=this.x() && y<=this.Y() && y>=this.y())
         select = true;
       else
         select = false;
