@@ -73,7 +73,16 @@ var scene = [];
     render();
   }
 
-  
+  document.addEventHandler('mousemove',(e)=>{
+    let ret = false;
+    let x = e.clientX;
+    let y = e.clientY;
+    var scene_length = scene.length;
+    for(let o = 0;o<scene_length;o++)
+      ret = scene[o].hit(x,y);
+      if(ret)
+        render();
+  })
   
   function superformulaobj(){
     var a,b,m,n1,n2,n3;
@@ -92,6 +101,8 @@ var scene = [];
         select = true;
       else
         select = false;
+      
+      return select;
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
