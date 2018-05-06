@@ -63,26 +63,26 @@ var types = {
   
 var context = c.getContext("2d");
 var scene = [];
-  function AddRenderFormula(m,n1,n2,n3,a,b){
-    var sf = new superformulaobj();
-    if(m && n1 && n2 && n3 && a && b)
-      sf.renderFormula(m,n1,n2,n3,a,b);
-    else
-      sf.renderFormula();
-    scene.push(sf);
-    render();
-  }
+function AddRenderFormula(m,n1,n2,n3,a,b){
+  var sf = new superformulaobj();
+  if(m && n1 && n2 && n3 && a && b)
+    sf.renderFormula(m,n1,n2,n3,a,b);
+  else
+    sf.renderFormula();
+  scene.push(sf);
+  render();
+}
 
-  document.addEventListener('mousemove',(e)=>{
-    let ret = false;
-    let x = e.clientX;
-    let y = e.clientY;
-    var scene_length = scene.length;
-    for(let o = 0;o<scene_length;o++)
-      ret = scene[o].hit(x,y);
-      if(ret)
-        render();
-  })
+document.addEventListener('mousemove',(e)=>{
+  let ret = false;
+  let x = e.clientX;
+  let y = e.clientY;
+  var scene_length = scene.length;
+  for(let o = 0;o<scene_length;o++)
+    ret = scene[o].hit(x,y);
+    if(ret)
+      render();
+})
   
   function superformulaobj(){
     var a,b,m,n1,n2,n3;
