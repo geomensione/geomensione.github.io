@@ -61,7 +61,7 @@ var types = {
   triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
 };
   
-var context = c.getContext("2d");
+
 var scene = [];
 var selectedObject;
 function AddRenderFormula(m,n1,n2,n3,a,b){
@@ -113,6 +113,7 @@ document.addEventListener('mouseup',(e)=>{
     var select = false;
     var offsetX,offsetY;
     var oldCoordX,oldCoordY;
+    var context;
     
     function hit(x,y){
       if(x<=this.X() && x>=this.x() && y<=this.Y() && y>=this.y())
@@ -167,7 +168,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function renderFormula(m,n1,n2,n3,a,b) {
-      
+      context = c.getContext("2d");
       if(!a)
         a = document.getElementById('a').value;
       else
