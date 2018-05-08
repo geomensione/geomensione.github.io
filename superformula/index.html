@@ -64,6 +64,7 @@ var types = {
 
 var scene = [];
 var selectedObject;
+var context = c.getContext("2d");
 function AddRenderFormula(m,n1,n2,n3,a,b){
   var sf = new superformulaobj();
   if(m && n1 && n2 && n3 && a && b)
@@ -113,7 +114,6 @@ document.addEventListener('mouseup',(e)=>{
     var select = false;
     var offsetX,offsetY;
     var oldCoordX,oldCoordY;
-    var context;
     
     function hit(x,y){
       if(x<=this.X() && x>=this.x() && y<=this.Y() && y>=this.y())
@@ -167,7 +167,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function renderFormula(m,n1,n2,n3,a,b) {
-      context = c.getContext("2d");
+      
       if(!a)
         a = document.getElementById('a').value;
       else
