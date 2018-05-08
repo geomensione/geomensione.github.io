@@ -116,11 +116,11 @@ document.addEventListener('mouseup',(e)=>{
     var oldCoordX,oldCoordY;
     
     function hit(x,y){
-      if(x<=this.X() && x>=this.x() && y<=this.Y() && y>=this.y())
+      if(x<=maxX && x>=minX && y<=maxY && y>=minY)
         select = true;
       else
         select = false;
-      console.log(`x: ${x}, y: ${y}, maxX: ${this.X()}, minX: ${this.x()}, maxY: ${this.Y()}, minY: ${this.y()}, select:${select}`)
+      console.log(`x: ${x}, y: ${y}, maxX: ${maxX}, minX: ${minX}, maxY: ${maxY}, minY: ${minY}, select:${select}`)
       return select;
     }
     
