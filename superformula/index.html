@@ -201,19 +201,19 @@ document.addEventListener('mouseup',(e)=>{
         y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
         
         if(index===0){
-          this.sx(x);
-          this.sX(x);
-          this.sy(y);
-          this.sY(y);
+          minX=x;
+          maxX=x;
+          minY=y;
+          maxY=y;
         }else{
-          if(x<this.x())
-            this.sx(x);
-          if(x>this.X())
-            this.sX(x);
-          if(y<this.y())
-            this.sy(y);
-          if(y>this.Y())
-            this.sY(y);
+          if(x<minX)
+            minX=x;
+          if(x>maxX)
+            maxX=x;
+          if(y<minY)
+            minY=y;
+          if(y>maxY)
+            maxY=y;
         }
 
         points.push({_x:x,_y:y});
@@ -223,14 +223,6 @@ document.addEventListener('mouseup',(e)=>{
       renderFormula: renderFormula,
       drawFormula: drawFormula,
       hit: hit,
-      x: ()=>{ return minX; },
-      X: ()=>{ return maxX; },
-      y: ()=>{ return minY; },
-      Y: ()=>{ return maxY; },
-      sx: (x)=>{ minX=x; },
-      sX: (X)=>{ maxX=X; },
-      sy: (y)=>{ minY=y; },
-      sY: (Y)=>{ maxY=Y; },
       move: move
     }
   }
