@@ -142,7 +142,7 @@ document.addEventListener('mouseup',(e)=>{
     
     
     function drawFormula(m,n1,n2,n3,a,b) {
-      context.save();
+      
       context.beginPath();
       var points_length = points.length;
       for (let index = 0; index < numberOfPoints; index++) {
@@ -164,7 +164,6 @@ document.addEventListener('mouseup',(e)=>{
       else
         context.strokeStyle = color;
       context.stroke();
-      context.restore();
     }
     
     function renderFormula(m,n1,n2,n3,a,b) {
@@ -239,13 +238,13 @@ document.addEventListener('mouseup',(e)=>{
 
 function render() {
   context.clearRect(0,0,c.width,c.height);
-  //context.save();
+  context.save();
   
   var scene_length = scene.length;
   for(let o = 0;o<scene_length;o++)
     scene[o].drawFormula();
   
-  //context.restore();
+  context.restore();
 }
   
 function resize() {
