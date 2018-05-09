@@ -168,28 +168,28 @@ document.addEventListener('mouseup',(e)=>{
     
     function renderFormula(m,n1,n2,n3,a,b) {
       
-      if(!a)
+      if(!isFinite(a))
         a = document.getElementById('a').value;
       else
         document.getElementById('a').value = a;
 
-      if(!b)
+      if(!isFinite(b))
         b = document.getElementById('b').value;
       else
         document.getElementById('b').value = b;
-      if(!m)
+      if(!isFinite(m))
         m = document.getElementById('m').value;
       else
         document.getElementById('m').value = m;
-      if(!n1)
+      if(!isFinite(n1))
         n1 = document.getElementById('n1').value;
       else
         document.getElementById('n1').value = n1;
-      if(!n2)
+      if(!isFinite(n2))
         n2 = document.getElementById('n2').value;
       else
         document.getElementById('n2').value = n2;
-      if(!n3)
+      if(!isFinite(n3))
         n3 = document.getElementById('n3').value;
       else
         document.getElementById('n3').value = n3;
