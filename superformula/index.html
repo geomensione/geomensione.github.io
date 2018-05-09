@@ -67,7 +67,7 @@ var selectedObject;
 var context = c.getContext("2d");
 function AddRenderFormula(m,n1,n2,n3,a,b){
   var sf = new superformulaobj();
-  if(m && n1 && n2 && n3 && a && b)
+  if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b))
     sf.renderFormula(m,n1,n2,n3,a,b);
   else
     sf.renderFormula();
