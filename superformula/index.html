@@ -86,10 +86,10 @@ document.addEventListener('mousemove',(e)=>{
       selectedObject = o;
       if(mouseDown)
         scene[o].move(x,y);
-      render();
     }else{
       selectedObject = undefined;
     }
+    render();
   }
 })
 
