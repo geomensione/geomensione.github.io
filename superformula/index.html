@@ -61,7 +61,7 @@ var types = {
   triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
 };
   
-
+var oldCoordX,oldCoordY;
 var scene = [];
 var selectedObject;
 var context = c.getContext("2d");
@@ -117,7 +117,6 @@ document.addEventListener('mouseup',(e)=>{
     var minX = 0, maxX = 0, minY = 0, maxY = 0;
     var select = false;
     var offsetX = 0,offsetY = 0;
-    var oldCoordX,oldCoordY;
     
     function hit(x,y){
       if(x<=maxX && x>=minX && y<=maxY && y>=minY)
