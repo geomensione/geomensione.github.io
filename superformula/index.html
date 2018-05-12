@@ -75,7 +75,7 @@ function AddRenderFormula(m,n1,n2,n3,a,b){
   render();
 }
 
-document.addEventListener('mousemove',(e)=>{
+c.addEventListener('mousemove',(e)=>{
   let ret = false;
   let x = e.clientX;
   let y = e.clientY;
@@ -93,12 +93,12 @@ document.addEventListener('mousemove',(e)=>{
   }
 })
 
-document.addEventListener('mousedown',(e)=>{
+c.addEventListener('mousedown',(e)=>{
   mouseDown = true;
 })
   
 document.addEventListener('mouseup',(e)=>{
-  mouseDown = false;
+  c = false;
 })
   
   function superformulaobj(){
