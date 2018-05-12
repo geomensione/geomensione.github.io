@@ -77,9 +77,10 @@ function AddRenderFormula(m,n1,n2,n3,a,b){
 
 c.addEventListener('mousemove',(e)=>{
   let ret = false;
-  let x = e.x;
-  let y = e.y;
-  var scene_length = scene.length;
+  const rect = canvas.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+  let y = e.clientY - rect.top;
+  let scene_length = scene.length;
   for(let o = 0;o<scene_length;o++){
     ret = scene[o].hit(x,y);
     if(ret){
