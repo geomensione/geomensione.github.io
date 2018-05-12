@@ -129,15 +129,11 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function move(x,y){
-      if(!isFinite(offsetX) && !isFinite(offsetY)){
-        oldCoordX=x;
-        oldCoordY=y;
-        offsetX = 0;
-        offsetY = 0;
-      }else{
+      
         offsetX = oldCoordX - x;
         offsetY = oldCoordY - y;
-      }
+        oldCoordX = x;
+        oldCoordY = y;
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
