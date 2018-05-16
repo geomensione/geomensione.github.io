@@ -155,10 +155,12 @@ document.addEventListener('mouseup',(e)=>{
       }
       context.closePath();
       context.lineWidth = lineWidth;
-      if(select)
+      if(select){
+        context.rect(minX,minY,maxX,maxY);
         context.strokeStyle = selected_color;
-      else
+      }else{
         context.strokeStyle = color;
+      }
       context.stroke();
     }
     
