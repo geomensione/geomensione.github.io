@@ -128,11 +128,8 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function move(x,y){
-      
-        offsetX = x - oldCoordX;
-        offsetY = y - oldCoordY;
-        oldCoordX = x;
-        oldCoordY = y;
+        offsetX = x;
+        offsetY = y;
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
@@ -146,10 +143,10 @@ document.addEventListener('mouseup',(e)=>{
       var points_length = points.length;
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
-        points[index]._x += offsetX;
-        x = points[index]._x;
-        points[index]._y += offsetY;
-        y = points[index]._y;
+        //points[index]._x += offsetX;
+        x = points[index]._x + offsetX;
+        //points[index]._y += offsetY;
+        y = points[index]._y + offsetY;
         if (index === 0) {
           context.moveTo(x,y);
         } else {
