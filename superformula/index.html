@@ -144,9 +144,9 @@ document.addEventListener('mouseup',(e)=>{
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
         //points[index]._x += offsetX;
-        x = points[index]._x + offsetX;
+        x = points[index]._x - offsetX;
         //points[index]._y += offsetY;
-        y = points[index]._y + offsetY;
+        y = points[index]._y - offsetY;
         if (index === 0) {
           context.moveTo(x,y);
         } else {
