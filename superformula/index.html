@@ -121,7 +121,7 @@ document.addEventListener('mouseup',(e)=>{
     var offsetX = 0,offsetY = 0;
     
     function hit(x,y){
-      if(x<=maxX && x>=minX && y<=maxY && y>=minY)
+      if(x<=(maxX+offsetX) && x>=(minX + offsetX) && y<=(maxY + offsetY) && y>=(minY + offsetY))
         select = true;
       else
         select = false;
