@@ -105,6 +105,10 @@ c.addEventListener('mousedown',(e)=>{
   
 document.addEventListener('mouseup',(e)=>{
   mouseDown = false;
+  let scene_length = scene.length;
+  for(let o = 0;o<scene_length;o++){
+    scene[o].up();
+  }
 })
   
   function superformulaobj(){
@@ -127,6 +131,13 @@ document.addEventListener('mouseup',(e)=>{
         select = false;
       console.log(`x: ${x}, y: ${y}, maxX: ${maxX}, minX: ${minX}, maxY: ${maxY}, minY: ${minY}, select:${select}, ox:${offsetX}, oy:${offsetY}`)
       return select;
+    }
+    
+    function up(){
+      maxX -= offsetX;
+      minX -= offsetX;
+      maxY -= offsetY;
+      minY -= offsetY;
     }
     
     function move(x,y){
