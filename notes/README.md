@@ -1,6 +1,6 @@
 #IIFE
 
-```
+```javascript
 var om = (function(){
 	var priv1 = 0, priv2 = 0;
 	function toString(){
@@ -18,7 +18,7 @@ om.toString()
 
 "0 0"
 
-```
+```javascript
 om = (function(v){
 	var priv1 = 0, priv2 = 0;
 	if(v)
@@ -38,7 +38,7 @@ om.toString()
 
 "0 0"
 
-```
+```javascript
 var om2 = new om(2)
 VM670:1 Uncaught TypeError: om is not a constructor
     at <anonymous>:1:11
@@ -47,7 +47,7 @@ VM670:1 Uncaught TypeError: om is not a constructor
 
 #MODULE
 
-```
+```javascript
 om = function(v){
 	var priv1 = 0, priv2 = 0;
 	if(v)
