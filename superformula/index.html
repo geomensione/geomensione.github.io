@@ -134,10 +134,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(){
-      maxX -= offsetX;
-      minX -= offsetX;
-      maxY -= offsetY;
-      minY -= offsetY;
+      
       offsetX = 0;
       offsetY = 0;
     }
@@ -145,6 +142,10 @@ document.addEventListener('mouseup',(e)=>{
     function move(x,y){
         offsetX = oldCoordX - x;
         offsetY = oldCoordY - y;
+        maxX -= offsetX;
+        minX -= offsetX;
+        maxY -= offsetY;
+        minY -= offsetY;
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
