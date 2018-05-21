@@ -134,10 +134,10 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(){
-      maxX -= offsetX;
-      minX -= offsetX;
-      maxY -= offsetY;
-      minY -= offsetY;
+      maxX += offsetX;
+      minX += offsetX;
+      maxY += offsetY;
+      minY += offsetY;
     }
     
     function move(x,y){
