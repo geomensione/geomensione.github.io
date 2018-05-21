@@ -86,7 +86,7 @@ c.addEventListener('mousemove',(e)=>{
     if(ret){
       selectedObject = o;
       if(mouseDown){
-        scene[o].move(oldCoordX-x,oldCoordY-y);
+        scene[o].move(x,y);
       }
         
     }else{
