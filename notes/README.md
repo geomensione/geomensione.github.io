@@ -1,4 +1,4 @@
-#IIFE
+# IIFE
 
 ```javascript
 var om = (function(){
@@ -45,7 +45,7 @@ VM670:1 Uncaught TypeError: om is not a constructor
 (anonymous) @ VM670:1
 ```
 
-#MODULE
+# MODULE
 
 ```javascript
 om = function(v){
