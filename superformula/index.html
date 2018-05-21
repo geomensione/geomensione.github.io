@@ -86,7 +86,7 @@ c.addEventListener('mousemove',(e)=>{
     if(ret){
       selectedObject = o;
       if(mouseDown){
-        scene[o].move(oldCoordX - x, oldCoordY - y);
+        scene[o].move(x, y);
       }
         
     }else{
@@ -130,8 +130,8 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function move(x,y){
-        offsetX = x;
-        offsetY = y;
+        offsetX = oldCoordX - x;
+        offsetY = oldCoordY - y;
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
