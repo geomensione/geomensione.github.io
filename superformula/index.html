@@ -134,11 +134,8 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(){
-      var points_length = points.length;
-      for (let index = 0; index < numberOfPoints; index++) {
-        points[index]._x -= offsetX;
-        points[index]._y -= offsetY;
-      }
+      moveX -= offsetX;
+      moveY -= offsetY;
     }
     
     function move(x,y){
