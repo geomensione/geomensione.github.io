@@ -101,6 +101,10 @@ c.addEventListener('mousedown',(e)=>{
   oldCoordX = e.clientX - rect.left;
   oldCoordY = e.clientY - rect.top;
   mouseDown = true;
+  let scene_length = scene.length;
+  for(let o = 0;o<scene_length;o++){
+    scene[o].down();
+  }
 })
   
 document.addEventListener('mouseup',(e)=>{
@@ -141,6 +145,11 @@ document.addEventListener('mouseup',(e)=>{
     function move(x,y){
         offsetX = oldCoordX - x;
         offsetY = oldCoordY - y;
+    }
+    
+    function down(){
+      offsetX = 0;
+      offsetY = 0;      
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
@@ -233,7 +242,8 @@ document.addEventListener('mouseup',(e)=>{
       drawFormula: drawFormula,
       hit: hit,
       move: move,
-      up: up
+      up: up,
+      down: down
     }
   }
 
