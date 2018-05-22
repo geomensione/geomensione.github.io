@@ -122,7 +122,7 @@ document.addEventListener('mouseup',(e)=>{
     var numberOfPoints = 360;
     var minX = 0, maxX = 0, minY = 0, maxY = 0;
     var select = false;
-    var offsetX = 0,offsetY = 0;
+    var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
     
     function hit(x,y){
       if(x<=(maxX - offsetX) && x>=(minX - offsetX) && y<=(maxY - offsetY) && y>=(minY - offsetY))
@@ -134,8 +134,8 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(){
-      moveX -= offsetX;
-      moveY -= offsetY;
+      oldoffsetX = offsetX;
+      oldoffsetY = offsetY;
     }
     
     function move(x,y){
@@ -155,9 +155,9 @@ document.addEventListener('mouseup',(e)=>{
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
         //points[index]._x += offsetX;
-        x = points[index]._x - offsetX;
+        x = points[index]._x - offsetX - oldoffsetX;
         //points[index]._y += offsetY;
-        y = points[index]._y - offsetY;
+        y = points[index]._y - offsetY - oldoffsetY;
         if (index === 0) {
           context.moveTo(x,y);
         } else {
