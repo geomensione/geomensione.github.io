@@ -134,14 +134,16 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(){
-      
-      //offsetX = 0;
-      //offsetY = 0;
+      var points_length = points.length;
+      for (let index = 0; index < numberOfPoints; index++) {
+        points[index]._x -= offsetX;
+        points[index]._y -= offsetY;
+      }
     }
     
     function move(x,y){
-        offsetX += oldCoordX - x;
-        offsetY += oldCoordY - y;
+        offsetX = oldCoordX - x;
+        offsetY = oldCoordY - y;
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
