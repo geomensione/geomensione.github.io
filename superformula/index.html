@@ -129,11 +129,10 @@ document.addEventListener('mouseup',(e)=>{
     var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
     
     function hit(x,y){
-      if(x<=(maxX - offsetX) && x>=(minX - offsetX) && y<=(maxY - offsetY) && y>=(minY - offsetY))
+      if(x<=(maxX - offsetX - oldoffsetX) && x>=(minX - offsetX - oldoffsetX) && y<=(maxY - offsetY - oldoffsetY) && y>=(minY - offsetY - oldoffsetY))
         select = true;
       else
         select = false;
-      console.log(`x: ${x}, y: ${y}, maxX: ${maxX}, minX: ${minX}, maxY: ${maxY}, minY: ${minY}, select:${select}, ox:${offsetX}, oy:${offsetY}`)
       return select;
     }
     
@@ -176,7 +175,7 @@ document.addEventListener('mouseup',(e)=>{
       context.closePath();
       context.lineWidth = lineWidth;
       if(select){
-        context.rect(minX - offsetX, minY - offsetY, maxX - minX, maxY - minY);
+        context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
         context.strokeStyle = selected_color;
       }else{
         context.strokeStyle = color;
