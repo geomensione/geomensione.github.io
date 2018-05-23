@@ -4,4 +4,4 @@ shapes data taken here: https://bl.ocks.org/mbostock/1021103
 
 todo:
 
-use http://fabricjs.com/ o http://paperjs.org/
+use http://svgjs.com/
