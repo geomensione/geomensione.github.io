@@ -6,11 +6,11 @@ function loadSvg(str){
 		   document.body.innerHTML = xhttp.responseText;
 			var svg = document.getElementsByTagName('svg')[0];
 			if(window.innerWidth>window.innerHeight){
-				svg.height = window.innerHeight;
-				svg.width = window.innerHeight*ratio
+				svg.setAttribute('height', window.innerHeight);
+				svg.setAttribute('width', window.innerHeight*ratio);
 			}else{
 				svg.width = window.innerWidth;
-				svg.height = window.innerWidth/ratio;
+				sv);g.height = window.innerWidth/ratio;
 			}
 		}
 	};
