@@ -4,12 +4,13 @@ function loadSvg(str){
 		if (this.readyState == 4 && this.status == 200) {
 		   var ratio = 41.216/54.886;
 		   document.body.innerHTML = xhttp.responseText;
+			var svg = document.getElemensByTagName('svg')[0];
 			if(window.innerWidth>window.innerHeight){
-				document.svg.height = window.innerHeight;
-				document.svg.width = window.innerHeight/ratio
+				svg.height = window.innerHeight;
+				svg.width = window.innerHeight/ratio
 			}else{
-				document.svg.width = window.innerWidth;
-				document.svg.height = window.innerWidth*ratio;
+				svg.width = window.innerWidth;
+				svg.height = window.innerWidth*ratio;
 			}
 		}
 	};
