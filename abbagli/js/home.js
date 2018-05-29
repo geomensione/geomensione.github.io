@@ -4,7 +4,7 @@ function loadSvg(str){
 		if (this.readyState == 4 && this.status == 200) {
 		   var ratio = 41.216/54.886;
 		   document.body.innerHTML = xhttp.responseText;
-			var svg = document.getElemensByTagName('svg')[0];
+			var svg = document.getElementsByTagName('svg')[0];
 			if(window.innerWidth>window.innerHeight){
 				svg.height = window.innerHeight;
 				svg.width = window.innerHeight*ratio
