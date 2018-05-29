@@ -9,8 +9,8 @@ function loadSvg(str){
 				svg.setAttribute('height', window.innerHeight);
 				svg.setAttribute('width', window.innerHeight*ratio);
 			}else{
-				svg.width = window.innerWidth;
-				sv);g.height = window.innerWidth/ratio;
+				svg.setAttribute('width', window.innerWidth);
+				svg.setAttribute('height', window.innerWidth/ratio);
 			}
 		}
 	};
