@@ -16,12 +16,13 @@ function loadSvg(str){
 			
 			var ellipse_sections = document.getElementsByTagName('ellipse');
 			var section_index = 0;
+			function sectionEvent(e)=>{
+				document.navigator.location = 'pagine/'+this.id+'.html';
+			}
 			sezioni.forEach((e)=>{
 				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
-				el.setAttribute('mouseup',(e)=>{
-					document.navigator.location = 'pagine/'+this.id+'.html';
-				})
+				el.setAttribute('mouseup',sectionEvent);
 				++section_index;
 			});
 			
