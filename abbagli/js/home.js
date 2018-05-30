@@ -3,6 +3,7 @@ function loadSvg(str){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 		   var ratio = 41.216/54.886;
+		   var sezioni = ['home','colane','contatti','bracciali','anelli'];
 		   document.body.innerHTML = xhttp.responseText;
 			var svg = document.getElementsByTagName('svg')[0];
 			if(window.innerWidth>window.innerHeight){
@@ -12,6 +13,7 @@ function loadSvg(str){
 				svg.setAttribute('width', window.innerWidth);
 				svg.setAttribute('height', window.innerWidth/ratio);
 			}
+			
 		}
 	};
 	xhttp.open("GET", "img/"+str, true);
