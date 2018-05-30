@@ -1,5 +1,5 @@
 function sectionEvent(e){
-	document.location = 'pagine/'+this.id+'.html';
+	document.location = 'pagine/'+e.id+'.html';
 }
 
 function loadSvg(str){
@@ -24,7 +24,7 @@ function loadSvg(str){
 			sezioni.forEach((e)=>{
 				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
-				el.setAttribute('onclick','sectionEvent()');
+				el.setAttribute('onclick','sectionEvent(this)');
 				++section_index;
 			});
 			
