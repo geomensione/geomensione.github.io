@@ -16,9 +16,8 @@ function loadSvg(str){
 			
 			var ellipse_sections = document.getElementsByTagName('ellipse');
 			var section_index = 0;
-			ellipse_sections.forEach((e)=>{
-				if(section_index<sezioni.length)
-					e.setAttribute('id',sezioni[section_index]);
+			sezioni.forEach((e)=>{
+				ellipse_sections.item(section_index).setAttribute('id',e);
 				++section_index;
 			});
 			
