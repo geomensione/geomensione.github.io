@@ -7,7 +7,7 @@ function loadSvg(str){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var ratio = 41.216/54.886;
-			var sezioni = ['home','collane','contatti','bracciali','anelli'];
+			var sezioni = ['home','collane','contatti','bracciali','anelli','noi'];
 			document.body.innerHTML = xhttp.responseText;
 			var svg = document.getElementsByTagName('svg')[0];
 			if(window.innerWidth>window.innerHeight){
@@ -22,7 +22,7 @@ function loadSvg(str){
 			var section_index = 0;
 			
 			sezioni.forEach((e)=>{
-				var el = ellipse_sections.item(section_index+1);
+				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
 				el.setAttribute('onclick','sectionEvent(this)');
 				++section_index;
