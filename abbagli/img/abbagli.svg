@@ -7,6 +7,6 @@
     <path style="isolation:auto;mix-blend-mode:normal" d="M87.004 156.877a15.866 20.532 88.736 0 1 10.354-14.145 15.866 20.532 88.736 0 1 20.921.077 15.866 20.532 88.736 0 1 9.758 14.219" color="#000" overflow="visible" fill="#4ab6cf" stroke="#d08998" stroke-width=".155"/>
     <ellipse style="isolation:auto;mix-blend-mode:normal" cx="94.501" cy="116.201" rx="3.921" ry="4.063" transform="rotate(-1.818) skewX(.061)" color="#000" overflow="visible" fill="#4ab6cf"/>
     <path d="M105.327 143.601l4.729.036-1.225-14.52 7.99-4.323-2.817.564-.354-2.163-.5 2.096-4.53 1.706-.39-4.762 7.267-3.354 1.74 1.173-.808-1.582 2.7-1.316-11.014 2.956-.293-3.205 8.595-4.674-3.75.972-.36-2.352-.39 2.565-4.24 1.933-.796-5.647-.408 6.395-9.232-3.342 3.671 2.434-1.483.9 2.629-.558 4.238 2.415-.122 7.946-6.328-2.727-1.514-2.976.457 2.443-3.068-1.319 10.333 6.71z" fill="#673c31" fill-rule="evenodd"/>
-    <text style="line-height:125%" x="96" y="154" font-weight="400" font-size="10.583" font-family="sans-serif" letter-spacing="0" word-spacing="0" stroke-width=".265">Ciao</text>
+    <text style="line-height:125%" x="94" y="154" font-weight="400" font-size="8" font-family="sans-serif" letter-spacing="0" word-spacing="0" stroke-width=".265">Ciao</text>
   </g>
 </svg>
