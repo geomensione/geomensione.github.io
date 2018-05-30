@@ -16,7 +16,7 @@ function loadSvg(str){
 			
 			var ellipse_sections = document.getElementsByTagName('ellipse');
 			var section_index = 0;
-			function sectionEvent(e)=>{
+			function sectionEvent(e){
 				document.navigator.location = 'pagine/'+this.id+'.html';
 			}
 			sezioni.forEach((e)=>{
