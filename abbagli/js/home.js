@@ -3,10 +3,10 @@ function sectionEvent(e){
 		document.location = e.id+'.html';
 }
 function sectionEnter(e){
-	e.fill="#ff0000"
+	e.setAttribute('fill','#ff0000');
 }
 function sectionLeave(e){
-	e.fill="#4ab6cf";
+	e.setAttribute('fill','#4ab6cf');
 }
 
 function loadSvg(str){
