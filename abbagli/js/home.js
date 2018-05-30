@@ -3,10 +3,13 @@ function sectionEvent(e){
 		document.location = e.id+'.html';
 }
 function sectionEnter(e){
+	var color = e.getAttribute('fill');
+	e.setAttribute('bkpfill',color);
 	e.setAttribute('fill','#ff0000');
 }
 function sectionLeave(e){
-	e.setAttribute('fill','#4ab6cf');
+	var color = e.getAttribute('bkpfill');
+	e.setAttribute('fill',color);
 }
 
 function loadSvg(str){
