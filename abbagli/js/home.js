@@ -37,8 +37,8 @@ function loadSvg(str){
 				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
 				el.setAttribute('onclick','sectionEvent(this)');
-				el.setAttribute('mouseenter','sectionEnter(this)');
-				el.setAttribute('mouseleave','sectionLeave(this)');
+				el.setAttribute('onmouseenter','sectionEnter(this)');
+				el.setAttribute('onmouseleave','sectionLeave(this)');
 				++section_index;
 			});
 			
