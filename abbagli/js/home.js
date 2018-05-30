@@ -22,7 +22,7 @@ function loadSvg(str){
 			var section_index = 0;
 			
 			sezioni.forEach((e)=>{
-				var el = ellipse_sections.item(section_index);
+				var el = ellipse_sections.item(section_index+1);
 				el.setAttribute('id',e);
 				el.setAttribute('onclick','sectionEvent(this)');
 				++section_index;
