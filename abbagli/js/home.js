@@ -9,14 +9,19 @@ function loadSvg(str){
 		if (this.readyState == 4 && this.status == 200) {
 			var ratio = 41.216/54.886;
 			var sezioni = ['home','collane','contatti','bracciali','anelli','noi'];
-			document.getElementById('container').innerHTML = xhttp.responseText;
+			var container = document.getElementById('container')
+			container.innerHTML = xhttp.responseText;
+			container.style.margin = '0 auto';
+			container.style.padding = 0;
 			var svg = document.getElementsByTagName('svg')[0];
 			if(window.innerWidth>window.innerHeight){
 				svg.setAttribute('height', window.innerHeight);
 				svg.setAttribute('width', window.innerHeight*ratio);
+				container.style.width = window.innerHeight*ratio+'px';
 			}else{
 				svg.setAttribute('width', window.innerWidth);
 				svg.setAttribute('height', window.innerWidth/ratio);
+				container.style.width = window.innerHeight/ratio+'px';
 			}
 			
 			var ellipse_sections = document.getElementsByTagName('ellipse');
