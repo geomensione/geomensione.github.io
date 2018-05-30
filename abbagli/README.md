@@ -1,6 +1,4 @@
 abbagli mummade site
 todo:
-mettere l'svg in un div ed applicare classe css
-    margin: 0 auto;
-    width: 430px;
-    padding: 0;
+
+https://stackoverflow.com/questions/32556777/how-to-fade-in-and-out-color-of-svg
