@@ -9,7 +9,7 @@ function loadSvg(str){
 		if (this.readyState == 4 && this.status == 200) {
 			var ratio = 41.216/54.886;
 			var sezioni = ['home','collane','contatti','bracciali','anelli','noi'];
-			document.body.innerHTML = xhttp.responseText;
+			document.getElementById('container').innerHTML = xhttp.responseText;
 			var svg = document.getElementsByTagName('svg')[0];
 			if(window.innerWidth>window.innerHeight){
 				svg.setAttribute('height', window.innerHeight);
