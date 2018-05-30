@@ -7,13 +7,13 @@ function sectionEnter(e){
 	e.setAttribute('bkpfill',color);
 	e.setAttribute('fill','#ff0000');
 	var textEl = document.getElementsByTagName('text')[0];
-	textEl.setAttribute('innerHTML',e.id);
+	textEl.innerHTML = e.id;
 }
 function sectionLeave(e){
 	var color = e.getAttribute('bkpfill');
 	e.setAttribute('fill',color);
 	var textEl = document.getElementsByTagName('text')[0];
-	textEl.setAttribute('innerHTML','Ciao');
+	textEl.innerHTML = 'Ciao';
 }
 
 function loadSvg(str){
