@@ -2,6 +2,12 @@ function sectionEvent(e){
 	if(e.id.indexOf('home') === -1)
 		document.location = e.id+'.html';
 }
+function sectionEnter(e){
+	fill="#ff0000"
+}
+function sectionLeave(e){
+	this.fill="#4ab6cf";
+}
 
 function loadSvg(str){
 	var xhttp = new XMLHttpRequest();
@@ -31,6 +37,8 @@ function loadSvg(str){
 				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
 				el.setAttribute('onclick','sectionEvent(this)');
+				el.setAttribute('mouseenter','sectionEnter(this)');
+				el.setAttribute('mouseleave','sectionLeave(this)');
 				++section_index;
 			});
 			
