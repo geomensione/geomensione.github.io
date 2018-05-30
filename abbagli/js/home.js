@@ -22,7 +22,7 @@ function loadSvg(str){
 			sezioni.forEach((e)=>{
 				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
-				el.setAttribute('mouseup',sectionEvent);
+				el.setAttribute('onmouseup',sectionEvent);
 				++section_index;
 			});
 			
