@@ -1,5 +1,5 @@
 function sectionEvent(e){
-	if(e.indexOf('home') === -1)
+	if(e.id.indexOf('home') === -1)
 		document.location = 'pagine/'+e.id+'.html';
 }
 
