@@ -8,7 +8,7 @@ function loadSvg(str){
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var ratio = 41.216/54.886;
-			var sezioni = ['home','collane','contatti','bracciali','anelli','noi'];
+			var sezioni = ['home','collane','contatti','bracciali','anelli','mission'];
 			var container = document.getElementById('container')
 			container.innerHTML = xhttp.responseText;
 			container.style.margin = '0 auto';
