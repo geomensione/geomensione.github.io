@@ -1,3 +1,7 @@
+function sectionEvent(e){
+	document.location = 'pagine/'+this.id+'.html';
+}
+
 function loadSvg(str){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -16,9 +20,7 @@ function loadSvg(str){
 			
 			var ellipse_sections = document.getElementsByTagName('ellipse');
 			var section_index = 0;
-			function sectionEvent(e){
-				document.location = 'pagine/'+this.id+'.html';
-			}
+			
 			sezioni.forEach((e)=>{
 				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
