@@ -105,6 +105,9 @@ superformula
 
 [https://geomensione.github.io/superformula](https://geomensione.github.io/superformula)
 
+abbagli mummade
+
+[https://geomensione.github.io/abbagli/abbagli.html](https://geomensione.github.io/abbagli/abbagli.html)
 
 Lectures
 
