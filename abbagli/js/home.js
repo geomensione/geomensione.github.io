@@ -6,12 +6,14 @@ function sectionEnter(e){
 	var color = e.getAttribute('fill');
 	e.setAttribute('bkpfill',color);
 	e.setAttribute('fill','#ff0000');
-	document.getElementsByTagName('text')[0].innerText = e.id;
+	var textEl = document.getElementsByTagName('text')[0];
+	textEl.setAttribute('innerText',e.id);
 }
 function sectionLeave(e){
 	var color = e.getAttribute('bkpfill');
 	e.setAttribute('fill',color);
-	document.getElementsByTagName('text')[0].innerText = 'Ciao';
+	var textEl = document.getElementsByTagName('text')[0];
+	textEl.setAttribute('innerText','Ciao');
 }
 
 function loadSvg(str){
