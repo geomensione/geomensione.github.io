@@ -76,6 +76,7 @@ function loadSvg(str){
 				var el = ellipse_sections.item(section_index);
 				el.setAttribute('id',e);
 				el.setAttribute('onclick','sectionEvent(this)');
+				el.setAttribute('ontouchstart','sectionEvent(this)');
 				el.setAttribute('onmouseenter','sectionEnter(this)');
 				el.setAttribute('onmouseleave','sectionLeave(this)');
 				++section_index;
