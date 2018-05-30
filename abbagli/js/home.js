@@ -13,7 +13,7 @@ function sectionLeave(e){
 	var color = e.getAttribute('bkpfill');
 	e.setAttribute('fill',color);
 	var textEl = document.getElementsByTagName('text')[0];
-	textEl.innerHTML = 'Ciao';
+	textEl.innerHTML = 'Ciao!';
 }
 
 function loadSvg(str){
