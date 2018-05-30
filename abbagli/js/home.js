@@ -1,5 +1,6 @@
 function sectionEvent(e){
-	document.location = 'pagine/'+e.id+'.html';
+	if(e.indexOf('home') === -1)
+		document.location = 'pagine/'+e.id+'.html';
 }
 
 function loadSvg(str){
