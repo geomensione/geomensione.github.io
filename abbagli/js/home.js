@@ -65,7 +65,7 @@ function loadSvg(str){
 				container.style.width = window.innerHeight*ratio+'px';
 			}else{
 				svg.setAttribute('width', window.innerWidth);
-				svg.setAttribute('height', window.innerWidth/ratio);
+				svg.setAttribute('height', window.innerHeight/ratio);
 				container.style.width = window.innerHeight/ratio+'px';
 			}
 			
