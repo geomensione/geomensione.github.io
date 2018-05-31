@@ -66,7 +66,7 @@ function loadSvg(str){
 			}else{
 				svg.setAttribute('width', window.innerWidth);
 				svg.setAttribute('height', window.innerHeight);
-				container.style.width = window.innerHeight+'px';
+				container.style.width = window.innerWidth+'px';
 			}
 			
 			var ellipse_sections = document.getElementsByTagName('ellipse');
