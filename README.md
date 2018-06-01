@@ -107,7 +107,7 @@ superformula
 
 abbagli mummade
 
-[https://geomensione.github.io/abbagli/abbagli.html](https://geomensione.github.io/abbagli/abbagli.html)
+[https://geomensione.github.io/abbagli/home.html](https://geomensione.github.io/abbagli/home.html)
 
 Lectures
 
