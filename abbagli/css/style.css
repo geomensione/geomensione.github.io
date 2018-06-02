@@ -28,6 +28,8 @@
 	
 	.label{
 		text-align: center;
+		padding-top:50px;
+		padding-bottom: 50px;
 	}
 	
 	.allcontent{
@@ -38,11 +40,6 @@
 		float: right;
 	}
 
-.link:nth-child(odd) {
- background: #4ab6cf;
-}
-
-.label{
-padding-top:50px;
-	padding-bottom: 50px;
-}
+	.link:nth-child(odd) {
+		background: #4ab6cf;
+	}
