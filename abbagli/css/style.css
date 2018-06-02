@@ -38,6 +38,6 @@
 		float: right;
 	}
 
-.menu:nth-child(odd) {
+.link:nth-child(odd) {
  background: #4ab6cf;
 }
