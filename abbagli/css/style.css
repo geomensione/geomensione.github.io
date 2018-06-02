@@ -37,3 +37,7 @@
 		padding: 0;
 		float: right;
 	}
+
+.menu:nth-child(odd) {
+ background: #4ab6cf;
+}
