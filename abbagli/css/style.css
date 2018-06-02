@@ -41,3 +41,7 @@
 .link:nth-child(odd) {
  background: #4ab6cf;
 }
+
+.link{
+vertical-align:middle;
+}
