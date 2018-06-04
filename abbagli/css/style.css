@@ -47,3 +47,10 @@ font-size:2em;
 	.link:nth-child(odd) {
 		background: #4ab6cf;
 	}
+.corner{
+	width: 20%;
+	float: left;
+}
+.svg_corner{
+	height: 100%;
+}
