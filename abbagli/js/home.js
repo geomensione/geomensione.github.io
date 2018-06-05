@@ -30,8 +30,11 @@ function LightenDarkenColor(col, amt) {
 }
 
 function sectionEvent(e){
-	if(e.id.indexOf('home') === -1)
+	if(e.id.indexOf('home') === -1){
+		localStorage.page = e.id;
 		document.location = e.id+'.html';
+	}
+	
 }
 function sectionEnter(e){
 	var color = e.getAttribute('fill');
@@ -48,12 +51,14 @@ function sectionLeave(e){
 	textEl.innerHTML = 'Abbagli';
 }
 
+var sezioni = ['home','collane','contatti','bracciali','anelli','mission'];
+
 function loadSvg(str){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var ratio = 41.216/54.886;
-			var sezioni = ['home','collane','contatti','bracciali','anelli','mission'];
+			
 			var container = document.getElementById('container')
 			container.innerHTML = xhttp.responseText;
 			container.style.margin = '0 auto';
@@ -86,4 +91,10 @@ function loadSvg(str){
 	};
 	xhttp.open("GET", "img/"+str, true);
 	xhttp.send();
+}
+
+loadPage(){
+	document.getElementsByTagName('title')[0].text = localStorage.page;
+	document.getElementsByClassName('font_size_2em')[0].text = localStorage.page;
+	
 }
