@@ -30,8 +30,9 @@ function LightenDarkenColor(col, amt) {
 }
 
 function sectionEvent(e){
-	if(e.id.indexOf('home') === -1){
-		localStorage.page = e.id;
+	var str_page = (typeof e === 'string')? e ! e.id;
+	if(str_page.indexOf('home') === -1){
+		localStorage.page = str_page;
 		document.location = 'page.html';
 	}
 	
@@ -100,8 +101,10 @@ function loadPage(){
 	for(let s = 0,l = 0, sezioni_length = sezioni.length;s<sezioni_length;s++){
 		if(sezioni[s] === localStorage.page)
 			s += 1;
-		if(l<links.length)
+		if(l<links.length){
 			links[l].children[0].innerText = sezioni[s];
+			links[l].onclick = sectionEvent(sezioni[s]);
+		}
 		l += 1;
 		
 	}
