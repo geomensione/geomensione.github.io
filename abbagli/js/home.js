@@ -113,8 +113,10 @@ function loadPage(){
 		}
 	)
 	for(let s = 0,l = 0, sezioni_length = sezioni.length;s<sezioni_length;s++){
-		if(sezioni[s] === localStorage.page || sezioni[s] === 'home')
+		if(sezioni[s] === localStorage.page || sezioni[s] === 'home'){
 			s += 1;
+			continue;
+		}
 		if(l<links.length){
 			links[l].children[0].innerText = sezioni[s];
 			links[l].onclick = () => {
