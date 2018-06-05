@@ -100,7 +100,8 @@ function loadPage(){
 	for(let s = 0,l = 0, sezioni_length = sezioni.length;s<sezioni_length;s++){
 		if(sezioni[s] === localStorage.page)
 			s += 1;
-		links[l].innerText = sezioni[s];
+		if(l<links.length)
+			links[l].children[0].innerText = sezioni[s];
 		l += 1;
 		
 	}
