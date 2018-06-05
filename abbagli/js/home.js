@@ -136,8 +136,9 @@ function readFile(path) {
 				return resolve(xhr.responseText);
 			    } else {
 				return reject(null);
+			    }
 			}
-		};
+		}
 		xhr.open("GET", path);
 		xhr.send();
 	})
