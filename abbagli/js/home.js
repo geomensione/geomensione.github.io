@@ -96,5 +96,13 @@ function loadSvg(str){
 function loadPage(){
 	document.getElementsByTagName('title')[0].text = localStorage.page;
 	document.getElementsByClassName('font_size_2em')[0].innerText = localStorage.page;
+	var links = document.getElementsByClassName('link');
+	for(let s = 0,l = 0, sezioni_length = sezioni.length;s<sezioni_length;s++){
+		if(sezioni[s] === localStorage.page)
+			s += 1;
+		links[l].innerText = sezioni[s];
+		l += 1;
+		
+	}
 	
 }
