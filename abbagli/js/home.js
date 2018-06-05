@@ -104,6 +104,14 @@ function loadPage(){
 	document.getElementsByTagName('title')[0].text = localStorage.page;
 	document.getElementsByClassName('font_size_2em')[0].innerText = localStorage.page;
 	var links = document.getElementsByClassName('link');
+	readFile(localStorage.page+'.html').then(
+		function(succ){
+			document.getElementsByClassName('textcontent')[0].innerHTML = succ;
+		},
+		function(err){
+			document.getElementsByClassName('textcontent')[0].innerHTML = 'no file';
+		}
+	)
 	for(let s = 0,l = 0, sezioni_length = sezioni.length;s<sezioni_length;s++){
 		if(sezioni[s] === localStorage.page)
 			s += 1;
@@ -117,4 +125,20 @@ function loadPage(){
 		
 	}
 	
+}
+
+function readFile(path) {
+	return new Promise(function(resolve,reject){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+			    if (xhr.status == 200) {
+				return resolve(xhr.responseText);
+			    } else {
+				return reject(null);
+			}
+		};
+		xhr.open("GET", path);
+		xhr.send();
+	})
 }
