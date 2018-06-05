@@ -93,7 +93,7 @@ function loadSvg(str){
 	xhttp.send();
 }
 
-loadPage(){
+function loadPage(){
 	document.getElementsByTagName('title')[0].text = localStorage.page;
 	document.getElementsByClassName('font_size_2em')[0].text = localStorage.page;
 	
