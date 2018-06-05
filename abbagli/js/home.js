@@ -30,6 +30,7 @@ function LightenDarkenColor(col, amt) {
 }
 
 function sectionEvent(e){
+	var str_page = (typeof e === 'string')? e : e.id;
 	if(str_page.indexOf('home') === -1 && window.location.href.indexOf('home.html') === -1){
 		localStorage.page = str_page;
 		document.location = 'page.html';
