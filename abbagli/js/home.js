@@ -36,7 +36,7 @@ function sectionEvent(e){
 			document.location = 'page.html';
 		
 	}else{
-		if(window.location.href.indexOf('home.html') !== -1){
+		if(window.location.href.indexOf('home.html') === -1){
 			localStorage.page = str_page;
 			document.location = 'page.html';
 		}
