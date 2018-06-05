@@ -103,7 +103,9 @@ function loadPage(){
 			s += 1;
 		if(l<links.length){
 			links[l].children[0].innerText = sezioni[s];
-			links[l].onclick = sectionEvent(sezioni[s]);
+			links[l].onclick = () => {
+				sectionEvent(sezioni[s])
+			};
 		}
 		l += 1;
 		
