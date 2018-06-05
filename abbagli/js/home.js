@@ -95,6 +95,6 @@ function loadSvg(str){
 
 function loadPage(){
 	document.getElementsByTagName('title')[0].text = localStorage.page;
-	document.getElementsByClassName('font_size_2em')[0].text = localStorage.page;
+	document.getElementsByClassName('font_size_2em')[0].innerText = localStorage.page;
 	
 }
