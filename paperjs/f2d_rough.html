@@ -15,6 +15,8 @@
 		// Get a reference to the canvas object
 		var canvas = document.getElementById('myCanvas');
 		// Create an empty project and a view for the canvas:
+		canvas.width = window.innerWidth;
+		canvas.height = window.innnerHeight;
 		const rc = rough.canvas(canvas);
 		rc.rectangle(10, 10, 200, 200); // x, y, width, height
 		//paper.setup(canvas);
