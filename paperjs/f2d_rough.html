@@ -35,11 +35,13 @@
 		var segment = path = null;
 		var click = false;
 		let sceneObjects = [];
+		/*
 		var textItem = new paper.PointText({
 			content: 'Number of items',
 			point: new paper.Point(20, 30),
 			fillColor: 'black',
 		});
+		*/
 		tool.onMouseDown = function(event) {
 			click = true;
 			segment = path = null;
@@ -103,7 +105,7 @@
 		}
 		tool.onMouseUp = function(event) {
 			click = false;
-			textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
+			//textItem.content = 'number of items '+((paper.project.activeLayer.children.length)-1);
 			var childrens_array = paper.project.activeLayer.children;
 			var children_array_length = childrens_array.length;
 			if(children_array_length > 2)
