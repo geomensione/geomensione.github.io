@@ -63,7 +63,9 @@ var types = {
   triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
 };
   
-var oldCoordX,oldCoordY;
+const rc = rough.canvas(c);
+
+  var oldCoordX,oldCoordY;
 var scene = [];
 var selectedObject;
 var context = c.getContext("2d");
