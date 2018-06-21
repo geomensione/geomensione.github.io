@@ -65,7 +65,7 @@ var types = {
   
 const rc = rough.canvas(c);
 
-  var oldCoordX,oldCoordY;
+var oldCoordX,oldCoordY;
 var scene = [];
 var selectedObject;
 var context = c.getContext("2d");
@@ -162,8 +162,9 @@ document.addEventListener('mouseup',(e)=>{
     
     function drawFormula(m,n1,n2,n3,a,b) {
       
-      context.beginPath();
+      //context.beginPath();
       var points_length = points.length;
+      let str_path = '';
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
         //points[index]._x += offsetX;
@@ -171,20 +172,26 @@ document.addEventListener('mouseup',(e)=>{
         //points[index]._y += offsetY;
         y = points[index]._y - offsetY - oldoffsetY;
         if (index === 0) {
-          context.moveTo(x,y);
+          //context.moveTo(x,y);
+          str_path += 'M'+x+' '+y+' ';
         } else {
-          context.lineTo(x,y);
+          //context.lineTo(x,y);
+          str_path += 'L'+x+' '+y+' ';
         }
       }
-      context.closePath();
-      context.lineWidth = lineWidth;
+      //context.closePath();
+      //context.lineWidth = lineWidth;
+      str_path += 'Z';
+      let stroke_color = '';
       if(select){
-        context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
-        context.strokeStyle = selected_color;
+        rc.rectangle(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY, { stroke: selected_color, strokeWidth: 1 });
+        //context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
+        stroke_color = selected_color;
       }else{
-        context.strokeStyle = color;
+        stroke_color = color;
       }
-      context.stroke();
+      //context.stroke();
+      rc.path(str_path, { stroke: stroke_color });
     }
     
     function renderFormula(m,n1,n2,n3,a,b) {
