@@ -130,10 +130,10 @@ document.addEventListener('mouseup',(e)=>{
     var numberOfPoints = 360;
     var minX = 0, maxX = 0, minY = 0, maxY = 0;
     var select = false;
-    var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
+    var offsetX = 0,offsetY = 0;
     
     function hit(x,y){
-      if(x<=(maxX - offsetX - oldoffsetX) && x>=(minX - offsetX - oldoffsetX) && y<=(maxY - offsetY - oldoffsetY) && y>=(minY - offsetY - oldoffsetY))
+      if(x<=(maxX - offsetX) && x>=(minX - offsetX) && y<=(maxY - offsetY) && y>=(minY - offsetY))
         select = true;
       else
         select = false;
@@ -143,8 +143,7 @@ document.addEventListener('mouseup',(e)=>{
     function up(){
       //oldoffsetX = offsetX;
       //oldoffsetY = offsetY;
-      oldoffsetX = 0;
-      oldoffsetY = 0;
+      
       
     }
     
@@ -171,9 +170,9 @@ document.addEventListener('mouseup',(e)=>{
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
         //points[index]._x += offsetX;
-        x = points[index]._x - offsetX - oldoffsetX;
+        x = points[index]._x - offsetX;
         //points[index]._y += offsetY;
-        y = points[index]._y - offsetY - oldoffsetY;
+        y = points[index]._y - offsetY;
         if (index === 0) {
           //context.moveTo(x,y);
           str_path += 'M'+x+' '+y+' ';
@@ -187,7 +186,7 @@ document.addEventListener('mouseup',(e)=>{
       str_path += 'Z';
       let stroke_color = '';
       if(select){
-        rc.rectangle(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY, { stroke: selected_color, strokeWidth: 1 });
+        rc.rectangle(minX - offsetX, minY - offsetY, maxX - minX, maxY - minY, { stroke: selected_color, strokeWidth: 1 });
         //context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
         stroke_color = selected_color;
       }else{
