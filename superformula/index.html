@@ -146,8 +146,8 @@ document.addEventListener('mouseup',(e)=>{
       minX -= x;
       maxY -= y;
       minY -= y;
-      moveX = moveX - offsetX - oldoffsetX;
-      moveY = moveY - offsetY - oldoffsetY;
+      moveX = -moveX - offsetX - oldoffsetX;
+      moveY = -moveY - offsetY - oldoffsetY;
       
     }
     
