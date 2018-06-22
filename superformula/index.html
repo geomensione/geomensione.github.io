@@ -102,8 +102,8 @@ c.addEventListener('mousemove',(e)=>{
 
 c.addEventListener('mousedown',(e)=>{
   const rect = c.getBoundingClientRect();
-  oldCoordX = e.clientX - rect.left;
-  oldCoordY = e.clientY - rect.top;
+  offsetX = e.clientX - rect.left;
+  offsetY = e.clientY - rect.top;
   mouseDown = true;
   let scene_length = scene.length;
   for(let o = 0;o<scene_length;o++){
