@@ -110,9 +110,12 @@ c.addEventListener('mousedown',(e)=>{
   
 document.addEventListener('mouseup',(e)=>{
   mouseDown = false;
+  const rect = c.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+  let y = e.clientY - rect.top;
   let scene_length = scene.length;
   for(let o = 0;o<scene_length;o++){
-    scene[o].up(e.clientX, e.clientY);
+    scene[o].up(x, y);
   }
 })
   
