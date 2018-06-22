@@ -133,6 +133,7 @@ document.addEventListener('mouseup',(e)=>{
     var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
     
     function hit(x,y){
+      console.log(`${x} in ${maxX - offsetX - oldoffsetX} e ${minX - offsetX - oldoffsetX}, ${y} in ${maxY - offsetY - oldoffsetY} e ${minY - offsetY - oldoffsetY}`)
       if(x<=(maxX - offsetX - oldoffsetX) && x>=(minX - offsetX - oldoffsetX) && y<=(maxY - offsetY - oldoffsetY) && y>=(minY - offsetY - oldoffsetY))
         select = true;
       else
