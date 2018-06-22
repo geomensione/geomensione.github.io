@@ -112,7 +112,7 @@ document.addEventListener('mouseup',(e)=>{
   mouseDown = false;
   let scene_length = scene.length;
   for(let o = 0;o<scene_length;o++){
-    scene[o].up();
+    scene[o].up(e.clientX, e.clientY);
   }
 })
   
@@ -137,9 +137,9 @@ document.addEventListener('mouseup',(e)=>{
       return select;
     }
     
-    function up(){
-      oldoffsetX = offsetX;
-      oldoffsetY = offsetY;
+    function up(x,y){
+      oldoffsetX = x - offsetX;
+      oldoffsetY = y - offsetY;
     }
     
     function move(x,y){
