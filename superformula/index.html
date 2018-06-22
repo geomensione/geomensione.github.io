@@ -143,6 +143,10 @@ document.addEventListener('mouseup',(e)=>{
     function up(x,y){
       moveX = moveX - offsetX - oldoffsetX;
       moveY = moveY - offsetX - oldoffsetX;
+      offsetX = 0;
+      offsetY = 0;
+      oldoffsetX = 0;
+      oldoffsetY = 0;
       
     }
     
