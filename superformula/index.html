@@ -285,7 +285,7 @@ function render() {
   
   var scene_length = scene.length;
   let center_radius;
-  for(let o = 0;o<scene_length;o++)
+  for(let o = 0;o<scene_length;o++){
     scene[o].drawFormula();
     let name = scene[o].getName();
     if(name.indexOf('f2d')){
@@ -298,6 +298,7 @@ function render() {
       center_radius = scene[0].getCenterAndRadius();
       
     }
+  }
       
 }
   
