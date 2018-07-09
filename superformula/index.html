@@ -2,6 +2,7 @@
 <head>
   <title>Superformula & rough v0.1</title>
   <script src="../rough/js/rough.min.js"></script>
+  <script src="../paperjs/js/tangents.js"></script>
 </head>
 <body>
   m,n1,n2,n3,a,b
@@ -165,6 +166,16 @@ document.addEventListener('mouseup',(e)=>{
       return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
     }
     
+    function getName(){
+      return name;
+    }
+    
+    function getCenterAndRadius(){
+      let c_r = (maxX-minX)/2;
+      let c_x = minX + (c_r);
+      let c_y = minY + ((maxY-minY)/2);
+      return {x:c_x,y:c_y,c:c_r};
+    }
     
     function drawFormula(m,n1,n2,n3,a,b) {
       
@@ -251,22 +262,43 @@ document.addEventListener('mouseup',(e)=>{
         points.push({_x:x,_y:y});
       }
     }
+    
+    function getRTangents(json){
+      let my_json = getCenterAndRadius();
+      return getTangents(json.x,json.y,json.r,my_json.x,my_json.y,my_json.r){
+
+    }
     return{
       renderFormula: renderFormula,
       drawFormula: drawFormula,
       hit: hit,
       move: move,
       up: up,
-      down: down
+      down: down,
+      getName: getName,
+      getCenterAndRadius: getCenterAndRadius,
+      getRTangents: getRTangents
     }
   }
 function render() {
   context.clearRect(0,0,c.width,c.height);
   
   var scene_length = scene.length;
+  let center_radius;
   for(let o = 0;o<scene_length;o++)
     scene[o].drawFormula();
-  
+    let name = scene[o].getName();
+    if(name.indexOf('f2d')){
+      if(center_radius){
+          let tangents = scene[0].getRTangents(center_radius);
+          rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
+          rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
+      }
+      
+      center_radius = scene[0].getCenterAndRadius();
+      
+    }
+      
 }
   
 function resize() {
