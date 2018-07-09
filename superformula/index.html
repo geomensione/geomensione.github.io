@@ -135,6 +135,7 @@ document.addEventListener('mouseup',(e)=>{
     var numberOfPoints = 360;
     var minX = 0, maxX = 0, minY = 0, maxY = 0;
     var select = false;
+    var name;
     var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
     
     function hit(x,y){
@@ -159,7 +160,8 @@ document.addEventListener('mouseup',(e)=>{
       //offsetY = 0;      
     }
     
-    function superformula(phi,a,b,m,n1,n2,n3) {
+    function superformula(phi,a,b,m,n1,n2,n3, str_name) {
+      name = str_name;
       return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
     }
     
