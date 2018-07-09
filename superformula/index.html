@@ -142,12 +142,10 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(x,y){
-      maxX -= x;
-      minX -= x;
-      maxY -= y;
-      minY -= y;
-      moveX = x;
-      moveY = y;
+      maxX = maxX - offsetX - oldoffsetX;
+      minX = minX - offsetX - oldoffsetX;
+      maxY = maxY - offsetY - oldoffsetY;
+      minY = minY - offsetY - oldoffsetY;
       
     }
     
