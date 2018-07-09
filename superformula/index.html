@@ -296,7 +296,7 @@ function render() {
   for(let o = 0;o<scene_length;o++){
     scene[o].drawFormula();
     let name = scene[o].getName();
-    if(name.indexOf('f2d')){
+    if(name.indexOf('f2d') !== -1){
       if(center_radius){
           let tangents = scene[0].getRTangents(center_radius);
           rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
