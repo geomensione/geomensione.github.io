@@ -144,8 +144,8 @@ document.addEventListener('mouseup',(e)=>{
     var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
     
     function hit(x,y){
-      console.log(`${x} in ${maxX - offsetX - oldoffsetX} e ${minX - offsetX - oldoffsetX}, ${y} in ${maxY - offsetY - oldoffsetY} e ${minY - offsetY - oldoffsetY}`)
-      if(x<=(maxX - offsetX - oldoffsetX) && x>=(minX - offsetX - oldoffsetX) && y<=(maxY - offsetY - oldoffsetY) && y>=(minY - offsetY - oldoffsetY))
+      console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
+      if(x<=(this.maxX - this.offsetX - this.oldoffsetX) && x>=(this.minX - this.offsetX - this.oldoffsetX) && y<=(this.maxY - this.offsetY - this.oldoffsetY) && y>=(this.minY - this.offsetY - this.oldoffsetY))
         select = true;
       else
         select = false;
@@ -156,8 +156,8 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function move(x,y){
-        offsetX = oldCoordX - x;
-        offsetY = oldCoordY - y;
+        this.offsetX = this.oldCoordX - x;
+        this.offsetY = this.oldCoordY - y;
     }
     
     function down(){
@@ -178,14 +178,14 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function getCenterAndRadius(){
-      let MX = maxX - offsetX - oldoffsetX;
-      let mx = minX - offsetX - oldoffsetX;
-      let MY = maxY - offsetY - oldoffsetY;
-      let my = minY - offsetY - oldoffsetY;
+      let MX = this.maxX - this.offsetX - this.oldoffsetX;
+      let mx = this.minX - this.offsetX - this.oldoffsetX;
+      let MY = this.maxY - this.offsetY - this.oldoffsetY;
+      let my = this.minY - this.offsetY - this.oldoffsetY;
       let c_r = (MX-mx)/2;
       let c_x = mx + (c_r);
       let c_y = my + ((MY-my)/2);
-      return {x:c_x,y:c_y,c:c_r};
+      return {x:c_x,y:c_y,r:c_r};
     }
     
     function drawFormula(m,n1,n2,n3,a,b) {
@@ -196,9 +196,9 @@ document.addEventListener('mouseup',(e)=>{
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
         //points[index]._x += offsetX;
-        x = points[index]._x - offsetX - oldoffsetX;
+        x = points[index]._x - this.offsetX - this.oldoffsetX;
         //points[index]._y += offsetY;
-        y = points[index]._y - offsetY - oldoffsetY;
+        y = points[index]._y - this.offsetY - this.oldoffsetY;
         if (index === 0) {
           //context.moveTo(x,y);
           str_path += 'M'+x+' '+y+' ';
@@ -212,7 +212,7 @@ document.addEventListener('mouseup',(e)=>{
       str_path += 'Z';
       let stroke_color = '';
       if(select){
-        rc.rectangle(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY, { stroke: selected_color, strokeWidth: 1 });
+        rc.rectangle(this.minX - this.offsetX - this.oldoffsetX, this.minY - this.offsetY - this.oldoffsetY, this.maxX - this.minX, this.maxY - this.minY, { stroke: selected_color, strokeWidth: 1 });
         //context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
         stroke_color = selected_color;
       }else{
@@ -256,19 +256,19 @@ document.addEventListener('mouseup',(e)=>{
         y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
         
         if(index===0){
-          minX=x;
-          maxX=x;
-          minY=y;
-          maxY=y;
+          this.minX=x;
+          this.maxX=x;
+          this.minY=y;
+          this.maxY=y;
         }else{
-          if(x<minX)
-            minX=x;
+          if(x<this.minX)
+            this.minX=x;
           if(x>maxX)
-            maxX=x;
-          if(y<minY)
-            minY=y;
-          if(y>maxY)
-            maxY=y;
+            this.maxX=x;
+          if(y<this.minY)
+            this.minY=y;
+          if(y>this.maxY)
+            this.maxY=y;
         }
         points.push({_x:x,_y:y});
       }
