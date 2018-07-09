@@ -152,12 +152,14 @@ document.addEventListener('mouseup',(e)=>{
       return select;
     }
     
-    function up(x,y){      
+    function up(x,y){  
+      oldCoordX = 0;
+      oldCoordY = 0;
     }
     
     function move(x,y){
-        this.offsetX = this.oldCoordX - x;
-        this.offsetY = this.oldCoordY - y;
+        this.offsetX = oldCoordX - x;
+        this.offsetY = oldCoordY - y;
     }
     
     function down(){
