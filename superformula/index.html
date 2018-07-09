@@ -170,11 +170,11 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function getName(){
-      return name;
+      return this.name;
     }
     
     function setName(str){
-      name = str;;
+      this.name = str;
     }
     
     function getCenterAndRadius(){
@@ -193,6 +193,12 @@ document.addEventListener('mouseup',(e)=>{
       //context.beginPath();
       var points_length = points.length;
       let str_path = '';
+      if(!isFinite(this.offsetX) && !isFinite(this.oldoffsetX) && !isFinite(this.offsetY) && !isFinite(this.oldoffsetY)){
+        this.offsetX = 0;
+        this.oldoffsetX = 0;
+        this.offsetY = 0;
+        this.oldoffsetY = 0;      
+      }
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
         //points[index]._x += offsetX;
