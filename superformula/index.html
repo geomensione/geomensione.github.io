@@ -178,9 +178,13 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function getCenterAndRadius(){
-      let c_r = (maxX-minX)/2;
-      let c_x = minX + (c_r);
-      let c_y = minY + ((maxY-minY)/2);
+      let MX = maxX - offsetX - oldoffsetX;
+      let mx = minX - offsetX - oldoffsetX;
+      let MY = maxY - offsetY - oldoffsetY;
+      let my = minY - offsetY - oldoffsetY;
+      let c_r = (MX-mx)/2;
+      let c_x = mx + (c_r);
+      let c_y = my + ((MY-my)/2);
       return {x:c_x,y:c_y,c:c_r};
     }
     
