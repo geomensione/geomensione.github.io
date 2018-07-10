@@ -220,7 +220,13 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function drawFormula(m,n1,n2,n3,a,b) {
-      
+      this.m = m;
+      this.n1 = n1;
+      this.n2 = n2;
+      this.n3 = n3;
+      this.a = a;
+      this.b = b;
+
       //context.beginPath();
       var points_length = points.length;
       let str_path = '';
