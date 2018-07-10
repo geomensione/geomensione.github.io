@@ -155,7 +155,7 @@ document.addEventListener('mouseup',(e)=>{
     var name;
     var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
     var oldCoordX, oldCoordY;
-    var scale = 1;
+    this.scale = 1;
     
     function hit(x,y){
       console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
