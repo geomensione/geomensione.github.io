@@ -284,7 +284,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function getRTangents(json){
-      let my_json = getCenterAndRadius();
+      let my_json = this.getCenterAndRadius();
       return getTangents(json.x,json.y,json.r,my_json.x,my_json.y,my_json.r);
 
     }
