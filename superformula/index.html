@@ -160,10 +160,10 @@ document.addEventListener('mouseup',(e)=>{
     function hit(x,y){
       console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
       if(x<=(this.maxX - this.offsetX - this.oldoffsetX) && x>=(this.minX - this.offsetX - this.oldoffsetX) && y<=(this.maxY - this.offsetY - this.oldoffsetY) && y>=(this.minY - this.offsetY - this.oldoffsetY))
-        select = true;
+        this.select = true;
       else
-        select = false;
-      return select;
+        this.select = false;
+      return this.select;
     }
     
     function up(x,y){  
