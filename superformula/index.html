@@ -93,13 +93,10 @@ c.addEventListener('mousemove',(e)=>{
   for(let o = 0;o<scene_length;o++){
     ret = scene[o].hit(x,y);
     if(ret){
-      selectedObject = o;
       if(mouseDown){
         scene[o].move(x, y);
       }
         
-    }else{
-      selectedObject = undefined;
     }
     render();
   }
@@ -249,7 +246,7 @@ document.addEventListener('mouseup',(e)=>{
       //context.lineWidth = lineWidth;
       str_path += 'Z';
       let stroke_color = '';
-      if(select){
+      if(this.select){
         rc.rectangle(this.minX - this.offsetX - this.oldoffsetX, this.minY - this.offsetY - this.oldoffsetY, this.maxX - this.minX, this.maxY - this.minY, { stroke: selected_color, strokeWidth: 1 });
         //context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
         stroke_color = selected_color;
