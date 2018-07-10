@@ -311,7 +311,7 @@ function render() {
     let name = scene[o].getName();
     if(name.indexOf('f2d') !== -1){
       if(center_radius){
-          let tangents = scene[0].getRTangents(center_radius);
+          let tangents = scene[o].getRTangents(center_radius);
           rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
           rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
       }
