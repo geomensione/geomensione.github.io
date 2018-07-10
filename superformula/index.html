@@ -68,7 +68,6 @@ var types = {
 };
   
 const rc = rough.canvas(c);
-var oldCoordX,oldCoordY;
 var scene = [];
 var selectedObject;
 var context = c.getContext("2d");
@@ -107,14 +106,12 @@ c.addEventListener('mousemove',(e)=>{
 })
 c.addEventListener('mousedown',(e)=>{
   const rect = c.getBoundingClientRect();
-  if(!oldCoordX && !oldCoordY){
-    oldCoordX = e.clientX - rect.left;
-    oldCoordY = e.clientY - rect.top;
-  }
+  let oldCoordX = e.clientX - rect.left;
+  let oldCoordY = e.clientY - rect.top;
   mouseDown = true;
   let scene_length = scene.length;
   for(let o = 0;o<scene_length;o++){
-    scene[o].down();
+    scene[o].down(oldCoordX,oldCoordY);
   }
 })
   
@@ -142,6 +139,7 @@ document.addEventListener('mouseup',(e)=>{
     var select = false;
     var name;
     var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
+    var oldCoordX = 0, oldCoordY = 0;
     
     function hit(x,y){
       console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
@@ -162,9 +160,9 @@ document.addEventListener('mouseup',(e)=>{
         this.offsetY = oldCoordY - y;
     }
     
-    function down(){
-      //offsetX = 0;
-      //offsetY = 0;      
+    function down(x,y){
+      oldCoordX = x;
+      oldCoordY = y;   
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
