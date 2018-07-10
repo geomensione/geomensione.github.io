@@ -264,6 +264,7 @@ document.addEventListener('mouseup',(e)=>{
       this.n3 = n3;
       this.a = a;
       this.b = b;
+      this.points = [];
       
       if(!isFinite(a))
         a = -(-document.getElementById('a').value);
@@ -315,7 +316,7 @@ document.addEventListener('mouseup',(e)=>{
           if(y>this.maxY)
             this.maxY=y;
         }
-        points.push({_x:x,_y:y});
+        this.points.push({_x:x,_y:y});
       }
     }
     
