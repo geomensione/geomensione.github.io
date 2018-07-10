@@ -139,7 +139,7 @@ document.addEventListener('mouseup',(e)=>{
     var select = false;
     var name;
     var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
-    var oldCoordX = 0, oldCoordY = 0;
+    var oldCoordX, oldCoordY;
     
     function hit(x,y){
       console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
@@ -151,8 +151,8 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(x,y){  
-      oldCoordX = 0;
-      oldCoordY = 0;
+      //oldCoordX = 0;
+      //oldCoordY = 0;
     }
     
     function move(x,y){
@@ -161,8 +161,11 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function down(x,y){
-      oldCoordX = x;
-      oldCoordY = y;   
+      if(!isFinite(oldCoordX) && !isFinite(oldCoordY)){
+        oldCoordX = x;
+        oldCoordY = y;
+      }
+         
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
