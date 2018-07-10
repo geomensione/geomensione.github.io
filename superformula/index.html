@@ -295,6 +295,8 @@ document.addEventListener('mouseup',(e)=>{
       
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
+        if(!this.scale)
+          this.scale = 1;
         a = a*this.scale;
         b = b*this.scale;
         const radius = superformula(index / numberOfPoints * Math.PI * 2,a,b,m,n1,n2,n3);
