@@ -178,10 +178,14 @@ document.addEventListener('mouseup',(e)=>{
     function wheel(s){
         if(this.select){
           if(s>0){
-            this.scale += this.scaleAmount;
+            this.a++;
+            this.b++;
           }else{
-            if((this.scale - this.scaleAmount) > 0)
-              this.scale -= this.scaleAmount;
+            if((this.scale - this.scaleAmount) > 0){
+                this.a--;
+                this.b--;
+            }
+            
           }
           this.renderFormula(this.m,this.n1,this.n2,this.n3,this.a,this.b)
         }
@@ -299,10 +303,7 @@ document.addEventListener('mouseup',(e)=>{
       
       for (let index = 0; index < numberOfPoints; index++) {
         var x,y;
-        if(!this.scale)
-          this.scale = 1;
-        a = a*this.scale;
-        b = b*this.scale;
+        
         const radius = superformula(index / numberOfPoints * Math.PI * 2,a,b,m,n1,n2,n3);
         x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
         y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
