@@ -68,6 +68,7 @@ var types = {
   
 const rc = rough.canvas(c);
 var scene = [];
+var num_bodies = 0;
 var selectedObject;
 var context = c.getContext("2d");
 var selected,old_torender;
@@ -81,7 +82,9 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
     sf.renderFormula();
     sf.setName(m);
   }
-  scene.push(sf);
+  if(!scene[num_bodies])
+    scene[num_bodies]=[];
+  scene[num_bodies].push(sf);
   render();
 }
 c.addEventListener('mousemove',(e)=>{
