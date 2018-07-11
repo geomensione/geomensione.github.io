@@ -356,7 +356,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function getRTangents(){
-      if(this.shapeindex){
+      if(isFinite(this.shapeindex)){
         let my_json = this.getCenterAndRadius();
         let link_json = scene[body_selected][this.shapeindex].getCenterAndRadius();
         let tangents = getTangents(json.x,json.y,json.r,link_json.x,link_json.y,link_json.r);
