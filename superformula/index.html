@@ -90,13 +90,16 @@ c.addEventListener('mousemove',(e)=>{
   const rect = c.getBoundingClientRect();
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
+  let to_render = false;
   if(selected){
+    to_render = true;
     scene[selected].move(x, y);
   }else{
     let scene_length = scene.length;
     for(let o = 0;o<scene_length;o++){
       ret = scene[o].hit(x,y);
       if(ret){
+        to_render = true;
         if(mouseDown){
           selected = o;
           scene[o].move(x, y);
@@ -105,8 +108,8 @@ c.addEventListener('mousemove',(e)=>{
       }
     }
   }
-  
-  render();
+  if(to_render)
+    render();
 })
   
 c.addEventListener('mousewheel',(e)=>{
