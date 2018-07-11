@@ -355,9 +355,15 @@ document.addEventListener('mouseup',(e)=>{
       }
     }
     
-    function getRTangents(json){
-      let my_json = this.getCenterAndRadius();
-      return getTangents(json.x,json.y,json.r,my_json.x,my_json.y,my_json.r);
+    function getRTangents(){
+      if(this.shapeindex){
+        let my_json = this.getCenterAndRadius();
+        let link_json = scene[body_selected][this.shapeindex].getCenterAndRadius();
+        let tangents = getTangents(json.x,json.y,json.r,link_json.x,link_json.y,link_json.r);
+        rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
+        rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
+      }
+      
 
     }
     return{
@@ -383,6 +389,8 @@ function render() {
     scene[body_selected][o].drawFormula();
     let name = scene[body_selected][o].getName();
     if(name.indexOf('f2d') !== -1){
+      scene[body_selected][o].getRTangents();
+      /*
       if(center_radius){
           let tangents = scene[body_selected][o].getRTangents(center_radius);
           rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
@@ -390,7 +398,7 @@ function render() {
       }
       
       center_radius = scene[body_selected][o].getCenterAndRadius();
-      
+      */
     }
   }
       
