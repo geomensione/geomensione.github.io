@@ -260,7 +260,7 @@ document.addEventListener('mouseup',(e)=>{
         stroke_color = color;
       }
       //context.stroke();
-      rc.path(str_path, { stroke: stroke_color });
+      rc.path(str_path, { stroke: stroke_color,fill: stroke_color, fillStyle: 'zigzag' });
     }
     
     function renderFormula(m,n1,n2,n3,a,b) {
