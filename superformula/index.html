@@ -13,6 +13,8 @@
   <input type='text' id="n3" value="6" ></input>
   <input type='text' id="a" value="1" ></input>
   <input type='text' id="b" value="2" ></input>
+  
+  <input type='button' id="f2dLink" value="Redefine f2d link" onclick="RedefineF2dLink()"></input>
   <input type='button' id="addShape" value="add shape" onclick="AddRenderFormula('custom')"></input>
   <input type='button' value="asterisk" onclick="AddRenderFormula(12, 0.3, 1, 10, 0.55, 1.1,'asterisk')"></input>
   <input type='button' value="bean" onclick="AddRenderFormula(2, 1, 4, 8, 1.8, 1.8,'bean')"></input>
@@ -73,18 +75,24 @@ var body_selected = 0;
 var selectedObject;
 var context = c.getContext("2d");
 var selected,old_torender;
+var f2dLink;
+  
+function RedefineF2dLink(){
+  f2dLink = true;
+}
+  
 function AddRenderFormula(m,n1,n2,n3,a,b,str){
   var sf = new superformulaobj();
-  
+  if(!scene[body_selected])
+    scene[body_selected]=[];
   if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
-    sf.renderFormula(m,n1,n2,n3,a,b);
+    sf.renderFormula(m,n1,n2,n3,a,b,scene[body_selected].length);
     sf.setName(str+'_'+body_selected);
   }else{
     sf.renderFormula();
     sf.setName(m+'_'+body_selected);
   }
-  if(!scene[body_selected])
-    scene[body_selected]=[];
+  
   scene[body_selected].push(sf);
   render();
 }
@@ -284,7 +292,7 @@ document.addEventListener('mouseup',(e)=>{
       rc.path(str_path, { stroke: stroke_color,fill: stroke_color, fillStyle: 'zigzag' });
     }
     
-    function renderFormula(m,n1,n2,n3,a,b) {
+    function renderFormula(m,n1,n2,n3,a,b,index) {
       this.m = m;
       this.n1 = n1;
       this.n2 = n2;
@@ -292,6 +300,8 @@ document.addEventListener('mouseup',(e)=>{
       this.a = a;
       this.b = b;
       this.points = [];
+      if(index)
+        this.index = index;
       
       if(!isFinite(a))
         a = -(-document.getElementById('a').value);
