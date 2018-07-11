@@ -8,10 +8,6 @@ todo:
 
 use image buttons
 
-f2d tangent for f2d shapes
-
-use private variables using this
-
-remove global oldCoordX e oldCoordY -> private
-
 translate from vanilla to angular?
+
+
