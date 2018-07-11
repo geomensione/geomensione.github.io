@@ -77,10 +77,10 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
   
   if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
     sf.renderFormula(m,n1,n2,n3,a,b);
-    sf.setName(str);
+    sf.setName(str+'_'+num_bodies);
   }else{
     sf.renderFormula();
-    sf.setName(m);
+    sf.setName(m+'_'+num_bodies);
   }
   if(!scene[num_bodies])
     scene[num_bodies]=[];
