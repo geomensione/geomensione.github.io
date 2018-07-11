@@ -292,7 +292,7 @@ document.addEventListener('mouseup',(e)=>{
       rc.path(str_path, { stroke: stroke_color,fill: stroke_color, fillStyle: 'zigzag' });
     }
     
-    function renderFormula(m,n1,n2,n3,a,b,index) {
+    function renderFormula(m,n1,n2,n3,a,b,i) {
       this.m = m;
       this.n1 = n1;
       this.n2 = n2;
@@ -300,8 +300,8 @@ document.addEventListener('mouseup',(e)=>{
       this.a = a;
       this.b = b;
       this.points = [];
-      if(index)
-        this.index = index;
+      if(i)
+        this.index = i;
       
       if(!isFinite(a))
         a = -(-document.getElementById('a').value);
