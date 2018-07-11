@@ -71,6 +71,7 @@ const rc = rough.canvas(c);
 var scene = [];
 var selectedObject;
 var context = c.getContext("2d");
+var selected;
 function AddRenderFormula(m,n1,n2,n3,a,b,str){
   var sf = new superformulaobj();
   
@@ -89,17 +90,22 @@ c.addEventListener('mousemove',(e)=>{
   const rect = c.getBoundingClientRect();
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
-  let scene_length = scene.length;
-  for(let o = 0;o<scene_length;o++){
-    ret = scene[o].hit(x,y);
-    if(ret){
-      if(mouseDown){
-        scene[o].move(x, y);
+  if(selected){
+    scene[o].move(x, y);
+  }else{
+    let scene_length = scene.length;
+    for(let o = 0;o<scene_length;o++){
+      ret = scene[o].hit(x,y);
+      if(ret){
+        if(mouseDown){
+          selected = o;
+          scene[o].move(x, y);
+        }
+        break;
       }
-      break;
-        
     }
   }
+  
   render();
 })
   
@@ -130,6 +136,7 @@ c.addEventListener('mousedown',(e)=>{
   
 document.addEventListener('mouseup',(e)=>{
   mouseDown = false;
+  selected = undefined;
   const rect = c.getBoundingClientRect();
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
