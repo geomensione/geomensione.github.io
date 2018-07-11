@@ -6,6 +6,8 @@ rough.js: http://roughjs.com/
 
 todo:
 
+link list, more bodies
+
 use image buttons
 
 translate from vanilla to angular?
