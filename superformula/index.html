@@ -300,7 +300,7 @@ document.addEventListener('mouseup',(e)=>{
       this.a = a;
       this.b = b;
       this.points = [];
-      if(i)
+      if(isFinite(i))
         this.shapeindex = i;
       
       if(!isFinite(a))
