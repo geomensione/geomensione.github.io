@@ -117,7 +117,11 @@ c.addEventListener('mousemove',(e)=>{
           old_torender = true;
           if(mouseDown){
             selected = o;
-            scene[body_selected][o].move(x, y);
+            if(!this.f2dLink)
+              scene[body_selected][o].move(x, y);
+            else
+              if(!first_selected)
+                first_selected = o;
           }
           break;
         }
@@ -158,14 +162,17 @@ c.addEventListener('mousedown',(e)=>{
   
 document.addEventListener('mouseup',(e)=>{
   mouseDown = false;
-  selected = undefined;
   const rect = c.getBoundingClientRect();
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
   let scene_length = scene[body_selected].length;
   for(let o = 0;o<scene_length;o++){
-    scene[body_selected][o].up(x, y);
+    if(o === first_selected)
+      scene[body_selected][o].up(x, y, selected);
   }
+  f2dLink = false;
+  first_selected = undefined;
+  selected = undefined;
 })
   
   function superformulaobj(){
@@ -194,9 +201,9 @@ document.addEventListener('mouseup',(e)=>{
       return this.select;
     }
     
-    function up(x,y){  
-      //oldCoordX = 0;
-      //oldCoordY = 0;
+    function up(x,y,ref){  
+      if(ref)
+        this.shapeindex = ref;
     }
     
     function move(x,y){
