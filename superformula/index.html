@@ -88,36 +88,37 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
   render();
 }
 c.addEventListener('mousemove',(e)=>{
-  let ret = false;
-  const rect = c.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-  let y = e.clientY - rect.top;
-  let to_render = false;
-  if(selected){
-    to_render = true;
-    old_torender = true;
-    scene[num_bodies][selected].move(x, y);
-  }else{
-    let scene_length = scene[num_bodies].length;
-    for(let o = 0;o<scene_length;o++){
-      ret = scene[num_bodies][o].hit(x,y);
-      if(ret){
-        to_render = true;
-        old_torender = true;
-        if(mouseDown){
-          selected = o;
-          scene[num_bodies][o].move(x, y);
+  if(scene.length > 0){
+    let ret = false;
+    const rect = c.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+    let to_render = false;
+    if(selected){
+      to_render = true;
+      old_torender = true;
+      scene[num_bodies][selected].move(x, y);
+    }else{
+      let scene_length = scene[num_bodies].length;
+      for(let o = 0;o<scene_length;o++){
+        ret = scene[num_bodies][o].hit(x,y);
+        if(ret){
+          to_render = true;
+          old_torender = true;
+          if(mouseDown){
+            selected = o;
+            scene[num_bodies][o].move(x, y);
+          }
+          break;
         }
-        break;
       }
     }
-  }
-  if(to_render || old_torender){
-     if(!to_render && old_torender)
-       old_torender = false;
-     render();
-  }
-  
+    if(to_render || old_torender){
+       if(!to_render && old_torender)
+         old_torender = false;
+       render();
+    }
+  }  
 })
   
 c.addEventListener('mousewheel',(e)=>{
