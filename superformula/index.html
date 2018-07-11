@@ -91,7 +91,7 @@ c.addEventListener('mousemove',(e)=>{
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
   if(selected){
-    scene[o].move(x, y);
+    scene[selected].move(x, y);
   }else{
     let scene_length = scene.length;
     for(let o = 0;o<scene_length;o++){
