@@ -109,6 +109,15 @@ c.addEventListener('mousemove',(e)=>{
         to_render = true;
         old_torender = true;
         scene[body_selected][selected].move(x, y);
+      }else{
+        let scene_length = scene[body_selected].length;
+        for(let o = 0;o<scene_length;o++){
+          let ret = scene[body_selected][o].hit(x,y);
+          if(ret){
+            selected = o;
+            document.getElementById('selected').innerHTML = selected;
+          }
+        }
       }
     }else{
       let scene_length = scene[body_selected].length;
