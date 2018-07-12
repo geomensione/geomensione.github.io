@@ -87,7 +87,7 @@ function RedefineF2dLink(){
   
 function AddRenderFormula(m,n1,n2,n3,a,b,str){
   var sf = new superformulaobj();
-  document.getElementById('shape_name').innertHTML=str;
+  document.getElementById('shape_name').innerHTML=str;
   //look here
   let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
   if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
