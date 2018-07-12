@@ -1,11 +1,19 @@
 <html>
 <head>
+  <style>
+    .head{
+      height: 15%;
+    }
+    .f2dcanvas{
+      height: 85%;
+    }
+  </style>
   <title>Superformula & rough & f2d v0.6</title>
   <script src="../rough/js/rough.min.js"></script>
   <script src="../paperjs/js/tangents.js"></script>
 </head>
 <body>
-  <div id="head">
+  <div class="head">
     m,n1,n2,n3,a,b
 
     <input type='text' id="m" value="3" ></input>
@@ -40,7 +48,7 @@
     <input type='button' value="star" onclick="AddRenderFormula(5, 30, 100, 100, 1, 1,'star')"></input>
     <input type='button' value="triangle" onclick="AddRenderFormula(3, 100, 200, 200, 1, 1,'triangle')"></input>
   </div>
-  <div id="f2dcanvas">
+  <div class="f2dcanvas">
     <canvas id=c></canvas>
   </div>
   
@@ -70,7 +78,6 @@ var types = {
   triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
 };
   
-document.getElementById('f2dcanvas').clientHeight = innerHeight - document.getElementById('head').clientHeight;
 const rc = rough.canvas(c);
 var scene = [];
 var num_bodies = 0;
