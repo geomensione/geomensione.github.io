@@ -87,6 +87,13 @@ function RedefineF2dLink(){
 }
   
 function AddRenderFormula(m,n1,n2,n3,a,b,str){
+  document.getElementById('a').value = a;
+  document.getElementById('b').value = b;
+  document.getElementById('m').value = m;
+  document.getElementById('n1').value = n1;
+  document.getElementById('n2').value = n2;
+  document.getElementById('n3').value = n3;
+  /*
   var sf = new superformulaobj();
   document.getElementById('shape_name').innerHTML=str;
   //look here
@@ -102,6 +109,7 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
     scene[body_selected]={nodes:[],links:[]};
   scene[body_selected].nodes.push(sf);
   render();
+  */
 }
 c.addEventListener('mousemove',(e)=>{
   if(scene.length > 0){
