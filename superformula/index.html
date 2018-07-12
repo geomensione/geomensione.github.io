@@ -5,6 +5,7 @@
   <script src="../paperjs/js/tangents.js"></script>
 </head>
 <body>
+  <span id="selected"></span> <span id="first_selected"></span>
   m,n1,n2,n3,a,b
   
   <input type='text' id="m" value="3" ></input>
@@ -118,11 +119,14 @@ c.addEventListener('mousemove',(e)=>{
           old_torender = true;
           if(mouseDown){
             selected = o;
+            document.getElementById('selected').innerHTML = selected;
             if(!this.f2dLink)
               scene[body_selected][o].move(x, y);
             else
-              if(!first_selected)
+              if(!first_selected){
                 first_selected = o;
+                document.getElementById('first_selected').innerHTML = first_selected;
+              }
           }
           break;
         }
