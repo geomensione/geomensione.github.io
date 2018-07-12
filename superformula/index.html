@@ -190,7 +190,7 @@ c.addEventListener('mousedown',(e)=>{
     let n2 = -(-document.getElementById('n2').value);
     let n3 = -(-document.getElementById('n3').value);
     if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
-      sf.renderFormula(m,n1,n2,n3,a,b,ref,x,y);
+      sf.renderFormula(m,n1,n2,n3,a,b,ref,oldCoordX,oldCoordY);
       sf.setName(str+'_'+body_selected);
     }else{
       sf.renderFormula();
