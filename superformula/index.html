@@ -78,7 +78,7 @@ var selectedObject;
 var context = c.getContext("2d");
 var selected,first_selected,old_torender;
 var f2dLink;
-  
+c.height = innerHeight - document.getElementById('head').clientHeight;
 function RedefineF2dLink(){
   f2dLink = true;
 }
