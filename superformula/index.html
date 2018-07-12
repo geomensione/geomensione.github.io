@@ -139,6 +139,22 @@ c.addEventListener('mousemove',(e)=>{
                 first_selected = o;
                 document.getElementById('first_selected').innerHTML = first_selected;
               }
+          }else{
+            //disegno
+            var sf = new superformulaobj();
+            //look here
+            let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
+            if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
+              sf.renderFormula(m,n1,n2,n3,a,b,ref,x,y);
+              sf.setName(str+'_'+body_selected);
+            }else{
+              sf.renderFormula();
+              sf.setName(m+'_'+body_selected);
+            }
+            if(!scene[body_selected])
+              scene[body_selected]={nodes:[],links:[]};
+            scene[body_selected].nodes.push(sf);
+            render();
           }
           break;
         }
@@ -339,7 +355,7 @@ document.addEventListener('mouseup',(e)=>{
       rc.path(str_path, { stroke: stroke_color,fill: stroke_color, fillStyle: 'zigzag' });
     }
     
-    function renderFormula(m,n1,n2,n3,a,b,i) {
+    function renderFormula(m,n1,n2,n3,a,b,i,x,y) {
       this.m = m;
       this.n1 = n1;
       this.n2 = n2;
@@ -349,6 +365,10 @@ document.addEventListener('mouseup',(e)=>{
       this.points = [];
       if(isFinite(i))
         this.shapeindex = i;
+      if(isFinite(x))
+        this.moveX = x;
+      if(isFinite(y))
+        this.moveY = y;
       
       if(!isFinite(a))
         a = -(-document.getElementById('a').value);
