@@ -7,6 +7,8 @@
 </head>
 <body>
   <div class="head">
+    <input type='button' value="body" onclick="AddNewBody()"></input>
+  <!-- 
     m,n1,n2,n3,a,b
     <span id="selected"></span> 
     <span id="first_selected"></span>
@@ -19,8 +21,6 @@
     <id id="shape_name"></div>
 
     <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
-    <input type='button' value="body" onclick="AddNewBody()"></input>
-    <!-- 
     <input type='button' id="f2dLink" value="Redefine f2d link" onclick="RedefineF2dLink()"></input>
     <input type='button' id="addShape" value="add shape" onclick="AddRenderFormula('custom')"></input>
     <input type='button' value="asterisk" onclick="AddRenderFormula(12, 0.3, 1, 10, 0.55, 1.1,'asterisk')"></input>
@@ -78,6 +78,7 @@ var types = {
 };
 
 const rc = rough.canvas(c);
+  
 var scene = [];
 var num_bodies = 0;
 var body_selected = 0;
@@ -86,6 +87,8 @@ var context = c.getContext("2d");
 var selected,first_selected,old_torender;
 var f2dLink;
 
+AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
+  
 function RedefineF2dLink(){
   f2dLink = true;
 }
