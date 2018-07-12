@@ -113,7 +113,7 @@ c.addEventListener('mousemove',(e)=>{
         let scene_length = scene[body_selected].length;
         for(let o = 0;o<scene_length;o++){
           let ret = scene[body_selected][o].hit(x,y);
-          if(ret){
+          if(isFinite(ret)){
             selected = o;
             document.getElementById('selected').innerHTML = selected;
           }
