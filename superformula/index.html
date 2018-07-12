@@ -131,8 +131,10 @@ c.addEventListener('mousemove',(e)=>{
         for(let o = 0;o<scene_length;o++){
           let ret = scene[body_selected].nodes[o].hit(x,y);
           if(isFinite(ret)){
-            selected = o;
-            document.getElementById('selected').innerHTML = selected;
+            if(selected !== o){
+              selected = o;
+              document.getElementById('selected').innerHTML = selected;
+            }
           }
         }
       }
