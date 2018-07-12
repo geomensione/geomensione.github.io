@@ -139,22 +139,6 @@ c.addEventListener('mousemove',(e)=>{
                 first_selected = o;
                 document.getElementById('first_selected').innerHTML = first_selected;
               }
-          }else{
-            //disegno
-            var sf = new superformulaobj();
-            //look here
-            let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
-            if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
-              sf.renderFormula(m,n1,n2,n3,a,b,ref,x,y);
-              sf.setName(str+'_'+body_selected);
-            }else{
-              sf.renderFormula();
-              sf.setName(m+'_'+body_selected);
-            }
-            if(!scene[body_selected])
-              scene[body_selected]={nodes:[],links:[]};
-            scene[body_selected].nodes.push(sf);
-            render();
           }
           break;
         }
@@ -188,9 +172,37 @@ c.addEventListener('mousedown',(e)=>{
   let oldCoordY = e.clientY - rect.top;
   mouseDown = true;
   let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
+  let ret;
   for(let o = 0;o<scene_length;o++){
     scene[body_selected].nodes[o].down(oldCoordX,oldCoordY);
+    if(!ret)
+      ret = scene[body_selected].nodes[o].hit(oldCoordX,oldCoordY);
   }
+  if(!ret){
+    //disegno
+    var sf = new superformulaobj();
+    //look here
+    let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
+    let a = -(-document.getElementById('a').value);
+    let b = -(-document.getElementById('b').value);
+    let m = -(-document.getElementById('m').value);
+    let n1 = -(-document.getElementById('n1').value);
+    let n2 = -(-document.getElementById('n2').value);
+    let n3 = -(-document.getElementById('n3').value);
+    if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
+      sf.renderFormula(m,n1,n2,n3,a,b,ref,x,y);
+      sf.setName(str+'_'+body_selected);
+    }else{
+      sf.renderFormula();
+      sf.setName(m+'_'+body_selected);
+    }
+    if(!scene[body_selected])
+      scene[body_selected]={nodes:[],links:[]};
+    scene[body_selected].nodes.push(sf);
+    render();
+  }
+  
+  
 })
   
 document.addEventListener('mouseup',(e)=>{
