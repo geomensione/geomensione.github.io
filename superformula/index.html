@@ -227,7 +227,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function wheel(s){
-        if(isFinite(this.select)){
+        if(this.select){
           if(s>0){
             this.a++;
             this.b++;
@@ -304,7 +304,7 @@ document.addEventListener('mouseup',(e)=>{
       //context.lineWidth = lineWidth;
       str_path += 'Z';
       let stroke_color = '';
-      if(isFinite(this.select)){
+      if(this.select){
         rc.rectangle(this.minX - this.offsetX - this.oldoffsetX, this.minY - this.offsetY - this.oldoffsetY, this.maxX - this.minX, this.maxY - this.minY, { stroke: selected_color, strokeWidth: 1 });
         //context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
         stroke_color = selected_color;
