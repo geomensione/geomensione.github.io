@@ -192,6 +192,7 @@ c.addEventListener('mousedown',(e)=>{
     let n1 = -(-document.getElementById('n1').value);
     let n2 = -(-document.getElementById('n2').value);
     let n3 = -(-document.getElementById('n3').value);
+    let str = document.getElementById('shape_name').innertHTML;
     if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
       sf.renderFormula(m,n1,n2,n3,a,b,ref,oldCoordX,oldCoordY);
       sf.setName(str+'_'+body_selected);
