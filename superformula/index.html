@@ -286,8 +286,8 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function move(x,y){
-        this.offsetX = oldCoordX - x;
-        this.offsetY = oldCoordY - y;
+        this.offsetX = this.oldCoordX - x;
+        this.offsetY = this.oldCoordY - y;
     }
     
     function wheel(s){
@@ -307,9 +307,9 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function down(x,y){
-      if(!isFinite(oldCoordX) && !isFinite(oldCoordY)){
-        oldCoordX = x;
-        oldCoordY = y;
+      if(!isFinite(this.oldCoordX) && !isFinite(this.oldCoordY)){
+        this.oldCoordX = x;
+        this.oldCoordY = y;
       }
          
     }
