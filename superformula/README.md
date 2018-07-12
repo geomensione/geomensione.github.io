@@ -17,4 +17,6 @@ use image buttons
 
 translate from vanilla to angular?
 
+use <script src="https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.min.js"></script>
+
 
