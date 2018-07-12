@@ -70,6 +70,7 @@ var types = {
   triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
 };
   
+c.height = innerHeight - document.getElementById('head').clientHeight;
 const rc = rough.canvas(c);
 var scene = [];
 var num_bodies = 0;
@@ -78,7 +79,7 @@ var selectedObject;
 var context = c.getContext("2d");
 var selected,first_selected,old_torender;
 var f2dLink;
-c.height = innerHeight - document.getElementById('head').clientHeight;
+
 function RedefineF2dLink(){
   f2dLink = true;
 }
