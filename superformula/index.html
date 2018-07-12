@@ -104,7 +104,7 @@ c.addEventListener('mousemove',(e)=>{
     let x = e.clientX - rect.left;
     let y = e.clientY - rect.top;
     let to_render = false;
-    if(selected){
+    if(isFinite(selected)){
       if(!this.f2dLink){
         to_render = true;
         old_torender = true;
@@ -217,7 +217,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function up(x,y,ref){  
-      if(ref)
+      if(isFinite(ref))
         this.shapeindex = ref;
     }
     
@@ -227,7 +227,7 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function wheel(s){
-        if(this.select){
+        if(isFinite(this.select)){
           if(s>0){
             this.a++;
             this.b++;
@@ -304,7 +304,7 @@ document.addEventListener('mouseup',(e)=>{
       //context.lineWidth = lineWidth;
       str_path += 'Z';
       let stroke_color = '';
-      if(this.select){
+      if(isFinite(this.select)){
         rc.rectangle(this.minX - this.offsetX - this.oldoffsetX, this.minY - this.offsetY - this.oldoffsetY, this.maxX - this.minX, this.maxY - this.minY, { stroke: selected_color, strokeWidth: 1 });
         //context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
         stroke_color = selected_color;
