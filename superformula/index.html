@@ -1,9 +1,6 @@
 <html>
 <head>
   <style>
-    .head{
-      height: 15%;
-    }
     .f2dcanvas{
       height: 85%;
     }
@@ -77,7 +74,7 @@ var types = {
   star: {m: 5, n1: 30, n2: 100, n3: 100, a: 1, b: 1},
   triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
 };
-  
+c.height = document.getElementsByClassName('f2dcanvas')[0].clientHeight;
 const rc = rough.canvas(c);
 var scene = [];
 var num_bodies = 0;
