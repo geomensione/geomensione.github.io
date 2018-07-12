@@ -286,8 +286,13 @@ document.addEventListener('mouseup',(e)=>{
     }
     
     function move(x,y){
-        this.offsetX = this.oldCoordX - x;
-        this.offsetY = this.oldCoordY - y;
+      if(!isFinite(this.oldCoordX) && !isFinite(this.oldCoordY)){
+        this.oldCoordX = this.moveX;
+        this.oldCoordY = this.moveY;
+      }
+      this.offsetX = this.oldCoordX - x;
+      this.offsetY = this.oldCoordY - y;
+        
     }
     
     function wheel(s){
