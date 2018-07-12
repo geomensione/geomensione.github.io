@@ -160,7 +160,7 @@ c.addEventListener('mousedown',(e)=>{
   let oldCoordX = e.clientX - rect.left;
   let oldCoordY = e.clientY - rect.top;
   mouseDown = true;
-  let scene_length = scene[body_selected].length;
+  let scene_length = scene[body_selected]?scene[body_selected].length:0;
   for(let o = 0;o<scene_length;o++){
     scene[body_selected][o].down(oldCoordX,oldCoordY);
   }
@@ -171,7 +171,7 @@ document.addEventListener('mouseup',(e)=>{
   const rect = c.getBoundingClientRect();
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
-  let scene_length = scene[body_selected].length || 0;
+  let scene_length = scene[body_selected]?scene[body_selected].length:0;
   for(let o = 0;o<scene_length;o++){
     if(o === first_selected)
       scene[body_selected][o].up(x, y, selected);
