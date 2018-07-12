@@ -159,7 +159,7 @@ c.addEventListener('mousewheel',(e)=>{
   }
   let scene_length = scene[body_selected].nodes.length;
   for(let o = 0;o<scene_length;o++){
-    scene[body_selected][o].nodes.wheel(scale);
+    scene[body_selected].nodes[o].wheel(scale);
   }
   render();
 })
