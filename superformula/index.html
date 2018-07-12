@@ -145,7 +145,7 @@ c.addEventListener('mousemove',(e)=>{
         }
       }
     }else{
-      let scene_length = scene[body_selected].nodes.length;
+      let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
       for(let o = 0;o<scene_length;o++){
         let ret = scene[body_selected].nodes[o].hit(x,y);
         if(ret){
