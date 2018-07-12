@@ -342,7 +342,7 @@ document.addEventListener('mouseup',(e)=>{
      
 
       //context.beginPath();
-      var points_length = points.length;
+      var points_length = this.points.length;
       let str_path = '';
       if(!isFinite(this.offsetX) && !isFinite(this.oldoffsetX) && !isFinite(this.offsetY) && !isFinite(this.oldoffsetY)){
         this.offsetX = 0;
