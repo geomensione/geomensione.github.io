@@ -415,8 +415,8 @@ document.addEventListener('mouseup',(e)=>{
         var x,y;
         
         const radius = superformula(index / numberOfPoints * Math.PI * 2,a,b,m,n1,n2,n3);
-        x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + moveX;
-        y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + moveY;
+        x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + this.moveX;
+        y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + this.moveY;
         
         if(index===0){
           this.minX=x;
