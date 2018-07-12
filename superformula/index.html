@@ -20,6 +20,7 @@
 
     <input type='button' id="f2dLink" value="Redefine f2d link" onclick="RedefineF2dLink()"></input>
     <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
+    <input type='button' value="body" onclick="AddNewBody()"></input>
     <!-- 
     <input type='button' id="addShape" value="add shape" onclick="AddRenderFormula('custom')"></input>
     <input type='button' value="asterisk" onclick="AddRenderFormula(12, 0.3, 1, 10, 0.55, 1.1,'asterisk')"></input>
@@ -88,6 +89,11 @@ var f2dLink;
 function RedefineF2dLink(){
   f2dLink = true;
 }
+
+function AddNewBody(){
+  body_selected++;
+  num_bodies++;
+}  
   
 function AddRenderFormula(m,n1,n2,n3,a,b,str){
   document.getElementById('a').value = a;
