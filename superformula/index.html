@@ -492,22 +492,26 @@ function render() {
   
   var scene_length = scene[body_selected].nodes.length;
   let center_radius;
-  for(let o = 0;o<scene_length;o++){
-    scene[body_selected].nodes[o].drawFormula();
-    let name = scene[body_selected].nodes[o].getName();
-    if(name.indexOf('f2d') !== -1){
-      scene[body_selected].nodes[o].getRTangents();
-      /*
-      if(center_radius){
-          let tangents = scene[body_selected][o].getRTangents(center_radius);
-          rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
-          rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
+  var bodies = scene.length;
+  for(let b = 0;b<bodies;b++){
+    for(let o = 0;o<scene_length;o++){
+      scene[b].nodes[o].drawFormula();
+      let name = scene[b].nodes[o].getName();
+      if(name.indexOf('f2d') !== -1){
+        scene[b].nodes[o].getRTangents();
+        /*
+        if(center_radius){
+            let tangents = scene[body_selected][o].getRTangents(center_radius);
+            rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
+            rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
+        }
+
+        center_radius = scene[body_selected][o].getCenterAndRadius();
+        */
       }
-      
-      center_radius = scene[body_selected][o].getCenterAndRadius();
-      */
     }
   }
+  
       
 }
   
