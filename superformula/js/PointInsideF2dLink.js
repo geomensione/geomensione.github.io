@@ -4,8 +4,8 @@ function isInLink(point, vs) {
     
     inside = false;
     for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-        var xi = vs[i][0], yi = vs[i][1];
-        var xj = vs[j][0], yj = vs[j][1];
+        var xi = vs[i].x, yi = vs[i].y;
+        var xj = vs[j].x, yj = vs[j].y;
         
         var intersect = ((yi > y) != (yj > y))
             && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
@@ -16,24 +16,18 @@ function isInLink(point, vs) {
 };
 
 //data structure for links between f2d: if clicled, all the body moves
-  function f2dLink(){
-    var points = [];
+  function f2dLink(tang_points){
+    var points = tang_points;
     function hit(x,y){
-      //console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
-      if(x<=(this.maxX - this.offsetX - this.oldoffsetX) && x>=(this.minX - this.offsetX - this.oldoffsetX) && y<=(this.maxY - this.offsetY - this.oldoffsetY) && y>=(this.minY - this.offsetY - this.oldoffsetY))
-        this.select = true;
-      else
-        this.select = false;
-      return this.select;
+      return isInLink([x,y],points);
     }
     
-    function up(x,y,ref){        
+    function draw(){
+        rc.line(points[0].x, points[0].y, points[1].x, points[1].y);
+        rc.line(points[2].x, points[2].y, points[3].x, points[3].y);
     }
-    
-    function move(x,y){
+    return{
+        hit:hit,
+        draw:draw
     }
-
-    function down(x,y){         
-    }
-  
   }
