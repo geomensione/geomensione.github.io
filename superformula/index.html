@@ -485,9 +485,11 @@ document.addEventListener('mouseup',(e)=>{
         let my_json = this.getCenterAndRadius();
         let link_json = scene[body].nodes[this.shapeindex].getCenterAndRadius();
         let tangents = getTangents(link_json.x,link_json.y,link_json.r,my_json.x,my_json.y,my_json.r);
-        let new_link = new f2dLink(tangents);
-        scene[b].links.push(new_link);
+        let new_link = new f2dLink();
+        new_link.setPoints(tangents);
         new_link.draw();
+        scene[b].links.push(new_link);
+        
         //rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
         //rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
       }
