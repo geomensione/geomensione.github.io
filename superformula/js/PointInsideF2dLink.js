@@ -1,4 +1,4 @@
-function (point, vs) {
+function isInLink(point, vs) {
     
     var x = point[0], y = point[1];
     
