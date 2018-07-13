@@ -154,7 +154,7 @@ c.addEventListener('mousemove',(e)=>{
       for(let o = 0;o<scene_length;o++){
         let ret = scene[body_selected].nodes[o].hit(x,y);
         if(ret){
-          console.log('hit '+o);
+          //console.log('hit '+o);
           to_render = true;
           old_torender = true;            
           if(mouseDown){
