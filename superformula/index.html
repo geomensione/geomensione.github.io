@@ -194,9 +194,9 @@ c.addEventListener('mousewheel',(e)=>{
         scale = -1;
   }
   let scene_length = scene[body_selected].nodes.length;
-  for(let o = 0;o<scene_length;o++){
-    scene[body_selected].nodes[o].wheel(scale);
-  }
+  //for(let o = 0;o<scene_length;o++){
+  scene[body_selected].nodes[selected].wheel(scale);
+  //}
   render();
 })
   
@@ -208,7 +208,7 @@ c.addEventListener('mousedown',(e)=>{
   let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
   let ret;
   for(let o = 0;o<scene_length;o++){
-    scene[body_selected].nodes[o].down(oldCoordX,oldCoordY);
+    //scene[body_selected].nodes[o].down(oldCoordX,oldCoordY);
     if(!ret)
       ret = scene[body_selected].nodes[o].hit(oldCoordX,oldCoordY);
   }
