@@ -144,8 +144,8 @@ c.addEventListener('mousemove',(e)=>{
   over = undefined;
   if(scene.length > 0){
     const rect = c.getBoundingClientRect();
-    let x = oldCoordX - (oldCoordX - (e.clientX - rect.left));
-    let y = oldCoordY - (oldCoordY - (e.clientY - rect.top));
+    let x = oldCoordX - (e.clientX - rect.left);
+    let y = oldCoordY - (e.clientY - rect.top);
     let to_render = false;
     if(moveBody){
       for(let n = 0,nodes_length = scene[body_selected].nodes.length;n<nodes_length;n++){
