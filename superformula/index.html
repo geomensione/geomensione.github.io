@@ -17,9 +17,11 @@
     <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
     <input type='button' value="body" onclick="AddNewBody()"></input>
     <input type='button' value="close" onclick="Close()"></input>
-  <!-- 
+    
+    <span id="selected"></span>  
+<!-- 
     m,n1,n2,n3,a,b
-    <span id="selected"></span> 
+     
     <span id="first_selected"></span>
     
 
@@ -165,7 +167,7 @@ c.addEventListener('mousemove',(e)=>{
           old_torender = true;            
           if(mouseDown){
             selected = o;
-            //document.getElementById('selected').innerHTML = selected;
+            document.getElementById('selected').innerHTML = selected;
             if(!this.f2dLink)
               scene[body_selected].nodes[o].move(x, y);
             else
