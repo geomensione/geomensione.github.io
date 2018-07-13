@@ -177,7 +177,7 @@ c.addEventListener('mousemove',(e)=>{
           let ret = scene[b].nodes[o].hit(x,y);
           let ret_links;
           if(o>0)
-            ret_links = scene[b].links[o].hit(x,y);
+            ret_links = scene[b].links[o-1].hit(x,y);
           if(ret){
             //console.log('hit '+o);
             to_render = true;
