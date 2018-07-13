@@ -93,6 +93,7 @@ var context = c.getContext("2d");
 var selected,first_selected,old_torender;
 var f2dLink;
 var over;
+var mouseDown,  moveBody;
 
 AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
   
@@ -145,7 +146,11 @@ c.addEventListener('mousemove',(e)=>{
     let x = e.clientX - rect.left;
     let y = e.clientY - rect.top;
     let to_render = false;
-    if(isFinite(selected)){
+    if(moveBody){
+      for(let n = 0,nodes_length = scene[body_selected].nodes.length;n<nodes_length;n++){
+        scene[body_selected].nodes[n].move(x, y);
+      }
+    }else if(isFinite(selected)){
       to_render = true;
       old_torender = true;
       //if(!this.f2dLink){  
@@ -170,6 +175,9 @@ c.addEventListener('mousemove',(e)=>{
         let scene_length = scene[b]?scene[b].nodes.length:0;
         for(let o = 0;o<scene_length;o++){
           let ret = scene[b].nodes[o].hit(x,y);
+          let ret_links;
+          if(o>0)
+            ret_links = scene[b].links[o].hit(x,y);
           if(ret){
             //console.log('hit '+o);
             to_render = true;
@@ -189,6 +197,16 @@ c.addEventListener('mousemove',(e)=>{
               //  }
             }
             break;
+          }else{
+            if(ret_links){
+              if(mouseDown){
+                body_selected = b;
+                moveBody = true;
+              }
+            
+            }else{
+            
+            }
           }
         }
       }
@@ -261,6 +279,7 @@ c.addEventListener('mousedown',(e)=>{
   
 document.addEventListener('mouseup',(e)=>{
   mouseDown = false;
+  moveBody = false;
   const rect = c.getBoundingClientRect();
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
