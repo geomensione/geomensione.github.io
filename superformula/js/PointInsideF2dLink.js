@@ -16,8 +16,8 @@ function isInLink(point, vs) {
 };
 
 //data structure for links between f2d: if clicled, all the body moves
-  function f2dLink(tang_points){
-    var points = tang_points;
+  function f2dLink(){
+    var points;
     var color = '#000';
     var selected_color = '#F00';
     var color_to_draw = '#000';
@@ -26,13 +26,16 @@ function isInLink(point, vs) {
       color_to_draw = sel?selected_color:color; 
       return sel;
     }
-    
+    function setPoints(ps){
+        points = ps;
+    }
     function draw(){
         rc.line(points[0].x, points[0].y, points[1].x, points[1].y, { stroke: color_to_draw });
         rc.line(points[2].x, points[2].y, points[3].x, points[3].y, { stroke: color_to_draw });
     }
     return{
         hit:hit,
-        draw:draw
+        draw:draw,
+        setPoints: setPoints
     }
   }
