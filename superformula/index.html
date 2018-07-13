@@ -150,6 +150,7 @@ c.addEventListener('mousemove',(e)=>{
       for(let n = 0,nodes_length = scene[body_selected].nodes.length;n<nodes_length;n++){
         scene[body_selected].nodes[n].move(x, y);
       }
+      to_render = true;
     }else if(isFinite(selected)){
       to_render = true;
       old_torender = true;
