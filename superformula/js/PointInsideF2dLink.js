@@ -20,7 +20,7 @@ function isInLink(point, vs) {
     var points = tang_points;
     var color = '#000';
     var selected_color = '#F00';
-    var color_to_draw = false;
+    var color_to_draw = '#000';
     function hit(x,y){
       var sel = isInLink([x,y],points);
       color_to_draw = sel?selected_color:color; 
