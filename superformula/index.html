@@ -165,13 +165,13 @@ c.addEventListener('mousemove',(e)=>{
           old_torender = true;            
           if(mouseDown){
             selected = o;
-            document.getElementById('selected').innerHTML = selected;
+            //document.getElementById('selected').innerHTML = selected;
             if(!this.f2dLink)
               scene[body_selected].nodes[o].move(x, y);
             else
               if(!first_selected){
                 first_selected = o;
-                document.getElementById('first_selected').innerHTML = first_selected;
+                //document.getElementById('first_selected').innerHTML = first_selected;
               }
           }
           break;
