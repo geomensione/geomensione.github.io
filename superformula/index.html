@@ -240,38 +240,44 @@ c.addEventListener('mousedown',(e)=>{
   let oldCoordY = e.clientY - rect.top;
   mouseDown = true;
   let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
-  let ret;
+  let ret,links_ret;
   for(let b = 0;b<num_bodies;b++){
     for(let o = 0;o<scene_length;o++){
       //scene[body_selected].nodes[o].down(oldCoordX,oldCoordY);
       if(!ret)
         ret = scene[b].nodes[o].hit(oldCoordX,oldCoordY);
+      if(!links_ret)
+        if(o>0)
+          links_ret = scene[b].links[o].hit(oldCoordX,oldCoordY);
     }
   }
   
   if(!ret){
-    //disegno
-    var sf = new superformulaobj();
-    //look here
-    let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
-    let a = -(-document.getElementById('a').value);
-    let b = -(-document.getElementById('b').value);
-    let m = -(-document.getElementById('m').value);
-    let n1 = -(-document.getElementById('n1').value);
-    let n2 = -(-document.getElementById('n2').value);
-    let n3 = -(-document.getElementById('n3').value);
-    let str = document.getElementById('shape_name').innerHTML;
-    if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
-      sf.renderFormula(m,n1,n2,n3,a,b,ref,oldCoordX,oldCoordY);
-      sf.setName(str+'_'+body_selected);
-    }else{
-      sf.renderFormula();
-      sf.setName(m+'_'+body_selected);
+    if(!links_ret){
+      //disegno
+      var sf = new superformulaobj();
+      //look here
+      let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
+      let a = -(-document.getElementById('a').value);
+      let b = -(-document.getElementById('b').value);
+      let m = -(-document.getElementById('m').value);
+      let n1 = -(-document.getElementById('n1').value);
+      let n2 = -(-document.getElementById('n2').value);
+      let n3 = -(-document.getElementById('n3').value);
+      let str = document.getElementById('shape_name').innerHTML;
+      if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
+        sf.renderFormula(m,n1,n2,n3,a,b,ref,oldCoordX,oldCoordY);
+        sf.setName(str+'_'+body_selected);
+      }else{
+        sf.renderFormula();
+        sf.setName(m+'_'+body_selected);
+      }
+      if(!scene[body_selected])
+        scene[body_selected]={nodes:[],links:[]};
+      scene[body_selected].nodes.push(sf);
+      render();
     }
-    if(!scene[body_selected])
-      scene[body_selected]={nodes:[],links:[]};
-    scene[body_selected].nodes.push(sf);
-    render();
+    
   }
   
   
