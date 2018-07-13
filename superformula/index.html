@@ -89,7 +89,6 @@ var selectedObject;
 var context = c.getContext("2d");
 var selected,first_selected,old_torender;
 var f2dLink;
-var close;
 
 AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
   
@@ -103,7 +102,8 @@ function AddNewBody(){
 }  
   
 function Close(){
-  close = true;
+  scene[body_selected].nodes[0].close(scene[body_selected].nodes.length);
+  render();
 }
   
 function AddRenderFormula(m,n1,n2,n3,a,b,str){
@@ -235,10 +235,6 @@ c.addEventListener('mousedown',(e)=>{
       scene[body_selected]={nodes:[],links:[]};
     scene[body_selected].nodes.push(sf);
     render();
-  }else{
-    if(close){
-      scene[body_selected].nodes[0].close(scene[body_selected].nodes.length);
-    }
   }
   
   
