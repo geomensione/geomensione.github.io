@@ -16,6 +16,7 @@
     <id id="shape_name" style="display:none"></div>
     <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
     <input type='button' value="body" onclick="AddNewBody()"></input>
+    <input type='button' value="body" onclick="Close()"></input>
   <!-- 
     m,n1,n2,n3,a,b
     <span id="selected"></span> 
@@ -88,6 +89,7 @@ var selectedObject;
 var context = c.getContext("2d");
 var selected,first_selected,old_torender;
 var f2dLink;
+var close;
 
 AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
   
@@ -99,6 +101,10 @@ function AddNewBody(){
   body_selected++;
   num_bodies++;
 }  
+  
+function Close(){
+  close = true;
+}
   
 function AddRenderFormula(m,n1,n2,n3,a,b,str){
   document.getElementById('a').value = a;
@@ -229,6 +235,10 @@ c.addEventListener('mousedown',(e)=>{
       scene[body_selected]={nodes:[],links:[]};
     scene[body_selected].nodes.push(sf);
     render();
+  }else{
+    if(close){
+      scene[body_selected].nodes[0].close(scene[body_selected].nodes.length);
+    }
   }
   
   
@@ -249,6 +259,7 @@ document.addEventListener('mouseup',(e)=>{
   selected = undefined;
 })
   
+  //data structure for links between f2d: if clicled, all the body moves
   function f2dLink(){
     var points = [];
     function hit(x,y){
@@ -348,6 +359,10 @@ document.addEventListener('mouseup',(e)=>{
       this.name = str;
     }
     
+    function setName(str){
+      this.name = str;
+    }
+    
     
     function getCenterAndRadius(){
       let MX = this.maxX - this.offsetX - this.oldoffsetX;
@@ -358,6 +373,10 @@ document.addEventListener('mouseup',(e)=>{
       let c_x = mx + (c_r);
       let c_y = my + ((MY-my)/2);
       return {x:c_x,y:c_y,r:c_r};
+    }
+    
+    function close(i){
+      this.shapeindex = i;
     }
     
     function drawFormula(m,n1,n2,n3,a,b) {
