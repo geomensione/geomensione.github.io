@@ -148,8 +148,8 @@ c.addEventListener('mousemove',(e)=>{
     let y = e.clientY - rect.top;
     let to_render = false;
     if(moveBody){
-      x = oldCoordX - (e.clientX - rect.left);
-      y = oldCoordY - (e.clientY - rect.top);
+      x = oldCoordX + (e.clientX - rect.left);
+      y = oldCoordY + (e.clientY - rect.top);
       for(let n = 0,nodes_length = scene[body_selected].nodes.length;n<nodes_length;n++){
         scene[body_selected].nodes[n].move(x, y);
       }
