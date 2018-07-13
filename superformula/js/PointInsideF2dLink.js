@@ -18,13 +18,18 @@ function isInLink(point, vs) {
 //data structure for links between f2d: if clicled, all the body moves
   function f2dLink(tang_points){
     var points = tang_points;
+    var color = '#000';
+    var selected_color = '#F00';
+    var color_to_draw = false;
     function hit(x,y){
-      return isInLink([x,y],points);
+      var sel = isInLink([x,y],points);
+      color_to_draw = sel?selected_color:color; 
+      return sel;
     }
     
     function draw(){
-        rc.line(points[0].x, points[0].y, points[1].x, points[1].y);
-        rc.line(points[2].x, points[2].y, points[3].x, points[3].y);
+        rc.line(points[0].x, points[0].y, points[1].x, points[1].y, { stroke: color_to_draw });
+        rc.line(points[2].x, points[2].y, points[3].x, points[3].y, { stroke: color_to_draw });
     }
     return{
         hit:hit,
