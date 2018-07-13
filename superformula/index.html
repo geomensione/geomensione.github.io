@@ -18,10 +18,10 @@
     <input type='button' value="body" onclick="AddNewBody()"></input>
     <input type='button' value="close" onclick="Close()"></input>
     
-    <span id="selected"></span>  
+    <span id="over"></span>  
 <!-- 
     m,n1,n2,n3,a,b
-     
+    <span id="selected"></span> 
     <span id="first_selected"></span>
     
 
@@ -91,6 +91,7 @@ var selectedObject;
 var context = c.getContext("2d");
 var selected,first_selected,old_torender;
 var f2dLink;
+var over;
 
 AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
   
@@ -135,6 +136,7 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
   */
 }
 c.addEventListener('mousemove',(e)=>{
+  over = undefined;
   if(scene.length > 0){
     const rect = c.getBoundingClientRect();
     let x = e.clientX - rect.left;
@@ -164,10 +166,12 @@ c.addEventListener('mousemove',(e)=>{
         if(ret){
           //console.log('hit '+o);
           to_render = true;
-          old_torender = true;            
+          old_torender = true;
+          over = o;
+          document.getElementById('over').innerHTML = selected;
           if(mouseDown){
             selected = o;
-            document.getElementById('selected').innerHTML = selected;
+            //document.getElementById('selected').innerHTML = selected;
             if(!this.f2dLink)
               scene[body_selected].nodes[o].move(x, y);
             else
