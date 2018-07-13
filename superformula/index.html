@@ -248,7 +248,7 @@ c.addEventListener('mousedown',(e)=>{
         ret = scene[b].nodes[o].hit(oldCoordX,oldCoordY);
       if(!links_ret)
         if(o>0)
-          links_ret = scene[b].links[o].hit(oldCoordX,oldCoordY);
+          links_ret = scene[b].links[o-1].hit(oldCoordX,oldCoordY);
     }
   }
   
