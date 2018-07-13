@@ -102,7 +102,7 @@ function AddNewBody(){
 }  
   
 function Close(){
-  scene[body_selected].nodes[0].close(scene[body_selected].nodes.length);
+  scene[body_selected].nodes[0].close(scene[body_selected].nodes.length-1);
   render();
 }
   
@@ -504,7 +504,8 @@ document.addEventListener('mouseup',(e)=>{
       setName: setName,
       getCenterAndRadius: getCenterAndRadius,
       getRTangents: getRTangents,
-      wheel: wheel
+      wheel: wheel,
+      close: close
     }
   }
 function render() {
