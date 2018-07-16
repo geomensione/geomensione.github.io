@@ -26,6 +26,9 @@ function isInLink(point, vs) {
       color_to_draw = sel?selected_color:color; 
       return sel;
     }
+    function getPoints(){
+        return points;
+    }
     function setPoints(ps){
         points = ps;
     }
@@ -36,6 +39,7 @@ function isInLink(point, vs) {
     return{
         hit:hit,
         draw:draw,
-        setPoints: setPoints
+        setPoints: setPoints,
+        getPoints: getPoints
     }
   }
