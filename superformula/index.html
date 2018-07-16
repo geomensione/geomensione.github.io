@@ -140,7 +140,11 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
   render();
   */
 }
-c.addEventListener('mousemove',(e)=>{
+  
+
+
+  
+function eventMove(e){
   over = undefined;
   if(scene.length > 0){
     const rect = c.getBoundingClientRect();
@@ -221,8 +225,17 @@ c.addEventListener('mousemove',(e)=>{
        render();
     }
   }  
+}
+
+c.addEventListener('mousemove',(e)=>{
+  eventMove(e);  
 })
-  
+
+
+c.addEventListener('touchmove',(e)=>{
+  eventMove(e.touches[0]);
+})  
+
 c.addEventListener('mousewheel',(e)=>{
   let scale;
   if(e.wheelDelta > 0){
@@ -237,7 +250,8 @@ c.addEventListener('mousewheel',(e)=>{
   render();
 })
   
-c.addEventListener('mousedown',(e)=>{
+  
+function eventDown(e){
   const rect = c.getBoundingClientRect();
   oldCoordX = e.clientX - rect.left;
   oldCoordY = e.clientY - rect.top;
@@ -279,14 +293,19 @@ c.addEventListener('mousedown',(e)=>{
         scene[body_selected]={nodes:[],links:[]};
       scene[body_selected].nodes.push(sf);
       render();
-    }
-    
+    } 
   }
-  
-  
+}
+
+c.addEventListener('mousedown',(e)=>{
+  eventDown(e);
+})
+
+c.addEventListener('touchstart',(e)=>{
+  eventDown(e.touches[0]);
 })
   
-document.addEventListener('mouseup',(e)=>{
+function eventEnd(e){
   mouseDown = false;
   moveBody = false;
   const rect = c.getBoundingClientRect();
@@ -300,10 +319,15 @@ document.addEventListener('mouseup',(e)=>{
   f2dLink = false;
   first_selected = undefined;
   selected = undefined;
+}  
+
+c.addEventListener('touchend',(e)=>{
+  eventEnd(e.touches[0]);
 })
   
-  
-
+document.addEventListener('mouseup',(e)=>{
+  eventEnd(e);
+})
   
   function superformulaobj(){
     var a,b,m,n1,n2,n3;
