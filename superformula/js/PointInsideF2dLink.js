@@ -1,3 +1,54 @@
+//http://bl.ocks.org/balint42/8c9310605df9305c42b3
+/**
+         * @brief De Casteljau's algorithm splitting n-th degree Bezier curve
+         */
+        function bsplit(points, t0) {
+            var n = points.length - 1; // number of control points
+            var b = [];		   	   // coefficients as in De Casteljau's algorithm
+            var res1 = [];		   // first curve resulting control points
+            var res2 = [];		   // second curve resulting control points
+            var t1 = 1 - t0;
+            
+            // multiply point with scalar factor
+            var pf = function(p, f) {
+                var res = [];
+                for(var i = 0; i < p.length; i++) {
+                    res.push(f * p[i]);
+                }
+                return res;
+            };
+            // add points as vectors
+            var pp = function(p1, p2) {
+                var res = [];
+                for(var i = 0; i < Math.min(p1.length, p2.length); i++) {
+                    res.push(p1[i] + p2[i]);
+                }
+                return res;
+            };
+            
+            // set original coefficients: b[i][0] = points[i]
+            for(var i = 0; i <= n; i++) {
+                points[i] = (typeof points[i] == "object") ? points[i] : [points[i]];
+                b.push([ points[i] ]);
+            }
+            // get all coefficients
+            for(var j = 1; j <= n; j++) {
+                for(var i = 0; i <= (n-j); i++) {
+                    b[i].push( pp(
+                            pf(b[i][j-1], t1),
+                            pf(b[i+1][j-1], t0)
+                    ));
+                }
+            }
+            // set result: res1 & res2
+            for(var j = 0; j <= n; j++) {
+                res1.push(b[0][j]);
+                res2.push(b[j][n-j]);
+            }
+            
+            return [res1, res2];
+        };
+
 //https://gist.github.com/gordonwoodhull/50eb65d2f048789f9558
 var eps = 0.0000001;
 function between(a, b, c) {
