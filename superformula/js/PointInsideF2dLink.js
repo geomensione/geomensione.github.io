@@ -56,6 +56,7 @@ function doCircleLineInt(cx,cy,r,x2,y2){
     return inteceptCircleLineSeg(circle,line);
 }
 
+//https://stackoverflow.com/questions/37224912/circle-line-segment-collision
 function inteceptCircleLineSeg(circle, line){
     var a, b, c, d, u1, u2, ret, retP1, retP2, v1, v2;
     v1 = {};
