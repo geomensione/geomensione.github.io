@@ -169,7 +169,7 @@ function eventMove(e){
       y = Math.abs(oldCoordY - (e.clientY - rect.top));
       let val = (x>y)?x:y;
       scene[body_selected].nodes[scene[body_selected].nodes.length-1].setAB(val);
-      //to_render = true;
+      to_render = true;
     }else{
       
       for(let b = 0;b<num_bodies;b++){
