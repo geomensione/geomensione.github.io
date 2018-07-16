@@ -1,4 +1,4 @@
-// Adapted from http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect/1968345#1968345
+//https://gist.github.com/gordonwoodhull/50eb65d2f048789f9558
 var eps = 0.0000001;
 function between(a, b, c) {
     return a-eps <= b && b <= c+eps;
