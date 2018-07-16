@@ -58,7 +58,7 @@
   </div>
   
 <script>
-//superformula params
+  //superformula params
 var types = {
   asterisk: {m: 12, n1: .3, n2: 0, n3: 10, a: 1, b: 1},
   bean: {m: 2, n1: 1, n2: 4, n3: 8, a: 1, b: 1},
@@ -82,7 +82,6 @@ var types = {
   star: {m: 5, n1: 30, n2: 100, n3: 100, a: 1, b: 1},
   triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
 };
-
 const rc = rough.canvas(c);
   
 var scene = [];
@@ -96,13 +95,11 @@ var over;
 var mouseDown,  moveBody;
 var oldCoordX, oldCoordY;
 var create = false;
-
 AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
   
 function RedefineF2dLink(){
   f2dLink = true;
 }
-
 function AddNewBody(){
   if(body_selected < num_bodies-1)
     body_selected = num_bodies-1;
@@ -142,8 +139,6 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
   */
 }
   
-
-
   
 function eventMove(e){
   over = undefined;
@@ -219,16 +214,12 @@ function eventMove(e){
     }
   }  
 }
-
 c.addEventListener('mousemove',(e)=>{
   eventMove(e);  
 })
-
-
 c.addEventListener('touchmove',(e)=>{
   eventMove(e.touches[0]);
 })  
-
 c.addEventListener('mousewheel',(e)=>{
   let scale;
   if(e.wheelDelta > 0){
@@ -292,11 +283,9 @@ function eventDown(e){
     } 
   }
 }
-
 c.addEventListener('mousedown',(e)=>{
   eventDown(e);
 })
-
 c.addEventListener('touchstart',(e)=>{
   eventDown(e.touches[0]);
 })
@@ -317,7 +306,6 @@ function eventEnd(e){
   first_selected = undefined;
   selected = undefined;
 }  
-
 c.addEventListener('touchend',(e)=>{
   eventEnd(e.touches[0]);
 })
@@ -334,8 +322,7 @@ document.addEventListener('mouseup',(e)=>{
     var lineWidth = 1;
     var color = '#000';
     var selected_color = '#F00';
-    //var numberOfPoints = 360;
-    var numberOfPoints = 36;
+    var numberOfPoints = 360;
     var minX = 0, maxX = 0, minY = 0, maxY = 0;
     var select = false;
     var name;
@@ -401,7 +388,6 @@ document.addEventListener('mouseup',(e)=>{
       this.a = v;
       this.b = v;
       this.renderFormula(this.m,this.n1,this.n2,this.n3,this.a,this.b)
-
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
@@ -438,7 +424,6 @@ document.addEventListener('mouseup',(e)=>{
     
     function drawFormula(m,n1,n2,n3,a,b) {
      
-
       //context.beginPath();
       var points_length = this.points.length;
       let str_path = '';
@@ -553,13 +538,10 @@ document.addEventListener('mouseup',(e)=>{
         new_link.draw();
         scene[body].links.push(new_link);
         
-          
-        
         //rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
         //rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
       }
       
-
     }
     return{
       renderFormula: renderFormula,
@@ -577,6 +559,44 @@ document.addEventListener('mouseup',(e)=>{
       setAB: setAB
     }
   }
+function render() {
+  context.clearRect(0,0,c.width,c.height);
+  
+  
+  let center_radius;
+  var bodies = scene.length;
+  for(let b = 0;b<bodies;b++){
+    var scene_length = scene[b].links = [];
+    var scene_length = scene[b].nodes.length;
+    for(let o = 0;o<scene_length;o++){
+      scene[b].nodes[o].drawFormula();
+      let name = scene[b].nodes[o].getName();
+      if(name.indexOf('f2d') !== -1){
+        scene[b].nodes[o].getRTangents(b);
+        /*
+        if(center_radius){
+            let tangents = scene[body_selected][o].getRTangents(center_radius);
+            rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
+            rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
+        }
+        center_radius = scene[body_selected][o].getCenterAndRadius();
+        */
+      }
+    }
+  }
+  
+      
+}
+  
+function resize() {
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+}
+//window.requestAnimationFrame(frame);
+window.addEventListener("resize", resize);
+window.dispatchEvent(new Event("resize"));
+  
+/*
 function render() {
   context.clearRect(0,0,c.width,c.height);
   
@@ -626,29 +646,13 @@ function render() {
           }
             
         }
-        /*
-        if(center_radius){
-            let tangents = scene[body_selected][o].getRTangents(center_radius);
-            rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
-            rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
         }
-
-        center_radius = scene[body_selected][o].getCenterAndRadius();
-        */
-      }
     }
   }
   
       
 }
-  
-function resize() {
-  c.width = window.innerWidth;
-  c.height = window.innerHeight;
-}
-//window.requestAnimationFrame(frame);
-window.addEventListener("resize", resize);
-window.dispatchEvent(new Event("resize"));
+*/
 </script>
 </body>
 </html>
