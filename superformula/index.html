@@ -169,7 +169,7 @@ function eventMove(e){
       y = Math.abs(oldCoordY - (e.clientY - rect.top));
       let val = (x>y)?x:y;
       scene[body_selected].nodes[scene[body_selected].nodes.length-1].setAB(val);
-      to_render = true;
+      //to_render = true;
     }else{
       
       for(let b = 0;b<num_bodies;b++){
@@ -399,6 +399,8 @@ document.addEventListener('mouseup',(e)=>{
     function setAB(v){
       this.a = v;
       this.b = v;
+      this.renderFormula(this.m,this.n1,this.n2,this.n3,this.a,this.b)
+
     }
     
     function superformula(phi,a,b,m,n1,n2,n3) {
