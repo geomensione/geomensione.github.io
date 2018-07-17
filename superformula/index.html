@@ -575,8 +575,8 @@ function render() {
         scene[b].nodes[o].getRTangents(b);
         /**/
         if(o>1){
-          let pointsTangent1 = scene[b].nodes[o-1].getPoints();
-          let pointsTangent2 = scene[b].nodes[o].getPoints();
+          let pointsTangent1 = scene[b].links[o-1].getPoints();
+          let pointsTangent2 = scene[b].links[o].getPoints();
           let inters = segment_intersection(pointsTangent1[0].x,pointsTangent1[0].y,pointsTangent1[1].x,pointsTangent1[1].y, pointsTangent2[0].x,pointsTangent2[0].y,pointsTangent2[1].x,pointsTangent2[1].y,);
           if(inters){
             let newPoint1 = doCircleLineInt(inters.x,inters.y,r,pointsTangent1[1].x,pointsTangent1[1].y);
