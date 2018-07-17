@@ -564,12 +564,8 @@ document.addEventListener('mouseup',(e)=>{
   }
 function render() {
   function drawTangentCurve(inters,x1,y1,x2,y2){
-    let r = 30;
-    let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
-    let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
-    // split at 0.3
-    if(newPoint1 && newPoint1.x && newPoint1.y && newPoint2 && newPoint2.x && newPoint2.y){
-      let points = bsplit([[newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]], 0.3)[0];
+    function drawCurvePath(a,b,c){
+      let points = bsplit([[a.x,a.y],[b.x,b.y],[c.x,c.y]], 0.3)[0];
       let points_l = points.length;
       let str_path = '';
       for (let index = 0; index < points_l; index++) {
@@ -593,6 +589,18 @@ function render() {
 
       //context.stroke();
       rc.path(str_path, { stroke: stroke_color });
+    }
+    let r = 30;
+    let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
+    let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
+    // split at 0.3
+    if(newPoint1 && newPoint1.x && newPoint1.y && newPoint2 && newPoint2.x && newPoint2.y){
+      rc.circle(newPoint1.x, newPoint1.y, 5, { stroke: '#000' });
+      rc.circle(newPoint2.x, newPoint2.y, 5, { stroke: '#000' });
+      drawCurvePath([newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y];
+      
+    }else{
+      drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2];
     }
     
   }
