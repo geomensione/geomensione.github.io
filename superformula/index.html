@@ -597,10 +597,10 @@ function render() {
     if(newPoint1 && newPoint1.x && newPoint1.y && newPoint2 && newPoint2.x && newPoint2.y){
       rc.circle(newPoint1.x, newPoint1.y, 5, { stroke: '#000' });
       rc.circle(newPoint2.x, newPoint2.y, 5, { stroke: '#000' });
-      drawCurvePath([newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y];
+      drawCurvePath([newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]);
       
     }else{
-      drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2];
+      drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2]);
     }
     
   }
