@@ -16,4 +16,7 @@ metaballs:
   https://medium.com/@tbarrasso/advanced-meta-metaballs-864bbf0a945c
   https://varun.ca/metaballs/
 
+math:
+  https://www.ams.org/publications/authors/books/postpub/mbk-70-Hadamard-supp-problems.pdf
+
 
