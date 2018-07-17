@@ -631,7 +631,7 @@ function render() {
           let pointsTangent2_l = pointsTangent2.length/2;
           for(let p1 = 0;p1<pointsTangent1_l;p1++){
             for(let p2 = 0;p2<pointsTangent2_l;p2++){
-              let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y, pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
+              let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y,pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
               if(inters){
                 rc.circle(inters.x, inters.y, 5, { stroke: '#0FF' });
                 rc.circle(pointsTangent1[p1+1].x, pointsTangent1[p1+1].y, 5, { stroke: '#F0F' });
