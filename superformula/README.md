@@ -6,17 +6,12 @@ rough.js: http://roughjs.com/
 
 todo:
 
-link list: 
-  
-  link button: click on node, drag to other, when release add start node as reference to this and this as reference to start node
-every f2d has a list of f2d references 
-
-more bodies
-
 use image buttons
 
 translate from vanilla to angular?
 
 use <script src="https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.min.js"></script>
+
+metaballs: https://varun.ca/metaballs/
 
 
