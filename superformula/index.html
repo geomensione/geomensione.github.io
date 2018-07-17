@@ -565,22 +565,27 @@ document.addEventListener('mouseup',(e)=>{
 function render() {
   function drawTangentCurve(inters,x1,y1,x2,y2){
     function drawCurvePath(a,b,c){
-      let points = bsplit([[a[0],a[1]],[b[0],b[1]],[c[0],c[1]]], 0.3)[0];
+      let points = bsplit([[a[0],a[1]],[b[0],b[1]],[c[0],c[1]]], 0.8);
       let points_l = points.length;
       let str_path = '';
       for (let index = 0; index < points_l; index++) {
-        var x,y;
-        //points[index]._x += offsetX;
-        x = points[index][0];
-        //points[index]._y += offsetY;
-        y = points[index][1];
-        if (index === 0) {
-          //context.moveTo(x,y);
-          str_path += 'M'+x+' '+y+' ';
-        } else {
-          //context.lineTo(x,y);
-          str_path += 'L'+x+' '+y+' ';
+        let p_l = points[index].length;  
+        for (let p = 0; p < p_l; p++) {
+          var x,y;
+          //points[index]._x += offsetX;
+          x = points[index][p_l][0];
+          //points[index]._y += offsetY;
+          y = points[index][p_l][1];
+          if (index === 0) {
+            //context.moveTo(x,y);
+            str_path += 'M'+x+' '+y+' ';
+          } else {
+            //context.lineTo(x,y);
+            str_path += 'L'+x+' '+y+' ';
+          }
         }
+        
+        
       }
       //context.closePath();
       //context.lineWidth = lineWidth;
