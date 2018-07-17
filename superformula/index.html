@@ -635,8 +635,8 @@ function render() {
               if(inters){
                 rc.circle(inters.x, inters.y, 5, { stroke: '#0FF' });
                 rc.circle(pointsTangent1[p1+1].x, pointsTangent1[p1+1].y, 5, { stroke: '#F0F' });
-                rc.circle(pointsTangent2[p2+1].x, pointsTangent2[p2+1].y, 5, { stroke: '#0F0' });
-                drawTangentCurve(inters, pointsTangent1[p1+1].x, pointsTangent1[p1+1].y, pointsTangent2[p2+1].x, pointsTangent2[p2+1].y);
+                rc.circle(pointsTangent2[p2].x, pointsTangent2[p2].y, 5, { stroke: '#0F0' });
+                drawTangentCurve(inters, pointsTangent1[p1+1].x, pointsTangent1[p1+1].y, pointsTangent2[p2].x, pointsTangent2[p2].y);
               }
             }
           }            
