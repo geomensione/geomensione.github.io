@@ -571,7 +571,7 @@ function render() {
     if(newPoint1 && newPoint1.x && newPoint1.y && newPoint2 && newPoint2.x && newPoint2.y){
       let points = bsplit([[newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]], 0.3)[0];
       let points_l = points.length;
-      let str_path;
+      let str_path = '';
       for (let index = 0; index < points_l; index++) {
         var x,y;
         //points[index]._x += offsetX;
