@@ -12,6 +12,8 @@ translate from vanilla to angular?
 
 use <script src="https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.min.js"></script>
 
-metaballs: https://varun.ca/metaballs/
+metaballs: 
+  https://medium.com/@tbarrasso/advanced-meta-metaballs-864bbf0a945c
+  https://varun.ca/metaballs/
 
 
