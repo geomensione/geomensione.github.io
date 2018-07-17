@@ -627,23 +627,19 @@ function render() {
         if(o>1){
           let pointsTangent1 = scene[b].links[o-2].getPoints();
           let pointsTangent2 = scene[b].links[o-1].getPoints();
-          
-          let inters = segment_intersection(pointsTangent1[0].x,pointsTangent1[0].y,pointsTangent1[1].x,pointsTangent1[1].y, pointsTangent2[0].x,pointsTangent2[0].y,pointsTangent2[1].x,pointsTangent2[1].y);
-          if(inters){
-            rc.circle(inters.x, inters.y, 5, { stroke: '#0FF' });
-            rc.circle(pointsTangent1[0].x, pointsTangent1[0].y, 5, { stroke: '#F0F' });
-            rc.circle(pointsTangent2[1].x, pointsTangent2[1].y, 5, { stroke: '#0F0' });
-            drawTangentCurve(inters, pointsTangent1[0].x, pointsTangent1[0].y, pointsTangent2[1].x, pointsTangent2[1].y);
-          }else{
-            let inters = segment_intersection(pointsTangent1[2].x,pointsTangent1[2].y,pointsTangent1[3].x,pointsTangent1[3].y, pointsTangent2[2].x,pointsTangent2[2].y,pointsTangent2[3].x,pointsTangent2[3].y);
-            if(inters){
-              rc.circle(inters.x, inters.y, 5, { stroke: '#0FF' });
-              rc.circle(pointsTangent1[2].x, pointsTangent1[2].y, 5, { stroke: '#F0F' });
-              rc.circle(pointsTangent2[3].x, pointsTangent2[3].y, 5, { stroke: '#FF0' });
-              drawTangentCurve(inters, pointsTangent1[2].x, pointsTangent1[2].y, pointsTangent2[3].x, pointsTangent2[3].y);
+          let pointsTangent1_l = pointsTangent1.length\2;
+          let pointsTangent2_l = pointsTangent2.length\2;
+          for(let p1 = 0;p<pointsTangent1_l;p1++){
+            for(let p2 = 0;p<pointsTangent2_l;p2++){
+              let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y, pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
+              if(inters){
+                rc.circle(inters.x, inters.y, 5, { stroke: '#0FF' });
+                rc.circle(pointsTangent1[p1].x, pointsTangent1[p1].y, 5, { stroke: '#F0F' });
+                rc.circle(pointsTangent2[p2].x, pointsTangent2[p2].y, 5, { stroke: '#0F0' });
+                drawTangentCurve(inters, pointsTangent1[0].x, pointsTangent1[0].y, pointsTangent2[1].x, pointsTangent2[1].y);
+              }
             }
-          }
-            
+          }            
         }
         /**/
       }
