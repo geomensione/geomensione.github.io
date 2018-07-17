@@ -648,7 +648,7 @@ function render() {
               let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y,pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
               if(inters){
                 rc.circle(inters.x, inters.y, 5, { stroke: '#DDD' });
-                drawTangentCurve(inters, pointsTangent1[p1+1].x, pointsTangent1[p1+1].y, pointsTangent2[p2+1].x, pointsTangent2[p2+1].y);
+                drawTangentCurve(inters, pointsTangent1[p1].x, pointsTangent1[p1].y, pointsTangent2[p2+1].x, pointsTangent2[p2+1].y);
                 break;
               }else{
                 p2 += 2;
