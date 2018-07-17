@@ -560,10 +560,10 @@ document.addEventListener('mouseup',(e)=>{
     }
   }
 function render() {
-  function drawTangentCurve(inters,pointsTangent1,pointsTangent2){
+  function drawTangentCurve(inters,x1,y1,x2,y2){
     let r = 10;
-    let newPoint1 = doCircleLineInt(inters.x,inters.y,r,pointsTangent1[1].x,pointsTangent1[1].y);
-    let newPoint2 = doCircleLineInt(inters.x,inters.y,r,pointsTangent2[3].x,pointsTangent2[3].y);
+    let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1);
+    let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2);
     // split at 0.3
     let points = bsplit([[newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]], 0.3);
     let points_l = points.length;
