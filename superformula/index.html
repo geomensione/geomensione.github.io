@@ -565,30 +565,33 @@ function render() {
     let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
     let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
     // split at 0.3
-    let points = bsplit([[newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]], 0.3)[0];
-    let points_l = points.length;
-    let str_path;
-    for (let index = 0; index < points_l; index++) {
-      var x,y;
-      //points[index]._x += offsetX;
-      x = points[index][0];
-      //points[index]._y += offsetY;
-      y = points[index][1];
-      if (index === 0) {
-        //context.moveTo(x,y);
-        str_path += 'M'+x+' '+y+' ';
-      } else {
-        //context.lineTo(x,y);
-        str_path += 'L'+x+' '+y+' ';
+    if(newPoint1 && newPoint1.x && newPoint1.y && newPoint2 && newPoint2.x && newPoint2.y){
+      let points = bsplit([[newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]], 0.3)[0];
+      let points_l = points.length;
+      let str_path;
+      for (let index = 0; index < points_l; index++) {
+        var x,y;
+        //points[index]._x += offsetX;
+        x = points[index][0];
+        //points[index]._y += offsetY;
+        y = points[index][1];
+        if (index === 0) {
+          //context.moveTo(x,y);
+          str_path += 'M'+x+' '+y+' ';
+        } else {
+          //context.lineTo(x,y);
+          str_path += 'L'+x+' '+y+' ';
+        }
       }
-    }
-    //context.closePath();
-    //context.lineWidth = lineWidth;
-    str_path += 'Z';
-    let stroke_color = '#000';
+      //context.closePath();
+      //context.lineWidth = lineWidth;
+      str_path += 'Z';
+      let stroke_color = '#000';
 
-    //context.stroke();
-    rc.path(str_path, { stroke: stroke_color });
+      //context.stroke();
+      rc.path(str_path, { stroke: stroke_color });
+    }
+    
   }
   
   context.clearRect(0,0,c.width,c.height);
