@@ -627,8 +627,8 @@ function render() {
         if(o>1){
           let pointsTangent1 = scene[b].links[o-2].getPoints();
           let pointsTangent2 = scene[b].links[o-1].getPoints();
-          let pointsTangent1_l = pointsTangent1.length\2;
-          let pointsTangent2_l = pointsTangent2.length\2;
+          let pointsTangent1_l = pointsTangent1.length/2;
+          let pointsTangent2_l = pointsTangent2.length/2;
           for(let p1 = 0;p<pointsTangent1_l;p1++){
             for(let p2 = 0;p<pointsTangent2_l;p2++){
               let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y, pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
