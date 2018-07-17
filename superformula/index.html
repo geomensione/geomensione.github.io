@@ -643,17 +643,18 @@ function render() {
               
           let pointsTangent1_l = pointsTangent1.length/2;
           let pointsTangent2_l = pointsTangent2.length/2;
-          for(let p1 = 0;p1<pointsTangent1_l;p1++){
-            for(let p2 = 0;p2<pointsTangent2_l;p2++){
+          for(let p1 = 0;p1<pointsTangent1_l;){
+            for(let p2 = 0;p2<pointsTangent2_l;){
               let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y,pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
               if(inters){
-                
-                drawTangentCurve(inters, pointsTangent1[p1+1].x, pointsTangent1[p1+1].y, pointsTangent2[p2].x, pointsTangent2[p2].y);
+                rc.circle(inters.x, inters.y, 5, { stroke: '#DDD' });
+                //drawTangentCurve(inters, pointsTangent1[p1].x, pointsTangent1[p1].y, pointsTangent2[p2].x, pointsTangent2[p2].y);
                 break;
               }else{
-                
+                p2 += 2;
               }
             }
+            p1 += 1;
           }            
         }
         /**/
