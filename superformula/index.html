@@ -439,13 +439,16 @@ document.addEventListener('mouseup',(e)=>{
         x = this.points[index]._x - this.offsetX - this.oldoffsetX;
         //points[index]._y += offsetY;
         y = this.points[index]._y - this.offsetY - this.oldoffsetY;
-        if (index === 0) {
-          //context.moveTo(x,y);
-          str_path += 'M'+x+' '+y+' ';
-        } else {
-          //context.lineTo(x,y);
-          str_path += 'L'+x+' '+y+' ';
+        if(isFinite(x) && isFinite(y)){
+          if (index === 0) {
+            //context.moveTo(x,y);
+            str_path += 'M'+x+' '+y+' ';
+          } else {
+            //context.lineTo(x,y);
+            str_path += 'L'+x+' '+y+' ';
+          }
         }
+        
       }
       //context.closePath();
       //context.lineWidth = lineWidth;
