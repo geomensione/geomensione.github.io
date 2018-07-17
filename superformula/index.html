@@ -623,9 +623,9 @@ function render() {
           }else{
             let inters = segment_intersection(pointsTangent1[2].x,pointsTangent1[2].y,pointsTangent1[3].x,pointsTangent1[3].y, pointsTangent2[2].x,pointsTangent2[2].y,pointsTangent2[3].x,pointsTangent2[3].y);
             if(inters){
-              rc.circle(pointsTangent1[3].x, pointsTangent1[3].y, 5, { stroke: '#F0F' });
+              rc.circle(pointsTangent1[2].x, pointsTangent1[2].y, 5, { stroke: '#F0F' });
               rc.circle(pointsTangent2[3].x, pointsTangent2[3].y, 5, { stroke: '#FF0' });
-              drawTangentCurve(inters, pointsTangent1[3].x, pointsTangent1[3].y, pointsTangent2[3].x, pointsTangent2[3].y);
+              drawTangentCurve(inters, pointsTangent1[2].x, pointsTangent1[2].y, pointsTangent2[3].x, pointsTangent2[3].y);
             }
           }
             
