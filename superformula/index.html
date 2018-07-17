@@ -571,9 +571,9 @@ function render() {
     for (let index = 0; index < points_l; index++) {
       var x,y;
       //points[index]._x += offsetX;
-      x = points[index].x;
+      x = points[index][0];
       //points[index]._y += offsetY;
-      y = points[index].y;
+      y = points[index][1];
       if (index === 0) {
         //context.moveTo(x,y);
         str_path += 'M'+x+' '+y+' ';
