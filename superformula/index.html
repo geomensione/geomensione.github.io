@@ -662,19 +662,34 @@ function render() {
 		if(debug){
                 	rc.circle(inters.x, inters.y, 5, { stroke: '#DDD' });
 		}
-                let point1, point2;
-				if(angle1 > 180){
-					
-					point1 = p1+1;
-					point2 = p2;
-				}else{
-					point1 = p1;
-					point2 = p2+1;
-				}
-		      		if(o === 2)
-					scene[b].links[o-2].draw(-angle1);
-		      		scene[b].links[o-1].draw(angle1);
-				drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
+		let point1, point2,tang1,tang2,tang3,tang4;
+		if(p1 === 0){
+			tang1 = p1 + 2;
+			tang2 = p1 + 3;
+		}else{
+			tang1 = 0;
+			tang2 = 1;
+		}
+		if(p2 === 0){
+			tang3 = p2 + 2;
+			tang4 = p2 + 3;
+		}else{
+			tang3 = 0;
+			tang4 = 1;
+		}
+		if(angle1 > 180){
+			
+			point1 = p1+1;
+			point2 = p2;
+		}else{
+			point1 = p1;
+			point2 = p2+1;
+		}
+		if(o === 2)
+			rc.line(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y, { stroke: '#000'});
+		
+		rc.line(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y, { stroke: '#000'});
+		drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
                 break;
               }else{
                 p2 += 2;
