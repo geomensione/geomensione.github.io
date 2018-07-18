@@ -187,9 +187,18 @@ function isInLink(point, vs) {
     function setPoints(ps){
         points = ps;
     }
-    function draw(){
-        rc.line(points[0].x, points[0].y, points[1].x, points[1].y, { stroke: color_to_draw });
-        rc.line(points[2].x, points[2].y, points[3].x, points[3].y, { stroke: selected_color });
+    function draw(angle){
+	    if(angle){
+	    	if(angle > 180){
+			rc.line(points[0].x, points[0].y, points[1].x, points[1].y, { stroke: color_to_draw });
+		}else{
+			rc.line(points[2].x, points[2].y, points[3].x, points[3].y, { stroke: selected_color });
+		}
+	    }else{
+		rc.line(points[0].x, points[0].y, points[1].x, points[1].y, { stroke: color_to_draw });
+		rc.line(points[2].x, points[2].y, points[3].x, points[3].y, { stroke: selected_color });
+	    }
+	
     }
     return{
         hit:hit,
