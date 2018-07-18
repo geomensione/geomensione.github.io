@@ -1,7 +1,7 @@
 <html>
 <head>
   
-  <title>Superformula & rough & f2d v0.12</title>
+  <title>Superformula & rough & f2d v0.13</title>
   <script src="../rough/js/rough.min.js"></script>
   <script src="../paperjs/js/tangents.js"></script>
   <script src="js/PointInsideF2dLink.js"></script>
@@ -17,14 +17,14 @@
     <id id="shape_name" style="display:none"></div>
     <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
     <input type='button' value="body" onclick="AddNewBody()"></input>
-    <input type='button' value="close" onclick="Close()"></input>
-    
-    <span id="over"></span>  
+    <input type='button' value="close" onclick="Close()"></input> 
+    angle1:<span id="angle1"></span> angle2:<span id="angle2"></span>  
+     
 <!-- 
     m,n1,n2,n3,a,b
     <span id="selected"></span> 
     <span id="first_selected"></span>
-    
+    <span id="over"></span> 
 
     
     <input type='button' id="f2dLink" value="Redefine f2d link" onclick="RedefineF2dLink()"></input>
@@ -179,7 +179,7 @@ function eventMove(e){
             to_render = true;
             old_torender = true;
             over = o;
-            document.getElementById('over').innerHTML = over;
+            //document.getElementById('over').innerHTML = over;
             if(mouseDown){
               selected = o;
               body_selected = b;
@@ -632,6 +632,15 @@ function render() {
         if(o>1){
           let pointsTangent1 = scene[b].links[o-2].getPoints();
           let pointsTangent2 = scene[b].links[o-1].getPoints();
+		  //link_json.x,link_json.y,link_json.r
+		  let center3 = scene[b].nodes[o-2].getCenterAndRadius();
+		  let center2 = scene[b].nodes[o-1].getCenterAndRadius();
+		  let center1 = scene[b].nodes[o].getCenterAndRadius();
+		  let angle1 = findAngle(center1,center2,center3);
+		  //let angle2 = findAngle(center2,center3);
+		  document.getElementById('angle1').innerHTML = angle1;
+		  //document.getElementById('angle2').innerHTML = angle2;
+		  
           rc.circle(pointsTangent1[0].x, pointsTangent1[0].y, 5, { stroke: '#F00' });
           rc.circle(pointsTangent1[1].x, pointsTangent1[1].y, 5, { stroke: '#0F0' });
           rc.circle(pointsTangent1[2].x, pointsTangent1[2].y, 5, { stroke: '#00F' });
@@ -648,7 +657,15 @@ function render() {
               let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y,pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
               if(inters){
                 rc.circle(inters.x, inters.y, 5, { stroke: '#DDD' });
-                drawTangentCurve(inters, pointsTangent1[p1].x, pointsTangent1[p1].y, pointsTangent2[p2+1].x, pointsTangent2[p2+1].y);
+                let point1, point2;
+				if(angle1 > 180){
+					point1 = p1+1;
+					point2 = p2;
+				}else{
+					point1 = p1;
+					point2 = p2+1;
+				}
+				drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
                 break;
               }else{
                 p2 += 2;

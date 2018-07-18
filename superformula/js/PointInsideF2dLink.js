@@ -1,3 +1,15 @@
+// https://stackoverflow.com/questions/21605732/how-to-draw-angle-in-between-two-lines-in-javascript
+function findAngle(p1,p2,p3) {
+	var dx1=p1.x-p2.x;
+	var dy1=p1.y-p2.y;
+	var dx2=p3.x-p2.x;
+	var dy2=p3.y-p2.y;
+	var a1=Math.atan2(dy1,dx1);
+	var a2=Math.atan2(dy2,dx2);
+	return parseInt((a2-a1)*180/Math.PI+360)%360;
+	
+}
+
 //http://bl.ocks.org/balint42/8c9310605df9305c42b3
 /**
          * @brief De Casteljau's algorithm splitting n-th degree Bezier curve
