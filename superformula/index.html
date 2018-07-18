@@ -58,6 +58,7 @@
   </div>
   
 <script>
+var debug = true;
   //superformula params
 var types = {
   asterisk: {m: 12, n1: .3, n2: 0, n3: 10, a: 1, b: 1},
@@ -640,23 +641,26 @@ function render() {
 		  //let angle2 = findAngle(center2,center3);
 		  document.getElementById('angle1').innerHTML = angle1;
 		  //document.getElementById('angle2').innerHTML = angle2;
-		  
-          rc.circle(pointsTangent1[0].x, pointsTangent1[0].y, 5, { stroke: '#F00' });
-          rc.circle(pointsTangent1[1].x, pointsTangent1[1].y, 5, { stroke: '#0F0' });
-          rc.circle(pointsTangent1[2].x, pointsTangent1[2].y, 5, { stroke: '#00F' });
-          rc.circle(pointsTangent1[3].x, pointsTangent1[3].y, 5, { stroke: '#000' });
-          rc.circle(pointsTangent2[0].x, pointsTangent2[0].y, 5, { stroke: '#0FF' });
-          rc.circle(pointsTangent2[1].x, pointsTangent2[1].y, 5, { stroke: '#F0F' });
-          rc.circle(pointsTangent2[2].x, pointsTangent2[2].y, 5, { stroke: '#222' });
-          rc.circle(pointsTangent2[3].x, pointsTangent2[3].y, 5, { stroke: '#DDD' });
-              
+	  if(debug){
+	  	rc.circle(pointsTangent1[0].x, pointsTangent1[0].y, 5, { stroke: '#F00' });
+		rc.circle(pointsTangent1[1].x, pointsTangent1[1].y, 5, { stroke: '#0F0' });
+		rc.circle(pointsTangent1[2].x, pointsTangent1[2].y, 5, { stroke: '#00F' });
+		rc.circle(pointsTangent1[3].x, pointsTangent1[3].y, 5, { stroke: '#000' });
+		rc.circle(pointsTangent2[0].x, pointsTangent2[0].y, 5, { stroke: '#0FF' });
+		rc.circle(pointsTangent2[1].x, pointsTangent2[1].y, 5, { stroke: '#F0F' });
+		rc.circle(pointsTangent2[2].x, pointsTangent2[2].y, 5, { stroke: '#222' });
+		rc.circle(pointsTangent2[3].x, pointsTangent2[3].y, 5, { stroke: '#DDD' });
+	  }  
+                        
           let pointsTangent1_l = pointsTangent1.length/2;
           let pointsTangent2_l = pointsTangent2.length/2;
           for(let p1 = 0;p1<=pointsTangent1_l;){
             for(let p2 = 0;p2<=pointsTangent2_l;){
               let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y,pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
               if(inters){
-                rc.circle(inters.x, inters.y, 5, { stroke: '#DDD' });
+		if(debug){
+                	rc.circle(inters.x, inters.y, 5, { stroke: '#DDD' });
+		}
                 let point1, point2;
 				if(angle1 > 180){
 					point1 = p1+1;
