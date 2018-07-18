@@ -539,7 +539,7 @@ document.addEventListener('mouseup',(e)=>{
         let tangents = getTangents(link_json.x,link_json.y,link_json.r,my_json.x,my_json.y,my_json.r);
         let new_link = new f2d_Link();
         new_link.setPoints(tangents);
-        new_link.draw();
+        //new_link.draw();
         scene[body].links.push(new_link);
         
         //rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
@@ -663,12 +663,16 @@ function render() {
 		}
                 let point1, point2;
 				if(angle1 > 180){
+					
 					point1 = p1+1;
 					point2 = p2;
 				}else{
 					point1 = p1;
 					point2 = p2+1;
 				}
+		      		if(0 === 2)
+					scene[b].links[o-2].draw(angle1);
+		      		scene[b].links[o-1].draw(angle1);
 				drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
                 break;
               }else{
@@ -677,7 +681,11 @@ function render() {
             }
             p1 += 1;
           }            
-        }
+        }else{
+		if(o>0){
+			scene[b].links[o-1].draw();
+		}
+	}
         /**/
       }
     }
