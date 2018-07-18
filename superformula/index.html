@@ -692,13 +692,13 @@ function render() {
 		}
 		if(o === 2){
 			//rc.line(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y, { stroke: '#000'});
-			toRender.tangents.push({lato:`${p1}_${p2}`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
+			toRender.tangents.push({lato:o,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
 		}
 		
 		//rc.line(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y, { stroke: '#000'});
-		toRender.tangents.push([pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y]);
+		toRender.tangents.push({lato:o,[pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y]});
 		//drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
-		toRender.curves.push({lato:`${point1}_${point2}`,data:[inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y]});
+		toRender.curves.push({lato:o,data:[inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y]});
                 break;
               }else{
                 p2 += 2;
@@ -713,10 +713,10 @@ function render() {
 	}
 	let tangents_l = toRender.tangents.length;
         for(let t = 0;t<tangents_l;t++)
-	      rc.line(toRender.tangents[t][0], toRender.tangents[t][1], toRender.tangents[t][2], toRender.tangents[t][3], { stroke: '#000'});
+	      rc.line(toRender.tangents[t].data[0], toRender.tangents[t].data[1], toRender.tangents[t].data[2], toRender.tangents[t].data[3], { stroke: '#000'});
 	let curves_l = toRender.curves.length;
       	for(let c = 0;c<curves_l;c++)
-	      drawTangentCurve(toRender.curves[c][0], toRender.curves[c][1], toRender.curves[c][2], toRender.curves[c][3], toRender.curves[c][4]);
+	      drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4]);
         /**/
       }
     }
