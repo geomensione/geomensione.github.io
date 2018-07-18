@@ -189,7 +189,7 @@ function isInLink(point, vs) {
     }
     function draw(angle){
 	    if(angle){
-	    	if(angle > 180){
+	    	if(angle < 180){
 			rc.line(points[0].x, points[0].y, points[1].x, points[1].y, { stroke: color_to_draw });
 		}else{
 			rc.line(points[2].x, points[2].y, points[3].x, points[3].y, { stroke: selected_color });
