@@ -241,9 +241,10 @@ function eventDown(e){
   oldCoordX = e.clientX - rect.left;
   oldCoordY = e.clientY - rect.top;
   mouseDown = true;
-  let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
+  
   let ret,links_ret;
   for(let b = 0;b<num_bodies;b++){
+    let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
     for(let o = 0;o<scene_length;o++){
       //scene[body_selected].nodes[o].down(oldCoordX,oldCoordY);
       if(!ret)
