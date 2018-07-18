@@ -626,6 +626,7 @@ function render() {
   for(let b = 0;b<bodies;b++){
     var scene_length = scene[b].links = [];
     var scene_length = scene[b].nodes.length;
+    let toRender = {curves:[],tangents:[]};
     for(let o = 0;o<scene_length;o++){
       scene[b].nodes[o].drawFormula();
       let name = scene[b].nodes[o].getName();
@@ -635,14 +636,14 @@ function render() {
         if(o>1){
           let pointsTangent1 = scene[b].links[o-2].getPoints();
           let pointsTangent2 = scene[b].links[o-1].getPoints();
-		  //link_json.x,link_json.y,link_json.r
-		  let center3 = scene[b].nodes[o-2].getCenterAndRadius();
-		  let center2 = scene[b].nodes[o-1].getCenterAndRadius();
-		  let center1 = scene[b].nodes[o].getCenterAndRadius();
-		  let angle1 = findAngle(center1,center2,center3);
-		  //let angle2 = findAngle(center2,center3);
-		  document.getElementById('angle1').innerHTML = angle1;
-		  //document.getElementById('angle2').innerHTML = angle2;
+	  //link_json.x,link_json.y,link_json.r
+	  let center3 = scene[b].nodes[o-2].getCenterAndRadius();
+	  let center2 = scene[b].nodes[o-1].getCenterAndRadius();
+	  let center1 = scene[b].nodes[o].getCenterAndRadius();
+	  let angle1 = findAngle(center1,center2,center3);
+	  //let angle2 = findAngle(center2,center3);
+	  document.getElementById('angle1').innerHTML = angle1;
+	  //document.getElementById('angle2').innerHTML = angle2;
 	  if(debug){
 	  	rc.circle(pointsTangent1[0].x, pointsTangent1[0].y, 5, { stroke: '#F00' });
 		rc.circle(pointsTangent1[1].x, pointsTangent1[1].y, 5, { stroke: '#0F0' });
@@ -686,11 +687,15 @@ function render() {
 			point1 = p1;
 			point2 = p2+1;
 		}
-		if(o === 2)
-			rc.line(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y, { stroke: '#000'});
-		if(o === (scene_length-1))
-			rc.line(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y, { stroke: '#000'});
-		drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
+		if(o === 2){
+			//rc.line(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y, { stroke: '#000'});
+			toRender.tangents.push(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y);
+		}
+		
+		//rc.line(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y, { stroke: '#000'});
+		toRender.tangents.push(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y);
+		//drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
+		toRender.curves.push(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
                 break;
               }else{
                 p2 += 2;
@@ -703,6 +708,12 @@ function render() {
 			scene[b].links[o-1].draw();
 		}
 	}
+	let tangents_l = toRender.tangents.length;
+        for(let t = 0;t<tangents_l;t++)
+	      rc.line(toRender.tangents[t][0], toRender.tangents[t][1], toRender.tangents[t][2], toRender.tangents[t][3], { stroke: '#000'});
+	let curves_l = toRender.curves.length;
+      	for(let c = 0;c<curves_l;c++)
+	      drawTangentCurve(toRender.curves[c][0], toRender.curves[c][1], toRender.curves[c][2], toRender.curves[c][3], toRender.curves[c][4]);
         /**/
       }
     }
