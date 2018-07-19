@@ -5,12 +5,16 @@ shapes data taken here: https://bl.ocks.org/mbostock/1021103
 rough.js: http://roughjs.com/
 
 todo:
+  
+  rc.circle instead of rc.path
 
   GUI with image buttons
 
   undo/redo
 
-  delete
+  highlights nel body
+
+  delete (circle,body)
 
   save image
 
