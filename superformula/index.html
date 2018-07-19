@@ -578,6 +578,7 @@ document.addEventListener('mouseup',(e)=>{
     }
   }
 function render() {
+  let prev_curve;
   function drawTangentCurve(inters,x1,y1,x2,y2){
     function drawCurvePath(a,b,c){
       let curve_points = bezier([a,b,c]);
@@ -585,10 +586,36 @@ function render() {
       let steps = 5;
       for (var t = 0; t <= steps; t++) 
 	      pointToDraw.push(curve_points(t/steps));
+      if(prev_curve.length > 0){
+      	let prev_curve_l = prev_curve.length;
+	let pointToDraw_l = pointToDraw.length;
+	let intersection = false;
+	for(let c = 0;c<prev_curve_l-1;c++){
+		for(let d = 0;d<pointToDraw_l-1;d++){
+			let inters = segment_intersection(prev_curve[c][0],prev_curve[c][1],prev_curve[c+1][0],prev_curve[c+1][1],pointToDraw[d][0],pointToDraw[d][1],pointToDraw[d+1][0],pointToDraw[d+1][1],);
+			if(inters){
+				intersection = true;
+				break;
+			}
+		}
+	}
+	      
+      }
+      if(!intersection){
+	if(prev_curve.length === 0)
+		prev_curve = [a,b,c];
+      	rc.curve(prev_curve, {
+		stroke: 'red', strokeWidth: 1
+	      });
 	
-      rc.curve(pointToDraw, {
-        stroke: 'red', strokeWidth: 1
-      });
+	return false;
+      }else{
+	      prev_curve.pop();
+	      prev_curve.push(b);
+	      prev_curve.push(c);
+      	return true;
+      }
+      
       /*
       let points = bsplit([[a[0],a[1]],[b[0],b[1]],[c[0],c[1]]], 0.8);
       let points_l = points.length;
@@ -630,7 +657,7 @@ function render() {
     //  drawCurvePath([newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]);
       
     //}else{
-    drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2]);
+    return drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2]);
     //}
     
   }
@@ -738,7 +765,9 @@ function render() {
 		rc.line(toRender.tangents[t].data[0], toRender.tangents[t].data[1], toRender.tangents[t].data[2], toRender.tangents[t].data[3], { stroke: '#000'});
 	let curves_l = toRender.curves.length;
 	for(let c = 0;c<curves_l;c++)
-		drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4]);
+		let ret = drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4]);
+		if(ret)
+			
 	/**/
       
 }
