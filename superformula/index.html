@@ -633,10 +633,11 @@ function render() {
   
   let center_radius;
   var bodies = scene.length;
+  let toRender = {curves:[],tangents:[]};
   for(let b = 0;b<bodies;b++){
     var scene_length = scene[b].links = [];
     var scene_length = scene[b].nodes.length;
-    let toRender = {curves:[],tangents:[]};
+    
     for(let o = 0;o<scene_length;o++){
       scene[b].nodes[o].drawFormula();
       let name = scene[b].nodes[o].getName();
