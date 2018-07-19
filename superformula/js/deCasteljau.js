@@ -1,3 +1,4 @@
+//https://gist.github.com/atomizer/1049745
 function bezier(pts) {
 	return function (t) {
 		for (var a = pts; a.length > 1; a = b)  // do..while loop in disguise
