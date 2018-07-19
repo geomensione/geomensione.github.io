@@ -1,3 +1,4 @@
+//https://github.com/tdzienniak/deCasteljau/blob/master/decasteljau.js
 (function (global) {
     /**
      * Recursive implementation of de Casteljau algorithm.
