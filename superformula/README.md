@@ -6,11 +6,17 @@ rough.js: http://roughjs.com/
 
 todo:
 
-use image buttons
+  GUI with image buttons
 
-translate from vanilla to angular?
+  undo/redo
 
-use <script src="https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.min.js"></script>
+  delete
+
+  save image
+
+  load/save
+  
+  draw upon other shape
 
 metaballs: 
   https://medium.com/@tbarrasso/advanced-meta-metaballs-864bbf0a945c
