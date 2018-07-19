@@ -581,8 +581,11 @@ function render() {
   function drawTangentCurve(inters,x1,y1,x2,y2){
     function drawCurvePath(a,b,c){
       let curve_points = bezier([a,b,c]);
+      let pointToDraw = [];
+      for (var t = 0; t <= 10; t++) 
+	      pointToDraw.push(curve_points(t/10));
 	
-      rc.curve(curve_points, {
+      rc.curve(pointToDraw, {
         stroke: 'red', strokeWidth: 1
       });
       /*
