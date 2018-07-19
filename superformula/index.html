@@ -17,6 +17,8 @@
     <id id="shape_name" style="display:none"></div>
     <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
     <input type='button' value="body" onclick="AddNewBody()"></input>
+    <input type='button' value="undo" onclick="Undo()"></input>
+    <input type='button' value="redo" onclick="Redo()"></input>
     <input type='button' value="close" onclick="Close()"></input> 
     angle1:<span id="angle1"></span> angle2:<span id="angle2"></span>  
      
@@ -96,6 +98,7 @@ var over;
 var mouseDown,  moveBody;
 var oldCoordX, oldCoordY;
 var create = false;
+var undoElement;
 AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
   
 function RedefineF2dLink(){
@@ -107,7 +110,17 @@ function AddNewBody(){
   body_selected++;
   num_bodies++;
 }  
-  
+
+function Undo(){
+  undoElement=scene[body_selected].nodes.pop();
+  render();
+}	
+
+function Redo(){
+  scene[body_selected].nodes.push(undoElement);
+  render();
+}	
+
 function Close(){
   scene[body_selected].nodes[0].close(scene[body_selected].nodes.length-1);
   render();
