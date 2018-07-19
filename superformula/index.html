@@ -699,7 +699,7 @@ function render() {
 		}
 		if(o === 2){
 			//rc.line(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y, { stroke: '#000'});
-			toRender.tangents.push({lato:`${o-1}_${tang1}`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
+			toRender.tangents.push({lato:`${o}_${tang1}`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
 		}
 		
 		//rc.line(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y, { stroke: '#000'});
@@ -720,24 +720,18 @@ function render() {
 	}
 	
       }
-	   /*
-{lato: "2_c_3", data: Array(5)}
-{lato: "3_c_2", data: Array(5)}
-{lato: "2_t_0", data: Array(4)}
-{lato: "2_t_2", data: Array(4)}
-{lato: "3_t_0", data: Array(4)}
-...
-	   */
-	let tangents_l = toRender.tangents.length;
+	  
+	
+    }
+  }
+	
+  let tangents_l = toRender.tangents.length;
 	for(let t = 0;t<tangents_l;t++)
 		rc.line(toRender.tangents[t].data[0], toRender.tangents[t].data[1], toRender.tangents[t].data[2], toRender.tangents[t].data[3], { stroke: '#000'});
 	let curves_l = toRender.curves.length;
 	for(let c = 0;c<curves_l;c++)
 		drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4]);
 	/**/
-    }
-  }
-  
       
 }
   
