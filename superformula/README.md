@@ -10,8 +10,6 @@ todo:
 
   GUI with image buttons
 
-  undo/redo
-
   highlights nel body
 
   delete (circle,body)
