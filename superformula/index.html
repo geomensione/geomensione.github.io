@@ -699,13 +699,13 @@ function render() {
 		}
 		if(o === 2){
 			//rc.line(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y, { stroke: '#000'});
-			toRender.tangents.push({lato:`${o}_t`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
+			toRender.tangents.push({lato:`${o}_t_${tang1}`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
 		}
 		
 		//rc.line(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y, { stroke: '#000'});
-		toRender.tangents.push({lato:`${o}_t`,data:[pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y]});
+		toRender.tangents.push({lato:`${o}_t_${tang3}`,data:[pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y]});
 		//drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
-		toRender.curves.push({lato:`${o}_c`,data:[inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y]});
+		toRender.curves.push({lato:`${o}_c_${point1}`,data:[inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y]});
                 break;
               }else{
                 p2 += 2;
