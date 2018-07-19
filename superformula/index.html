@@ -580,7 +580,8 @@ document.addEventListener('mouseup',(e)=>{
 function render() {
   function drawTangentCurve(inters,x1,y1,x2,y2){
     function drawCurvePath(a,b,c){
-      rc.curve([a,b,c], {
+      let curve_points = de.casteljau([a,b,c],0.5);
+      rc.curve(curve_points, {
         stroke: 'red', strokeWidth: 1
       });
       /*
