@@ -1,0 +1,802 @@
+<html>
+<head>
+  
+  <title>Superformula & rough & f2d v0.15</title>
+  <script src="../rough/js/rough.min.js"></script>
+  <script src="../paperjs/js/tangents.js"></script>
+  <script src="js/PointInsideF2dLink.js"></script>
+</head>
+<body>
+  <div class="head">
+    <input type='text' id="m" value="3" style="display:none"></input>
+    <input type='text' id="n1" value="4" style="display:none" ></input>
+    <input type='text' id="n2" value="5" style="display:none" ></input>
+    <input type='text' id="n3" value="6" style="display:none" ></input>
+    <input type='text' id="a" value="1" style="display:none" ></input>
+    <input type='text' id="b" value="2" style="display:none" ></input>
+    <id id="shape_name" style="display:none"></div>
+    <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
+    <input type='button' value="body" onclick="AddNewBody()"></input>
+    <input type='button' value="undo" onclick="Undo()"></input>
+    <input type='button' value="redo" onclick="Redo()"></input>
+    <input type='button' value="close" onclick="Close()"></input> 
+    angle1:<span id="angle1"></span> angle2:<span id="angle2"></span>  
+     
+<!-- 
+    m,n1,n2,n3,a,b
+    <span id="selected"></span> 
+    <span id="first_selected"></span>
+    <span id="over"></span> 
+    
+    <input type='button' id="f2dLink" value="Redefine f2d link" onclick="RedefineF2dLink()"></input>
+    <input type='button' id="addShape" value="add shape" onclick="AddRenderFormula('custom')"></input>
+    <input type='button' value="asterisk" onclick="AddRenderFormula(12, 0.3, 1, 10, 0.55, 1.1,'asterisk')"></input>
+    <input type='button' value="bean" onclick="AddRenderFormula(2, 1, 4, 8, 1.8, 1.8,'bean')"></input>
+    <input type='button' value="butterfly" onclick="AddRenderFormula(3, 1, 6, 2, 2, 4,'butterfly')"></input>
+    <input type='button' value="circle" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'circle')"></input>
+    <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
+    <input type='button' value="clover" onclick="AddRenderFormula(6, 0.3, 0.1, 10, 1.1, 1.1,'clover')"></input>
+    <input type='button' value="cloverFour" onclick="AddRenderFormula(8, 10, -1, -8, 0.000000000000001,0.000000000000001,'cloverFour')"></input>
+    <input type='button' value="cross" onclick="AddRenderFormula(8, 1.3, 0.1, 8, 10000000, 10000000,'cross')"></input>
+    <input type='button' value="diamond" onclick="AddRenderFormula(4, 1, 1, 1, 100, 100,'diamond')"></input>
+    <input type='button' value="drop" onclick="AddRenderFormula(1, 0.5, 0.5, 0.5, 100, 100,'drop')"></input>
+    <input type='button' value="ellipse" onclick="AddRenderFormula(4, 2, 2, 2, 90, 60,'ellipse')"></input>
+    <input type='button' value="gear" onclick="AddRenderFormula(19, 100, 50, 50, 1000, 1000,'gear')"></input>
+    <input type='button' value="heart" onclick="AddRenderFormula(1, 0.8, 1, -8, 1, 0.18,'heart')"></input>
+    <input type='button' value="heptagon" onclick="AddRenderFormula(7, 1000, 400, 400, 1, 0.18,'heptagon')"></input>
+    <input type='button' value="hexagon" onclick="AddRenderFormula(6, 1000, 400, 400, 1, 1,'hexagon')"></input>
+    <input type='button' value="malteseCross" onclick="AddRenderFormula(8, 0.9, 0.1, 100, 2, 2,'malteseCross')"></input>
+    <input type='button' value="pentagon" onclick="AddRenderFormula(5, 1000, 600, 600, 1, 1,'pentagon')"></input>
+    <input type='button' value="rectangle" onclick="AddRenderFormula(4, 100, 100, 100, 2, 1,'rectangle')"></input>
+    <input type='button' value="roundedStar" onclick="AddRenderFormula(5, 2, 7, 7, 2, 1,'roundedStar')"></input>
+    <input type='button' value="square" onclick="AddRenderFormula(4, 100, 100, 100, 1, 1,'square')"></input>
+    <input type='button' value="star" onclick="AddRenderFormula(5, 30, 100, 100, 1, 1,'star')"></input>
+    <input type='button' value="triangle" onclick="AddRenderFormula(3, 100, 200, 200, 1, 1,'triangle')"></input>
+    -->
+  </div>
+  <div class="f2dcanvas">
+    <canvas id=c></canvas>
+  </div>
+  
+<script>
+var debug = true;
+  //superformula params
+var types = {
+  asterisk: {m: 12, n1: .3, n2: 0, n3: 10, a: 1, b: 1},
+  bean: {m: 2, n1: 1, n2: 4, n3: 8, a: 1, b: 1},
+  butterfly: {m: 3, n1: 1, n2: 6, n3: 2, a: .6, b: 1},
+  circle: {m: 4, n1: 2, n2: 2, n3: 2, a: 1, b: 1},
+  clover: {m: 6, n1: .3, n2: 0, n3: 10, a: 1, b: 1},
+  cloverFour: {m: 8, n1: 10, n2: -1, n3: -8, a: 1, b: 1},
+  cross: {m: 8, n1: 1.3, n2: .01, n3: 8, a: 1, b: 1},
+  diamond: {m: 4, n1: 1, n2: 1, n3: 1, a: 1, b: 1},
+  drop: {m: 1, n1: .5, n2: .5, n3: .5, a: 1, b: 1},
+  ellipse: {m: 4, n1: 2, n2: 2, n3: 2, a: 9, b: 6},
+  gear: {m: 19, n1: 100, n2: 50, n3: 50, a: 1, b: 1},
+  heart: {m: 1, n1: .8, n2: 1, n3: -8, a: 1, b: .18},
+  heptagon: {m: 7, n1: 1000, n2: 400, n3: 400, a: 1, b: 1},
+  hexagon: {m: 6, n1: 1000, n2: 400, n3: 400, a: 1, b: 1},
+  malteseCross: {m: 8, n1: .9, n2: .1, n3: 100, a: 1, b: 1},
+  pentagon: {m: 5, n1: 1000, n2: 600, n3: 600, a: 1, b: 1},
+  rectangle: {m: 4, n1: 100, n2: 100, n3: 100, a: 2, b: 1},
+  roundedStar: {m: 5, n1: 2, n2: 7, n3: 7, a: 1, b: 1},
+  square: {m: 4, n1: 100, n2: 100, n3: 100, a: 1, b: 1},
+  star: {m: 5, n1: 30, n2: 100, n3: 100, a: 1, b: 1},
+  triangle: {m: 3, n1: 100, n2: 200, n3: 200, a: 1, b: 1}
+};
+const rc = rough.canvas(c);
+  
+var scene = [];
+var num_bodies = 1;
+var body_selected = 0;
+var selectedObject;
+var context = c.getContext("2d");
+var selected,first_selected,old_torender;
+var f2dLink;
+var over;
+var mouseDown,  moveBody;
+var oldCoordX, oldCoordY;
+var create = false;
+var undoElement;
+AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d');
+  
+function RedefineF2dLink(){
+  f2dLink = true;
+}
+function AddNewBody(){
+  if(body_selected < num_bodies-1)
+    body_selected = num_bodies-1;
+  body_selected++;
+  num_bodies++;
+}  
+function Undo(){
+  undoElement=scene[body_selected].nodes.pop();
+  render();
+}	
+function Redo(){
+  scene[body_selected].nodes.push(undoElement);
+  render();
+}	
+function Close(){
+  scene[body_selected].nodes[0].close(scene[body_selected].nodes.length-1);
+  render();
+}
+  
+function AddRenderFormula(m,n1,n2,n3,a,b,str){
+  document.getElementById('a').value = a;
+  document.getElementById('b').value = b;
+  document.getElementById('m').value = m;
+  document.getElementById('n1').value = n1;
+  document.getElementById('n2').value = n2;
+  document.getElementById('n3').value = n3;
+  document.getElementById('shape_name').innerHTML=str;
+  /*
+  var sf = new superformulaobj();
+  document.getElementById('shape_name').innerHTML=str;
+  //look here
+  let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
+  if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
+    sf.renderFormula(m,n1,n2,n3,a,b,ref);
+    sf.setName(str+'_'+body_selected);
+  }else{
+    sf.renderFormula();
+    sf.setName(m+'_'+body_selected);
+  }
+  if(!scene[body_selected])
+    scene[body_selected]={nodes:[],links:[]};
+  scene[body_selected].nodes.push(sf);
+  render();
+  */
+}
+  
+  
+function eventMove(e){
+  over = undefined;
+  if(scene.length > 0){
+    const rect = c.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+    let to_render = false;
+    if(moveBody){
+      x = oldCoordX - (e.clientX - rect.left);
+      y = oldCoordY - (e.clientY - rect.top);
+      for(let n = 0,nodes_length = scene[body_selected].nodes.length;n<nodes_length;n++){
+        scene[body_selected].nodes[n].move(x, y,'diff');
+      }
+      to_render = true;
+    }else if(isFinite(selected)){
+      to_render = true;
+      old_torender = true;
+      //if(!this.f2dLink){  
+      scene[body_selected].nodes[selected].move(x, y);
+    }else if(create){
+      x = Math.abs(oldCoordX - (e.clientX - rect.left));
+      y = Math.abs(oldCoordY - (e.clientY - rect.top));
+      let val = (x>y)?x:y;
+      scene[body_selected].nodes[scene[body_selected].nodes.length-1].setAB(val);
+      to_render = true;
+    }else{
+      
+      for(let b = 0;b<num_bodies;b++){
+        let scene_length = scene[b]?scene[b].nodes.length:0;
+        for(let o = 0;o<scene_length;o++){
+          let ret = scene[b].nodes[o].hit(x,y);
+          let ret_links;
+          if(o>0)
+            ret_links = scene[b].links[o-1].hit(x,y);
+          if(ret){
+            //console.log('hit '+o);
+            to_render = true;
+            old_torender = true;
+            over = o;
+            //document.getElementById('over').innerHTML = over;
+            if(mouseDown){
+              selected = o;
+              body_selected = b;
+              //document.getElementById('selected').innerHTML = selected;
+              if(!this.f2dLink)
+                scene[body_selected].nodes[o].move(x, y);
+              //else
+              //  if(!first_selected){
+              //    first_selected = o;
+              //    document.getElementById('first_selected').innerHTML = first_selected;
+              //  }
+            }
+            break;
+          }else{
+            if(ret_links){
+              if(mouseDown){
+                body_selected = b;
+                moveBody = true;
+              }
+              break;
+            }else{
+            
+            }
+          }
+        }
+      }   
+    }
+    if(to_render || old_torender){
+       if(!to_render && old_torender)
+         old_torender = false;
+       render();
+    }
+  }  
+}
+c.addEventListener('mousemove',(e)=>{
+  eventMove(e);  
+})
+c.addEventListener('touchmove',(e)=>{
+  eventMove(e.touches[0]);
+})  
+c.addEventListener('mousewheel',(e)=>{
+  let scale;
+  if(e.wheelDelta > 0){
+        scale = 1;
+      }else{
+        scale = -1;
+  }
+  let scene_length = scene[body_selected].nodes.length;
+  //for(let o = 0;o<scene_length;o++){
+  scene[body_selected].nodes[over].wheel(scale);
+  //}
+  render();
+})
+  
+  
+function eventDown(e){
+  const rect = c.getBoundingClientRect();
+  oldCoordX = e.clientX - rect.left;
+  oldCoordY = e.clientY - rect.top;
+  mouseDown = true;
+  
+  let ret,links_ret;
+  for(let b = 0;b<num_bodies;b++){
+    let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
+    for(let o = 0;o<scene_length;o++){
+      //scene[body_selected].nodes[o].down(oldCoordX,oldCoordY);
+      if(!ret)
+        ret = scene[b].nodes[o].hit(oldCoordX,oldCoordY);
+      if(!links_ret)
+        if(o>0)
+          links_ret = scene[b].links[o-1].hit(oldCoordX,oldCoordY);
+    }
+  }
+  
+  if(!ret){
+    if(!links_ret){
+      create = true;
+      //disegno
+      sf = new superformulaobj();
+      //look here
+      let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
+      //let a = -(-document.getElementById('a').value);
+      //let b = -(-document.getElementById('b').value);
+      let a = 1;
+      let b = 1;
+      let m = -(-document.getElementById('m').value);
+      let n1 = -(-document.getElementById('n1').value);
+      let n2 = -(-document.getElementById('n2').value);
+      let n3 = -(-document.getElementById('n3').value);
+      let str = document.getElementById('shape_name').innerHTML;
+      if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
+        sf.renderFormula(m,n1,n2,n3,a,b,ref,oldCoordX,oldCoordY);
+        sf.setName(str+'_'+body_selected);
+      }else{
+        sf.renderFormula();
+        sf.setName(m+'_'+body_selected);
+      }
+      if(!scene[body_selected])
+        scene[body_selected]={nodes:[],links:[]};
+      scene[body_selected].nodes.push(sf);
+      render();
+    } 
+  }
+}
+c.addEventListener('mousedown',(e)=>{
+  eventDown(e);
+})
+c.addEventListener('touchstart',(e)=>{
+  eventDown(e.touches[0]);
+})
+  
+function eventEnd(e){
+  mouseDown = false;
+  moveBody = false;
+  create = false;
+  const rect = c.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+  let y = e.clientY - rect.top;
+  let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
+  for(let o = 0;o<scene_length;o++){
+    if(o === first_selected)
+      scene[body_selected].nodes[o].up(x, y, selected);
+  }
+  f2dLink = false;
+  first_selected = undefined;
+  selected = undefined;
+}  
+c.addEventListener('touchend',(e)=>{
+  eventEnd(e.touches[0]);
+})
+  
+document.addEventListener('mouseup',(e)=>{
+  eventEnd(e);
+})
+  
+  function superformulaobj(){
+    var a,b,m,n1,n2,n3;
+    var points = [];
+    var moveX = 200;
+    var moveY = 200;
+    var lineWidth = 1;
+    var color = '#000';
+    var selected_color = '#F00';
+    var numberOfPoints = 45;
+    var minX = 0, maxX = 0, minY = 0, maxY = 0;
+    var select = false;
+    var name;
+    var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
+    var oldCoordX, oldCoordY;
+    var f2d_links = [];
+    this.scale = 1;
+    
+    function hit(x,y){
+      //console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
+      if(x<=(this.maxX - this.offsetX - this.oldoffsetX) && x>=(this.minX - this.offsetX - this.oldoffsetX) && y<=(this.maxY - this.offsetY - this.oldoffsetY) && y>=(this.minY - this.offsetY - this.oldoffsetY))
+        this.select = true;
+      else
+        this.select = false;
+      return this.select;
+    }
+    
+    function up(x,y,ref){  
+      if(isFinite(ref))
+        this.shapeindex = ref;
+    }
+    
+    function move(x,y,diff){
+      if(!isFinite(this.oldCoordX) && !isFinite(this.oldCoordY)){
+        this.oldCoordX = this.moveX;
+        this.oldCoordY = this.moveY;
+      }
+      if(diff){
+        this.offsetX = x;
+        this.offsetY = y;
+      }else{
+        this.offsetX = this.oldCoordX - x;
+        this.offsetY = this.oldCoordY - y;
+      }
+              
+    }
+    
+    function wheel(s){
+        if(this.select){
+          if(s>0){
+            this.a++;
+            this.b++;
+          }else{
+            if((this.a - 1) > 0 && (this.b - 1) > 0){
+                this.a--;
+                this.b--;
+            }
+            
+          }
+          this.renderFormula(this.m,this.n1,this.n2,this.n3,this.a,this.b)
+        }
+    }
+    
+    function down(x,y){
+      if(!isFinite(this.oldCoordX) && !isFinite(this.oldCoordY)){
+        this.oldCoordX = x;
+        this.oldCoordY = y;
+      }
+         
+    }
+    
+    function setAB(v){
+      this.a = v;
+      this.b = v;
+      this.renderFormula(this.m,this.n1,this.n2,this.n3,this.a,this.b)
+    }
+    
+    function superformula(phi,a,b,m,n1,n2,n3) {
+      return Math.pow( Math.pow( Math.abs( Math.cos(m * phi / 4) / a ), n2 ) + Math.pow( Math.abs( Math.sin(m * phi / 4) / b ), n3 ), -1 / n1 );
+    }
+    
+    function getName(){
+      return this.name;
+    }
+    
+    function setName(str){
+      this.name = str;
+    }
+    
+    function setName(str){
+      this.name = str;
+    }
+    
+    
+    function getCenterAndRadius(){
+      let MX = this.maxX - this.offsetX - this.oldoffsetX;
+      let mx = this.minX - this.offsetX - this.oldoffsetX;
+      let MY = this.maxY - this.offsetY - this.oldoffsetY;
+      let my = this.minY - this.offsetY - this.oldoffsetY;
+      let c_r = (MX-mx)/2;
+      let c_x = mx + (c_r);
+      let c_y = my + ((MY-my)/2);
+      return {x:c_x,y:c_y,r:c_r};
+    }
+    
+    function close(i){
+      this.shapeindex = i;
+    }
+    
+    function drawFormula(m,n1,n2,n3,a,b) {
+     
+      //context.beginPath();
+      var points_length = this.points.length;
+      let str_path = '';
+      if(!isFinite(this.offsetX) && !isFinite(this.oldoffsetX) && !isFinite(this.offsetY) && !isFinite(this.oldoffsetY)){
+        this.offsetX = 0;
+        this.oldoffsetX = 0;
+        this.offsetY = 0;
+        this.oldoffsetY = 0;      
+      }
+      //creare una struttura dati che contiene informazioni sui lati del link, se c'è curva o no, memorizzare i punti della curva se si estende per più segmenti
+      for (let index = 0; index < numberOfPoints; index++) {
+        var x,y;
+        //points[index]._x += offsetX;
+        x = this.points[index]._x - this.offsetX - this.oldoffsetX;
+        //points[index]._y += offsetY;
+        y = this.points[index]._y - this.offsetY - this.oldoffsetY;
+        if(!isFinite(x) && !isFinite(y)){
+		x = 0;
+		y = 0;
+	}
+	  if (index === 0) {
+	    //context.moveTo(x,y);
+	    str_path += 'M'+x+' '+y+' ';
+	  } else {
+	    //context.lineTo(x,y);
+	    str_path += 'L'+x+' '+y+' ';
+	  }
+        
+      }
+      //context.closePath();
+      //context.lineWidth = lineWidth;
+      str_path += 'Z';
+      let stroke_color = '';
+      if(this.select){
+        rc.rectangle(this.minX - this.offsetX - this.oldoffsetX, this.minY - this.offsetY - this.oldoffsetY, this.maxX - this.minX, this.maxY - this.minY, { stroke: selected_color, strokeWidth: 1 });
+        //context.rect(minX - offsetX - oldoffsetX, minY - offsetY - oldoffsetY, maxX - minX, maxY - minY);
+        stroke_color = selected_color;
+      }else{
+        stroke_color = color;
+      }
+      //context.stroke();
+      rc.path(str_path, { stroke: stroke_color,fill: stroke_color, fillStyle: 'zigzag' });
+    }
+    
+    function renderFormula(m,n1,n2,n3,a,b,i,x,y) {
+      this.m = m;
+      this.n1 = n1;
+      this.n2 = n2;
+      this.n3 = n3;
+      this.a = a;
+      this.b = b;
+      this.points = [];
+      if(isFinite(i))
+        this.shapeindex = i;
+      if(isFinite(x))
+        this.moveX = x;
+      if(isFinite(y))
+        this.moveY = y;
+      
+      if(!isFinite(a))
+        a = -(-document.getElementById('a').value);
+      else
+        document.getElementById('a').value = a;
+      if(!isFinite(b))
+        b = -(-document.getElementById('b').value);
+      else
+        document.getElementById('b').value = b;
+      if(!isFinite(m))
+        m = -(-document.getElementById('m').value);
+      else
+        document.getElementById('m').value = m;
+      if(!isFinite(n1))
+        n1 = -(-document.getElementById('n1').value);
+      else
+        document.getElementById('n1').value = n1;
+      if(!isFinite(n2))
+        n2 = -(-document.getElementById('n2').value);
+      else
+        document.getElementById('n2').value = n2;
+      if(!isFinite(n3))
+        n3 = -(-document.getElementById('n3').value);
+      else
+        document.getElementById('n3').value = n3;
+      
+      for (let index = 0; index < numberOfPoints; index++) {
+        var x,y;
+        
+        const radius = superformula(index / numberOfPoints * Math.PI * 2,a,b,m,n1,n2,n3);
+        x = Math.cos(index / numberOfPoints * Math.PI * 2) * radius + this.moveX;
+        y = Math.sin(index / numberOfPoints * Math.PI * 2) * radius + this.moveY;
+        
+        if(index===0){
+          this.minX=x;
+          this.maxX=x;
+          this.minY=y;
+          this.maxY=y;
+        }else{
+          if(x<this.minX)
+            this.minX=x;
+          if(x>this.maxX)
+            this.maxX=x;
+          if(y<this.minY)
+            this.minY=y;
+          if(y>this.maxY)
+            this.maxY=y;
+        }
+        this.points.push({_x:x,_y:y});
+      }
+    }
+    
+    function getRTangents(body){
+      if(isFinite(this.shapeindex)){
+        let my_json = this.getCenterAndRadius();
+        let link_json = scene[body].nodes[this.shapeindex].getCenterAndRadius();
+        let tangents = getTangents(link_json.x,link_json.y,link_json.r,my_json.x,my_json.y,my_json.r);
+        let new_link = new f2d_Link();
+        new_link.setPoints(tangents);
+        //new_link.draw();
+        scene[body].links.push(new_link);
+        
+        //rc.line(tangents[0].x, tangents[0].y, tangents[1].x, tangents[1].y);
+        //rc.line(tangents[2].x, tangents[2].y, tangents[3].x, tangents[3].y);
+      }
+      
+    }
+    return{
+      renderFormula: renderFormula,
+      drawFormula: drawFormula,
+      hit: hit,
+      move: move,
+      up: up,
+      down: down,
+      getName: getName,
+      setName: setName,
+      getCenterAndRadius: getCenterAndRadius,
+      getRTangents: getRTangents,
+      wheel: wheel,
+      close: close,
+      setAB: setAB
+    }
+  }
+function render() {
+  function drawTangentCurve(inters,x1,y1,x2,y2){
+    function drawCurvePath(a,b,c){
+      rc.curve([a,b,c], {
+        stroke: 'red', strokeWidth: 1
+      });
+      /*
+      let points = bsplit([[a[0],a[1]],[b[0],b[1]],[c[0],c[1]]], 0.8);
+      let points_l = points.length;
+      let str_path = '';
+      for (let index = 0; index < points_l; index++) {
+        let p_l = points[index].length;  
+        for (let p = 0; p < p_l; p++) {
+          var x,y;
+          //points[index]._x += offsetX;
+          x = points[index][p][0];
+          //points[index]._y += offsetY;
+          y = points[index][p][1];
+          if (index === 0) {
+            //context.moveTo(x,y);
+            str_path += 'M'+x+' '+y+' ';
+          } else {
+            //context.lineTo(x,y);
+            str_path += 'L'+x+' '+y+' ';
+          }
+        }
+        
+        
+      }
+      //context.closePath();
+      //context.lineWidth = lineWidth;
+      str_path += 'Z';
+      let stroke_color = '#00F';
+      //context.stroke();
+      rc.path(str_path, { stroke: stroke_color });
+      */
+    }
+    let r = 30;
+    let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
+    let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
+    // split at 0.3
+    //if(newPoint1 && newPoint1.x && newPoint1.y && newPoint2 && newPoint2.x && newPoint2.y){
+    //  rc.circle(newPoint1.x, newPoint1.y, 5, { stroke: '#000' });
+    //  rc.circle(newPoint2.x, newPoint2.y, 5, { stroke: '#000' });
+    //  drawCurvePath([newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]);
+      
+    //}else{
+    drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2]);
+    //}
+    
+  }
+  
+  context.clearRect(0,0,c.width,c.height);
+  
+  
+  let center_radius;
+  var bodies = scene.length;
+  for(let b = 0;b<bodies;b++){
+    var scene_length = scene[b].links = [];
+    var scene_length = scene[b].nodes.length;
+    let toRender = {curves:[],tangents:[]};
+    for(let o = 0;o<scene_length;o++){
+      scene[b].nodes[o].drawFormula();
+      let name = scene[b].nodes[o].getName();
+      if(name.indexOf('f2d') !== -1){
+        scene[b].nodes[o].getRTangents(b);
+        /**/
+        if(o>1){
+          let pointsTangent1 = scene[b].links[o-2].getPoints();
+          let pointsTangent2 = scene[b].links[o-1].getPoints();
+	  //link_json.x,link_json.y,link_json.r
+	  let center3 = scene[b].nodes[o-2].getCenterAndRadius();
+	  let center2 = scene[b].nodes[o-1].getCenterAndRadius();
+	  let center1 = scene[b].nodes[o].getCenterAndRadius();
+	  let angle1 = findAngle(center1,center2,center3);
+	  //let angle2 = findAngle(center2,center3);
+	  document.getElementById('angle1').innerHTML = angle1;
+	  //document.getElementById('angle2').innerHTML = angle2;
+	  if(debug){
+	  	rc.circle(pointsTangent1[0].x, pointsTangent1[0].y, 5, { stroke: '#F00' });
+		rc.circle(pointsTangent1[1].x, pointsTangent1[1].y, 5, { stroke: '#0F0' });
+		rc.circle(pointsTangent1[2].x, pointsTangent1[2].y, 5, { stroke: '#00F' });
+		rc.circle(pointsTangent1[3].x, pointsTangent1[3].y, 5, { stroke: '#000' });
+		rc.circle(pointsTangent2[0].x, pointsTangent2[0].y, 5, { stroke: '#0FF' });
+		rc.circle(pointsTangent2[1].x, pointsTangent2[1].y, 5, { stroke: '#F0F' });
+		rc.circle(pointsTangent2[2].x, pointsTangent2[2].y, 5, { stroke: '#222' });
+		rc.circle(pointsTangent2[3].x, pointsTangent2[3].y, 5, { stroke: '#DDD' });
+	  }  
+                        
+          let pointsTangent1_l = pointsTangent1.length/2;
+          let pointsTangent2_l = pointsTangent2.length/2;
+          for(let p1 = 0;p1<=pointsTangent1_l;){
+            for(let p2 = 0;p2<=pointsTangent2_l;){
+              let inters = segment_intersection(pointsTangent1[p1].x,pointsTangent1[p1].y,pointsTangent1[p1+1].x,pointsTangent1[p1+1].y,pointsTangent2[p2].x,pointsTangent2[p2].y,pointsTangent2[p2+1].x,pointsTangent2[p2+1].y);
+              if(inters){
+		if(debug){
+                	rc.circle(inters.x, inters.y, 5, { stroke: '#DDD' });
+		}
+		let point1, point2,tang1,tang2,tang3,tang4;
+		if(p1 === 0){
+			tang1 = p1 + 2;
+			tang2 = p1 + 3;
+		}else{
+			tang1 = 0;
+			tang2 = 1;
+		}
+		if(p2 === 0){
+			tang3 = p2 + 2;
+			tang4 = p2 + 3;
+		}else{
+			tang3 = 0;
+			tang4 = 1;
+		}
+		if(angle1 > 180){
+			
+			point1 = p1+1;
+			point2 = p2;
+		}else{
+			point1 = p1;
+			point2 = p2+1;
+		}
+		if(o === 2){
+			//rc.line(pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y, { stroke: '#000'});
+			toRender.tangents.push({lato:`${o}_t`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
+		}
+		
+		//rc.line(pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y, { stroke: '#000'});
+		toRender.tangents.push({lato:`${o}_t`,data:[pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y]});
+		//drawTangentCurve(inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y);
+		toRender.curves.push({lato:`${o}_c`,data:[inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y]});
+                break;
+              }else{
+                p2 += 2;
+              }
+            }
+            p1 += 1;
+          }            
+        }else{
+		if(o>0 && (scene_length-1) === 1){
+			scene[b].links[o-1].draw();
+		}
+	}
+	let tangents_l = toRender.tangents.length;
+        for(let t = 0;t<tangents_l;t++)
+	      rc.line(toRender.tangents[t].data[0], toRender.tangents[t].data[1], toRender.tangents[t].data[2], toRender.tangents[t].data[3], { stroke: '#000'});
+	let curves_l = toRender.curves.length;
+      	for(let c = 0;c<curves_l;c++)
+	      drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4]);
+        /**/
+      }
+    }
+  }
+  
+      
+}
+  
+function resize() {
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+}
+//window.requestAnimationFrame(frame);
+window.addEventListener("resize", resize);
+window.dispatchEvent(new Event("resize"));
+  
+/*
+function render() {
+  context.clearRect(0,0,c.width,c.height);
+  
+  
+  let center_radius;
+  var bodies = scene.length;
+  for(let b = 0;b<bodies;b++){
+    var scene_length = scene[b].links = [];
+    var scene_length = scene[b].nodes.length;
+    for(let o = 0;o<scene_length;o++){
+      scene[b].nodes[o].drawFormula();
+      let name = scene[b].nodes[o].getName();
+      if(name.indexOf('f2d') !== -1){
+        scene[b].nodes[o].getRTangents(b);
+        if(o>1){
+          let pointsTangent1 = scene[b].nodes[o-1].getPoints();
+          let pointsTangent2 = scene[b].nodes[o].getPoints();
+          let inters = segment_intersection(pointsTangent1[0].x,pointsTangent1[0].y,pointsTangent1[1].x,pointsTangent1[1].y, pointsTangent2[0].x,pointsTangent2[0].y,pointsTangent2[1].x,pointsTangent2[1].y,);
+          if(inters){
+            let newPoint1 = doCircleLineInt(inters.x,inters.y,r,pointsTangent1[1].x,pointsTangent1[1].y);
+            let newPoint2 = doCircleLineInt(inters.x,inters.y,r,pointsTangent1[3].x,pointsTangent1[3].y);
+            // split at 0.3
+            let points = bsplit([[newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]], 0.3);
+            let points_l = points.length;
+            let str_path;
+            for (let index = 0; index < points_l; index++) {
+              var x,y;
+              //points[index]._x += offsetX;
+              x = this.points[index].x;
+              //points[index]._y += offsetY;
+              y = this.points[index].y;
+              if (index === 0) {
+                //context.moveTo(x,y);
+                str_path += 'M'+x+' '+y+' ';
+              } else {
+                //context.lineTo(x,y);
+                str_path += 'L'+x+' '+y+' ';
+              }
+            }
+            //context.closePath();
+            //context.lineWidth = lineWidth;
+            str_path += 'Z';
+            let stroke_color = '#000';
+            
+            //context.stroke();
+            rc.path(str_path, { stroke: stroke_color });
+          }
+            
+        }
+        }
+    }
+  }
+  
+      
+}
+*/
+</script>
+</body>
+</html>
