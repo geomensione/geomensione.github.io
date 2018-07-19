@@ -582,8 +582,9 @@ function render() {
     function drawCurvePath(a,b,c){
       let curve_points = bezier([a,b,c]);
       let pointToDraw = [];
-      for (var t = 0; t <= 10; t++) 
-	      pointToDraw.push(curve_points(t/10));
+      let steps = 5;
+      for (var t = 0; t <= steps; t++) 
+	      pointToDraw.push(curve_points(t/steps));
 	
       rc.curve(pointToDraw, {
         stroke: 'red', strokeWidth: 1
