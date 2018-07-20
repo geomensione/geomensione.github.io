@@ -600,7 +600,7 @@ function render() {
 	}
 	      
       }
-      let ret = false;
+      let ret = [];
 	    
       if(!intersection){
 	if(prev_curve.length === 0){
@@ -610,7 +610,8 @@ function render() {
       //rc.curve(prev_curve, {
 	//	stroke: 'red', strokeWidth: 1
 	//});
-	ret = prev_curve;
+	      //clone
+	ret = prev_curve.slice(0);
 	prev_curve.length = 0;
 	
       }else{
