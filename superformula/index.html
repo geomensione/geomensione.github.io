@@ -657,8 +657,8 @@ function render() {
     	toRender.push({curves:[],tangents:[]});
     }
 
-    prev_curve = [];
-    controlPoints = [];
+    prev_curve.length = 0;
+    controlPoints.length = 0;
     for(let o = 0;o<scene_length;o++){
       scene[b].nodes[o].drawFormula();
       let name = scene[b].nodes[o].getName();
