@@ -764,9 +764,11 @@ function render() {
 	for(let t = 0;t<tangents_l;t++)
 		rc.line(toRender.tangents[t].data[0], toRender.tangents[t].data[1], toRender.tangents[t].data[2], toRender.tangents[t].data[3], { stroke: '#000'});
 	let curves_l = toRender.curves.length;
-	for(let c = 0;c<curves_l;c++)
+	for(let c = 0;c<curves_l;c++){
 		let ret = drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4]);
 		if(ret)
+			console.log('intersezione fra curve!');
+	}
 			
 	/**/
       
