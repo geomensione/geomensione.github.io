@@ -605,7 +605,13 @@ function render() {
 	if(prev_curve.length === 0){
 		prev_curve = pointToDraw;
 		controlPoints = [a,b,c];
+	}else{
+		rc.curve(prev_curve, {
+			stroke: 'red', strokeWidth: 1
+		});
+		prev_curve.length = 0;
 	}
+	
       }else{
 	      controlPoints.pop();
 	      controlPoints.push(b);
@@ -613,9 +619,7 @@ function render() {
 	      prev_curve = bezier(controlPoints);
       	      ret = true;
       }
-      rc.curve(prev_curve, {
-	stroke: 'red', strokeWidth: 1
-      });
+      
       return ret;
       
       /*
