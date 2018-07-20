@@ -579,8 +579,10 @@ document.addEventListener('mouseup',(e)=>{
   }
 function render() {
   let prev_curve = [];
+  let controlPoints = [];
   function drawTangentCurve(inters,x1,y1,x2,y2){
     function drawCurvePath(a,b,c){
+      //create bezier points array. If a prev curve exists I check if it intersects this. If no i save control points and bezier points. If yes I add second and third points into prev control points array. draw curve
       let curve_points = bezier([a,b,c]);
       let pointToDraw = [];
       let steps = 5;
@@ -605,12 +607,14 @@ function render() {
       let ret = false;
       if(!intersection){
 	if(prev_curve.length === 0){
-		prev_curve = [a,b,c];
+		prev_curve = pointToDraw;
+		controlPoints = [a,b,c];
 	}
       }else{
-	      prev_curve.pop();
-	      prev_curve.push(b);
-	      prev_curve.push(c);
+	      controlPoints.pop();
+	      controlPoints.push(b);
+	      controlPoints.push(c);
+	      prev_curve = bezier(controlPoints);
       	      ret = true;
       }
       rc.curve(prev_curve, {
