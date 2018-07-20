@@ -623,7 +623,8 @@ function render() {
 		//      rc.curve(prev_curve, {
 		//		stroke: 'red', strokeWidth: 1
 		//	});
-	      ret = prev_curve.slice(0);
+	      if(last)
+	      	ret = prev_curve.slice(0);
       	      
       }
       /*
@@ -749,7 +750,7 @@ function render() {
 		let last;
 		if(c === curves_l-1)
 			last = true;
-		let ret = drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4],true);
+		let ret = drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4],last);
 		if(ret && ret.length > 0)
 			rc.curve(ret, {
 				stroke: 'blue', strokeWidth: 1
