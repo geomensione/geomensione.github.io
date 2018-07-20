@@ -602,21 +602,20 @@ function render() {
 	}
 	      
       }
+      let ret = false;
       if(!intersection){
 	if(prev_curve.length === 0)
 		prev_curve = [a,b,c];
-      	
-	
-	return false;
       }else{
 	      prev_curve.pop();
 	      prev_curve.push(b);
 	      prev_curve.push(c);
-      	return true;
+      	return ret = true;
       }
       rc.curve(prev_curve, {
 	stroke: 'red', strokeWidth: 1
       });
+      return ret;
       
       /*
       let points = bsplit([[a[0],a[1]],[b[0],b[1]],[c[0],c[1]]], 0.8);
