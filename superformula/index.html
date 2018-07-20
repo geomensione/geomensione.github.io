@@ -607,10 +607,10 @@ function render() {
 		prev_curve = pointToDraw;
 		controlPoints = [a,b,c];
 	}
-      rc.curve(prev_curve, {
-		stroke: 'red', strokeWidth: 1
-	});
-	//prev_curve.length = 0;
+      //rc.curve(prev_curve, {
+	//	stroke: 'red', strokeWidth: 1
+	//});
+	prev_curve.length = 0;
 	
 	
       }else{
@@ -618,13 +618,15 @@ function render() {
 	      controlPoints.push(b);
 	      controlPoints.push(c);
 	      prev_curve = bezier(controlPoints);
-	      if(last)
-		      rc.curve(prev_curve, {
-				stroke: 'red', strokeWidth: 1
-			});
+	      //if(last)
+		//      rc.curve(prev_curve, {
+		//		stroke: 'red', strokeWidth: 1
+		//	});
       	      ret = true;
       }
-      
+      rc.curve(prev_curve, {
+		stroke: 'red', strokeWidth: 1
+	});
       return ret;
       
       
