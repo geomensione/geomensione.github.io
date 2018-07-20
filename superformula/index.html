@@ -610,8 +610,9 @@ function render() {
       //rc.curve(prev_curve, {
 	//	stroke: 'red', strokeWidth: 1
 	//});
+	ret = prev_curve;
 	prev_curve.length = 0;
-	
+	return tmp;
 	
       }else{
 	      controlPoints.pop();
@@ -622,11 +623,13 @@ function render() {
 		//      rc.curve(prev_curve, {
 		//		stroke: 'red', strokeWidth: 1
 		//	});
-      	      ret = true;
+      	       ret = [];
       }
+      /*
       rc.curve(prev_curve, {
 		stroke: 'red', strokeWidth: 1
 	});
+	*/
       return ret;
       
       
