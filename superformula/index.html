@@ -610,7 +610,7 @@ function render() {
       rc.curve(prev_curve, {
 		stroke: 'red', strokeWidth: 1
 	});
-	prev_curve.length = 0;
+	//prev_curve.length = 0;
 	
 	
       }else{
@@ -627,49 +627,13 @@ function render() {
       
       return ret;
       
-      /*
-      let points = bsplit([[a[0],a[1]],[b[0],b[1]],[c[0],c[1]]], 0.8);
-      let points_l = points.length;
-      let str_path = '';
-      for (let index = 0; index < points_l; index++) {
-        let p_l = points[index].length;  
-        for (let p = 0; p < p_l; p++) {
-          var x,y;
-          //points[index]._x += offsetX;
-          x = points[index][p][0];
-          //points[index]._y += offsetY;
-          y = points[index][p][1];
-          if (index === 0) {
-            //context.moveTo(x,y);
-            str_path += 'M'+x+' '+y+' ';
-          } else {
-            //context.lineTo(x,y);
-            str_path += 'L'+x+' '+y+' ';
-          }
-        }
-        
-        
-      }
-      //context.closePath();
-      //context.lineWidth = lineWidth;
-      str_path += 'Z';
-      let stroke_color = '#00F';
-      //context.stroke();
-      rc.path(str_path, { stroke: stroke_color });
-      */
+      
     }
     let r = 30;
     let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
     let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
-    // split at 0.3
-    //if(newPoint1 && newPoint1.x && newPoint1.y && newPoint2 && newPoint2.x && newPoint2.y){
-    //  rc.circle(newPoint1.x, newPoint1.y, 5, { stroke: '#000' });
-    //  rc.circle(newPoint2.x, newPoint2.y, 5, { stroke: '#000' });
-    //  drawCurvePath([newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]);
-      
-    //}else{
+    
     return drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2],last);
-    //}
     
   }
   
