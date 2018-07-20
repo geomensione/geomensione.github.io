@@ -12,7 +12,7 @@ function bezier(pts) {
 	let steps = 5;
 	let steps_diff = pts.length - 3;
 	if(steps_diff)
-		steps = steps * (steps_diff/2);
+		steps = steps * steps_diff;
 	for (var t = 0; t <= steps; t++) 
 	      pointToDraw.push(fn(t/steps));
 	return pointToDraw;
