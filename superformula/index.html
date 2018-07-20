@@ -580,8 +580,8 @@ document.addEventListener('mouseup',(e)=>{
 function render() {
   let prev_curve = [];
   let controlPoints = [];
-  function drawTangentCurve(inters,x1,y1,x2,y2){
-    function drawCurvePath(a,b,c){
+  function drawTangentCurve(inters,x1,y1,x2,y2,last){
+    function drawCurvePath(a,b,c,last){
       //create bezier points array. If a prev curve exists I check if it intersects this. If no i save control points and bezier points. If yes I add second and third points into prev control points array. draw curve
       let pointToDraw =  bezier([a,b,c]);
       let intersection = false;
@@ -617,6 +617,10 @@ function render() {
 	      controlPoints.push(b);
 	      controlPoints.push(c);
 	      prev_curve = bezier(controlPoints);
+	      if(last)
+		      rc.curve(prev_curve, {
+				stroke: 'red', strokeWidth: 1
+			});
       	      ret = true;
       }
       
@@ -663,7 +667,7 @@ function render() {
     //  drawCurvePath([newPoint1.x,newPoint1.y],[inters.x,inters.y],[newPoint2.x,newPoint2.y]);
       
     //}else{
-    return drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2]);
+    return drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2],last);
     //}
     
   }
@@ -771,7 +775,10 @@ function render() {
 		rc.line(toRender.tangents[t].data[0], toRender.tangents[t].data[1], toRender.tangents[t].data[2], toRender.tangents[t].data[3], { stroke: '#000'});
 	let curves_l = toRender.curves.length;
 	for(let c = 0;c<curves_l;c++){
-		let ret = drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4]);
+		let last;
+		if(c === curves_l-1)
+			last = true;
+		let ret = drawTangentCurve(toRender.curves[c].data[0], toRender.curves[c].data[1], toRender.curves[c].data[2], toRender.curves[c].data[3], toRender.curves[c].data[4],true);
 		if(ret)
 			console.log('intersezione fra curve!');
 	}
