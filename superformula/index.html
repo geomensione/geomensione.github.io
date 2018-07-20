@@ -653,7 +653,8 @@ function render() {
   for(let b = 0;b<bodies;b++){
     var scene_length = scene[b].links = [];
     var scene_length = scene[b].nodes.length;
-    
+    prev_curve = [];
+    controlPoints = [];
     for(let o = 0;o<scene_length;o++){
       scene[b].nodes[o].drawFormula();
       let name = scene[b].nodes[o].getName();
