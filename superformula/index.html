@@ -578,7 +578,7 @@ document.addEventListener('mouseup',(e)=>{
     }
   }
 function render() {
-  let prev_curve;
+  let prev_curve = [];
   function drawTangentCurve(inters,x1,y1,x2,y2){
     function drawCurvePath(a,b,c){
       let curve_points = bezier([a,b,c]);
