@@ -604,8 +604,9 @@ function render() {
       }
       let ret = false;
       if(!intersection){
-	if(prev_curve.length === 0)
+	if(prev_curve.length === 0){
 		prev_curve = [a,b,c];
+	}
       }else{
 	      prev_curve.pop();
 	      prev_curve.push(b);
