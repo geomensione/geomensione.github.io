@@ -583,11 +583,7 @@ function render() {
   function drawTangentCurve(inters,x1,y1,x2,y2){
     function drawCurvePath(a,b,c){
       //create bezier points array. If a prev curve exists I check if it intersects this. If no i save control points and bezier points. If yes I add second and third points into prev control points array. draw curve
-      let curve_points = bezier([a,b,c]);
-      let pointToDraw = [];
-      let steps = 5;
-      for (var t = 0; t <= steps; t++) 
-	      pointToDraw.push(curve_points(t/steps));
+      let pointToDraw =  bezier([a,b,c]);
       let intersection = false;
       if(prev_curve.length > 0){
       	let prev_curve_l = prev_curve.length;
