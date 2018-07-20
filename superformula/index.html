@@ -586,10 +586,11 @@ function render() {
       let steps = 5;
       for (var t = 0; t <= steps; t++) 
 	      pointToDraw.push(curve_points(t/steps));
+      let intersection = false;
       if(prev_curve.length > 0){
       	let prev_curve_l = prev_curve.length;
 	let pointToDraw_l = pointToDraw.length;
-	let intersection = false;
+	
 	for(let c = 0;c<prev_curve_l-1;c++){
 		for(let d = 0;d<pointToDraw_l-1;d++){
 			let inters = segment_intersection(prev_curve[c][0],prev_curve[c][1],prev_curve[c+1][0],prev_curve[c+1][1],pointToDraw[d][0],pointToDraw[d][1],pointToDraw[d+1][0],pointToDraw[d+1][1],);
