@@ -748,7 +748,7 @@ function render() {
   }
 	var scene_l = scene.length;
   	for(let b = 0;b<scene_l;b++){
-		let tangents_l = toRender.tangents.length;
+		let tangents_l = toRender[b].tangents.length;
 		for(let t = 0;t<tangents_l;t++)
 			rc.line(toRender[b].tangents[t].data[0], toRender[b].tangents[t].data[1], toRender[b].tangents[t].data[2], toRender[b].tangents[t].data[3], { stroke: '#000'});
 		let curves_l = toRender[b].curves.length;
