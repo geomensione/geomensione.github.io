@@ -104,6 +104,7 @@ noionic
 superformula
 
 [https://geomensione.github.io/superformula](https://geomensione.github.io/superformula)
+[https://geomensione.github.io/superformula/index_superformula.html](https://geomensione.github.io/superformula/index_superformula.html)
 
 abbagli mummade
 
