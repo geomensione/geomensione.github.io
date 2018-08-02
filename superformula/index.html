@@ -588,17 +588,17 @@ function render() {
       let intersection = false;
       if(prev_curve.length > 0){
       	let prev_curve_l = prev_curve.length;
-	let pointToDraw_l = pointToDraw.length;
-	
-	for(let c = 0;c<prev_curve_l-1;c++){
-		for(let d = 0;d<pointToDraw_l-1;d++){
-			let inters = segment_intersection(prev_curve[c][0],prev_curve[c][1],prev_curve[c+1][0],prev_curve[c+1][1],pointToDraw[d][0],pointToDraw[d][1],pointToDraw[d+1][0],pointToDraw[d+1][1],);
-			if(inters){
-				intersection = true;
-				break;
+		let pointToDraw_l = pointToDraw.length;
+		
+		for(let c = 0;c<prev_curve_l-1;c++){
+			for(let d = 0;d<pointToDraw_l-1;d++){
+				let inters = segment_intersection(prev_curve[c][0],prev_curve[c][1],prev_curve[c+1][0],prev_curve[c+1][1],pointToDraw[d][0],pointToDraw[d][1],pointToDraw[d+1][0],pointToDraw[d+1][1],);
+				if(inters){
+					intersection = true;
+					break;
+				}
 			}
 		}
-	}
 	      
       }
       let ret = [];
@@ -637,9 +637,9 @@ function render() {
       
       
     }
-    let r = 30;
-    let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
-    let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
+    //let r = 30;
+    //let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
+    //let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
     
     return drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2],last);
     
@@ -762,18 +762,19 @@ function render() {
       let tangents_l = toRender[b].tangents.length;
       for(let t = 0;t<tangents_l;t++){
         rc.line(toRender[b].tangents[t].data[0], toRender[b].tangents[t].data[1], toRender[b].tangents[t].data[2], toRender[b].tangents[t].data[3], { stroke: '#000'});
-        let curves_l = toRender[b].curves.length;
-        for(let c = 0;c<curves_l;c++){
-          let last;
-          if(c === curves_l-1)
-            last = true;
-          let ret = drawTangentCurve(toRender[b].curves[c].data[0], toRender[b].curves[c].data[1], toRender[b].curves[c].data[2], toRender[b].curves[c].data[3], toRender[b].curves[c].data[4],last);
-          if(ret && ret.length > 0)
-            rc.curve(ret, {
-              stroke: 'blue', strokeWidth: 1
-            });
-        }
+        
       }
+	  let curves_l = toRender[b].curves.length;
+		for(let c = 0;c<curves_l;c++){
+		  let last;
+		  if(c === curves_l-1)
+			last = true;
+		  let ret = drawTangentCurve(toRender[b].curves[c].data[0], toRender[b].curves[c].data[1], toRender[b].curves[c].data[2], toRender[b].curves[c].data[3], toRender[b].curves[c].data[4],last);
+		  if(ret && ret.length > 0)
+			rc.curve(ret, {
+			  stroke: 'blue', strokeWidth: 1
+			});
+		}
     }
   }
 	
