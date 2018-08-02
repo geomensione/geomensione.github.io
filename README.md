@@ -117,3 +117,5 @@ game programming patterns
 
 [http://gameprogrammingpatterns.com/contents.html](http://gameprogrammingpatterns.com/contents.html)
 
+todo:
+  finish travis-ci configuration
