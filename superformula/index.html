@@ -607,12 +607,15 @@ function render() {
 	if(prev_curve.length === 0){
 		prev_curve = pointToDraw.slice(0);
 		controlPoints = [a,b,c];
+	}else{
+		ret = prev_curve.slice(0);
+		prev_curve.length = 0;	
 	}
       //rc.curve(prev_curve, {
 	//	stroke: 'red', strokeWidth: 1
 	//});
 	      //clone
-	ret = prev_curve.slice(0);
+	//ret = prev_curve.slice(0);
 	//prev_curve.length = 0;
 	
       }else{
