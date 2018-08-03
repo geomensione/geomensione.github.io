@@ -624,9 +624,11 @@ function render() {
 		//      rc.curve(prev_curve, {
 		//		stroke: 'red', strokeWidth: 1
 		//	});
-	      if(last)
+	      if(last){
 	      	ret = prev_curve.slice(0);
-      	      
+	      }else{
+	      	ret.length = 0;
+	      }
       }
       /*
       rc.curve(prev_curve, {
