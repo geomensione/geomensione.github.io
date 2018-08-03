@@ -721,11 +721,11 @@ function render() {
                     point1 = p1;
                     point2 = p2+1;
                   }
-				  /*
+				  
                   if(o === 2){
                     toRender[b].tangents.push({lato:`${o}_${tang1}`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
                   }
-                  */
+                  
                   toRender[b].tangents.push({lato:`${o}_${tang3}`,data:[pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y]});
                   toRender[b].curves.push({lato:`${o}_${point1}`,data:[inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y]});
                   break;
