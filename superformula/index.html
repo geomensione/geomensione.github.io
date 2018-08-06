@@ -254,7 +254,7 @@ function eventDown(e){
   
   let ret,links_ret;
   for(let b = 0;b<num_bodies;b++){
-    let scene_length = scene[body_selected]?scene[body_selected].nodes.length:0;
+    let scene_length = scene[b]?scene[b].nodes.length:0;
     for(let o = 0;o<scene_length;o++){
       //scene[body_selected].nodes[o].down(oldCoordX,oldCoordY);
       if(!ret)
