@@ -763,7 +763,7 @@ function render() {
 	  for(let t = 0;t<tangents_l;t++){
         if(t>0){
 			let last;
-			if(t === curves_l-1)
+			if(t === tangents_l-1)
 				last = true;
 			let ret = drawTangentCurve(toRender[b].curves[t-1].data[0], toRender[b].curves[t-1].data[1], toRender[b].curves[t-1].data[2], toRender[b].curves[t-1].data[3], toRender[b].curves[t-1].data[4],last);
 			if(ret && ret.length > 0)
