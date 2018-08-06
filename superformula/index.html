@@ -771,7 +771,7 @@ function render() {
 				  stroke: 'blue', strokeWidth: 1
 				});
 		
-			if(!(toRender[b].tangents[t-1].data[0] !== toRender[b].curves[t-1].data[0]) && !(toRender[b].tangents[t-1].data[1] !== toRender[b].curves[t-1].data[1]) && last)
+			if(!(toRender[b].tangents[t-1].data[0] !== toRender[b].curves[t-1].data[0]) && !(toRender[b].tangents[t-1].data[1] !== toRender[b].curves[t-1].data[1]) || last)
 				rc.line(toRender[b].tangents[t].data[0], toRender[b].tangents[t].data[1], toRender[b].tangents[t].data[2], toRender[b].tangents[t].data[3], { stroke: '#000'});
 		}else{
 			rc.line(toRender[b].tangents[t].data[0], toRender[b].tangents[t].data[1], toRender[b].tangents[t].data[2], toRender[b].tangents[t].data[3], { stroke: '#000'});
