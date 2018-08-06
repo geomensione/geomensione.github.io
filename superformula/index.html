@@ -652,7 +652,7 @@ function render() {
   var bodies = scene.length;
   let toRender = [{curves:[],tangents:[]}];
   function renderBody(b){
-    //if(b<bodies){
+    if(b<bodies){
 	var scene_length = scene[b].links = [];
 	var scene_length = scene[b].nodes.length;
 	if(!toRender[b]){
@@ -745,12 +745,12 @@ function render() {
 
 
 	}
-	//renderBody(++b);
-    //}else{
+	renderBody(++b);
+    }else{
     drawAll();
-    //}
+    }
   }
-  renderBody(body_selected);
+  renderBody(0);
 
   function drawAll(){
     var scene_l = scene.length;
