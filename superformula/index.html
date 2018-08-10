@@ -21,39 +21,7 @@
     <input type='button' value="undo" onclick="Undo()"></input>
     <input type='button' value="redo" onclick="Redo()"></input>
     <input type='button' value="close" onclick="Close()"></input> 
-    angle1:<span id="angle1"></span> angle2:<span id="angle2"></span>  
-     
-<!-- 
-    m,n1,n2,n3,a,b
-    <span id="selected"></span> 
-    <span id="first_selected"></span>
-    <span id="over"></span> 
-    
-    <input type='button' id="f2dLink" value="Redefine f2d link" onclick="RedefineF2dLink()"></input>
-    <input type='button' id="addShape" value="add shape" onclick="AddRenderFormula('custom')"></input>
-    <input type='button' value="asterisk" onclick="AddRenderFormula(12, 0.3, 1, 10, 0.55, 1.1,'asterisk')"></input>
-    <input type='button' value="bean" onclick="AddRenderFormula(2, 1, 4, 8, 1.8, 1.8,'bean')"></input>
-    <input type='button' value="butterfly" onclick="AddRenderFormula(3, 1, 6, 2, 2, 4,'butterfly')"></input>
-    <input type='button' value="circle" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'circle')"></input>
-    <input type='button' value="f2d" onclick="AddRenderFormula(4, 2, 2, 2, 50, 50, 'f2d')"></input>
-    <input type='button' value="clover" onclick="AddRenderFormula(6, 0.3, 0.1, 10, 1.1, 1.1,'clover')"></input>
-    <input type='button' value="cloverFour" onclick="AddRenderFormula(8, 10, -1, -8, 0.000000000000001,0.000000000000001,'cloverFour')"></input>
-    <input type='button' value="cross" onclick="AddRenderFormula(8, 1.3, 0.1, 8, 10000000, 10000000,'cross')"></input>
-    <input type='button' value="diamond" onclick="AddRenderFormula(4, 1, 1, 1, 100, 100,'diamond')"></input>
-    <input type='button' value="drop" onclick="AddRenderFormula(1, 0.5, 0.5, 0.5, 100, 100,'drop')"></input>
-    <input type='button' value="ellipse" onclick="AddRenderFormula(4, 2, 2, 2, 90, 60,'ellipse')"></input>
-    <input type='button' value="gear" onclick="AddRenderFormula(19, 100, 50, 50, 1000, 1000,'gear')"></input>
-    <input type='button' value="heart" onclick="AddRenderFormula(1, 0.8, 1, -8, 1, 0.18,'heart')"></input>
-    <input type='button' value="heptagon" onclick="AddRenderFormula(7, 1000, 400, 400, 1, 0.18,'heptagon')"></input>
-    <input type='button' value="hexagon" onclick="AddRenderFormula(6, 1000, 400, 400, 1, 1,'hexagon')"></input>
-    <input type='button' value="malteseCross" onclick="AddRenderFormula(8, 0.9, 0.1, 100, 2, 2,'malteseCross')"></input>
-    <input type='button' value="pentagon" onclick="AddRenderFormula(5, 1000, 600, 600, 1, 1,'pentagon')"></input>
-    <input type='button' value="rectangle" onclick="AddRenderFormula(4, 100, 100, 100, 2, 1,'rectangle')"></input>
-    <input type='button' value="roundedStar" onclick="AddRenderFormula(5, 2, 7, 7, 2, 1,'roundedStar')"></input>
-    <input type='button' value="square" onclick="AddRenderFormula(4, 100, 100, 100, 1, 1,'square')"></input>
-    <input type='button' value="star" onclick="AddRenderFormula(5, 30, 100, 100, 1, 1,'star')"></input>
-    <input type='button' value="triangle" onclick="AddRenderFormula(3, 100, 200, 200, 1, 1,'triangle')"></input>
-    -->
+    angle1:<span id="angle1"></span> angle2:<span id="angle2"></span>
   </div>
   <div class="f2dcanvas">
     <canvas id=c></canvas>
@@ -131,23 +99,6 @@ function AddRenderFormula(m,n1,n2,n3,a,b,str){
   document.getElementById('n2').value = n2;
   document.getElementById('n3').value = n3;
   document.getElementById('shape_name').innerHTML=str;
-  /*
-  var sf = new superformulaobj();
-  document.getElementById('shape_name').innerHTML=str;
-  //look here
-  let ref = scene[body_selected]?scene[body_selected].nodes.length-1:undefined;
-  if(isFinite(m) && isFinite(n1) && isFinite(n2) && isFinite(n3) && isFinite(a) && isFinite(b)){
-    sf.renderFormula(m,n1,n2,n3,a,b,ref);
-    sf.setName(str+'_'+body_selected);
-  }else{
-    sf.renderFormula();
-    sf.setName(m+'_'+body_selected);
-  }
-  if(!scene[body_selected])
-    scene[body_selected]={nodes:[],links:[]};
-  scene[body_selected].nodes.push(sf);
-  render();
-  */
 }
   
   
@@ -618,28 +569,18 @@ function render() {
 	      controlPoints.push(b);
 	      controlPoints.push(c);
 	      prev_curve = bezier(controlPoints);
-	      //if(last)
-		//      rc.curve(prev_curve, {
-		//		stroke: 'red', strokeWidth: 1
-		//	});
+	      
 	      if(last){
 	      	ret = prev_curve.slice(0);
 	      }else{
 	      	ret.length = 0;
 	      }
       }
-      /*
-      rc.curve(prev_curve, {
-		stroke: 'red', strokeWidth: 1
-	});
-	*/
+    
       return ret;
       
       
     }
-    //let r = 30;
-    //let newPoint1 = doCircleLineInt(inters.x,inters.y,r,x1,y1)[0];
-    //let newPoint2 = doCircleLineInt(inters.x,inters.y,r,x2,y2)[0];
     
     return drawCurvePath([x1,y1],[inters.x,inters.y],[x2,y2],last);
     
@@ -780,24 +721,8 @@ function render() {
 		
         
       }
-	  /*
-	  for(let c = 0;c<curves_l;c++){
-		  let last;
-		  if(c === curves_l-1)
-			last = true;
-		  let ret = drawTangentCurve(toRender[b].curves[c].data[0], toRender[b].curves[c].data[1], toRender[b].curves[c].data[2], toRender[b].curves[c].data[3], toRender[b].curves[c].data[4],last);
-		  if(ret && ret.length > 0)
-			rc.curve(ret, {
-			  stroke: 'blue', strokeWidth: 1
-			});
-		}
-		*/
     }
   }
-	
-	
-			
-	/**/
       
 }
   
