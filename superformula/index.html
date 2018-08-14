@@ -1,7 +1,7 @@
 <html>
 <head>
   
-  <title>Superformula & rough & f2d v0.21</title>
+  <title>Superformula & rough & f2d v0.22</title>
   <script src="../rough/js/rough.min.js"></script>
   <script src="../paperjs/js/tangents.js"></script>
   <script src="js/PointInsideF2dLink.js"></script>
@@ -558,11 +558,15 @@ function render() {
 	if(prev_curve.length === 0){
 		prev_curve = pointToDraw.slice(0);
 		controlPoints = [a,b,c];
+    if(last)
+      ret = JSON.parse(JSON.stringify(prev_curve));  
 	}else{
+    ret = JSON.parse(JSON.stringify(prev_curve));
 		prev_curve.length = 0;	
-	}
-	ret = pointToDraw.slice(0);
-      
+	  
+  
+  }
+	    
 	
       }else{
 	      controlPoints.pop();
@@ -599,8 +603,6 @@ function render() {
 	if(!toRender[b]){
 	toRender.push({curves:[],tangents:[]});
 	}
-
-
 	controlPoints.length = 0;
 	for(let o = 0;o<scene_length;o++){
 	scene[b].nodes[o].drawFormula();
@@ -629,7 +631,6 @@ function render() {
 	    rc.circle(pointsTangent2[2].x, pointsTangent2[2].y, 5, { stroke: '#222' });
 	    rc.circle(pointsTangent2[3].x, pointsTangent2[3].y, 5, { stroke: '#DDD' });
 	    }  
-
 	    let pointsTangent1_l = pointsTangent1.length/2;
 	    let pointsTangent2_l = pointsTangent2.length/2;
 	    for(let p1 = 0;p1<=pointsTangent1_l;){
@@ -655,18 +656,15 @@ function render() {
 		    tang4 = 1;
 		  }
 		  if(angle1 > 180){
-
 		    point1 = p1+1;
 		    point2 = p2;
 		  }else{
 		    point1 = p1;
 		    point2 = p2+1;
 		  }
-
 		  if(o === 2){
 		    toRender[b].tangents.push({lato:`${o}_${tang1}`,data:[pointsTangent1[tang1].x, pointsTangent1[tang1].y, pointsTangent1[tang2].x, pointsTangent1[tang2].y]});
 		  }
-
 		  toRender[b].tangents.push({lato:`${o}_${tang3}`,data:[pointsTangent2[tang3].x, pointsTangent2[tang3].y, pointsTangent2[tang4].x, pointsTangent2[tang4].y]});
 		  toRender[b].curves.push({lato:`${o}_${point1}`,data:[inters, pointsTangent1[point1].x, pointsTangent1[point1].y, pointsTangent2[point2].x, pointsTangent2[point2].y]});
 		  break;
@@ -681,10 +679,7 @@ function render() {
 	      scene[b].links[o-1].draw();
 	    }
 	  }
-
 	}
-
-
 	}
 	renderBody(++b);
     }else{
@@ -692,12 +687,10 @@ function render() {
     }
   }
   renderBody(0);
-
   function drawAll(){
     var scene_l = scene.length;
   	for(let b = 0;b<scene_l;b++){
       prev_curve.length = 0;
-
       let tangents_l = toRender[b].tangents.length;
       let curves_l = toRender[b].curves.length;
 		
@@ -712,7 +705,7 @@ function render() {
 				  stroke: 'blue', strokeWidth: 1
 				});
 		
-			if(last)
+			//if(last)
 				rc.line(toRender[b].tangents[t].data[0], toRender[b].tangents[t].data[1], toRender[b].tangents[t].data[2], toRender[b].tangents[t].data[3], { stroke: '#000'});
 		}else{
 			rc.line(toRender[b].tangents[t].data[0], toRender[b].tangents[t].data[1], toRender[b].tangents[t].data[2], toRender[b].tangents[t].data[3], { stroke: '#000'});
@@ -734,7 +727,6 @@ function resize() {
 window.addEventListener("resize", resize);
 window.dispatchEvent(new Event("resize"));
   
-
 </script>
 </body>
 </html>
