@@ -1,7 +1,7 @@
 <html>
 <head>
   
-  <title>Superformula & rough & f2d v0.22</title>
+  <title>Superformula & rough & f2d v0.23</title>
   <script src="../rough/js/rough.min.js"></script>
   <script src="../paperjs/js/tangents.js"></script>
   <script src="js/PointInsideF2dLink.js"></script>
@@ -532,6 +532,10 @@ let prev_curve = [];
 function render() {
   
   let controlPoints = [];
+  /*
+  se è la prima curva, è come se fosse spezzata quindi la disegno
+  se le curva successiva
+  */
   function drawTangentCurve(inters,x1,y1,x2,y2,last){
     function drawCurvePath(a,b,c,last){
       //create bezier points array. If a prev curve exists I check if it intersects this. If no i save control points and bezier points. If yes I add second and third points into prev control points array. draw curve
@@ -539,43 +543,47 @@ function render() {
       let intersection = false;
       if(prev_curve.length > 0){
       	let prev_curve_l = prev_curve.length;
-		let pointToDraw_l = pointToDraw.length;
-		
-		for(let c = 0;c<prev_curve_l-1;c++){
-			for(let d = 0;d<pointToDraw_l-1;d++){
-				let inters = segment_intersection(prev_curve[c][0],prev_curve[c][1],prev_curve[c+1][0],prev_curve[c+1][1],pointToDraw[d][0],pointToDraw[d][1],pointToDraw[d+1][0],pointToDraw[d+1][1],);
-				if(inters){
-					intersection = true;
-					break;
-				}
-			}
-		}
+        let pointToDraw_l = pointToDraw.length;
+
+        for(let c = 0;c<prev_curve_l-1;c++){
+          for(let d = 0;d<pointToDraw_l-1;d++){
+            let inters = segment_intersection(prev_curve[c][0],prev_curve[c][1],prev_curve[c+1][0],prev_curve[c+1][1],pointToDraw[d][0],pointToDraw[d][1],pointToDraw[d+1][0],pointToDraw[d+1][1],);
+            if(inters){
+              intersection = true;
+              break;
+            }
+          }
+        }
 	      
       }
       let ret = [];
 	    
       if(!intersection){
-	if(prev_curve.length === 0){
-		prev_curve = pointToDraw.slice(0);
-		controlPoints = [a,b,c];
-    if(last)
-      ret = JSON.parse(JSON.stringify(prev_curve));  
-	}else{
-    ret = JSON.parse(JSON.stringify(prev_curve));
-		prev_curve.length = 0;	
-	  
-  
-  }
+        if(prev_curve.length === 0){
+          prev_curve = pointToDraw.slice(0);
+          controlPoints = [a,b,c];
+          if(last)
+            ret.push(JSON.parse(JSON.stringify(prev_curve)));
+              
+        }else{
+          
+          ret.push(JSON.parse(JSON.stringify(prev_curve)));
+          ret.push(JSON.parse(JSON.stringify(pointToDraw)));
+          prev_curve.length = 0;	
+
+
+        }
 	    
 	
       }else{
+        spezza = false;
 	      controlPoints.pop();
 	      controlPoints.push(b);
 	      controlPoints.push(c);
 	      prev_curve = bezier(controlPoints);
 	      
 	      if(last){
-	      	ret = prev_curve.slice(0);
+	      	ret.push(prev_curve.slice(0));
 	      }else{
 	      	ret.length = 0;
 	      }
@@ -701,9 +709,9 @@ function render() {
 				last = true;
 			let ret = drawTangentCurve(toRender[b].curves[t-1].data[0], toRender[b].curves[t-1].data[1], toRender[b].curves[t-1].data[2], toRender[b].curves[t-1].data[3], toRender[b].curves[t-1].data[4],last);
 			if(ret && ret.length > 0)
-				rc.curve(ret, {
+				ret.forEach((e)=>{rc.curve(e, {
 				  stroke: 'blue', strokeWidth: 1
-				});
+				})});
 		
 			//if(last)
 				rc.line(toRender[b].tangents[t].data[0], toRender[b].tangents[t].data[1], toRender[b].tangents[t].data[2], toRender[b].tangents[t].data[3], { stroke: '#000'});
@@ -726,7 +734,7 @@ function resize() {
 //window.requestAnimationFrame(frame);
 window.addEventListener("resize", resize);
 window.dispatchEvent(new Event("resize"));
-  
+    
 </script>
 </body>
 </html>
