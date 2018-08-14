@@ -11,7 +11,6 @@ CATCH THE WIZARD! Ooh yes, I love make "teletext style" game! Very low resolutio
 
 [https://geomensione.github.io/JS1k-Magic](https://geomensione.github.io/JS1k-Magic)
 
-
 newLowRes:
 
 Simple horizontally scrolling game
@@ -107,9 +106,15 @@ superformula
 
 [https://geomensione.github.io/superformula/index_superformula.html](https://geomensione.github.io/superformula/index_superformula.html)
 
+project moved here https://f2d.glitch.me/
+
 abbagli mummade
 
 [https://geomensione.github.io/abbagli/home.html](https://geomensione.github.io/abbagli/home.html)
+
+js13kgames-offline
+
+project wip [https://js13kgames-offline.glitch.me/](https://js13kgames-offline.glitch.me/)
 
 Lectures
 
