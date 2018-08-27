@@ -79,7 +79,10 @@ h.d_fn = function(){
     }
     
     if(checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy+1) || checkQuadrant(this,qx,qy)){
-        let init_i,init_d,condition_i,condition_d = 0;
+        let init_i = 0,
+			init_d = 0,
+			condition_i = 0,
+			condition_d = 0;
 
         
         init_i = sx;
@@ -88,29 +91,33 @@ h.d_fn = function(){
         condition_d = ry;
         //wrong <- ->
         if(checkQuadrant(this,qx,qy)){
-            condition_i = rx-sx;
-            condition_d = ry-sy;
+            console.log('1');
+			//condition_i = rx-sx;
+            //condition_d = ry-sy;
             
-  }
+		}
 
         //check if I'am in up quadrant
         //wrong v ^
         if(checkQuadrant(this,qx-1,qy)){
-            //condition_i = sx;
+            console.log('2');
+			//condition_i = sx;
             //condition_d = sy;
             //cy = sy -1;
         }
 
         //check if I'am in the left
         if(checkQuadrant(this,qx,qy+1)){
-            init_i = sx-1;
+            console.log('3');
+			//init_i = sx-1;
             //init_d = ry+sy-1;
         }
 
         //check if I'am in the left up
         
         if(checkQuadrant(this,qx-1,qy+1)){
-            //init_i = 0;
+            console.log('4');
+			//init_i = 0;
             //init_d = 0;
             //cx = (rx - sx)*o;
             //cy = (ry + sy)*o;

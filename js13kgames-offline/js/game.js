@@ -50,43 +50,43 @@ right arrow	39
 down arrow	40
 */
 
-function down(la){
-    if((la.my+la.sp)<la.ry){
-        return la.my + la.sp;
+function down(_la){
+    if((_la.my+_la.sp)<_la.ry){
+        return _la.my + _la.sp;
     }else{
-        if(la.update_quadrant)
+        if(_la.update_quadrant)
             qx--;
         return 0;
     }
 }
 
-function up(la){
-   if((la.my-la.sp)>0){
-        return la.my - la.sp;
+function up(_la){
+   if((_la.my-_la.sp)>0){
+        return _la.my - _la.sp;
    }else{
         //if(la.my>0)
-        if(la.update_quadrant)
+        if(_la.update_quadrant)
             qx++;
-       return la.ry-1;
+       return _la.ry-1;
    }
 }
 
-function left(la){
-    if((la.mx-la.sp)>0){
-            return la.mx - la.sp;
+function left(_la){
+    if((_la.mx-_la.sp)>0){
+            return _la.mx - _la.sp;
     }else{
         //if(la.mx>0)
-        if(la.update_quadrant)
+        if(_la.update_quadrant)
             qy--;
-        return la.rx-la.sp;
+        return _la.rx-_la.sp;
     }
 }
 
-function right(la){
-    if((la.mx+la.sp)<la.rx){
-            return la.mx + la.sp;
+function right(_la){
+    if((_la.mx+_la.sp)<_la.rx){
+            return _la.mx + _la.sp;
     }else{
-        if(la.update_quadrant)
+        if(_la.update_quadrant)
             qy++;
         return 0;
     }
