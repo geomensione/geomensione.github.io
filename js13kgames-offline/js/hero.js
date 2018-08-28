@@ -7,6 +7,8 @@ h.r = 48;
 h.s = 5;
 //score
 h.sp = 2;
+h.mx = 0;
+h.my = 0;
 
 function random(range, negative){
     var num = Math.floor(Math.random()*range); // this will get a number between 1 and 99;
@@ -84,7 +86,6 @@ h.d_fn = function(){
 			condition_i = 0,
 			condition_d = 0;
 
-        
         init_i = sx;
         init_d = sy;
         condition_i = rx;
