@@ -84,7 +84,9 @@ h.d_fn = function(){
         let init_i = 0,
 			init_d = 0,
 			condition_i = 0,
-			condition_d = 0;
+			condition_d = 0,
+			si = 0,
+			sd = 0;
 
         init_i = sx;
         init_d = sy;
@@ -102,6 +104,10 @@ h.d_fn = function(){
         //wrong v ^
         if(checkQuadrant(this,qx-1,qy)){
             console.log('2');
+			cy = (ry-sy)*o;
+			reset_cy = (ry-sy)*o;
+			init_d = (ry-sy);
+			sd = (ry-sy);
 			//condition_i = sx;
             //condition_d = sy;
             //cy = sy -1;
@@ -110,33 +116,30 @@ h.d_fn = function(){
         //check if I'am in the left
         if(checkQuadrant(this,qx,qy+1)){
             console.log('3');
-			//init_i = sx-1;
-            //init_d = ry+sy-1;
+			cx = (rx-sx)*o;
+			//init_i = condition_i;
+			init_i = 0;
+			
         }
 
         //check if I'am in the left up
         
         if(checkQuadrant(this,qx-1,qy+1)){
             console.log('4');
-			//init_i = 0;
-            //init_d = 0;
-            //cx = (rx - sx)*o;
-            //cy = (ry + sy)*o;
-            //reset_cy = (ry - sy)*o;
-            //init_i = 0;
-            //init_d = 0;
-            //cx = (rx - sx)*o;
-            //cy = (ry + sy)*o;
-            //reset_cy = (ry - sy)*o;
-            
+			cy = (ry-sy)*o;
+			reset_cy = (ry-sy)*o;
+			init_d = (ry-sy);
+			sd = (ry-sy);
+			cx = (rx-sx)*o;
+			init_i = 0;
         }
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
-                if(!(this.fb[i] && this.fb[i][d] && this.fb[i][d][0]))
+                if(!(this.fb[i-si] && this.fb[i-si][d-sd] && this.fb[i-si][d-sd][0]))
                     console.log('not exist '+i+', '+d);
-                if(this.fb[i][d][0] !== '00'){
+                if(this.fb[i-si][d-sd][0] !== '00'){
                     this.hit(cx,cy,1,1,function(){});
-                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+                    c.fillStyle = "#"+this.fb[i-si][d-sd][0]+this.fb[i-si][d-sd][1]+this.fb[i-si][d-sd][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
                     c.fillStyle = "rgba(0,255,0,0.1)";
