@@ -114,7 +114,7 @@ abbagli mummade
 
 js13kgames-offline
 
-project wip [https://js13kgames-offline.glitch.me/](https://js13kgames-offline.glitch.me/)
+project wip [https://geomensione.github.io/js13kgames-offline](https://geomensione.github.io/js13kgames-offline)
 
 Lectures
 
