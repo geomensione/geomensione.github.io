@@ -7,7 +7,6 @@ LOW RES PARTY! Old style low res game: reach last evolution of the hero, but... 
 
 [https://geomensione.github.io/js13kgames-glitch](https://geomensione.github.io/js13kgames-glitch)
 
-
 JS1K-Magic:
 
 CATCH THE WIZARD! Ooh yes, I love make "teletext style" game! Very low resolution, 3 bit deep color... And here the challenge for JS1K! Try catch the wizard with mouse!
@@ -19,33 +18,6 @@ newLowRes:
 Simple horizontally scrolling game
 
 [https://geomensione.github.io/newLowRes](https://geomensione.github.io/newLowRes)
-
-
-tools:
-
-create teletext art!
-
-[https://geomensione.github.io/tools/LRdraw.html](https://geomensione.github.io/tools/LRdraw.html)
-
-paperjs:
-
-paperjs experiments
-
-[https://geomensione.github.io/paperjs/f2d_008.html](https://geomensione.github.io/paperjs/f2d_008.html)
-
-wip paperjs game
-
-[https://geomensione.github.io/paperjs/change.html](https://geomensione.github.io/paperjs/change.html)
-
-site:
-
-my new site
-
-[https://geomensione.github.io/site](https://geomensione.github.io/site)
-
-Compleanno alice:
-
-[https://geomensione.github.io/alice](https://geomensione.github.io/alice)
 
 JS13KGames Lost ... NOT FINISHED
 
@@ -67,11 +39,52 @@ My JS library
 
 [https://geomensione.github.io/myJsLib/gms.js](https://geomensione.github.io/myJsLib/gms.js)
 
+TOOLS
+=====
+
+create teletext art!
+
+[https://geomensione.github.io/tools/LRdraw.html](https://geomensione.github.io/tools/LRdraw.html)
+
+paperjs:
+
+paperjs experiments
+
+[https://geomensione.github.io/paperjs/f2d_008.html](https://geomensione.github.io/paperjs/f2d_008.html)
+
+paperjs game
+
+[https://geomensione.github.io/paperjs/change.html](https://geomensione.github.io/paperjs/change.html)
+
+superformula
+
+[https://geomensione.github.io/superformula](https://geomensione.github.io/superformula)
+
+[https://geomensione.github.io/superformula/index_superformula.html](https://geomensione.github.io/superformula/index_superformula.html)
+
+project moved here https://f2d.glitch.me/
+
+fast3d
+
+[https://geomensione.github.io/threejs](https://geomensione.github.io/threejs)
+
+SITE
+====
+
+my new site
+
+[https://geomensione.github.io/site](https://geomensione.github.io/site)
+
+Compleanno alice:
+
+[https://geomensione.github.io/alice](https://geomensione.github.io/alice)
+
 css layout
 
 [https://geomensione.github.io/tickete](https://geomensione.github.io/tickete)
 
 WIP
+===
 
 p5:
 
@@ -84,10 +97,6 @@ matterjs game:
 phaser3 game:
 
 [https://geomensione.github.io/phaser](https://geomensione.github.io/phaser)
-
-fast3d
-
-[https://geomensione.github.io/threejs](https://geomensione.github.io/threejs)
 
 dwitter
 
@@ -102,14 +111,6 @@ webglStudio plugin
 noionic
 
 (android project bootstrap) cordova and android, without ionic
-
-superformula
-
-[https://geomensione.github.io/superformula](https://geomensione.github.io/superformula)
-
-[https://geomensione.github.io/superformula/index_superformula.html](https://geomensione.github.io/superformula/index_superformula.html)
-
-project moved here https://f2d.glitch.me/
 
 abbagli mummade
 
