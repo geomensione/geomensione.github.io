@@ -52,10 +52,6 @@ paperjs experiments
 
 [https://geomensione.github.io/paperjs/f2d_008.html](https://geomensione.github.io/paperjs/f2d_008.html)
 
-paperjs game
-
-[https://geomensione.github.io/paperjs/change.html](https://geomensione.github.io/paperjs/change.html)
-
 superformula
 
 [https://geomensione.github.io/superformula](https://geomensione.github.io/superformula)
@@ -97,6 +93,10 @@ matterjs game:
 phaser3 game:
 
 [https://geomensione.github.io/phaser](https://geomensione.github.io/phaser)
+
+paperjs game
+
+[https://geomensione.github.io/paperjs/change.html](https://geomensione.github.io/paperjs/change.html)
 
 dwitter
 
