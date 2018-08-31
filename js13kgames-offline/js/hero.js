@@ -19,8 +19,8 @@ function random(range, negative){
 }
 
 h.setRandomValue = function(){
-    h.quy = random(20,true);
-    h.qux = random(20,true);
+    h.quy = random(3,true);
+    h.qux = random(3,true);
 	console.log(`${h.qux} ${h.quy}`)
     //h.quy = 0;
     //h.qux = 0;
@@ -90,7 +90,16 @@ h.d_fn = function(){
     function checkQuadrant(_me,x,y){
         return (_me.qux === x && _me.quy === y);
     }
-    
+    window.dir = '';
+	if(this.qux<qx)
+		window.dir += 'U'
+	if(this.qux>qx)
+		window.dir += 'D'
+	if(this.quy<qy)
+		window.dir += 'L'
+	if(this.quy>qy)
+		window.dir += 'R'
+	
     if(checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy+1) || checkQuadrant(this,qx,qy)){
         let init_i = 0,
 			init_d = 0,
