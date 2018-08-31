@@ -19,10 +19,11 @@ function random(range, negative){
 }
 
 h.setRandomValue = function(){
-    //h.qy = random(20,true);
-    //h.qx = random(20,true);
-    h.quy = 0;
-    h.qux = 0;
+    h.quy = random(20,true);
+    h.qux = random(20,true);
+	console.log(`${h.qux} ${h.quy}`)
+    //h.quy = 0;
+    //h.qux = 0;
     h.cx = random(this.rx);
     h.cy = random(this.ry);
     this.picked = false;
@@ -86,8 +87,8 @@ h.d_fn = function(){
         reset_cy = 0;
 	var me = this;
     //draw the sprite in fb
-    function checkQuadrant(me,x,y){
-        return (me.qux === x && me.quy === y);
+    function checkQuadrant(_me,x,y){
+        return (_me.qux === x && _me.quy === y);
     }
     
     if(checkQuadrant(this,qx-1,qy) || checkQuadrant(this,qx,qy+1) || checkQuadrant(this,qx-1,qy+1) || checkQuadrant(this,qx,qy)){
