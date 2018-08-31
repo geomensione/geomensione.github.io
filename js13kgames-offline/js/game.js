@@ -31,6 +31,9 @@ var la = [],
     qx = 0,
     qy = 0;
 
+//global score
+window.score = 0;
+	
 //bottom
 la[0]=bo;
 //background

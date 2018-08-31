@@ -150,6 +150,7 @@ h.d_fn = function(){
                     console.log('not exist '+i+', '+d);
                 if(this.fb[i-si][d-sd][0] !== '00'){
                     this.hit(cx+(o/2),cy+(o/2),1,1,function(){
+						window.score++;
 						me.picked = true;
 						h.fb_fn();
 					});
