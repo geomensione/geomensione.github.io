@@ -92,9 +92,9 @@ h.d_fn = function(){
     }
     window.dir = '';
 	if(this.qux<qx)
-		window.dir += 'U'
-	if(this.qux>qx)
 		window.dir += 'D'
+	if(this.qux>qx)
+		window.dir += 'U'
 	if(this.quy<qy)
 		window.dir += 'L'
 	if(this.quy>qy)
