@@ -17,6 +17,7 @@ var la = [],
     g = {}, 
     b = {},
     bo = {},
+    e = {},
     h = {},
     l_i,
     //start point when move background
@@ -42,8 +43,10 @@ la[1]=b;
 la[2]=g;
 //hero
 la[3]=h;
+//enemy
+la[4]=e;
 //text
-la[4]=t;
+la[5]=t;
 
 
 /*
