@@ -362,16 +362,17 @@ var hero = {0:[	'WWWWW',
 				'WWWWW',
 				'0W0W0',
 				'W0W0W']};
+var u = {};
 //tl -> text layer
-function drawText(tl) {
+u.drawText = (tl) => {
 	var x = 1;
 	var y = 1;
 	for(var i=0; i < tl.sc.length; i++) {
-		x += drawLetter(tl, x, y, tl.sc.charAt(i), ['EE','EE','11']) + 1;
+		x += u.drawLetter(tl, x, y, tl.sc.charAt(i), ['EE','EE','11']) + 1;
 	}
 }
 
-function drawLetter(tl, x, y, chr, c) {
+u.drawLetter = (tl, x, y, chr, c) => {
 	var l = chars[chr];
     	if(!l) { return 0; }
 	for(var i=0; i < l[0].length; i++) {
@@ -383,4 +384,15 @@ function drawLetter(tl, x, y, chr, c) {
 		}
 	}
 	return l[0].length;
+}
+
+u.setRandomValue = function(obj){
+    obj.quy = random(3,true);
+    obj.qux = random(3,true);
+	console.log(`${obj.qux} ${obj.quy}`)
+    //h.quy = 0;
+    //h.qux = 0;
+    obj.cx = random(obj.rx);
+    obj.cy = random(obj.ry);
+    obj.picked = false;
 }

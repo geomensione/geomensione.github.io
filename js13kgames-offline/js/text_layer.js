@@ -19,7 +19,7 @@ t.fb_fn = function(){
         }
     }
     this.sc = `${window.score} ${window.dir}`;
-    drawText(this);
+    u.drawText(this);
 }
 
 t.d_fn = function(){

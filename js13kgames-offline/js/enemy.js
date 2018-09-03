@@ -6,8 +6,14 @@ e.r = 24;
 //sprite dimension
 e.s = 8;
 e.dir = 38;
+h.mx = 0;
+h.my = 0;
 e.fb_fn = function(){
     this.fb = [];
+	
+	u.setRandomValue(this);
+	
+	
     let rx = this.rx,
         ry = this.ry;
     for(let i = 0;i<rx;i++){
