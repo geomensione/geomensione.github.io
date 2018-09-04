@@ -239,9 +239,8 @@ function dr(){
 //every frame value, draw scene
 function l(){
     l_i = setInterval(function() {
-        c.fillStyle = "rgb(0, 0, 0)";
-        c.fillRect(0,0,la[0].w,la[0].h);
-        gr();
+        u.clear(c,0,0,0);
+		gr();
         dr();
     }, fr);
 }

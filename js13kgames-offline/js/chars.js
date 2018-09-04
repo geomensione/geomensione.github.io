@@ -396,3 +396,8 @@ u.setRandomValue = function(obj){
     obj.cy = random(obj.ry);
     obj.picked = false;
 }
+
+u.clear = (c,r,g,b) => {
+	c.fillStyle = `rgb(${r}, ${g}, ${b})`;
+    c.fillRect(0,0,la[0].w,la[0].h);
+}
