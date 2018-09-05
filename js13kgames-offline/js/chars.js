@@ -386,14 +386,21 @@ u.drawLetter = (tl, x, y, chr, c) => {
 	return l[0].length;
 }
 
+u.random = (range, negative)=>{
+    var num = Math.floor(Math.random()*range); // this will get a number between 1 and 99;
+    if(negative)
+        num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; //
+    return num;
+}
+
 u.setRandomValue = function(obj){
-    obj.quy = random(3,true);
-    obj.qux = random(3,true);
+    obj.quy = u.random(3,true);
+    obj.qux = u.random(3,true);
 	console.log(`${obj.qux} ${obj.quy}`)
     //h.quy = 0;
     //h.qux = 0;
-    obj.cx = random(obj.rx);
-    obj.cy = random(obj.ry);
+    obj.cx = u.random(obj.rx);
+    obj.cy = u.random(obj.ry);
     obj.picked = false;
 }
 

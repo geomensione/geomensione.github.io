@@ -18,7 +18,7 @@ t.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
-    this.sc = `${window.score} ${window.dir}`;
+    this.sc = `${window.score} ${window.dir} ${window.escore}`;
     u.drawText(this);
 }
 

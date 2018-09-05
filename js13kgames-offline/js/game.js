@@ -34,6 +34,7 @@ var la = [],
 
 //global score
 window.score = 0;
+window.escore = 0;
 	
 //bottom
 la[0]=bo;

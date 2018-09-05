@@ -11,19 +11,12 @@ h.sp = 2;
 h.mx = 0;
 h.my = 0;
 
-function random(range, negative){
-    var num = Math.floor(Math.random()*range); // this will get a number between 1 and 99;
-    if(negative)
-        num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; //
-    return num;
-}
+
 
 h.setRandomValue = function(){
     h.quy = random(3,true);
     h.qux = random(3,true);
-	console.log(`${h.qux} ${h.quy}`)
-    //h.quy = 0;
-    //h.qux = 0;
+	console.log(`${h.qux} ${h.quy}`);
     h.cx = random(this.rx);
     h.cy = random(this.ry);
     this.picked = false;
@@ -62,19 +55,20 @@ h.fb_fn = function(){
 h.hit = function(x,y,width,height,fn){
     var imgd = c.getImageData(x, y, width, height);
     var pix = imgd.data;
-	var hitColor = [255,255,255];
+	var hitColor = [255,255,255,255,0,255];
     // Loop over each pixel and invert the color.
     for (var i = 0, n = pix.length; i < n; i += 4) {
 		if(pix[i] === hitColor[0] && pix[i+1] === hitColor[1] && pix[i+2] === hitColor[2]){
 			fn();
+			window.score++;
+			u.clear(c,255,255,255);
+			break;
+		}else if(pix[i] === hitColor[3] && pix[i+1] === hitColor[4] && pix[i+2] === hitColor[5]){
+			fn();
+			window.escore++;
 			u.clear(c,255,255,255);
 			break;
 		}
-			
-        //pix[i  ] = 255 - pix[i  ]; // red
-        //pix[i+1] = 255 - pix[i+1]; // green
-        //pix[i+2] = 255 - pix[i+2]; // blue
-        // i+3 is alpha (the fourth element)
     }
 }
 
