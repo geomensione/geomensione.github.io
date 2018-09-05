@@ -60,12 +60,10 @@ h.hit = function(x,y,width,height,fn){
     for (var i = 0, n = pix.length; i < n; i += 4) {
 		if(pix[i] === hitColor[0] && pix[i+1] === hitColor[1] && pix[i+2] === hitColor[2]){
 			fn();
-			window.score++;
 			u.clear(c,255,255,255);
 			break;
 		}else if(pix[i] === hitColor[3] && pix[i+1] === hitColor[4] && pix[i+2] === hitColor[5]){
 			fn();
-			window.escore++;
 			u.clear(c,255,255,255);
 			break;
 		}
@@ -148,15 +146,18 @@ h.d_fn = function(){
 			cx = (rx-sx)*o;
 			init_i = 0;
         }
+		let lock = false;
         for(let i = init_i;i<condition_i;i++){
             for(let d = init_d;d<condition_d;d++){
                 if(!(this.fb[i-si] && this.fb[i-si][d-sd] && this.fb[i-si][d-sd][0]))
                     console.log('not exist '+i+', '+d);
-                if(this.fb[i-si][d-sd][0] !== '00'){
+                if(this.fb[i-si][d-sd][0] !== '00' && !lock){
                     this.hit(cx+(o/2),cy+(o/2),1,1,function(){
+						lock = true;
 						window.score++;
 						me.picked = true;
 						h.fb_fn();
+						
 					});
                     c.fillStyle = "#"+this.fb[i-si][d-sd][0]+this.fb[i-si][d-sd][1]+this.fb[i-si][d-sd][2];
                     c.fillRect(cx,cy,o,o);
