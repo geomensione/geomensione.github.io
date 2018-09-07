@@ -46,7 +46,6 @@ la[la.length]=h;
 //text
 la[la.length]=t;
 
-
 /*
 left arrow	37
 up arrow	38
