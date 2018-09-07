@@ -6,12 +6,16 @@ e.r = 24;
 //sprite dimension
 e.s = 8;
 e.dir = 38;
-h.mx = 0;
-h.my = 0;
+
 e.fb_fn = function(){
     this.fb = [];
-	
-	u.setRandomValue(this);
+	if(!e.mx && !e.my && !e.qx && !e.qy){
+		e.mx = u.random(this.rx);
+		e.my = u.random(this.rx);
+		e.qx = u.random(3,true);
+		e.qy = u.random(3,true);
+	}
+		
 	
 	
     let rx = this.rx,
