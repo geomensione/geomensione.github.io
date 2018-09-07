@@ -34,20 +34,17 @@ var la = [],
 
 //global score
 window.score = 0;
-window.escore = 0;
 	
 //bottom
-la[0]=bo;
+la[la.length]=bo;
 //background
-la[1]=b;
+la[la.length]=b;
 //frames
-la[2]=g;
+la[la.length]=g;
 //hero
-la[3]=h;
-//enemy
-la[4]=e;
+la[la.length]=h;
 //text
-la[5]=t;
+la[la.length]=t;
 
 
 /*

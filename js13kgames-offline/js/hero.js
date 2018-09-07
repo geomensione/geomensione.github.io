@@ -55,14 +55,10 @@ h.fb_fn = function(){
 h.hit = function(x,y,width,height,fn){
     var imgd = c.getImageData(x, y, width, height);
     var pix = imgd.data;
-	var hitColor = [255,255,255,255,0,255];
+	var hitColor = [255,255,255];
     // Loop over each pixel and invert the color.
     for (var i = 0, n = pix.length; i < n; i += 4) {
 		if(pix[i] === hitColor[0] && pix[i+1] === hitColor[1] && pix[i+2] === hitColor[2]){
-			fn();
-			u.clear(c,255,255,255);
-			break;
-		}else if(pix[i] === hitColor[3] && pix[i+1] === hitColor[4] && pix[i+2] === hitColor[5]){
 			fn();
 			u.clear(c,255,255,255);
 			break;
