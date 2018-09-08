@@ -7,12 +7,9 @@ t.r = 36;
 t.s = 5;
 //score
 t.sc = '';
-t.lock = false;
 
 
 t.fb_fn = function(){
-	if(!t.lock)
-		t.lock = true;
     this.fb = [];
     let rx = this.rx,
         ry = this.ry;
@@ -25,7 +22,6 @@ t.fb_fn = function(){
     }
     this.sc = `${window.score} ${window.dir} ${t.countDown}`;
     u.drawText(this);
-	t.lock = false;
 }
 
 t.d_fn = function(){
@@ -49,7 +45,7 @@ t.d_fn = function(){
 t.countDown = 60;
 t.startSeconds = 60;
 t.setTime = () => {
-	if(t.countDown-1)
+	if((t.countDown-1)>0)
 		t.countDown--;
 	else
 		alert('time finish');
