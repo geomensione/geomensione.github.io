@@ -28,6 +28,7 @@ h.fb_fn = function(){
     //if I've grabbed hero,I set position of the new one
     if(this.picked === undefined || this.picked){
         u.setRandomValue(this);
+        t.countDown = Math.round(t.countDown/2);
 		if(this.picked)
 			this.picked = false;
     }
