@@ -45,11 +45,15 @@ t.d_fn = function(){
 t.countDown = 60;
 t.startSeconds = 60;
 t.setTime = () => {
-	if((t.countDown-1)>0)
-		t.countDown--;
-	else
-		alert('time finish');
-	t.fb_fn();
+	if((t.countDown-1)>0){
+        t.countDown--;
+        t.fb_fn();
+    }else{
+        alert('time finish');
+        t.countDown = 60;
+        window.score = 0;
+    }
+		
 }
 window.gameInterval = setInterval(()=>{t.setTime()}, 1000);
 //end text layer
