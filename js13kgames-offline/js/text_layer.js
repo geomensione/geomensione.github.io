@@ -20,7 +20,7 @@ t.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
-    this.sc = `${window.score} ${window.dir} ${t.countDown}`;
+    this.sc = `${window.score} ${window.dir}-${t.countDown}`;
     u.drawText(this);
 }
 

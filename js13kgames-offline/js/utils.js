@@ -2,10 +2,21 @@ var u = {};
 //tl -> text layer
 u.drawText = (tl) => {
 	var x = 1;
-	var y = 1;
-	for(var i=0; i < tl.sc.length; i++) {
-		x += u.drawLetter(tl, x, y, tl.sc.charAt(i), ['EE','EE','11']) + 1;
-	}
+    var y = 1;
+    if(tl.sc.indexOf('-')!==-1){
+        let parts = tl.sc.split('-');
+        let parts_l = parts.length;
+        for(let p = 0;p<parts_l;p++){
+            let p_p_l = parts[p].length;
+            for(var i=0; i < p_p_l; i++) {
+                x += u.drawLetter(tl, x, y, parts[p].charAt(i), ['EE','EE','11']) + 1;
+            }
+            x = 0;
+            y += chars[0].length + 1;
+        }
+        
+    }
+	
 }
 
 u.drawLetter = (tl, x, y, chr, c) => {
