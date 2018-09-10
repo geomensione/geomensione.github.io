@@ -20,6 +20,7 @@ var la = [],
     e = {},
     h = {},
     l_i,
+	l_spl,
     //start point when move background
     mx = 0,
     my = 0,
@@ -144,62 +145,65 @@ function updateCoord(x,y){
     }
 }
 
-el.ontouchstart = function(e){
-    mousepressed = true;
-    doInt(e.changedTouches[0].pageX,e.changedTouches[0].pageY);
+function gameEvents(){
+	el.ontouchstart = function(e){
+		mousepressed = true;
+		doInt(e.changedTouches[0].pageX,e.changedTouches[0].pageY);
+	}
+	el.ontouchend = function(e){
+		mousepressed = false;
+	}
+	el.ontouchmove = function(e){
+		updateCoord(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+	}
+
+	d.onmousemove = function(e){
+		updateCoord(e.clientX, e.clientY);    
+	};
+
+	d.onmouseup = function(e){
+		mousepressed = false;
+	};
+
+	d.onmousedown = function(e){
+		mousepressed = true;
+		let x = e.clientX;
+		let y = e.clientY;
+		doInt(x,y);
+	};
+
+	d.onkeydown = function(e){
+		e = e || window.event;
+		let dir = '';
+		for(let l = 0,la_l=la.length;l<la_l;l++){
+			if(la[l].sp){
+				if (e.keyCode == '40') {
+				   la[l].my = down(la[l]);
+					dir = '40';
+				}
+				if (e.keyCode == '38') {
+					la[l].my = up(la[l]);
+					dir = '38';
+				}
+				if (e.keyCode == '37') {
+				   la[l].mx = left(la[l]);
+					dir = '37';
+				}
+				if (e.keyCode == '39') {
+				   la[l].mx = right(la[l]);
+					dir = '39';
+				}
+				sx = la[l].mx;
+				sy = la[l].my;
+			}
+			if(la[l].dir){
+				la[l].dir = dir;
+			}
+
+		}
+	}; 
+	
 }
-el.ontouchend = function(e){
-    mousepressed = false;
-}
-el.ontouchmove = function(e){
-    updateCoord(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
-}
-
-d.onmousemove = function(e){
-    updateCoord(e.clientX, e.clientY);    
-};
-
-d.onmouseup = function(e){
-    mousepressed = false;
-};
-
-d.onmousedown = function(e){
-    mousepressed = true;
-    let x = e.clientX;
-    let y = e.clientY;
-    doInt(x,y);
-};
-
-d.onkeydown = function(e){
-    e = e || window.event;
-    let dir = '';
-    for(let l = 0,la_l=la.length;l<la_l;l++){
-        if(la[l].sp){
-            if (e.keyCode == '40') {
-               la[l].my = down(la[l]);
-                dir = '40';
-            }
-            if (e.keyCode == '38') {
-                la[l].my = up(la[l]);
-                dir = '38';
-            }
-            if (e.keyCode == '37') {
-               la[l].mx = left(la[l]);
-                dir = '37';
-            }
-            if (e.keyCode == '39') {
-               la[l].mx = right(la[l]);
-                dir = '39';
-            }
-            sx = la[l].mx;
-            sy = la[l].my;
-        }
-        if(la[l].dir){
-            la[l].dir = dir;
-        }
-
-    }
-}; 
 
 
 //create grid
@@ -235,6 +239,8 @@ function dr(){
 }
 //every frame value, draw scene
 function l(){
+	window.clearInterval(l_spl);
+	gameEvents();
     l_i = setInterval(function() {
         u.clear(c,0,0,0);
 		gr();
@@ -242,13 +248,38 @@ function l(){
     }, fr);
 }
  
-function splash(){
-	u.clear(c,0,0,0);
-	gr();
-	t.fb_fn('PROVA-SPLASH');
-	t.d_fn();
+function splash(doc){
+	let i = 0;
+	if(l_i){
+		window.clearInterval(l_i);
+	}
+	l_spl = setInterval(function() {
+        u.clear(c,0,0,0);
+		gr();
+		t.fb_fn('OFFLINE-'+doc[i%5]);
+		t.d_fn();
+		i++;
+    }, 500);
+	
+	d.onkeydown = (e) => {
+		switch(e.key){
+			case 'v':
+			case 'e':
+			case 'm':
+			case 'h':
+			case 'w':
+				g.difficulty = e.key;
+				l();
+				break;
+			case 's':
+				splash(doc);
+				break;
+			
+		}
+	}
 }
- 
+let doc = ['V VERY-EASY','E EASY','M MEDIUM','H HARD','W VERY-HARD'];		
+splash(doc);
  
 //l();
 

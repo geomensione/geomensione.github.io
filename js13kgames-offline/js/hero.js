@@ -29,19 +29,19 @@ h.fb_fn = function(){
     if(this.picked === undefined || this.picked){
         u.setRandomValue(this);
         switch(g.difficulty){
-            case 've':
+            case 'v':
                 t.countDown--;
                 break;
             case 'e':
                 t.countDown-=2;
                 break;
-            case 'n':
+            case 'm':
                 t.countDown-=5;
                 break;
             case 'h':
                 t.countDown-=15;
                 break;
-            case 'vh':
+            case 'w':
                 t.countDown = Math.round(t.countDown/2);
                 break;
         }

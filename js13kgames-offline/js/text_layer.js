@@ -53,9 +53,10 @@ t.setTime = () => {
         t.countDown--;
         t.fb_fn();
     }else{
-        alert('time finish');
+        
         t.countDown = 60;
         window.score = 0;
+		end('OFFLINE-PRESS-S TO-START');
     }
 		
 }
