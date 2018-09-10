@@ -241,5 +241,14 @@ function l(){
         dr();
     }, fr);
 }
-    
-l();
+ 
+function splash(){
+	u.clear(c,0,0,0);
+	gr();
+	t.fb_fn('PROVA-SPLASH');
+	t.d_fn();
+}
+ 
+ 
+//l();
+
