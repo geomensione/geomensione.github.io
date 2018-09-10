@@ -9,7 +9,7 @@ t.s = 5;
 t.sc = '';
 
 
-t.fb_fn = function(){
+t.fb_fn = function(txt){
     this.fb = [];
     let rx = this.rx,
         ry = this.ry;
@@ -20,7 +20,11 @@ t.fb_fn = function(){
             this.fb[i][d] = ['00', '00', '00'];
         }
     }
-    this.sc = `${window.score} ${window.dir}-${t.countDown}`;
+    if(txt)
+        this.sc = txt;
+    else
+        this.sc = `${window.score} ${window.dir}-${t.countDown}`;
+    
     u.drawText(this);
 }
 
