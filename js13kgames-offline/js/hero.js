@@ -17,8 +17,8 @@ h.setRandomValue = function(){
     h.quy = random(3,true);
     h.qux = random(3,true);
 	console.log(`${h.qux} ${h.quy}`);
-    h.cx = random(this.rx);
-    h.cy = random(this.ry);
+    h.cx = random(this.rx-h.s);
+    h.cy = random(this.ry-h.s);
     this.picked = false;
 }
 
