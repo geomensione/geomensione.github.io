@@ -284,9 +284,9 @@ function splash(_doc){
                 if(u.intervRun()){
                     u.clearInterval();
                 }
-                u.startInterval(
-                    t.setTime()
-                , 1000);
+                u.startTimer(function() {
+                    t.setTime();
+                }, 1000);
 				l();
 				break;
 			case 's':

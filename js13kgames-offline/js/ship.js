@@ -6,7 +6,7 @@ g.r = 24;
 //sprite dimension
 g.s = 8;
 g.dir = 39;
-g.difficulty = 'm';
+g.difficulty;
 g.fb_fn = function(){
     this.fb = [];
     let rx = this.rx,

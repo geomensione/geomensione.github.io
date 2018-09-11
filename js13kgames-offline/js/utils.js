@@ -70,3 +70,18 @@ u.intervRun = () => {
     return (u.interval)?true:false;
 }
 
+u.timer;
+u.startTimer = (fn,t) => {
+    if(!u.timer)
+        u.timer = setInterval(fn, t)
+}
+
+u.clearTimer = () => {
+    window.clearInterval(u.timer);
+    u.timer = false;
+}
+
+u.timerRun = () => {
+    return (u.timer)?true:false;
+}
+
