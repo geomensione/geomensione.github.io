@@ -76,7 +76,7 @@ h.hit = function(x,y,width,height,fn){
     // Loop over each pixel and invert the color.
     for (var i = 0, n = pix.length; i < n; i += 4) {
 		if(pix[i] === hitColor[0] && pix[i+1] === hitColor[1] && pix[i+2] === hitColor[2]){
-			fn();
+            fn();
 			u.clear(c,255,255,255);
 			break;
 		}

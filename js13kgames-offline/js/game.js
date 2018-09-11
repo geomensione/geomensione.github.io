@@ -19,8 +19,6 @@ var la = [],
     bo = {},
     e = {},
     h = {},
-    l_i,
-	l_spl,
     //start point when move background
     mx = 0,
     my = 0,
@@ -35,7 +33,8 @@ var la = [],
 
 //global score
 window.score = 0;
-	
+window.l_i;
+window.l_spl;	
 //bottom
 la[la.length]=bo;
 //background
@@ -207,26 +206,32 @@ function gameEvents(){
 
 
 //create grid
-function gr(){
-    for(let l = 0,la_l=la.length;l<la_l;l++){
-        var w = la[l].w;
-        var h = la[l].h;
+function gr(i){
+    function gr_i(index){
+        var w = la[index].w;
+        var h = la[index].h;
         var ox, oy = 0;
         if(h<w){
-            ox = Math.round(h/la[l].r);
-            la[l].ry = Math.round(h/ox);
-            la[l].rx = Math.round(w/ox);
+            ox = Math.round(h/la[index].r);
+            la[index].ry = Math.round(h/ox);
+            la[index].rx = Math.round(w/ox);
         }else{
-            ox = Math.round(w/la[l].r);
-            la[l].rx = Math.round(w/ox);
-            la[l].ry = Math.round(h/ox);
+            ox = Math.round(w/la[index].r);
+            la[index].rx = Math.round(w/ox);
+            la[index].ry = Math.round(h/ox);
         }
         //offset
-        la[l].o = ox;
+        la[index].o = ox;
         //randomlly draw main character
-        la[l].fb_fn();
-        
+        if(la[index].fb_fn)
+            la[index].fb_fn();
     }
+    if(i)
+        gr_i(i);
+    else
+        for(let l = 0,la_l=la.length;l<la_l;l++){
+            gr_i(l);    
+        }
     
 }
 //draw pixel using canvas api
@@ -239,27 +244,34 @@ function dr(){
 }
 //every frame value, draw scene
 function l(){
-	window.clearInterval(l_spl);
+	u.clearInterval();
 	gameEvents();
-    l_i = setInterval(function() {
+    u.startInterval(function() {
         u.clear(c,0,0,0);
 		gr();
         dr();
     }, fr);
 }
  
-function splash(doc){
-	let i = 0;
-	if(l_i){
-		window.clearInterval(l_i);
-	}
-	l_spl = setInterval(function() {
+function splash(_doc){
+    let i = 0;
+    var array_strings;
+    if(_doc)
+        array_strings = _doc;
+    else
+        array_strings = doc;
+	if(u.intervRun()){
+		u.clearInterval();
+    }
+    u.startInterval(function() {
         u.clear(c,0,0,0);
-		gr();
-		t.fb_fn('OFFLINE-'+doc[i%5]);
-		t.d_fn();
-		i++;
-    }, 500);
+        gr();
+        if(t.fb_fn)
+            t.fb_fn('OFFLINE-'+array_strings[i%5]);
+        if(t.d_fn)
+            t.d_fn();    
+        i++;
+    }, 800);
 	
 	d.onkeydown = (e) => {
 		switch(e.key){
@@ -268,7 +280,13 @@ function splash(doc){
 			case 'm':
 			case 'h':
 			case 'w':
-				g.difficulty = e.key;
+                g.difficulty = e.key;
+                if(u.intervRun()){
+                    u.clearInterval();
+                }
+                u.startInterval(
+                    t.setTime()
+                , 1000);
 				l();
 				break;
 			case 's':
@@ -278,8 +296,8 @@ function splash(doc){
 		}
 	}
 }
-let doc = ['V VERY-EASY','E EASY','M MEDIUM','H HARD','W VERY-HARD'];		
-splash(doc);
+var doc = ['V VERY-EASY','E EASY','M MEDIUM','H HARD','W VERY-HARD'];		
+//splash(doc);
  
 //l();
 

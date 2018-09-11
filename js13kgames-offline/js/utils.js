@@ -55,5 +55,18 @@ u.clear = (c,r,g,b) => {
 	c.fillStyle = `rgb(${r}, ${g}, ${b})`;
     c.fillRect(0,0,la[0].w,la[0].h);
 }
+u.interval;
+u.startInterval = (fn,t) => {
+    if(!u.interval)
+        u.interval = setInterval(fn, t)
+}
 
+u.clearInterval = () => {
+    window.clearInterval(u.interval);
+    u.interval = false;
+}
+
+u.intervRun = () => {
+    return (u.interval)?true:false;
+}
 

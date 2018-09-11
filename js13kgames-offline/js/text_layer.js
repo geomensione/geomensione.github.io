@@ -19,13 +19,16 @@ t.fb_fn = function(txt){
             //clear all
             this.fb[i][d] = ['00', '00', '00'];
         }
+        if(txt){
+            this.sc = txt;
+        }else{
+            this.sc = `${window.score} ${window.dir}-${t.countDown}`;
+            
+            
+        }
+            
+        u.drawText(this);
     }
-    if(txt)
-        this.sc = txt;
-    else
-        this.sc = `${window.score} ${window.dir}-${t.countDown}`;
-    
-    u.drawText(this);
 }
 
 t.d_fn = function(){
@@ -56,9 +59,9 @@ t.setTime = () => {
         
         t.countDown = 60;
         window.score = 0;
-		end('OFFLINE-PRESS-S TO-START');
+        window.clearInterval(window.gameInterval);
+		splash(['TIME-IS-FINISHED','PRESS-S TO-RESTART']);
     }
 		
 }
-window.gameInterval = setInterval(()=>{t.setTime()}, 1000);
 //end text layer
