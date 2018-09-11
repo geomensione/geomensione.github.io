@@ -10,4 +10,4 @@ prompt windows: type *.js > compiled.js
 
 todo
 
-countdown process
+https://skalman.github.io/UglifyJS-online/

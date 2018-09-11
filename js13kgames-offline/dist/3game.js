@@ -258,6 +258,8 @@ function splash(_doc){
         array_strings = _doc;
     else
         array_strings = doc;
+	if(window.difficulty)
+		window.difficulty = undefined;
 	if(u.intervRun()){
 		u.clearInterval();
     }
