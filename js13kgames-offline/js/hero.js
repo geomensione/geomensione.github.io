@@ -11,17 +11,6 @@ h.sp = 2;
 h.mx = 0;
 h.my = 0;
 
-
-
-h.setRandomValue = function(){
-    h.quy = random(3,true);
-    h.qux = random(3,true);
-	console.log(`${h.qux} ${h.quy}`);
-    h.cx = random(this.rx-h.s);
-    h.cy = random(this.ry-h.s);
-    this.picked = false;
-}
-
 h.fb_fn = function(){
     this.fb = [];
 	

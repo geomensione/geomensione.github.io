@@ -282,6 +282,7 @@ function splash(_doc){
                 if(u.intervRun()){
                     u.clearInterval();
                 }
+                t.countDown = t.startSeconds;
                 u.startTimer(function() {
                     t.setTime();
                 }, 1000);
