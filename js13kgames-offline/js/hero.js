@@ -164,8 +164,11 @@ h.d_fn = function(){
                     c.fillStyle = "#"+this.fb[i-si][d-sd][0]+this.fb[i-si][d-sd][1]+this.fb[i-si][d-sd][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
-                    c.fillStyle = "rgba(0,255,0,0.1)";
-                    c.fillRect(cx,cy,o,o);
+					if(g.difficulty !== 'w'){
+						c.fillStyle = "rgba(0,255,0,0.1)";
+						c.fillRect(cx,cy,o,o);
+					}
+                    
                 }
                 cy += o;
             }

@@ -59,7 +59,7 @@ t.setTime = () => {
         
         t.countDown = 60;
         window.score = 0;
-        window.clearInterval(window.gameInterval);
+        u.clearTimer();
 		splash(['TIME-IS-FINISHED','PRESS-S TO-RESTART']);
     }
 		
