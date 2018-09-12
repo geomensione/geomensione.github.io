@@ -10,6 +10,8 @@ prompt windows: type *.js > compiled.js
 
 todo
 
+very hard -> no suggests
+
 https://skalman.github.io/UglifyJS-online/
 
 re si mi do#m

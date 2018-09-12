@@ -46,8 +46,8 @@ u.setRandomValue = function(obj){
 	console.log(`${obj.qux} ${obj.quy}`)
     //h.quy = 0;
     //h.qux = 0;
-    obj.cx = u.random(obj.rx);
-    obj.cy = u.random(obj.ry);
+    obj.cx = u.random(obj.rx-obj.s);
+    obj.cy = u.random(obj.ry-obj.s);
     obj.picked = false;
 }
 

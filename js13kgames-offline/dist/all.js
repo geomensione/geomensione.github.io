@@ -410,8 +410,8 @@ u.setRandomValue = function(obj){
 	console.log(`${obj.qux} ${obj.quy}`)
     //h.quy = 0;
     //h.qux = 0;
-    obj.cx = u.random(obj.rx);
-    obj.cy = u.random(obj.ry);
+    obj.cx = u.random(obj.rx-obj.s);
+    obj.cy = u.random(obj.ry-obj.s);
     obj.picked = false;
 }
 
@@ -709,8 +709,6 @@ function splash(_doc){
         array_strings = _doc;
     else
         array_strings = doc;
-	if(window.difficulty)
-		window.difficulty = undefined;
 	if(u.intervRun()){
 		u.clearInterval();
     }
@@ -735,6 +733,7 @@ function splash(_doc){
                 if(u.intervRun()){
                     u.clearInterval();
                 }
+                t.countDown = t.startSeconds;
                 u.startTimer(function() {
                     t.setTime();
                 }, 1000);
@@ -896,7 +895,10 @@ t.fb_fn = function(txt){
         if(txt){
             this.sc = txt;
         }else{
-            this.sc = `${window.score} ${window.dir}-${t.countDown}`;
+            this.sc = window.score.toString();
+			if(g.difficulty !== 'w')
+				this.sc += ` ${window.dir}`
+			this.sc += `-${t.countDown}`;
             
             
         }
@@ -933,7 +935,7 @@ t.setTime = () => {
         
         t.countDown = 60;
         window.score = 0;
-        window.clearInterval(window.gameInterval);
+        u.clearTimer();
 		splash(['TIME-IS-FINISHED','PRESS-S TO-RESTART']);
     }
 		
@@ -1021,17 +1023,6 @@ h.s = 5;
 h.sp = 2;
 h.mx = 0;
 h.my = 0;
-
-
-
-h.setRandomValue = function(){
-    h.quy = random(3,true);
-    h.qux = random(3,true);
-	console.log(`${h.qux} ${h.quy}`);
-    h.cx = random(this.rx-h.s);
-    h.cy = random(this.ry-h.s);
-    this.picked = false;
-}
 
 h.fb_fn = function(){
     this.fb = [];
@@ -1186,8 +1177,11 @@ h.d_fn = function(){
                     c.fillStyle = "#"+this.fb[i-si][d-sd][0]+this.fb[i-si][d-sd][1]+this.fb[i-si][d-sd][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
-                    c.fillStyle = "rgba(0,255,0,0.1)";
-                    c.fillRect(cx,cy,o,o);
+					if(g.difficulty !== 'w' && g.difficulty !== 'h'){
+						c.fillStyle = "rgba(0,255,0,0.1)";
+						c.fillRect(cx,cy,o,o);
+					}
+                    
                 }
                 cy += o;
             }
@@ -1610,8 +1604,8 @@ u.setRandomValue = function(obj){
 	console.log(`${obj.qux} ${obj.quy}`)
     //h.quy = 0;
     //h.qux = 0;
-    obj.cx = u.random(obj.rx);
-    obj.cy = u.random(obj.ry);
+    obj.cx = u.random(obj.rx-obj.s);
+    obj.cy = u.random(obj.ry-obj.s);
     obj.picked = false;
 }
 
@@ -1909,8 +1903,6 @@ function splash(_doc){
         array_strings = _doc;
     else
         array_strings = doc;
-	if(window.difficulty)
-		window.difficulty = undefined;
 	if(u.intervRun()){
 		u.clearInterval();
     }
@@ -1935,6 +1927,7 @@ function splash(_doc){
                 if(u.intervRun()){
                     u.clearInterval();
                 }
+                t.countDown = t.startSeconds;
                 u.startTimer(function() {
                     t.setTime();
                 }, 1000);
@@ -2096,7 +2089,10 @@ t.fb_fn = function(txt){
         if(txt){
             this.sc = txt;
         }else{
-            this.sc = `${window.score} ${window.dir}-${t.countDown}`;
+            this.sc = window.score.toString();
+			if(g.difficulty !== 'w')
+				this.sc += ` ${window.dir}`
+			this.sc += `-${t.countDown}`;
             
             
         }
@@ -2133,7 +2129,7 @@ t.setTime = () => {
         
         t.countDown = 60;
         window.score = 0;
-        window.clearInterval(window.gameInterval);
+        u.clearTimer();
 		splash(['TIME-IS-FINISHED','PRESS-S TO-RESTART']);
     }
 		
@@ -2221,17 +2217,6 @@ h.s = 5;
 h.sp = 2;
 h.mx = 0;
 h.my = 0;
-
-
-
-h.setRandomValue = function(){
-    h.quy = random(3,true);
-    h.qux = random(3,true);
-	console.log(`${h.qux} ${h.quy}`);
-    h.cx = random(this.rx-h.s);
-    h.cy = random(this.ry-h.s);
-    this.picked = false;
-}
 
 h.fb_fn = function(){
     this.fb = [];
@@ -2386,8 +2371,11 @@ h.d_fn = function(){
                     c.fillStyle = "#"+this.fb[i-si][d-sd][0]+this.fb[i-si][d-sd][1]+this.fb[i-si][d-sd][2];
                     c.fillRect(cx,cy,o,o);
                 }else{
-                    c.fillStyle = "rgba(0,255,0,0.1)";
-                    c.fillRect(cx,cy,o,o);
+					if(g.difficulty !== 'w' && g.difficulty !== 'h'){
+						c.fillStyle = "rgba(0,255,0,0.1)";
+						c.fillRect(cx,cy,o,o);
+					}
+                    
                 }
                 cy += o;
             }
@@ -2396,4 +2384,4 @@ h.d_fn = function(){
             
         }
     }
-}    
+}

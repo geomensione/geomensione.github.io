@@ -22,7 +22,10 @@ t.fb_fn = function(txt){
         if(txt){
             this.sc = txt;
         }else{
-            this.sc = `${window.score} ${window.dir}-${t.countDown}`;
+            this.sc = window.score.toString();
+			if(g.difficulty !== 'w')
+				this.sc += ` ${window.dir}`
+			this.sc += `-${t.countDown}`;
             
             
         }
@@ -59,7 +62,7 @@ t.setTime = () => {
         
         t.countDown = 60;
         window.score = 0;
-        window.clearInterval(window.gameInterval);
+        u.clearTimer();
 		splash(['TIME-IS-FINISHED','PRESS-S TO-RESTART']);
     }
 		

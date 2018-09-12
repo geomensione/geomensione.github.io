@@ -22,7 +22,10 @@ t.fb_fn = function(txt){
         if(txt){
             this.sc = txt;
         }else{
-            this.sc = `${window.score} ${window.dir}-${t.countDown}`;
+            this.sc = window.score.toString();
+			if(g.difficulty !== 'w')
+				this.sc += ` ${window.dir}`
+			this.sc += `-${t.countDown}`;
             
             
         }
