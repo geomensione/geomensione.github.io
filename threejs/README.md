@@ -12,3 +12,5 @@ todo:
       aggiungo il riferimento alla f3d_scene
       se scelgo un interpolate -> lo rinomino in f3d_scene_...
       aggiungo il riferimento nella f3d_scene, in mezzo ai riferimenti delle due sfere che formano il collegamento -> bisogna aggiornare la scene perché altrimenti rimangono i vecchi id nei nomi degli oggetti
+
+ToDo: usare un fb e centralizzare le direttive di disegno in un punto solo.
