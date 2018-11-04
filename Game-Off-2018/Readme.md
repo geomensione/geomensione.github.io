@@ -1,1 +1,5 @@
-1- convert js13kgames offline in typescript (https://www.typescriptlang.org/)
+npm init
+npm install phaser
+---
+npm imstall http-server -g
+http-server . --cors
