@@ -10,11 +10,10 @@
     <div id="game"></div>
 
     <script type="text/javascript">
-    const GW = 600, GH = 448;
     var config = {
     type: Phaser.WEBGL,
-    width: GW,
-    height: GH,
+    width: 800,
+    height: 600,
     parent: 'phaser-example',
     physics: {
         default: 'impact',
@@ -22,8 +21,8 @@
             setBounds: {
                 x: 0,
                 y: 0,
-                width: GW,
-                height: GH,
+                width: 3200,
+                height: 600,
                 thickness: 32
             }
         }
@@ -113,7 +112,7 @@ function create ()
     });
 
     //  The world is 3200 x 600 in size
-    this.cameras.main.setBounds(0, 0, GW, GH);
+    this.cameras.main.setBounds(0, 0, 3200, 600);
 
     //  The miniCam is 400px wide, so can display the whole world at a zoom of 0.2
     // this.minimap = this.cameras.add(200, 10, 400, 100).setZoom(0.2);
@@ -133,7 +132,7 @@ function create ()
 
     //  Add a player ship
 
-    this.player = this.impact.add.sprite(GW/2, GH, 'ship').setDepth(1);
+    this.player = this.impact.add.sprite(1600, 200, 'ship').setDepth(1);
     this.player.setMaxVelocity(1000).setFriction(800, 600).setPassiveCollision();
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -159,7 +158,7 @@ function update (time, delta)
     {
         this.player.setAccelerationX(0);
     }
-/*
+
     if (this.cursors.up.isDown)
     {
         this.player.setAccelerationY(-800);
@@ -172,7 +171,7 @@ function update (time, delta)
     {
         this.player.setAccelerationY(0);
     }
-*/
+
     if (this.player.vel.x < 0)
     {
         this.thrust.setPosition(this.thrust.x.propertyValue += (this.player.flipX) ? 16 : -16, this.thrust.y.propertyValue);
