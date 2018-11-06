@@ -94,7 +94,7 @@ function create ()
                 this.speed = Phaser.Math.GetSpeed(1000 + player.vel.x, 1);
             }
             */
-            this.speed = Phaser.Math.GetSpeed(1000 + player.vel.y, 1);
+            this.speed = Phaser.Math.GetSpeed(1, 1000 + player.vel.y);
             this.born = 0;
         },
 
