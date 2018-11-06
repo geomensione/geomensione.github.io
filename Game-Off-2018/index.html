@@ -82,7 +82,7 @@ function create ()
         fire: function (player)
         {
             this.setPosition(player.x, player.y);
-            /*
+            
             if (player.flipX)
             {
                 //  Facing left
@@ -93,8 +93,6 @@ function create ()
                 //  Facing right
                 this.speed = Phaser.Math.GetSpeed(1000 + player.vel.x, 1);
             }
-            */
-            this.speed = Phaser.Math.GetSpeed(1, 1000 + player.vel.y);
             this.born = 0;
         },
 
