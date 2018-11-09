@@ -21,6 +21,10 @@ class Asteroids extends Phaser.Scene {
 
         this.physics.world.setBounds(0, 0, 400, 300);
         this.cameras.main.setViewport(config.x, config.y, 400, 300).setBackgroundColor('#000');
+        
+        this.ship = this.physics.add.image(200, 290, 'invaders.ship');
+
+        this.ship.setCollideWorldBounds(true);
     }
 
     bulletHit (bullet, invader)
@@ -86,9 +90,7 @@ class Invaders extends Phaser.Scene {
 
         this.mothership = this.add.image(400, 18, 'invaders.mothership');
 
-        this.ship = this.physics.add.image(200, 290, 'invaders.ship');
-
-        this.ship.setCollideWorldBounds(true);
+        
 
         this.physics.add.overlap(this.bullet, this.invaders, this.bulletHit, null, this);
 
