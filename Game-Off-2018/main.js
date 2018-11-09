@@ -1,3 +1,16 @@
+var ship;
+class Ship extends Phaser.Scene {
+    constructor(ship){
+        super('ship');
+        this.ship = ship;
+    }
+
+    getShip(){
+        return this.ship;
+    }
+
+
+}
 
 class Asteroids extends Phaser.Scene {
 
@@ -22,9 +35,7 @@ class Asteroids extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, 400, 300);
         this.cameras.main.setViewport(config.x, config.y, 400, 300).setBackgroundColor('#000');
         
-        this.ship = this.physics.add.image(200, 290, 'invaders.ship');
-
-        this.ship.setCollideWorldBounds(true);
+        this.ship = ship.getShip();
     }
 
     bulletHit (bullet, invader)
@@ -90,8 +101,10 @@ class Invaders extends Phaser.Scene {
 
         this.mothership = this.add.image(400, 18, 'invaders.mothership');
 
-        
+        this.ship = this.physics.add.image(200, 290, 'invaders.ship');
 
+        this.ship.setCollideWorldBounds(true);
+        ship = new Ship(this.ship)
         this.physics.add.overlap(this.bullet, this.invaders, this.bulletHit, null, this);
 
         this.launchBullet();
