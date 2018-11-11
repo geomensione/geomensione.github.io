@@ -1,319 +1,320 @@
-var ship;
-class Ship extends Phaser.Scene {
-    constructor(ship){
-        super('ship');
-        this.ship = ship;
-    }
 
-    getShip(){
-        return this.ship;
-    }
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
+function preload() {
+
+    game.load.image('bullet', 'assets/games/invaders/bullet.png');
+    game.load.image('enemyBullet', 'assets/games/invaders/enemy-bullet.png');
+    game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
+    game.load.image('ship', 'assets/games/invaders/player.png');
+    game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
+    game.load.image('starfield', 'assets/games/invaders/starfield.png');
+    game.load.image('background', 'assets/games/starstruck/background2.png');
 
 }
 
-class Asteroids extends Phaser.Scene {
+var player;
+var aliens;
+var bullets;
+var bulletTime = 0;
+var cursors;
+var fireButton;
+var explosions;
+var starfield;
+var score = 0;
+var scoreString = '';
+var scoreText;
+var lives;
+var enemyBullet;
+var firingTimer = 0;
+var stateText;
+var livingEnemies = [];
 
-    constructor ()
+function create() {
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    //  The scrolling starfield background
+    starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+
+    //  Our bullet group
+    bullets = game.add.group();
+    bullets.enableBody = true;
+    bullets.physicsBodyType = Phaser.Physics.ARCADE;
+    bullets.createMultiple(30, 'bullet');
+    bullets.setAll('anchor.x', 0.5);
+    bullets.setAll('anchor.y', 1);
+    bullets.setAll('outOfBoundsKill', true);
+    bullets.setAll('checkWorldBounds', true);
+
+    // The enemy's bullets
+    enemyBullets = game.add.group();
+    enemyBullets.enableBody = true;
+    enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
+    enemyBullets.createMultiple(30, 'enemyBullet');
+    enemyBullets.setAll('anchor.x', 0.5);
+    enemyBullets.setAll('anchor.y', 1);
+    enemyBullets.setAll('outOfBoundsKill', true);
+    enemyBullets.setAll('checkWorldBounds', true);
+
+    //  The hero!
+    player = game.add.sprite(400, 500, 'ship');
+    player.anchor.setTo(0.5, 0.5);
+    game.physics.enable(player, Phaser.Physics.ARCADE);
+
+    //  The baddies!
+    aliens = game.add.group();
+    aliens.enableBody = true;
+    aliens.physicsBodyType = Phaser.Physics.ARCADE;
+
+    createAliens();
+
+    //  The score
+    scoreString = 'Score : ';
+    scoreText = game.add.text(10, 10, scoreString + score, { font: '34px Arial', fill: '#fff' });
+
+    //  Lives
+    lives = game.add.group();
+    game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '34px Arial', fill: '#fff' });
+
+    //  Text
+    stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
+    stateText.anchor.setTo(0.5, 0.5);
+    stateText.visible = false;
+
+    for (var i = 0; i < 3; i++) 
     {
-        super('asteroids');
-
-        this.controller;
-
-        this.ship;
-
-        this.rocks;
-        this.bullets;
-
-        this.bulletTimer;
+        var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship');
+        ship.anchor.setTo(0.5, 0.5);
+        ship.angle = 90;
+        ship.alpha = 0.4;
     }
 
-    create (config)
-    {
-        this.controller = this.scene.get('controller');
+    //  An explosion pool
+    explosions = game.add.group();
+    explosions.createMultiple(30, 'kaboom');
+    explosions.forEach(setupInvader, this);
 
-        this.physics.world.setBounds(0, 0, 400, 300);
-        this.cameras.main.setViewport(config.x, config.y, 400, 300).setBackgroundColor('#000');
+    //  And some controls to play the game with
+    cursors = game.input.keyboard.createCursorKeys();
+    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    
+}
+
+function createAliens () {
+
+    for (var y = 0; y < 4; y++)
+    {
+        for (var x = 0; x < 10; x++)
+        {
+            var alien = aliens.create(x * 48, y * 50, 'invader');
+            alien.anchor.setTo(0.5, 0.5);
+            alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
+            alien.play('fly');
+            alien.body.moves = false;
+        }
+    }
+
+    aliens.x = 100;
+    aliens.y = 50;
+
+    //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
+    var tween = game.add.tween(aliens).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+    //  When the tween loops it calls descend
+    tween.onLoop.add(descend, this);
+}
+
+function setupInvader (invader) {
+
+    invader.anchor.x = 0.5;
+    invader.anchor.y = 0.5;
+    invader.animations.add('kaboom');
+
+}
+
+function descend() {
+
+    aliens.y += 10;
+
+}
+
+function update() {
+
+    //  Scroll the background
+    starfield.tilePosition.y += 2;
+
+    if (player.alive)
+    {
+        //  Reset the player, then check for movement keys
+        player.body.velocity.setTo(0, 0);
+
+        if (cursors.left.isDown)
+        {
+            player.body.velocity.x = -200;
+        }
+        else if (cursors.right.isDown)
+        {
+            player.body.velocity.x = 200;
+        }
+
+        //  Firing?
+        if (fireButton.isDown)
+        {
+            fireBullet();
+        }
+
+        if (game.time.now > firingTimer)
+        {
+            enemyFires();
+        }
+
+        //  Run collision
+        game.physics.arcade.overlap(bullets, aliens, collisionHandler, null, this);
+        game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
+    }
+
+}
+
+function render() {
+
+    // for (var i = 0; i < aliens.length; i++)
+    // {
+    //     game.debug.body(aliens.children[i]);
+    // }
+
+}
+
+function collisionHandler (bullet, alien) {
+
+    //  When a bullet hits an alien we kill them both
+    bullet.kill();
+    alien.kill();
+
+    //  Increase the score
+    score += 20;
+    scoreText.text = scoreString + score;
+
+    //  And create an explosion :)
+    var explosion = explosions.getFirstExists(false);
+    explosion.reset(alien.body.x, alien.body.y);
+    explosion.play('kaboom', 30, false, true);
+
+    if (aliens.countLiving() == 0)
+    {
+        score += 1000;
+        scoreText.text = scoreString + score;
+
+        enemyBullets.callAll('kill',this);
+        stateText.text = " You Won, \n Click to restart";
+        stateText.visible = true;
+
+        //the "click to restart" handler
+        game.input.onTap.addOnce(restart,this);
+    }
+
+}
+
+function enemyHitsPlayer (player,bullet) {
+    
+    bullet.kill();
+
+    live = lives.getFirstAlive();
+
+    if (live)
+    {
+        live.kill();
+    }
+
+    //  And create an explosion :)
+    var explosion = explosions.getFirstExists(false);
+    explosion.reset(player.body.x, player.body.y);
+    explosion.play('kaboom', 30, false, true);
+
+    // When the player dies
+    if (lives.countLiving() < 1)
+    {
+        player.kill();
+        enemyBullets.callAll('kill');
+
+        stateText.text=" GAME OVER \n Click to restart";
+        stateText.visible = true;
+
+        //the "click to restart" handler
+        game.input.onTap.addOnce(restart,this);
+    }
+
+}
+
+function enemyFires () {
+
+    //  Grab the first bullet we can from the pool
+    enemyBullet = enemyBullets.getFirstExists(false);
+
+    livingEnemies.length=0;
+
+    aliens.forEachAlive(function(alien){
+
+        // put every living enemy in an array
+        livingEnemies.push(alien);
+    });
+
+
+    if (enemyBullet && livingEnemies.length > 0)
+    {
         
-        this.ship = ship.getShip();
+        var random=game.rnd.integerInRange(0,livingEnemies.length-1);
+
+        // randomly select one of them
+        var shooter=livingEnemies[random];
+        // And fire the bullet from this enemy
+        enemyBullet.reset(shooter.body.x, shooter.body.y);
+
+        game.physics.arcade.moveToObject(enemyBullet,player,120);
+        firingTimer = game.time.now + 2000;
     }
 
-    bulletHit (bullet, invader)
-    {
-    }
+}
 
-    launchBullet ()
-    {
-    }
+function fireBullet () {
 
-    createInvaders ()
+    //  To avoid them being allowed to fire too fast we set a time limit
+    if (game.time.now > bulletTime)
     {
-        this.rocks = this.physics.add.group();
+        //  Grab the first bullet we can from the pool
+        bullet = bullets.getFirstExists(false);
 
-    }
-
-    update ()
-    {
-        if (this.controller.left.isDown)
+        if (bullet)
         {
-            this.ship.body.velocity.x = -400;
-        }
-        else if (this.controller.right.isDown)
-        {
-            this.ship.body.velocity.x = 400;
+            //  And fire it
+            bullet.reset(player.x, player.y + 8);
+            bullet.body.velocity.y = -400;
+            bulletTime = game.time.now + 200;
         }
     }
 
 }
 
-class Invaders extends Phaser.Scene {
+function resetBullet (bullet) {
 
-    constructor ()
-    {
-        super('invaders');
-
-        this.controller;
-
-        this.ship;
-
-        this.invaders;
-        this.mothership;
-        this.bullet;
-
-        this.topLeft;
-        this.bottomRight;
-
-        this.bulletTimer;
-
-        this.invadersBounds = { x: 12, y: 48, right: 152 };
-    }
-
-    create (config)
-    {
-        this.controller = this.scene.get('controller');
-
-        this.physics.world.setBounds(0, 0, 400, 300);
-        this.cameras.main.setViewport(config.x, config.y, 400, 300).setBackgroundColor('#000');
-
-        this.createInvaders();
-
-        this.bullet = this.physics.add.image(200, 290, 'invaders.bullet2');
-
-        this.mothership = this.add.image(400, 18, 'invaders.mothership');
-
-        this.ship = this.physics.add.image(200, 290, 'invaders.ship');
-
-        this.ship.setCollideWorldBounds(true);
-        ship = new Ship(this.ship)
-        this.physics.add.overlap(this.bullet, this.invaders, this.bulletHit, null, this);
-
-        this.launchBullet();
-
-        this.invaders.setVelocityX(50);
-    }
-
-    bulletHit (bullet, invader)
-    {
-        this.launchBullet();
-
-        invader.body.enable = false;
-
-        this.invaders.killAndHide(invader);
-    }
-
-    launchBullet ()
-    {
-        this.bullet.body.reset(this.ship.x, this.ship.y);
-
-        this.bullet.body.velocity.y = -400;
-    }
-
-    createInvaders ()
-    {
-        this.invaders = this.physics.add.group();
-
-        var x = this.invadersBounds.x;
-        var y = this.invadersBounds.y;
-
-        for (var i = 0; i < 10; i++)
-        {
-            this.invaders.create(x, y, 'invaders.invader1').setTint(0xff0000).play('invader1');
-
-            x += 26;
-        }
-
-        x = this.invadersBounds.x;
-        y += 28
-
-        for (var i = 0; i < 16; i++)
-        {
-            this.invaders.create(x, y, 'invaders.invader2').setTint(0x00ff00).play('invader2');
-
-            x += 33;
-
-            if (i === 7)
-            {
-                x = this.invadersBounds.x;
-                y += 28;
-            }
-        }
-
-        x = this.invadersBounds.x;
-        y += 28
-
-        for (var i = 0; i < 14; i++)
-        {
-            this.invaders.create(x, y, 'invaders.invader3').setTint(0x00ffff).play('invader3');
-
-            x += 38;
-
-            if (i === 6)
-            {
-                x = this.invadersBounds.x;
-                y += 28;
-            }
-        }
-
-        //  We can use these markers to work out where the whole Group is and how wide it is
-        this.topLeft = this.invaders.getFirst(true);
-        this.bottomRight = this.invaders.getLast(true);
-    }
-
-    update ()
-    {
-        if (this.controller.left.isDown)
-        {
-            this.ship.body.velocity.x = -400;
-        }
-        else if (this.controller.right.isDown)
-        {
-            this.ship.body.velocity.x = 400;
-        }
-        else
-        {
-            this.ship.body.velocity.x = 0;
-        }
-
-        //  Bullet bounds
-        if (this.bullet.y < -32)
-        {
-            this.launchBullet();
-        }
-
-        //  Invaders bounds
-        if (this.bottomRight.body.velocity.x > 0 && this.bottomRight.x >= 380)
-        {
-            this.invaders.setVelocityX(-50);
-        }
-        else if (this.topLeft.body.velocity.x < 0 && this.topLeft.x <= 12)
-        {
-            this.invaders.setVelocityX(50);
-        }
-    }
+    //  Called if the bullet goes out of the screen
+    bullet.kill();
 
 }
 
-class Controller extends Phaser.Scene {
+function restart () {
 
-    constructor ()
-    {
-        super('controller');
+    //  A new level starts
+    
+    //resets the life count
+    lives.callAll('revive');
+    //  And brings the aliens back from the dead :)
+    aliens.removeAll();
+    createAliens();
 
-        //  Games
-        this.invaders;
-
-        //  Keys
-        this.left;
-        this.right;
-    }
-
-    create ()
-    {
-        //  Get game Scenes
-        // this.invaders = this.scene.get('invaders');
-
-        this.left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        this.right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-
-        this.scene.launch('invaders', { x: 0, y: 0 });
-        this.scene.launch('asteroids', { x: 400, y: 0 });
-    }
+    //revives the player
+    player.revive();
+    //hides the text
+    stateText.visible = false;
 
 }
-
-class Preloader extends Phaser.Scene {
-
-    constructor ()
-    {
-        super('preloader');
-    }
-
-    preload ()
-    {
-        this.load.image('invaders.boom', 'boom.png');
-        this.load.image('invaders.bullet', 'bullet.png', { frameWidth: 12, frameHeight: 14 });
-        this.load.image('invaders.bullet2', 'bullet2.png');
-        this.load.image('invaders.explode', 'explode.png');
-        this.load.spritesheet('invaders.invader1', 'invader1.png', { frameWidth: 16, frameHeight: 16 });
-        this.load.spritesheet('invaders.invader2', 'invader2.png', { frameWidth: 22, frameHeight: 16 });
-        this.load.spritesheet('invaders.invader3', 'invader3.png', { frameWidth: 24, frameHeight: 16 });
-        this.load.image('invaders.mothership', 'mothership.png');
-        this.load.image('invaders.ship', 'ship.png');
-    }
-
-    create ()
-    {
-        //  Create animations
-
-        this.anims.create({
-            key: 'bullet',
-            frames: this.anims.generateFrameNumbers('invaders.bullet'),
-            frameRate: 8,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'invader1',
-            frames: this.anims.generateFrameNumbers('invaders.invader1'),
-            frameRate: 2,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'invader2',
-            frames: this.anims.generateFrameNumbers('invaders.invader2'),
-            frameRate: 2,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'invader3',
-            frames: this.anims.generateFrameNumbers('invaders.invader3'),
-            frameRate: 2,
-            repeat: -1
-        });
-
-        this.scene.start('controller');
-    }
-
-}
-
-
-
-var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: '#2d2d2d',
-    parent: 'phaser-example',
-    physics: {
-        default: 'arcade',
-        arcade: {
-            debug: false,
-            gravity: { y: 0 }
-        }
-    },
-    scene: [ Preloader, Controller, Invaders, Asteroids ]
-};
-
-var game = new Phaser.Game(config);
