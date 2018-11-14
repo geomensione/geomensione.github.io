@@ -1,6 +1,9 @@
-
 //var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
-var game = new Phaser.Game(600, 448, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var gC = {
+    width: 600,
+    height: 448
+};
+var game = new Phaser.Game(gC.width, gC.height, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
 
@@ -36,7 +39,7 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  The scrolling starfield background
-    starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+    starfield = game.add.tileSprite(0, 0, gC.width, gC.height, 'starfield');
 
     //  Our bullet group
     bullets = game.add.group();
@@ -59,7 +62,7 @@ function create() {
     enemyBullets.setAll('checkWorldBounds', true);
 
     //  The hero!
-    player = game.add.sprite(400, 500, 'ship');
+    player = game.add.sprite(gC.width/2, gC.height-50, 'ship');
     player.anchor.setTo(0.5, 0.5);
     game.physics.enable(player, Phaser.Physics.ARCADE);
 
