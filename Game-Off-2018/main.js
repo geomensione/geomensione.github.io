@@ -1,3 +1,20 @@
+//var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var gC = {
+    width: 600,
+    height: 448
+};
+var game = new Phaser.Game(
+    gC.width, 
+    gC.height, 
+    Phaser.AUTO, 
+    'phaser-example', 
+    { 
+        preload: preload, 
+        create: create, 
+        update: update, 
+        render: render 
+    }
+);
 
 function preload() {
 
@@ -6,7 +23,7 @@ function preload() {
     game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
     game.load.image('ship', 'assets/games/invaders/player.png');
     game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
-    game.load.image('starfield', 'assets/games/invaders/starfield.png');
+    game.load.image('starfield', 'assets/games/invaders/starfieldB.png');
     game.load.image('background', 'assets/games/starstruck/background2.png');
 
 }
@@ -33,6 +50,7 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  The scrolling starfield background
+    starfield = game.add.tileSprite(0, 0, gC.width, gC.height, 'starfield');
 
     //  Our bullet group
     bullets = game.add.group();
@@ -55,6 +73,9 @@ function create() {
     enemyBullets.setAll('checkWorldBounds', true);
 
     //  The hero!
+    var width = game.cache.getImage("ship").width;
+    var height = game.cache.getImage("ship").height;
+    player = game.add.sprite((gC.width-width)/2, gC.height-height, 'ship');
     player.anchor.setTo(0.5, 0.5);
     game.physics.enable(player, Phaser.Physics.ARCADE);
 
@@ -115,7 +136,7 @@ function createAliens () {
     aliens.y = 50;
 
     //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
-    var tween = game.add.tween(aliens).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    var tween = game.add.tween(aliens).to( { x: 150 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     //  When the tween loops it calls descend
     tween.onLoop.add(descend, this);
