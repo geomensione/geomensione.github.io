@@ -21,7 +21,9 @@ function preload() {
 }
 
 function create() {
-
+    aliens = game.add.group();
+    aliens.enableBody = true;
+    aliens.physicsBodyType = Phaser.Physics.ARCADE;
     createAliens();
 
     
