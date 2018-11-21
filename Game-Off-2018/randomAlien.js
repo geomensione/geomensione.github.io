@@ -5,8 +5,7 @@ var gC = {
     level:'A'
 };
 
-var demonData = [{
-   "type":'A',
+var demonData = ['A':{
   "data": "demon",
   "width": 240,
   "original_width": 128,
@@ -50,21 +49,53 @@ function createAliens () {
     //random demon creator from game difficult level
     //...
     //test
-    
-    for (var y = 0; y < 4; y++)
-    {
-        for (var x = 0; x < 10; x++)
-        {
-            var alien = aliens.create(x * 48, y * 50, 'invader');
-            alien.anchor.setTo(0.5, 0.5);
-            alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
-            alien.play('fly');
-            alien.body.moves = false;
-        }
-    }
+    var data = demonData[gC.level];
+    //dem_A_BO_3_01: demone dei livelli di tipo A, BODY, zindex 3 , ID del layer grafico 01,
+    /*
+    "LW": "3",
+    "RW": "3",
+    "LB": "4",
+    "BO": "2",
+    "HE": "1"
+    */
+    game.load.spritesheet('invaderLW', 'assets/games/invaders/dem_'+gC.level+'_LW_'+data.layers['LW']+'.png', 128, 128);
+    game.load.spritesheet('invaderRW', 'assets/games/invaders/dem_'+gC.level+'_RW_'+data.layers['RW']+'.png', 128, 128);
+    game.load.spritesheet('invaderLB', 'assets/games/invaders/dem_'+gC.level+'_LB_'+data.layers['LB']+'.png', 128, 128);
+    game.load.spritesheet('invaderBO', 'assets/games/invaders/dem_'+gC.level+'_BO_'+data.layers['BO']+'.png', 128, 128);
+    game.load.spritesheet('invaderHE', 'assets/games/invaders/dem_'+gC.level+'_HE_'+data.layers['HE']+'.png', 128, 128);
 
-    aliens.x = 100;
-    aliens.y = 50;
+    var alienlw = aliens.create(200, 200, 'invaderLW');
+    var alienrw = aliens.create(200, 200, 'invaderRW');
+    var alienlb = aliens.create(200, 200, 'invaderLB');
+    var alienbo = aliens.create(200, 200, 'invaderBO');
+    var alienhe = aliens.create(200, 200, 'invaderHE');
+    
+    
+    
+    
+    alienlw.anchor.setTo(0.5, 0.5);
+    alienlw.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
+    alienlw.play('fly');
+    alienlw.body.moves = false;
+    alienrw.anchor.setTo(0.5, 0.5);
+    alienrw.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
+    alienrw.play('fly');
+    alienrw.body.moves = false;
+    alienlb.anchor.setTo(0.5, 0.5);
+    alienlb.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
+    alienlb.play('fly');
+    alienlb.body.moves = false;
+    alienbo.anchor.setTo(0.5, 0.5);
+    alienbo.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
+    alienbo.play('fly');
+    alienbo.body.moves = false;
+    alienhe.anchor.setTo(0.5, 0.5);
+    alienhe.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
+    alienhe.play('fly');
+    alienhe.body.moves = false;
+    
+    //aliens.x = 100;
+    //aliens.y = 50;
 
     //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
     var tween = game.add.tween(aliens).to( { x: 150 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
