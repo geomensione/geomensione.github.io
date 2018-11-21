@@ -6,16 +6,17 @@ var gC = {
 };
 
 var demonData = [{'A':{
-  "data": "demon",
-  "width": 240,
-  "original_width": 128,
-  "layers": {
-    "LW": "3",
-    "RW": "3",
-    "LB": "4",
-    "BO": "2",
-    "HE": "1"
-  }
+      "data": "demon",
+      "width": 240,
+      "original_width": 128,
+      "layers": {
+        "LW": "3",
+        "RW": "3",
+        "LB": "4",
+        "BO": "2",
+        "HE": "1"
+      }
+    }
 }]
 
 var game = new Phaser.Game(
