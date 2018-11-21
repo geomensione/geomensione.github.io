@@ -26,7 +26,7 @@ function create() {
 
     
 }
-
+var aliens;
 function createAliens () {
 
     for (var y = 0; y < 4; y++)
