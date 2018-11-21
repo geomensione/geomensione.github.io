@@ -72,37 +72,33 @@ function createAliens () {
     
 
     var alienlw = aliens.create(200, 200, 'invaderLW');
-    var alienrw = aliens.create(200, 200, 'invaderRW');
-    var alienlb = aliens.create(200, 200, 'invaderLB');
-    var alienbo = aliens.create(200, 200, 'invaderBO');
-    var alienhe = aliens.create(200, 200, 'invaderHE');
-    
-    
-    
-    
     alienlw.anchor.setTo(0.5, 0.5);
     alienlw.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
     alienlw.play('fly');
     alienlw.body.moves = false;
+    var alienrw = aliens.create(200, 200, 'invaderRW');
     alienrw.anchor.setTo(0.5, 0.5);
     alienrw.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
     alienrw.play('fly');
     alienrw.body.moves = false;
+    var alienlb = aliens.create(200, 200, 'invaderLB');
     alienlb.anchor.setTo(0.5, 0.5);
     alienlb.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
     alienlb.play('fly');
     alienlb.body.moves = false;
+    var alienbo = aliens.create(200, 200, 'invaderBO');
     alienbo.anchor.setTo(0.5, 0.5);
     alienbo.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
     alienbo.play('fly');
     alienbo.body.moves = false;
+    var alienhe = aliens.create(200, 200, 'invaderHE');
     alienhe.anchor.setTo(0.5, 0.5);
     alienhe.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
     alienhe.play('fly');
     alienhe.body.moves = false;
     
-    //aliens.x = 100;
-    //aliens.y = 50;
+    aliens.x = 100;
+    aliens.y = 50;
 
     //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
     var tween = game.add.tween(aliens).to( { x: 150 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
