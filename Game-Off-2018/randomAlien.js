@@ -5,7 +5,7 @@ var gC = {
     level:'A'
 };
 
-var demonData = [{'A':{
+var demonData = {'A':{
       "data": "demon",
       "width": 240,
       "original_width": 128,
@@ -17,7 +17,7 @@ var demonData = [{'A':{
         "HE": "1"
       }
     }
-}]
+}
 
 var game = new Phaser.Game(
     gC.width, 
