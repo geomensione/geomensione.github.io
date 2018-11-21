@@ -10,9 +10,9 @@ var demonData = {'A':{
       "width": 240,
       "original_width": 128,
       "layers": {
-        "LW": "3",
-        "RW": "3",
-        "LB": "4",
+        "LW": "2",
+        "RW": "1",
+        "LB": "7",
         "BO": "2",
         "HE": "1"
       }
