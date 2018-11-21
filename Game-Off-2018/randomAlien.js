@@ -34,22 +34,6 @@ var game = new Phaser.Game(
 
 function preload() {
     game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
-}
-
-function create() {
-    aliens = game.add.group();
-    aliens.enableBody = true;
-    aliens.physicsBodyType = Phaser.Physics.ARCADE;
-    createAliens();
-
-    
-}
-var aliens;
-function createAliens () {
-
-    //random demon creator from game difficult level
-    //...
-    //test
     var data = demonData[gC.level];
     //dem_A_BO_3_01: demone dei livelli di tipo A, BODY, zindex 3 , ID del layer grafico 01,
     /*
@@ -69,6 +53,23 @@ function createAliens () {
     game.load.spritesheet('invaderLB', 'assets/games/invaders/dem_'+gC.level+'_LB_2_'+data.layers['LB']+'.png', 128, 128);
     game.load.spritesheet('invaderBO', 'assets/games/invaders/dem_'+gC.level+'_BO_3_'+data.layers['BO']+'.png', 128, 128);
     game.load.spritesheet('invaderHE', 'assets/games/invaders/dem_'+gC.level+'_HE_4_'+data.layers['HE']+'.png', 128, 128);
+}
+
+function create() {
+    aliens = game.add.group();
+    aliens.enableBody = true;
+    aliens.physicsBodyType = Phaser.Physics.ARCADE;
+    createAliens();
+
+    
+}
+var aliens;
+function createAliens () {
+
+    //random demon creator from game difficult level
+    //...
+    //test
+    
 
     var alienlw = aliens.create(200, 200, 'invaderLW');
     var alienrw = aliens.create(200, 200, 'invaderRW');
