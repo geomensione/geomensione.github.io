@@ -1,8 +1,24 @@
 //var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 var gC = {
     width: 600,
-    height: 448
+    height: 448,
+    level:'A'
 };
+
+var demonData = [{
+   "type":'A',
+  "data": "demon",
+  "width": 240,
+  "original_width": 128,
+  "layers": {
+    "LW": "3",
+    "RW": "3",
+    "LB": "4",
+    "BO": "2",
+    "HE": "1"
+  }
+}]
+
 var game = new Phaser.Game(
     gC.width, 
     gC.height, 
@@ -31,6 +47,10 @@ function create() {
 var aliens;
 function createAliens () {
 
+    //random demon creator from game difficult level
+    //...
+    //test
+    
     for (var y = 0; y < 4; y++)
     {
         for (var x = 0; x < 10; x++)
