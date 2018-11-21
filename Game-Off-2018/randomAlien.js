@@ -5,7 +5,7 @@ var gC = {
     level:'A'
 };
 
-var demonData = ['A':{
+var demonData = [{'A':{
   "data": "demon",
   "width": 240,
   "original_width": 128,
