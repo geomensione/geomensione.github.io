@@ -48,11 +48,11 @@ function preload() {
     dem_A_LW_1_01.png	
     dem_A_RW_1_01.png
     */
-    game.load.spritesheet('invaderLW', 'assets/games/invaders/dem_'+gC.level+'_LW_1_'+data.layers['LW']+'.png', 128, 128);
-    game.load.spritesheet('invaderRW', 'assets/games/invaders/dem_'+gC.level+'_RW_1_'+data.layers['RW']+'.png', 128, 128);
-    game.load.spritesheet('invaderLB', 'assets/games/invaders/dem_'+gC.level+'_LB_2_'+data.layers['LB']+'.png', 128, 128);
-    game.load.spritesheet('invaderBO', 'assets/games/invaders/dem_'+gC.level+'_BO_3_'+data.layers['BO']+'.png', 128, 128);
-    game.load.spritesheet('invaderHE', 'assets/games/invaders/dem_'+gC.level+'_HE_4_'+data.layers['HE']+'.png', 128, 128);
+    game.load.image('invaderLW', 'assets/games/invaders/dem_'+gC.level+'_LW_1_'+data.layers['LW']+'.png', 128, 128);
+    game.load.image('invaderRW', 'assets/games/invaders/dem_'+gC.level+'_RW_1_'+data.layers['RW']+'.png', 128, 128);
+    game.load.image('invaderLB', 'assets/games/invaders/dem_'+gC.level+'_LB_2_'+data.layers['LB']+'.png', 128, 128);
+    game.load.image('invaderBO', 'assets/games/invaders/dem_'+gC.level+'_BO_3_'+data.layers['BO']+'.png', 128, 128);
+    game.load.image('invaderHE', 'assets/games/invaders/dem_'+gC.level+'_HE_4_'+data.layers['HE']+'.png', 128, 128);
 }
 
 function create() {
