@@ -57,12 +57,17 @@ function createAliens () {
     "LB": "4",
     "BO": "2",
     "HE": "1"
+    dem_A_BO_3_01.png	
+    dem_A_HE_4_01.png	
+    dem_A_LB_2_01.png	
+    dem_A_LW_1_01.png	
+    dem_A_RW_1_01.png
     */
-    game.load.spritesheet('invaderLW', 'assets/games/invaders/dem_'+gC.level+'_LW_'+data.layers['LW']+'.png', 128, 128);
-    game.load.spritesheet('invaderRW', 'assets/games/invaders/dem_'+gC.level+'_RW_'+data.layers['RW']+'.png', 128, 128);
-    game.load.spritesheet('invaderLB', 'assets/games/invaders/dem_'+gC.level+'_LB_'+data.layers['LB']+'.png', 128, 128);
-    game.load.spritesheet('invaderBO', 'assets/games/invaders/dem_'+gC.level+'_BO_'+data.layers['BO']+'.png', 128, 128);
-    game.load.spritesheet('invaderHE', 'assets/games/invaders/dem_'+gC.level+'_HE_'+data.layers['HE']+'.png', 128, 128);
+    game.load.spritesheet('invaderLW', 'assets/games/invaders/dem_'+gC.level+'_LW_1_'+data.layers['LW']+'.png', 128, 128);
+    game.load.spritesheet('invaderRW', 'assets/games/invaders/dem_'+gC.level+'_RW_1_'+data.layers['RW']+'.png', 128, 128);
+    game.load.spritesheet('invaderLB', 'assets/games/invaders/dem_'+gC.level+'_LB_2_'+data.layers['LB']+'.png', 128, 128);
+    game.load.spritesheet('invaderBO', 'assets/games/invaders/dem_'+gC.level+'_BO_3_'+data.layers['BO']+'.png', 128, 128);
+    game.load.spritesheet('invaderHE', 'assets/games/invaders/dem_'+gC.level+'_HE_4_'+data.layers['HE']+'.png', 128, 128);
 
     var alienlw = aliens.create(200, 200, 'invaderLW');
     var alienrw = aliens.create(200, 200, 'invaderRW');
