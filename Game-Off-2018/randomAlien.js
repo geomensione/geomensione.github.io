@@ -1,23 +1,15 @@
-var Demon = {
-    demonData: {'A':
-        {
-          "data": "demon",
-          "width": 240,
-          "original_width": 128,
-          "layers": {
-            "LW": "11",
-            "RW": "8",
-            "LB": "7",
-            "BO": "2",
-            "HE": "1"
-          }
-        }
-    },
-    create: () => {
-    },
-    move: () => {
-    },
-    fire:: () => {
+var Demon = class {
+    demonData = {},
+        
+    constructor(demondata){
+        demonData = demondata;
+    }
+    
+    create(){
+    }
+    move(){
+    }
+    fire(){
     },
 
 }
