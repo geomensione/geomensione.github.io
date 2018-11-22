@@ -7,7 +7,7 @@ var utils = class{
 
 var Utils = new utils();
 
-var Demon = class {
+var Entity = class {
     var demonData = {'A':	    
         {	        
           "data": "demon",
