@@ -81,10 +81,12 @@ var game = new Phaser.Game(
 );
 
 function preload() {
+    var dem = new Entity();
+    /*
     game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
     var data = demonData[gC.level];
     //dem_A_BO_3_01: demone dei livelli di tipo A, BODY, zindex 3 , ID del layer grafico 01,
-    /*
+    
     "LW": "3",
     "RW": "3",
     "LB": "4",
@@ -95,12 +97,13 @@ function preload() {
     dem_A_LB_2_01.png	
     dem_A_LW_1_01.png	
     dem_A_RW_1_01.png
-    */
+    
     game.load.image('invaderLW', 'assets/games/demons/dem_'+gC.level+'_LW_1_'+data.layers['LW'].padStart(2,0)+'.png', 128, 128);
     game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+data.layers['RW'].padStart(2,0)+'.png', 128, 128);
     game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+data.layers['LB'].padStart(2,0)+'.png', 128, 128);
     game.load.image('invaderBO', 'assets/games/demons/dem_'+gC.level+'_BO_3_'+data.layers['BO'].padStart(2,0)+'.png', 128, 128);
     game.load.image('invaderHE', 'assets/games/demons/dem_'+gC.level+'_HE_4_'+data.layers['HE'].padStart(2,0)+'.png', 128, 128);
+    */
 }
 
 function create() {
