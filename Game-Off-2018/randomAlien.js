@@ -43,7 +43,9 @@ var Demon = class {
     move(x,y){
     }
     fire(){
-    },
+    }
+    hit(){
+    }
 
 }
 
