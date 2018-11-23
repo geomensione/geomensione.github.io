@@ -40,19 +40,24 @@ var Entity = class {
         //nome immagine personalizzato
         game.load.image('invaderLW', 'assets/games/demons/dem_'+gC.level+'_LW_1_'+this.demonData[gC.level]['layers'].LW.padStart(2,0)+'.png', 128, 128);
         console.log('assets/games/demons/dem_'+gC.level+'_LW_1_'+this.demonData[gC.level]['layers'].LW.padStart(2,0)+'.png')
-        this.aliens.create(400, 400, 'invaderLW');
+        let alienlw = this.aliens.create(400, 400, 'invaderLW');
+        alienlw.anchor.setTo(0.5, 0.5);
         game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[gC.level]['layers'].RW.padStart(2,0)+'.png', 128, 128);
         console.log('assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[gC.level]['layers'].RW.padStart(2,0)+'.png')
-        this.aliens.create(400, 400, 'invaderRW');
+        let alienrw = this.aliens.create(400, 400, 'invaderRW');
+        alienlw.anchor.setTo(0.5, 0.5);
         game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+this.demonData[gC.level]['layers'].LB.padStart(2,0)+'.png', 128, 128);
         console.log('assets/games/demons/dem_'+gC.level+'_LB_1_'+this.demonData[gC.level]['layers'].LB.padStart(2,0)+'.png')
-        this.aliens.create(400, 400, 'invaderLB');
+        let alienlb = this.aliens.create(400, 400, 'invaderLB');
+        alienlb.anchor.setTo(0.5, 0.5);
         game.load.image('invaderBO', 'assets/games/demons/dem_'+gC.level+'_BO_3_'+this.demonData[gC.level]['layers'].BO.padStart(2,0)+'.png', 128, 128);
         console.log('assets/games/demons/dem_'+gC.level+'_BO_1_'+this.demonData[gC.level]['layers'].BO.padStart(2,0)+'.png')
-        this.aliens.create(400, 400, 'invaderBO');
+        let alienbo = this.aliens.create(400, 400, 'invaderBO');
+        alienbo.anchor.setTo(0.5, 0.5);
         game.load.image('invaderHE', 'assets/games/demons/dem_'+gC.level+'_HE_4_'+this.demonData[gC.level]['layers'].HE.padStart(2,0)+'.png', 128, 128);
         console.log('assets/games/demons/dem_'+gC.level+'_HE_1_'+this.demonData[gC.level]['layers'].HE.padStart(2,0)+'.png')
-        this.aliens.create(400, 400, 'invaderHE');
+        let alienhe = this.aliens.create(400, 400, 'invaderHE');
+        alienhe.anchor.setTo(0.5, 0.5);
         var tween = game.add.tween(this.aliens).to( { x: 150 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
         tween.onLoop.add(()=>{this.aliens.y += 10;}, this);
     }
