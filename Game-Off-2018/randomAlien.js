@@ -36,7 +36,7 @@ var Entity = class {
             game.load.image('invaderBO', 'assets/games/demons/dem_'+gC.level+'_BO_3_'+this.demonData[gC.level]['layers'].BO.padStart(2,0)+'.png', 128, 128);
             game.load.image('invaderHE', 'assets/games/demons/dem_'+gC.level+'_HE_4_'+this.demonData[gC.level]['layers'].HE.padStart(2,0)+'.png', 128, 128);
         
-            this.create();
+            //this.create();
     }
     
     create(){
@@ -96,9 +96,9 @@ var game = new Phaser.Game(
         render: render 
     }
 );
-
+var dem
 function preload() {
-    var dem = new Entity();
+    dem = new Entity();
     /*
     game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
     var data = demonData[gC.level];
@@ -124,6 +124,7 @@ function preload() {
 }
 
 function create() {
+    dem.create()
     /*
     aliens = game.add.group();
     aliens.enableBody = true;
