@@ -108,11 +108,12 @@ function preload() {
 }
 
 function create() {
+    /*
     aliens = game.add.group();
     aliens.enableBody = true;
     aliens.physicsBodyType = Phaser.Physics.ARCADE;
     createAliens();
-
+    */
     
 }
 var aliens;
@@ -122,7 +123,7 @@ function createAliens () {
     //...
     //test
     
-
+    /*
     var alienlw = aliens.create(200, 200, 'invaderLW');
     alienlw.anchor.setTo(0.5, 0.5);
     alienlw.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
@@ -157,6 +158,7 @@ function createAliens () {
 
     //  When the tween loops it calls descend
     tween.onLoop.add(descend, this);
+    */
 }
 
 function setupInvader (invader) {
