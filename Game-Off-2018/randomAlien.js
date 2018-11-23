@@ -25,11 +25,11 @@ var Entity = class {
             }
             this.aliens;
 
-            this.demonData[level]['layers'].LW=utils.random(1,3);
-            this.demonData[level]['layers'].RW=demonData[level]['layers'].LW;
-            this.demonData[level]['layers'].LB=utils.random(1,3);
-            this.demonData[level]['layers'].HE=utils.random(1,3);
-            this.demonData[level]['layers'].BO=utils.random(1,3);
+            this.demonData[gC.level]['layers'].LW=utils.random(1,3);
+            this.demonData[gC.level]['layers'].RW=demonData[level]['layers'].LW;
+            this.demonData[gC.level]['layers'].LB=utils.random(1,3);
+            this.demonData[gC.level]['layers'].HE=utils.random(1,3);
+            this.demonData[gC.level]['layers'].BO=utils.random(1,3);
             this.create();
     }
     
@@ -38,15 +38,15 @@ var Entity = class {
         this.aliens.enableBody = true;
         this.aliens.physicsBodyType = Phaser.Physics.ARCADE;
         //nome immagine personalizzato
-        game.load.image('invaderLW', 'assets/games/demons/dem_'+gC.level+'_LW_1_'+this.demonData[level]['layers'].LW.padStart(2,0)+'.png', 128, 128);
+        game.load.image('invaderLW', 'assets/games/demons/dem_'+gC.level+'_LW_1_'+this.demonData[gC.level]['layers'].LW.padStart(2,0)+'.png', 128, 128);
         this.aliens.create(400, 400, 'invaderLW');
-        game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[level]['layers'].RW.padStart(2,0)+'.png', 128, 128);
+        game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[gC.level]['layers'].RW.padStart(2,0)+'.png', 128, 128);
         this.aliens.create(400, 400, 'invaderRW');
-        game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+this.demonData[level]['layers'].LB.padStart(2,0)+'.png', 128, 128);
+        game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+this.demonData[gC.level]['layers'].LB.padStart(2,0)+'.png', 128, 128);
         this.aliens.create(400, 400, 'invaderLB');
-        game.load.image('invaderBO', 'assets/games/demons/dem_'+gC.level+'_BO_3_'+this.demonData[level]['layers'].BO.padStart(2,0)+'.png', 128, 128);
+        game.load.image('invaderBO', 'assets/games/demons/dem_'+gC.level+'_BO_3_'+this.demonData[gC.level]['layers'].BO.padStart(2,0)+'.png', 128, 128);
         this.aliens.create(400, 400, 'invaderBO');
-        game.load.image('invaderHE', 'assets/games/demons/dem_'+gC.level+'_HE_4_'+this.demonData[level]['layers'].HE.padStart(2,0)+'.png', 128, 128);
+        game.load.image('invaderHE', 'assets/games/demons/dem_'+gC.level+'_HE_4_'+this.demonData[gC.level]['layers'].HE.padStart(2,0)+'.png', 128, 128);
         this.aliens.create(400, 400, 'invaderHE');
         var tween = game.add.tween(this.aliens).to( { x: 150 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
         tween.onLoop.add(()=>{this.aliens.y += 10;}, this);
