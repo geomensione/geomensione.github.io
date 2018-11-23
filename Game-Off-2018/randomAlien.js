@@ -25,11 +25,11 @@ var Entity = class {
             }
             this.aliens;
 
-            this.demonData[gC.level]['layers'].LW=utils.random(1,3);
+            this.demonData[gC.level]['layers'].LW=Utils.random(1,3);
             this.demonData[gC.level]['layers'].RW=demonData[level]['layers'].LW;
-            this.demonData[gC.level]['layers'].LB=utils.random(1,3);
-            this.demonData[gC.level]['layers'].HE=utils.random(1,3);
-            this.demonData[gC.level]['layers'].BO=utils.random(1,3);
+            this.demonData[gC.level]['layers'].LB=Utils.random(1,3);
+            this.demonData[gC.level]['layers'].HE=Utils.random(1,3);
+            this.demonData[gC.level]['layers'].BO=Utils.random(1,3);
             this.create();
     }
     
