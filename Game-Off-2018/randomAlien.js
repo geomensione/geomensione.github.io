@@ -8,47 +8,48 @@ var utils = class{
 var Utils = new utils();
 
 var Entity = class {
-    var demonData = {'A':	    
-        {	        
-          "data": "demon",
-          "width": 240,	
-          "original_width": 128,
-          "layers": {	    
-            "LW": "",	    
-            "RW": "",	    
-            "LB": "",	    
-            "HE": "",
-            "BO":""
-          }	
-        }	
-    }
-    var aliens;
-    constructor(level){
-        demonData[level]['layers'].LW=utils.random(1,3);
-        demonData[level]['layers'].RW=demonData[level]['layers'].LW;
-        demonData[level]['layers'].LB=utils.random(1,3);
-        demonData[level]['layers'].HE=utils.random(1,3);
-        demonData[level]['layers'].BO=utils.random(1,3);
-        this.create();
+        constructor(level){
+            this.demonData = {'A':	    
+            {	        
+                  "data": "demon",
+                  "width": 240,	
+                  "original_width": 128,
+                  "layers": {	    
+                    "LW": "",	    
+                    "RW": "",	    
+                    "LB": "",	    
+                    "HE": "",
+                    "BO":""
+                  }	
+                }	
+            }
+            this.aliens;
+
+            demonData[level]['layers'].LW=utils.random(1,3);
+            demonData[level]['layers'].RW=demonData[level]['layers'].LW;
+            demonData[level]['layers'].LB=utils.random(1,3);
+            demonData[level]['layers'].HE=utils.random(1,3);
+            demonData[level]['layers'].BO=utils.random(1,3);
+            this.create();
     }
     
     create(){
-        aliens = game.add.group();
-        aliens.enableBody = true;
-        aliens.physicsBodyType = Phaser.Physics.ARCADE;
+        this.aliens = game.add.group();
+        this.aliens.enableBody = true;
+        this.aliens.physicsBodyType = Phaser.Physics.ARCADE;
         //nome immagine personalizzato
-        game.load.image('invaderLW', 'assets/games/demons/dem_'+gC.level+'_LW_1_'+data.layers['LW'].padStart(2,0)+'.png', 128, 128);
-        aliens.create(400, 400, 'invaderLW');
-        game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+data.layers['RW'].padStart(2,0)+'.png', 128, 128);
-        aliens.create(400, 400, 'invaderRW');
-        game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+data.layers['LB'].padStart(2,0)+'.png', 128, 128);
-        aliens.create(400, 400, 'invaderLB');
-        game.load.image('invaderBO', 'assets/games/demons/dem_'+gC.level+'_BO_3_'+data.layers['BO'].padStart(2,0)+'.png', 128, 128);
-        aliens.create(400, 400, 'invaderBO');
-        game.load.image('invaderHE', 'assets/games/demons/dem_'+gC.level+'_HE_4_'+data.layers['HE'].padStart(2,0)+'.png', 128, 128);
-        aliens.create(400, 400, 'invaderHE');
-        var tween = game.add.tween(aliens).to( { x: 150 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
-        tween.onLoop.add(()=>{aliens.y += 10;}, this);
+        game.load.image('invaderLW', 'assets/games/demons/dem_'+gC.level+'_LW_1_'+this.demonData[level]['layers'].LW.padStart(2,0)+'.png', 128, 128);
+        this.aliens.create(400, 400, 'invaderLW');
+        game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[level]['layers'].RW.padStart(2,0)+'.png', 128, 128);
+        this.aliens.create(400, 400, 'invaderRW');
+        game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+this.demonData[level]['layers'].LB.padStart(2,0)+'.png', 128, 128);
+        this.aliens.create(400, 400, 'invaderLB');
+        game.load.image('invaderBO', 'assets/games/demons/dem_'+gC.level+'_BO_3_'+this.demonData[level]['layers'].BO.padStart(2,0)+'.png', 128, 128);
+        this.aliens.create(400, 400, 'invaderBO');
+        game.load.image('invaderHE', 'assets/games/demons/dem_'+gC.level+'_HE_4_'+this.demonData[level]['layers'].HE.padStart(2,0)+'.png', 128, 128);
+        this.aliens.create(400, 400, 'invaderHE');
+        var tween = game.add.tween(this.aliens).to( { x: 150 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+        tween.onLoop.add(()=>{this.aliens.y += 10;}, this);
     }
     move(x,y){
     }
