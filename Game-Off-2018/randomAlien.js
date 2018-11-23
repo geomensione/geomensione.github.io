@@ -25,11 +25,11 @@ var Entity = class {
             }
             this.aliens;
 
-            this.demonData[gC.level]['layers'].LW= Utils.random(1,3).toString();
+            this.demonData[gC.level]['layers'].LW= Utils.random(1,9).toString();
             this.demonData[gC.level]['layers'].RW= this.demonData[gC.level]['layers'].LW;
-            this.demonData[gC.level]['layers'].LB= Utils.random(1,3).toString();
-            this.demonData[gC.level]['layers'].HE= Utils.random(1,3).toString();
-            this.demonData[gC.level]['layers'].BO= Utils.random(1,3).toString();
+            this.demonData[gC.level]['layers'].LB= Utils.random(1,9).toString();
+            this.demonData[gC.level]['layers'].HE= Utils.random(1,9).toString();
+            this.demonData[gC.level]['layers'].BO= Utils.random(1,9).toString();
             game.load.image('invaderLW', 'assets/games/demons/dem_'+gC.level+'_LW_1_'+this.demonData[gC.level]['layers'].LW.padStart(2,0)+'.png', 128, 128);
             game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[gC.level]['layers'].RW.padStart(2,0)+'.png', 128, 128);
             game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+this.demonData[gC.level]['layers'].LB.padStart(2,0)+'.png', 128, 128);
