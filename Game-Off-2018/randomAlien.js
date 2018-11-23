@@ -51,7 +51,7 @@ var Entity = class {
         //game.load.image('invaderRW', 'assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[gC.level]['layers'].RW.padStart(2,0)+'.png', 128, 128);
         console.log('assets/games/demons/dem_'+gC.level+'_RW_1_'+this.demonData[gC.level]['layers'].RW.padStart(2,0)+'.png')
         let alienrw = this.aliens.create(400, 400, 'invaderRW');
-        alienlw.anchor.setTo(0.5, 0.5);
+        alienrw.anchor.setTo(0.5, 0.5);
         //game.load.image('invaderLB', 'assets/games/demons/dem_'+gC.level+'_LB_2_'+this.demonData[gC.level]['layers'].LB.padStart(2,0)+'.png', 128, 128);
         console.log('assets/games/demons/dem_'+gC.level+'_LB_1_'+this.demonData[gC.level]['layers'].LB.padStart(2,0)+'.png')
         let alienlb = this.aliens.create(400, 400, 'invaderLB');
