@@ -94,6 +94,10 @@ A game made with phaser.
 
 [https://geomensione.github.io/Game-Off-2018/entity.html](https://geomensione.github.io/Game-Off-2018/entity.html)
 
+ALL MOVED HERE
+
+[https://mdiegoli.github.io](https://mdiegoli.github.io)
+
 p5:
 
 [https://geomensione.github.io/p5](https://geomensione.github.io/p5)
