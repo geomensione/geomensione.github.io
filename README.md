@@ -64,7 +64,7 @@ superformula
 
 project moved here https://f2d.glitch.me/
 
-fast3d
+threejs
 
 [https://geomensione.github.io/threejs](https://geomensione.github.io/threejs)
 
