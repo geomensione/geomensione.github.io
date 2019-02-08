@@ -128,6 +128,10 @@ webglStudio plugin
 
 [https://geomensione.github.io/webglStudio](https://geomensione.github.io/webglStudio)
 
+JS1K-X
+
+[https://geomensione.github.io/JS1K-X](https://geomensione.github.io/JS1K-X)
+
 noionic
 
 (android project bootstrap) cordova and android, without ionic
