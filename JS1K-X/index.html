@@ -28,15 +28,16 @@ canvas{
 	JS1K start
 	*/
 	//Init
-	var g = {};
-	g.w = window.innerWidth;
-	g.h = window.innerHeight;
+	var g = {}
+	w = window
+	g.w = w.innerWidth;
+	g.h = w.innerHeight;
 	g.r = 24;
 	g.s = 8;
 	g.fr = 100;
 	
-	a.onmousedown = function(e){
-		var iD = c.getImageData(e.clientX, e.clientY, 1, 1);
+	a.onmousedown = (e)=>{
+		iD = c.getImageData(e.clientX, e.clientY, 1, 1);
 		if(iD.data[0]!==0){
 			clearInterval(g.l);
 		}
@@ -52,54 +53,55 @@ canvas{
 	  '00WWWW00',
 	  '0WW00WW0'
 	];
-		 
+	mr = Math.round	 
 	function gr(){
-		var w = g.w;
-		var h = g.h;
-		var ox, oy = 0;
-		if(h<w){
-			ox = Math.round(h/g.r);
-			g.ry = Math.round(h/ox);
-			g.rx = Math.round(w/ox);
+		wi = g.w
+		he = g.h
+		var ox, oy = 0
+		if(he<wi){
+			ox = mr(he/g.r)
+			g.ry = mr(he/ox)
+			g.rx = mr(wi/ox)
 		}else{
-			ox = Math.round(w/g.r);
-			g.rx = Math.round(w/ox);
-			g.ry = Math.round(h/ox);
+			ox = mr(wi/g.r)
+			g.rx = Math.round(wi/ox)
+			g.ry = mr(he/ox)
 		}
-		g.o = ox;
-		g.fb = [];
-		var rx = g.rx;
-		var ry = g.ry;
-		for(var i = 0;i<rx;i++){
-			g.fb[i] = [];
-			for(var d = 0;d<ry;d++){
+		g.o = ox
+		g.fb = []
+		rx = g.rx
+		ry = g.ry
+		for(i = 0;i<rx;i++){
+			g.fb[i] = []
+			for(d = 0;d<ry;d++){
 				//qui setta il fb
-				g.fb[i][d] = ['00', '00', '00'];
+				g.fb[i][d] = ['00', '00', '00']
 			}
 		}
-		var x = Math.floor(Math.random() * (g.rx-g.s));
-		var y = Math.floor(Math.random() * (g.ry-g.s));
-		for(var xo = 0;xo<g.s;xo++)
+		mf = Math.floor
+		x = mf(mr() * (g.rx-g.s))
+		y = mf(mr() * (g.ry-g.s))
+		for(xo = 0;xo<g.s;xo++)
 		{
-			for(var yo = 0;yo<g.s;yo++)
+			for(yo = 0;yo<g.s;yo++)
 			{
 				if(g.sh[yo][xo] === 'W')
-					g.fb[x+xo][y+yo] = ['FF','FF','FF'];
+					g.fb[x+xo][y+yo] = ['FF','FF','FF']
 			}
 		}
 		
 	}
 	 
-	function dr(){
-		var rx = g.rx;
-		var ry = g.ry;
-		var o = g.o;
-		var cx = 0, cy = 0;
-		for(var i = 0;i<rx;i++){
-			for(var d = 0;d<ry;d++){
-				c.fillStyle = "#"+g.fb[i][d][0]+g.fb[i][d][1]+g.fb[i][d][2];
-				c.fillRect(cx,cy,o,o);
-				cy += o;
+	dr = ()=>{
+		rx = g.rx;
+		ry = g.ry;
+		o = g.o;
+		cx= 0, cy = 0;
+		for(ii= 0;ii<rx;ii++){
+			for(di = 0;di<ry;di++){
+				c.fillStyle = "#"+g.fb[ii][di][0]+g.fb[ii][di][1]+g.fb[ii][di][2]
+				c.fillRect(cx,cy,o,o)
+				cy += o
 			}
 			cx += o;
 			cy = 0;
@@ -108,13 +110,13 @@ canvas{
 		
 	}
 	
-	function l(){
+	l = ()=>{
 		g.l = setInterval(function() {
-			gr();
-			dr();
-		}, g.fr);
+			gr()
+			dr()
+		}, g.fr)
 	}
 	 
-	l();
+	l()
  </script>
 </body></html>
