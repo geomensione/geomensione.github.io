@@ -7,3 +7,5 @@ https://skalman.github.io/UglifyJS-online/
 GOLF CODE TIPS
 
 https://codegolf.stackexchange.com/questions/2682/tips-for-golfing-in-javascript
+
+https://codegolf.stackexchange.com/questions/2682/tips-for-golfing-in-javascript/71763
