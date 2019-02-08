@@ -64,7 +64,7 @@ canvas{
 			g.rx = mr(wi/ox)
 		}else{
 			ox = mr(wi/g.r)
-			g.rx = Math.round(wi/ox)
+			g.rx = mr(wi/ox)
 			g.ry = mr(he/ox)
 		}
 		g.o = ox
@@ -79,8 +79,9 @@ canvas{
 			}
 		}
 		mf = Math.floor
-		x = mf(mr() * (g.rx-g.s))
-		y = mf(mr() * (g.ry-g.s))
+		mra = Math.random
+		x = mf(mra() * (g.rx-g.s))
+		y = mf(mra() * (g.ry-g.s))
 		for(xo = 0;xo<g.s;xo++)
 		{
 			for(yo = 0;yo<g.s;yo++)
