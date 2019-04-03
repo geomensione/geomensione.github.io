@@ -1,19 +1,23 @@
-function superformulaobj(){
-    var a,b,m,n1,n2,n3;
-    var points = [];
-    var moveX = 200;
-    var moveY = 200;
-    var lineWidth = 1;
-    var color = '#000';
-    var selected_color = '#F00';
-    var numberOfPoints = 45;
-    var minX = 0, maxX = 0, minY = 0, maxY = 0;
-    var select = false;
-    var name;
-    var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
-    var oldCoordX, oldCoordY;
-    var f2d_links = [];
-    this.scale = 1;
+class superformulaobj(){
+    
+   constructor(){
+   	var a,b,m,n1,n2,n3;
+	    var points = [];
+	    var moveX = 200;
+	    var moveY = 200;
+	    var lineWidth = 1;
+	    var color = '#000';
+	    var selected_color = '#F00';
+	    var numberOfPoints = 45;
+	    var minX = 0, maxX = 0, minY = 0, maxY = 0;
+	    var select = false;
+	    var name;
+	    var offsetX = 0,offsetY = 0, oldoffsetX = 0, oldoffsetY = 0;
+	    var oldCoordX, oldCoordY;
+	    var f2d_links = [];
+	    this.scale = 1;
+
+   }
     
     function hit(x,y){
       //console.log(`${x} in ${this.maxX - this.offsetX - this.oldoffsetX} e ${this.minX - this.offsetX - this.oldoffsetX}, ${y} in ${this.maxY - this.offsetY - this.oldoffsetY} e ${this.minY - this.offsetY - this.oldoffsetY}`)
