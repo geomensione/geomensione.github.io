@@ -88,7 +88,7 @@ WIP
 
 js13kgames-Back
 
-project wip [https://geomensione.github.io/js13kgames-Back](https://geomensione.github.io/js13kgames-Back)
+project wip [https://geomensione.github.io/JS13KGames-Back](https://geomensione.github.io/JS13KGames-Back)
 
 F3D
 
