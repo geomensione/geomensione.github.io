@@ -239,8 +239,8 @@ function loopCall() {
     //setInterval(loopCall(), fr);
 }
 function l(){
-    l_i = setInterval(loopCall(), fr);
-    requestAnimationFrame(gAF);
+    //l_i = setInterval(loopCall(), fr);
+    requestAnimationFrame(loopCall());
 }
     
 l();
