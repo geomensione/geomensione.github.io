@@ -1,3 +1,4 @@
+bo = {};
 //start bottom layer
 bo.w = window.innerWidth;
 bo.h = window.innerHeight;
