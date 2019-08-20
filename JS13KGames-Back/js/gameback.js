@@ -1,7 +1,7 @@
 "use strict";
 
 window.a = document.getElementsByTagName('canvas')[0];
-window.bd = document.getElementsByTagName('body')[0];
+window.b = document.getElementsByTagName('body')[0];
 window.c = window.a.getContext('2d');
 window.d = document;
 a.width = window.innerWidth;
