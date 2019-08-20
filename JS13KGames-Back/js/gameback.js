@@ -13,11 +13,11 @@ JS1K start
 //Init layers
 var la = [], 
     fr = 100, 
-    t = {}, 
-    g = {}, 
-    b = {},
-    bo = {},
-    h = {},
+    //t = {}, 
+    //g = {}, 
+    //b = {},
+    //bo = {},
+    //h = {},
     l_i,
     //start point when move background
     mx = 0,
