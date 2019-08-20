@@ -236,7 +236,7 @@ function loopCall() {
     c.fillRect(0,0,la[0].w,la[0].h);
     gr();
     dr();
-    setInterval(loopCall(), fr);
+    //setInterval(loopCall(), fr);
 }
 function l(){
     l_i = setInterval(loopCall(), fr);
