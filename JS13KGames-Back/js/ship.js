@@ -1,3 +1,4 @@
+g = {};
 //start foreground layer
 g.w = window.innerWidth;
 g.h = window.innerHeight;
