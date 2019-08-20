@@ -240,7 +240,7 @@ function loopCall() {
 }
 function l(){
     //l_i = setInterval(loopCall(), fr);
-    requestAnimationFrame(loopCall());
+    requestAnimationFrame(loopCall);
 }
     
 l();
