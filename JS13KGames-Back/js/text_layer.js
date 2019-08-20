@@ -1,3 +1,4 @@
+t = {};
 //start text layer
 t.w = window.innerWidth;
 t.h = window.innerHeight;
