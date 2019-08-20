@@ -1,3 +1,4 @@
+b = {};
 //start background layer
 b.w = window.innerWidth;
 b.h = window.innerHeight;
