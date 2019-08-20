@@ -1,22 +1,22 @@
-b = {};
+bl = {};
 //start background layer
-b.w = window.innerWidth;
-b.h = window.innerHeight;
+bl.w = window.innerWidth;
+bl.h = window.innerHeight;
 //resolution
-b.r = 48;
+bl.r = 48;
 //sprite dimension
-b.s = 1;
+bl.s = 1;
 //fill fb only one time
-b.do = 0;
+bl.do = 0;
 //number of stars
-b.sts = 50;
+bl.sts = 50;
 //offset
-b.sp = 2;
+bl.sp = 2;
 //start point when move background
-b.mx = 0;
-b.my = 0;
-b.update_quadrant = true;
-b.fb_fn = function(){
+bl.mx = 0;
+bl.my = 0;
+bl.update_quadrant = true;
+bl.fb_fn = function(){
     if(!this.do){
         this.do = 1;
         
@@ -40,7 +40,7 @@ b.fb_fn = function(){
     
 }
 
-b.d_fn = function(){
+bl.d_fn = function(){
     let rx = this.rx,
         ry = this.ry,
         o = this.o,
