@@ -34,7 +34,7 @@ var la = [],
 //bottom
 la[0]=bo;
 //background
-la[1]=b;
+la[1]=bl;
 //frames
 la[2]=g;
 //hero
