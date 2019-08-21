@@ -12,6 +12,6 @@ padleft(str,numchar,char){
     for(let diff = numchar - str.length;diff>=0;diff--) str = char+str;
 }
 
-Error:
+ToDo:
 
 promise in layer object (use var me = this!!!)
