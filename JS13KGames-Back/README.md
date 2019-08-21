@@ -14,4 +14,4 @@ padleft(str,numchar,char){
 
 Error:
 
-not sinchronized with request render frame, data structures are not created
+promise in layer object (use var me = this!!!)
