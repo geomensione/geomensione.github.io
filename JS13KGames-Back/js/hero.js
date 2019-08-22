@@ -151,7 +151,8 @@ h.d_fn = function(){
                 cy = reset_cy;
 
             }
-        })
-    }
+        
+        }
+    })
 }    
 //end text layer
