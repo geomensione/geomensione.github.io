@@ -14,4 +14,4 @@ padleft(str,numchar,char){
 
 ToDo:
 
-promise in layer object (use var me = this!!!)
+promise all in gameback.js
