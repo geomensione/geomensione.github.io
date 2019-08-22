@@ -28,6 +28,8 @@ g.fb_fn = function(){
             {
                 if(sh[me.dir] && sh[me.dir][yo] && sh[me.dir][yo][xo] && sh[me.dir][yo][xo] === 'W')
                     this.fb[x+xo][y+yo] = ['FF','FF','FF'];
+                
+                if(xo == me.s-1 && yo == me.s-1) res();
             }
         }
     })
@@ -48,6 +50,8 @@ g.d_fn = function(){
                     c.fillRect(cx,cy,o,o);
                 }
                 cy += o;
+                
+                if(i == rx-1 && d == ry-1) res();
             }
             cx += o;
             cy = 0;
