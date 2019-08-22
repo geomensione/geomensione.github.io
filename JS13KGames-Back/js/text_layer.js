@@ -25,7 +25,7 @@ t.fb_fn = function(){
         }
         me.sc = qx+' '+qy+', '+sx+' '+sy;
         drawText(me);
-    ])
+    })
 }
 
 t.d_fn = function(){
