@@ -19,6 +19,8 @@ t.fb_fn = function(){
             for(let d = 0;d<ry;d++){
                 //clear all
                 me.fb[i][d] = ['00', '00', '00'];
+                
+                if(i == rx-1 && d == ry-1) res();
             }
         }
         me.sc = qx+' '+qy+', '+sx+' '+sy;
@@ -41,6 +43,8 @@ t.d_fn = function(){
                     c.fillRect(cx,cy,o,o);
                 }
                 cy += o;
+                
+                if(i == rx-1 && d == ry-1) res();
             }
             cx += o;
             cy = 0;
