@@ -16,26 +16,27 @@ bo.sp = 1;
 bo.mx = 0;
 bo.my = 0;
 bo.fb_fn = function(){
+    var me = this;
     return new Promise(function(res,rej){
-        if(!this.do){
-            this.do = 1;
+        if(!me.do){
+            me.do = 1;
 
-            this.fb = [];
-            let rx = this.rx,
-                ry = this.ry;
+            me.fb = [];
+            let rx = me.rx,
+                ry = me.ry;
             for(let i = 0;i<rx;i++){
-                this.fb[i] = [];
+                me.fb[i] = [];
                 for(let d = 0;d<ry;d++){
                     //clear all
-                    this.fb[i][d] = ['00', '00', '00'];
+                    me.fb[i][d] = ['00', '00', '00'];
                 }
             }
             //every time is a different stars landscape
-            for(let s = 0;s<this.sts;s++){
-                let x = Math.floor(Math.random() * (this.rx-this.s));
-                let y = Math.floor(Math.random() * (this.ry-this.s));
-                this.fb[x][y] = ['11','00','AA'];
-                if(s == this.sts-1) res()
+            for(let s = 0;s<me.sts;s++){
+                let x = Math.floor(Math.random() * (me.rx-me.s));
+                let y = Math.floor(Math.random() * (me.ry-me.s));
+                me.fb[x][y] = ['11','00','AA'];
+                if(s == me.sts-1) res()
             }
         }
         else
@@ -53,12 +54,13 @@ bo.d_fn = function(){
         cx = 0, 
         cy = 0,
         x_l = rx,
-        y_l = ry;
+        y_l = ry,
+        me = this;
     return new Promise(function(res,rej){
-        for(let i = this.mx,l = 0;l<rx;l++){
-            for(let d = this.my,ll=0;ll<ry;ll++){
-                if(this.fb[i][d][0] !== '00'){
-                    c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
+        for(let i = me.mx,l = 0;l<rx;l++){
+            for(let d = me.my,ll=0;ll<ry;ll++){
+                if(me.fb[i][d][0] !== '00'){
+                    c.fillStyle = "#"+me.fb[i][d][0]+me.fb[i][d][1]+me.fb[i][d][2];
                     c.fillRect(cx,cy,o,o);
                 }
                 if((d+1)<ry)
