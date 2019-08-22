@@ -27,7 +27,7 @@ g.fb_fn = function(){
             for(let yo = 0;yo<me.s;yo++)
             {
                 if(sh[me.dir] && sh[me.dir][yo] && sh[me.dir][yo][xo] && sh[me.dir][yo][xo] === 'W')
-                    this.fb[x+xo][y+yo] = ['FF','FF','FF'];
+                    me.fb[x+xo][y+yo] = ['FF','FF','FF'];
                 
                 if(xo == me.s-1 && yo == me.s-1) res();
             }
