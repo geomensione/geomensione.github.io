@@ -9,25 +9,28 @@ g.s = 8;
 g.dir = 39;
 g.fb_fn = function(){
     this.fb = [];
-    let rx = this.rx,
-        ry = this.ry;
-    for(let i = 0;i<rx;i++){
-        this.fb[i] = [];
-        for(let d = 0;d<ry;d++){
-            //clear all
-            this.fb[i][d] = ['00', '00', '00'];
+    var me = this;
+    return new Promise(function(res,rej){
+        let rx = me.rx,
+            ry = me.ry;
+        for(let i = 0;i<rx;i++){
+            me.fb[i] = [];
+            for(let d = 0;d<ry;d++){
+                //clear all
+                me.fb[i][d] = ['00', '00', '00'];
+            }
         }
-    }
-    let x = Math.floor((this.w/2)/this.o-(this.s/2));
-    let y = Math.floor((this.h/2)/this.o-(this.s/2));
-    for(let xo = 0;xo<this.s;xo++)
-    {
-        for(let yo = 0;yo<this.s;yo++)
+        let x = Math.floor((me.w/2)/me.o-(me.s/2));
+        let y = Math.floor((me.h/2)/me.o-(me.s/2));
+        for(let xo = 0;xo<me.s;xo++)
         {
-            if(sh[this.dir] && sh[this.dir][yo] && sh[this.dir][yo][xo] && sh[this.dir][yo][xo] === 'W')
-                this.fb[x+xo][y+yo] = ['FF','FF','FF'];
+            for(let yo = 0;yo<me.s;yo++)
+            {
+                if(sh[me.dir] && sh[me.dir][yo] && sh[me.dir][yo][xo] && sh[me.dir][yo][xo] === 'W')
+                    this.fb[x+xo][y+yo] = ['FF','FF','FF'];
+            }
         }
-    }
+    })
 }
 
 g.d_fn = function(){
@@ -35,17 +38,21 @@ g.d_fn = function(){
         ry = this.ry,
         o = this.o,
         cx = 0, 
-        cy = 0;
-    for(let i = 0;i<rx;i++){
-        for(let d = 0;d<ry;d++){
-            if(this.fb[i][d][0] !== '00'){
-                c.fillStyle = "#"+this.fb[i][d][0]+this.fb[i][d][1]+this.fb[i][d][2];
-                c.fillRect(cx,cy,o,o);
+        cy = 0,
+        me = this;
+    return new Promise(function(res,rej){
+        for(let i = 0;i<rx;i++){
+            for(let d = 0;d<ry;d++){
+                if(me.fb[i][d][0] !== '00'){
+                    c.fillStyle = "#"+me.fb[i][d][0]+me.fb[i][d][1]+me.fb[i][d][2];
+                    c.fillRect(cx,cy,o,o);
+                }
+                cy += o;
             }
-            cy += o;
+            cx += o;
+            cy = 0;
         }
-        cx += o;
-        cy = 0;
-    }
+    })
+    
 }    
 //enf foreground layer
