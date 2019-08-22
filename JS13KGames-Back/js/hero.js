@@ -49,6 +49,8 @@ h.fb_fn = function(){
             {
                 if(hero[0][yo][xo] === 'W')
                     me.fb[me.cx+xo][me.cy+yo] = ['11','FF','00'];
+                
+                if(xo == me.s-1 && yo == me.s-1) res();
             }
         }
 
@@ -98,7 +100,7 @@ h.d_fn = function(){
                 condition_i = rx-sx;
                 condition_d = ry-sy;
 
-      }
+            }
 
             //check if I'am in up quadrant
             //wrong v ^
@@ -141,7 +143,9 @@ h.d_fn = function(){
                         c.fillStyle = "rgba(0,255,0,0.1)";
                         c.fillRect(cx,cy,o,o);
                     }
+                    
                     cy += o;
+                    if((i == condition_i-1 && d == condition-1) res();
                 }
                 cx += o;
                 cy = reset_cy;
