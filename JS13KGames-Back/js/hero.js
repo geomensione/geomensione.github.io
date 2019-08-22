@@ -145,7 +145,7 @@ h.d_fn = function(){
                     }
                     
                     cy += o;
-                    if((i == condition_i-1 && d == condition-1) res();
+                    if((i == condition_i-1 && d == condition_d-1) res();
                 }
                 cx += o;
                 cy = reset_cy;
