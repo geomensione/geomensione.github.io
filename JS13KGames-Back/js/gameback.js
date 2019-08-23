@@ -236,7 +236,7 @@ function dr(){
     var promises = [];
     if(mousepressed)
         doInt();
-    return new Promise(function(res.rej){
+    return new Promise(function(res,rej){
         for(let l = 0,la_l=la.length;l<la_l;l++){
             promises.push(la[l].d_fn());
         }  
