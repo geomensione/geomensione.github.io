@@ -201,7 +201,7 @@ d.onkeydown = function(e){
 
 //create grid
 function gr(){
-    return new Promise(function(res.rej){
+    return new Promise(function(res,rej){
         var promises = [];
         for(let l = 0,la_l=la.length;l<la_l;l++){
             var w = la[l].w;
