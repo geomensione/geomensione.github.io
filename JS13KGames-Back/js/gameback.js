@@ -201,46 +201,73 @@ d.onkeydown = function(e){
 
 //create grid
 function gr(){
-    for(let l = 0,la_l=la.length;l<la_l;l++){
-        var w = la[l].w;
-        var h = la[l].h;
-        var ox, oy = 0;
-        if(h<w){
-            ox = Math.round(h/la[l].r);
-            la[l].ry = Math.round(h/ox);
-            la[l].rx = Math.round(w/ox);
-        }else{
-            ox = Math.round(w/la[l].r);
-            la[l].rx = Math.round(w/ox);
-            la[l].ry = Math.round(h/ox);
+    return new Promise(function(res.rej){
+        var promises = [];
+        for(let l = 0,la_l=la.length;l<la_l;l++){
+            var w = la[l].w;
+            var h = la[l].h;
+            var ox, oy = 0;
+            if(h<w){
+                ox = Math.round(h/la[l].r);
+                la[l].ry = Math.round(h/ox);
+                la[l].rx = Math.round(w/ox);
+            }else{
+                ox = Math.round(w/la[l].r);
+                la[l].rx = Math.round(w/ox);
+                la[l].ry = Math.round(h/ox);
+            }
+            //offset
+            la[l].o = ox;
+            //randomlly draw main character
+            promises.push(la[l].fb_fn());
+
         }
-        //offset
-        la[l].o = ox;
-        //randomlly draw main character
-        la[l].fb_fn();
-        
-    }
+        Promise.all(promises).then(
+            (ret)=>{
+                res();
+            }
+        )
+    })
+    
     
 }
 //draw pixel using canvas api
 function dr(){
+    var promises = [];
     if(mousepressed)
         doInt();
-    for(let l = 0,la_l=la.length;l<la_l;l++){
-        la[l].d_fn();
-    }
+    return new Promise(function(res.rej){
+        for(let l = 0,la_l=la.length;l<la_l;l++){
+            promises.push(la[l].d_fn());
+        }  
+        Promise.all(promises).then(
+            (ret)=>{
+                res()
+            }
+        )
+    })
+    
 }
 //every frame value, draw scene
 function loopCall() {
     c.fillStyle = "rgb(0, 0, 0)";
     c.fillRect(0,0,la[0].w,la[0].h);
-    gr();
-    dr();
+    gr().then(
+        (ret)=>{
+            dr().then(
+                (ret1)=>{
+                    requestAnimationFrame(loopCall);
+                }
+            )        
+        }
+    )
+    
     //setInterval(loopCall(), fr);
 }
+/*
 function l(){
     //l_i = setInterval(loopCall(), fr);
     requestAnimationFrame(loopCall);
 }
-    
-l();
+*/  
+loopCall();
