@@ -1,7 +1,8 @@
 <html><head></head><body>
   <div id="app-5">
-  <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <p>Using mustaches: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <p><input v-model="rawHtml"></p>
 </div>
 <script type="module">
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
@@ -9,12 +10,7 @@
   var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
-  },
-  methods: {
-    reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
-    }
+    rawHtml: '<span style="color:red">Esempio html renderizzato</span>'
   }
 })
 </script>
