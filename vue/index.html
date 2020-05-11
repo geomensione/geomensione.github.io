@@ -1,23 +1,21 @@
 <html><head></head><body>
   <div id="app-5">
-    <f3d-canvas></f3d-canvas>
+    <f3d-canvas v-bind:width="canvas.width" v-bind:height="canvas.height"></f3d-canvas>
   </div>
 <script type="module">
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
 
   Vue.component('f3d-canvas', {
-    data: {
-      width:100,
-      height:100,
-      background:''
-    },
-    template: '<div><canvas v-bind:width="width" v-bind:height="height"/></div>'
+    template: '<div><canvas/></div>'
   })
   
   var app5 = new Vue({
   el: '#app-5',
   data: {
-    rawHtml: '<span style="color:red">Esempio html renderizzato</span>'
+    canvas: {
+      width:100,
+      height:100
+    }
   }
 })
 </script>
