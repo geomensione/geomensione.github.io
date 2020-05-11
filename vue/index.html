@@ -7,24 +7,24 @@
     </style>
   </head>
 <body>
-  <div id="app-5">
+  <div id="f3d-app">
     <canvas v-bind:width="canvas.width" v-bind:height="canvas.height"></canvas>
   </div>
 <script type="module">
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
   
-  var app5 = new Vue({
-  el: '#app-5',
-  created: function () {
-    this.canvas.width = windows.innerWidth;
-    this.canvas.height = windows.innerHeight;
-  },
-  data: {
-    canvas: {
-      width:100,
-      height:100
+  var f3dapp = new Vue({
+    el: '#f3d-app',
+    created: function () {
+      this.canvas.width = windows.innerWidth;
+      this.canvas.height = windows.innerHeight;
+    },
+    data: {
+      canvas: {
+        width:100,
+        height:100
+      }
     }
-  }
-})
+  })
 </script>
 </body></html>
