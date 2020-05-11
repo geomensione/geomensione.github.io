@@ -34,8 +34,10 @@
 		</style>
   </head>
 <body>
-  <div id='toolbar' class='toolbar'>
-    <f3d-button v-for="button in buttons">
+  <div style="position = 'absolute';top = '10px';width = '100%';textAlign = 'center';">
+	<div id='toolbar' class='toolbar'>
+		<f3d-button v-for="button in buttons">
+	</div>
   </div>
   <div id="f3d-app">
     <canvas v-bind:width="canvas.width" v-bind:height="canvas.height"></canvas>
