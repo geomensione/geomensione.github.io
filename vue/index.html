@@ -6,9 +6,14 @@
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
 
   Vue.component('f3d-canvas', {
+    data: {
+      width:100,
+      height:100,
+      background:''
+    },
     template: '
       <div>
-        <canvas/>
+        <canvas v-bind:width='width' v-bind:height='height'/>
       </div>
     '
   })
