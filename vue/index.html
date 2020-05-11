@@ -7,11 +7,22 @@
     </style>
   </head>
 <body>
+  <div id='toolbar'>
+    <f3d-button v-for="button in buttons">
+  </div>
   <div id="f3d-app">
     <canvas v-bind:width="canvas.width" v-bind:height="canvas.height"></canvas>
   </div>
 <script type="module">
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
+  
+  Vue.component('f3d-button', {
+    // The todo-item component now accepts a
+    // "prop", which is like a custom attribute.
+    // This prop is called todo.
+    props: ['button'],
+    template: `<div id="{{button.fn}}" class="barButton" onmousedown="{{button.fn}}(event,'{{button.fn}}')" onmousemove="event.stopPropagation()" onmouseup="event.stopPropagation()" ontouchstart="touch{{button.fn}}(event,'{{button.fn}}')" ontouchmove="event.stopPropagation()" ontouchend="event.stopPropagation();endTouch();">{{button.fn}}</div>`
+  })
   
   var f3dapp = new Vue({
     el: '#f3d-app',
@@ -23,7 +34,12 @@
       canvas: {
         width:100,
         height:100
-      }
+      },
+      buttons: [
+        { text: 'Learn JavaScript' },
+        { text: 'Learn Vue' },
+        { text: 'Build something awesome' }
+      ]
     }
   })
 </script>
