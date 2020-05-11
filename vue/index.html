@@ -1,12 +1,14 @@
 <html><head></head><body>
   <div id="app-5">
-  <p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
-    <p><textarea rows="4" cols="50" v-model="rawHtml" placeholder="{{ rawHtml }}"></textarea></p>
-</div>
+    <f3d-canvas></f3d-canvas>
+  </div>
 <script type="module">
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
 
+  Vue.component('f3d-canvas', {
+    template: '<canvas></canvas>'
+  })
+  
   var app5 = new Vue({
   el: '#app-5',
   data: {
