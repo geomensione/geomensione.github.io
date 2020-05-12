@@ -35,7 +35,7 @@
 	</style>
   </head>
 <body>
-<div>
+<div id="f3d-app">
   <div style="position: absolute; top: 10px; width: 100%; text-align: center;">
 	<div id="toolbar" class="toolbar">
 		<div v-on:click="fn_hideShowToolbar">
@@ -50,7 +50,7 @@
 		</div>
 	</div>
   </div>
-  <div id="f3d-app">
+  <div>
     <canvas v-bind:width="canvas.width" v-bind:height="canvas.height"></canvas>
   </div>
 </div>
