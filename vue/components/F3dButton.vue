@@ -3,6 +3,7 @@
 </template>
 <scripts>
 module.exports = {
+	name: "f3d-button",
 	props: function(){
 		return ['buttons']
 	}
