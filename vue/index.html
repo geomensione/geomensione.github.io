@@ -58,10 +58,7 @@
 <script type="module">
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
   
-  Vue.component('f3d-button', {
-    // The todo-item component now accepts a
-    // "prop", which is like a custom attribute.
-    // This prop is called todo.
+  /*Vue.component('f3d-button', {
     props: ['button'],
     template: '<div :id="button.id" class="barButton" @click="down">{{button.fn}}</div>',
 	  methods:{
@@ -69,7 +66,7 @@
 			this.button.fn  = (this.button.fn.indexOf(this.button.fn1)==-1)?this.button.fn1:this.button.fn2; 
 		}
 	  }
-  })
+  })*/
   
   var f3dapp = new Vue({
     el: '#f3d-app',
