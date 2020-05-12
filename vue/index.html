@@ -83,16 +83,16 @@
       },
       buttons: [
         { id:'moveCamera', fn: 'CAMERA', fn1: 'DRAW', fn2: 'CAMERA',  img:'images/pencil.svg' }      
-      ],
-	    components :{
-	    	'f3d-button': httpVueLoader('./components/f3d-button.vue')
-	    }
+      ]
     },
-	  methods:{
-	  	fn_hideShowToolbar: function(){
+	components :{
+		'f3d-button': httpVueLoader('./components/f3d-button.vue')
+	},
+	methods:{
+		fn_hideShowToolbar: function(){
 			this.canvas.showHideToolbar = !this.canvas.showHideToolbar;
 		}
-	  }
+	}
   })
 </script>
 <script src="https://unpkg.com/http-vue-loader"></script>
