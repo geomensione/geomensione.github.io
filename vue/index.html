@@ -62,10 +62,10 @@
     // "prop", which is like a custom attribute.
     // This prop is called todo.
     props: ['button'],
-    template: '<div :id="button" class="barButton" @click="down">{{button.fn}}</div>',
+    template: '<div :id="button.id" class="barButton" @click="down">{{button.fn}}</div>',
 	  methods:{
 	  	down: function(){
-			alert('down from' + this.button.fn)
+			this.button.fn  = (this.button.fn.indexOf(this.button.fn1)>0)?this.button.fn2:this.button.fn; 
 		}
 	  }
   })
@@ -83,7 +83,7 @@
 	showHideToolbar: false
       },
       buttons: [
-        { fn: 'DRAW', img:'images/pencil.svg' }      
+        { id:'moveCamera', fn: 'CAMERA', fn1: 'DRAW', fn2: 'CAMERA',  img:'images/pencil.svg' }      
       ]
     },
 	  methods:{
