@@ -62,7 +62,7 @@
     // "prop", which is like a custom attribute.
     // This prop is called todo.
     props: ['button'],
-    template: '<div :id="button.fn" class="barButton" v-on:mousedown="button.fn(event,\'button.fn\')" v-on:mousemove.stop v-on:mouseup.stop v-on:touchstart="button.fn(event,\'button.fn\')" v-on:touchmove.stop v-on:touchend.stop>{{button.fn}}</div>'
+    template: '<div :id="button.fn" class="barButton" v-on:mousedown="button.fn" v-on:mousemove.stop v-on:mouseup.stop v-on:touchstart="button.fn" v-on:touchmove.stop v-on:touchend.stop>{{button.fn}}</div>'
   })
   
   var f3dapp = new Vue({
