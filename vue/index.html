@@ -57,6 +57,7 @@
 </div>
 <script type="module">
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
+  import F3dButton from 'components/f3d-button.vue'
   
   /*Vue.component('f3d-button', {
     props: ['button'],
@@ -82,7 +83,10 @@
       },
       buttons: [
         { id:'moveCamera', fn: 'CAMERA', fn1: 'DRAW', fn2: 'CAMERA',  img:'images/pencil.svg' }      
-      ]
+      ],
+	    components :{
+	    	F3dButton
+	    }
     },
 	  methods:{
 	  	fn_hideShowToolbar: function(){
