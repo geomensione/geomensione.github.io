@@ -45,7 +45,7 @@
 		</div>
 		<div v-bind:show="canvas.showHideToolbar">
 			<div class="buttons">
-				<f3d-button v-for="button in buttons">
+				<f3d-button v-for="(item,index) in buttons" v-bind:button="item" v-bind:key="index">
 			</div>
 		</div>
 	</div>
