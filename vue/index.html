@@ -65,7 +65,7 @@
     template: '<div :id="button.id" class="barButton" @click="down">{{button.fn}}</div>',
 	  methods:{
 	  	down: function(){
-			this.button.fn  = (this.button.fn.indexOf(this.button.fn1)>0)?this.button.fn2:this.button.fn; 
+			this.button.fn  = (this.button.fn.indexOf(this.button.fn1)==-1)?this.button.fn1:this.button.fn2; 
 		}
 	  }
   })
