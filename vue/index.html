@@ -62,7 +62,12 @@
     // "prop", which is like a custom attribute.
     // This prop is called todo.
     props: ['button'],
-    template: '<div :id="button" class="barButton" @click="button">{{button}}</div>'
+    template: '<div :id="button" class="barButton" @click="down">{{button.fn}}</div>',
+	  methods:{
+	  	down: function(){
+			alert('down from' + this.button.fn)
+		}
+	  }
   })
   
   var f3dapp = new Vue({
