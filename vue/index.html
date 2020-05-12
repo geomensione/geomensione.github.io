@@ -85,7 +85,7 @@
         { id:'moveCamera', fn: 'CAMERA', fn1: 'DRAW', fn2: 'CAMERA',  img:'images/pencil.svg' }      
       ],
 	    components :{
-	    	F3dButton
+	    	'f3d-button': httpVueLoader('./components/F3dButton.vue')
 	    }
     },
 	  methods:{
@@ -95,4 +95,5 @@
 	  }
   })
 </script>
+<script src="https://unpkg.com/http-vue-loader"></script>
 </body></html>
