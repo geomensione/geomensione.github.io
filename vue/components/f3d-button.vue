@@ -2,11 +2,9 @@
 	<div :id="button.id" class="barButton" @click="down">{{button.fn}}</div>
 </template>
 <scripts>
-module.exports = {
+exports default {
 	name: "f3d-button",
-	props: function(){
-		return ['buttons']
-	}
+	props: ['buttons'],
 	methods: function(){
 		return{
 			down: function(){
