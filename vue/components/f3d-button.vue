@@ -4,7 +4,7 @@
 <scripts>
 exports default {
 	name: "f3d-button",
-	props: ['buttons'],
+	props: {buttons:Object},
 	methods: function(){
 		return{
 			down: function(){
