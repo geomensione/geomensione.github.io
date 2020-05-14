@@ -52,7 +52,7 @@
 	</div>
   </div>
   <div>
-    <canvas v-bind:width="canvas.width" v-bind:height="canvas.height"></canvas>
+    <f3d-canvas :width="canvas.width" :height="canvas.height"></f3d-canvas>
   </div>
 </div>
 <script type="module">
@@ -69,6 +69,16 @@
 	  }
   })
   
+  Vue.component('f3d-canvas', {
+    props: ['button'],
+    template: '<canvas></canvas>',
+	  methods:{
+	  	down: function(){
+			this.button.fn  = (this.button.fn.indexOf(this.button.fn1)==-1)?this.button.fn1:this.button.fn2; 
+		}
+	  }
+  })
+	
   var f3dapp = new Vue({
     el: '#f3d-app',
     created: function () {
