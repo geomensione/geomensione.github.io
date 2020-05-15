@@ -78,7 +78,7 @@
     	template: '<canvas></canvas>',
 	  methods:{
 	  	down: function(){
-			this.button.fn  = (this.button.fn.indexOf(this.button.fn1)==-1)?this.button.fn1:this.button.fn2; 
+			this.button.down(); 
 		}
 	  }
   })
@@ -91,6 +91,10 @@ var f3d_button = class{
 		this.fn2 = fn2;  
 		this.img =img;
 	  }
+	down(){
+		this.fn  = (this.fn.indexOf(this.fn1)==-1)?this.fn1:this.fn2; 
+
+	}
 } ;
   var f3dapp = new Vue({
     el: '#f3d-app',
