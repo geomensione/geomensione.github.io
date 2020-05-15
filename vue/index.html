@@ -75,10 +75,12 @@
   
   Vue.component('f3d-canvas', {
 	props: ['button'],
-  	data:{
-		base: Object
-	},
-  	mounted: {},
+  	data: function() {
+	  return {
+	    base: 'Some Message'
+	  };
+	},  	
+	  mounted: {},
     	template: '<canvas></canvas>',
 	  methods:{
 	  	up: function(){
