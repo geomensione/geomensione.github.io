@@ -80,8 +80,10 @@
 	    base: 'Some Message'
 	  };
 	},  	
-	  mounted: {},
-    	template: '<canvas></canvas>',
+	  mounted:function () {
+	    this.base = '';
+	},
+   	template: '<canvas></canvas>',
 	  methods:{
 	  	up: function(){
 			this.button.down(); 
