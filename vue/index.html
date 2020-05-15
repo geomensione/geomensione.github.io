@@ -65,7 +65,7 @@
 	Vue.prototype.$F3D.test = true;
   Vue.component('f3d-button', {
     props: ['button'],
-    template: '<div :id="button.id" class="barButton" @mouseup="down">{{button.fn}}</div>',
+    template: '<div :id="button.id" class="barButton" @mouseup="up">{{button.fn}}</div>',
   methods:{
 	up: function(){
 		this.button.up(); 
@@ -79,7 +79,7 @@
   	mounted: {},
     	template: '<canvas></canvas>',
 	  methods:{
-	  	down: function(){
+	  	up: function(){
 			this.button.down(); 
 		}
 	  }
