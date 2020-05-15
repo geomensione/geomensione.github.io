@@ -82,30 +82,8 @@
 		}
 	  }
   })
-	
-  var f3dapp = new Vue({
-    el: '#f3d-app',
-    created: function () {
-      this.canvas.width = window.innerWidth;
-      this.canvas.height = window.innerHeight;
-    },
-    data: {
-      canvas: {
-        width:100,
-        height:100,
-	showHideToolbar: false
-      },
-      buttons: [
-        new buttonDrawCamera('moveCamera', 'CAMERA', 'DRAW', 'CAMERA',  'images/pencil.svg' )       
-      ]
-    },
-	methods:{
-		fn_hideShowToolbar: function(){
-			this.canvas.showHideToolbar = !this.canvas.showHideToolbar;
-		}
-	}
-  })
-  var buttonDrawCamera = class{ 
+
+var buttonDrawCamera = class{ 
 	  constructor(id,fn,fn1,fn2,img){
 		this.id =id; 
 	  	this.fn = fn;
@@ -133,6 +111,29 @@
 	  	return this.img;
 	  }
 } ;
+  var f3dapp = new Vue({
+    el: '#f3d-app',
+    created: function () {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    },
+    data: {
+      canvas: {
+        width:100,
+        height:100,
+	showHideToolbar: false
+      },
+      buttons: [
+        new buttonDrawCamera('moveCamera', 'CAMERA', 'DRAW', 'CAMERA',  'images/pencil.svg' )       
+      ]
+    },
+	methods:{
+		fn_hideShowToolbar: function(){
+			this.canvas.showHideToolbar = !this.canvas.showHideToolbar;
+		}
+	}
+  })
+  
 </script>
 <script src="https://unpkg.com/http-vue-loader"></script>
 </body></html>
