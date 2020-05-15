@@ -83,7 +83,7 @@
 	  }
   })
 
-var buttonDrawCamera = class{ 
+var f3d_button = class{ 
 	  constructor(id,fn,fn1,fn2,img){
 		this.id =id; 
 	  	this.fn = fn;
@@ -91,27 +91,6 @@ var buttonDrawCamera = class{
 		this.fn2 = fn2;  
 		this.img =img;
 	  }
-	/*
-	  get id(){
-	  	return this.id;
-	  }
-	  
-	  get fn(){
-	  	return this.fn
-	  }
-	  
-	  get fn1(){
-	  	return this.fn1;
-	  }
-	  
-	  get fn2(){
-	  	return this.fn2;
-	  }
-	  
-	  get img(){
-	  	return this.img;
-	  }
-	  */
 } ;
   var f3dapp = new Vue({
     el: '#f3d-app',
@@ -126,7 +105,7 @@ var buttonDrawCamera = class{
 	showHideToolbar: false
       },
       buttons: [
-        new buttonDrawCamera('moveCamera', 'CAMERA', 'DRAW', 'CAMERA',  'images/pencil.svg' )       
+        new f3d_button('moveCamera', 'CAMERA', 'DRAW', 'CAMERA',  'images/pencil.svg' )       
       ]
     },
 	methods:{
