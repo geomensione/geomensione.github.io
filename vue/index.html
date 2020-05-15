@@ -64,11 +64,11 @@
   Vue.component('f3d-button', {
     props: ['button'],
     template: '<div :id="button.id" class="barButton" @mouseup="down">{{button.fn}}</div>',
-	  methods:{
-	  	up: function(){
-			this.button.up(); 
-		}
-	  }
+  methods:{
+	up: function(){
+		this.button.up(); 
+	}
+  }
   })
   
   Vue.component('f3d-canvas', {
