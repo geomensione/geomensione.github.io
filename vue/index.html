@@ -61,13 +61,14 @@
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
   //import F3dButton from './components/F3dButton.vue'
   
-  Vue.prototype.$F3D = {};
-	Vue.prototype.$F3D.test = true;
+  Vue.prototype.$globalF3d = {};
+	Vue.prototype.$globalF3d.test = true;
   Vue.component('f3d-button', {
     props: ['button'],
     template: '<div :id="button.id" class="barButton" @mouseup="up">{{button.fn}}</div>',
   methods:{
 	up: function(){
+		console.log(this.$globalF3d.test)
 		this.button.up(); 
 	}
   }
