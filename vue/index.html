@@ -65,8 +65,8 @@
     props: ['button'],
     template: '<div :id="button.id" class="barButton" @mouseup="down">{{button.fn}}</div>',
 	  methods:{
-	  	down: function(){
-			this.button.down(); 
+	  	up: function(){
+			this.button.up(); 
 		}
 	  }
   })
@@ -91,7 +91,7 @@ var f3d_button = class{
 		this.fn2 = fn2;  
 		this.img =img;
 	  }
-	down(){
+	up(){
 		this.fn  = (this.fn.indexOf(this.fn1)==-1)?this.fn1:this.fn2; 
 
 	}
