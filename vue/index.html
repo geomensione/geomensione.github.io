@@ -63,7 +63,7 @@
   
   Vue.component('f3d-button', {
     props: ['button'],
-    template: '<div :id="button.id" class="barButton" @click="down">{{button.fn}}</div>',
+    template: '<div :id="button.id" class="barButton" @mouseup="down">{{button.fn}}</div>',
 	  methods:{
 	  	down: function(){
 			this.button.down(); 
