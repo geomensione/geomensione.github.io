@@ -61,6 +61,7 @@
   import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
   //import F3dButton from './components/F3dButton.vue'
   
+  Vue.prototype.$F3D = {};
   Vue.component('f3d-button', {
     props: ['button'],
     template: '<div :id="button.id" class="barButton" @mouseup="down">{{button.fn}}</div>',
@@ -110,7 +111,8 @@ var f3d_button = class{
       },
       buttons: [
         new f3d_button('moveCamera', 'CAMERA', 'DRAW', 'CAMERA',  'images/pencil.svg' )       
-      ]
+      ],
+	    f3d:{}
     },
 	methods:{
 		fn_hideShowToolbar: function(){
