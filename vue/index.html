@@ -75,7 +75,9 @@
   
   Vue.component('f3d-canvas', {
 	props: ['button'],
-  	data:{},
+  	data:{
+		base: Object
+	},
   	mounted: {},
     	template: '<canvas></canvas>',
 	  methods:{
