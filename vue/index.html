@@ -62,6 +62,7 @@
   //import F3dButton from './components/F3dButton.vue'
   
   Vue.prototype.$F3D = {};
+	Vue.prototype.$F3D.test = true;
   Vue.component('f3d-button', {
     props: ['button'],
     template: '<div :id="button.id" class="barButton" @mouseup="down">{{button.fn}}</div>',
