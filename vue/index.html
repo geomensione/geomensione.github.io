@@ -62,7 +62,28 @@
   //import F3dButton from './components/F3dButton.vue'
   
   Vue.prototype.$globalF3d = {};
-	Vue.prototype.$globalF3d.test = true;
+  Vue.prototype.$globalF3d.test = true;
+  
+  var f3d_interaction = class{
+    constructor(){
+      this.ret_up = 'up event';
+      this.ret_move = 'move event';
+      this.ret_down = 'down event';
+    }
+
+    up(x,y){
+      return this.ret_up + '-' + x + '-' + y
+    }
+
+    down(x,y){
+      return this.ret_down + '-' + x + '-' + y
+    }
+
+    move(x,y){
+      return this.ret_move + '-' + x + '-' + y
+    }
+  }
+
   Vue.component('f3d-button', {
     props: ['button'],
     template: '<div :id="button.id" class="barButton" @mouseup="up">{{button.fn}}</div>',
@@ -75,20 +96,55 @@
   })
   
   Vue.component('f3d-canvas', {
-	props: ['button'],
+	  props: ['button'],
   	data: function() {
-	  return {
-	    base: 'Some Message'
-	  };
-	},  	
+      return {
+        interaction: Object,
+        x: Number,
+        y: Number,
+        oldX: Number,
+        oldY: Number
+      };
+    },  	
 	  mounted:function () {
-	    this.base = '';
-	},
-   	template: '<canvas></canvas>',
+	    this.interaction = new f3d_interaction()
+	  },
+   	template: '<canvas @mousedown.prevent="down" @mouseup.prevent="up" @mousemove.prevent="move" @touchstart.prevent="t_down" @touchend.prevent="t_up" @touchmove.prevent="t_move"></canvas>',
 	  methods:{
-	  	up: function(){
-			this.button.down(); 
-		}
+	  	move: function(e){
+        this.oldX = this.x;
+        this.oldY = this.y;
+        this.x = e.pageX;
+        this.y = e.pageY;
+        console.log(this.interaction.move(this.x,this.y)); 
+      },
+      up: function(e){
+        this.x = e.pageX;
+        this.y = e.pageY;
+        console.log(this.interaction.up(this.x,this.y)); 
+      },
+      down: function(e){
+        this.x = e.pageX;
+        this.y = e.pageY;
+        console.log(this.interaction.down(this.x,this.y)); 
+      },
+      t_move: function(e){
+        this.oldX = this.x;
+        this.oldY = this.y;
+        this.x = e.changedTouches[0].pageX;
+        this.y = e.changedTouches[0].pageY;
+        console.log(this.interaction.move(this.x,this.y)); 
+      },
+      t_up: function(e){
+        this.x = e.changedTouches[0].pageX;
+        this.y = e.changedTouches[0].pageY;
+        console.log(this.interaction.up(this.x,this.y)); 
+      },
+      t_down: function(e){
+        this.x = e.changedTouches[0].pageX;
+        this.y = e.changedTouches[0].pageY;
+        console.log(this.interaction.down(this.x,this.y)); 
+      }
 	  }
   })
 
