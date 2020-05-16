@@ -109,7 +109,7 @@
 	  mounted:function () {
 	    this.interaction = new f3d_interaction()
 	  },
-   	template: '<canvas @mousedown.prevent="down" @mouseup.prevent="up" @mousemove.prevent="move" @touchstart.prevent="t_down" @touchend.prevent="t_up" @touchmove.prevent="t_move"></canvas>',
+   	template: '<canvas @mousedown.prevent="down" @mouseup.prevent="up" @mousemove.prevent="move" @touchstart="t_down" @touchend="t_up" @touchmove="t_move"></canvas>',
 	  methods:{
 	  	move: function(e){
         this.oldX = this.x;
