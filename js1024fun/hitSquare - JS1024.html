@@ -71,12 +71,17 @@ console.log(
 <script type=text id=entry>
 // Your entry goes here 👇
 // =======================
-var n_tile = 6;
-var l_edge = (a.width>a.height)?a.height/n_tile:a.width/n_tile;
-var x = y = 0;
-var board = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0];
-var level = 1;
-var time = 300;
+var n_tile = 6,
+	l_edge = (a.width>a.height)?a.height/n_tile:a.width/n_tile, 
+	x = y = 0,
+	board = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	winboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0],
+	loseboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0],
+	level = 1,
+	time = 500,
+	gx = gy = 0;
+
+
 a.onmouseup = function(e){
 	console.log('mouseup')
 	ex = e.offsetX;
@@ -88,15 +93,18 @@ a.ontouchend = function(e){
   ey = e.touches[0].clientY;
   game(ex,ey);
 }
-var gx = gy = 0;
 var game = function(x,y){
 	if(x<=(l_edge*n_tile) && y<=(l_edge*n_tile)){
 		gx = Math.floor(x/l_edge);
 		gy = Math.floor(y/l_edge);
 		board[gy*n_tile+gx] = 0;
+		c.beginPath();
+		c.fillStyle = "blue";
+		c.fillRect(gx*l_edge, gy*l_edge, l_edge, l_edge);
+		c.stroke();
 	}
 }
-var loopFn = function(){
+var drawBoard = function(){
 	for(let ty = 0;ty<n_tile;ty++){
 		for(let tx = 0;tx<n_tile;tx++){
 			c.beginPath();
@@ -109,12 +117,17 @@ var loopFn = function(){
 		x=0;
 	}
 	x=y=0;
+}
+var loopFn = function(){
+	drawBoard();
 	if(board.every( (val, i, arr) => val === arr[0] )){
+		clearInterval(loop)
 		if(board[0] == 1 ){
-			console.log('lose')
+			board = loseboard;
 		}else{
-			console.log('win')
+			board = winboard;
 		}
+		drawBoard()
 	}else{
 		for(let b = 0;b<level;b++){
 			ux = Math.floor(Math.random() * (n_tile - 0)) + 0;
