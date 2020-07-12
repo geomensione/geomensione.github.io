@@ -1,9 +1,9 @@
 <!doctype html>
 <head>
-	<title>Title ~ js1024</title>
-	<meta name="author" content="Author"></meta>
-	<meta name="description" content="Short description"></meta>
-	<meta name="title" content="Title"></meta>
+	<title>hitSquare ~ js1024</title>
+	<meta name="author" content="Author">Michele Diegoli</meta>
+	<meta name="description" content="Short description">Hit orange square before all become blue!</meta>
+	<meta name="title" content="Title">HitSquare</meta>
 	<meta charset=utf-8>
 </head>
 <body id=b>
@@ -71,15 +71,15 @@ console.log(
 <script type=text id=entry>
 // Your entry goes here 👇
 // =======================
-var n_tile = 6,
-	l_edge = (a.width>a.height)?a.height/n_tile:a.width/n_tile, 
-	x = y = 0,
-	board = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-	winboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0],
-	loseboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0],
-	level = 1,
-	time = 500,
-	gx = gy = 0;
+n_tile = 6,
+l_edge = (a.width>a.height)?a.height/n_tile:a.width/n_tile, 
+x = y = 0,
+board = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+winboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0],
+loseboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0],
+level = 1,
+time = 500,
+gx = gy = 0;
 
 
 a.onmouseup = function(e){
