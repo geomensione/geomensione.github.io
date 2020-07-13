@@ -74,16 +74,16 @@ console.log(
 n_tile = 6,
 l_edge = (a.width>a.height)?a.height/n_tile:a.width/n_tile, 
 x = y = 0,
-board = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+board = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 winboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,0,0,0],
 loseboard = [0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0],
 level = 1,
-time = 500,
+time = 600,
 gx = gy = 0;
+score = 0;
 
 
 a.onmouseup = function(e){
-	console.log('mouseup')
 	ex = e.offsetX;
 	ey = e.offsetY;
 	game(ex,ey);
@@ -97,37 +97,39 @@ var game = function(x,y){
 	if(x<=(l_edge*n_tile) && y<=(l_edge*n_tile)){
 		gx = Math.floor(x/l_edge);
 		gy = Math.floor(y/l_edge);
-		board[gy*n_tile+gx] = 0;
-		c.beginPath();
-		c.fillStyle = "blue";
-		c.fillRect(gx*l_edge, gy*l_edge, l_edge, l_edge);
-		c.stroke();
+		drawTile('blue',gx*l_edge, gy*l_edge)
+		if(board[gy*n_tile+gx]){
+			score--;
+			board[gy*n_tile+gx] = 0;
+		}
+		if(!score){
+			clearInterval(loop)
+			loopFn()
+		}		
 	}
+}
+var drawTile = function(s,x,y){
+	c.beginPath();
+	c.fillStyle = s;
+	c.fillRect(x, y, l_edge, l_edge);
+	c.stroke();
 }
 var drawBoard = function(){
-	for(let ty = 0;ty<n_tile;ty++){
-		for(let tx = 0;tx<n_tile;tx++){
-			c.beginPath();
-			c.fillStyle = (board[ty*n_tile+tx])?"orange":"blue";
-			c.fillRect(x, y, l_edge, l_edge);
-			x+=l_edge;
-			c.stroke();
-		}
-		y+=l_edge;
-		x=0;
-	}
-	x=y=0;
+	c.beginPath();
+	c.fillStyle = "blue";
+	c.fillRect(0, 0, l_edge*n_tile, l_edge*n_tile);
+	c.stroke();
 }
 var loopFn = function(){
-	drawBoard();
-	if(board.every( (val, i, arr) => val === arr[0] )){
+	c.font = "100px Arial";
+	if(score == (n_tile*n_tile-1)){
 		clearInterval(loop)
-		if(board[0] == 1 ){
-			board = loseboard;
-		}else{
-			board = winboard;
-		}
-		drawBoard()
+		c.fillStyle="black";
+		c.fillText("LOSE!!!", 100, 100);
+	}else if(!score){
+		clearInterval(loop)
+		c.fillStyle="white";
+		c.fillText("WIN!!!", 100, 100);
 	}else{
 		for(let b = 0;b<level;b++){
 			ux = Math.floor(Math.random() * (n_tile - 0)) + 0;
@@ -143,8 +145,20 @@ var updateGameArray = function(x,y){
 		updateGameArray(ux,uy);
 	}else{
 		board[y*n_tile+x] = 1;
+		score++;
+		drawTile('orange',x*l_edge,y*l_edge)
+		
 	}
 }
+var ran = function(){
+	return Math.floor(Math.random() * (n_tile - 0));
+}
+var getCoords = function(){
+	return {x:ran(),y:ran()};
+}
+drawBoard();
+var co = getCoords();
+updateGameArray(co.x,co.y);
 var loop = setInterval((e)=>{
 	loopFn();
 },time)
