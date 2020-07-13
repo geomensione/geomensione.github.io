@@ -86,17 +86,17 @@ mr = Math.random
 cI = clearInterval
 
 
-a.onmouseup = function(e){
+a.onmouseup = (e)=>{
 	ex = e.offsetX
 	ey = e.offsetY
 	ga(ex,ey)
 }
-a.ontouchend = function(e){
+a.ontouchend = (e)=>{
   ex = e.touches[0].clientX
   ey = e.touches[0].clientY
   ga(ex,ey)
 }
-ga = function(x,y){
+ga = (x,y)=>{
 	if(x<=(l_e*n_t) && y<=(l_e*n_t)){
 		gx = mf(x/l_e)
 		gy = mf(y/l_e)
@@ -106,36 +106,36 @@ ga = function(x,y){
 			bo[gy*n_t+gx] = 0
 		}
 		if(!s){
-			cI(loop)
+			cI(lp)
 			lFn()
 		}		
 	}
 }
-dT = function(s,x,y,z){
+dT = (s,x,y,z)=>{
 	c.beginPath()
 	c.fillStyle = s
 	c.fillRect(x, y, z?z:l_e, z?z:l_e)
 	c.stroke()
 }
-lFn = function(){
+lFn = ()=>{
 	c.font = "100px Arial"
 	if(s == (n_t*n_t-1)){
-		cI(loop)
+		cI(lp)
 		c.fillStyle="black"
 		c.fillText("LOSE!!!", 100, 100)
 	}else if(!s){
-		cI(loop)
+		cI(lp)
 		c.fillStyle="white"
 		c.fillText("WIN!!!", 100, 100)
 	}else{
-		for(let b = 0;b<le;b++){
+		for(bz = 0;bz<le;bz++){
 			ux = ran()
 			uy = ran()
 			uGA(ux,uy)
 		}
 	}
 }
-uGA = function(x,y){
+uGA = (x,y)=>{
 	if(bo[y*n_t+x]){
 		ux = ran()
 		uy = ran()
@@ -147,16 +147,16 @@ uGA = function(x,y){
 		
 	}
 }
-ran = function(){
-	return mf(mr() * (n_t - 0))
-}
-gC = function(){
+ran = () => mf(mr() * (n_t - 0))
+
+gC = ()=>{
 	return {x:ran(),y:ran()}
 }
+
 dT("blue",0,0,l_e*n_t)
 co = gC()
 uGA(co.x,co.y)
-loop = setInterval((e)=>{
+lp = setInterval((e)=>{
 	lFn()
 },tm)
 // =======================
