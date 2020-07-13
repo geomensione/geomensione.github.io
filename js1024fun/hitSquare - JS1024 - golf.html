@@ -1,0 +1,164 @@
+<!doctype html>
+<head>
+	<title>hitSquare ~ js1024</title>
+	<meta name="author" content="Author">Michele Diegoli</meta>
+	<meta name="description" content="Short description">Hit orange square before all squares become blue!</meta>
+	<meta name="title" content="Title">HitSquare</meta>
+	<meta charset=utf-8>
+</head>
+<body id=b>
+<canvas id=a></canvas>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+#a { position: relative; display: block; }
+.play { position: fixed; top: 50%; left: 50%; transform: translateX(-50%)translateY(-50%); font-size: 30px; font-family: arial, sans-serif; background: #f3f4f5; padding: 15px; border: 2px solid #ddd; border-radius: 5px; }
+</style>
+
+<script>
+
+// Entry configuration
+// ===================
+
+var title = "Title"; // this will be assigned automatically
+
+// Shim setup and polyfills (do not edit)
+// ======================================
+
+// canvas automatically adjusted !
+a.width = innerWidth;
+a.height = innerHeight;
+
+c = a.getContext("2d"); // no more $type conditional
+
+d = document;
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+a.requestPointerLock = a.requestPointerLock || a.mozRequestPointerLock || a.webkitRequestPointerLock;
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+if (typeof OscillatorNode !== 'undefined' && OscillatorNode.prototype) {
+  OscillatorNode.prototype.start = OscillatorNode.prototype.start || OscillatorNode.prototype.noteOn;
+  OscillatorNode.prototype.stop = OscillatorNode.prototype.stop || OscillatorNode.prototype.noteOff;
+}
+
+// Add a start button if sound is present in the code
+onload = () => {
+  var entry_code = entry.innerText;
+  var has_sound = false;
+  if(entry_code.includes('eval')){
+    try {
+      eval(entry_code.replace(/eval\(/g, 'throw(').replace(/eval\`/g, 'throw`'));
+    }
+    catch(e){
+      entry_code = e;
+    }
+  }
+  if(entry_code.includes("AudioContext")||entry_code.includes("Oscillator")||entry_code.includes("speak")||entry_code.includes("play")||entry_code.includes("autoplay")){
+    b.insertAdjacentHTML("beforeEnd", "<button class='play' onclick='console.log(entry.innerText);eval(entry.innerText);this.remove()'>PLAY</button>");
+  }
+  else {
+    eval(entry.innerText);
+  }
+};
+console.log(
+  a, // canvas
+  b, // body
+  c, // 2D canvas context
+  d  // document
+);
+
+</script>
+
+<script type=text id=entry>
+// Your entry goes here 👇
+// =======================
+n_t = 6
+w = a.width
+h = a.height
+l_e = (w>h)?h/n_t:w/n_t
+x = y = 0
+bo = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+le = 1
+tm = 600
+gx = gy = 0
+s = 0
+mf = Math.floor
+mr = Math.random
+cI = clearInterval
+
+
+a.onmouseup = function(e){
+	ex = e.offsetX
+	ey = e.offsetY
+	ga(ex,ey)
+}
+a.ontouchend = function(e){
+  ex = e.touches[0].clientX
+  ey = e.touches[0].clientY
+  ga(ex,ey)
+}
+ga = function(x,y){
+	if(x<=(l_e*n_t) && y<=(l_e*n_t)){
+		gx = mf(x/l_e)
+		gy = mf(y/l_e)
+		dT('blue',gx*l_e, gy*l_e)
+		if(bo[gy*n_t+gx]){
+			s--
+			bo[gy*n_t+gx] = 0
+		}
+		if(!s){
+			cI(loop)
+			lFn()
+		}		
+	}
+}
+dT = function(s,x,y,z){
+	c.beginPath()
+	c.fillStyle = s
+	c.fillRect(x, y, z?z:l_e, z?z:l_e)
+	c.stroke()
+}
+lFn = function(){
+	c.font = "100px Arial"
+	if(s == (n_t*n_t-1)){
+		cI(loop)
+		c.fillStyle="black"
+		c.fillText("LOSE!!!", 100, 100)
+	}else if(!s){
+		cI(loop)
+		c.fillStyle="white"
+		c.fillText("WIN!!!", 100, 100)
+	}else{
+		for(let b = 0;b<le;b++){
+			ux = ran()
+			uy = ran()
+			uGA(ux,uy)
+		}
+	}
+}
+uGA = function(x,y){
+	if(bo[y*n_t+x]){
+		ux = ran()
+		uy = ran()
+		uGA(ux,uy)
+	}else{
+		bo[y*n_t+x] = 1
+		s++
+		dT('orange',x*l_e,y*l_e)
+		
+	}
+}
+ran = function(){
+	return mf(mr() * (n_t - 0))
+}
+gC = function(){
+	return {x:ran(),y:ran()}
+}
+dT("blue",0,0,l_e*n_t)
+co = gC()
+uGA(co.x,co.y)
+loop = setInterval((e)=>{
+	lFn()
+},tm)
+// =======================
+</script>
+</body>
