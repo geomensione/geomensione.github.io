@@ -43,6 +43,10 @@ js13kgames-offline
 
 project wip [https://geomensione.github.io/js13kgames-offline](https://geomensione.github.io/js13kgames-offline)
 
+js1024fun
+
+[https://geomensione.github.io/js1024fun/hitSquare - JS1024 - golf.html](https://geomensione.github.io/js1024fun/hitSquare - JS1024 - golf.html)
+
 TOOLS
 =====
 
