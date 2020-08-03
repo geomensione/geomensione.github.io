@@ -36,25 +36,25 @@ var Utils = class{
     }else{
       this.init2DCanvas(resx,resy)
     }
-  },
-    setResolution(x,y){
-      this.tileWidth = c.width / x;
-      this.tileHeight = c.height / y;
-    },
-      drawTest(){
-        let b = '#000000';
-        let w = '#ffffff';
-        let xPos = 0;
-        let yPos = 0;
-        cx.fillColor = b;
-        for(let tx = 0;tx<this.resX;tx++){
-          for(let ty = 0;ty<this.resY;ty++){
-            cx.fillRext(xPos,yPos,this.resX,this.resY)
-            xPos += this.tileWidth;
-            (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
-          }
-          yPos += this.tileHeight;
-          (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
-        }
+  }
+  setResolution(x,y){
+    this.tileWidth = c.width / x;
+    this.tileHeight = c.height / y;
+  }
+  drawTest(){
+    let b = '#000000';
+    let w = '#ffffff';
+    let xPos = 0;
+    let yPos = 0;
+    cx.fillColor = b;
+    for(let tx = 0;tx<this.resX;tx++){
+      for(let ty = 0;ty<this.resY;ty++){
+        cx.fillRext(xPos,yPos,this.resX,this.resY)
+        xPos += this.tileWidth;
+        (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
       }
+      yPos += this.tileHeight;
+      (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
+    }
+  }
 };
