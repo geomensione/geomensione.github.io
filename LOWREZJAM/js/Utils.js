@@ -6,7 +6,7 @@ var Utils = class{
   init3dCanvas(){
 
   }
-  init2dCanvas(rx,ry,square = true){
+  init2DCanvas(rx,ry,square = true){
     this.c = document.createElement('canvas');
     if(square){ 
       let size = (window.innerWidth>window.innerHeight)?window.innerHeight:window.innerWidth;
