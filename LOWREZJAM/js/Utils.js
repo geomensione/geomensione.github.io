@@ -46,15 +46,15 @@ var Utils = class{
     let w = '#ffffff';
     let xPos = 0;
     let yPos = 0;
-    cx.fillColor = b;
+    this.cx.fillColor = b;
     for(let tx = 0;tx<this.resX;tx++){
       for(let ty = 0;ty<this.resY;ty++){
-        cx.fillRext(xPos,yPos,this.resX,this.resY)
+        this.cx.fillRext(xPos,yPos,this.resX,this.resY)
         xPos += this.tileWidth;
-        (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
+        (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
       }
       yPos += this.tileHeight;
-      (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
+      (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
     }
   }
 };
