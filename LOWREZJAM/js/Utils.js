@@ -51,10 +51,10 @@ var Utils = class{
     for(let tx = 0;tx<this.resX;tx++){
       for(let ty = 0;ty<this.resY;ty++){
         this.cx.fillRect(xPos,yPos,this.resX,this.resY)
-        xPos += this.tileWidth;
+        xPos += Math.round(this.tileWidth);
         (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
       }
-      yPos += this.tileHeight;
+      yPos += Math.round(this.tileHeight);
       (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
     }
   }
