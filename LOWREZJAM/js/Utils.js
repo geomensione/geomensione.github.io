@@ -39,8 +39,8 @@ var Utils = class{
     this.setResolution(resx,resy)
   }
   setResolution(x,y){
-    this.tileWidth = this.c.width / x;
-    this.tileHeight = this.c.height / y;
+    this.tileWidth = Math.round(this.c.width / x);
+    this.tileHeight = Math.round(this.c.height / y);
   }
   drawTest(){
     let b = '#000000';
@@ -51,10 +51,10 @@ var Utils = class{
     for(let tx = 0;tx<this.resX;tx++){
       for(let ty = 0;ty<this.resY;ty++){
         this.cx.fillRect(xPos,yPos,this.resX,this.resY)
-        xPos += Math.round(this.tileWidth);
+        xPos += this.tileWidth;
         (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
       }
-      yPos += Math.round(this.tileHeight);
+      yPos += this.tileHeight;
       (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
     }
   }
