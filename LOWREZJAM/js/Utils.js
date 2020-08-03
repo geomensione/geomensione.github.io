@@ -17,7 +17,7 @@ var Utils = {
   },
   get2DContext: function(){
     this.cx = c.getContext('2d');
-  }
+  },
   initLowRezCanvas: function(resx,resy){
     this.c = document.getElementsByTagName('canvas');
     if(this.c.length > 0) this.get2DCotext();
