@@ -24,7 +24,7 @@ var Utils = class{
     this.get2DContext();
   }
   get2DContext(){
-    this.cx = c.getContext('2d');
+    this.cx = this.c.getContext('2d');
   }
   initLowRezCanvas(resx,resy){
     this.resX = resx;
