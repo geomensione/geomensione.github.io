@@ -16,6 +16,7 @@ var Utils = class{
       this.c.width = window.innerWidth;
       this.c.height = window.innerHeight;
     }
+    document.body.appendChild(this.c);
   }
   get2DContext(){
     this.cx = c.getContext('2d');
