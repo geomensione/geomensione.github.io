@@ -2,5 +2,13 @@
 <head>
 <title>M.Y.H.E.R.O.</title>
 </head>
-<body></body>
+<body>
+  <script src="js/Utils.js"></script>
+  <script>
+    document.addEventListener('load',function(e){
+      var u = new Utils();
+      u.initLowRezCanvas(64,64);
+    })
+  </script>
+</body>
 </html>
