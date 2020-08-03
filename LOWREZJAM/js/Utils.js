@@ -28,6 +28,7 @@ var Utils = class{
   initLowRezCanvas(resx,resy){
     this.resX = resx;
     this.resY = resy;
+    this.setResolution(resx,resy);
     this.c = document.getElementsByTagName('canvas');
     if(this.c.length > 0){
       this.c = this.c[0];
@@ -49,9 +50,10 @@ var Utils = class{
         for(let tx = 0;tx<this.resX;tx++){
           for(let ty = 0;ty<this.resY;ty++){
             cx.fillRext(xPos,yPos,this.resX,this.resY)
-            xPos += this.resX;
+            xPos += this.tileWidth;
             (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
           }
+          yPos += this.tileHeight;
           (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
         }
       }
