@@ -2,6 +2,8 @@ var Utils = class{
   Utils(){
     this.c = {};
     this.cx = {};
+    this.tileWidth = 0;
+    this.tileHeight = 0;
   }
   init3dCanvas(){
 
@@ -29,5 +31,9 @@ var Utils = class{
     }else{
       this.init2DCanvas(resx,resy)
     }
-  }
+  },
+    setResolution(x,y){
+      this.tileWidth = c.width / x;
+      this.tileHeight = c.height / y;
+    }
 };
