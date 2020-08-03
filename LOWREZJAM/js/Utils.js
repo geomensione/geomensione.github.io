@@ -20,7 +20,11 @@ var Utils = {
   },
   initLowRezCanvas: function(resx,resy){
     this.c = document.getElementsByTagName('canvas');
-    if(this.c.length > 0) this.get2DCotext();
-    else this.init2DCanvas(resx,resy)
+    if(this.c.length > 0){
+      this.c = this.c[0];
+      this.get2DCotext();
+    }else{
+      this.init2DCanvas(resx,resy)
+    }
   }
 };
