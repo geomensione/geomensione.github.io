@@ -152,9 +152,9 @@ abbagli mummade
 
 [https://geomensione.github.io/abbagli/home.html](https://geomensione.github.io/abbagli/home.html)
 
-mazeGenerator
+LOWREZJAM
 
-[https://geomensione.github.io/mazeGenerator](https://geomensione.github.io/mazeGenerator)
+[https://geomensione.github.io/LOWREZJAM](https://geomensione.github.io/LOWREZJAM)
 
 
 Lectures
