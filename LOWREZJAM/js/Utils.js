@@ -1,10 +1,12 @@
-var Utils = {
-  c:{},
-  cx:{},
-  init3dCanvas: function(){
+var Utils = class{
+  Utils(){
+    this.c = {};
+    this.cx = {};
+  }
+  init3dCanvas(){
 
-  },
-  init2dCanvas: function(rx,ry,square = true){
+  }
+  init2dCanvas(rx,ry,square = true){
     this.c = document.createElement('canvas');
     if(square){ 
       let size = (window.innerWidth>window.innerHeight)?window.innerHeight:window.innerWidth;
@@ -14,11 +16,11 @@ var Utils = {
       this.c.width = window.innerWidth;
       this.c.height = window.innerHeight;
     }
-  },
-  get2DContext: function(){
+  }
+  get2DContext(){
     this.cx = c.getContext('2d');
-  },
-  initLowRezCanvas: function(resx,resy){
+  }
+  initLowRezCanvas(resx,resy){
     this.c = document.getElementsByTagName('canvas');
     if(this.c.length > 0){
       this.c = this.c[0];
