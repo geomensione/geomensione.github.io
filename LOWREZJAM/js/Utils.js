@@ -4,6 +4,8 @@ var Utils = class{
     this.cx = {};
     this.tileWidth = 0;
     this.tileHeight = 0;
+    this.resX = 0;
+    this.resY = 0;
   }
   init3dCanvas(){
 
@@ -24,6 +26,8 @@ var Utils = class{
     this.cx = c.getContext('2d');
   }
   initLowRezCanvas(resx,resy){
+    this.resX = resx;
+    this.resY = resy;
     this.c = document.getElementsByTagName('canvas');
     if(this.c.length > 0){
       this.c = this.c[0];
@@ -35,5 +39,20 @@ var Utils = class{
     setResolution(x,y){
       this.tileWidth = c.width / x;
       this.tileHeight = c.height / y;
-    }
+    },
+      drawTest(){
+        let b = '#000000';
+        let w = '#ffffff';
+        let xPos = 0;
+        let yPos = 0;
+        cx.fillColor = b;
+        for(let tx = 0;tx<this.resX;tx++){
+          for(let ty = 0;ty<this.resY;ty++){
+            cx.fillRext(xPos,yPos,this.resX,this.resY)
+            xPos += this.resX;
+            (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
+          }
+          (cx.fillColor == b)?cx.fillColor=w:cx.fillColor=b;
+        }
+      }
 };
