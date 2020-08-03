@@ -50,7 +50,7 @@ var Utils = class{
     this.cx.fillColor = b;
     for(let tx = 0;tx<this.resX;tx++){
       for(let ty = 0;ty<this.resY;ty++){
-        this.cx.fillRext(xPos,yPos,this.resX,this.resY)
+        this.cx.fillRect(xPos,yPos,this.resX,this.resY)
         xPos += this.tileWidth;
         (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
       }
