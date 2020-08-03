@@ -32,7 +32,7 @@ var Utils = class{
     this.c = document.getElementsByTagName('canvas');
     if(this.c.length > 0){
       this.c = this.c[0];
-      this.get2DCotext();
+      this.get2DContext();
     }else{
       this.init2DCanvas(resx,resy)
     }
