@@ -28,7 +28,6 @@ var Utils = class{
   initLowRezCanvas(resx,resy){
     this.resX = resx;
     this.resY = resy;
-    this.setResolution(resx,resy);
     this.c = document.getElementsByTagName('canvas');
     if(this.c.length > 0){
       this.c = this.c[0];
@@ -36,6 +35,7 @@ var Utils = class{
     }else{
       this.init2DCanvas(resx,resy)
     }
+    this.setResolution(resx,resy)
   }
   setResolution(x,y){
     this.tileWidth = this.c.width / x;
