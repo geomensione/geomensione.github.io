@@ -38,8 +38,8 @@ var Utils = class{
     }
   }
   setResolution(x,y){
-    this.tileWidth = c.width / x;
-    this.tileHeight = c.height / y;
+    this.tileWidth = this.c.width / x;
+    this.tileHeight = this.c.height / y;
   }
   drawTest(){
     let b = '#000000';
