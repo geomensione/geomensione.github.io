@@ -59,7 +59,7 @@ var Utils = class{
       }
       yPos += this.tileHeight;
       xPos = 0;
-      (hero[tx][ty] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
+      //(hero[tx][hero[tx].length-1] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
     }
   }
 };
