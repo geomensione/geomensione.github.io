@@ -55,6 +55,7 @@ var Utils = class{
         (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
       }
       yPos += this.tileHeight;
+      xPos = 0;
       (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
     }
   }
