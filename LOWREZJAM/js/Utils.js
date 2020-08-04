@@ -43,14 +43,14 @@ var Utils = class{
     this.tileHeight = Math.round(this.c.height / y);
   }
   drawTest(){
-    let b = '#000000';
-    let w = '#ffffff';
+    let b = 'black';
+    let w = 'white';
     let xPos = 0;
     let yPos = 0;
-    this.cx.fillColor = '';
+    this.cx.fillStyle = 'black';
     for(let tx = 0;tx<this.resX;tx++){
       for(let ty = 0;ty<this.resY;ty++){
-        (this.cx.fillColor == b)?this.cx.fillColor=w:this.cx.fillColor=b;
+        (this.cx.fillStyle == b)?this.cx.fillColor=w:this.cx.fillColor=b;
         this.cx.fillRect(xPos,yPos,this.tileWidth,this.tileHeight)
         xPos += this.tileWidth;
       }
