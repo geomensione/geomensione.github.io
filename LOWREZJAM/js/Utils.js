@@ -49,15 +49,17 @@ var Utils = class{
     let xPos = 0;
     let yPos = 0;
     this.cx.fillStyle = '#000000';
-    for(let tx = 0;tx<this.resX;tx++){
-      for(let ty = 0;ty<this.resY;ty++){
-        (this.cx.fillStyle == b)?this.cx.fillStyle=w:this.cx.fillStyle=b;
+    let dimx = hero.length;
+    let dimy = hero[0].length;
+    for(let tx = 0;tx<dimx;tx++){
+      for(let ty = 0;ty<dimy;ty++){
+        (hero[tx][ty] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
         this.cx.fillRect(xPos,yPos,this.tileWidth,this.tileHeight)
         xPos += this.tileWidth;
       }
       yPos += this.tileHeight;
       xPos = 0;
-      (this.cx.fillStyle == b)?this.cx.fillStyle=w:this.cx.fillStyle=b;
+      (hero[tx][ty] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
     }
   }
 };
