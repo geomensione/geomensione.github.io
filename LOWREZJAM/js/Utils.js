@@ -1,3 +1,4 @@
+import {hero} from '../assets/hero.js';
 var Utils = class{
   Utils(){
     this.c = {};
