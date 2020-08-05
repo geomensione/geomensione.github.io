@@ -116,8 +116,13 @@ var Utils = class{
      this.heroFire = false
      this.heroDir = '';
   }
+  cleanCanvas(){
+     this.cx.fillStyle='black';
+     this.cx.fillRect(0,0,this.c.width,this.c.height)
+  }
   drawGame(){
     var me = this;
+    this.cleanCanvas()
     setInterval(function(){
       me.gameLoop();
     },30)   
