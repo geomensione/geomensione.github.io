@@ -33,8 +33,10 @@
                       [0,0,0,0,1,1,1,0]]];
               this.pos = {x:0,y:0};
               this.frame = 0;
+              this.nFrames = this.asset.length;
              } 
              draw(){
+               ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
                let b = '#000000';
                let w = '#FFFFFF';
                let xPos = this.pos.x;
