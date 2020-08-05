@@ -72,7 +72,7 @@ var Utils = class{
     }
   }
   draw(){
-    for(let g_i = 0,g_l = this.game.length;g_i<g_l;g_i++){
+    for(let g_i = 0,g_l = this.g.length;g_i<g_l;g_i++){
       this.g[0].draw();
       if(g_i==g_l-1) requestAnimationFrame(this.draw())
     }
