@@ -72,8 +72,9 @@ var Utils = class{
     }
   }
   drawGame(){
+    var me = this;
     setInterval(function(){
-      this.gameLoop();
+      me.gameLoop();
     },30)   
   }
   gameLoop(){
