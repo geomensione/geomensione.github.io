@@ -34,6 +34,8 @@
               this.pos = {x:0,y:0};
               this.frame = 0;
               this.nFrames = this.asset.length;
+              this.dir = 'r';
+              this.velocity = 3;
              } 
              draw(){
                ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
@@ -54,6 +56,20 @@
                  xPos = 0;
                  //(hero[tx][hero[tx].length-1] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
                }
+             }
+             left(){
+              this.dir = 'l';
+              this.pos.x -= this.velocity;
+             }
+             up(){
+              this.pos.y -= this.velocity;
+             }
+             right(){
+              this.dir = 'r';
+              this.pos.x += this.velocity;
+             }
+             down(){
+              this.pos.y += this.velocity;
              }
             
             };
