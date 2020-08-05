@@ -41,7 +41,7 @@ var Utils = class{
     this.setHandlerEvents();
     this.g = [];
     this.g.push(new classHero(this));
-    this.g[0].draw();
+    draw();
   }
   setResolution(x,y){
     this.tileWidth = Math.round(this.c.width / x);
@@ -70,6 +70,13 @@ var Utils = class{
       case 40:
         break;
     }
+  }
+  draw(){
+    for(let g_i = 0,g_l = this.game.length;g_i<g_l;g_i++){
+      this.g[0].draw();
+      if(g_i==g_l-1) requestAnimationFrame(this.draw())
+    }
+    
   }
 };
 
