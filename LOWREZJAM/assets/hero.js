@@ -1,7 +1,7 @@
  var classHero = class{
              constructor(g){
                this.g = g;
-               this.asset = [[1,1,1,1,1,1,1,0],
+               this.asset = [[[1,1,1,1,1,1,1,0],
                       [0,0,0,1,0,0,0,0],
                       [0,0,0,1,0,1,1,0],
                       [0,0,0,1,1,1,0,0],
@@ -15,8 +15,24 @@
                       [0,0,0,0,1,1,0,0],
                       [0,0,0,0,1,1,0,0],
                       [0,0,0,0,1,1,0,0],
-                      [0,0,0,0,1,1,1,0]];
+                      [0,0,0,0,1,1,1,0]],
+                      [[0,1,1,1,1,1,0,0],
+                      [0,0,0,1,0,0,0,0],
+                      [0,0,0,1,0,1,1,0],
+                      [0,0,0,1,1,1,0,0],
+                      [0,0,0,1,1,1,1,0],
+                      [0,0,0,1,0,1,0,0],
+                      [0,0,0,1,1,1,1,0],
+                      [0,0,0,1,0,1,1,0],
+                      [0,0,0,1,0,0,1,0],
+                      [0,0,0,1,1,1,1,0],
+                      [0,0,0,0,1,1,0,0],
+                      [0,0,0,0,1,1,0,0],
+                      [0,0,0,0,1,1,0,0],
+                      [0,0,0,0,1,1,0,0],
+                      [0,0,0,0,1,1,1,0]]];
               this.pos = {x:0,y:0};
+              this.frame = 0;
              } 
              draw(){
                let b = '#000000';
@@ -24,11 +40,11 @@
                let xPos = this.pos.x;
                let yPos = this.pos.y;
                this.g.cx.fillStyle = '#000000';
-               let dimx = this.asset.length;
-               let dimy = this.asset[0].length;
+               let dimx = this.asset[this.frame].length;
+               let dimy = this.asset[this.frame][0].length;
                for(let tx = 0;tx<dimx;tx++){
                  for(let ty = 0;ty<dimy;ty++){
-                   (this.asset[tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
+                   (this.asset[this.frame][tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
                    this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
                    xPos += this.g.tileWidth;
                  }
