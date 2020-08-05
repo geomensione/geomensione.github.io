@@ -28,11 +28,11 @@
                let dimy = this.asset[0].length;
                for(let tx = 0;tx<dimx;tx++){
                  for(let ty = 0;ty<dimy;ty++){
-                   (this.asset[tx][ty] == 1)?g.cx.fillStyle=w:g.cx.fillStyle=b;
-                   g.cx.fillRect(xPos,yPos,g.tileWidth,g.tileHeight)
-                   xPos += g.tileWidth;
+                   (this.asset[tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
+                   this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
+                   xPos += this.g.tileWidth;
                  }
-                 yPos += g.tileHeight;
+                 yPos += this.g.tileHeight;
                  xPos = 0;
                  //(hero[tx][hero[tx].length-1] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
                }
