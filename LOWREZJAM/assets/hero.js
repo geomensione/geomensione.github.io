@@ -53,7 +53,7 @@
                    xPos += this.g.tileWidth;
                  }
                  yPos += this.g.tileHeight;
-                 xPos = 0;
+                 xPos = this.pos.x;
                  //(hero[tx][hero[tx].length-1] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
                }
              }
