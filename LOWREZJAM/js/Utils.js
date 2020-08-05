@@ -41,7 +41,7 @@ var Utils = class{
     this.setHandlerEvents();
     this.g = [];
     this.g.push(new classHero(this));
-    draw();
+    this.draw();
   }
   setResolution(x,y){
     this.tileWidth = Math.round(this.c.width / x);
