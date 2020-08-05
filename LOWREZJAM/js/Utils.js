@@ -1,4 +1,4 @@
-import {hero} from '../assets/hero.js';
+import {classHero} from '../assets/hero.js';
 var Utils = class{
   Utils(){
     this.c = {};
@@ -38,28 +38,37 @@ var Utils = class{
       this.init2DCanvas(resx,resy)
     }
     this.setResolution(resx,resy)
+    this.setHandlerEvents();
+    this.g = [];
+    this.g.push(new classHero(this));
+    this.g[0].draw();
   }
   setResolution(x,y){
     this.tileWidth = Math.round(this.c.width / x);
     this.tileHeight = Math.round(this.c.height / y);
   }
-  drawTest(){
-    let b = '#000000';
-    let w = '#FFFFFF';
-    let xPos = 0;
-    let yPos = 0;
-    this.cx.fillStyle = '#000000';
-    let dimx = hero.asset.length;
-    let dimy = hero.asset[0].length;
-    for(let tx = 0;tx<dimx;tx++){
-      for(let ty = 0;ty<dimy;ty++){
-        (hero.asset[tx][ty] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
-        this.cx.fillRect(xPos,yPos,this.tileWidth,this.tileHeight)
-        xPos += this.tileWidth;
-      }
-      yPos += this.tileHeight;
-      xPos = 0;
-      //(hero[tx][hero[tx].length-1] == 1)?this.cx.fillStyle=w:this.cx.fillStyle=b;
+  setHandlerEvents(){
+    document.addEventListener('keydown',event => {
+      this.keysHandler(event)
+    })
+  }
+  keysHandler(event){ 
+    switch(event.keyCode) {
+      //space
+      case 32;
+        break;
+      //left
+      case 37;
+        break;
+      //up
+      case 38;
+        break;
+      //right
+      case 39;
+        break;
+      //down
+      case 40;
+        break;
     }
   }
 };
