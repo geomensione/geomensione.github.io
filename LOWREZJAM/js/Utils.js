@@ -55,19 +55,19 @@ var Utils = class{
   keysHandler(event){ 
     switch(event.keyCode) {
       //space
-      case 32;
+      case 32:
         break;
       //left
-      case 37;
+      case 37:
         break;
       //up
-      case 38;
+      case 38:
         break;
       //right
-      case 39;
+      case 39:
         break;
       //down
-      case 40;
+      case 40:
         break;
     }
   }
