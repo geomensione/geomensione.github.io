@@ -7,6 +7,8 @@ var Utils = class{
     this.tileHeight = 0;
     this.resX = 0;
     this.resY = 0;
+    this.heroDir = '';
+    this.heroFire = false;
   }
   init3dCanvas(){
 
@@ -40,7 +42,8 @@ var Utils = class{
     this.setResolution(resx,resy)
     this.setHandlerEvents();
     this.g = [];
-    this.g.push(new classHero(this));
+    this.heroObj = new classHero(this);
+    this.g.push(this.heroObj);
     this.drawGame();
   }
   setResolution(x,y){
@@ -49,27 +52,69 @@ var Utils = class{
   }
   setHandlerEvents(){
     document.addEventListener('keydown',event => {
-      this.keysHandler(event)
+      this.keyDown(event)
+    })
+    document.addEventListener('keypress',event => {
+      this.keyPress(event)
+    })
+    document.addEventListener('keyup',event => {
+      this.keyUp(event)
     })
   }
-  keysHandler(event){ 
+  keyDown(event){ 
     switch(event.keyCode) {
       //space
       case 32:
+        this.heroFire = true;
+        this.heroObj.fire();
         break;
       //left
       case 37:
+        this.heroDir = 'l';
+        this.heroObj.left();
         break;
       //up
       case 38:
+        this.heroDir = 'u';
+        this.heroObj.up();
         break;
       //right
       case 39:
+        this.heroDir = 'r';
+        this.heroObj.right();
         break;
       //down
       case 40:
+        this.heroDir = 'd';
+        this.heroObj.down();
         break;
     }
+  }
+  keyPress(e){
+    if(this.heroFire) this.heroObj.fire();
+    if(this.heroDir){
+      switch(this.heroDir){
+        case 'l':
+          this.heroObj.left();
+          break;
+        case 'u':
+          this.heroObj.up();
+          break;
+        //right
+        case 'r':
+          this.heroObj.right();
+          break;
+        //down
+        case 'd':
+          this.heroObj.down();
+          break;
+      }
+    }
+
+  }
+  keyUp(e){
+     this.heroFire = false
+     this.heroDir = '';
   }
   drawGame(){
     var me = this;
