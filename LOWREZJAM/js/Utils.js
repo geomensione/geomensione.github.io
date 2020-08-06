@@ -122,8 +122,8 @@ var Utils = class{
   }
   drawGame(){
     var me = this;
-    this.cleanCanvas()
     setInterval(function(){
+      me.cleanCanvas()
       me.gameLoop();
     },30)   
   }
