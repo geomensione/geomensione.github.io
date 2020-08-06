@@ -61,7 +61,7 @@
                   for(let ty = dimy-1;ty>=0;ty--){
                     (this.asset[this.frame][tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
                     this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
-                    xPos -= this.g.tileWidth;
+                    xPos += this.g.tileWidth;
                   }
                   yPos += this.g.tileHeight;
                   xPos = this.pos.x;
