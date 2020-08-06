@@ -58,7 +58,7 @@
                }else{
                 let xPos = this.pos.x;
                 for(let tx = dimx-1;tx>=0;tx--){
-                  for(let ty = 0;ty<dimy;ty++){
+                  for(let ty = dimy-1;ty>=0;ty++){
                     (this.asset[this.frame][tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
                     this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
                     xPos -= this.g.tileWidth;
