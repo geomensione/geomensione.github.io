@@ -35,7 +35,7 @@
               this.frame = 0;
               this.nFrames = this.asset.length;
               this.dir = 'r';
-              this.velocity = 3;
+              this.velocity = 6;
              } 
              draw(){
                ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
