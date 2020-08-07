@@ -37,6 +37,25 @@
               this.dir = 'r';
               this.velocity = 6;
              } 
+             left(){
+              this.dir = 'l';
+              this.pos.x -= this.velocity;
+             }
+             up(){
+              this.dir = 'u';
+              this.pos.y -= this.velocity;
+             }
+             right(){
+              this.dir = 'r';
+              this.pos.x += this.velocity;
+             }
+             down(){
+              this.dir = 'd';
+              this.pos.y += this.velocity;
+             }
+             move(b){
+              this.move = b;
+             }
              draw(){
                ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
                let b = '#000000';
@@ -94,26 +113,6 @@
                 }
                }
              }
-             left(){
-              this.dir = 'l';
-              this.pos.x -= this.velocity;
-             }
-             up(){
-              this.dir = 'u';
-              this.pos.y -= this.velocity;
-             }
-             right(){
-              this.dir = 'r';
-              this.pos.x += this.velocity;
-             }
-             down(){
-              this.dir = 'd';
-              this.pos.y += this.velocity;
-             }
-             move(b){
-              this.move = b;
-             }
-            
-            };
+           };
 
 export { classHero };
