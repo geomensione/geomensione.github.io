@@ -119,7 +119,6 @@ var Utils = class{
   keyUp(e){
      this.heroFire = false
      this.heroObj.move(false);
-     this.heroObj.stop();
   }
   cleanCanvas(){
      this.cx.fillStyle='black';
