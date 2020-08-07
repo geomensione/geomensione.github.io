@@ -114,7 +114,7 @@ var Utils = class{
   }
   keyUp(e){
      this.heroFire = false;
-     this.hero.dirV = '';
+     this.heroObj.dirV = '';
      this.heroObj.move(false);
   }
   cleanCanvas(){
