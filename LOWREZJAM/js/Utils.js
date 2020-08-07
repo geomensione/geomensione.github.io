@@ -54,9 +54,9 @@ var Utils = class{
     document.addEventListener('keydown',event => {
       this.keyDown(event)
     })
-    document.addEventListener('keypress',event => {
-      this.keyPress(event)
-    })
+    //document.addEventListener('keypress',event => {
+    //  this.keyPress(event)
+    //})
     document.addEventListener('keyup',event => {
       this.keyUp(event)
     })
