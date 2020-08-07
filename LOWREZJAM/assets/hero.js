@@ -77,7 +77,7 @@
                    break;
                  //right
                  case 'r':
-                   this.heroObj.right();
+                   right();
                    break;
                  //down
                  case 'd':
