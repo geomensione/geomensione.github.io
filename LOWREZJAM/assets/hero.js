@@ -43,7 +43,7 @@
               this.pos.x -= this.velocity;
              }
              up(){
-              this.dir = 'u';
+              this.dirV = 'u';
               this.pos.y -= this.velocity;
              }
              right(){
@@ -51,7 +51,7 @@
               this.pos.x += this.velocity;
              }
              down(){
-              this.dir = 'd';
+              this.dirV = 'd';
               this.pos.y += this.velocity;
              }
              move(b){
@@ -78,6 +78,15 @@
                  //right
                  case 'r':
                    this.right();
+                   break;
+                 //down
+                 case 'd':
+                   this.down();
+                   break;
+                 }
+                 switch(this.dirV) {
+                 case 'u':
+                   this.up();
                    break;
                  //down
                  case 'd':
