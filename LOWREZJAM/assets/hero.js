@@ -62,7 +62,8 @@
                let b = '#000000';
                let w = '#FFFFFF';
                if(this.moving){
-                switch(this.dir) {
+                if(!this.dirV){
+                 switch(this.dir) {
                  case 'f':
                    this.heroFire = true;
                    this.fire();
@@ -71,20 +72,13 @@
                  case 'l':
                    this.left();
                    break;
-                 //up
-                 case 'u':
-                   this.up();
-                   break;
                  //right
                  case 'r':
                    this.right();
                    break;
-                 //down
-                 case 'd':
-                   this.down();
-                   break;
                  }
-                 switch(this.dirV) {
+                }else{
+                  switch(this.dirV) {
                  case 'u':
                    this.up();
                    break;
@@ -93,6 +87,9 @@
                    this.down();
                    break;
                  }
+                }
+                
+                
 
                }
                
