@@ -65,23 +65,23 @@
                 switch(this.dir) {
                  case 'f':
                    this.heroFire = true;
-                   this.heroObj.fire();
+                   this.fire();
                    break;
                  //left
                  case 'l':
-                   this.heroObj.left();
+                   this.left();
                    break;
                  //up
                  case 'u':
-                   this.heroObj.up();
+                   this.up();
                    break;
                  //right
                  case 'r':
-                   right();
+                   this.right();
                    break;
                  //down
                  case 'd':
-                   this.heroObj.down();
+                   this.down();
                    break;
                  }
 
