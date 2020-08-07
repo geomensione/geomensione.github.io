@@ -41,7 +41,8 @@
                ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
                let b = '#000000';
                let w = '#FFFFFF';
-               switch(this.heroDir) {
+               if(this.move){
+                switch(this.heroDir) {
                  case 'f':
                    this.heroFire = true;
                    this.heroObj.fire();
@@ -62,8 +63,10 @@
                  case 'd':
                    this.heroObj.down();
                    break;
-               }
+                 }
 
+               }
+               
                let dimx = this.asset[this.frame].length;
                let dimy = this.asset[this.frame][0].length;
                let yPos = this.pos.y;
@@ -107,8 +110,8 @@
               this.dir = 'd';
               this.pos.y += this.velocity;
              }
-             stop(){
-              this.dir = '';
+             move(b){
+              this.move = b;
              }
             
             };
