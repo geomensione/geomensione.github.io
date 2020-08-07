@@ -36,6 +36,7 @@
               this.nFrames = this.asset.length;
               this.dir = 'r';
               this.velocity = 6;
+              this.moving = false;
              } 
              left(){
               this.dir = 'l';
@@ -54,13 +55,13 @@
               this.pos.y += this.velocity;
              }
              move(b){
-              this.move = b;
+              this.moving = b;
              }
              draw(){
                ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
                let b = '#000000';
                let w = '#FFFFFF';
-               if(this.move){
+               if(this.moving){
                 switch(this.heroDir) {
                  case 'f':
                    this.heroFire = true;
