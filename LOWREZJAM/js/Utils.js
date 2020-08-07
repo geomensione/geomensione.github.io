@@ -71,21 +71,25 @@ var Utils = class{
       //left
       case 37:
         this.heroDir = 'l';
+        this.heroObj.move(true);
         this.heroObj.left();
         break;
       //up
       case 38:
         this.heroDir = 'u';
+        this.heroObj.move(true);
         this.heroObj.up();
         break;
       //right
       case 39:
         this.heroDir = 'r';
+        this.heroObj.move(true);
         this.heroObj.right();
         break;
       //down
       case 40:
         this.heroDir = 'd';
+        this.heroObj.move(true);
         this.heroObj.down();
         break;
     }
@@ -114,7 +118,7 @@ var Utils = class{
   }
   keyUp(e){
      this.heroFire = false
-     this.heroDir = '';
+     this.heroObj.move(false);
      this.heroObj.stop();
   }
   cleanCanvas(){
