@@ -62,7 +62,7 @@
                let b = '#000000';
                let w = '#FFFFFF';
                if(this.moving){
-                switch(this.heroDir) {
+                switch(this.dir) {
                  case 'f':
                    this.heroFire = true;
                    this.heroObj.fire();
