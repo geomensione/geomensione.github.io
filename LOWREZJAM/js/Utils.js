@@ -115,6 +115,7 @@ var Utils = class{
   keyUp(e){
      this.heroFire = false
      this.heroDir = '';
+     this.heroObj.stop();
   }
   cleanCanvas(){
      this.cx.fillStyle='black';
