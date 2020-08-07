@@ -107,6 +107,9 @@
               this.dir = 'd';
               this.pos.y += this.velocity;
              }
+             stop(){
+              this.dir = '';
+             }
             
             };
 
