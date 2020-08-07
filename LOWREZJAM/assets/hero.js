@@ -41,6 +41,29 @@
                ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
                let b = '#000000';
                let w = '#FFFFFF';
+               switch(this.heroDir) {
+                 case 'f':
+                   this.heroFire = true;
+                   this.heroObj.fire();
+                   break;
+                 //left
+                 case 'l':
+                   this.heroObj.left();
+                   break;
+                 //up
+                 case 'u':
+                   this.heroObj.up();
+                   break;
+                 //right
+                 case 'r':
+                   this.heroObj.right();
+                   break;
+                 //down
+                 case 'd':
+                   this.heroObj.down();
+                   break;
+               }
+
                let dimx = this.asset[this.frame].length;
                let dimy = this.asset[this.frame][0].length;
                let yPos = this.pos.y;
@@ -73,6 +96,7 @@
               this.pos.x -= this.velocity;
              }
              up(){
+              this.dir = 'u';
               this.pos.y -= this.velocity;
              }
              right(){
@@ -80,6 +104,7 @@
               this.pos.x += this.velocity;
              }
              down(){
+              this.dir = 'd';
               this.pos.y += this.velocity;
              }
             
