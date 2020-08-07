@@ -113,7 +113,8 @@ var Utils = class{
 
   }
   keyUp(e){
-     this.heroFire = false
+     this.heroFire = false;
+     this.hero.dirV = '';
      this.heroObj.move(false);
   }
   cleanCanvas(){
