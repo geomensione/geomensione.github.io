@@ -77,7 +77,6 @@ var Utils = class{
       //up
       case 38:
         this.heroObj.dirV = 'u';
-        this.heroObj.dir = '';
         this.heroObj.move(true);
         break;
       //right
@@ -89,7 +88,6 @@ var Utils = class{
       //down
       case 40:
         this.heroObj.dirV = 'd';
-        this.heroObj.dir = '';
         this.heroObj.move(true);
         break;
     }
