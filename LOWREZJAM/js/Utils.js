@@ -71,21 +71,25 @@ var Utils = class{
       //left
       case 37:
         this.heroObj.dir = 'l';
+        this.heroObj.dirV = '';
         this.heroObj.move(true);
         break;
       //up
       case 38:
         this.heroObj.dirV = 'u';
+        this.heroObj.dir = '';
         this.heroObj.move(true);
         break;
       //right
       case 39:
         this.heroObj.dir = 'r';
+        this.heroObj.dirV = '';
         this.heroObj.move(true);
         break;
       //down
       case 40:
         this.heroObj.dirV = 'd';
+        this.heroObj.dir = '';
         this.heroObj.move(true);
         break;
     }

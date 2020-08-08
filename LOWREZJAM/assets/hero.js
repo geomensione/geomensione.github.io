@@ -57,8 +57,11 @@
              move(b){
               this.moving = b;
              }
+             hit(){
+               return false;
+             }
              draw(){
-               ((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++;
+               (this.dirV == 'u')?((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++:this.frame=0;
                let b = '#000000';
                let w = '#FFFFFF';
                if(this.moving){
@@ -91,6 +94,12 @@
                 
                 
 
+               }else{
+                 if(!this.hit()){
+                  //gravity
+                  this.moving = true; 
+                  this.dirV = 'd';
+                 }
                }
                
                let dimx = this.asset[this.frame].length;
