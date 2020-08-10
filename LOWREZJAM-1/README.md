@@ -18,7 +18,7 @@ I'm preparing part 2, where I'll add screen entity, ground and wall assets, map 
 
 In part 3 I'll add enemies, health, score and weapons.
 
-In part 4 I'll add sound, splash screen, credits screen, demo screen.
+In part 4 I'll add sound, splash screen, credits screen, demo screen, background(?)
 
 So... stay tuned!
 
