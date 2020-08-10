@@ -15,7 +15,9 @@ In hero's draw method we set position ( https://github.com/geomensione/geomensio
 Contact me for any questions...
 
 I'm preparing part 2, where I'll add screen entity, ground and wall assets, map generator.
+
 In part 3 I'll add enemies, health, score and weapons.
+
 In part 4 I'll add sound, splash screen, credits screen, demo screen.
 
 So... stay tuned!
