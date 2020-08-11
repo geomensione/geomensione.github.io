@@ -29,7 +29,7 @@ var Utils = class{
   get2DContext(){
     this.cx = this.c.getContext('2d');
   }
-  initLowRezCanvas(resx,resy){
+  initLowRezCanvas(resx,resy,rockSizeX,rockSizeY){
     this.resX = resx;
     this.resY = resy;
     this.c = document.getElementsByTagName('canvas');
@@ -39,16 +39,18 @@ var Utils = class{
     }else{
       this.init2DCanvas(resx,resy)
     }
-    this.setResolution(resx,resy)
+    this.setResolution(resx,resy,rockSizeX,rockSizeY)
     this.setHandlerEvents();
     this.g = [];
     this.heroObj = new classHero(this);
     this.g.push(this.heroObj);
     this.drawGame();
   }
-  setResolution(x,y){
+  setResolution(x,y,rx,ry){
     this.tileWidth = Math.round(this.c.width / x);
     this.tileHeight = Math.round(this.c.height / y);
+    this.rockWidth = Math.round(this.c.width / rx);
+    this.rockHeight = Math.round(this.c.height / ry);
   }
   setHandlerEvents(){
     document.addEventListener('keydown',event => {
