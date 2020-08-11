@@ -20,12 +20,12 @@ var classRock = class{
                  let xPos = this.pos.x;
                  for(let tx = 0;tx<dimx;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.screen[tx][ty] == 1){
-                     this.g.g.push(new classTile(this.g,xPos,yPos))
-                    xPos += this.g.rockWidth;
-                  }
-                  yPos += this.g.rockHeight;
-                  xPos = this.pos.x;
+                    if(this.screen[tx][ty] == 1){
+                       this.g.g.push(new classTile(this.g,xPos,yPos))
+                      xPos += this.g.rockWidth;
+                    }
+                    yPos += this.g.rockHeight;
+                    xPos = this.pos.x;
                  }
                }
              }
