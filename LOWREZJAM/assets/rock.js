@@ -17,7 +17,7 @@
                 let xPos = this.pos.x;
                 for(let tx = 0;tx<dimx;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.screen[this.frame][tx][ty] == 1)?this.g.cx.fillStyle=y:this.g.cx.fillStyle=b;
+                    (this.screen[tx][ty] == 1)?this.g.cx.fillStyle=y:this.g.cx.fillStyle=b;
                     this.g.cx.fillRect(xPos,yPos,this.g.rockWidth,this.g.rockHeight)
                     xPos += this.g.rockWidth;
                   }
