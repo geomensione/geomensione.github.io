@@ -11,4 +11,4 @@ var classTile = class{
              }
            };
 
-export { classRock };
+export { classTile };
