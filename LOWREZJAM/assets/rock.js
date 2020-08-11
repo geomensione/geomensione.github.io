@@ -7,10 +7,10 @@ var classRock = class{
                       [0,0,0,0],
                       [1,1,1,1]];
               this.pos = {x:0,y:0};
-              this.draw = true;
+              this.drawEnv = true;
              } 
              draw(){
-               if(this.draw){
+               if(this.drawEnv){
                  let b = '#000000';
                  let y = '#FFFF00';
 
@@ -28,6 +28,7 @@ var classRock = class{
                     xPos = this.pos.x;
                   }
                  }
+                 this.drawEnv = false;
                 }
               }
 };
