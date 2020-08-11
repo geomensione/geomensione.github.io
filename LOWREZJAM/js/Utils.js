@@ -137,7 +137,7 @@ var Utils = class{
   }
   gameLoop(){
     for(let g_i = 0,g_l = this.g.length;g_i<g_l;g_i++){
-      this.g[0].draw();
+      this.g[g_i].draw();
     }
   }
 };
