@@ -31,7 +31,7 @@
                       [0,0,0,0,1,1,0,0],
                       [0,0,0,0,1,1,0,0],
                       [0,0,0,0,1,1,1,0]]];
-              this.pos = {x:0,y:0};
+              this.pos = {x:0,y:17};
               this.frame = 0;
               this.nFrames = this.asset.length;
               this.dir = 'r';
