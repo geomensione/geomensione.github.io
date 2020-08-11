@@ -1,4 +1,5 @@
 import {classHero} from '../assets/hero.js';
+import {classRock} from '../assets/rock.js';
 var Utils = class{
   Utils(){
     this.c = {};
@@ -44,6 +45,8 @@ var Utils = class{
     this.g = [];
     this.heroObj = new classHero(this);
     this.g.push(this.heroObj);
+    this.rockObj = new classRock(this);
+    this.g.push(this.rockObj);
     this.drawGame();
   }
   setResolution(x,y,rx,ry){
