@@ -18,14 +18,14 @@
                 for(let tx = 0;tx<dimx;tx++){
                   for(let ty = 0;ty<dimy;ty++){
                     (this.asset[this.frame][tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
-                    this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
-                    xPos += this.g.tileWidth;
+                    this.g.cx.fillRect(xPos,yPos,this.g.rockWidth,this.g.rockHeight)
+                    xPos += this.g.rockWidth;
                   }
-                  yPos += this.g.tileHeight;
+                  yPos += this.g.rockHeight;
                   xPos = this.pos.x;
                 }
                
              }
            };
 
-export { classHero };
+export { classRock };
