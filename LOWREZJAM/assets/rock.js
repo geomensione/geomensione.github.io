@@ -26,9 +26,10 @@ var classRock = class{
                     }
                     yPos += this.g.rockHeight;
                     xPos = this.pos.x;
+                  }
                  }
-               }
-             }
-          };
+                }
+              }
+};
 
 export { classRock };
