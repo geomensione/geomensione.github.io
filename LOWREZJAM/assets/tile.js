@@ -2,6 +2,7 @@ var classTile = class{
              constructor(g,px,py){
                this.g = g;
                this.pos = {x:px,y:py};
+               this.name = 'tile';
              } 
              draw(){
                let y = '#FFFF00';
