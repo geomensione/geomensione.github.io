@@ -24,7 +24,7 @@ var classRock = class{
                       if(this.screen[tx][ty] == 1){
                          this.g.g.push(new classTile(this.g,xPos,yPos))
                       }else if(this.screen[tx][ty] == 'h'){
-                        this.g.g.push(new classHero(this.g,xPos,yPos))
+                        this.g.g.push(new classHero(this.g,xPos+1,yPos+1))
                       }
                       xPos += this.g.rockWidth;
                     }
