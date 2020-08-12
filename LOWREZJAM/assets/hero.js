@@ -66,7 +66,7 @@
                   //border l, d, u, r
                   let l = this.pos.x < (this.g.g[t].pos.x + this.g.rockWidth)
                   let d = this.pos.y + (dimy*this.g.tileHeights) > this.g.g[t].pos.y
-                  let u = this.pos.y<(his.g.g[t].pos.x+this.g.rockHeight)
+                  let u = this.pos.y<(this.g.g[t].pos.x+this.g.rockHeight)
                   let r = this.pos.x + (dimX*dimy*this.g.tileHeight) > this.g.g[t].pos.x
                   if( l || d || u || r ) find = true;
                  }
