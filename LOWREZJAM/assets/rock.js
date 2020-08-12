@@ -1,9 +1,10 @@
 import { classTile } from './tile.js' 
+import { classHero } from './hero.js' 
 var classRock = class{
              constructor(g){
                this.g = g;
                this.screen = [[1,1,1,1],
-                      [0,0,0,0],
+                      ['h',0,0,0],
                       [0,0,0,0],
                       [1,1,1,1]];
               this.pos = {x:0,y:0};
@@ -22,8 +23,10 @@ var classRock = class{
                     for(let ty = 0;ty<dimy;ty++){
                       if(this.screen[tx][ty] == 1){
                          this.g.g.push(new classTile(this.g,xPos,yPos))
-                         xPos += this.g.rockWidth;
+                      }else if(this.screen[tx][ty] == 'h'){
+                        this.g.g.push(new classHero(this.g,xPos,yPos))
                       }
+                      xPos += this.g.rockWidth;
                     }
                     yPos += this.g.rockHeight;
                     xPos = this.pos.x;
