@@ -19,16 +19,17 @@ var classRock = class{
                  let yPos = this.pos.y;
                  let xPos = this.pos.x;
                  for(let tx = 0;tx<dimx;tx++){
-                  for(let ty = 0;ty<dimy;ty++){
-                    if(this.screen[tx][ty] == 1){
-                       this.g.g.push(new classTile(this.g,xPos,yPos))
-                      xPos += this.g.rockWidth;
+                    for(let ty = 0;ty<dimy;ty++){
+                      if(this.screen[tx][ty] == 1){
+                         this.g.g.push(new classTile(this.g,xPos,yPos))
+                         xPos += this.g.rockWidth;
+                      }
                     }
                     yPos += this.g.rockHeight;
                     xPos = this.pos.x;
                   }
-                 }
-                 this.drawEnv = false;
+
+                  this.drawEnv = false;
                 }
               }
 };
