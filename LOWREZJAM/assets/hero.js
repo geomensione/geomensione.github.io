@@ -59,8 +59,8 @@
              }
              hit(){
               var find = false;
-              let dimx = this.asset[this.frame].length;
-              let dimy = this.asset[this.frame][0].length;
+              let dimy = this.asset[this.frame].length;
+              let dimx = this.asset[this.frame][0].length;
                for(let t = 0,g_l = this.g.g.length;t<g_l;t++){
                  if(this.g.g[t].name && this.g.g[t].name == 'tile'){
                   //border l, d, u, r
