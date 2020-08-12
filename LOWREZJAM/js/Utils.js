@@ -45,8 +45,8 @@ var Utils = class{
     this.g = [];
     this.rockObj = new classRock(this);
     this.g.push(this.rockObj);
-    this.heroObj = new classHero(this);
-    this.g.push(this.heroObj);
+    //this.heroObj = new classHero(this);
+    //this.g.push(this.heroObj);
     this.drawGame();
   }
   setResolution(x,y,rx,ry){
