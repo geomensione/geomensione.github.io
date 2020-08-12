@@ -58,7 +58,16 @@
               this.moving = b;
              }
              hit(){
-               return false;
+              var find = false;
+              let dimx = this.asset[this.frame].length;
+              let dimy = this.asset[this.frame][0].length;
+               for(let t = 0,g_l = this.g.g.lenght;t<g_l;t++){
+                 if(this.g.g[t].name && this.g.g[t].name == 'tile'){
+                  //border l, d, u, r
+                  if(this.pos.x < (this.g.g[t].pos.x + this.g.rockWidth) || this.pos.y + (dimy*this.g.tileHeights) > this.g.g[t].pos.y || this.pos.y<(his.g.g[t].pos.x+this.g.rockHeight) || this.pos.x + (dimX*dimy*this.g.tileHeight) > this.g.g[t].pos.x) find = true;
+                 }
+               }
+              return find;
              }
              draw(){
                (this.dirV == 'u')?((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++:this.frame=0;
