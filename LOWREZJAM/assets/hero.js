@@ -68,7 +68,7 @@
                   let uy = (this.pos.y < (this.g.g[t].pos.y + this.g.rockHeight)) && (this.pos.y > this.g.g[t].pos.y )
                   let dx = (this.pos.x + (dimx*this.g.tileWidth)) > (this.g.g[t].pos.x + this.g.rockWidth) &&  (this.pos.x + (dimx*this.g.tileWidth)) > this.g.g[t].pos.x
                   let dy = (this.pos.y + (dimx*this.g.tileHeight)) > (this.g.g[t].pos.y + this.g.rockHeight) &&  (this.pos.y + (dimx*this.g.tileHeight)) > this.g.g[t].pos.y
-                  if( (l && d) || (u && r) ) find = true;
+                  if( (ux && uy) || (dx && dy) ) find = true;
                  }
                }
               return find;
