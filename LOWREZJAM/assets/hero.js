@@ -1,5 +1,5 @@
  var classHero = class{
-             constructor(g){
+             constructor(g,xp,yp){
                this.g = g;
                this.asset = [[[1,1,1,1,1,1,1,0],
                       [0,0,0,1,0,0,0,0],
@@ -31,7 +31,7 @@
                       [0,0,0,0,1,1,0,0],
                       [0,0,0,0,1,1,0,0],
                       [0,0,0,0,1,1,1,0]]];
-              this.pos = {x:0,y:17};
+              this.pos = {x:xp,y:yp};
               this.frame = 0;
               this.nFrames = this.asset.length;
               this.dir = 'r';
