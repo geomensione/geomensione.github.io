@@ -64,7 +64,11 @@
                for(let t = 0,g_l = this.g.g.length;t<g_l;t++){
                  if(this.g.g[t].name && this.g.g[t].name == 'tile'){
                   //border l, d, u, r
-                  if(this.pos.x < (this.g.g[t].pos.x + this.g.rockWidth) || this.pos.y + (dimy*this.g.tileHeights) > this.g.g[t].pos.y || this.pos.y<(his.g.g[t].pos.x+this.g.rockHeight) || this.pos.x + (dimX*dimy*this.g.tileHeight) > this.g.g[t].pos.x) find = true;
+                  let l = this.pos.x < (this.g.g[t].pos.x + this.g.rockWidth)
+                  let d = this.pos.y + (dimy*this.g.tileHeights) > this.g.g[t].pos.y
+                  let u = this.pos.y<(his.g.g[t].pos.x+this.g.rockHeight)
+                  let r = this.pos.x + (dimX*dimy*this.g.tileHeight) > this.g.g[t].pos.x
+                  if( l || d || u || r ) find = true;
                  }
                }
               return find;
