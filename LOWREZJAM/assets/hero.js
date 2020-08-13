@@ -64,11 +64,9 @@
                for(let t = 0,g_l = this.g.g.length;t<g_l;t++){
                  if(this.g.g[t].name && this.g.g[t].name == 'tile'){
                   //border l, d, u, r
-                  let ux = (this.pos.x < (this.g.g[t].pos.x + this.g.rockWidth)) && (this.pos.x > this.g.g[t].pos.x )
-                  let uy = (this.pos.y < (this.g.g[t].pos.y + this.g.rockHeight)) && (this.pos.y > this.g.g[t].pos.y )
-                  let dx = (this.pos.x + (dimx*this.g.tileWidth)) > (this.g.g[t].pos.x + this.g.rockWidth) &&  (this.pos.x + (dimx*this.g.tileWidth)) > this.g.g[t].pos.x
-                  let dy = (this.pos.y + (dimx*this.g.tileHeight)) > (this.g.g[t].pos.y + this.g.rockHeight) &&  (this.pos.y + (dimx*this.g.tileHeight)) > this.g.g[t].pos.y
-                  if( (ux && uy) || (dx && dy) ) find = true;
+                  let a = {l:this.pos.x,r:(this.pos.x + (dimx*this.g.tileWidth)),u:this.pos.y,d:(this.pos.y+ (dimy*this.g.tileHeight))}
+                  let b = {l:this.g.g[t].pos.x.r:this.g.g[t].pos.x + this.g.rockWidth,u:this.g.g[t].pos.y,d:this.g.g[t].pos.y + this.g.rockHeight}
+                  find = !(a.l > b.r || a.r < b.l || a.u > b.d || a.d < b.u);
                  }
                }
               return find;
