@@ -71,7 +71,7 @@
                   */
                   //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
                   
-                  var rect1 = {x: this.pos.x-3, y: this.pos.y+3, width: dimx*this.g.tileWidth+6, height: dimy*this.g.tileHeight+6}//check collision with larger bbox
+                  var rect1 = {x: this.pos.x, y: this.pos.y-3, width: dimx*this.g.tileWidth, height:dimy*this.g.tileHeight+6}//check collision with larger bbox
                   var rect2 = {x: this.g.g[t].pos.x, y: this.g.g[t].pos.y, width: this.g.rockWidth, height: this.g.rockHeight}
 
                   // Red rectangle
