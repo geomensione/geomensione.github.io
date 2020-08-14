@@ -72,28 +72,9 @@
               let dimx = me.asset[me.frame][0].length;
                for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
                  if(me.g.g[t].name && me.g.g[t].name == 'tile'){
-                  /*
-                  //https://stackoverflow.com/questions/2752349/fast-rectangle-to-rectangle-intersection
-                  let a = {l:this.pos.x,r:(this.pos.x + (dimx*this.g.tileWidth)),u:this.pos.y,d:(this.pos.y+ (dimy*this.g.tileHeight))}
-                  let b = {l:this.g.g[t].pos.x,r:this.g.g[t].pos.x + this.g.rockWidth,u:this.g.g[t].pos.y,d:this.g.g[t].pos.y + this.g.rockHeight}
-                  if(!find) find = !(a.l > b.r || a.r < b.l || a.u > b.d || a.d < b.u);
-                  */
                   //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-                  
                   var rect1 = {x: me.pos.x, y: me.pos.y, width: dimx*me.g.tileWidth, height:dimy*me.g.tileHeight}//check collision with larger bbox
                   var rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
-
-                  // Red rectangle
-                  me.g.cx.beginPath();
-                  me.g.cx.lineWidth = "1";
-                  me.g.cx.strokeStyle = "red";
-                  me.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-                  me.g.cx.stroke();
-                  me.g.cx.beginPath();
-                  me.g.cx.lineWidth = "1";
-                  me.g.cx.strokeStyle = "red";
-                  me.g.cx.rect(rect2.x, rect2.y, rect2.width, rect2.height);
-                  me.g.cx.stroke();
                   
                   if (rect1.x < rect2.x + rect2.width &&
                      rect1.x + rect1.width > rect2.x &&
