@@ -34,6 +34,7 @@ var Utils = class{
   initLowRezCanvas(resx,resy,rockSizeX,rockSizeY){
     this.resX = resx;
     this.resY = resy;
+    this.idle = true;
     this.c = document.getElementsByTagName('canvas');
     if(this.c.length > 0){
       this.c = this.c[0];
