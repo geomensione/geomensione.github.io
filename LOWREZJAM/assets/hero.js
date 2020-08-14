@@ -70,9 +70,22 @@
                   if(!find) find = !(a.l > b.r || a.r < b.l || a.u > b.d || a.d < b.u);
                   */
                   //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+                  
                   var rect1 = {x: this.pos.x-3, y: this.pos.y-3, width: dimx*this.g.tileWidth+6, height: dimy*this.g.tileHeight+6}//check collision with larger bbox
                   var rect2 = {x: this.g.g[t].pos.x, y: this.g.g[t].pos.y, width: this.g.rockWidth, height: this.g.rockHeight}
 
+                  // Red rectangle
+                  this.g.cx.beginPath();
+                  this.g.cx.lineWidth = "1";
+                  this.g.cx.strokeStyle = "red";
+                  this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
+                  this.g.cx.stroke();
+                  this.g.cx.beginPath();
+                  this.g.cx.lineWidth = "1";
+                  this.g.cx.strokeStyle = "red";
+                  this.g.cx.rect(rect2.x, rect2.y, rect2.width, rect2.height);
+                  this.g.cx.stroke();
+                  
                   if (rect1.x < rect2.x + rect2.width &&
                      rect1.x + rect1.width > rect2.x &&
                      rect1.y < rect2.y + rect2.height &&
