@@ -63,22 +63,23 @@
               let dimx = this.asset[this.frame][0].length;
                for(let t = 0,g_l = this.g.g.length;t<g_l;t++){
                  if(this.g.g[t].name && this.g.g[t].name == 'tile'){
+                  /*
                   //https://stackoverflow.com/questions/2752349/fast-rectangle-to-rectangle-intersection
                   let a = {l:this.pos.x,r:(this.pos.x + (dimx*this.g.tileWidth)),u:this.pos.y,d:(this.pos.y+ (dimy*this.g.tileHeight))}
                   let b = {l:this.g.g[t].pos.x,r:this.g.g[t].pos.x + this.g.rockWidth,u:this.g.g[t].pos.y,d:this.g.g[t].pos.y + this.g.rockHeight}
                   if(!find) find = !(a.l > b.r || a.r < b.l || a.u > b.d || a.d < b.u);
-                  /*
+                  */
                   //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-                  var rect1 = {x: 5, y: 5, width: 50, height: 50}
-                  var rect2 = {x: 20, y: 10, width: 10, height: 10}
+                  var rect1 = {x: this.pos.x, y: this.pos.y, width: dimx*this.g.tileWidth, height: dimy*this.g.tileHeight}
+                  var rect2 = {x: this.g.g[t].pos.x, y: this.g.g[t].pos.y, width: this.g.rockWidth, height: this.g.rockHeight}
 
                   if (rect1.x < rect2.x + rect2.width &&
                      rect1.x + rect1.width > rect2.x &&
                      rect1.y < rect2.y + rect2.height &&
                      rect1.y + rect1.height > rect2.y) {
-                      // collision detected!
+                      find = true;
                   }
-                  */
+                  
                  }
                }
               return find;
