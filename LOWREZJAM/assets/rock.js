@@ -27,9 +27,9 @@ var classRock = class{
                         this.g.heroObj = new classHero(this.g,xPos,yPos)
                         this.g.g.push(this.g.heroObj)
                       }
-                      xPos += this.g.rockWidth;
+                      xPos += this.g.rockWidth + 1;
                     }
-                    yPos += this.g.rockHeight;
+                    yPos += this.g.rockHeight + 1;
                     xPos = this.pos.x;
                   }
 
