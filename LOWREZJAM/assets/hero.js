@@ -109,7 +109,7 @@
                  if(!this.hit()){
                   //gravity
                   //this.moving = true; 
-                  this.dirV = 'd';
+                  this.down();
                  }
                }
                
