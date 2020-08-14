@@ -41,24 +41,29 @@
              left(){
               this.dir = 'l';
               this.pos.x -= this.velocity;
+              this.hit().then((b)=>{if(!b) this.pos.x += this.velocity;})
              }
              up(){
               this.dirV = 'u';
               this.pos.y -= this.velocity;
+              this.hit().then((b)=>{if(!b) this.pos.y += this.velocity;})
              }
              right(){
               this.dir = 'r';
               this.pos.x += this.velocity;
+              this.hit().then((b)=>{if(!b) this.pos.x -= this.velocity;})
              }
              down(){
               this.dirV = 'd';
               this.pos.y += this.velocity;
+              this.hit().then((b)=>{if(!b) this.pos.y -= this.velocity;})
              }
              //move(b){
              // this.moving = b;
              //}
              hit(){
-              var find = false;
+              return new Promise(function(res,rej){
+               var find = false;
               let dimy = this.asset[this.frame].length;
               let dimx = this.asset[this.frame][0].length;
                for(let t = 0,g_l = this.g.g.length;t<g_l;t++){
@@ -95,7 +100,9 @@
                   
                  }
                }
-              return find;
+               return res(find);
+              })
+              
              }
              draw(){
                (this.dirV == 'u')?((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++:this.frame=0;
@@ -103,7 +110,6 @@
                let w = '#FFFFFF';
                
                if(!this.g.idle){
-                if(!this.hit()){
                  
                 if(!this.dirV){
                  switch(this.dir) {
@@ -131,9 +137,6 @@
                    break;
                  }
                 }
-                
-                
-               }
                }else{
                  if(!this.hit()){
                   //gravity
