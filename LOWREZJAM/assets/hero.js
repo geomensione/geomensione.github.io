@@ -70,7 +70,7 @@
                   if(!find) find = !(a.l > b.r || a.r < b.l || a.u > b.d || a.d < b.u);
                   */
                   //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-                  var rect2 = {x: this.pos.x-1, y: this.pos.y-1, width: dimx*this.g.tileWidth+2, height: dimy*this.g.tileHeight+2}//check collision with larger bbox
+                  var rect2 = {x: this.pos.x-2, y: this.pos.y-2, width: dimx*this.g.tileWidth+4, height: dimy*this.g.tileHeight+4}//check collision with larger bbox
                   var rect1 = {x: this.g.g[t].pos.x, y: this.g.g[t].pos.y, width: this.g.rockWidth, height: this.g.rockHeight}
 
                   if (rect1.x < rect2.x + rect2.width &&
