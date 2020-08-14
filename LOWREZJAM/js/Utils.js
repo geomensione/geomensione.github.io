@@ -77,26 +77,27 @@ var Utils = class{
       case 37:
         this.heroObj.dir = 'l';
         this.heroObj.dirV = '';
-        this.heroObj.move(true);
+        //this.heroObj.move(true);
         break;
       //up
       case 38:
         this.heroObj.dirV = 'u';
-        this.heroObj.move(true);
+        //this.heroObj.move(true);
         break;
       //right
       case 39:
         this.heroObj.dir = 'r';
         this.heroObj.dirV = '';
-        this.heroObj.move(true);
+        //this.heroObj.move(true);
         break;
       //down
       case 40:
         this.heroObj.dirV = 'd';
-        this.heroObj.move(true);
+        //this.heroObj.move(true);
         break;
     }
   }
+  /*
   keyPress(e){
     if(this.heroFire) this.heroObj.fire();
     if(this.heroDir){
@@ -119,10 +120,11 @@ var Utils = class{
     }
 
   }
+  */
   keyUp(e){
      this.heroFire = false;
      this.heroObj.dirV = '';
-     this.heroObj.move(false);
+     //this.heroObj.move(false);
   }
   cleanCanvas(){
      this.cx.fillStyle='black';
