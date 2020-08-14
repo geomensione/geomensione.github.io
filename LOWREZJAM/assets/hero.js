@@ -66,7 +66,7 @@
                   //https://stackoverflow.com/questions/2752349/fast-rectangle-to-rectangle-intersection
                   let a = {l:this.pos.x,r:(this.pos.x + (dimx*this.g.tileWidth)),u:this.pos.y,d:(this.pos.y+ (dimy*this.g.tileHeight))}
                   let b = {l:this.g.g[t].pos.x,r:this.g.g[t].pos.x + this.g.rockWidth,u:this.g.g[t].pos.y,d:this.g.g[t].pos.y + this.g.rockHeight}
-                  find = !(a.l > b.r || a.r < b.l || a.u > b.d || a.d < b.u);
+                  if(!find) find = !(a.l > b.r || a.r < b.l || a.u > b.d || a.d < b.u);
                  }
                }
               return find;
