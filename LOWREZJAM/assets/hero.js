@@ -36,7 +36,7 @@
               this.nFrames = this.asset.length;
               this.dir = 'r';
               this.velocity = 6;
-              this.moving = false;
+              //this.moving = false;
              } 
              left(){
               this.dir = 'l';
@@ -54,9 +54,9 @@
               this.dirV = 'd';
               this.pos.y += this.velocity;
              }
-             move(b){
-              this.moving = b;
-             }
+             //move(b){
+             // this.moving = b;
+             //}
              hit(){
               var find = false;
               let dimy = this.asset[this.frame].length;
@@ -75,13 +75,13 @@
                (this.dirV == 'u')?((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++:this.frame=0;
                let b = '#000000';
                let w = '#FFFFFF';
-               if(this.moving){
+               if(this.dir || this.dirV){
                 if(!this.dirV){
                  switch(this.dir) {
-                 case 'f':
-                   this.heroFire = true;
-                   this.fire();
-                   break;
+                 //case 'f':
+                 //  this.heroFire = true;
+                 //  this.fire();
+                 //  break;
                  //left
                  case 'l':
                    this.left();
