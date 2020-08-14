@@ -62,12 +62,13 @@
              // this.moving = b;
              //}
              hit(){
+              var me = this;
               return new Promise(function(res,rej){
                var find = false;
-              let dimy = this.asset[this.frame].length;
-              let dimx = this.asset[this.frame][0].length;
-               for(let t = 0,g_l = this.g.g.length;t<g_l;t++){
-                 if(this.g.g[t].name && this.g.g[t].name == 'tile'){
+              let dimy = me.asset[me.frame].length;
+              let dimx = me.asset[me.frame][0].length;
+               for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
+                 if(me.g.g[t].name && me.g.g[t].name == 'tile'){
                   /*
                   //https://stackoverflow.com/questions/2752349/fast-rectangle-to-rectangle-intersection
                   let a = {l:this.pos.x,r:(this.pos.x + (dimx*this.g.tileWidth)),u:this.pos.y,d:(this.pos.y+ (dimy*this.g.tileHeight))}
@@ -76,20 +77,20 @@
                   */
                   //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
                   
-                  var rect1 = {x: this.pos.x, y: this.pos.y, width: dimx*this.g.tileWidth, height:dimy*this.g.tileHeight}//check collision with larger bbox
-                  var rect2 = {x: this.g.g[t].pos.x, y: this.g.g[t].pos.y, width: this.g.rockWidth, height: this.g.rockHeight}
+                  var rect1 = {x: me.pos.x, y: me.pos.y, width: dimx*me.g.tileWidth, height:dimy*me.g.tileHeight}//check collision with larger bbox
+                  var rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
 
                   // Red rectangle
-                  this.g.cx.beginPath();
-                  this.g.cx.lineWidth = "1";
-                  this.g.cx.strokeStyle = "red";
-                  this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-                  this.g.cx.stroke();
-                  this.g.cx.beginPath();
-                  this.g.cx.lineWidth = "1";
-                  this.g.cx.strokeStyle = "red";
-                  this.g.cx.rect(rect2.x, rect2.y, rect2.width, rect2.height);
-                  this.g.cx.stroke();
+                  me.g.cx.beginPath();
+                  me.g.cx.lineWidth = "1";
+                  me.g.cx.strokeStyle = "red";
+                  me.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
+                  me.g.cx.stroke();
+                  me.g.cx.beginPath();
+                  me.g.cx.lineWidth = "1";
+                  me.g.cx.strokeStyle = "red";
+                  me.g.cx.rect(rect2.x, rect2.y, rect2.width, rect2.height);
+                  me.g.cx.stroke();
                   
                   if (rect1.x < rect2.x + rect2.width &&
                      rect1.x + rect1.width > rect2.x &&
