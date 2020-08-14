@@ -10,6 +10,7 @@ var Utils = class{
     this.resY = 0;
     this.heroDir = '';
     this.heroFire = false;
+    this.idle = true;
   }
   init3dCanvas(){
 
@@ -67,6 +68,7 @@ var Utils = class{
     })
   }
   keyDown(event){ 
+    this.idle = false;
     switch(event.keyCode) {
       //space
       case 32:
@@ -122,6 +124,7 @@ var Utils = class{
   }
   */
   keyUp(e){
+     this.idle = true;
      this.heroFire = false;
      this.heroObj.dirV = '';
      //this.heroObj.move(false);
