@@ -41,23 +41,23 @@
              left(){
               this.dir = 'l';
               this.pos.x -= this.velocity;
-              this.hit().then((b)=>{if(!b) this.pos.x += this.velocity;})
+              this.hit().then((b)=>{if(b) this.pos.x += this.velocity;})
              }
              up(){
               this.dirV = 'u';
               this.pos.y -= this.velocity;
-              this.hit().then((b)=>{if(!b) this.pos.y += this.velocity;})
+              this.hit().then((b)=>{if(b) this.pos.y += this.velocity;})
              }
              right(){
               this.dir = 'r';
               this.pos.x += this.velocity;
-              this.hit().then((b)=>{if(!b) this.pos.x -= this.velocity;})
+              this.hit().then((b)=>{if(b) this.pos.x -= this.velocity;})
              }
              down(){
               this.dirV = 'd';
               this.pos.y += this.velocity;
               this.hit().then((b)=>{
-               if(!b) 
+               if(b) 
                 this.pos.y -= this.velocity;
               })
              }
