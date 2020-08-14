@@ -139,11 +139,7 @@
                  }
                 }
                }else{
-                 if(!this.hit()){
-                  //gravity
-                  //this.moving = true; 
-                  this.down();
-                 }
+                 this.down();              
                }
                
                let dimx = this.asset[this.frame].length;
