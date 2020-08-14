@@ -56,7 +56,10 @@
              down(){
               this.dirV = 'd';
               this.pos.y += this.velocity;
-              this.hit().then((b)=>{if(!b) this.pos.y -= this.velocity;})
+              this.hit().then((b)=>{
+               if(!b) 
+                this.pos.y -= this.velocity;
+              })
              }
              //move(b){
              // this.moving = b;
