@@ -75,7 +75,10 @@
                (this.dirV == 'u')?((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++:this.frame=0;
                let b = '#000000';
                let w = '#FFFFFF';
+               
                if(!this.g.idle){
+                if(!this.hit()){
+                 
                 if(!this.dirV){
                  switch(this.dir) {
                  //case 'f':
@@ -104,7 +107,7 @@
                 }
                 
                 
-
+               }
                }else{
                  if(!this.hit()){
                   //gravity
