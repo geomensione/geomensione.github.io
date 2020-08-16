@@ -73,8 +73,7 @@ var Utils = class{
     switch(event.keyCode) {
       //space
       case 32:
-        this.heroFire = true;
-        this.heroObj.fire();
+        this.heroObj.fireLaser = true;
         break;
       //left
       case 37:
@@ -126,7 +125,7 @@ var Utils = class{
   */
   keyUp(e){
      this.idle = true;
-     this.heroFire = false;
+     this.heroObj.fireLaser = false;
      this.heroObj.dirV = '';
      //this.heroObj.move(false);
   }

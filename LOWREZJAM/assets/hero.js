@@ -1,3 +1,4 @@
+ import {classLaser} from './laser.js';
  var classHero = class{
              constructor(g,xp,yp){
                this.g = g;
@@ -36,6 +37,8 @@
               this.nFrames = this.asset.length;
               this.dir = 'r';
               this.velocity = 6;
+              this.name = 'hero';
+              this.laser = new classLaser(this);
               //this.moving = false;
              } 
              left(){
@@ -61,6 +64,9 @@
                 this.pos.y -= this.velocity;
               })
              }
+             fire(){
+              this.laser.fire();
+             }
              //move(b){
              // this.moving = b;
              //}
@@ -71,20 +77,22 @@
               let dimy = me.asset[me.frame].length;
               let dimx = me.asset[me.frame][0].length;
                for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
-                 if(me.g.g[t].name && me.g.g[t].name == 'tile'){
-                  //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-                  var rect1 = {x: me.pos.x, y: me.pos.y, width: dimx*me.g.tileWidth, height:dimy*me.g.tileHeight}//check collision with larger bbox
-                  var rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
-                  
-                  if (rect1.x < rect2.x + rect2.width &&
+                var rect1 = {x: me.pos.x, y: me.pos.y, width: dimx*me.g.tileWidth, height:dimy*me.g.tileHeight}//check collision with larger bbox
+                var rect2 = {};
+                if(me.g.g[t].name && me.g.g[t].name == 'tile'){
+                  rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
+                 }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
+                    rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth/2, height: me.g.rockHeight}
+                 }   
+                 if (rect1.x < rect2.x + rect2.width &&
                      rect1.x + rect1.width > rect2.x &&
                      rect1.y < rect2.y + rect2.height &&
                      rect1.y + rect1.height > rect2.y) {
                       find = true;
                   }
                   
-                 }
                }
+               
                return res(find);
               })
               
@@ -122,6 +130,7 @@
                    break;
                  }
                 }
+                if(this.fireLaser) this.fire()
                }else{
                  this.down();              
                }
