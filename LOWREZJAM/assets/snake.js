@@ -8,7 +8,7 @@ var classSnake = class{
                this.posy = posy;
                this.dir = dir;
              } 
-             fire(){
+             draw(){
                let g = '#00ff00';
                let b = '#000000';
                this.h.g.cx.fillStyle=r;
