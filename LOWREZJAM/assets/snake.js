@@ -30,7 +30,7 @@ var classSnake = class{
                 let xPos = this.posx + this.g.rockWidth;
                 for(let tx = 0;tx<this.length;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.asset[ty] == 1)?this.g.cx.fillStyle=r:this.g.cx.fillStyle=b;
+                    (this.asset[ty] == 1)?this.g.cx.fillStyle=g:this.g.cx.fillStyle=b;
                     this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
                     yPos += this.g.tileHeight;
                   }
