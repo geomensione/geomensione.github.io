@@ -9,7 +9,7 @@ var classWall = class{
                let g = '#777777';
                this.g.cx.fillStyle=g;
                //center wall
-               let offsetx = this.pos.x + this.wallWidth/2 - this.wallWidth/2;
+               let offsetx = this.pos.x + this.g.rockWidth/2 - this.wallWidth/2;
                this.g.cx.fillRect(offsetx,this.pos.y,this.wallWidth,this.g.rockHeight)
              }
            };
