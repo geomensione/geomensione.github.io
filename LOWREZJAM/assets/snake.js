@@ -11,7 +11,7 @@ var classSnake = class{
              draw(){
                let g = '#00ff00';
                let b = '#000000';
-               this.h.g.cx.fillStyle=r;
+               this.h.g.cx.fillStyle=g;
                let dimy = this.asset.length;
                let yPos = this.posy;
                if(this.dir == 'r'){
