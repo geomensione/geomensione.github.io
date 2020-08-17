@@ -52,10 +52,10 @@ var Utils = class{
     this.drawGame();
   }
   setResolution(x,y,rx,ry){
-    this.tileWidth = Math.round(this.c.width / x);
-    this.tileHeight = Math.round(this.c.height / y);
-    this.rockWidth = Math.round(this.c.width / rx);
-    this.rockHeight = Math.round(this.c.height / ry);
+    this.tileWidth = Math.floor(this.c.width / x);
+    this.tileHeight = Math.floor(this.c.height / y);
+    this.rockWidth = Math.floor(this.c.width / rx);
+    this.rockHeight = Math.floor(this.c.height / ry);
   }
   setHandlerEvents(){
     document.addEventListener('keydown',event => {
