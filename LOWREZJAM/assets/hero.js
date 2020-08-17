@@ -82,7 +82,7 @@
                 if(me.g.g[t].name && me.g.g[t].name == 'tile'){
                   rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
                  }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
-                    rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth/2, height: me.g.rockHeight}
+                    rect2 = {x: me.g.g[t].pos.x + (me.g.rockWidth/2) - (me.g.g[t].wallWidth/2), y: me.g.g[t].pos.y, width: me.g.rockWidth/2, height: me.g.rockHeight}
                  }   
                  if (rect1.x < rect2.x + rect2.width &&
                      rect1.x + rect1.width > rect2.x &&
