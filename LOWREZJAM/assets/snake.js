@@ -27,7 +27,7 @@ var classSnake = class{
                   yPos = this.posy;
                 }
                }else{
-                let xPos = this.posx + this.g.rockWidth;
+                let xPos = this.posx + this.g.rockWidth - this.g.tileWidth;
                 for(let tx = 0;tx<this.length;tx++){
                   for(let ty = 0;ty<dimy;ty++){
                     (this.asset[ty] == 1)?this.g.cx.fillStyle=g:this.g.cx.fillStyle=b;
