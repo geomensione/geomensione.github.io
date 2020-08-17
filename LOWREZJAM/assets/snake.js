@@ -1,6 +1,6 @@
 var classSnake = class{
-             constructor(h,posx,posy,dir){
-               this.h = h;
+             constructor(g,posx,posy,dir){
+               this.g = g;
                this.name = 'snake';
                this.asset = [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0];
                this.length = 3;
@@ -11,31 +11,31 @@ var classSnake = class{
              draw(){
                let g = '#00ff00';
                let b = '#000000';
-               this.h.g.cx.fillStyle=g;
+               this.g.cx.fillStyle=g;
                let dimy = this.asset.length;
                let yPos = this.posy;
                if(this.dir == 'r'){
                 let xPos = this.posx;
                 for(let tx = 0;tx<this.length;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.asset[ty] == 1)?this.h.g.cx.fillStyle=g:this.h.g.cx.fillStyle=b;
-                    this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
-                    yPos += this.h.g.tileHeight;
+                    (this.asset[ty] == 1)?this.g.cx.fillStyle=g:this.g.cx.fillStyle=b;
+                    this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
+                    yPos += this.g.tileHeight;
 
                   }
-                  xPos += this.h.g.tileWidth;
-                  yPos = this.h.pos.y;
+                  xPos += this.g.tileWidth;
+                  yPos = this.posy;
                 }
                }else{
-                let xPos = this.h.pos.x + this.g.rockWidth;
+                let xPos = this.posx + this.g.rockWidth;
                 for(let tx = 0;tx<this.length;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.asset[ty] == 1)?this.h.g.cx.fillStyle=r:this.h.g.cx.fillStyle=b;
-                    this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
-                    yPos += this.h.g.tileHeight;
+                    (this.asset[ty] == 1)?this.g.cx.fillStyle=r:this.g.cx.fillStyle=b;
+                    this.h.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
+                    yPos += this.g.tileHeight;
                   }
-                  xPos -= this.h.g.tileWidth;
-                  yPos = this.h.pos.y;
+                  xPos -= this.g.tileWidth;
+                  yPos = this.posy;
                 }
                }
              }
