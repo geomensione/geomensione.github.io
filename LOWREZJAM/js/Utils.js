@@ -54,6 +54,8 @@ var Utils = class{
   setResolution(x,y,rx,ry){
     this.tileWidth = Math.floor(this.c.width / x);
     this.tileHeight = Math.floor(this.c.height / y);
+    this.c.width = this.tileWidth * x;
+    this.c.height = this.tileHeight * y;
     this.rockWidth = Math.floor(this.c.width / rx);
     this.rockHeight = Math.floor(this.c.height / ry);
   }
