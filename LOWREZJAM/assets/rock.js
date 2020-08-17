@@ -8,7 +8,7 @@ var classRock = class{
                this.g = g;
                //1-tile,2-hero,3-wall,4-snake on left,5-snake on right
                this.screen = [[1,1,1,1],
-                              [2,0,3,3],
+                              [2,0,3,0],
                               [1,4,1,5],
                               [1,1,1,1]];
               this.pos = {x:0,y:0};
