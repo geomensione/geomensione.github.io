@@ -36,7 +36,7 @@
               this.frame = 0;
               this.nFrames = this.asset.length;
               this.dir = 'r';
-              this.velocity = 6;
+              this.velocity = this.g.tileWidth;
               this.name = 'hero';
               this.laser = new classLaser(this);
               //this.moving = false;
