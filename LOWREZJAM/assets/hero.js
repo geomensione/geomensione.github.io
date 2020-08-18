@@ -44,22 +44,22 @@
              left(){
               this.dir = 'l';
               this.pos.x -= this.velocity;
-              this.hit().then((b)=>{if(b) this.pos.x += this.velocity;})
+              this.hit(this.dir).then((b)=>{if(b) this.pos.x += this.velocity;})
              }
              up(){
               this.dirV = 'u';
               this.pos.y -= this.velocity;
-              this.hit().then((b)=>{if(b) this.pos.y += this.velocity;})
+              this.hit(this.dirV).then((b)=>{if(b) this.pos.y += this.velocity;})
              }
              right(){
               this.dir = 'r';
               this.pos.x += this.velocity;
-              this.hit().then((b)=>{if(b) this.pos.x -= this.velocity;})
+              this.hit(this.dir).then((b)=>{if(b) this.pos.x -= this.velocity;})
              }
              down(){
               this.dirV = 'd';
               this.pos.y += this.velocity;
-              this.hit().then((b)=>{
+              this.hit(this.dirV).then((b)=>{
                if(b) 
                 this.pos.y -= this.velocity;
               })
@@ -70,7 +70,7 @@
              //move(b){
              // this.moving = b;
              //}
-             hit(){
+             hit(d){
               var me = this;
               return new Promise(function(res,rej){
                var find = false;
@@ -84,12 +84,16 @@
                  }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
                     rect2 = {x: me.g.g[t].pos.x + (me.g.rockWidth/2) - (me.g.g[t].wallWidth/2), y: me.g.g[t].pos.y, width: me.g.rockWidth/2, height: me.g.rockHeight}
                  }   
-                 if (rect1.x <= rect2.x + rect2.width &&
-                     rect1.x + rect1.width >= rect2.x &&
-                     rect1.y <= rect2.y + rect2.height &&
-                     rect1.y + rect1.height >= rect2.y) {
+                //r,l,d,u
+                 if (d == 'r' && rect1.x <= (rect2.x + rect2.width))
+                   find = true;
+                 else if (d == 'l' && (rect1.x + rect1.width >= rect2.x))
+                   find = true;
+                 else if (d == 'd' && (rect1.y <= rect2.y + rect2.height))
+                   find = true;
+                 else if (d == 'u' && (rect1.y + rect1.height >= rect2.y))
                       find = true;
-                  }
+                  
                   
                }
                
