@@ -77,7 +77,7 @@
               let dimy = me.asset[me.frame].length;
               let dimx = me.asset[me.frame][0].length;
                for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
-                var rect1 = {x: me.pos.x, y: me.pos.y, width: dimx*me.g.tileWidth, height:dimy*me.g.tileHeight}//check collision with larger bbox
+                var rect1 = {x: me.pos.x, y: me.pos.y, width: (dimx+1)*me.g.tileWidth, height:(dimy+1)*me.g.tileHeight}//check collision with larger bbox
                 var rect2 = {};
                 if(me.g.g[t].name && me.g.g[t].name == 'tile'){
                   rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
