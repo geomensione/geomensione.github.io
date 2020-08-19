@@ -135,6 +135,7 @@
                let dimx = this.asset[this.frame].length;
                let dimy = this.asset[this.frame][0].length;
                let yPos = this.pos.y;
+              console.log('ypos',yPos)
                if(this.dir == 'r'){
                 let xPos = this.pos.x;
                 for(let tx = 0;tx<dimx;tx++){
