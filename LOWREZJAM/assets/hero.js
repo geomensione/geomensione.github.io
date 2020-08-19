@@ -111,27 +111,27 @@
                  //  break;
                  //left
                  case 'l':
-                   this.left();
+                   this.left.call(this);
                    break;
                  //right
                  case 'r':
-                   this.right();
+                   this.right.call(this);
                    break;
                  }
                 }else{
                   switch(this.dirV) {
                  case 'u':
-                   this.up();
+                   this.up.call(this);
                    break;
                  //down
                  case 'd':
-                   this.down();
+                   this.down.call(this);
                    break;
                  }
                 }
                 if(this.fireLaser) this.fire()
                }else{
-                 this.down();              
+                 this.down.call(this);              
                }
                
                let dimx = this.asset[this.frame].length;
