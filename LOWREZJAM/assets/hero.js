@@ -135,7 +135,7 @@
                 }
                 if(this.fireLaser) this.fire()
                }else{
-                 //this.down.call(this);              
+                 this.down.call(this);              
                }
                
                let dimx = this.asset[this.frame].length;
