@@ -9,7 +9,7 @@ var classSnake = class{
                this.dir = dir;
              } 
              getBBox(){
-               return {x:this.posx,y:this.posy,width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
+               return {x:this.posx,y:this.posy,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
              }
              draw(){
                let g = '#00ff00';
