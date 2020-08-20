@@ -68,7 +68,7 @@
               this.laser.fire();
              }
              getBBox(){
-                return {x: me.pos.x, y: me.pos.y, width: (dimx+1)*me.g.tileWidth, height:(dimy+1)*me.g.tileHeight} 
+                return {x: this.pos.x, y: this.pos.y, width: (this.asset[this.frame][0].length+1)*this.g.tileWidth, height:(this.asset[this.frame].length+1)*this.g.tileHeight} 
              }
              //move(b){
              // this.moving = b;
