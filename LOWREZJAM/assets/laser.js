@@ -5,6 +5,9 @@ var classLaser = class{
                this.asset = [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0];
                this.length = 3;
              } 
+             getBBox(){
+               return {x:this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth),y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
+             }
              fire(){
                let r = '#ff0000';
                this.h.g.cx.fillStyle=r;
