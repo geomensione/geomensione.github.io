@@ -43,43 +43,37 @@
              } 
              left(){
               this.dir = 'l';
-              this.hit(this.pos.x - this.velocity,this.pos.y).then((b)=>{if(!b) this.pos.x -= this.velocity;})
+              if(!this.hit(this.pos.x - this.velocity,this.pos.y)) this.pos.x -= this.velocity;
              }
              up(){
               this.dirV = 'u';
-              this.hit(this.pos.x,this.pos.y - this.velocity).then((b)=>{if(!b) this.pos.y -= this.velocity;})
+              if(!this.hit(this.pos.x,this.pos.y - this.velocity)) this.pos.y -= this.velocity;
              }
              right(){
               this.dir = 'r';
-              this.hit(this.pos.x + this.velocity,this.pos.y).then((b)=>{if(b) this.pos.x += this.velocity;})
+              if(!this.hit(this.pos.x + this.velocity,this.pos.y)) this.pos.x += this.velocity;
              }
              down(){
               this.dirV = 'd';
-              this.hit(this.pos.x,this.pos.y + this.velocity).then((b)=>{
-               if(!b) 
-                this.pos.y += this.velocity;
-              })
+              if(!this.hit(this.pos.x,this.pos.y + this.velocity)) this.pos.y += this.velocity;
              }
              fire(){
               this.laser.fire();
              }
              getBBox(){
-                return {x: this.pos.x, y: this.pos.y, width: (this.asset[this.frame][0].length+1)*this.g.tileWidth, height:(this.asset[this.frame].length+1)*this.g.tileHeight} 
+                return {x: this.pos.x, y: this.pos.y, width: ((this.asset[this.frame][0].length)*this.g.tileWidth), height:((this.asset[this.frame].length)*this.g.tileHeight)} 
              }
              //move(b){
              // this.moving = b;
              //}
              hit(posx,posy){
               var me = this;
-              return new Promise(function(res,rej){
-               var find = false;
-              let dimy = me.asset[me.frame].length;
-              let dimx = me.asset[me.frame][0].length;
-               for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
+              var find = false;
+              for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
                 var rect1 = me.getBBox();
                 rect1.x=posx;
                 rect1.y=posy;
-                if(me.g.g[t].getBBox){
+                if(me.g.g[t].getBBox && me.g.g[t].name.indexOf('hero') == -1){
                  var rect2 = me.g.g[t].getBBox();
                 //if(me.g.g[t].name && me.g.g[t].name == 'tile'){
                 //  rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
@@ -90,12 +84,12 @@
                       find = true;
                 
                 }
-                  
+                if(t==g_l-1) return find;
+
                   
                }
                
-               return res(find);
-              })
+              
               
              }
              draw(){
