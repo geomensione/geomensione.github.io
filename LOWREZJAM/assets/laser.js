@@ -7,16 +7,15 @@ var classLaser = class{
              } 
              fire(){
                let r = '#ff0000';
-               let b = '#000000';
                this.h.g.cx.fillStyle=r;
                let dimy = this.asset.length;
                let yPos = this.h.pos.y;
+               this.h.g.cx.fillStyle=r;
                if(this.h.dir == 'r'){
                 let xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
                 for(let tx = 0;tx<this.length;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.asset[ty] == 1)?this.h.g.cx.fillStyle=r:this.h.g.cx.fillStyle=b;
-                    this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
+                    if(this.asset[ty] == 1)this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
                     yPos += this.h.g.tileHeight;
 
                   }
@@ -27,8 +26,7 @@ var classLaser = class{
                 let xPos = this.h.pos.x - this.h.g.tileWidth;
                 for(let tx = 0;tx<this.length;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.asset[ty] == 1)?this.h.g.cx.fillStyle=r:this.h.g.cx.fillStyle=b;
-                    this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
+                    if(this.asset[ty] == 1)this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
                     yPos += this.h.g.tileHeight;
                   }
                   xPos -= this.h.g.tileWidth;

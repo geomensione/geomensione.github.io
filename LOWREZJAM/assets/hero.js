@@ -96,9 +96,7 @@
              }
              draw(){
                (this.dirV == 'u')?((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++:this.frame=0;
-               console.log('ypos',this.pos.y);
-
-               let b = '#000000';
+               
                let w = '#FFFFFF';
                
                if(!this.g.idle){
@@ -137,13 +135,12 @@
                let dimx = this.asset[this.frame].length;
                let dimy = this.asset[this.frame][0].length;
                let yPos = this.pos.y;
-              console.log('ypos',yPos)
+               this.g.cx.fillStyle=w;
                if(this.dir == 'r'){
                 let xPos = this.pos.x;
                 for(let tx = 0;tx<dimx;tx++){
                   for(let ty = 0;ty<dimy;ty++){
-                    (this.asset[this.frame][tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
-                    this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
+                    if(this.asset[this.frame][tx][ty] == 1)this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
                     xPos += this.g.tileWidth;
                   }
                   yPos += this.g.tileHeight;
@@ -153,8 +150,7 @@
                 let xPos = this.pos.x;
                 for(let tx = 0;tx<dimx;tx++){
                   for(let ty = dimy-1;ty>=0;ty--){
-                    (this.asset[this.frame][tx][ty] == 1)?this.g.cx.fillStyle=w:this.g.cx.fillStyle=b;
-                    this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
+                    if(this.asset[this.frame][tx][ty] == 1)this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
                     xPos += this.g.tileWidth;
                   }
                   yPos += this.g.tileHeight;
