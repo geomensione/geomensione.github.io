@@ -8,6 +8,9 @@ var classSnake = class{
                this.posy = posy;
                this.dir = dir;
              } 
+             getBBox(){
+               return {x:this.posx,y:this.posy,width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
+             }
              draw(){
                let g = '#00ff00';
                this.g.cx.fillStyle=g;
