@@ -81,7 +81,8 @@
               let dimx = me.asset[me.frame][0].length;
                for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
                 var rect1 = me.getBBox();
-                var rect2 = me.g.g[t].getBBox();
+                if(me.g.g[t].getBBox){
+                 var rect2 = me.g.g[t].getBBox();
                 //if(me.g.g[t].name && me.g.g[t].name == 'tile'){
                 //  rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
                 // }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
@@ -89,6 +90,8 @@
                 // }   
                  if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y)
                       find = true;
+                
+                }
                   
                   
                }
