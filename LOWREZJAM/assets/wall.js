@@ -5,6 +5,9 @@ var classWall = class{
                this.name = 'wall';
                this.wallWidth = this.g.rockWidth/2;
              } 
+              getBBox(){
+               return {x:this.pos.x + this.g.rockWidth/2 - this.wallWidth/2,y:this.pos.y,width:this.wallWidth,height:this.g.rockHeight}
+             }
              draw(){
                let g = '#777777';
                this.g.cx.fillStyle=g;
