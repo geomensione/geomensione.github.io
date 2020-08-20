@@ -43,25 +43,21 @@
              } 
              left(){
               this.dir = 'l';
-              this.pos.x -= this.velocity;
-              this.hit().then((b)=>{if(b) this.pos.x += this.velocity;})
+              this.hit(this.pos.x -= this.velocity,this.pos.y).then((b)=>{if(!b) this.pos.x -= this.velocity;})
              }
              up(){
               this.dirV = 'u';
-              this.pos.y -= this.velocity;
-              this.hit().then((b)=>{if(b) this.pos.y += this.velocity;})
+              this.hit(this.pos.x,this.pos.y -= this.velocity).then((b)=>{if(!b) this.pos.y -= this.velocity;})
              }
              right(){
               this.dir = 'r';
-              this.pos.x += this.velocity;
-              this.hit().then((b)=>{if(b) this.pos.x -= this.velocity;})
+              this.hit(this.pos.x += this.velocity,this.pos.y).then((b)=>{if(b) this.pos.x += this.velocity;})
              }
              down(){
               this.dirV = 'd';
-              this.pos.y += this.velocity;
-              this.hit().then((b)=>{
-               if(b) 
-                this.pos.y -= this.velocity;
+              this.hit(this.pos.x,this.pos.y += this.velocity).then((b)=>{
+               if(!b) 
+                this.pos.y += this.velocity;
               })
              }
              fire(){
@@ -73,7 +69,7 @@
              //move(b){
              // this.moving = b;
              //}
-             hit(){
+             hit(posx,posy){
               var me = this;
               return new Promise(function(res,rej){
                var find = false;
@@ -81,6 +77,8 @@
               let dimx = me.asset[me.frame][0].length;
                for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
                 var rect1 = me.getBBox();
+                rect1.x=posx;
+                rect1.y=posy;
                 if(me.g.g[t].getBBox){
                  var rect2 = me.g.g[t].getBBox();
                 //if(me.g.g[t].name && me.g.g[t].name == 'tile'){
