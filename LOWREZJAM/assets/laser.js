@@ -8,7 +8,7 @@ var classLaser = class{
              getBBox(){
                return {x:this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth),y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
              }
-             hit(posx,posy){
+             hit(){
               var find = false;
               var rect1 = me.getBBox();
               for(let t = 0,g_l = me.h.g.length;t<g_l;t++){
@@ -56,6 +56,7 @@ var classLaser = class{
                   yPos = this.h.pos.y;
                 }
                }
+               this.hit();
              }
            };
 
