@@ -15,11 +15,11 @@ var classLaser = class{
              hit(){
               var find = false;
               var rect1 = this.getBBox();
-               this.h.cx.beginPath();
-               this.h.cx.lineWidth = "1"
-               this.h.cx.strokeStyle = "blue";
-               this.h.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-               this.h.cx.stroke();
+               this.h.g.cx.beginPath();
+               this.h.g.cx.lineWidth = "1"
+               this.h.g.cx.strokeStyle = "blue";
+               this.h.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
+               this.h.g.cx.stroke();
               for(let t = 0,g_l = this.h.g.length;t<g_l;t++){
                 
                 if(this.h.g[t].getBBox && this.h.g[t].name.indexOf('hero') == -1){
