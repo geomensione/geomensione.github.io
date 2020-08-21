@@ -11,6 +11,11 @@ var Utils = class{
     this.heroDir = '';
     this.heroFire = false;
     this.idle = true;
+    this.score = 0
+  }
+  increaseScore(points){
+    this.score += points;
+    document.getElementById('score').innerText = this.score;
   }
   init3dCanvas(){
 
