@@ -10,7 +10,7 @@ var classSnake = class{
              } 
              getBBox(){
                let py = this.posy + (4*this.g.tileWidth)
-               if(this.dir == 'r') return {x:this.posx-(2**this.g.tileWidth),y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
+               if(this.dir == 'r') return {x:this.posx-(2*this.g.tileWidth),y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
                else return {x:this.posx + this.g.rockWidth - this.g.tileWidth,y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
              }
              draw(){
