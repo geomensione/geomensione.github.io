@@ -6,15 +6,25 @@ var classLaser = class{
                this.length = 3;
              } 
              getBBox(){
-               return {x:this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth),y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
+               let xPos = 0;
+               if(this.h.dir == 'r') xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
+               else xPos = this.h.pos.x - this.h.g.tileWidth;
+               
+               return {x:xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
              }
              hit(){
               var find = false;
               var rect1 = this.getBBox();
+               this.h.cx.beginPath();
+               this.h.cx.lineWidth = "1"
+               this.h.cx.strokeStyle = "blue";
+               this.h.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
+               this.h.cx.stroke();
               for(let t = 0,g_l = this.h.g.length;t<g_l;t++){
                 
                 if(this.h.g[t].getBBox && this.h.g[t].name.indexOf('hero') == -1){
                  var rect2 = this.h.g[t].getBBox();
+                 
                  if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y)
                       find = true;
                       this.h.g.splice(t,1)
