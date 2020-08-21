@@ -56,6 +56,7 @@
              down(){
               this.dirV = 'd';
               if(!this.hit(this.pos.x,this.pos.y + this.velocity)) this.pos.y += this.velocity;
+              else this.g.addBomb(this.pos.x,this.pos.y)
              }
              fire(){
               this.laser.fire();
