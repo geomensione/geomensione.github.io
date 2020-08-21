@@ -72,20 +72,20 @@
               var rect1 = me.getBBox();
               rect1.x=posx;
               rect1.y=posy;
-              this.g.cx.beginPath();
-              this.g.cx.lineWidth = "1"
-              this.g.cx.strokeStyle = "red";
-              this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-              this.g.cx.stroke();
+              //this.g.cx.beginPath();
+              //this.g.cx.lineWidth = "1"
+              //this.g.cx.strokeStyle = "red";
+              //this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
+              //this.g.cx.stroke();
               for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
                 
                 if(me.g.g[t].getBBox && me.g.g[t].name.indexOf('hero') == -1){
                  var rect2 = me.g.g[t].getBBox();
-                 this.g.cx.beginPath();
-                 this.g.cx.lineWidth = "1"
-                 this.g.cx.strokeStyle = "red";
-                 this.g.cx.rect(rect2.x, rect2.y, rect2.width, rect2.height);                 
-                 this.g.cx.stroke();
+                 //this.g.cx.beginPath();
+                 //this.g.cx.lineWidth = "1"
+                 //this.g.cx.strokeStyle = "red";
+                 //this.g.cx.rect(rect2.x, rect2.y, rect2.width, rect2.height);                 
+                 //this.g.cx.stroke();
                 //if(me.g.g[t].name && me.g.g[t].name == 'tile'){
                 //  rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
                 // }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
