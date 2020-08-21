@@ -1,7 +1,7 @@
 import {classHero} from '../assets/hero.js';
 import {classRock} from '../assets/rock.js';
 var Utils = class{
-  Utils(){
+  constructor(){
     this.c = {};
     this.cx = {};
     this.tileWidth = 0;
