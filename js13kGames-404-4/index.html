@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>M.Y.H.E.R.O.</title>
+  <style>
+    body{
+      margin:0
+    }
+  </style>
+</head>
+<body>
+  <div id="gamesdata" style="position:absolute">
+    <div id="score"></div>
+    <div id="health"></div>
+    <div id="laserTemperature"></div>  
+  </div>
+  <script type="module">
+    import {Utils} from './js/Utils.js';
+    window.addEventListener('load',function(e){
+      var u = new Utils();
+      u.initLowRezCanvas(64,64,4,4);
+    })
+  </script>
+</body>
+</html>
