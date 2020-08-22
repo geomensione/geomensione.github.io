@@ -56,7 +56,7 @@
              down(){
               this.dirV = 'd';
               if(!this.hit(this.pos.x,this.pos.y + this.velocity)) this.pos.y += this.velocity;
-              else this.g.addBomb(this.pos.x,this.pos.y)
+              else if(!this.g.idle) this.g.addBomb(this,this.pos.x,this.pos.y)
              }
              fire(){
               this.laser.fire();
@@ -67,6 +67,7 @@
              //move(b){
              // this.moving = b;
              //}
+             
              hit(posx,posy){
               var me = this;
               var find = false;
@@ -80,7 +81,7 @@
               //this.g.cx.stroke();
               for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
                 
-                if(me.g.g[t].getBBox && me.g.g[t].name.indexOf('hero') == -1){
+                if(me.g.g[t].getBBox && !me.g.g[t].hide && 'herobombtext'.indexOf(me.g.g[t].name) == -1){
                  var rect2 = me.g.g[t].getBBox();
                  this.g.cx.beginPath();
                  this.g.cx.lineWidth = "1"
@@ -111,7 +112,7 @@
                
                if(!this.g.idle){
                  
-                if(!this.dirV){
+                if(!this.dirV && !this.fireLaser){
                  switch(this.dir) {
                  //case 'f':
                  //  this.heroFire = true;

@@ -1,5 +1,6 @@
-import {classHero} from '../assets/hero.js';
 import {classRock} from '../assets/rock.js';
+import {classBomb} from '../assets/bomb.js';
+import {classText} from '../assets/text.js';
 var Utils = class{
   constructor(){
     this.c = {};
@@ -49,6 +50,7 @@ var Utils = class{
     }
     this.setResolution(resx,resy,rockSizeX,rockSizeY)
     this.setHandlerEvents();
+    this.cx.font = "30px Arial";
     this.g = [];
     this.rockObj = new classRock(this);
     this.g.push(this.rockObj);
@@ -76,31 +78,36 @@ var Utils = class{
     })
   }
   keyDown(event){ 
-    this.idle = false;
     switch(event.keyCode) {
       //space
       case 32:
+        this.idle = false;
+        this.heroObj.dirV = '';
         this.heroObj.fireLaser = true;
         break;
       //left
       case 37:
+        this.idle = false;
         this.heroObj.dir = 'l';
         this.heroObj.dirV = '';
         //this.heroObj.move(true);
         break;
       //up
       case 38:
+        this.idle = false;
         this.heroObj.dirV = 'u';
         //this.heroObj.move(true);
         break;
       //right
       case 39:
+        this.idle = false;
         this.heroObj.dir = 'r';
         this.heroObj.dirV = '';
         //this.heroObj.move(true);
         break;
       //down
       case 40:
+        this.idle = false;
         this.heroObj.dirV = 'd';
         //this.heroObj.move(true);
         break;
@@ -134,7 +141,19 @@ var Utils = class{
      this.idle = true;
      this.heroObj.fireLaser = false;
      this.heroObj.dirV = '';
+     this.bombAdded = false;  
      //this.heroObj.move(false);
+  }
+  addBomb(h,x,y){
+    if(!this.bombAdded){
+      this.g.push(new classBomb(h,x,y))
+      this.bombAdded = true;    
+    }
+    
+  }
+  addText(x,y,t){
+      this.g.push(new classText(this,x,y,t))
+    
   }
   cleanCanvas(){
      this.cx.fillStyle='black';
