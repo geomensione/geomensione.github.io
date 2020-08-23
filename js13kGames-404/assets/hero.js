@@ -93,8 +93,14 @@
                 // }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
                 //    rect2 = {x: me.g.g[t].pos.x + (me.g.rockWidth/2) - (me.g.g[t].wallWidth/2), y: me.g.g[t].pos.y, width: me.g.rockWidth/2, height: me.g.rockHeight}
                 // }   
-                 if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y)
-                      find = true;
+                 if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
+                  find = true;
+                  if('snake'.indexOf(me.g.g[t].name) != -1){
+                    this.hide = true;
+                    this.die();
+                  }
+                 }
+                 
                 
                 }
                 if(t==g_l-1) return find;
@@ -104,6 +110,11 @@
                
               
               
+             }
+             die(){
+              let rect1 = this.getBBox();
+              this.g.addText(rect1.x,rect1.y+rect1.height/2,"D I E!")
+
              }
              draw(){
                (this.dirV == 'u')?((this.frame+1)>this.nFrames-1)?this.frame=0:this.frame++:this.frame=0;

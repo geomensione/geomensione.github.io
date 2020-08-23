@@ -50,7 +50,7 @@ var Utils = class{
     }
     this.setResolution(resx,resy,rockSizeX,rockSizeY)
     this.setHandlerEvents();
-    this.cx.font = "30px Arial";
+    this.cx.font = "bold 50px sans-serif";
     this.g = [];
     this.rockObj = new classRock(this);
     this.g.push(this.rockObj);
