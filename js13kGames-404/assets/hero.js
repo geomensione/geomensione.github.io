@@ -114,7 +114,8 @@
              }
              die(){
               let rect1 = this.getBBox();
-              this.g.addText(rect1.x,rect1.y+rect1.height/2,"D I E!")
+              //la scritta DIE non si deve sovrapporre con B O O M o altre scritte
+              this.g.addText(rect1.x,rect1.y+rect1.height/2-30,"D I E!")
 
              }
              draw(){
