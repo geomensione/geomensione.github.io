@@ -107,7 +107,7 @@ var Cell = class {
         //rect(x, y, w, w);
         //this.ground = [1,0,1,0,0,0,1,0,1];
       }
-	    if(this.i && this.j) //non è la partenza
+	    if(this.i || this.j) //non è la partenza
 	    	if((up && down) && (!left && !right)) 
 			this.ground[4] = 3;
     };
