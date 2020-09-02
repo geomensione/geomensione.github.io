@@ -34,7 +34,7 @@ var classRock = class{
                     this.g.cx.fillStyle = '#FFFF00';
                     this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }else if(this.screen[s][tx]==3){
-                    this.g.cx.fillStyle = '#FFFFFF';
+                    this.g.cx.fillStyle = '#777777';
                     this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }
                   if((tx+1)%this.screenSize == 0){
