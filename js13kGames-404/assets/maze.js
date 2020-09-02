@@ -7,6 +7,7 @@ var Cell = class {
         this.walls = [true, true, true, true];
         this.visited = false;
         this.ground = [1,1,1,1,1,1,1,1,1];
+	    this.snake = false;
     }
     
     checkNeighbors() {
@@ -107,10 +108,16 @@ var Cell = class {
         //rect(x, y, w, w);
         //this.ground = [1,0,1,0,0,0,1,0,1];
       }
-	    if(this.i || this.j) //non è la partenza
-	    	if((up && down) && (!left && !right)) 
+	    if(this.i || this.j){ //non è la partenza
+		if((up && down) && (!left && !right)) 
 			this.ground[4] = 3;
-    };
+		if((!up && !down) && (left && right)){
+				this.ground[4] = (this.snake)?4:5;
+				this.snake = !this.snake;
+		} 
+		
+	    
+	    } 	    	    };
 }
 
 
