@@ -36,6 +36,9 @@ var classRock = class{
                   }else if(this.screen[s][tx]==3){
                     this.g.cx.fillStyle = '#777777';
                     this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
+                  }else if(this.screen[s][tx]==4 || this.screen[s][tx]==5){
+                    this.g.cx.fillStyle = '#00ff00';
+                    this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }
                   if((tx+1)%this.screenSize == 0){
                     y += rockSizeY;
