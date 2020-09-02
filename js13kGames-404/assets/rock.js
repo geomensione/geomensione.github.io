@@ -60,23 +60,25 @@ var classRock = class{
                  let dimy = this.screen[this.position][0].length;
                  let yPos = this.pos.y;
                  let xPos = this.pos.x;
-                 for(let tx = 0;tx<dimx;tx++){
+                 if(!this.g.g[this.position]){
+                   this.g.g[this.position] = [];
+                  for(let tx = 0;tx<dimx;tx++){
                   switch(this.screen[this.position][tx]){
                     case 1:
-                         this.g.g.push(new classTile(this.g,xPos,yPos))
+                         this.g.g[this.position].push(new classTile(this.g,xPos,yPos))
                          break
                     case  2:
                         this.g.heroObj = new classHero(this.g,xPos,yPos,this)
-                        this.g.g.push(this.g.heroObj)
+                        this.g.g[this.position].push(this.g.heroObj)
                         break
                     case 3:
-                        this.g.g.push(new classWall(this.g,xPos,yPos))
+                        this.g.g[this.position].push(new classWall(this.g,xPos,yPos))
                         break
                     case 4:
-                        this.g.g.push(new classSnake(this.g,xPos,yPos,'l'))
+                        this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'l'))
                         break
                     case 5:
-                        this.g.g.push(new classSnake(this.g,xPos,yPos,'r'))
+                        this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'r'))
                         break
                     }
                     
@@ -86,7 +88,9 @@ var classRock = class{
                     }else{
                       xPos += this.g.rockWidth;
                     }
+                  }
                  }
+                 
                  if(!this.g.heroObj){
                   this.g.heroObj = new classHero(this.g,this.g.rockWidth,this.g.rockHeight,this)
                   this.g.sg.push(this.g.heroObj)
