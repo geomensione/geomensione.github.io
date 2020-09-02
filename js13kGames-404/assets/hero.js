@@ -80,10 +80,10 @@
               //this.g.cx.strokeStyle = "red";
               //this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
               //this.g.cx.stroke();
-              for(let t = 0,g_l = me.g.g.length;t<g_l;t++){
+              for(let t = 0,g_l = me.g.g[me.rock.position].length;t<g_l;t++){
                 
-                if(me.g.g[t].getBBox && !me.g.g[t].hide && 'herobombtext'.indexOf(me.g.g[t].name) == -1){
-                 var rect2 = me.g.g[t].getBBox();
+                if(me.g.g[me.rock.position][t].getBBox && !me.g.g[me.rock.position][t].hide && 'herobombtext'.indexOf(me.g.g[me.rock.position][t].name) == -1){
+                 var rect2 = me.g.g[me.rock.position][t].getBBox();
                  this.g.cx.beginPath();
                  this.g.cx.lineWidth = "1"
                  this.g.cx.strokeStyle = "red";
@@ -96,7 +96,7 @@
                 // }   
                  if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
                   find = true;
-                  if('snake'.indexOf(me.g.g[t].name) != -1){
+                  if('snake'.indexOf(me.g.g[me.rock.position][t].name) != -1){
                     this.hide = true;
                     this.die();
                   }
