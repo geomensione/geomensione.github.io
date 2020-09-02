@@ -22,7 +22,7 @@ var Utils = class{
 
   }
   init2DCanvas(rx,ry,square = true){
-    this.c = document.createElement('canvas');
+    //this.c = document.createElement('canvas');
     if(square){ 
       let size = (window.innerWidth>window.innerHeight)?window.innerHeight:window.innerWidth;
       this.c.width = size;
@@ -45,9 +45,9 @@ var Utils = class{
     if(this.c.length > 0){
       this.c = this.c[0];
       this.get2DContext();
-    }else{
-      this.init2DCanvas(resx,resy)
     }
+    this.init2DCanvas(resx,resy)
+    
     this.setResolution(resx,resy,rockSizeX,rockSizeY)
     this.setHandlerEvents();
     this.cx.font = "bold 50px sans-serif";
