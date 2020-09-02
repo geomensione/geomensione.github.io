@@ -51,11 +51,11 @@ var Utils = class{
     this.setResolution(resx,resy,rockSizeX,rockSizeY)
     this.setHandlerEvents();
     this.cx.font = "bold 50px sans-serif";
-    this.g = [];
+    
     this.sg = [];
     this.rockObj = new classRock(this);
     this.sg.push(this.rockObj);
-    
+    this.g = new Array(this.rockObj.numRoomsX * this.rockObj.numRoomsY);
     //this.heroObj = new classHero(this);
     //this.g.push(this.heroObj);
     this.drawGame();
@@ -179,8 +179,8 @@ var Utils = class{
       for(let g_i = 0,g_l = this.sg.length;g_i<g_l;g_i++){
         if(!this.sg[g_i].hide) this.sg[g_i].draw();
       }
-      for(let g_i = 0,g_l = this.g.length;g_i<g_l;g_i++){
-        if(!this.g[g_i].hide) this.g[g_i].draw();
+      for(let g_i = 0,g_l = this.g[this.heroObj.position ].length;g_i<g_l;g_i++){
+        if(!this.g[this.heroObj.position ][g_i].hide) this.g[this.heroObj.position ][g_i].draw();
       }
     }else if(this.showMap){
       this.cleanCanvas();
