@@ -1,6 +1,6 @@
  import {classLaser} from './laser.js';
  var classHero = class{
-             constructor(g,xp,yp){
+             constructor(g,xp,yp,rock){
                this.g = g;
                this.asset = [[[1,1,1,1,1,1,1,0],
                       [0,0,0,1,0,0,0,0],
@@ -39,6 +39,7 @@
               this.velocity = this.g.tileWidth;
               this.name = 'hero';
               this.laser = new classLaser(this);
+              this.rock = rock;
               //this.moving = false;
              } 
              left(){
@@ -153,7 +154,30 @@
                }else{
                  this.down.call(this);              
                }
-               
+               let refresh = false;
+               if(this.pos.y > this.g.c.height){
+                this.rock.position += (this.g.rockObj.numRoomsX);
+                this.pos.y -= this.g.c.height;
+                refresh = true;
+               }else if(this.pos.y < 0){
+                this.rock.position -= (this.g.rockObj.numRoomsX);
+                this.pos.y += this.g.c.height;
+                refresh = true;
+               }
+               if(this.pos.x > this.g.c.width){
+                this.rock.position+=1;
+                this.pos.x -= this.g.c.width;
+                refresh = true;
+               }else if(this.pos.x < 0){
+                this.rock.position-=1;
+                this.pos.x += this.g.c.width;
+                refresh = true;
+               } 
+               if(refresh){
+                this.g.g.length = 0;
+                this.rock.drawEnv=true;
+                return;
+               }
                let dimx = this.asset[this.frame].length;
                let dimy = this.asset[this.frame][0].length;
                let yPos = this.pos.y;

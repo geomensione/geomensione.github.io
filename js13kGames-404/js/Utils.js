@@ -52,8 +52,10 @@ var Utils = class{
     this.setHandlerEvents();
     this.cx.font = "bold 50px sans-serif";
     this.g = [];
+    this.sg = [];
     this.rockObj = new classRock(this);
-    this.g.push(this.rockObj);
+    this.sg.push(this.rockObj);
+    
     //this.heroObj = new classHero(this);
     //this.g.push(this.heroObj);
     this.drawGame();
@@ -111,6 +113,11 @@ var Utils = class{
         this.heroObj.dirV = 'd';
         //this.heroObj.move(true);
         break;
+      //m
+      case 77:
+        //this.heroObj.move(true);
+        this.showMap = true;
+        break;
     }
   }
   /*
@@ -142,6 +149,7 @@ var Utils = class{
      this.heroObj.fireLaser = false;
      this.heroObj.dirV = '';
      this.bombAdded = false;  
+     this.showMap = false;
      //this.heroObj.move(false);
   }
   addBomb(h,x,y){
@@ -167,9 +175,18 @@ var Utils = class{
     },30)   
   }
   gameLoop(){
-    for(let g_i = 0,g_l = this.g.length;g_i<g_l;g_i++){
-      if(!this.g[g_i].hide) this.g[g_i].draw();
-    }
+    if(!this.showMap){
+      for(let g_i = 0,g_l = this.sg.length;g_i<g_l;g_i++){
+        if(!this.sg[g_i].hide) this.sg[g_i].draw();
+      }
+      for(let g_i = 0,g_l = this.g.length;g_i<g_l;g_i++){
+        if(!this.g[g_i].hide) this.g[g_i].draw();
+      }
+    }else if(this.showMap){
+      this.cleanCanvas();
+      this.rockObj.drawMap();
+    }//else...score,splash,credits,...
+    
   }
 };
 

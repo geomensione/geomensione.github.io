@@ -7,14 +7,50 @@ import { Maze } from './maze.js'
 var classRock = class{
              constructor(g){
                this.g = g;
+               this.numRoomsX = 20;
+               this.numRoomsY = 20;
                //1-tile,2-hero,3-wall,4-snake on left,5-snake on right
-               let m = new Maze(20,20,30);
+               let m = new Maze(this.numRoomsX,this.numRoomsY,30);
                this.screen = m.draw();
               this.pos = {x:0,y:0};
               this.drawEnv = true;
               this.position = 0;
               this.screenSize = 3;
              } 
+             drawMap(){
+              let x = 0, y = 0;
+              let roomX = 0, roomY = 0;
+              let roomSizeX = Math.floor(this.g.c.width/this.numRoomsX);
+              let roomSizeY = Math.floor(this.g.c.height/this.numRoomsY);
+              let rockSizeX = Math.floor(roomSizeX/this.screenSize);
+              let rockSizeY = Math.floor(roomSizeY/this.screenSize);
+              for(let s = 0,s_l = this.screen.length;s<s_l;s++){
+                this.g.cx.fillStyle = '#333333';
+                let dimx = this.screen[s].length;
+                this.g.cx.fillRect(roomX,roomY,roomSizeX,roomSizeY)
+                this.g.cx.fillStyle = '#FFFF00';
+                for(let tx = 0;tx<dimx;tx++){
+                  if(this.screen[s][tx]==1)this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
+                  if((tx+1)%this.screenSize == 0){
+                    y += rockSizeY;
+                    x = roomX;
+                  }else{
+                    x += rockSizeX;
+                  }
+                }
+                if((s+1)%this.numRoomsX == 0){
+                  roomY += roomSizeY;
+                  y = roomY;
+                  x = 0;
+                  roomX=0;
+                }else{
+                  roomX += roomSizeX
+                  x = roomX;
+                  y = roomY;
+                }
+                
+              }
+             }
              draw(){
                if(this.drawEnv){
                  let b = '#000000';
@@ -30,7 +66,7 @@ var classRock = class{
                          this.g.g.push(new classTile(this.g,xPos,yPos))
                          break
                     case  2:
-                        this.g.heroObj = new classHero(this.g,xPos,yPos)
+                        this.g.heroObj = new classHero(this.g,xPos,yPos,this)
                         this.g.g.push(this.g.heroObj)
                         break
                     case 3:
@@ -52,8 +88,8 @@ var classRock = class{
                     }
                  }
                  if(!this.g.heroObj){
-                  this.g.heroObj = new classHero(this.g,this.g.rockWidth,this.g.rockHeight)
-                  this.g.g.push(this.g.heroObj)
+                  this.g.heroObj = new classHero(this.g,this.g.rockWidth,this.g.rockHeight,this)
+                  this.g.sg.push(this.g.heroObj)
                  } 
 
                  this.drawEnv = false;
