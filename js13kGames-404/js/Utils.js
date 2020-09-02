@@ -154,13 +154,13 @@ var Utils = class{
   }
   addBomb(h,x,y){
     if(!this.bombAdded){
-      this.g.push(new classBomb(h,x,y))
+      this.g[this.rockObj.position].push(new classBomb(h,x,y))
       this.bombAdded = true;    
     }
     
   }
   addText(x,y,t){
-      this.g.push(new classText(this,x,y,t))
+      this.g[this.rockObj.position].push(new classText(this,x,y,t))
     
   }
   cleanCanvas(){
