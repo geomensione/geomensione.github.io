@@ -179,8 +179,8 @@ var Utils = class{
       for(let g_i = 0,g_l = this.sg.length;g_i<g_l;g_i++){
         if(!this.sg[g_i].hide) this.sg[g_i].draw();
       }
-      for(let g_i = 0,g_l = this.g[this.rockObj.position ].length;g_i<g_l;g_i++){
-        if(!this.g[this.rockObj.position ][g_i].hide) this.g[this.rockObj.position ][g_i].draw();
+      for(let g_i = 0,g_l = this.g[this.rockObj.position].length;g_i<g_l;g_i++){
+        if(!this.g[this.rockObj.position][g_i].hide) this.g[this.rockObj.position][g_i].draw();
       }
     }else if(this.showMap){
       this.cleanCanvas();
