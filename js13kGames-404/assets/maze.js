@@ -53,6 +53,8 @@ var Cell = class {
       //rect(x+(w*2),y,w,w)
       //rect(x,y+((w/3)*2),w/3,w/3)
       //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
+      //1-tile,2-hero,3-wall,4-snake on left,5-snake on right
+      let up = false, right = false, down = false, left = false;
       this.ground = [1,0,1,0,0,0,1,0,1];
       if (this.walls[0]) {
         //line(x, y, x + w, y);
@@ -60,6 +62,7 @@ var Cell = class {
         //rect(x+w/3,y,w/3,w/3)
         //rect(x+((w/3)*2),y,w/3,w/3)
         this.ground[1] = 1;
+	up = true;
       }
       //else{
       //  this.ground[1] = 0;
@@ -70,6 +73,7 @@ var Cell = class {
         //rect(x+((w/3)*2),y+w/3,w/3,w/3)
         //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
         this.ground[5] = 1;
+	right = true;
       }
       //else{
       //  this.ground[7] = 0;
@@ -80,6 +84,7 @@ var Cell = class {
         //rect(x+w/3,y+((w/3)*2),w/3,w/3)
         //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
         this.ground[7] = 1;
+	down = true;
       }
       //else{
       //  this.ground[5] = 0;
@@ -90,6 +95,7 @@ var Cell = class {
         //rect(x,y+w/3,w/3,w/3)
         //rect(x,y+((w/3)*2),w/3,w/3)
         this.ground[3] = 1;
+	left = true;
       }
       //else{
       //  this.ground[3] = 0;
@@ -101,6 +107,9 @@ var Cell = class {
         //rect(x, y, w, w);
         //this.ground = [1,0,1,0,0,0,1,0,1];
       }
+	    if(this.i && this.j) //non è la partenza
+	    	if((up && down) && (!left && !right)) 
+			this.ground[4] = 3;
     };
 }
 
