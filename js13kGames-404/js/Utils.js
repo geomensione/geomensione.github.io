@@ -41,7 +41,7 @@ var Utils = class{
     this.resX = resx;
     this.resY = resy;
     this.idle = true;
-    this.c = document.getElementsByTagName('canvas');
+    this.c = document.getElementsByTagName('canvas')[0];
     if(this.c.length > 0){
       this.c = this.c[0];
       this.get2DContext();
