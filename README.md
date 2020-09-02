@@ -154,7 +154,7 @@ abbagli mummade
 
 LOWREZJAM
 
-[https://geomensione.github.io/LOWREZJAM](https://geomensione.github.io/LOWREZJAM)
+[https://geomensione.github.io/js13kGames-404](https://geomensione.github.io/js13kGames-404)
 
 
 Lectures
