@@ -3,18 +3,22 @@ var classBat = class{
                this.h = h;
                this.name = 'bat';
                this.asset = [1,0,0,0,1,0,1,0,1,0,0,0,1,0,0];
+               this.spriteWidth = 5;
                this.xPos = x;
                this.yPos = y;
                this.cirPoints = [];
+               this.circumferencePoints();
+               this.frame = 0;
+               this.nFrames = 10;
              } 
              circumferencePoints(){
               for(let a = 0;a<1;){
                 let x = this.xPos + Math.cos(angle)*radius;
                 let y = this.yPos + Math.sin(angle)*radius;
-                a += 0.1;
+                a += 1/this.nFrames;
                 this.cirPoints.push({xp:x,yp:y})
               }
-                           }
+             }
              getBBox(){               
                return {x:xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
              }
@@ -47,35 +51,26 @@ var classBat = class{
               
              }
              draw(){
-               let r = '#ff0000';
-               this.h.g.cx.fillStyle=r;
+               let v = '#ff00ff';
+               this.h.g.cx.fillStyle=v;
                let dimy = this.asset.length;
-               let yPos = this.h.pos.y;
+               let yPos = this.this.cirPoints[this.frame].y;
+               let xPos = this.this.cirPoints[this.frame].x;
                this.h.g.cx.fillStyle=r;
-               if(this.h.dir == 'r'){
-                let xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
-                for(let tx = 0;tx<this.length;tx++){
-                  for(let ty = 0;ty<dimy;ty++){
-                    if(this.asset[ty] == 1)this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
+                for(let ty = 0;ty<dimy;ty++){
+                  if(this.asset[ty] == 1)this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
+                  if((tx+1)%this.spriteWidth == 0){
                     yPos += this.h.g.tileHeight;
+                    yPos += this.this.cirPoints[this.frame].x;
+                  }else{
+                    yPos += this.h.g.tileWidth;
+                  }
+                }
+                
 
-                  }
-                  xPos += this.h.g.tileWidth;
-                  yPos = this.h.pos.y;
-                }
-               }else{
-                let xPos = this.h.pos.x - this.h.g.tileWidth;
-                for(let tx = 0;tx<this.length;tx++){
-                  for(let ty = 0;ty<dimy;ty++){
-                    if(this.asset[ty] == 1)this.h.g.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
-                    yPos += this.h.g.tileHeight;
-                  }
-                  xPos -= this.h.g.tileWidth;
-                  yPos = this.h.pos.y;
-                }
-               }
+               
                this.hit();
-             }
+             
            };
 
 export { classBat };
