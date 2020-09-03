@@ -4,8 +4,17 @@ var classBat = class{
                this.name = 'bat';
                this.asset = [1,0,0,0,1,0,1,0,1,0,0,0,1,0,0];
                this.xPos = x;
-               this.yPos = y;               
+               this.yPos = y;
+               this.cirPoints = [];
              } 
+             circumferencePoints(){
+              for(let a = 0;a<1;){
+                let x = this.xPos + Math.cos(angle)*radius;
+                let y = this.yPos + Math.sin(angle)*radius;
+                a += 0.1;
+                this.cirPoints.push({xp:x,yp:y})
+              }
+                           }
              getBBox(){               
                return {x:xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
              }
