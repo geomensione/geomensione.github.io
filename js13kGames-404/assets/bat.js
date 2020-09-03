@@ -57,7 +57,6 @@ var classBat = class{
                let dimy = this.asset.length;
                let yPos = this.cirPoints[this.frame].y;
                let xPos = this.cirPoints[this.frame].x;
-               this.h.cx.fillStyle=r;
                 for(let ty = 0;ty<dimy;ty++){
                   if(this.asset[ty] == 1)this.h.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
                   if((tx+1)%this.spriteWidth == 0){
