@@ -15,7 +15,7 @@ var classRock = class{
               this.pos = {x:0,y:0};
               this.drawEnv = true;
               this.position = 0;
-              this.screenSize = 3;
+              this.screenSize = 5;
              } 
              drawMap(){
               let x = 0, y = 0;
