@@ -10,11 +10,12 @@ var classBat = class{
                this.circumferencePoints();
                this.frame = 0;
                this.nFrames = 10;
+               this.radius = 30;
              } 
              circumferencePoints(){
               for(let a = 0;a<1;){
-                let x = this.xPos + Math.cos(angle)*radius;
-                let y = this.yPos + Math.sin(angle)*radius;
+                let x = this.xPos + Math.cos(a)*this.radius;
+                let y = this.yPos + Math.sin(a)*this.radius;
                 a += 1/this.nFrames;
                 this.cirPoints.push({xp:x,yp:y})
               }
