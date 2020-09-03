@@ -119,10 +119,12 @@ var Cell = class {
         //this.ground = [1,0,1,0,0,0,1,0,1];
       }
 	    if(this.i || this.j){ //non è la partenza
-		if((up && down) && (!left && !right)) 
-			this.ground[7] = 3;
+		if((up && down) && (!left && !right)) {
+		    this.ground[7] = 3;
 		    this.ground[12] = 3;
 		    this.ground[17] = 3;
+		}
+		
 		if((!up && !down) && (left && right)){
 			if(this.snake)
 				this.ground[11] = 4
