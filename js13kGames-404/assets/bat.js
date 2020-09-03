@@ -1,15 +1,12 @@
 var classBat = class{
-             constructor(h){
+             constructor(h,x,y){
                this.h = h;
-               this.name = 'laser';
-               this.asset = [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0];
-               this.length = 5;
+               this.name = 'bat';
+               this.asset = [1,0,0,0,1,0,1,0,1,0,0,0,1,0,0];
+               this.xPos = x;
+               this.yPos = y;               
              } 
-             getBBox(){
-               let xPos = 0;
-               if(this.h.dir == 'r') xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
-               else xPos = this.h.pos.x - this.h.g.tileWidth;
-               
+             getBBox(){               
                return {x:xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
              }
              hit(){
@@ -40,7 +37,7 @@ var classBat = class{
               
               
              }
-             fire(){
+             draw(){
                let r = '#ff0000';
                this.h.g.cx.fillStyle=r;
                let dimy = this.asset.length;
