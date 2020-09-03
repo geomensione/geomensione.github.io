@@ -71,6 +71,6 @@ var classBat = class{
                
                this.hit();
              
-           };
-
+           }
+}
 export { classBat };
