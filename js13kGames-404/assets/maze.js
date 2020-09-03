@@ -127,9 +127,9 @@ var Cell = class {
 		
 		if((!up && !down) && (left && right)){
 			if(this.snake)
-				this.ground[11] = 4
+				this.ground[13] = 4
 			else
-				this.ground[13] = 5;
+				this.ground[11] = 5;
 			this.snake = !this.snake;
 		} 
 		
