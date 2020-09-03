@@ -2,6 +2,7 @@ import { classTile } from './tile.js'
 import { classHero } from './hero.js' 
 import { classWall } from './wall.js' 
 import { classSnake } from './snake.js'
+import { classBat } from './bat.js'
 import { Maze } from './maze.js' 
 
 var classRock = class{
