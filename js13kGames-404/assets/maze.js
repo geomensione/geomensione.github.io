@@ -54,7 +54,7 @@ var Cell = class {
       //rect(x+(w*2),y,w,w)
       //rect(x,y+((w/3)*2),w/3,w/3)
       //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
-      //1-tile,2-hero,3-wall,4-snake on left,5-snake on right
+      //1-tile,2-hero,3-wall,4-snake on left,5-snake on right,6-bat
       let up = false, right = false, down = false, left = false;
       this.ground = [1,0,1,0,0,0,1,0,1];
       this.ground = [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1];
@@ -123,6 +123,13 @@ var Cell = class {
 		    this.ground[7] = 3;
 		    this.ground[12] = 3;
 		    this.ground[17] = 3;
+		}
+		    
+		if((up || down) && (left && !right)) {
+		    this.ground[11] = 6;
+		}
+		if((up || down) && (!left && right)) {
+		    this.ground[13] = 6;
 		}
 		
 		if((!up && !down) && (left && right)){
