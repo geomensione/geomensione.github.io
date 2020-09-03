@@ -3,7 +3,7 @@ var classLaser = class{
                this.h = h;
                this.name = 'laser';
                this.asset = [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0];
-               this.length = 3;
+               this.length = 5;
              } 
              getBBox(){
                let xPos = 0;
