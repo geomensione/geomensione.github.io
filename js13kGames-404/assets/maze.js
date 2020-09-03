@@ -129,7 +129,7 @@ var Cell = class {
 			if(this.snake)
 				this.ground[11] = 4
 			else
-				this.ground[11] = 5;
+				this.ground[13] = 5;
 			this.snake = !this.snake;
 		} 
 		
