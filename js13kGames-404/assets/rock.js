@@ -33,14 +33,15 @@ var classRock = class{
                 for(let tx = 0;tx<dimx;tx++){
                   if(this.screen[s][tx]==1){
                     this.g.cx.fillStyle = '#FFFF00';
-                    this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }else if(this.screen[s][tx]==3){
                     this.g.cx.fillStyle = '#777777';
-                    this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }else if(this.screen[s][tx]==4 || this.screen[s][tx]==5){
                     this.g.cx.fillStyle = '#00ff00';
-                    this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }
+                  else if(this.screen[s][tx]==6){
+                    this.g.cx.fillStyle = '#00ffff';
+                  }
+                  this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   if((tx+1)%this.screenSize == 0){
                     y += rockSizeY;
                     x = roomX;
@@ -89,6 +90,9 @@ var classRock = class{
                         break
                     case 5:
                         this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'r'))
+                        break
+                     case 6:
+                        this.g.g[this.position].push(new classBat(this.g,xPos,yPos))
                         break
                     }
                     
