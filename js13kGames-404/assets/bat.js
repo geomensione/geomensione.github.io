@@ -21,7 +21,7 @@ var classBat = class{
               }
              }
              getBBox(){               
-               return {x:this.xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
+               return {x:this.xPos,y:this.yPos,width:5*this.h.g.tileWidth,height:3*this.h.g.tileWidth}
              }
              hit(){
               var find = false;
