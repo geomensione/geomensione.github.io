@@ -59,7 +59,7 @@ var classBat = class{
                let xPos = this.cirPoints[this.frame].x;
                 for(let ty = 0;ty<dimy;ty++){
                   if(this.asset[ty] == 1)this.h.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
-                  if((tx+1)%this.spriteWidth == 0){
+                  if((ty+1)%this.spriteWidth == 0){
                     yPos += this.h.g.tileHeight;
                     yPos += this.cirPoints[this.frame].x;
                   }else{
@@ -70,7 +70,7 @@ var classBat = class{
 
                
                this.hit();
-             
+               this.frame = (this.frame+1)>this.nFrames?0:this.frame+1;
            }
 }
 export { classBat };
