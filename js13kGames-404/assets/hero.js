@@ -175,7 +175,7 @@
                 refresh = true;
                } 
                if(refresh){
-                this.g.g.length = 0;
+                //this.g.g.length = 0;
                 this.rock.drawEnv=true;
                 return;
                }
