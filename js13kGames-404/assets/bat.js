@@ -55,14 +55,14 @@ var classBat = class{
                let v = '#ff00ff';
                this.h.cx.fillStyle=v;
                let dimy = this.asset.length;
-               let yPos = this.this.cirPoints[this.frame].y;
-               let xPos = this.this.cirPoints[this.frame].x;
+               let yPos = this.cirPoints[this.frame].y;
+               let xPos = this.cirPoints[this.frame].x;
                this.h.cx.fillStyle=r;
                 for(let ty = 0;ty<dimy;ty++){
                   if(this.asset[ty] == 1)this.h.cx.fillRect(xPos,yPos,this.h.g.tileWidth,this.h.g.tileHeight)
                   if((tx+1)%this.spriteWidth == 0){
                     yPos += this.h.g.tileHeight;
-                    yPos += this.this.cirPoints[this.frame].x;
+                    yPos += this.cirPoints[this.frame].x;
                   }else{
                     yPos += this.h.g.tileWidth;
                   }
