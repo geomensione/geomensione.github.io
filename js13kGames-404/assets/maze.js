@@ -6,7 +6,7 @@ var Cell = class {
         this.m = m;
         this.walls = [true, true, true, true];
         this.visited = false;
-        this.ground = [1,1,1,1,1,1,1,1,1];
+        this.ground = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 	    this.snake = false;
     }
     
@@ -57,12 +57,16 @@ var Cell = class {
       //1-tile,2-hero,3-wall,4-snake on left,5-snake on right
       let up = false, right = false, down = false, left = false;
       this.ground = [1,0,1,0,0,0,1,0,1];
+      this.ground = [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1];
+
       if (this.walls[0]) {
         //line(x, y, x + w, y);
         //rect(x,y,w/3,w/3)
         //rect(x+w/3,y,w/3,w/3)
         //rect(x+((w/3)*2),y,w/3,w/3)
         this.ground[1] = 1;
+	      this.ground[2] = 1;
+	      this.ground[3] = 1;
 	up = true;
       }
       //else{
@@ -73,7 +77,9 @@ var Cell = class {
         //rect(x+((w/3)*2),y,w/3,w/3)
         //rect(x+((w/3)*2),y+w/3,w/3,w/3)
         //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
-        this.ground[5] = 1;
+        this.ground[9] = 1;
+	      this.ground[14] = 1;
+	      this.ground[19] = 1;
 	right = true;
       }
       //else{
@@ -84,7 +90,9 @@ var Cell = class {
         //rect(x,y+((w/3)*2),w/3,w/3)
         //rect(x+w/3,y+((w/3)*2),w/3,w/3)
         //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
-        this.ground[7] = 1;
+        this.ground[21] = 1;
+	      this.ground[22] = 1;
+	      this.ground[23] = 1;
 	down = true;
       }
       //else{
@@ -95,7 +103,9 @@ var Cell = class {
         //rect(x,y,w/3,w/3)
         //rect(x,y+w/3,w/3,w/3)
         //rect(x,y+((w/3)*2),w/3,w/3)
-        this.ground[3] = 1;
+        this.ground[5] = 1;
+	      this.ground[10] = 1;
+	      this.ground[15] = 1;
 	left = true;
       }
       //else{
@@ -110,10 +120,15 @@ var Cell = class {
       }
 	    if(this.i || this.j){ //non è la partenza
 		if((up && down) && (!left && !right)) 
-			this.ground[4] = 3;
+			this.ground[7] = 3;
+		    this.ground[12] = 3;
+		    this.ground[17] = 3;
 		if((!up && !down) && (left && right)){
-				this.ground[4] = (this.snake)?4:5;
-				this.snake = !this.snake;
+			if(this.snake)
+				this.ground[11] = 4
+			else
+				this.ground[11] = 5;
+			this.snake = !this.snake;
 		} 
 		
 	    
