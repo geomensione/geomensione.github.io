@@ -84,11 +84,7 @@
                 
                 if(me.g.g[me.rock.position][t].getBBox && !me.g.g[me.rock.position][t].hide && 'herobombtext'.indexOf(me.g.g[me.rock.position][t].name) == -1){
                  var rect2 = me.g.g[me.rock.position][t].getBBox();
-                 this.g.cx.beginPath();
-                 this.g.cx.lineWidth = "1"
-                 this.g.cx.strokeStyle = "red";
-                 this.g.cx.rect(rect2.x, rect2.y, rect2.width, rect2.height);                 
-                 this.g.cx.stroke();
+                 
                 //if(me.g.g[t].name && me.g.g[t].name == 'tile'){
                 //  rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
                 // }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
@@ -96,7 +92,7 @@
                 // }   
                  if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
                   find = true;
-                  if('snake'.indexOf(me.g.g[me.rock.position][t].name) != -1){
+                  if('snakebat'.indexOf(me.g.g[me.rock.position][t].name) != -1 ){
                     this.hide = true;
                     this.die();
                   }
@@ -125,7 +121,7 @@
                
                if(!this.g.idle){
                  
-                if(!this.dirV && !this.fireLaser){
+                if(!this.dirV){
                  switch(this.dir) {
                  //case 'f':
                  //  this.heroFire = true;
@@ -151,8 +147,8 @@
                    break;
                  }
                 }
-                if(this.fireLaser) this.fire()
-               }else{
+              }else{
+                 if(this.fireLaser) this.fire()
                  this.down.call(this);              
                }
                let refresh = false;

@@ -126,10 +126,10 @@ var Cell = class {
 		}
 		    
 		if((up || down) && (left && !right)) {
-		    this.ground[11] = 6;
+		    this.ground[18] = 6;
 		}
 		if((up || down) && (!left && right)) {
-		    this.ground[13] = 6;
+		    this.ground[16] = 6;
 		}
 		
 		if((!up && !down) && (left && right)){

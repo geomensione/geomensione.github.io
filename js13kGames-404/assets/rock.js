@@ -53,6 +53,12 @@ var classRock = class{
                     x += rockSizeX;
                   }
                 }
+                if(s == this.position){
+                  this.g.cx.fillStyle = '#ffffff';
+                  this.g.cx.beginPath();
+                  this.g.cx.arc(roomX+roomSizeX/2, roomY+roomSizeY/2, roomSizeX/2, 0, 2 * Math.PI);
+                  this.g.cx.fill();
+                }
                 if((s+1)%this.numRoomsX == 0){
                   roomY += roomSizeY;
                   y = roomY;

@@ -12,11 +12,53 @@ var Utils = class{
     this.heroDir = '';
     this.heroFire = false;
     this.idle = true;
-    this.score = 0
+    this.score = 0;
+    this.lives = 3;
+    this.lazTemp = 0;
+    this.timer = '02:00';
   }
   increaseScore(points){
     this.score += points;
     document.getElementById('score').innerText = this.score;
+  }
+  laserTemp(points){
+    if(this.lazTemp < 100) this.lazTemp++;
+    document.getElementById('laserTemperature').innerText = this.lazTemp;
+  }
+  die(){
+    this.lives--;
+    document.getElementById('lives').innerText = this.lives;
+    if(this.lives == 0) this.gameOver('no other life!');
+  }
+  printScore(){
+    document.getElementById('score').innerText = this.score;
+  }
+  printLaserTemp(){
+    document.getElementById('laserTemperature').innerText = this.lazTemp;  
+  }
+  printLives(){
+    document.getElementById('lives').innerText = this.lives;
+  }
+  printTimer(){
+    document.getElementById('timer').innerText = this.timer;
+  }
+  updateTime(){
+    let min_sec = this.timer.split(':');
+    if(parseInt(min_sec[1]) == 0){
+      min_sec[1] = '59';
+      if((parseInt(min_sec[0])-1) < 0){
+        this.gameOver('time ends!')
+      }else{
+        min_sec[0] = (parseInt(min_sec[0])-1)+''
+      }
+    }else{
+      min_sec[1] = (parseInt(min_sec[1])-1)+''
+    }
+    this.timer = min_sec[0] + ':' + min_sec[1];
+    this.printTimer();
+  }
+  startTimer(){
+    this.timerInterval = setInterval(()=>{this.updateTime()},1000)
   }
   init3dCanvas(){
 
@@ -56,9 +98,12 @@ var Utils = class{
     this.rockObj = new classRock(this);
     this.sg.push(this.rockObj);
     this.g = new Array(this.rockObj.numRoomsX * this.rockObj.numRoomsY);
-    //this.heroObj = new classHero(this);
-    //this.g.push(this.heroObj);
+    this.printScore();
+    this.printLaserTemp();
+    this.printLives();
+    this.printTimer();
     this.drawGame();
+    this.startTimer();
   }
   setResolution(x,y,rx,ry){
     this.tileWidth = Math.floor(this.c.width / x);
@@ -83,8 +128,8 @@ var Utils = class{
     switch(event.keyCode) {
       //space
       case 32:
-        this.idle = false;
-        this.heroObj.dirV = '';
+        //this.idle = false;
+        //this.heroObj.dirV = '';
         this.heroObj.fireLaser = true;
         break;
       //left
