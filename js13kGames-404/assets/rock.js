@@ -89,8 +89,8 @@ var classRock = class{
                          this.g.g[this.position].push(new classTile(this.g,xPos,yPos))
                          break
                     case  2:
-                        this.g.heroObj = new classHero(this.g,xPos,yPos,this)
-                        this.g.g[this.position].push(this.g.heroObj)
+                        //this.g.heroObj = new classHero(this.g,xPos,yPos,this)
+                        //this.g.g[this.position].push(this.g.heroObj)
                         break
                     case 3:
                         this.g.g[this.position].push(new classWall(this.g,xPos,yPos))

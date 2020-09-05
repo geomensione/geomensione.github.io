@@ -9,19 +9,13 @@ var Utils = class{
     this.tileHeight = 0;
     this.resX = 0;
     this.resY = 0;
-    this.heroDir = '';
-    this.heroFire = false;
-    this.idle = true;
-    this.score = 0;
-    this.lives = 3;
-    this.lazTemp = 0;
-    this.timer = '00:05';
-    this.gameOver = false;
     this.splash = true;
-    this.stringToPrint = "M.Y.H.E.R.O. homage to Atari classic H.E.R.O. by Morticcino. Press 'S' to start."
+    this.stringToPrint = "M.Y.H.E.R.O.<br />Homage to Atari classic H.E.R.O. by Morticcino.<br />Press 's' to start. In game: press 'm' to show map, use arrow keys to move, space for laser. Arrow down for bomb.<br />Discover all pages to finish level in time!"
+    if(!localStorage.myheroScore) localStorage.myheroScore = 0;
   }
   increaseScore(points){
     this.score += points;
+    localStorage.myheroScore = (this.score>parseInt(localStorage.myheroScore))?this.score:localStorage.myheroScore;
     document.getElementById('score').innerText = this.score;
   }
   laserTemp(points){
@@ -32,8 +26,8 @@ var Utils = class{
     this.lives--;
     document.getElementById('lives').innerText = this.lives;
     if(this.lives == 0){
-      this.gameOver = true;
-      this.stringToPrint = 'No other life!';
+      this.splash = true;
+      this.stringToPrint = 'No other life!<br />Your record is '+localStorage.myheroScore+'<br />Press \'s\' to restart';
     } 
   }
   printScore(){
@@ -49,23 +43,29 @@ var Utils = class{
     document.getElementById('timer').innerText = this.timer;
   }
   updateTime(){
-    let min_sec = this.timer.split(':');
-    if(parseInt(min_sec[1]) == 0){
-      min_sec[1] = '59';
-      if((parseInt(min_sec[0])-1) < 0){
-        this.gameOver = true;
-        this.stringToPrint = 'Time ends!';
+    if(!this.splash){
+      let min_sec = this.timer.split(':');
+      if(parseInt(min_sec[1]) == 0){
+        min_sec[1] = '59';
+        if((parseInt(min_sec[0])-1) < 0){
+          this.splash = true;
+          min_sec[1] = '00';
+          this.stringToPrint = 'Time ends!<br />Your record is '+localStorage.myheroScore+'<br />Press \'s\' to restart';
+        }else{
+          min_sec[0] = (parseInt(min_sec[0])-1)+''
+        }
       }else{
-        min_sec[0] = (parseInt(min_sec[0])-1)+''
+        min_sec[1] = (parseInt(min_sec[1])-1)+''
       }
-    }else{
-      min_sec[1] = (parseInt(min_sec[1])-1)+''
+      this.timer = min_sec[0] + ':' + min_sec[1];
+      this.printTimer();
     }
-    this.timer = min_sec[0] + ':' + min_sec[1];
-    this.printTimer();
   }
   startTimer(){
     this.timerInterval = setInterval(()=>{this.updateTime()},1000)
+  }
+  stopTimer(){
+    clearInterval(this.timerInterval);
   }
   init3dCanvas(){
 
@@ -99,9 +99,20 @@ var Utils = class{
     
     this.setResolution(resx,resy,rockSizeX,rockSizeY)
     this.setHandlerEvents();
-    this.cx.font = "bold 50px sans-serif";
-    
+    this.cx.font = "bold 50px sans-serif";    
+    this.drawGame();
+
+  }
+  startGame(){
+    this.heroDir = '';
+    this.heroFire = false;
+    this.idle = true;
+    this.score = 0;
+    this.lives = 3;
+    this.lazTemp = 0;
+    this.timer = '00:05';
     this.sg = [];
+    this.heroObj = null;
     this.rockObj = new classRock(this);
     this.sg.push(this.rockObj);
     this.g = new Array(this.rockObj.numRoomsX * this.rockObj.numRoomsY);
@@ -109,7 +120,6 @@ var Utils = class{
     this.printLaserTemp();
     this.printLives();
     this.printTimer();
-    this.drawGame();
   }
   setResolution(x,y,rx,ry){
     this.tileWidth = Math.floor(this.c.width / x);
@@ -172,6 +182,7 @@ var Utils = class{
       case 83:
           if(this.splash) this.splash = false;
           this.hideString();
+          this.startGame();
           this.startTimer();
           break;
     }
@@ -234,7 +245,7 @@ var Utils = class{
     document.getElementsByTagName('canvas')[0].style.display = 'none';
     document.getElementById('gamesdata').style.display = 'none';
     document.getElementsByClassName('printString')[0].style.display = 'block';
-    document.getElementsByClassName('printString')[0].innerText = this.stringToPrint;
+    document.getElementsByClassName('printString')[0].innerHTML = this.stringToPrint;
   }
   hideString(){
     document.getElementsByTagName('canvas')[0].style.display = 'block';
@@ -242,7 +253,7 @@ var Utils = class{
     document.getElementsByClassName('printString')[0].style.display = 'none';
   }
   gameLoop(){
-    if(!this.showMap && !this.gameOver && !this.credits && !this.splash){
+    if(!this.showMap && !this.credits && !this.splash){
       for(let g_i = 0,g_l = this.sg.length;g_i<g_l;g_i++){
         if(!this.sg[g_i].hide) this.sg[g_i].draw();
       }
@@ -252,11 +263,9 @@ var Utils = class{
     }else if(this.showMap){
       this.cleanCanvas();
       this.rockObj.drawMap();
-    }else if(this.gameOver){
-      this.cleanCanvas();
-      this.printString();
     }else if(this.splash){
       this.cleanCanvas();
+      this.stopTimer();
       this.printString();
     }
   }
