@@ -8,7 +8,7 @@ var classLaser = class{
              getBBox(){
                let xPos = 0;
                if(this.h.dir == 'r') xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
-               else xPos = this.h.pos.x - this.h.g.tileWidth;
+               else xPos = this.h.pos.x - this.h.g.tileWidth * (this.length+1);
                
                return {x:xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
              }
@@ -26,12 +26,15 @@ var classLaser = class{
                  var rect2 = this.h.g.g[this.h.rock.position][t].getBBox();
                  
                  //if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
-                 if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height){
+                 if (this.h.dir == 'r' && rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height){
                     find = true;
                       this.h.g.g[this.h.rock.position][t].hide = true;
                       this.h.g.increaseScore(50);
+                 }else if (this.h.dir == 'l' && rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
+                  find = true;
+                      this.h.g.g[this.h.rock.position][t].hide = true;
+                      this.h.g.increaseScore(50);
                  }
-                
                 }
                 if(t==g_l-1) return find;
 
