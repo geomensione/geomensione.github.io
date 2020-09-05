@@ -2,8 +2,21 @@
 <head>
 <title>M.Y.H.E.R.O.</title>
   <style>
+    /* http://www.coding-dude.com/wp/css/css-stroke-text/ */
     body{
       margin:0
+    }
+    :root{
+     /* margin-top:30vh; */
+    }
+    .printString{
+      font-size:75px;
+      font-family:sans-serif;
+      font-weight:bold;
+      text-align:center;
+      -webkit-text-stroke:5px black;
+      -webkit-text-fill-color:transparent;
+      display:none;
     }
   </style>
 </head>
@@ -15,6 +28,7 @@
     <div id="laserTemperature"></div>  
     <div id="timer"></div>
   </div>
+  <div class="printString"></div>
   <script type="module">
     import {Utils} from './js/Utils.js';
     window.addEventListener('load',function(e){

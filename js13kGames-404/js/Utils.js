@@ -15,7 +15,10 @@ var Utils = class{
     this.score = 0;
     this.lives = 3;
     this.lazTemp = 0;
-    this.timer = '02:00';
+    this.timer = '00:05';
+    this.gameOver = false;
+    this.splash = true;
+    this.stringToPrint = "M.Y.H.E.R.O. homage to Atari classic H.E.R.O. by Morticcino. Press 'S' to start."
   }
   increaseScore(points){
     this.score += points;
@@ -28,7 +31,10 @@ var Utils = class{
   die(){
     this.lives--;
     document.getElementById('lives').innerText = this.lives;
-    if(this.lives == 0) this.gameOver('no other life!');
+    if(this.lives == 0){
+      this.gameOver = true;
+      this.stringToPrint = 'No other life!';
+    } 
   }
   printScore(){
     document.getElementById('score').innerText = this.score;
@@ -47,7 +53,8 @@ var Utils = class{
     if(parseInt(min_sec[1]) == 0){
       min_sec[1] = '59';
       if((parseInt(min_sec[0])-1) < 0){
-        this.gameOver('time ends!')
+        this.gameOver = true;
+        this.stringToPrint = 'Time ends!';
       }else{
         min_sec[0] = (parseInt(min_sec[0])-1)+''
       }
@@ -103,7 +110,6 @@ var Utils = class{
     this.printLives();
     this.printTimer();
     this.drawGame();
-    this.startTimer();
   }
   setResolution(x,y,rx,ry){
     this.tileWidth = Math.floor(this.c.width / x);
@@ -163,6 +169,11 @@ var Utils = class{
         //this.heroObj.move(true);
         this.showMap = true;
         break;
+      case 83:
+          if(this.splash) this.splash = false;
+          this.hideString();
+          this.startTimer();
+          break;
     }
   }
   /*
@@ -219,8 +230,19 @@ var Utils = class{
       me.gameLoop();
     },30)   
   }
+  printString(){
+    document.getElementsByTagName('canvas')[0].style.display = 'none';
+    document.getElementById('gamesdata').style.display = 'none';
+    document.getElementsByClassName('printString')[0].style.display = 'block';
+    document.getElementsByClassName('printString')[0].innerText = this.stringToPrint;
+  }
+  hideString(){
+    document.getElementsByTagName('canvas')[0].style.display = 'block';
+    document.getElementById('gamesdata').style.display = 'block';
+    document.getElementsByClassName('printString')[0].style.display = 'none';
+  }
   gameLoop(){
-    if(!this.showMap){
+    if(!this.showMap && !this.gameOver && !this.credits && !this.splash){
       for(let g_i = 0,g_l = this.sg.length;g_i<g_l;g_i++){
         if(!this.sg[g_i].hide) this.sg[g_i].draw();
       }
@@ -230,8 +252,13 @@ var Utils = class{
     }else if(this.showMap){
       this.cleanCanvas();
       this.rockObj.drawMap();
-    }//else...score,splash,credits,...
-    
+    }else if(this.gameOver){
+      this.cleanCanvas();
+      this.printString();
+    }else if(this.splash){
+      this.cleanCanvas();
+      this.printString();
+    }
   }
 };
 
