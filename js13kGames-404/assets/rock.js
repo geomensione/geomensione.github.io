@@ -1,9 +1,10 @@
 import { classTile } from './tile.js' 
 import { classHero } from './hero.js' 
 import { classWall } from './wall.js' 
-import { classSnake } from './snake.js'
+import { classTrap1 } from './trap1.js'
 import { classBat } from './bat.js'
 import { Maze } from './maze.js' 
+import { classSnake } from './snake.js'
 
 var classRock = class{
              constructor(g){
@@ -38,11 +39,15 @@ var classRock = class{
                     this.g.cx.fillStyle = '#777777';
                     this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }else if(this.screen[s][tx]==4 || this.screen[s][tx]==5){
-                    this.g.cx.fillStyle = '#00ff00';
+                    this.g.cx.fillStyle = '#0000ff';
                     this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }
                   else if(this.screen[s][tx]==6){
                     this.g.cx.fillStyle = '#00ffff';
+                    this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
+                  }
+                  else if(this.screen[s][tx]==7 || this.screen[s][tx]==8){
+                    this.g.cx.fillStyle = '#00ff00';
                     this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }
                   
@@ -96,14 +101,20 @@ var classRock = class{
                         this.g.g[this.position].push(new classWall(this.g,xPos,yPos))
                         break
                     case 4:
-                        this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'l'))
+                        this.g.g[this.position].push(new classTrap1(this.g,xPos,yPos,'l'))
                         break
                     case 5:
-                        this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'r'))
+                        this.g.g[this.position].push(new classTrap1(this.g,xPos,yPos,'r'))
                         break
                      case 6:
                         this.g.g[this.position].push(new classBat(this.g,xPos,yPos))
                         break
+                    case 7:
+                      this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'l'))
+                      break
+                    case 8:
+                      this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'r'))
+                      break
                     }
                     
                     if((tx+1)%this.screenSize == 0){

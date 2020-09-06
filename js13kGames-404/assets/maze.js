@@ -7,7 +7,7 @@ var Cell = class {
         this.walls = [true, true, true, true];
         this.visited = false;
         this.ground = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
-	    this.snake = false;
+	    this.trap = false;
     }
     
     checkNeighbors() {
@@ -54,7 +54,7 @@ var Cell = class {
       //rect(x+(w*2),y,w,w)
       //rect(x,y+((w/3)*2),w/3,w/3)
       //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
-      //1-tile,2-hero,3-wall,4-snake on left,5-snake on right,6-bat
+      //1-tile,2-hero,3-wall,4-trap on left,5-trap on right,6-bat,7-snake on left,8-snake on right
       let up = false, right = false, down = false, left = false;
       this.ground = [1,0,1,0,0,0,1,0,1];
       this.ground = [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1];
@@ -126,18 +126,24 @@ var Cell = class {
 		}
 		    
 		if((up || down) && (left && !right)) {
-		    this.ground[18] = 6;
+        this.ground[18] = 6;
 		}
 		if((up || down) && (!left && right)) {
-		    this.ground[16] = 6;
-		}
+        this.ground[16] = 6;
+    }
+    if((!down) && (!left && right)) {
+      this.ground[21] = 8;
+    }
+    if((!down) && (left && !right)) {
+      this.ground[23] = 7;
+    }
 		
 		if((!up && !down) && (left && right)){
-			if(this.snake)
+			if(this.trap)
 				this.ground[13] = 4
 			else
 				this.ground[11] = 5;
-			this.snake = !this.snake;
+			this.trap = !this.trap;
 		} 
 		
 	    
