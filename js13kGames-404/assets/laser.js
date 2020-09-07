@@ -30,6 +30,7 @@ var classLaser = class{
                     find = true;
                       this.h.g.g[this.h.rock.position][t].hide = true;
                       this.h.g.increaseScore(50);
+                   return;
                  }
                 }
                 if(t==g_l-1) return find;
