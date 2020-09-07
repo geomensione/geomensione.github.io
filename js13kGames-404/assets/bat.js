@@ -23,12 +23,12 @@ var classBat = class{
               // an array to save your points
               var points=[];
               let v;
-              for(var degree=0;degree<this.circleRange;){
+              for(var degree=0;degree<this.circleRange;degree++){
                 var radians = degree * Math.PI/180;
                 var x = centerX + radius * Math.cos(radians);
                 var y = centerY + radius * Math.sin(radians);
                 points.push({xp:x,yp:y});
-                degree+=this.circleRange/this.nFrames;
+                
               }
               this.cirPoints = points;
               /*
