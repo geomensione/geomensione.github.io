@@ -94,6 +94,7 @@
                   find = true;
                   if('snakebat'.indexOf(me.g.g[me.rock.position][t].name) != -1 && !this.hide){
                     this.hide = true;
+                    me.g.g[me.rock.position][t].hide = true;
                     this.die();
                   }
                  }
@@ -112,8 +113,8 @@
               let rect1 = this.getBBox();
               //la scritta DIE non si deve sovrapporre con B O O M o altre scritte
               this.g.die();
-              if(this.dir == 'r') this.pos.x -=50;
-              else if(this.dir == 'l') this.pos.x +=50;
+              //if(this.dir == 'r') this.pos.x -=50;
+              //else if(this.dir == 'l') this.pos.x +=50;
               this.g.addText(rect1.x,rect1.y+rect1.height/2-40,"D I E!")
 
              }
