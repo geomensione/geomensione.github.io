@@ -118,18 +118,15 @@ var Cell = class {
         //rect(x, y, w, w);
         //this.ground = [1,0,1,0,0,0,1,0,1];
       }
-	    if(this.i || this.j){ //non è la partenza
-		if((up && down) && (!left && !right)) {
-		    this.ground[7] = 3;
-		    this.ground[12] = 3;
-		    this.ground[17] = 3;
-		}
-		    
-		if((up || down) && (left && !right)) {
-        this.ground[18] = 6;
-		}
-		if((up || down) && (!left && right)) {
-        this.ground[16] = 6;
+	if(this.i || this.j){ //non è la partenza
+	if((up && down) && (!left && !right)) {
+	    this.ground[7] = 3;
+	    this.ground[12] = 3;
+	    this.ground[17] = 3;
+	}
+
+    if(((up || down) && (left && !right)) || ((up || down) && (!left && right))) {
+        this.ground[17] = 6;
     }
     if((!down) && (!left && right)) {
       this.ground[21] = 8;
