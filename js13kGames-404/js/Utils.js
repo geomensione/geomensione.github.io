@@ -52,12 +52,12 @@ var Utils = class{
           min_sec[1] = '00';
           this.stringToPrint = 'Time ends!<br />Your record is '+localStorage.myheroScore+'<br />Press \'s\' to restart';
         }else{
-          min_sec[0] = (parseInt(min_sec[0])-1)+''
+          min_sec[0] = (parseInt(min_sec[0])-1)
         }
       }else{
-        min_sec[1] = (parseInt(min_sec[1])-1)+''
+        min_sec[1] = (parseInt(min_sec[1])-1)
       }
-      this.timer = min_sec[0] + ':' + min_sec[1];
+      this.timer = min_sec[0].toString().padStart(2,'0') + ':' + min_sec[1].toString().padStart(2,'0');
       this.printTimer();
     }
   }
