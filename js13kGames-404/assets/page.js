@@ -52,12 +52,12 @@ var classPage = class{
                
               for(let t = 0,g_l = this.h.g[this.h.rockObj.position].length;t<g_l;t++){
                 
-                if(this.h.g[this.h.rockObj.position][t].getBBox && !this.h.g[this.h.rockObj.position][t].hide && this.h.g[this.h.rockObj.position][t].name.indexOf('hero') != -1){
-                 var rect2 = this.h.g[this.h.rockObj.position][t].getBBox();
+                if(this.h.sg[this.h.rockObj.position][t].getBBox && !this.h.sg[this.h.rockObj.position][t].hide && this.h.sg[this.h.rockObj.position][t].name.indexOf('hero') != -1){
+                 var rect2 = this.h.sg[this.h.rockObj.position][t].getBBox();
                  
                  if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
                       find = true;
-                      this.h.g[this.h.rock.position][t].hide = true;
+                      this.hide = true;
                       this.h.g.findPage();
                  }
                 
