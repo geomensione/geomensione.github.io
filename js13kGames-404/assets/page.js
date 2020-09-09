@@ -97,7 +97,7 @@ var classPage = class{
                
                this.hit();
                this.frame = (this.frame+1)>=this.nFrames?0:this.frame+1;
-               if(this.frame%" == 0)
+               if(this.frame% == 0)
                   this.h.cx.fillStyle=b;
                else
                   this.h.cx.fillStyle=v;
