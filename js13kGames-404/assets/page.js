@@ -59,6 +59,7 @@ var classPage = class{
                       find = true;
                       this.hide = true;
                       this.h.heroObj.g.findPage();
+                      return;
                  }
                 
                 }
