@@ -31,12 +31,13 @@ var classBomb = class{
               if((ts - this.TScreated)>this.timer) this.explode = true;
               var rect1 = this.getBBox();
               var find = false;
+               /*
                this.h.g.cx.beginPath();
                this.h.g.cx.lineWidth = "1"
                this.h.g.cx.strokeStyle = "blue";
                this.h.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
                this.h.g.cx.stroke();
-              
+              */
               for(let t = 0,g_l = this.h.g.g[this.h.rock.position].length;t<g_l;t++){
                 
                 if(this.h.g.g[this.h.rock.position][t].getBBox && !this.h.g.g[this.h.rock.position][t].hide && this.h.g.g[this.h.rock.position][t].name.indexOf('wall') != -1){
