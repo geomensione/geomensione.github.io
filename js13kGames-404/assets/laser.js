@@ -8,7 +8,7 @@ var classLaser = class{
              getBBox(){
                let xPos = 0;
                if(this.h.dir == 'r') xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
-               else xPos = this.h.pos.x - this.h.g.tileWidth * (this.length+1);
+               else xPos = this.h.pos.x - this.h.g.tileWidth * (this.length);
                
                return {x:xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
              }
