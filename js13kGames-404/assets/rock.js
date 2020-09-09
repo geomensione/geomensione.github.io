@@ -3,6 +3,7 @@ import { classHero } from './hero.js'
 import { classWall } from './wall.js' 
 import { classTrap1 } from './trap1.js'
 import { classBat } from './bat.js'
+import { classPage } from './page.js'
 import { Maze } from './maze.js' 
 import { classSnake } from './snake.js'
 
@@ -48,6 +49,10 @@ var classRock = class{
                   }
                   else if(this.screen[s][tx]==7 || this.screen[s][tx]==8){
                     this.g.cx.fillStyle = '#00ff00';
+                    this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
+                  }
+                  else if(this.screen[s][tx]==9){
+                    this.g.cx.fillStyle = '#ff7777';
                     this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                   }
                   
@@ -114,6 +119,9 @@ var classRock = class{
                       break
                     case 8:
                       this.g.g[this.position].push(new classSnake(this.g,xPos,yPos,'r'))
+                      break
+                    case 9:
+                      this.g.g[this.position].push(new classPage(this.g,xPos,yPos,'r'))
                       break
                     }
                     
