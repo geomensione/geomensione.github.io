@@ -135,13 +135,16 @@ var Cell = class {
       this.ground[23] = 7;
     }
 		
-		if((!up && !down) && (left && right)){
-			if(this.trap)
-				this.ground[13] = 4
-			else
-				this.ground[11] = 5;
-			this.trap = !this.trap;
-		} 
+	if((!up && !down) && (left && right)){
+		if(this.trap)
+			this.ground[13] = 4
+		else
+			this.ground[11] = 5;
+		this.trap = !this.trap;
+	} 
+    if((up || down) && (left && right)) {
+      this.ground[23] = 9;
+    }	
 		
 	    
 	    } 	    	    };
