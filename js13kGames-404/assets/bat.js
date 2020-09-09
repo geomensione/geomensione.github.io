@@ -77,11 +77,11 @@ var classBat = class{
                this.yPos = this.cirPoints[this.frame].yp;
                this.xPos = this.cirPoints[this.frame].xp;
                let rect1 = this.getBBox();
-               this.h.cx.beginPath();
+               /*this.h.cx.beginPath();
                this.h.cx.lineWidth = "1"
                this.h.cx.strokeStyle = "red";
                this.h.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-               this.h.cx.stroke();
+               this.h.cx.stroke();*/
                 for(let ty = 0;ty<dimy;ty++){
                   if(this.asset[this.fly][ty] == 1)this.h.cx.fillRect(this.xPos,this.yPos,this.h.tileWidth,this.h.tileHeight)
                   if((ty+1)%this.spriteWidth == 0){
