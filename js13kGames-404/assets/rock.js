@@ -15,6 +15,7 @@ var classRock = class{
                //1-tile,2-hero,3-wall,4-snake on left,5-snake on right
                let m = new Maze(this.numRoomsX,this.numRoomsY,30);
                this.screen = m.draw();
+               this.g.maxNumPages = this.screen.filter(x => x==9).length;
               this.pos = {x:0,y:0};
               this.drawEnv = true;
               this.position = 0;
