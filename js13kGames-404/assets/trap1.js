@@ -14,7 +14,7 @@ var classTrap1 = class{
              getBBox(){
                let py = this.posy + (4*this.g.tileWidth)
                if(this.dir == 'r') return {x:this.posx,y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
-               else return {x:this.posx + this.g.rockWidth - (3*this.g.tileWidth),y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
+               else return {x:this.posx + this.g.rockWidth - (this.length*this.g.tileWidth),y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
              }
              draw(){
                let g = '#0000ff';
