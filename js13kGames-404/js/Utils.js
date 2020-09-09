@@ -16,15 +16,22 @@ var Utils = class{
   increaseScore(points){
     this.score += points;
     localStorage.myheroScore = (this.score>parseInt(localStorage.myheroScore))?this.score:localStorage.myheroScore;
-    document.getElementById('score').innerText = this.score;
+    document.getElementById('score').innerText = 'Score - '+this.score;
+  }
+  findPage(){
+    this.pages++;
+    this.increaseScore(100);
+    document.getElementById('pages').innerText = 'Pages '+this.score+' of '+this.maxNumPages;
+    if(this.pages == this.maxNumPages-1)
+
   }
   laserTemp(points){
     if(this.lazTemp < 100) this.lazTemp++;
-    document.getElementById('laserTemperature').innerText = this.lazTemp;
+    document.getElementById('laserTemperature').innerText = 'Laser temperature '+this.lazTemp;
   }
   die(){
     this.lives--;
-    document.getElementById('lives').innerText = this.lives;
+    document.getElementById('lives').innerText = 'Lives '+this.lives;
     if(this.lives == 0){
       this.splash = true;
       this.stringToPrint = 'No other life!<br />Your record is '+localStorage.myheroScore+'<br />Press \'s\' to restart';
@@ -103,11 +110,13 @@ var Utils = class{
     this.drawGame();
 
   }
-  startGame(){
+  startGame(fromKey){
     this.heroDir = '';
     this.heroFire = false;
     this.idle = true;
-    this.score = 0;
+    if(fromKey) this.score = 0;
+    this.pages = 0;
+    this.maxNumPages = 0;
     this.lives = 3;
     this.lazTemp = 0;
     this.timer = '02:00';
@@ -182,7 +191,7 @@ var Utils = class{
       case 83:
           if(this.splash) this.splash = false;
           this.hideString();
-          this.startGame();
+          this.startGame('k');
           this.startTimer();
           break;
     }
