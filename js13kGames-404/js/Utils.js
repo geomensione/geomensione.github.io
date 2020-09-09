@@ -132,6 +132,7 @@ var Utils = class{
     this.printLaserTemp();
     this.printLives();
     this.printTimer();
+    this.printPages();
   }
   setResolution(x,y,rx,ry){
     this.tileWidth = Math.floor(this.c.width / x);
