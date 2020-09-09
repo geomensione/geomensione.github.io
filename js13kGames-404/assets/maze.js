@@ -143,7 +143,7 @@ var Cell = class {
 		this.trap = !this.trap;
 	} 
     if((up || down) && (left && right)) {
-      this.ground[23] = 9;
+      this.ground[12] = 9;
     }	
 		
 	    
