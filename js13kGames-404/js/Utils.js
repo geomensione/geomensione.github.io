@@ -16,38 +16,41 @@ var Utils = class{
   increaseScore(points){
     this.score += points;
     localStorage.myheroScore = (this.score>parseInt(localStorage.myheroScore))?this.score:localStorage.myheroScore;
-    document.getElementById('score').innerText = 'Score - '+this.score;
+    this.printScore()
   }
   findPage(){
     this.pages++;
     this.increaseScore(100);
-    document.getElementById('pages').innerText = 'Pages '+this.score+' of '+this.maxNumPages;
+    this.printPages()
     if(this.pages == this.maxNumPages-1) this.startGame()
 
   }
   laserTemp(points){
     if(this.lazTemp < 100) this.lazTemp++;
-    document.getElementById('laserTemperature').innerText = 'Laser temperature '+this.lazTemp;
+    this.printLaserTemp();  
   }
   die(){
     this.lives--;
-    document.getElementById('lives').innerText = 'Lives '+this.lives;
+    this.printLives();
     if(this.lives == 0){
       this.splash = true;
       this.stringToPrint = 'No other life!<br />Your record is '+localStorage.myheroScore+'<br />Press \'s\' to restart';
     } 
   }
   printScore(){
-    document.getElementById('score').innerText = this.score;
+    document.getElementById('score').innerText = 'Score - '+this.score;
   }
   printLaserTemp(){
-    document.getElementById('laserTemperature').innerText = this.lazTemp;  
+    document.getElementById('laserTemperature').innerText = 'Laser temperature '+this.lazTemp;
   }
   printLives(){
-    document.getElementById('lives').innerText = this.lives;
+    document.getElementById('lives').innerText = 'Lives '+this.lives;
   }
   printTimer(){
     document.getElementById('timer').innerText = this.timer;
+  }
+  printPages(){
+    document.getElementById('pages').innerText = 'Pages '+this.score+' of '+this.maxNumPages;
   }
   updateTime(){
     if(!this.splash){
