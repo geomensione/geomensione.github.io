@@ -50,7 +50,7 @@ var Utils = class{
     document.getElementById('timer').innerText = 'Timer '+this.timer;
   }
   printPages(){
-    document.getElementById('pages').innerText = 'Pages '+this.score+' of '+this.maxNumPages;
+    document.getElementById('pages').innerText = 'Pages '+this.pages+' of '+this.maxNumPages;
   }
   updateTime(){
     if(!this.splash){
