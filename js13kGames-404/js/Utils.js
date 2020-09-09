@@ -22,7 +22,7 @@ var Utils = class{
     this.pages++;
     this.increaseScore(100);
     document.getElementById('pages').innerText = 'Pages '+this.score+' of '+this.maxNumPages;
-    if(this.pages == this.maxNumPages-1)
+    if(this.pages == this.maxNumPages-1) this.startGame()
 
   }
   laserTemp(points){
