@@ -22,11 +22,11 @@ var classTrap1 = class{
                let dimy = this.asset.length;
                let yPos = this.posy;
                let rect1 = this.getBBox();
-               this.h.cx.beginPath();
-               this.h.cx.lineWidth = "1"
-               this.h.cx.strokeStyle = "yellow";
-               this.h.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-               this.h.cx.stroke();
+               this.g.cx.beginPath();
+               this.g.cx.lineWidth = "1"
+               this.g.cx.strokeStyle = "yellow";
+               this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
+               this.g.cx.stroke();
                
                this.g.cx.fillStyle=g;
                if(this.dir == 'r'){
