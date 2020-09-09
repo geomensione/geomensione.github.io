@@ -38,7 +38,7 @@ var Utils = class{
     } 
   }
   printScore(){
-    document.getElementById('score').innerText = 'Score - '+this.score;
+    document.getElementById('score').innerText = 'Score '+this.score;
   }
   printLaserTemp(){
     document.getElementById('laserTemperature').innerText = 'Laser temperature '+this.lazTemp;
@@ -47,7 +47,7 @@ var Utils = class{
     document.getElementById('lives').innerText = 'Lives '+this.lives;
   }
   printTimer(){
-    document.getElementById('timer').innerText = this.timer;
+    document.getElementById('timer').innerText = 'Timer is.timer;
   }
   printPages(){
     document.getElementById('pages').innerText = 'Pages '+this.score+' of '+this.maxNumPages;
