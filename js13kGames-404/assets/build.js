@@ -11,8 +11,6 @@ var classTile = class{
       return {x:this.pos.x,y:this.pos.y,width:this.g.rockWidth,height:this.g.rockHeight}
     }
     draw(){
-      /*let y = '#';
-      for(let i = 0,s_l=6;i<s_l;i++)y+=(Math.round(Math.random()))?'F':'0'; */
       let y = '#FFFF00';
       this.g.cx.fillStyle=y;
       this.g.cx.fillRect(this.pos.x,this.pos.y,this.g.rockWidth,this.g.rockHeight)
@@ -48,7 +46,6 @@ var classTile = class{
        if(this.h.g.g[this.h.rock.position][t].getBBox && !this.h.g.g[this.h.rock.position][t].hide &&  'snakebat'.indexOf(this.h.g.g[this.h.rock.position][t].name) != -1 ){
         var rect2 = this.h.g.g[this.h.rock.position][t].getBBox();
         
-        //if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
         if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
             zzfx(...[,,321,,.09,.17,1,1.13,,,,,,1.9,,.4,.13,.53,.05]);
             find = true;
@@ -93,7 +90,7 @@ var classTile = class{
          yPos = this.h.pos.y;
        }
       }
-      this.h.g.laserTemp();
+      //this.h.g.laserTemp();
       zzfx(...[,,600,.01,,.47,,.45,,,,,.05,,,,.16,,.08,.46]);
       this.hit();
     }
@@ -140,7 +137,6 @@ var classTile = class{
                this.name = 'hero';
                this.laser = new classLaser(this);
                this.rock = rock;
-               //this.moving = false;
               } 
               left(){
                this.dir = 'l';
@@ -165,9 +161,6 @@ var classTile = class{
               getBBox(){
                  return {x: this.pos.x, y: this.pos.y, width: ((this.asset[this.frame][0].length)*this.g.tileWidth), height:((this.asset[this.frame].length)*this.g.tileHeight)} 
               }
-              //move(b){
-              // this.moving = b;
-              //}
               
               hit(posx,posy){
                var me = this;
@@ -175,21 +168,11 @@ var classTile = class{
                var rect1 = me.getBBox();
                rect1.x=posx;
                rect1.y=posy;
-               //this.g.cx.beginPath();
-               //this.g.cx.lineWidth = "1"
-               //this.g.cx.strokeStyle = "red";
-               //this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-               //this.g.cx.stroke();
                for(let t = 0,g_l = me.g.g[me.rock.position].length;t<g_l;t++){
                  
                  if(me.g.g[me.rock.position][t].getBBox && !me.g.g[me.rock.position][t].hide && 'herobombtext'.indexOf(me.g.g[me.rock.position][t].name) == -1){
                   var rect2 = me.g.g[me.rock.position][t].getBBox();
                   
-                 //if(me.g.g[t].name && me.g.g[t].name == 'tile'){
-                 //  rect2 = {x: me.g.g[t].pos.x, y: me.g.g[t].pos.y, width: me.g.rockWidth, height: me.g.rockHeight}
-                 // }else  if(me.g.g[t].name && me.g.g[t].name == 'wall'){
-                 //    rect2 = {x: me.g.g[t].pos.x + (me.g.rockWidth/2) - (me.g.g[t].wallWidth/2), y: me.g.g[t].pos.y, width: me.g.rockWidth/2, height: me.g.rockHeight}
-                 // }   
                   if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
                    find = true;
                    if('snakebat'.indexOf(me.g.g[me.rock.position][t].name) != -1 && !this.hide){
@@ -211,10 +194,7 @@ var classTile = class{
               }
               die(){
                let rect1 = this.getBBox();
-               //la scritta DIE non si deve sovrapporre con B O O M o altre scritte
                this.g.die();
-               //if(this.dir == 'r') this.pos.x -=50;
-               //else if(this.dir == 'l') this.pos.x +=50;
                zzfx(...[,,558,.04,,.08,3,.1,,-24,-824,.06,,,,,.33,,.04]); // Blip 168
                this.g.addText(rect1.x,rect1.y+rect1.height/2-40,"D I E!")
   
@@ -228,15 +208,9 @@ var classTile = class{
                   
                  if(!this.dirV){
                   switch(this.dir) {
-                  //case 'f':
-                  //  this.heroFire = true;
-                  //  this.fire();
-                  //  break;
-                  //left
                   case 'l':
                     this.left.call(this);
                     break;
-                  //right
                   case 'r':
                     this.right.call(this);
                     break;
@@ -246,7 +220,6 @@ var classTile = class{
                   case 'u':
                     this.up.call(this);
                     break;
-                  //down
                   case 'd':
                     this.down.call(this);
                     break;
@@ -254,7 +227,7 @@ var classTile = class{
                  }
                }else{
                   if(this.fireLaser) this.fire()
-                  else this.g.decrLaserTemp();
+                  //else this.g.decrLaserTemp();
                   this.down.call(this);              
                 }
                 let refresh = false;
@@ -277,7 +250,6 @@ var classTile = class{
                  refresh = true;
                 } 
                 if(refresh){
-                 //this.g.g.length = 0;
                  this.rock.drawEnv=true;
                  return;
                 }
@@ -322,7 +294,6 @@ var classTile = class{
     draw(){
       let g = '#777777';
       this.g.cx.fillStyle=g;
-      //center wall
       let offsetx = this.pos.x + this.g.rockWidth/2 - this.wallWidth/2;
       this.g.cx.fillRect(offsetx,this.pos.y,this.wallWidth,this.g.rockHeight)
     }
@@ -410,11 +381,10 @@ var classTile = class{
       this.circumferencePoints();
     } 
     circumferencePoints(){
-     var centerX=this.xPos;//Utils.random(r/2,gC.width-r);
-     var centerY=this.yPos;//Utils.random(r/2,gC.height/2);
+     var centerX=this.xPos;
+     var centerY=this.yPos;
      var radius=this.radius;
   
-     // an array to save your points
      var points=[];
      let v;
      for(var degree=0;degree<this.circleRange;){
@@ -427,15 +397,7 @@ var classTile = class{
        
      }
      this.cirPoints = points;
-     /*
-     for(let a = 0;a<this.circleRange;){
-       a = a*Math.PI*2;
-       let x = this.xPos + Math.cos(a)*this.radius;
-       let y = this.yPos + Math.sin(a)*this.radius;
-       a += this.circleRange/this.nFrames;
-       this.cirPoints.push({xp:x,yp:y})
-     }
-     */
+     
     }
     getBBox(){               
       return {x:this.xPos,y:this.yPos,width:this.spriteWidth*this.h.tileWidth,height:this.spriteHeight*this.h.tileWidth}
@@ -450,7 +412,7 @@ var classTile = class{
         var rect2 = this.h.g[this.h.rockObj.position][t].getBBox();
         
         if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.y + rect1.height > rect2.y){
-            zzfx(...[,,321,,.09,.17,1,1.13,,,,,,1.9,,.4,.13,.53,.05]); // Hit
+            zzfx(...[,,321,,.09,.17,1,1.13,,,,,,1.9,,.4,.13,.53,.05]);
              find = true;
              this.h.g[this.h.rock.position][t].hide = true;
              this.h.g.increaseScore(50);
@@ -472,11 +434,6 @@ var classTile = class{
       this.yPos = this.cirPoints[this.frame].yp;
       this.xPos = this.cirPoints[this.frame].xp;
       let rect1 = this.getBBox();
-      /*this.h.cx.beginPath();
-      this.h.cx.lineWidth = "1"
-      this.h.cx.strokeStyle = "red";
-      this.h.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-      this.h.cx.stroke();*/
        for(let ty = 0;ty<dimy;ty++){
          if(this.asset[this.fly][ty] == 1)this.h.cx.fillRect(this.xPos,this.yPos,this.h.tileWidth,this.h.tileHeight)
          if((ty+1)%this.spriteWidth == 0){
@@ -513,11 +470,10 @@ var classTile = class{
       this.circumferencePoints();
     } 
     circumferencePoints(){
-     var centerX=this.xPos;//Utils.random(r/2,gC.width-r);
-     var centerY=this.yPos;//Utils.random(r/2,gC.height/2);
+     var centerX=this.xPos;
+     var centerY=this.yPos;
      var radius=this.radius;
   
-     // an array to save your points
      var points=[];
      let v;
      for(var degree=0;degree<this.circleRange;){
@@ -530,15 +486,7 @@ var classTile = class{
        
      }
      this.cirPoints = points;
-     /*
-     for(let a = 0;a<this.circleRange;){
-       a = a*Math.PI*2;
-       let x = this.xPos + Math.cos(a)*this.radius;
-       let y = this.yPos + Math.sin(a)*this.radius;
-       a += this.circleRange/this.nFrames;
-       this.cirPoints.push({xp:x,yp:y})
-     }
-     */
+     
     }
     getBBox(){               
       return {x:this.xPos,y:this.yPos,width:this.spriteWidth*this.h.tileWidth,height:this.spriteHeight*this.h.tileWidth}
@@ -577,11 +525,6 @@ var classTile = class{
       this.yPos = this.cirPoints[this.frame].yp;
       this.xPos = this.cirPoints[this.frame].xp;
       let rect1 = this.getBBox();
-      /*this.h.cx.beginPath();
-      this.h.cx.lineWidth = "1"
-      this.h.cx.strokeStyle = "red";
-      this.h.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-      this.h.cx.stroke();*/
        for(let ty = 0;ty<dimy;ty++){
          if(this.asset[ty] == 1)this.h.cx.fillRect(this.xPos,this.yPos,this.h.tileWidth,this.h.tileHeight)
          if((ty+1)%this.spriteWidth == 0){
@@ -645,86 +588,41 @@ var classTile = class{
       }
     }
     highlight() {
-      //let x = this.i * this.w;
-      //let y = this.j * this.w;
-      //noStroke();
-      //fill(0, 0, 255, 100);
-      //rect(x, y, w, w);
+      
     }
     show() {
-      //let x = this.i * this.w;
-      //let y = this.j * this.w;
-      //let w = this.w/3;
-      //stroke(255);
-      //rect(x,y,w,w)
-      //rect(x+(w*2),y,w,w)
-      //rect(x,y+((w/3)*2),w/3,w/3)
-      //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
-      //1-tile,2-hero,3-wall,4-trap on left,5-trap on right,6-bat,7-snake on left,8-snake on right
       let up = false, right = false, down = false, left = false;
       this.ground = [1,0,1,0,0,0,1,0,1];
       this.ground = [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1];
   
       if (this.walls[0]) {
-        //line(x, y, x + w, y);
-        //rect(x,y,w/3,w/3)
-        //rect(x+w/3,y,w/3,w/3)
-        //rect(x+((w/3)*2),y,w/3,w/3)
         this.ground[1] = 1;
         this.ground[2] = 1;
         this.ground[3] = 1;
-  up = true;
+        up = true;
       }
-      //else{
-      //  this.ground[1] = 0;
-      //}
       if (this.walls[1]) {
-        //line(x + w, y, x + w, y + w);
-        //rect(x+((w/3)*2),y,w/3,w/3)
-        //rect(x+((w/3)*2),y+w/3,w/3,w/3)
-        //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
         this.ground[9] = 1;
         this.ground[14] = 1;
         this.ground[19] = 1;
   right = true;
       }
-      //else{
-      //  this.ground[7] = 0;
-      //}
       if (this.walls[2]) {
-        //line(x + w, y + w, x, y + w);
-        //rect(x,y+((w/3)*2),w/3,w/3)
-        //rect(x+w/3,y+((w/3)*2),w/3,w/3)
-        //rect(x+((w/3)*2),y+((w/3)*2),w/3,w/3)
         this.ground[21] = 1;
         this.ground[22] = 1;
         this.ground[23] = 1;
   down = true;
       }
-      //else{
-      //  this.ground[5] = 0;
-      //}
       if (this.walls[3]) {
-        //line(x, y + w, x, y);
-        //rect(x,y,w/3,w/3)
-        //rect(x,y+w/3,w/3,w/3)
-        //rect(x,y+((w/3)*2),w/3,w/3)
         this.ground[5] = 1;
         this.ground[10] = 1;
         this.ground[15] = 1;
   left = true;
       }
-      //else{
-      //  this.ground[3] = 0;
-      //}
-  
+      
       if (this.visited) {
-        //noStroke();
-        //fill(255, 0, 255, 100);
-        //rect(x, y, w, w);
-        //this.ground = [1,0,1,0,0,0,1,0,1];
       }
-  if(this.i || this.j){ //non è la partenza
+  if(this.i || this.j){ 
   if((up && down) && (!left && !right)) {
       this.ground[7] = 3;
       this.ground[12] = 3;
@@ -760,9 +658,8 @@ var classTile = class{
   var Maze = class{
   
   constructor(x,y,w) {
-  //createCanvas(600, 600);
-  this.cols = x;//floor(width / w);
-  this.rows = y;//floor(height / w);
+  this.cols = x;
+  this.rows = y;
   this.w = w;
   this.current = {};
   this.grid = [];
@@ -779,25 +676,20 @@ var classTile = class{
   }
   
   draw() {
-  //background(51);
   for (let i = 0; i < this.grid.length; i++) {
     this.grid[i].show();
   }
   
   this.current.visited = true;
   this.current.highlight();
-  // STEP 1
   let next = this.current.checkNeighbors();
   if (next) {
     next.visited = true;
   
-    // STEP 2
     this.stack.push(this.current);
   
-    // STEP 3
     this.removeWalls(this.current, next);
   
-    // STEP 4
     this.current = next;
     this.draw()
   } else if (this.stack.length > 0) {
@@ -887,7 +779,6 @@ var classTile = class{
                  this.g = g;
                  this.numRoomsX = 20;
                  this.numRoomsY = 20;
-                 //1-tile,2-hero,3-wall,4-snake on left,5-snake on right
                  let m = new Maze(this.numRoomsX,this.numRoomsY,30);
                  this.screen = m.draw();
                  this.g.maxNumPages = this.screen.filter(x => x.includes(9)).length;
@@ -975,8 +866,6 @@ var classTile = class{
                            this.g.g[this.position].push(new classTile(this.g,xPos,yPos))
                            break
                       case  2:
-                          //this.g.heroObj = new classHero(this.g,xPos,yPos,this)
-                          //this.g.g[this.position].push(this.g.heroObj)
                           break
                       case 3:
                           this.g.g[this.position].push(new classWall(this.g,xPos,yPos))
@@ -1031,7 +920,7 @@ var classTile = class{
       this.height = 70;
       this.ewidth = 250;
       this.eheight = 300;
-      this.timer = 2000;//2 seconds
+      this.timer = 2000;
       this.TScreated = Date.now() 
       this.timePassed = 0
       this.explode = false;
@@ -1057,13 +946,7 @@ var classTile = class{
      }
      var rect1 = this.getBBox();
      var find = false;
-      /*
-      this.h.g.cx.beginPath();
-      this.h.g.cx.lineWidth = "1"
-      this.h.g.cx.strokeStyle = "blue";
-      this.h.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-      this.h.g.cx.stroke();
-     */
+      
      for(let t = 0,g_l = this.h.g.g[this.h.rock.position].length;t<g_l;t++){
        
        if(this.h.g.g[this.h.rock.position][t].getBBox && !this.h.g.g[this.h.rock.position][t].hide && this.h.g.g[this.h.rock.position][t].name.indexOf('wall') != -1){
@@ -1120,7 +1003,7 @@ var classTile = class{
       this.name = 'text';
       this.hposx = x;
       this.hposy = y;
-      this.timer = 2000;//2 seconds
+      this.timer = 2000;
       this.TScreated = Date.now() 
       this.timePassed = 0
       this.str = t;
@@ -1230,7 +1113,6 @@ var classTile = class{
   
     }
     init2DCanvas(rx,ry,square = true){
-      //this.c = document.createElement('canvas');
       if(square){ 
         let size = (window.innerWidth>window.innerHeight)?window.innerHeight:window.innerWidth;
         this.c.width = size;
@@ -1279,7 +1161,7 @@ var classTile = class{
       this.sg.push(this.rockObj);
       this.g = new Array(this.rockObj.numRoomsX * this.rockObj.numRoomsY);
       this.printScore();
-      this.printLaserTemp();
+      //this.printLaserTemp();
       this.printLives();
       this.printTimer();
       this.printPages();
@@ -1297,50 +1179,34 @@ var classTile = class{
       document.addEventListener('keydown',event => {
         this.keyDown(event)
       })
-      //document.addEventListener('keypress',event => {
-      //  this.keyPress(event)
-      //})
       document.addEventListener('keyup',event => {
         this.keyUp(event)
       })
     }
     keyDown(event){ 
       switch(event.keyCode) {
-        //space
         case 32:
-          //this.idle = false;
-          //this.heroObj.dirV = '';
           this.heroObj.fireLaser = true;
           break;
-        //left
         case 37:
           this.idle = false;
           this.heroObj.dir = 'l';
           this.heroObj.dirV = '';
-          //this.heroObj.move(true);
           break;
-        //up
         case 38:
           this.idle = false;
           this.heroObj.dirV = 'u';
-          //this.heroObj.move(true);
           break;
-        //right
         case 39:
           this.idle = false;
           this.heroObj.dir = 'r';
           this.heroObj.dirV = '';
-          //this.heroObj.move(true);
           break;
-        //down
         case 40:
           this.idle = false;
           this.heroObj.dirV = 'd';
-          //this.heroObj.move(true);
           break;
-        //m
         case 77:
-          //this.heroObj.move(true);
           if(this.numMap) this.showMap = true;
           this.decreaseNumMap();
           break;
@@ -1352,30 +1218,7 @@ var classTile = class{
             break;
       }
     }
-    /*
-    keyPress(e){
-      if(this.heroFire) this.heroObj.fire();
-      if(this.heroDir){
-        switch(this.heroDir){
-          case 'l':
-            this.heroObj.left();
-            break;
-          case 'u':
-            this.heroObj.up();
-            break;
-          //right
-          case 'r':
-            this.heroObj.right();
-            break;
-          //down
-          case 'd':
-            this.heroObj.down();
-            break;
-        }
-      }
-  
-    }
-    */
+    
     keyUp(e){
        this.idle = true;
        this.heroObj.fireLaser = false;
@@ -1383,7 +1226,6 @@ var classTile = class{
        this.bombAdded = false;  
        this.showMap = false;
        this.lockNumMap = false;
-       //this.heroObj.move(false);
     }
     addBomb(h,x,y){
       if(!this.bombAdded){
@@ -1436,5 +1278,3 @@ var classTile = class{
       }
     }
   };
-  
-  
