@@ -1,15 +1,33 @@
--------------------DONE Moving bat in the middle of the hole <- when kill bat, the snake under is killed too.
+collision detection
 
--------------------DONE padding time
+bonus
 
--------------------DONE remove debug
+malus
 
-audio
-zzfx(...[,,106,,.11,.82,4,.94,.4,,,,,.8,,.4,.27,.84,.08]); // bomb
-zzfx(...[,,420,.03,,.06,1,.01,,78,,,,,,,.21,,.03]); // paper
-zzfx(...[,,321,,.09,.17,1,1.13,,,,,,1.9,,.4,.13,.53,.05]); // Hit
-zzfx(...[,,600,.01,,.47,,.45,,,,,.05,,,,.16,,.08,.46]); // laser
+assets
 
--------------------DONE page 404
+lava
 
+water
 
+enemies
+
+n bombs
+
+destroy ground and wall with power laser
+
+jetpack
+
+more details and color (shades on hero suite, rock in ground)
+
+background
+
+light level when hero moves deep in dungeon
+
+laset light in dark scene
+
+more animation frames (rs paint tool)
+
+music
+
+improve spash, game over screens
