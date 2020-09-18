@@ -797,8 +797,8 @@ var classLava = class{
   var classRock = class{
                constructor(g){
                  this.g = g;
-                 this.numRoomsX = 20;
-                 this.numRoomsY = 20;
+                 this.numRoomsX = 10;
+                 this.numRoomsY = 10;
                  let m = new Maze(this.numRoomsX,this.numRoomsY,30);
                  this.screen = m.draw();
                  this.g.maxNumPages = this.screen.filter(x => x.includes(9)).length;
