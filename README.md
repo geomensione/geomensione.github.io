@@ -47,6 +47,10 @@ js1024fun
 
 [https://geomensione.github.io/js1024fun/hitSquare-JS1024-golf.html](https://geomensione.github.io/js1024fun/hitSquare-JS1024-golf.html)
 
+js13kGames-404
+
+[https://geomensione.github.io/js13kGames-404](https://geomensione.github.io/js13kGames-404)
+
 TOOLS
 =====
 
@@ -152,9 +156,9 @@ abbagli mummade
 
 [https://geomensione.github.io/abbagli/home.html](https://geomensione.github.io/abbagli/home.html)
 
-LOWREZJAM
+LOWREZGAME
 
-[https://geomensione.github.io/js13kGames-404](https://geomensione.github.io/js13kGames-404)
+[https://geomensione.github.io/js13kGames-404](https://geomensione.github.io/js13kGames-404-improve)
 
 
 Lectures
