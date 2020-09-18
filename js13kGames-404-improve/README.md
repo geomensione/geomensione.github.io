@@ -6,7 +6,9 @@ malus
 
 assets
 
-lava
+difficult progression
+
+WIP lava
 
 water
 
