@@ -720,15 +720,15 @@ var classTrap2 = class{
         this.horiz = true;
       }else{
         if(!this.lava){
-            this.ground[7] = 10;
-            this.ground[12] = 10;
-            this.ground[17] = 10;
+            this.ground[21] = 10;
+            this.ground[22] = 10;
+            this.ground[23] = 10;
             this.lava = true;
           }else{
 
-            this.ground[7] = 11;
-            this.ground[12] = 11;
-            this.ground[17] = 11;
+            this.ground[21] = 11;
+            this.ground[22] = 11;
+            this.ground[23] = 11;
           }  
               }
       
@@ -932,6 +932,14 @@ var classTrap2 = class{
                       this.g.cx.fillStyle = '#ff7777';
                       this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                     }
+                    else if(this.screen[s][tx]==10){
+                      this.g.cx.fillStyle = '#ff1111';
+                      this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
+                    }
+                    else if(this.screen[s][tx]==11){
+                      this.g.cx.fillStyle = '#ff00ff';
+                      this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
+                    }
                     
                     if((tx+1)%this.screenSize == 0){
                       y += rockSizeY;
@@ -998,6 +1006,13 @@ var classTrap2 = class{
                       case 9:
                         this.g.g[this.position].push(new classPage(this.g,xPos,yPos,'r'))
                         break
+                       case 9:
+                        this.g.g[this.position].push(new classLava(this.g,xPos,yPos))
+                        break
+                       case 11:
+                        this.g.g[this.position].push(new classTrap2(this.g,xPos,yPos,'d'))
+                        break
+                       
                       }
                       
                       if((tx+1)%this.screenSize == 0){
