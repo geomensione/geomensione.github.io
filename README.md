@@ -158,7 +158,7 @@ abbagli mummade
 
 LOWREZGAME
 
-[https://geomensione.github.io/js13kGames-404](https://geomensione.github.io/js13kGames-404-improve)
+[https://geomensione.github.io/js13kGames-404-improve](https://geomensione.github.io/js13kGames-404-improve)
 
 
 Lectures
