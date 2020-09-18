@@ -36,4 +36,6 @@ improve spash, game over screens
 
 canvas 2d as tevture of canvas 3d
 
+exit to another maze where the current maze is a rock.(hierarchical maze)
+
 
