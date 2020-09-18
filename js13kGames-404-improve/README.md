@@ -31,3 +31,7 @@ more animation frames (rs paint tool)
 music
 
 improve spash, game over screens
+
+canvas 2d as tevture of canvas 3d
+
+
