@@ -575,7 +575,9 @@ var classLava = class{
         this.walls = [true, true, true, true];
         this.visited = false;
         this.ground = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
-      this.trap = false;
+        this.trap = false;
+        this.horiz = false;
+        this.lava = false;
     }
     
     checkNeighbors() {
@@ -609,6 +611,10 @@ var classLava = class{
     highlight() {
       
     }
+      resetHorizAndLava(){
+            this.horiz = false;
+          this.lava = false;
+      }
     show() {
       let up = false, right = false, down = false, left = false;
       
@@ -644,22 +650,42 @@ var classLava = class{
       }
   if(this.i || this.j){ 
   if((up && down) && (!left && !right)) {
-      this.ground[7] = 3;
-      this.ground[12] = 3;
-      this.ground[17] = 3;
+      if(!this.horiz){
+        this.ground[7] = 3;
+        this.ground[12] = 3;
+        this.ground[17] = 3;
+        this.horiz = true;
+      }else{
+        if(!this.lava){
+            this.ground[7] = 10;
+            this.ground[12] = 10;
+            this.ground[17] = 10;
+            this.lava = true;
+          }else{
+
+            this.ground[7] = 11;
+            this.ground[12] = 11;
+            this.ground[17] = 11;
+          }  
+              }
+      
   }
   
     if(((up || down) && (left && !right)) || ((up || down) && (!left && right))) {
+        this.resetHorizAndLava();
         this.ground[17] = 6;
     }
     if((!down) && (!left && right)) {
-      this.ground[21] = 8;
+      this.resetHorizAndLava();
+        this.ground[21] = 8;
     }
     if((!down) && (left && !right)) {
-      this.ground[23] = 7;
+      this.resetHorizAndLava();
+        this.ground[23] = 7;
     }
     
   if((!up && !down) && (left && right)){
+    this.resetHorizAndLava();
     if(this.trap)
       this.ground[13] = 4
     else
@@ -667,6 +693,7 @@ var classLava = class{
     this.trap = !this.trap;
   } 
     if((up || down) && (left && right)) {
+      this.resetHorizAndLava();
       this.ground[12] = 9;
     }	
     
