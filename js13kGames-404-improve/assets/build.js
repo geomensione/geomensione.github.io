@@ -16,6 +16,25 @@ var classTile = class{
       this.g.cx.fillRect(this.pos.x,this.pos.y,this.g.rockWidth,this.g.rockHeight)
     }
   };
+
+var classLava = class{
+    constructor(g,px,py){
+      this.g = g;
+      this.pos = {x:px,y:py};
+      this.name = 'lava';
+        this.rend = true;
+    } 
+    getBBox(){
+      return {x:this.pos.x,y:this.pos.y,width:this.g.rockWidth,height:this.g.rockHeight}
+    }
+    draw(){
+      let y = '#FFFF00';
+        if(!this.rend) y = '#FFFFFF';
+      this.rend = !this.rend;
+      this.g.cx.fillStyle=y;
+      this.g.cx.fillRect(this.pos.x,this.pos.y,this.g.rockWidth,this.g.rockHeight)
+    }
+  };
   
   var classLaser = class{
     constructor(h){
