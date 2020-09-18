@@ -611,6 +611,7 @@ var classLava = class{
     }
     show() {
       let up = false, right = false, down = false, left = false;
+      
       this.ground = [1,0,1,0,0,0,1,0,1];
       this.ground = [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1];
   
