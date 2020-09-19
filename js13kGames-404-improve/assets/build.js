@@ -16,25 +16,6 @@ var classTile = class{
       this.g.cx.fillRect(this.pos.x,this.pos.y,this.g.rockWidth,this.g.rockHeight)
     }
   };
-
-var classLava = class{
-    constructor(g,px,py){
-      this.g = g;
-      this.pos = {x:px,y:py};
-      this.name = 'lava';
-        this.rend = true;
-    } 
-    getBBox(){
-      return {x:this.pos.x,y:this.pos.y,width:this.g.rockWidth,height:this.g.rockHeight}
-    }
-    draw(){
-      let y = '#FFFF00';
-        if(!this.rend) y = '#FFFFFF';
-      this.rend = !this.rend;
-      this.g.cx.fillStyle=y;
-      this.g.cx.fillRect(this.pos.x,this.pos.y,this.g.rockWidth,this.g.rockHeight)
-    }
-  };
   
   var classLaser = class{
     constructor(h){
@@ -45,7 +26,7 @@ var classLava = class{
     } 
     getBBox(){
       let xPos = 0;
-      if(this.h.dir == 'r') xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
+      if(this.h.herodir == 'r') xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
       else xPos = this.h.pos.x - this.h.g.tileWidth * (this.length);
       
       return {x:xPos,y:this.h.pos.y+(3*this.h.g.tileWidth),width:this.length*this.h.g.tileWidth,height:this.h.g.tileHeight}
@@ -87,7 +68,7 @@ var classLava = class{
       let dimy = this.asset.length;
       let yPos = this.h.pos.y;
       this.h.g.cx.fillStyle=r;
-      if(this.h.dir == 'r'){
+      if(this.h.herodir == 'r'){
        let xPos = this.h.pos.x + (this.h.asset[0][0].length*this.h.g.tileWidth);
        for(let tx = 0;tx<this.length;tx++){
          for(let ty = 0;ty<dimy;ty++){
@@ -151,28 +132,33 @@ var classLava = class{
                this.pos = {x:xp,y:yp};
                this.frame = 0;
                this.nFrames = this.asset.length;
-               this.dir = 'r';
+               this.herodir = 'r';
                this.velocity = this.g.tileWidth;
                this.name = 'hero';
                this.laser = new classLaser(this);
                this.rock = rock;
               } 
               left(){
-               this.dir = 'l';
+               this.herodir = 'l';
                if(!this.hit(this.pos.x - this.velocity,this.pos.y)) this.pos.x -= this.velocity;
               }
               up(){
-               this.dirV = 'u';
+               //this.dirV = 'u';
                if(!this.hit(this.pos.x,this.pos.y - this.velocity)) this.pos.y -= this.velocity;
               }
               right(){
-               this.dir = 'r';
+               this.herodir = 'r';
                if(!this.hit(this.pos.x + this.velocity,this.pos.y)) this.pos.x += this.velocity;
               }
               down(){
-               this.dirV = 'd';
-               if(!this.hit(this.pos.x,this.pos.y + this.velocity)) this.pos.y += this.velocity;
-               else if(!this.g.idle) this.g.addBomb(this,this.pos.x,this.pos.y)
+               //this.dirV = 'd';
+               if(!this.hit(this.pos.x,this.pos.y + this.velocity)){
+                this.pos.y += this.velocity;
+               }else{
+                if(!this.g.idle){ 
+                  this.g.addBomb(this,this.pos.x,this.pos.y)
+                }
+               } 
               }
               fire(){
                this.laser.fire();
@@ -225,8 +211,7 @@ var classLava = class{
                 
                 if(!this.g.idle){
                   
-                 if(!this.dirV){
-                  switch(this.dir) {
+                 switch(this.dir) {
                   case 'l':
                     this.left.call(this);
                     break;
@@ -234,8 +219,7 @@ var classLava = class{
                     this.right.call(this);
                     break;
                   }
-                 }else{
-                   switch(this.dirV) {
+                 switch(this.dirV) {
                   case 'u':
                     this.up.call(this);
                     break;
@@ -243,12 +227,13 @@ var classLava = class{
                     this.down.call(this);
                     break;
                   }
-                 }
+                 
+                  
                }else{
-                  if(this.fireLaser) this.fire()
-                  //else this.g.decrLaserTemp();
-                  this.down.call(this);              
+                this.down.call(this);              
                 }
+                if(this.fireLaser) this.fire()
+                
                 let refresh = false;
                 if(this.pos.y > this.g.c.height){
                  this.rock.position += (this.g.rockObj.numRoomsX);
@@ -276,7 +261,7 @@ var classLava = class{
                 let dimy = this.asset[this.frame][0].length;
                 let yPos = this.pos.y;
                 this.g.cx.fillStyle=w;
-                if(this.dir == 'r'){
+                if(this.herodir == 'r'){
                  let xPos = this.pos.x;
                  for(let tx = 0;tx<dimx;tx++){
                    for(let ty = 0;ty<dimy;ty++){
@@ -286,7 +271,7 @@ var classLava = class{
                    yPos += this.g.tileHeight;
                    xPos = this.pos.x;
                  }
-                }else{
+                }else if(this.herodir == 'l'){
                  let xPos = this.pos.x;
                  for(let tx = 0;tx<dimx;tx++){
                    for(let ty = dimy-1;ty>=0;ty--){
@@ -382,69 +367,6 @@ var classLava = class{
     }
   };
   
-var classTrap2 = class{
-    constructor(g,posx,posy,dir){
-      this.g = g;
-      this.name = 'snake';
-      this.asset = [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0];
-      this.minLength = 5;
-      this.length = this.minLength;
-      this.maxLength = 20;
-      this.posx = posx;
-      this.posy = posy;
-      this.dir = dir;
-      this.scale = 'plus';
-    } 
-    getBBox(){
-      let py = this.posy + (4*this.g.tileWidth)
-      if(this.dir == 'r') return {x:this.posx,y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
-      else return {x:this.posx + this.g.rockWidth - (this.length*this.g.tileWidth),y:py,width:this.length*this.g.tileWidth,height:this.g.tileHeight}
-    }
-    draw(){
-      let g = '#ff00ff';
-      this.g.cx.fillStyle=g;
-      let dimy = this.asset.length;
-      let yPos = this.posy;
-      let rect1 = this.getBBox();
-      this.g.cx.beginPath();
-      this.g.cx.lineWidth = "1"
-      this.g.cx.strokeStyle = "yellow";
-      this.g.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
-      this.g.cx.stroke();
-      
-      this.g.cx.fillStyle=g;
-      if(this.dir == 'd'){
-       let xPos = this.posx;
-       for(let tx = 0;tx<this.length;tx++){
-         for(let ty = 0;ty<dimy;ty++){
-           if(this.asset[ty] == 1)this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
-           yPos += this.g.tileHeight;
-  
-         }
-         xPos += this.g.tileWidth;
-         yPos = this.posy;
-       }
-      }else{
-       let xPos = this.posx + this.g.rockWidth - this.g.tileWidth;
-       for(let tx = 0;tx<this.length;tx++){
-         for(let ty = 0;ty<dimy;ty++){
-           if(this.asset[ty] == 1)this.g.cx.fillRect(xPos,yPos,this.g.tileWidth,this.g.tileHeight)
-           yPos += this.g.tileHeight;
-         }
-         xPos -= this.g.tileWidth;
-         yPos = this.posy;
-       }
-      }
-      if(this.scale == 'plus')
-       if(this.length<this.maxLength)this.length++;
-       else this.scale = 'minus'
-      else
-       if(this.length>this.minLength)this.length--;
-       else this.scale = 'plus'
-      
-    }
-  };
-
   var classBat = class{
     constructor(h,x,y){
       this.h = h;
@@ -638,9 +560,7 @@ var classTrap2 = class{
         this.walls = [true, true, true, true];
         this.visited = false;
         this.ground = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
-        this.trap = false;
-        this.horiz = false;
-        this.lava = false;
+      this.trap = false;
     }
     
     checkNeighbors() {
@@ -674,13 +594,8 @@ var classTrap2 = class{
     highlight() {
       
     }
-      resetHorizAndLava(){
-            this.horiz = false;
-          this.lava = false;
-      }
     show() {
       let up = false, right = false, down = false, left = false;
-      
       this.ground = [1,0,1,0,0,0,1,0,1];
       this.ground = [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1];
   
@@ -713,42 +628,22 @@ var classTrap2 = class{
       }
   if(this.i || this.j){ 
   if((up && down) && (!left && !right)) {
-      if(!this.horiz){
-        this.ground[7] = 3;
-        this.ground[12] = 3;
-        this.ground[17] = 3;
-        this.horiz = true;
-      }else{
-        if(!this.lava){
-            this.ground[21] = 10;
-            this.ground[22] = 10;
-            this.ground[23] = 10;
-            this.lava = true;
-          }else{
-
-            this.ground[21] = 11;
-            this.ground[22] = 11;
-            this.ground[23] = 11;
-          }  
-              }
-      
+      this.ground[7] = 3;
+      this.ground[12] = 3;
+      this.ground[17] = 3;
   }
   
     if(((up || down) && (left && !right)) || ((up || down) && (!left && right))) {
-        this.resetHorizAndLava();
         this.ground[17] = 6;
     }
     if((!down) && (!left && right)) {
-      this.resetHorizAndLava();
-        this.ground[21] = 8;
+      this.ground[21] = 8;
     }
     if((!down) && (left && !right)) {
-      this.resetHorizAndLava();
-        this.ground[23] = 7;
+      this.ground[23] = 7;
     }
     
   if((!up && !down) && (left && right)){
-    this.resetHorizAndLava();
     if(this.trap)
       this.ground[13] = 4
     else
@@ -756,7 +651,6 @@ var classTrap2 = class{
     this.trap = !this.trap;
   } 
     if((up || down) && (left && right)) {
-      this.resetHorizAndLava();
       this.ground[12] = 9;
     }	
     
@@ -932,14 +826,6 @@ var classTrap2 = class{
                       this.g.cx.fillStyle = '#ff7777';
                       this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                     }
-                    else if(this.screen[s][tx]==10){
-                      this.g.cx.fillStyle = '#ff1111';
-                      this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
-                    }
-                    else if(this.screen[s][tx]==11){
-                      this.g.cx.fillStyle = '#ff00ff';
-                      this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
-                    }
                     
                     if((tx+1)%this.screenSize == 0){
                       y += rockSizeY;
@@ -1006,13 +892,6 @@ var classTrap2 = class{
                       case 9:
                         this.g.g[this.position].push(new classPage(this.g,xPos,yPos,'r'))
                         break
-                       case 9:
-                        this.g.g[this.position].push(new classLava(this.g,xPos,yPos))
-                        break
-                       case 11:
-                        this.g.g[this.position].push(new classTrap2(this.g,xPos,yPos,'d'))
-                        break
-                       
                       }
                       
                       if((tx+1)%this.screenSize == 0){
@@ -1311,12 +1190,13 @@ var classTrap2 = class{
     keyDown(event){ 
       switch(event.keyCode) {
         case 32:
+          //this.idle = false;
           this.heroObj.fireLaser = true;
           break;
         case 37:
           this.idle = false;
           this.heroObj.dir = 'l';
-          this.heroObj.dirV = '';
+          //this.heroObj.dirV = '';
           break;
         case 38:
           this.idle = false;
@@ -1325,7 +1205,7 @@ var classTrap2 = class{
         case 39:
           this.idle = false;
           this.heroObj.dir = 'r';
-          this.heroObj.dirV = '';
+          //this.heroObj.dirV = '';
           break;
         case 40:
           this.idle = false;
@@ -1346,11 +1226,28 @@ var classTrap2 = class{
     
     keyUp(e){
        this.idle = true;
-       this.heroObj.fireLaser = false;
-       this.heroObj.dirV = '';
        this.bombAdded = false;  
-       this.showMap = false;
        this.lockNumMap = false;
+       switch(e.keyCode) {
+        case 32:
+          this.heroObj.fireLaser = false;
+          break;
+        case 37:
+          this.heroObj.dir = '';
+          break;
+        case 38:
+          this.heroObj.dirV = '';
+          break;
+        case 39:
+          this.heroObj.dir = '';
+          break;
+        case 40:
+          this.heroObj.dirV = '';
+          break;
+        case 77:
+          this.showMap = false;
+          break;
+      }
     }
     addBomb(h,x,y){
       if(!this.bombAdded){
