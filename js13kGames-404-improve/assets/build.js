@@ -16,7 +16,23 @@ var classTile = class{
       this.g.cx.fillRect(this.pos.x,this.pos.y,this.g.rockWidth,this.g.rockHeight)
     }
   };
-  
+
+  var classLava = class{
+    constructor(g,px,py){
+      this.g = g;
+      this.pos = {x:px,y:py};
+      this.name = 'lava';
+    } 
+    getBBox(){
+      return {x:this.pos.x,y:this.pos.y,width:this.g.rockWidth,height:this.g.rockHeight}
+    }
+    draw(){
+      let y = '#ff7878';
+      this.g.cx.fillStyle=y;
+      this.g.cx.fillRect(this.pos.x,this.pos.y,this.g.rockWidth,this.g.rockHeight)
+    }
+  };
+
   var classLaser = class{
     constructor(h){
       this.h = h;
@@ -307,7 +323,7 @@ var classTile = class{
   var classTrap1 = class{
     constructor(g,posx,posy,dir){
       this.g = g;
-      this.name = 'snake';
+      this.name = 'trap1';
       this.asset = [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0];
       this.minLength = 5;
       this.length = this.minLength;
@@ -438,6 +454,11 @@ var classTile = class{
       this.yPos = this.cirPoints[this.frame].yp;
       this.xPos = this.cirPoints[this.frame].xp;
       let rect1 = this.getBBox();
+      this.h.cx.beginPath();
+      this.h.cx.lineWidth = "1"
+      this.h.cx.strokeStyle = "blue";
+      this.h.cx.rect(rect1.x, rect1.y, rect1.width, rect1.height);
+      this.h.cx.stroke();
        for(let ty = 0;ty<dimy;ty++){
          if(this.asset[this.fly][ty] == 1)this.h.cx.fillRect(this.xPos,this.yPos,this.h.tileWidth,this.h.tileHeight)
          if((ty+1)%this.spriteWidth == 0){
@@ -561,8 +582,13 @@ var classTile = class{
         this.visited = false;
         this.ground = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
       this.trap = false;
+      this.wall = false;
+      this.lava = false;
     }
-    
+    resetTraps(){
+      this.wall = false;
+      this.lava = false;
+    }
     checkNeighbors() {
       let neighbors = [];
   
@@ -628,22 +654,34 @@ var classTile = class{
       }
   if(this.i || this.j){ 
   if((up && down) && (!left && !right)) {
-      this.ground[7] = 3;
-      this.ground[12] = 3;
-      this.ground[17] = 3;
+      if(!this.wall){
+        this.wall = true;
+        this.ground[7] = 3;
+        this.ground[12] = 3;
+        this.ground[17] = 3;
+      }else{
+        this.ground[21] = 10;
+        this.ground[22] = 10;
+        this.ground[23] = 10;
+      }
+      
   }
   
     if(((up || down) && (left && !right)) || ((up || down) && (!left && right))) {
+        this.resetTraps();
         this.ground[17] = 6;
     }
     if((!down) && (!left && right)) {
-      this.ground[21] = 8;
+      this.resetTraps();
+        this.ground[21] = 8;
     }
     if((!down) && (left && !right)) {
-      this.ground[23] = 7;
+      this.resetTraps();
+        this.ground[23] = 7;
     }
     
   if((!up && !down) && (left && right)){
+    this.resetTraps();
     if(this.trap)
       this.ground[13] = 4
     else
@@ -651,7 +689,8 @@ var classTile = class{
     this.trap = !this.trap;
   } 
     if((up || down) && (left && right)) {
-      this.ground[12] = 9;
+      this.resetTraps();
+        this.ground[12] = 9;
     }	
     
       
@@ -826,7 +865,11 @@ var classTile = class{
                       this.g.cx.fillStyle = '#ff7777';
                       this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                     }
-                    
+                    else if(this.screen[s][tx]==10){
+                      this.g.cx.fillStyle = '#ff7878';
+                      this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
+                    }
+
                     if((tx+1)%this.screenSize == 0){
                       y += rockSizeY;
                       x = roomX;
@@ -892,6 +935,9 @@ var classTile = class{
                       case 9:
                         this.g.g[this.position].push(new classPage(this.g,xPos,yPos,'r'))
                         break
+                      case 10:
+                          this.g.g[this.position].push(new classLava(this.g,xPos,yPos))
+                          break  
                       }
                       
                       if((tx+1)%this.screenSize == 0){
