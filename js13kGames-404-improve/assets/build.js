@@ -854,7 +854,7 @@ var classTile = class{
                       this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                     }
                     else if(this.screen[s][tx]==6){
-                      this.g.cx.fillStyle = '#00ffff';
+                      this.g.cx.fillStyle = '#ff00ff';
                       this.g.cx.fillRect(x,y,rockSizeX,rockSizeY)
                     }
                     else if(this.screen[s][tx]==7 || this.screen[s][tx]==8){
