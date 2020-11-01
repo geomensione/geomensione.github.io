@@ -172,15 +172,10 @@
 		for(var p = 0;p<newSegmentCount;p++){
 			var circle = new Path.Circle({
 					center: path.segments[p].point,
-					radius: 10,
+					radius: (p==0)?1:(p==(newSegmentCount-1))?1:10,
 					fillColor: 'black'
 				})
 		}
-		//path.segments.forEach(e => var circle = new Path.Circle({
-		//													center: e.point,
-		//													radius: 10,
-		//													fillColor = 'black'
-		//												}))
 		var difference = segmentCount - newSegmentCount;
 		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
 		textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
