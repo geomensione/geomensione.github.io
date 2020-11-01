@@ -13,8 +13,11 @@
 		}
 	</style>
 </head>
-<script type="text/javascript" src="js/paper.js"></script>
+<script type="text/javascript" src="js/paper-full.min.js"></script>
 <script type="text/paperscript" canvas="myCanvas">
+	
+	////////////////////////////////////
+	/*
 	project.currentStyle.fillColor = 'black';
 
 	tool.fixedDistance = 30;
@@ -25,6 +28,162 @@
 			radius: event.delta.length / 2
 		});
 		circle.fillColor = 'black';
+	}
+	var values = {
+		paths: 50,
+		minPoints: 5,
+		maxPoints: 15,
+		minRadius: 30,
+		maxRadius: 90
+	};
+	
+	
+	createPaths();
+	
+	function createPaths() {
+		var radiusDelta = values.maxRadius - values.minRadius;
+		var pointsDelta = values.maxPoints - values.minPoints;
+		for (var i = 0; i < values.paths; i++) {
+			var radius = values.minRadius + Math.random() * radiusDelta;
+			var points = values.minPoints + Math.floor(Math.random() * pointsDelta);
+			var path = createBlob(view.size * Point.random(), radius, points);
+			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+			var hue = Math.random() * 360;
+			path.fillColor = { hue: hue, saturation: 1, lightness: lightness };
+			path.strokeColor = 'black';
+		};
+	}
+	
+	function createBlob(center, maxRadius, points) {
+		var path = new Path();
+		path.closed = true;
+		for (var i = 0; i < points; i++) {
+			var delta = new Point({
+				length: (maxRadius * 0.5) + (Math.random() * maxRadius * 0.5),
+				angle: (360 / points) * i
+			});
+			path.add(center + delta);
+		}
+		path.smooth();
+		return path;
+	}
+	///////////////////////////////////////////////////////////////////
+	var hitOptions = {
+		segments: true,
+		stroke: true,
+		fill: true,
+		tolerance: 5
+	};
+	var segment, path;
+	var movePath = false;
+	function onMouseDown(event) {
+		segment = path = null;
+		var hitResult = project.hitTest(event.point, hitOptions);
+		if (!hitResult)
+		return;
+		
+		if (event.modifiers.shift) {
+			if (hitResult.type == 'segment') {
+				hitResult.segment.remove();
+			};
+			return;
+		}
+		
+		if (hitResult) {
+			path = hitResult.item;
+			if (hitResult.type == 'segment') {
+				segment = hitResult.segment;
+			} else if (hitResult.type == 'stroke') {
+				var location = hitResult.location;
+				segment = path.insert(location.index + 1, event.point);
+				path.smooth();
+			}
+		}
+		movePath = hitResult.type == 'fill';
+		if (movePath)
+		project.activeLayer.addChild(hitResult.item);
+	}
+	
+	function onMouseMove(event) {
+		project.activeLayer.selected = false;
+		if (event.item)
+		event.item.selected = true;
+	}
+	
+	function onMouseDrag(event) {
+		if (segment) {
+			segment.point += event.delta;
+			path.smooth();
+		} else if (path) {
+			path.position += event.delta;
+		} else {
+			var circle = new Path.Circle({
+				center: event.middlePoint,
+				radius: event.delta.length / 2
+			});
+			circle.fillColor = 'black';
+		}
+	}
+	*/
+	var path;
+
+	var textItem = new PointText({
+		content: 'Click and drag to draw a line.',
+		point: new Point(20, 30),
+		fillColor: 'black',
+	});
+
+	function onMouseDown(event) {
+		// If we produced a path before, deselect it:
+		if (path) {
+			path.selected = false;
+		}
+
+		// Create a new path and set its stroke color to black:
+		path = new Path({
+			segments: [event.point],
+			strokeColor: 'black',
+			// Select the path, so we can see its segment points:
+			fullySelected: true
+		});
+	}
+
+	// While the user drags the mouse, points are added to the path
+	// at the position of the mouse:
+	function onMouseDrag(event) {
+		path.add(event.point);
+
+		// Update the content of the text item to show how many
+		// segments it has:
+		textItem.content = 'Segment count: ' + path.segments.length;
+	}
+
+	// When the mouse is released, we simplify the path:
+	function onMouseUp(event) {
+		var segmentCount = path.segments.length;
+
+		// When the mouse is released, simplify it:
+		path.simplify(10);
+
+		// Select the path, so we can see its segments:
+		path.fullySelected = true;
+
+		var newSegmentCount = path.segments.length;
+		for(var p = 0;p<newSegmentCount;p++){
+			var circle = new Path.Circle({
+					center: path.segments[p].point,
+					radius: 10,
+					fillColor: 'black'
+				})
+		}
+		//path.segments.forEach(e => var circle = new Path.Circle({
+		//													center: e.point,
+		//													radius: 10,
+		//													fillColor = 'black'
+		//												}))
+		var difference = segmentCount - newSegmentCount;
+		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
+		textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 	}
 </script>
 </head>
