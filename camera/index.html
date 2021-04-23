@@ -19,8 +19,7 @@
 			// Grab elements, create settings, etc.
             var canvas = document.getElementById('canvas');
             var context = canvas.getContext('2d');
-	    context.filter = 'contrast(1.9) grayscale(1)';
-
+	    
             var video = document.getElementById('video');
             var mediaConfig =  { video: true };
             var errBack = function(e) {
@@ -58,6 +57,52 @@
 			document.getElementById('snap').addEventListener('click', function() {
 				context.drawImage(video, 0, 0, 640, 480);
 			});
+			
+			document.getElementById('snap').addEventListener("load", () => applyFilter(context.getImageData(0, 0, document.getElementById('canvas').width, document.getElementById('canvas').height)), {once: true});
+
+			
+			const Filters = {
+			    createImage(w, h) {
+				const can = document.createElement("canvas");
+				can.width = w;
+				can.height= h;  
+				return can;
+			    },
+			    copyImage(img) {
+				const image = this.createImage(img.width, img.height);
+				const ctx = image.getContext("2d");
+				if (img instanceof ImageData) { ctx.putImageData(img, 0, 0) }
+				else { ctx.drawImage(img, 0, 0, img.width, img.height) }
+				return image;
+			    },
+			    getPixels(img) {
+				if (!(img instanceof HTMLCanvasElement)) { img = this.copyImage(img) }
+				const ctx = img.getContext("2d");
+				return ctx.getImageData(0, 0, img.width, img.height);
+			    },
+			    threshold(pixels, threshold, light = [255,255,255], dark = [0,0,0]) { // light, dark arrays of RGB
+				var d = pixels.data, i = 0, l = d.length;
+				while (l-- > 0) {
+				    const v = d[i] * 0.2126 + d[i+1] * 0.7152 + d[i+2] * 0.0722;
+				    [d[i], d[i+1], d[i+2]] = v >= threshold ? light : dark;
+				    i += 4;
+				}
+				return pixels;
+			    }
+
+			};
+			function applyFilter(image) {
+			    const pixels = Filters.getPixels(image);
+			    Filters.threshold(pixels, 100);
+			    const thresholdImage = Filters.copyImage(pixels);
+			    att.classList.remove("hide"); // Image can be seen so show attribution
+			    document.body.appendChild(image); // add original to page
+			    document.body.appendChild(thresholdImage); // add filtered to page 
+			}
+
+/* Image source 
+   By Rmhermen - Transferred from en.wikipedia to Commons., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=468996 
+*/
 		}, false);
 
 	</script>
