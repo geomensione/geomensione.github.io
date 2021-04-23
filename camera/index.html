@@ -56,6 +56,7 @@
 			// Trigger photo take
 			document.getElementById('snap').addEventListener('click', function() {
 				context.drawImage(video, 0, 0, 640, 480);
+				applyFilter(context.getImageData(0, 0, 640, 480);
 			});
 			
 			document.getElementById('snap').addEventListener("load", () => applyFilter(context.getImageData(0, 0, document.getElementById('canvas').width, document.getElementById('canvas').height)), {once: true});
