@@ -93,6 +93,7 @@
 			    const pixels = Filters.getPixels(image);
 			    Filters.threshold(pixels, 100);
 			    const thresholdImage = Filters.copyImage(pixels);
+			    context.drawImage(thresholdImage, 0, 0, 640, 480);
 			    //att.classList.remove("hide"); // Image can be seen so show attribution
 			    //document.body.appendChild(image); // add original to page
 			    //document.body.appendChild(thresholdImage); // add filtered to page 
