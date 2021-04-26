@@ -1,3 +1,5 @@
+web https://geomensione.github.io/camera
+
 JS and camera https://davidwalsh.name/demo/camera.php
 
 Threshold https://stackoverflow.com/questions/63893601/how-can-i-do-a-threshold-effect-with-canvas
