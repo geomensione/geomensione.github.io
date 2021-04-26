@@ -98,10 +98,10 @@
 			    for(let x = 0;x<640;){
 			    	for(let y = 0;x<480;){
 			    		avgArea([x,y,W,H]).then(l => context.fillRect(x,y,W,H))
-					x+=W;
+					y+=H;
 			    	}
-				x=0;
-				y+=H
+				x+=W;
+				
 			    }	
 			    //att.classList.remove("hide"); // Image can be seen so show attribution
 			    //document.body.appendChild(image); // add original to page
