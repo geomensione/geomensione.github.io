@@ -95,10 +95,13 @@
 			    Filters.threshold(pixels, 100);
 			    const thresholdImage = Filters.copyImage(pixels);
 			    context.drawImage(thresholdImage, 0, 0, 640, 480);
-			    for(let x = 0;x<640;x+=W){
-			    	for(let y = 0;x<480;y+=H){
+			    for(let x = 0;x<640;){
+			    	for(let y = 0;x<480;){
 			    		avgArea([x,y,W,H]).then(l => context.fillRect(x,y,W,H))
+					x+=W;
 			    	}
+				x=0;
+				y+=H
 			    }	
 			    //att.classList.remove("hide"); // Image can be seen so show attribution
 			    //document.body.appendChild(image); // add original to page
@@ -111,28 +114,30 @@
 		}, false);
 
 		function avgArea(area){
+			return new Promise((res,rej)=>{
+				var x = area[0],
+				y = area[1],
+				w = area[2],
+				h = area[3];
 
-			var x = area[0],
-			y = area[1],
-			w = area[2],
-			h = area[3];
+				var imageData = context.getImageData(x, y, w, h);
+				var data = imageData.data;
+				var colorSum = 0;
+				var r,g,b,avg;
 
-			var imageData = context.getImageData(x, y, w, h);
-			var data = imageData.data;
-			var colorSum = 0;
-			var r,g,b,avg;
+				for(var x = 0, len = data.length; x < len; x+=4) {
+				    r = data[x];
+				    g = data[x+1];
+				    b = data[x+2];
 
-			for(var x = 0, len = data.length; x < len; x+=4) {
-			    r = data[x];
-			    g = data[x+1];
-			    b = data[x+2];
+				    avg = Math.floor((r+g+b)/3);
+				    colorSum += avg;
+				}
 
-			    avg = Math.floor((r+g+b)/3);
-			    colorSum += avg;
-			}
+				res(Math.floor(colorSum / (w*h)));
 
-			return Math.floor(colorSum / (w*h));
-
+			})
+			
 		}
 	</script>
   </body>
