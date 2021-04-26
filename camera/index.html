@@ -13,18 +13,18 @@
 	<canvas id="canvas" width="640" height="480"></canvas>
 
 	<script>
-
+		var context
 		// Put event listeners into place
 		window.addEventListener("DOMContentLoaded", function() {
 			// Grab elements, create settings, etc.
-            var canvas = document.getElementById('canvas');
-            var context = canvas.getContext('2d');
+            	var canvas = document.getElementById('canvas');
+            	context = canvas.getContext('2d');
 	    
-            var video = document.getElementById('video');
-            var mediaConfig =  { video: true };
-            var errBack = function(e) {
-            	console.log('An error has occurred!', e)
-            };
+            	var video = document.getElementById('video');
+            	var mediaConfig =  { video: true };
+            	var errBack = function(e) {
+            		console.log('An error has occurred!', e)
+            	};
 
 			// Put video listeners into place
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
