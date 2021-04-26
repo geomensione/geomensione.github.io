@@ -105,6 +105,96 @@
 		}, false);
 
 	</script>
+	<script>
+		function getImageLightness(img, areas, callback) {
+    
+		    // img is a node, but not an <img> node
+		    if( img.nodeName && img.nodeName !== 'IMG' ){
+			console.error('!! Cannot get image lightness: given image is not an image.', img)
+			callback(false);
+			return false
+		    }
+		    // img must be a string, lets 
+		    else if( !img.nodeName ){
+			var imgSrc = img;
+			img = document.createElement("img");
+			    img.src = imgSrc;
+			    img.style.display = "none";
+			    document.body.appendChild(img);
+		    }
 
+		    var brightnessVals = [];
+
+		    img.onerror = function(){
+			console.error('!! Cannot get image lightness: image failed to load', img)
+			callback(false);
+		    }
+		    img.onload = function() {
+			// create canvas
+			var canvas = document.createElement("canvas");
+			var imgW = this.width;
+			var imgH = this.height;
+			canvas.width = imgW;
+			canvas.height = imgH;
+
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(this,0,0);
+
+			if( !areas )
+				areas = [[null, null, null, null]];
+
+			_.each(areas, function(area){
+
+				var x = area[0],
+					y = area[1],
+					w = area[2],
+					h = area[3];
+
+					x = x || 0
+					y = y || 0;
+					w = w || canvas.width
+					h = h || canvas.height;
+
+					if( x < 1 && x > 0 )
+						x = x * canvas.width;
+
+					if( y < 1 && y > 0 )
+						y = y * canvas.height;
+
+					if( w < 1 && w > 0 )
+						w = w * canvas.width;
+
+					if( h < 1 && h > 0 )
+						h = h * canvas.height;
+
+					var imageData = ctx.getImageData(x, y, w, h);
+					var data = imageData.data;
+					var colorSum = 0;
+					var r,g,b,avg;
+
+					for(var x = 0, len = data.length; x < len; x+=4) {
+					    r = data[x];
+					    g = data[x+1];
+					    b = data[x+2];
+
+					    avg = Math.floor((r+g+b)/3);
+					    colorSum += avg;
+					}
+
+					brightnessVals.push( Math.floor(colorSum / (w*h)) );
+
+			})
+
+			if( brightnessVals.length == 1)
+				brightnessVals = brightnessVals[0];
+
+			callback(brightnessVals);
+			return;
+		    }
+
+		    if( img.complete && brightnessVals.length == 0)
+			img.onload();
+		}
+	</script>
   </body>
 </html>
