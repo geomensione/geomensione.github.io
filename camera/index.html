@@ -90,10 +90,16 @@
 
 			};
 			function applyFilter(image) {
+			    let W = 20, H = 20;
 			    const pixels = Filters.getPixels(image);
 			    Filters.threshold(pixels, 100);
 			    const thresholdImage = Filters.copyImage(pixels);
 			    context.drawImage(thresholdImage, 0, 0, 640, 480);
+			    for(let x = 0;x<640;x+=W){
+			    	for(let y = 0;x<480;y+=H){
+			    		avgArea([x,y,W,H]).then(l => context.fillRect(x,y,W,H))
+			    	}
+			    }	
 			    //att.classList.remove("hide"); // Image can be seen so show attribution
 			    //document.body.appendChild(image); // add original to page
 			    //document.body.appendChild(thresholdImage); // add filtered to page 
@@ -113,24 +119,7 @@
 			w = area[2],
 			h = area[3];
 
-			x = x || 0
-			y = y || 0;
-			w = w || canvas.width
-			h = h || canvas.height;
-
-			if( x < 1 && x > 0 )
-				x = x * canvas.width;
-
-			if( y < 1 && y > 0 )
-				y = y * canvas.height;
-
-			if( w < 1 && w > 0 )
-				w = w * canvas.width;
-
-			if( h < 1 && h > 0 )
-				h = h * canvas.height;
-
-			var imageData = ctx.getImageData(x, y, w, h);
+			var imageData = context.getImageData(x, y, w, h);
 			var data = imageData.data;
 			var colorSum = 0;
 			var r,g,b,avg;
