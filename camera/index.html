@@ -13,7 +13,7 @@
 	<canvas id="canvas" width="640" height="480"></canvas>
 
 	<script>
-		var context
+		var context;
 		// Put event listeners into place
 		window.addEventListener("DOMContentLoaded", function() {
 			// Grab elements, create settings, etc.
@@ -95,8 +95,8 @@
 			    Filters.threshold(pixels, 100);
 			    const thresholdImage = Filters.copyImage(pixels);
 			    context.drawImage(thresholdImage, 0, 0, 640, 480);
-			    for(let x = 0;x<640;){
-			    	for(let y = 0;y<480;){
+			    for(let x = -20;x<640;){
+			    	for(let y = -20;y<480;){
                                         avgArea([x,y,W,H]).then(
 						(l) => { if(l>0.5){
 								context.fillStyle='black';
