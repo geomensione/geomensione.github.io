@@ -97,7 +97,15 @@
 			    context.drawImage(thresholdImage, 0, 0, 640, 480);
 			    for(let x = 0;x<640;){
 			    	for(let y = 0;y<480;){
-                                        avgArea([x,y,W,H]).then((l) => {l>0.5?context.fillStyle='black',context.fillRect(x,y,W,H):context.fillStyle='white',context.fillRect(x,y,W,H)}
+                                        avgArea([x,y,W,H]).then(
+						(l) => { if(l>0.5){
+								context.fillStyle='black';
+								context.fillRect(x,y,W,H);
+							}else{
+								context.fillStyle='white';
+								context.fillRect(x,y,W,H);
+							}
+						       }
 					y+=H;
 			    	}
 				x+=W;
