@@ -168,6 +168,9 @@ CANNONJS
 
 [https://geomensione.github.io/cannonjs](https://geomensione.github.io/cannonjs)
 
+Smooth freehand
+
+https://stackoverflow.com/questions/40324313/svg-smooth-freehand-drawing
 
 Lectures
 ========
