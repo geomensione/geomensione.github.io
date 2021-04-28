@@ -89,7 +89,7 @@
 			    }
 
 			};
-			function applyFilter(image) {
+			async function applyFilter(image) {
 			    let W = 20, H = 20;
 			    const pixels = Filters.getPixels(image);
 			    Filters.threshold(pixels, 100);
@@ -120,8 +120,8 @@
 */
 		}, false);
 		//https://javascript.info/async-await
-		async function avgArea(area){
-			new Promise((res,rej)=>{
+		function avgArea(area){
+			return new Promise((res,rej)=>{
 				var x = area[0],
 				y = area[1],
 				w = area[2],
