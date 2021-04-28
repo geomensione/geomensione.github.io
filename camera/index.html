@@ -97,16 +97,14 @@
 			    context.drawImage(thresholdImage, 0, 0, 640, 480);
 			    for(let x = -20;x<640;){
 			    	for(let y = -20;y<480;){
-                                        avgArea([x,y,W,H]).then(
-						(l) => { if(l>0.5){
-								context.fillStyle='black';
-								context.fillRect(x,y,W,H);
-							}else{
-								context.fillStyle='white';
-								context.fillRect(x,y,W,H);
-							}
-							
-						       })
+                                        let l = await avgArea([x,y,W,H]);
+					if(l>0.5){
+						context.fillStyle='black';
+						context.fillRect(x,y,W,H);
+					}else{
+						context.fillStyle='white';
+						context.fillRect(x,y,W,H);
+					}
 					y+=H;
 			    	}
 				x+=W;
@@ -121,9 +119,9 @@
    By Rmhermen - Transferred from en.wikipedia to Commons., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=468996 
 */
 		}, false);
-
-		function avgArea(area){
-			return new Promise((res,rej)=>{
+		//https://javascript.info/async-await
+		async function avgArea(area){
+			new Promise((res,rej)=>{
 				var x = area[0],
 				y = area[1],
 				w = area[2],
