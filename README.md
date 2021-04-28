@@ -94,6 +94,10 @@ css layout
 WIP
 ===
 
+Camera game
+
+[https://geomensione.github.io/camera](https://geomensione.github.io/camera)
+
 Vue
 
 [https://geomensione.github.io/vue](https://geomensione.github.io/vue)
