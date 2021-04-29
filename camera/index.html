@@ -14,6 +14,7 @@
 
 	<script>
 		var context;
+		var size = 20;
 		// Put event listeners into place
 		window.addEventListener("DOMContentLoaded", function() {
 			// Grab elements, create settings, etc.
@@ -90,13 +91,13 @@
 
 			};
 			async function applyFilter(image) {
-			    let W = 20, H = 20;
+			    let W = size, H = size;
 			    const pixels = Filters.getPixels(image);
 			    Filters.threshold(pixels, 100);
 			    const thresholdImage = Filters.copyImage(pixels);
 			    context.drawImage(thresholdImage, 0, 0, 640, 480);
-			    for(let x = -20;x<640;){
-			    	for(let y = -20;y<480;){
+			    for(let x = -size;x<640;){
+			    	for(let y = -size;y<480;){
                                         let l = await avgArea([x,y,W,H]);
 					if(l>0.5){
 						context.fillStyle='black';
