@@ -98,7 +98,7 @@ Camera game
 
 [https://geomensione.github.io/camera](https://geomensione.github.io/camera)
 
-[https://geomensione.github.io/camera](https://geomensione.github.io/camera/game.html)
+[https://geomensione.github.io/camera/game.html](https://geomensione.github.io/camera/game.html)
 
 Vue
 
