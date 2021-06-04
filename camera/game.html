@@ -120,7 +120,7 @@
 			    //document.body.appendChild(thresholdImage); // add filtered to page 
 			}
 			function getRandomArbitrary(min, max) {
-			    return Math.random() * (max - min) + min;
+			    return Math.round(Math.random() * (max - min) + min);
 			}
 			function startGame(){
 				let l = blackTiles.length;
