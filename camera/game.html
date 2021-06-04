@@ -15,6 +15,7 @@
 	<script>
 		var context;
 		var size = 5;
+		var blackTiles = [];
 		// Put event listeners into place
 		window.addEventListener("DOMContentLoaded", function() {
 			// Grab elements, create settings, etc.
@@ -26,7 +27,7 @@
             	var errBack = function(e) {
             		console.log('An error has occurred!', e)
             	};
-		var blackTiles = [];
+		
 
 			// Put video listeners into place
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
