@@ -118,9 +118,21 @@
 			    //document.body.appendChild(image); // add original to page
 			    //document.body.appendChild(thresholdImage); // add filtered to page 
 			}
-			
+			function getRandomArbitrary(min, max) {
+			    return Math.random() * (max - min) + min;
+			}
 			function startGame(){
-				console.log(blackTiles.length)
+				let l = blackTiles.length;
+				let redposition = getRandomArbitrary(0,blackTiles.length)
+				let redCoords = blackTiles[redposition];
+				context.fillStyle='red';
+				context.fillRect(redCoords.x,redCoords.y,W,H);
+				blackTiles.splice(redposition,1)
+				let blueposition = getRandomArbitrary(0,blackTiles.length-1)
+				let blueCoords = blackTiles[blueposition];
+				context.fillStyle='blue';
+				context.fillRect(blueCoords.x,blueCoords.y,W,H);
+				
 			}
 
 /* Image source 
