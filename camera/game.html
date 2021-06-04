@@ -26,6 +26,7 @@
             	var errBack = function(e) {
             		console.log('An error has occurred!', e)
             	};
+		var blackTiles = [];
 
 			// Put video listeners into place
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -58,6 +59,7 @@
 			document.getElementById('snap').addEventListener('click', async function() {
 				context.drawImage(video, 0, 0, 640, 480);
 				await applyFilter(context.getImageData(0, 0, 640, 480));
+				startGame();
 			});
 			
 			const Filters = {
@@ -102,6 +104,7 @@
 					if(l>0.5){
 						context.fillStyle='black';
 						context.fillRect(x,y,W,H);
+						blackTiles.push({x:x,y:y})
 					}else{
 						context.fillStyle='white';
 						context.fillRect(x,y,W,H);
@@ -114,6 +117,10 @@
 			    //att.classList.remove("hide"); // Image can be seen so show attribution
 			    //document.body.appendChild(image); // add original to page
 			    //document.body.appendChild(thresholdImage); // add filtered to page 
+			}
+			
+			function startGame(){
+				console.log(blackTiles.lenght)
 			}
 
 /* Image source 
