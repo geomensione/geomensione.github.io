@@ -122,6 +122,9 @@
 				}
 			}
 			class Red extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+				}
 				gravity(){
 			            var p = context.getImageData(this.position.x + Math.round(dim/2), this.position.x + Math.round(dim/2), 1, 1).data; 
 
@@ -135,8 +138,17 @@
 				    if(hex == '#0000FF') alert('blue found')
 				}
 			}
-			class Blue extends Tile{}
-			class White extends Tile{}
+			class Blue extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+				}
+			}
+			
+			class White extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+				}
+			}
 			async function applyFilter(image) {
 			    let W = size, H = size;
 			    const pixels = Filters.getPixels(image);
