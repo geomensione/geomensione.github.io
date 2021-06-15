@@ -162,7 +162,7 @@
 						context.fillRect(x,y,W,H);
 						blackTiles.push({x:x,y:y})
 					}else{
-						Tiles.push(new White({x:x,y:y},W,'white')
+						Tiles.push(new White({x:x,y:y},W,'white'))
 						Tiles[Tiles.length-1].draw();	
 						//context.fillStyle='white';
 						//context.fillRect(x,y,W,H);
@@ -183,14 +183,14 @@
 				let l = blackTiles.length;
 				let redposition = getRandomArbitrary(0,blackTiles.length)
 				let redCoords = blackTiles[redposition];
-				Tiles.push(new Red({x:redCoords.x,y:redCoords.y},size,'red')
+				Tiles.push(new Red({x:redCoords.x,y:redCoords.y},size,'red'))
 				Tiles[Tiles.length-1].draw();	
 				//context.fillStyle='red';
 				//context.fillRect(redCoords.x,redCoords.y,size,size);
 				blackTiles.splice(redposition,1)
 				let blueposition = getRandomArbitrary(0,blackTiles.length-1)
 				let blueCoords = blackTiles[blueposition];
-				Tiles.push(new Blue({x:blueCoords.x,y:blueCoords.y},size,'blue')
+				Tiles.push(new Blue({x:blueCoords.x,y:blueCoords.y},size,'blue'))
 				Tiles[Tiles.length-1].draw();	
 				//context.fillStyle='blue';
 				//context.fillRect(blueCoords.x,blueCoords.y,size,size);
