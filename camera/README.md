@@ -1,4 +1,4 @@
-web https://geomensione.github.io/camera
+web https://geomensione.github.io/camera web https://geomensione.github.io/camera/game.html
 
 JS and camera https://davidwalsh.name/demo/camera.php
 
