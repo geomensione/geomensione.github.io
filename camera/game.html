@@ -16,6 +16,7 @@
 		var context;
 		var size = 5;
 		var blackTiles = [];
+		var Tiles = [];
 		// Put event listeners into place
 		window.addEventListener("DOMContentLoaded", function() {
 			// Grab elements, create settings, etc.
@@ -98,17 +99,29 @@
 				throw "Invalid color component";
 			    return ((r << 16) | (g << 8) | b).toString(16);
 			}
-			class Red{
-				position,dim;
-				construct(coords,size){
+			class Tile{
+				position,dim,col;
+				construct(coords,size,color){
 					this.position.x = coords.x;
 					this.position.y = coords.y;
 					this.dim = size;
+					this.col = color;
+					
 				}
 				draw(){
-					context.fillStyle='red';
-					context.fillRect(this.position.x,this.position.y,dim,dim);
+					context.fillStyle=this.color;
+					context.fillRect(this.position.x,this.position.y,this.dim,this.dim);
 				}
+				hit(x,y,d){
+					//https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+					return (this.position.x < x + d &&
+					   this.position.x + this.position.dim > x &&
+					   this.position.y < y + d &&
+					   this.position.y + this.dim > y)
+				 
+				}
+			}
+			class Red extends Tile{
 				gravity(){
 			            var p = context.getImageData(this.position.x + Math.round(dim/2), this.position.x + Math.round(dim/2), 1, 1).data; 
 
@@ -122,7 +135,8 @@
 				    if(hex == '#0000FF') alert('blue found')
 				}
 			}
-			
+			class Blue extends Tile{}
+			class White extends Tile{}
 			async function applyFilter(image) {
 			    let W = size, H = size;
 			    const pixels = Filters.getPixels(image);
@@ -137,8 +151,10 @@
 						context.fillRect(x,y,W,H);
 						blackTiles.push({x:x,y:y})
 					}else{
-						context.fillStyle='white';
-						context.fillRect(x,y,W,H);
+						Tiles.push(new White({x:x,y:y},W,'white')
+						Tiles[Tiles.length-1].draw();	
+						//context.fillStyle='white';
+						//context.fillRect(x,y,W,H);
 					}
 					y+=H;
 			    	}
@@ -156,13 +172,17 @@
 				let l = blackTiles.length;
 				let redposition = getRandomArbitrary(0,blackTiles.length)
 				let redCoords = blackTiles[redposition];
-				context.fillStyle='red';
-				context.fillRect(redCoords.x,redCoords.y,size,size);
+				Tiles.push(new Red({x:redCoords.x,y:redCoords.y},size,'red')
+				Tiles[Tiles.length-1].draw();	
+				//context.fillStyle='red';
+				//context.fillRect(redCoords.x,redCoords.y,size,size);
 				blackTiles.splice(redposition,1)
 				let blueposition = getRandomArbitrary(0,blackTiles.length-1)
 				let blueCoords = blackTiles[blueposition];
-				context.fillStyle='blue';
-				context.fillRect(blueCoords.x,blueCoords.y,size,size);
+				Tiles.push(new Blue({x:blueCoords.x,y:blueCoords.y},size,'blue')
+				Tiles[Tiles.length-1].draw();	
+				//context.fillStyle='blue';
+				//context.fillRect(blueCoords.x,blueCoords.y,size,size);
 				
 			}
 
