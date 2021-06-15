@@ -149,6 +149,12 @@
 					super(coords,size,color);
 				}
 			}
+			
+			class Black extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+				}
+			}
 			async function applyFilter(image) {
 			    let W = size, H = size;
 			    const pixels = Filters.getPixels(image);
@@ -159,8 +165,10 @@
 			    	for(let y = -size;y<480;){
                                         let l = await avgArea([x,y,W,H]);
 					if(l>0.5){
-						context.fillStyle='black';
-						context.fillRect(x,y,W,H);
+						Tiles.push(new Black({x:x,y:y},W,'black'))
+						Tiles[Tiles.length-1].draw();	
+						//context.fillStyle='black';
+						//context.fillRect(x,y,W,H);
 						blackTiles.push({x:x,y:y})
 					}else{
 						Tiles.push(new White({x:x,y:y},W,'white'))
@@ -193,8 +201,12 @@
 				let blueCoords = blackTiles[blueposition];
 				Tiles.push(new Blue({x:blueCoords.x,y:blueCoords.y},size,'blue'))
 				Tiles[Tiles.length-1].draw();	
+				gameLoop();
 				//context.fillStyle='blue';
 				//context.fillRect(blueCoords.x,blueCoords.y,size,size);
+				
+			}
+			function gameLoop(){
 				
 			}
 
