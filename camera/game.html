@@ -218,7 +218,7 @@
 				clearCanvas();
 				for(t=0,tl=Tiles.length;t<tl;t++){
 					Tiles[t].draw();
-					if(t=tl-1) requestAnimationFrame(gameLoop)
+					if(t==tl-1) requestAnimationFrame(gameLoop)
 				}
 
 			}
