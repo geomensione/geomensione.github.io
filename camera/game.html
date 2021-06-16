@@ -160,8 +160,10 @@
 			    Filters.threshold(pixels, 100);
 			    const thresholdImage = Filters.copyImage(pixels);
 			    context.drawImage(thresholdImage, 0, 0, 640, 480);
-			    for(let x = -size;x<640;){
-			    	for(let y = -size;y<480;){
+			    const canvasWidth = document.getElementById('canvas').width;
+			    const canvasHeight = document.getElementById('canvas').height;
+			    for(let x = -size;x<canvasWidth;){
+			    	for(let y = -size;y<canvasHeight;){
                                         let l = await avgArea([x,y,W,H]);
 					if(l>0.5){
 						Tiles.push(new Black({x:x,y:y},W,'black'))
@@ -205,7 +207,15 @@
 				//context.fillRect(blueCoords.x,blueCoords.y,size,size);
 				
 			}
+			function clearCanvas(){
+			    const canvasWidth = document.getElementById('canvas').width;
+			    const canvasHeight = document.getElementById('canvas').height;
+			    context.fillStyle='black';
+			    context.fillRect(0,0,canvasWidth,canvasHeight);
+			    
+			}
 			function gameLoop(){
+				clearCanvas();
 				for(t=0,tl=Tiles.length;t<tl;t++){
 					Tiles[t].draw();
 					if(t=tl-1) requestAnimationFrame(gameLoop)
