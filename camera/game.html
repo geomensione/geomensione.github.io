@@ -199,19 +199,18 @@
 				let blueposition = getRandomArbitrary(0,blackTiles.length-1)
 				let blueCoords = blackTiles[blueposition];
 				Tiles.push(new Blue({x:blueCoords.x,y:blueCoords.y},size,'blue'))
-				Tiles[Tiles.length-1].draw();	
-				gameLoop();
+				Tiles[Tiles.length-1].draw();
+				requestAnimationFrame(gameLoop)
 				//context.fillStyle='blue';
 				//context.fillRect(blueCoords.x,blueCoords.y,size,size);
 				
 			}
 			function gameLoop(){
-				for(;;){
-					for(t=0,tl=Tiles.length;t<tl;t++){
-						Tiles[t].draw();
-					}
+				for(t=0,tl=Tiles.length;t<tl;t++){
+					Tiles[t].draw();
+					if(t=tl-1) requestAnimationFrame(gameLoop)
 				}
-				
+
 			}
 
 /* Image source 
