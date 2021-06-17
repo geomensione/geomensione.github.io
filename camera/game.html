@@ -190,6 +190,8 @@
 			    return Math.round(Math.random() * (max - min) + min);
 			}
 			function startGame(){
+				blackTiles.length = 0;
+				Tiles.length = 0;
 				let l = blackTiles.length;
 				let redposition = getRandomArbitrary(0,blackTiles.length)
 				let redCoords = blackTiles[redposition];
