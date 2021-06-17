@@ -155,6 +155,8 @@
 				}
 			}
 			async function applyFilter(image) {
+			    blackTiles.length = 0;
+			    Tiles.length = 0;
 			    let W = size, H = size;
 			    const pixels = Filters.getPixels(image);
 			    Filters.threshold(pixels, 100);
@@ -190,8 +192,7 @@
 			    return Math.round(Math.random() * (max - min) + min);
 			}
 			function startGame(){
-				blackTiles.length = 0;
-				Tiles.length = 0;
+				
 				let l = blackTiles.length;
 				let redposition = getRandomArbitrary(0,blackTiles.length)
 				let redCoords = blackTiles[redposition];
