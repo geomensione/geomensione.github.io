@@ -123,18 +123,80 @@
 			}
 			class Red extends Tile{
 				constructor(coords,size,color){
+					this.me = this;
+					this.dir = '';
 					super(coords,size,color);
+					document.addEventListener('keydown',(e)=>{
+						switch(event.keyCode){
+							case 37:
+								this.me.dir = 'l';
+								break;
+							case 38:
+								this.me.dir = 'u';
+								break;
+							case 39:
+								this.me.dir = 'r';
+								break;
+							case 40:
+								this.me.dir = 'd';
+								break;
+						}
+					})
+					
+					document.addEventListener('keyup',(e)=>{
+						this.me.dir = '';
+					})
+					
+					this.canvasHeight = document.getElementById('canvas').height;
+					this.canvasWidth = document.getElementById('canvas').width;
 				}
 				draw(){
 					super.draw();
-					this.gravity();
+					this.move();
 				}
-				gravity(){
-			            var p = context.getImageData(this.position.x + Math.round(this.dim/2), this.position.y + this.dim + Math.round(this.dim/2), 1, 1).data; 
-	    			    const canvasHeight = document.getElementById('canvas').height;
-				    var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
-			            if(hex == '#000000') if(this.position.y<canvasHeight) this.position.y += this.dim;
-				    if(hex == '#0000FF') alert('blue found')
+				move(){
+					let p,x,y;
+					switch(this.dir){
+						case '':
+							x=this.position.x + Math.round(this.dim/2);
+							y=this.position.y + this.dim + Math.round(this.dim/2);
+							break;
+						case 'l':
+							x=this.position.x - Math.round(this.dim/2);
+							y=this.position.y + Math.round(this.dim/2);
+							break;
+						case 'u':
+							x=this.position.x + Math.round(this.dim/2);
+							y=this.position.y - Math.round(this.dim/2);
+							break;
+						case 'r':
+							x=this.position.x + this.dim + Math.round(this.dim/2);
+							y=this.position.y + Math.round(this.dim/2);
+							break;
+					}
+					p = context.getImageData(x, y, 1, 1).data; 
+					
+			                
+				    	var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+			            	if(hex == '#000000'){
+						switch(this.dir){
+							case '':
+								if(this.position.y<this.canvasHeight) this.position.y += this.dim;
+								break;
+							case 'l':
+								if(this.position.x>0) this.position.x -= this.dim;
+								break;
+							case 'u':
+								if(this.position.y>0) this.position.y -= this.dim;
+								break;
+							case 'r':
+								if(this.position.x<this.canvasWidth) this.position.x += this.dim;
+								break;
+							
+						}
+						
+					} 
+				    	if(hex == '#0000FF') alert('blue found')
 				}
 			}
 			class Blue extends Tile{
