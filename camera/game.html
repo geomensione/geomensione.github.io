@@ -130,7 +130,7 @@
 					this.gravity();
 				}
 				gravity(){
-			            var p = context.getImageData(this.position.x + Math.round(this.dim/2), this.position.y + Math.round(this.dim/2), 1, 1).data; 
+			            var p = context.getImageData(this.position.x + Math.round(this.dim/2), this.position.y + this.dim + Math.round(this.dim/2), 1, 1).data; 
 	    			    const canvasHeight = document.getElementById('canvas').height;
 				    var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
 			            if(hex == '#000000') if(this.position.y<canvasHeight) this.position.y += this.dim;
