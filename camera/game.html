@@ -123,9 +123,9 @@
 			}
 			class Red extends Tile{
 				constructor(coords,size,color){
+					super(coords,size,color);
 					this.me = this;
 					this.dir = '';
-					super(coords,size,color);
 					document.addEventListener('keydown',(e)=>{
 						switch(event.keyCode){
 							case 37:
