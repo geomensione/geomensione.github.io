@@ -1,0 +1,324 @@
+<html>
+<head></head>
+<body>
+  <p>Using Opera Next or Chrome Canary, use this page to take your picture!</p>
+
+	<!--
+		Ideally these elements aren't created until it's confirmed that the
+		client supports video/camera, but for the sake of illustrating the
+		elements involved, they are created with markup (not JavaScript)
+	-->
+	<video id="video" width="640" height="480" autoplay></video>
+	<button id="snap" class="sexyButton">Snap Photo</button>
+	<canvas id="canvas" width="640" height="480"></canvas>
+
+	<script>
+		var context;
+		var size = 5;
+		var blackTiles = [];
+		var Tiles = [];
+		// Put event listeners into place
+		window.addEventListener("DOMContentLoaded", function() {
+			// Grab elements, create settings, etc.
+            	var canvas = document.getElementById('canvas');
+            	context = canvas.getContext('2d');
+	    
+            	var video = document.getElementById('video');
+            	var mediaConfig =  { video: true };
+            	var errBack = function(e) {
+            		console.log('An error has occurred!', e)
+            	};
+		
+
+			// Put video listeners into place
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+					//video.src = window.URL.createObjectURL(stream);
+					video.srcObject = stream;
+                    video.play();
+                });
+            }
+
+            /* Legacy code below! */
+            else if(navigator.getUserMedia) { // Standard
+				navigator.getUserMedia(mediaConfig, function(stream) {
+					video.src = stream;
+					video.play();
+				}, errBack);
+			} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+				navigator.webkitGetUserMedia(mediaConfig, function(stream){
+					video.src = window.webkitURL.createObjectURL(stream);
+					video.play();
+				}, errBack);
+			} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+				navigator.mozGetUserMedia(mediaConfig, function(stream){
+					video.src = window.URL.createObjectURL(stream);
+					video.play();
+				}, errBack);
+			}
+
+			// Trigger photo take
+			document.getElementById('snap').addEventListener('click', async function() {
+				context.drawImage(video, 0, 0, 640, 480);
+				await applyFilter(context.getImageData(0, 0, 640, 480));
+				startGame();
+			});
+			
+			const Filters = {
+			    createImage(w, h) {
+				const can = document.createElement("canvas");
+				can.width = w;
+				can.height= h;  
+				return can;
+			    },
+			    copyImage(img) {
+				const image = this.createImage(img.width, img.height);
+				const ctx = image.getContext("2d");
+				if (img instanceof ImageData) { ctx.putImageData(img, 0, 0) }
+				else { ctx.drawImage(img, 0, 0, img.width, img.height) }
+				return image;
+			    },
+			    getPixels(img) {
+				if (!(img instanceof HTMLCanvasElement)) { img = this.copyImage(img) }
+				const ctx = img.getContext("2d");
+				return ctx.getImageData(0, 0, img.width, img.height);
+			    },
+			    threshold(pixels, threshold, light = [255,255,255], dark = [0,0,0]) { // light, dark arrays of RGB
+				var d = pixels.data, i = 0, l = d.length;
+				while (l-- > 0) {
+				    const v = d[i] * 0.2126 + d[i+1] * 0.7152 + d[i+2] * 0.0722;
+				    [d[i], d[i+1], d[i+2]] = v >= threshold ? light : dark;
+				    i += 4;
+				}
+				return pixels;
+			    }
+
+			};
+			function rgbToHex(r, g, b) {
+			    if (r > 255 || g > 255 || b > 255)
+				throw "Invalid color component";
+			    return ((r << 16) | (g << 8) | b).toString(16);
+			}
+			class Tile{
+				constructor(coords,size,color){
+					this.position = {};
+					this.position.x = coords.x;
+					this.position.y = coords.y;
+					this.dim = size;
+					this.col = color;
+					
+				}
+				draw(){
+					context.fillStyle=this.col;
+					context.fillRect(this.position.x,this.position.y,this.dim,this.dim);
+				}
+				hit(x,y,d){
+					//https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+					return (this.position.x < x + d &&
+					   this.position.x + this.position.dim > x &&
+					   this.position.y < y + d &&
+					   this.position.y + this.dim > y)
+				 
+				}
+			}
+			class Red extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+					this.me = this;
+					this.dir = '';
+					document.addEventListener('keydown',(e)=>{
+						switch(event.keyCode){
+							case 37:
+								this.me.dir = 'l';
+								break;
+							case 38:
+								this.me.dir = 'u';
+								break;
+							case 39:
+								this.me.dir = 'r';
+								break;
+							case 40:
+								this.me.dir = 'd';
+								break;
+						}
+					})
+					
+					document.addEventListener('keyup',(e)=>{
+						this.me.dir = '';
+					})
+					
+					this.canvasHeight = document.getElementById('canvas').height;
+					this.canvasWidth = document.getElementById('canvas').width;
+				}
+				draw(){
+					super.draw();
+					this.move();
+				}
+				move(){
+					let p,x,y;
+					switch(this.dir){
+						case '':
+							x=this.position.x + Math.round(this.dim/2);
+							y=this.position.y + this.dim + Math.round(this.dim/2);
+							break;
+						case 'l':
+							x=this.position.x - Math.round(this.dim/2);
+							y=this.position.y + Math.round(this.dim/2);
+							break;
+						case 'u':
+							x=this.position.x + Math.round(this.dim/2);
+							y=this.position.y - Math.round(this.dim/2);
+							break;
+						case 'r':
+							x=this.position.x + this.dim + Math.round(this.dim/2);
+							y=this.position.y + Math.round(this.dim/2);
+							break;
+					}
+					p = context.getImageData(x, y, 1, 1).data; 
+					
+			                
+				    	var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+			            	if(hex == '#000000'){
+						switch(this.dir){
+							case '':
+								if(this.position.y<this.canvasHeight) this.position.y += this.dim;
+								break;
+							case 'l':
+								if(this.position.x>0) this.position.x -= this.dim;
+								break;
+							case 'u':
+								if(this.position.y>0) this.position.y -= this.dim;
+								break;
+							case 'r':
+								if(this.position.x<this.canvasWidth) this.position.x += this.dim;
+								break;
+							
+						}
+						
+					} 
+				    	if(hex == '#0000FF') alert('blue found')
+				}
+			}
+			class Blue extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+				}
+			}
+			
+			class White extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+				}
+			}
+			
+			class Black extends Tile{
+				constructor(coords,size,color){
+					super(coords,size,color);
+				}
+			}
+			async function applyFilter(image) {
+			    blackTiles.length = 0;
+			    Tiles.length = 0;
+			    let W = size, H = size;
+			    const pixels = Filters.getPixels(image);
+			    Filters.threshold(pixels, 100);
+			    const thresholdImage = Filters.copyImage(pixels);
+			    context.drawImage(thresholdImage, 0, 0, 640, 480);
+			    const canvasWidth = document.getElementById('canvas').width;
+			    const canvasHeight = document.getElementById('canvas').height;
+			    for(let x = -size;x<canvasWidth;){
+			    	for(let y = -size;y<canvasHeight;){
+                                        let l = await avgArea([x,y,W,H]);
+					if(l>0.5){
+						Tiles.push(new Black({x:x,y:y},W,'black'))
+						Tiles[Tiles.length-1].draw();	
+						//context.fillStyle='black';
+						//context.fillRect(x,y,W,H);
+						blackTiles.push({x:x,y:y})
+					}else{
+						Tiles.push(new White({x:x,y:y},W,'white'))
+						Tiles[Tiles.length-1].draw();	
+						//context.fillStyle='white';
+						//context.fillRect(x,y,W,H);
+					}
+					y+=H;
+			    	}
+				x+=W;
+				
+			    }	
+			    //att.classList.remove("hide"); // Image can be seen so show attribution
+			    //document.body.appendChild(image); // add original to page
+			    //document.body.appendChild(thresholdImage); // add filtered to page 
+			}
+			function getRandomArbitrary(min, max) {
+			    return Math.round(Math.random() * (max - min) + min);
+			}
+			function startGame(){
+				
+				let l = blackTiles.length;
+				let redposition = getRandomArbitrary(0,blackTiles.length)
+				let redCoords = blackTiles[redposition];
+				Tiles.push(new Red({x:redCoords.x,y:redCoords.y},size,'red'))
+				Tiles[Tiles.length-1].draw();	
+				//context.fillStyle='red';
+				//context.fillRect(redCoords.x,redCoords.y,size,size);
+				blackTiles.splice(redposition,1)
+				let blueposition = getRandomArbitrary(0,blackTiles.length-1)
+				let blueCoords = blackTiles[blueposition];
+				Tiles.push(new Blue({x:blueCoords.x,y:blueCoords.y},size,'blue'))
+				Tiles[Tiles.length-1].draw();
+				requestAnimationFrame(gameLoop)
+				//context.fillStyle='blue';
+				//context.fillRect(blueCoords.x,blueCoords.y,size,size);
+				
+			}
+			function clearCanvas(){
+			    const canvasWidth = document.getElementById('canvas').width;
+			    const canvasHeight = document.getElementById('canvas').height;
+			    context.fillStyle='black';
+			    context.fillRect(0,0,canvasWidth,canvasHeight);
+			    
+			}
+			function gameLoop(){
+				clearCanvas();
+				for(t=0,tl=Tiles.length;t<tl;t++){
+					Tiles[t].draw();
+					if(t==tl-1) requestAnimationFrame(gameLoop)
+				}
+
+			}
+
+/* Image source 
+   By Rmhermen - Transferred from en.wikipedia to Commons., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=468996 
+*/
+		}, false);
+		//https://javascript.info/async-await
+		function avgArea(area){
+			return new Promise((res,rej)=>{
+				var x = area[0],
+				y = area[1],
+				w = area[2],
+				h = area[3];
+
+				var imageData = context.getImageData(x, y, w, h);
+				var data = imageData.data;
+				var colorSum = 0;
+				var r,g,b,avg;
+
+				for(var x = 0, len = data.length; x < len; x+=4) {
+				    r = data[x];
+				    g = data[x+1];
+				    b = data[x+2];
+
+				    avg = Math.floor((r+g+b)/3);
+				    colorSum += avg;
+				}
+
+				res(Math.floor(colorSum / (w*h)));
+
+			})
+			
+		}
+	</script>
+  </body>
+</html>
