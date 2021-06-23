@@ -1,4 +1,8 @@
-web https://geomensione.github.io/camera web https://geomensione.github.io/camera/game.html
+web https://geomensione.github.io/camera 
+
+wip web game https://geomensione.github.io/camera/game.html
+
+v1 web game https://geomensione.github.io/camera/gamev1.html
 
 JS and camera https://davidwalsh.name/demo/camera.php
 
