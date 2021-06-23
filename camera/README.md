@@ -12,4 +12,4 @@ Get the average lightness of an image or area of an image (to put into Promise) 
 
 ToDo:
 
-continuare a creare le varie classi che gestiscono gli oggetti in scena
+hero tools: gun,harpoon,spring,jetpack
