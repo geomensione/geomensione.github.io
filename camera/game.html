@@ -291,7 +291,7 @@
 			let delayToAddAsset = 1000;
 			async function gameLoop(){
 				clearCanvas();
-				let now = new Date.now;
+				let now = Date.now();
 				if(ts){
 					let diff = now - ts;
 					if(diff>delayToAddAsset){
