@@ -254,23 +254,31 @@
 			    return Math.round(Math.random() * (max - min) + min);
 			}
 			function startGame(){
-				
 				let l = blackTiles.length;
 				let redposition = getRandomArbitrary(0,blackTiles.length)
 				let redCoords = blackTiles[redposition];
 				Tiles.push(new Red({x:redCoords.x,y:redCoords.y},size,'red'))
 				Tiles[Tiles.length-1].draw();	
-				//context.fillStyle='red';
-				//context.fillRect(redCoords.x,redCoords.y,size,size);
 				blackTiles.splice(redposition,1)
 				let blueposition = getRandomArbitrary(0,blackTiles.length-1)
 				let blueCoords = blackTiles[blueposition];
 				Tiles.push(new Blue({x:blueCoords.x,y:blueCoords.y},size,'blue'))
 				Tiles[Tiles.length-1].draw();
 				requestAnimationFrame(gameLoop)
-				//context.fillStyle='blue';
-				//context.fillRect(blueCoords.x,blueCoords.y,size,size);
+				blackTiles.splice(redposition,1)
 				
+			}
+			async function addTile(){
+				return new Promise((res,rej)=>{
+					let l = blackTiles.length;
+					let redposition = getRandomArbitrary(0,blackTiles.length)
+					let redCoords = blackTiles[redposition];
+					Tiles.push(new White({x:redCoords.x,y:redCoords.y},size,'white'))
+					Tiles[Tiles.length-1].draw();	
+					blackTiles.splice(redposition,1);
+					res();
+				})
+			        
 			}
 			function clearCanvas(){
 			    const canvasWidth = document.getElementById('canvas').width;
@@ -279,8 +287,22 @@
 			    context.fillRect(0,0,canvasWidth,canvasHeight);
 			    
 			}
+			let ts = 0;
+			let delayToAddAsset = 1000;
 			function gameLoop(){
 				clearCanvas();
+				let now = new Date.now;
+				if(ts){
+					let diff = now - ts;
+					if(diff>delayToAddAsset){
+						ts = now;
+						await addTile();
+					}
+				}
+				else
+				{
+					ts = now;
+				}
 				for(t=0,tl=Tiles.length;t<tl;t++){
 					Tiles[t].draw();
 					if(t==tl-1) requestAnimationFrame(gameLoop)
