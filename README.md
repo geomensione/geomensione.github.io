@@ -54,6 +54,10 @@ js13kGames-404
 TOOLS
 =====
 
+js1024 Creature
+
+[https://geomensione.github.io/js1024_creature](https://geomensione.github.io/js1024_creature)
+
 create teletext art!
 
 [https://geomensione.github.io/tools/LRdraw.html](https://geomensione.github.io/tools/LRdraw.html)
