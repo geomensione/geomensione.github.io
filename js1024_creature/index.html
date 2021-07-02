@@ -26,7 +26,6 @@ document.oncontextmenu = function() {
 }
 function setup() {
 	c = createCanvas(windowWidth, windowHeight);
-	noStroke();
 }
 
 function draw() {
@@ -46,7 +45,7 @@ function draw() {
 	background('pink')
 	//let sizex = mouseX - pmouseX;
 	//let sizey = mouseY - pmouseY;
-	
+	noStroke();
 	creature.forEach((c) => {
 		translate(c.x,c.y)
 		fill(c.c);
@@ -55,6 +54,7 @@ function draw() {
 		rotate(-c.r);
 		translate(-c.x,-c.y)
 	})
+	stroke('black')
 	translate(mouseX, mouseY)
 	fill('white')
 	rotate(r);
