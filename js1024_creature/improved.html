@@ -1,0 +1,123 @@
+<!doctype html>
+<head>
+	<title>Creature creator</title>
+	<meta name="author" content="Morticcino"></meta>
+	<meta name="description" content="A tiny paint program to create creatures"></meta>
+	<meta name="title" content="Creature Creator"></meta>
+	<meta charset=utf-8>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+</head>
+<body id=b>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; }
+.p5Canvas { position: relative; }
+</style>
+<script>
+// Entry configuration
+// ===================
+
+var title = "Title"; // this will be assigned automatically
+
+// Your entry goes here 👇
+// =======================
+var sizex = sizey = 50,creature = [],c,scalex,scaley,f,rot,r=0;
+document.oncontextmenu = function() {
+    return false;
+}
+function setup() {
+	c = createCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+	if (mouseIsPressed) {
+		if (mouseButton === LEFT) {
+		  f = 'white'
+		}
+		if (mouseButton === RIGHT) {
+		  f = 'black'
+		}
+		if (mouseButton === CENTER) {
+		  f = 'pink'
+		}
+	}
+	//Line from prev pt to current pt
+	//of mouse position
+	background('pink')
+	//let sizex = mouseX - pmouseX;
+	//let sizey = mouseY - pmouseY;
+	noStroke();
+	creature.forEach((c) => {
+		translate(c.x,c.y)
+		fill(c.c);
+		rotate(c.r);
+		ellipse(0,0,c.sx,c.sy);
+		rotate(-c.r);
+		translate(-c.x,-c.y)
+	})
+	stroke('black')
+	translate(mouseX, mouseY)
+	fill('white')
+	rotate(r);
+	ellipse(0, 0,sizex,sizey)
+	rotate(-r);
+	translate(-mouseX, -mouseY)
+}
+
+function mouseWheel(event) {
+	if(scalex){
+		  sizex += event.delta/4;
+	}else if(scaley){
+		  sizey += event.delta/4;
+	}else{
+		  sizex += event.delta/4;
+		  sizey += event.delta/4;
+	}
+	if(rot){
+		r += event.delta/4;
+	}
+  //uncomment to block page scrolling
+  //return false;
+}
+
+function mouseReleased() {
+	creature.push({x:mouseX, y:mouseY, sx:sizex, sy:sizey,c:f,r:r});
+	// prevent default
+	return false;
+}
+function keyPressed() {
+	switch(keyCode){
+		//r
+		case 82:
+			rot = true;
+			break;
+		//s
+		case 83:
+			saveCanvas(c, 'cc', 'jpg');
+			break;
+		//x
+		case 88:
+			scalex = true;
+			break;
+		//y
+		case 89:
+			scaley = true;
+			break;
+	}
+}
+function keyReleased() {
+	switch(keyCode){
+		//r
+		case 82:
+			rot = false;
+			break;
+		case 88:
+			scalex = false;
+			break;
+		case 89:
+			scaley = false;
+			break;
+	}
+}
+// =======================
+</script>
+</body>
