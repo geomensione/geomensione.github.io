@@ -58,6 +58,8 @@ js1024 Creature
 
 [https://geomensione.github.io/js1024_creature](https://geomensione.github.io/js1024_creature)
 
+[https://geomensione.github.io/js1024_creature/improved.html](https://geomensione.github.io/js1024_creature/improved.html)
+
 create teletext art!
 
 [https://geomensione.github.io/tools/LRdraw.html](https://geomensione.github.io/tools/LRdraw.html)
