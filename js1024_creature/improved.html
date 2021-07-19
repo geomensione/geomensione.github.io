@@ -26,7 +26,6 @@ document.oncontextmenu = function() {
 }
 function setup() {
 	c = createCanvas(windowWidth, windowHeight);
-	background('pink')
 }
 
 function draw() {
@@ -43,10 +42,18 @@ function draw() {
 	}
 	//Line from prev pt to current pt
 	//of mouse position
-	
+	background('pink')
 	//let sizex = mouseX - pmouseX;
 	//let sizey = mouseY - pmouseY;
-	
+	noStroke();
+	creature.forEach((c) => {
+		translate(c.x,c.y)
+		fill(c.c);
+		rotate(c.r);
+		ellipse(0,0,c.sx,c.sy);
+		rotate(-c.r);
+		translate(-c.x,-c.y)
+	})
 	stroke('black')
 	translate(mouseX, mouseY)
 	fill('white')
@@ -74,13 +81,6 @@ function mouseWheel(event) {
 
 function mouseReleased() {
 	creature.push({x:mouseX, y:mouseY, sx:sizex, sy:sizey,c:f,r:r});
-	noStroke();
-	translate(mouseX,mouseY)
-	fill(f);
-	rotate(r);
-	ellipse(0,0,sizex,sizey);
-	rotate(-r);
-	translate(-mouseX,-mouseY)
 	// prevent default
 	return false;
 }
@@ -103,8 +103,6 @@ function keyPressed() {
 			scaley = true;
 			break;
 	}
-	
-
 }
 function keyReleased() {
 	switch(keyCode){
