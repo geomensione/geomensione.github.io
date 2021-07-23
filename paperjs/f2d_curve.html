@@ -2,11 +2,16 @@
 <html>
 <head>
 	<style>
-		/* Scale canvas with resize attribute to full size */
-		canvas {
-		    width: 100%;
-		    height: 100%;
-		}
+		html,
+body {
+    height: 100%;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
 	</style>
 <!-- Load the Paper.js library -->
   <script src="js/paper_01215.min.js"></script>
@@ -75,6 +80,6 @@ function onMouseUp(event) {
 	
 </head>
 <body>
-	<canvas id="myCanvas"></canvas>
+	<canvas id="myCanvas" resize></canvas>
 </body>
 </html>
