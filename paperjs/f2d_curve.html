@@ -46,9 +46,10 @@ function onMouseUp(event) {
 	path.simplify(10);
 	path.flatten(4);
 	// Loop through the segments of the path:
-	for (var s in path.segments) {
+	var sl = path.segments.length;
+	for (let s = 0;s<sl;s++) {
 		new Path.Circle({
-			center: s.point,
+			center: path.segments[s].point,
 			radius: 10,
 			strokeColor: 'black',
 			fillColor: 'white'
