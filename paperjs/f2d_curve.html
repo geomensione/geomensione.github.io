@@ -45,7 +45,7 @@ function onMouseUp(event) {
 	// When the mouse is released, simplify it:
 	path.simplify(10);
 	path.flatten(4);
-	path.segments.forEach(e => new new Path.Circle({
+	path.segments.forEach(e => new Path.Circle({
 		center: event.point,
 		radius: 10,
 		strokeColor: 'black',
