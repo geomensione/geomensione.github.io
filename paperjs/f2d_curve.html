@@ -55,6 +55,13 @@ function onMouseUp(event) {
 	textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 }
 </script>
+	<style>
+		/* Scale canvas with resize attribute to full size */
+		canvas[resize] {
+		    width: 100%;
+		    height: 100%;
+		}
+	</style>
 </head>
 <body>
 	<canvas id="myCanvas" resize></canvas>
