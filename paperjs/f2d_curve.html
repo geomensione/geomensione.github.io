@@ -45,12 +45,18 @@ function onMouseUp(event) {
 	// When the mouse is released, simplify it:
 	path.simplify(10);
 	path.flatten(4);
-	path.segments.forEach(e => new Path.Circle({
-		center: event.point,
-		radius: 10,
-		strokeColor: 'black',
-		fillColor: 'white'
-	});)
+	path.segments.forEach(e => )
+	// Loop through the segments of the path:
+	for (var i = 0; i <= amount; i++) {
+		var segment = path.segments[i];
+
+		new Path.Circle({
+			center: segment.point,
+			radius: 10,
+			strokeColor: 'black',
+			fillColor: 'white'
+		});
+	}
 
 	// Select the path, so we can see its segments:
 	path.fullySelected = true;
