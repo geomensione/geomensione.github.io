@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+		/* Scale canvas with resize attribute to full size */
+		canvas {
+		    width: 100%;
+		    height: 100%;
+		}
+	</style>
 <!-- Load the Paper.js library -->
   <script src="js/paper_01215.min.js"></script>
 <!-- Define inlined PaperScript associate it with myCanvas -->
@@ -65,13 +72,7 @@ function onMouseUp(event) {
 	textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 }
 </script>
-	<style>
-		/* Scale canvas with resize attribute to full size */
-		canvas {
-		    width: 100%;
-		    height: 100%;
-		}
-	</style>
+	
 </head>
 <body>
 	<canvas id="myCanvas" resize></canvas>
