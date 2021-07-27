@@ -17,11 +17,17 @@ canvas[resize] {
   <script src="js/paper_01215.min.js"></script>
 <!-- Define inlined PaperScript associate it with myCanvas -->
 <script type="text/paperscript" canvas="myCanvas">
-var curveStyle = function(l){
-	this.length = l;
+var defaultRadius = 10;
+var curveStyleConeMin2Max = function(l){
+	var radius=[];
+	var stepDelta = defaultRadius / l;
+	var step = stepDelta;
+	for(var rl = 0;rl < l;rl++){
+		radius.push(step);
+		step += stepDelta;
+	}
+	return radius;
 };
-
-curveStyle.prototype.getCurveRadius = function(){};
 
 
 	var path;
@@ -66,10 +72,11 @@ function onMouseUp(event) {
 	path.flatten(4);
 	// Loop through the segments of the path:
 	var sl = path.segments.length;
+	var radius = curveStyleConeMin2Max(sl);
 	for (var s = 0;s<sl;s++) {
 		new Path.Circle({
 			center: path.segments[s].point,
-			radius: 10,
+			radius: radius[s],
 			strokeColor: 'black',
 			fillColor: 'white'
 		});
