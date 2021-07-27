@@ -101,8 +101,8 @@ function onMouseUp(event) {
 		//	strokeColor: 'black',
 		//	fillColor: 'white'
 		//});
-		var top = data[s] + step;
-		var bottom = data[s] - step;
+		var top = data[s] + radius[s];
+		var bottom = data[s] - radius[s];
 		path.add(top);
 		path.insert(0, bottom);
 		path.smooth();
