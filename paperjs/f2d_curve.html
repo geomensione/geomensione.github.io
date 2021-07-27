@@ -31,12 +31,13 @@ var curveStyleConeMin2Max = function(l){
 
 
 	var path;
+	var data = [];
 
-var textItem = new PointText({
-	content: 'Click and drag to draw a line.',
-	point: new Point(20, 30),
-	fillColor: 'black',
-});
+//var textItem = new PointText({
+//	content: 'Click and drag to draw a line.',
+//	point: new Point(20, 30),
+//	fillColor: 'black',
+//});
 
 function onMouseDown(event) {
 	path = new Path();
@@ -64,39 +65,58 @@ function onMouseDown(event) {
 // While the user drags the mouse, points are added to the path
 // at the position of the mouse:
 function onMouseDrag(event) {
-	path.add(event.point);
+
+	var step = event.delta / 2;
+	step.angle += 90;
+	
+	var top = event.middlePoint + step;
+	var bottom = event.middlePoint - step;
+	data.push(top)
+	data.push(bottom)
+	data.push(event.point)
+	//path.add(top);
+	//path.insert(0, bottom);
+	//path.smooth();
+
+	//path.add(event.point);
 
 	// Update the content of the text item to show how many
 	// segments it has:
-	textItem.content = 'Segment count: ' + path.segments.length;
+	//textItem.content = 'Segment count: ' + path.segments.length;
 }
 
 // When the mouse is released, we simplify the path:
 function onMouseUp(event) {
-	var segmentCount = path.segments.length;
-
+	//var segmentCount = path.segments.length;
+	var dataCount = data.length;
 	// When the mouse is released, simplify it:
 	//path.simplify(10);
 	//path.flatten(4);
 	// Loop through the segments of the path:
-	var sl = path.segments.length;
+	//var sl = path.segments.length;
 	var radius = curveStyleConeMin2Max(sl);
-	for (var s = 0;s<sl;s++) {
-		new Path.Circle({
-			center: path.segments[s].point,
-			radius: radius[s],
-			strokeColor: 'black',
-			fillColor: 'white'
-		});
+	for (var s = 0;s<dataCount;s+=3) {
+		//new Path.Circle({
+		//	center: path.segments[s].point,
+		//	radius: radius[s],
+		//	strokeColor: 'black',
+		//	fillColor: 'white'
+		//});
+		path.add(data[s]);
+		path.insert(0, data[s+1]);
+		path.smooth();
+		path.add(data[s+2);
 	}
 
 	// Select the path, so we can see its segments:
-	path.fullySelected = true;
+	path.add(event.point);
+	path.closed = true;
+	path.smooth();
 
-	var newSegmentCount = path.segments.length;
-	var difference = segmentCount - newSegmentCount;
-	var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
-	textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+	//var newSegmentCount = data.length;
+	//var difference = segmentCount - newSegmentCount;
+	//var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
+	//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 }
 </script>
 	
