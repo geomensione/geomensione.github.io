@@ -39,18 +39,26 @@ var textItem = new PointText({
 });
 
 function onMouseDown(event) {
+	path = new Path();
+	path.fillColor = {
+		hue: Math.random() * 360,
+		saturation: 1,
+		brightness: 1
+	};
+
+	path.add(event.point);
 	// If we produced a path before, deselect it:
-	if (path) {
-		path.selected = false;
-	}
+	//if (path) {
+	//	path.selected = false;
+	//}
 
 	// Create a new path and set its stroke color to black:
-	path = new Path({
-		segments: [event.point],
-		strokeColor: 'black',
-		// Select the path, so we can see its segment points:
-		fullySelected: true
-	});
+	//path = new Path({
+	//	segments: [event.point],
+	//	strokeColor: 'black',
+	//	// Select the path, so we can see its segment points:
+	//	fullySelected: true
+	//});
 }
 
 // While the user drags the mouse, points are added to the path
