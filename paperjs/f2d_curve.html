@@ -17,6 +17,13 @@ canvas[resize] {
   <script src="js/paper_01215.min.js"></script>
 <!-- Define inlined PaperScript associate it with myCanvas -->
 <script type="text/paperscript" canvas="myCanvas">
+var curveStyle = function(l){
+	this.length = l;
+};
+
+curveStyle.prototype.getCurveRadius = function(){};
+
+
 	var path;
 
 var textItem = new PointText({
