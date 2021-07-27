@@ -71,8 +71,8 @@ function onMouseDrag(event) {
 	
 	var top = event.middlePoint + step;
 	var bottom = event.middlePoint - step;
-	data.push(event.middlePoint)
-	data.push(event.point)
+	data.push(event)
+	//data.push(event.point)
 	//path.add(top);
 	//path.insert(0, bottom);
 	//path.smooth();
@@ -94,19 +94,25 @@ function onMouseUp(event) {
 	// Loop through the segments of the path:
 	//var sl = path.segments.length;
 	var radius = curveStyleConeMin2Max(dataCount);
-	for (var s = 0;s<dataCount;s+=2) {
+	for (var s = 0;s<dataCount;s++) {
 		//new Path.Circle({
 		//	center: path.segments[s].point,
 		//	radius: radius[s],
 		//	strokeColor: 'black',
 		//	fillColor: 'white'
 		//});
-		var top = data[s] + radius[s];
-		var bottom = data[s] - radius[s];
+		var point = data[s];
+		point.length = radius[s];
+		var step = event.delta / 2;
+		step.angle += 90;
+
+		var top = point.middlePoint + step;
+		var bottom = point.middlePoint - step;
+		
 		path.add(top);
 		path.insert(0, bottom);
 		path.smooth();
-		path.add(data[s+1]);
+		path.add(data[s].point);
 	}
 
 	// Select the path, so we can see its segments:
