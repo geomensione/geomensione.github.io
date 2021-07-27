@@ -2,6 +2,8 @@ Curve
 
 https://geomensione.github.io/paperjs/f2d_curve.html
 
+https://geomensione.github.io/paperjs/f2d_curve01.html stroke and circles
+
 made using http://paperjs.org/
 
 F2D (wip):
