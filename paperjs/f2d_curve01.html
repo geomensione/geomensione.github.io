@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		html,
+body {
+    height: 100%;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+	</style>
+<!-- Load the Paper.js library -->
+  <script src="js/paper_01215.min.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+var defaultRadius = 30;
+var curveStyleConeMin2Max = function(l){
+	var radius=[];
+	var stepDelta = defaultRadius / l;
+	var step = stepDelta;
+	for(var rl = 0;rl < l;rl++){
+		radius.push(step);
+		step += stepDelta;
+	}
+	return radius;
+};
+
+
+	var path;
+
+var textItem = new PointText({
+	content: 'Click and drag to draw a line.',
+	point: new Point(20, 30),
+	fillColor: 'black',
+});
+
+function onMouseDown(event) {
+	// If we produced a path before, deselect it:
+	if (path) {
+		path.selected = false;
+	}
+
+	// Create a new path and set its stroke color to black:
+	path = new Path({
+		segments: [event.point],
+		strokeColor: 'black',
+		// Select the path, so we can see its segment points:
+		fullySelected: true
+	});
+}
+
+// While the user drags the mouse, points are added to the path
+// at the position of the mouse:
+function onMouseDrag(event) {
+	path.add(event.point);
+
+	// Update the content of the text item to show how many
+	// segments it has:
+	textItem.content = 'Segment count: ' + path.segments.length;
+}
+
+// When the mouse is released, we simplify the path:
+function onMouseUp(event) {
+	var segmentCount = path.segments.length;
+
+	// When the mouse is released, simplify it:
+	//path.simplify(10);
+	//path.flatten(4);
+	// Loop through the segments of the path:
+	var sl = path.segments.length;
+	var radius = curveStyleConeMin2Max(sl);
+	for (var s = 0;s<sl;s++) {
+		new Path.Circle({
+			center: path.segments[s].point,
+			radius: radius[s],
+			strokeColor: 'black',
+			fillColor: 'white'
+		});
+	}
+
+	// Select the path, so we can see its segments:
+	path.fullySelected = true;
+
+	var newSegmentCount = path.segments.length;
+	var difference = segmentCount - newSegmentCount;
+	var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
+	textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+}
+</script>
+	
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
