@@ -75,14 +75,14 @@
 		}
 		var skeleton = 1;
 		function updateTangents(){
-			if(scene[skeleton-1] > 1)
-			{
-				for(let s = 0;s<=skeleton-1;s++){
-					for(let b = 1;b<scene[s];b++){
-						draw_tangents(childrens_array,s+1,b+1)
-					}
-				}
-			}
+			//if(scene[skeleton-1] > 1)
+			//{
+			//	for(let s = 0;s<=skeleton-1;s++){
+			//		for(let b = 1;b<scene[s];b++){
+						draw_tangents(path.segments,1,1)
+			//		}
+			//	}
+			/}
 		}
 		
 		function draw_tangents(ca, sk,bo){
