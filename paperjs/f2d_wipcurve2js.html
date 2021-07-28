@@ -90,9 +90,9 @@
 			let now = sk+'_'+bo+'_'+'f2d';
 			let prev = sk+'_'+(bo-1)+'_'+'f2d';
 			var center1 = ca[bo].point;
-			var radius1 = radius[sk];
+			var radius1 = radius[bo];
 			var center2 = ca[sk].point;
-			var radius2= radius[bo];
+			var radius2= radius[sk];
 			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 			var points_length = points.length;
 			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
