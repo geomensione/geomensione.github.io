@@ -45,14 +45,14 @@
 		tool1.onMouseDrag = function(event) {
 			path.add(event.point);
 		}
-		var childrens_array
+		var childrens_array,radius;
 		tool1.onMouseUp = function(event){
 			childrens_array = paper.project.activeLayer.children;
 			var childrens_array_length = childrens_array.length;
 			var segmentCount = path.segments.length;
 
 			var sl = path.segments.length;
-			var radius = curveStyleConeMin2Max(sl);
+			radius = curveStyleConeMin2Max(sl);
 			for (var s = 0;s<sl;s++) {
 				new Path.Circle({
 					center: path.segments[s].point,
@@ -90,9 +90,9 @@
 			let now = sk+'_'+bo+'_'+'f2d';
 			let prev = sk+'_'+(bo-1)+'_'+'f2d';
 			var center1 = ca[bo].position;
-			var radius1 = (ca[bo].segments[2].point.x - ca[bo].segments[0].point.x)/2;
-			var center2 = ca[sk].position;
-			var radius2= (ca[sk].segments[2].point.x - ca[sk].segments[0].point.x)/2;
+			var radius1 = radius[sk];
+			var center2 = ca[sk].point;
+			var radius2= radius[bo];
 			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
 			var points_length = points.length;
 			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
