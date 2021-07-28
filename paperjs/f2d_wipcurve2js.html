@@ -13,7 +13,17 @@
 	// Keep global references to both tools, so the HTML
 	// links below can access them.
 	var tool1, tool2;
-
+	var defaultRadius = 30;
+	var curveStyleConeMin2Max = function(l){
+		var radius=[];
+		var stepDelta = defaultRadius / l;
+		var step = stepDelta;
+		for(var rl = 0;rl < l;rl++){
+			radius.push(step);
+			step += stepDelta;
+		}
+		return radius;
+	};
 	window.onload = function() {
 		paper.setup('myCanvas');
 
@@ -34,6 +44,22 @@
 
 		tool1.onMouseDrag = function(event) {
 			path.add(event.point);
+		}
+		
+		tool1.onMouseUp = function(event){
+			var segmentCount = path.segments.length;
+
+			var sl = path.segments.length;
+			var radius = curveStyleConeMin2Max(sl);
+			for (var s = 0;s<sl;s++) {
+				new Path.Circle({
+					center: path.segments[s].point,
+					radius: radius[s],
+					strokeColor: 'black',
+					fillColor: 'white'
+				});
+			}
+
 		}
 
 		tool2 = new Tool();
