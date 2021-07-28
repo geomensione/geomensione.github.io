@@ -37,7 +37,7 @@ var curveStyleConeMin2Max = function(l){
 		
 		tool.onMouseDown = function(event) {
 			
-			path = new Path();
+			path = new paper.Path();
       path.fillColor = {
         hue: Math.random() * 360,
         saturation: 1,
@@ -56,7 +56,7 @@ var curveStyleConeMin2Max = function(l){
 			var dataCount = path.segments.length;
 	    var radius = curveStyleConeMin2Max(dataCount);
       for (var s = 0;s<dataCount;s++) {
-        new Path.Circle({
+        new paper.Path.Circle({
           center: path.segments[s].point,
           radius: radius[s],
           strokeColor: 'black',
