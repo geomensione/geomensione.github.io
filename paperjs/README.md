@@ -6,6 +6,10 @@ https://geomensione.github.io/paperjs/f2d_curve01.html stroke and circles
 
 made using http://paperjs.org/
 
+TODO:
+
+https://observablehq.com/@taniki/hello-paperjs
+
 F2D (wip):
 
 001: cicles and tangents
