@@ -45,8 +45,10 @@
 		tool1.onMouseDrag = function(event) {
 			path.add(event.point);
 		}
-		
+		var childrens_array
 		tool1.onMouseUp = function(event){
+			childrens_array = paper.project.activeLayer.children;
+			var childrens_array_length = childrens_array.length;
 			var segmentCount = path.segments.length;
 
 			var sl = path.segments.length;
@@ -59,6 +61,7 @@
 					fillColor: 'white'
 				});
 			}
+			updateTangents();
 
 		}
 
@@ -69,6 +72,46 @@
 		tool2.onMouseDrag = function(event) {
 			// Use the arcTo command to draw cloudy lines
 			path.arcTo(event.point);
+		}
+		var skeleton = 1;
+		function updateTangents(){
+			if(scene[skeleton-1] > 1)
+			{
+				for(let s = 0;s<=skeleton-1;s++){
+					for(let b = 1;b<scene[s];b++){
+						draw_tangents(childrens_array,s+1,b+1)
+					}
+				}
+			}
+		}
+		
+		function draw_tangents(ca, sk,bo){
+			let now = sk+'_'+bo+'_'+'f2d';
+			let prev = sk+'_'+(bo-1)+'_'+'f2d';
+			var center1 = ca[prev].position;
+			var radius1 = (ca[prev].segments[2].point.x - ca[prev].segments[0].point.x)/2;
+			var center2 = ca[now].position;
+			var radius2= (ca[now].segments[2].point.x - ca[now].segments[0].point.x)/2;
+			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+			var points_length = points.length;
+			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
+			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+			var hue = Math.random() * 360;
+			if(paper.project.activeLayer.children[tangentName])
+			{
+				paper.project.activeLayer.children[tangentName].remove();
+			}
+			var myPathLine = new paper.Path({
+				name: tangentName,
+				fillColor: { hue: hue, saturation: 1, lightness: lightness }
+			});
+			myPathLine.strokeColor = 'black';
+			for(var p = 0;p<points_length;p++)
+			{
+				myPathLine.add(new paper.Point(points[p].x, points[p].y));
+			}
+			myPathLine.closed = true;
+			
 		}
 	}
 </script>
