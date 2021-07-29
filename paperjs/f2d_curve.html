@@ -14,6 +14,7 @@
 	// links below can access them.
 	var tool1, tool2;
 	var defaultRadius = 30;
+	var union;
 	var curveStyleConeMin2Max = function(l){
 		var radius=[];
 		var stepDelta = defaultRadius / l;
@@ -56,12 +57,14 @@
 			var sl = path.segments.length;
 			radius = curveStyleConeMin2Max(sl);
 			for (var s = 0;s<sl;s++) {
-				new Path.Circle({
+				var c = new Path.Circle({
 					center: path.segments[s].point,
 					radius: radius[s],
 					strokeColor: 'black',
 					fillColor: 'white'
 				});
+				if(union) union.unite(c)
+				else union = c.clone()
 				if(s<sl-1) draw_tangents(path.segments,s,s+1)
 
 				
@@ -117,6 +120,7 @@
 				myPathLine.add(new paper.Point(points[p].x, points[p].y));
 			}
 			myPathLine.closed = true;
+			union.unite(myPathLine)
 			
 		}
 	}
