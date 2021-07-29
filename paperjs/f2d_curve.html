@@ -1,135 +1,125 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<style>
-		html,
-body {
-    height: 100%;
-}
-
-/* Scale canvas with resize attribute to full size */
-canvas[resize] {
-    width: 100%;
-    height: 100%;
-}
+		#myCanvas{
+			width:100%;
+			height: 100%;
+		}
 	</style>
-<!-- Load the Paper.js library -->
-  <script src="js/paper_01215.min.js"></script>
-<!-- Define inlined PaperScript associate it with myCanvas -->
-<script type="text/paperscript" canvas="myCanvas">
-var defaultRadius = 30;
-var curveStyleConeMin2Max = function(l){
-	var radius=[];
-	var stepDelta = defaultRadius / l;
-	var step = stepDelta;
-	for(var rl = 0;rl < l;rl++){
-		radius.push(step);
-		step += stepDelta;
-	}
-	return radius;
-};
-
-
-	var path;
-	var data = [];
-
-//var textItem = new PointText({
-//	content: 'Click and drag to draw a line.',
-//	point: new Point(20, 30),
-//	fillColor: 'black',
-//});
-
-function onMouseDown(event) {
-	path = new Path();
-	path.fillColor = {
-		hue: Math.random() * 360,
-		saturation: 1,
-		brightness: 1
+  <script src="js/paper.js"></script>
+  <script src="js/tangents.js"></script>
+<script>
+	paper.install(window);
+	// Keep global references to both tools, so the HTML
+	// links below can access them.
+	var tool1, tool2;
+	var defaultRadius = 30;
+	var curveStyleConeMin2Max = function(l){
+		var radius=[];
+		var stepDelta = defaultRadius / l;
+		var step = stepDelta;
+		for(var rl = 0;rl < l;rl++){
+			radius.push(step);
+			step += stepDelta;
+		}
+		return radius;
 	};
+	window.onload = function() {
+		paper.setup('myCanvas');
 
-	path.add(event.point);
-	// If we produced a path before, deselect it:
-	//if (path) {
-	//	path.selected = false;
-	//}
+		// Create two drawing tools.
+		// tool1 will draw straight lines,
+		// tool2 will draw clouds.
 
-	// Create a new path and set its stroke color to black:
-	//path = new Path({
-	//	segments: [event.point],
-	//	strokeColor: 'black',
-	//	// Select the path, so we can see its segment points:
-	//	fullySelected: true
-	//});
-}
+		// Both share the mouseDown event:
+		var path;
+		function onMouseDown(event) {
+			path = new Path();
+			path.strokeColor = 'black';
+			path.add(event.point);
+		}
 
-// While the user drags the mouse, points are added to the path
-// at the position of the mouse:
-function onMouseDrag(event) {
+		tool1 = new Tool();
+		tool1.onMouseDown = onMouseDown;
 
-	data.push(event)
-	var step = event.delta / 2;
-	step.angle += 90;
-	
-	var top = event.middlePoint + step;
-	var bottom = event.middlePoint - step;
-	//data.push(event.point)
-	//path.add(top);
-	//path.insert(0, bottom);
-	//path.smooth();
+		tool1.onMouseDrag = function(event) {
+			path.add(event.point);
+		}
+		var childrens_array,radius;
+		tool1.onMouseUp = function(event){
+			childrens_array = paper.project.activeLayer.children;
+			var childrens_array_length = childrens_array.length;
+			var segmentCount = path.segments.length;
 
-	//path.add(event.point);
+			var sl = path.segments.length;
+			radius = curveStyleConeMin2Max(sl);
+			for (var s = 0;s<sl;s++) {
+				new Path.Circle({
+					center: path.segments[s].point,
+					radius: radius[s],
+					strokeColor: 'black',
+					fillColor: 'white'
+				});
+			}
+			updateTangents();
 
-	// Update the content of the text item to show how many
-	// segments it has:
-	//textItem.content = 'Segment count: ' + path.segments.length;
-}
+		}
 
-// When the mouse is released, we simplify the path:
-function onMouseUp(event) {
-	//var segmentCount = path.segments.length;
-	var dataCount = data.length;
-	// When the mouse is released, simplify it:
-	//path.simplify(10);
-	//path.flatten(4);
-	// Loop through the segments of the path:
-	//var sl = path.segments.length;
-	var radius = curveStyleConeMin2Max(dataCount);
-	for (var s = 0;s<dataCount;s++) {
-		//new Path.Circle({
-		//	center: path.segments[s].point,
-		//	radius: radius[s],
-		//	strokeColor: 'black',
-		//	fillColor: 'white'
-		//});
-		var point = data[s];
+		tool2 = new Tool();
+		tool2.minDistance = 20;
+		tool2.onMouseDown = onMouseDown;
+
+		tool2.onMouseDrag = function(event) {
+			// Use the arcTo command to draw cloudy lines
+			path.arcTo(event.point);
+		}
+		var skeleton = 1;
+		function updateTangents(){
+			let l = path.segments.length;
+			if(l > 1)
+			{
+				for(let s = 0;s<=l-2;s++){
+					//for(let b = 1;b<scene[s];b++){
+						draw_tangents(path.segments,s,s+1)
+					//}
+				}
+			}
+		}
 		
-		point.delta.length = radius[s];
-		var step = event.delta / 2;
-		step.angle += 90;
-
-		var top = point.middlePoint + step;
-		var bottom = point.middlePoint - step;
-		
-		path.add(top);
-		path.insert(0, bottom);
-		path.smooth();
-		path.add(data[s].point);
+		function draw_tangents(ca, sk,bo){
+			let now = sk+'_'+bo+'_'+'f2d';
+			let prev = sk+'_'+(bo-1)+'_'+'f2d';
+			var center1 = ca[bo].point;
+			var radius1 = radius[bo];
+			var center2 = ca[sk].point;
+			var radius2= radius[sk];
+			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+			var points_length = points.length;
+			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
+			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+			var hue = Math.random() * 360;
+			if(paper.project.activeLayer.children[tangentName])
+			{
+				paper.project.activeLayer.children[tangentName].remove();
+			}
+			var myPathLine = new paper.Path({
+				name: tangentName,
+				fillColor: { hue: hue, saturation: 1, lightness: lightness }
+			});
+			myPathLine.strokeColor = 'black';
+			for(var p = 0;p<points_length;p++)
+			{
+				myPathLine.add(new paper.Point(points[p].x, points[p].y));
+			}
+			myPathLine.closed = true;
+			
+		}
 	}
-
-	// Select the path, so we can see its segments:
-	path.add(event.point);
-	path.closed = true;
-	path.smooth();
-
-	//var newSegmentCount = data.length;
-	//var difference = segmentCount - newSegmentCount;
-	//var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
-	//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
-}
 </script>
-	
 </head>
 <body>
+<a href="#" onclick="tool1.activate();">Lines</a>
+    <a href="#" onclick="tool2.activate();">Clouds</a>
 	<canvas id="myCanvas" resize></canvas>
 </body>
 </html>
