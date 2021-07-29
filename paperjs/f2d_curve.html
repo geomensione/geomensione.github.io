@@ -49,6 +49,8 @@
 		tool1.onMouseUp = function(event){
 			childrens_array = paper.project.activeLayer.children;
 			var childrens_array_length = childrens_array.length;
+			path.simplify(10);
+			path.flatten(4);
 			var segmentCount = path.segments.length;
 
 			var sl = path.segments.length;
