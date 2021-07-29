@@ -15,7 +15,7 @@
 	var tool1, tool2;
 	var defaultRadius = 30;
 	var union;
-	var curveStyleConeMin2Max = function(l){
+	var curveStyleConeMax2Min = function(l){
 		var radius=[];
 		var stepDelta = defaultRadius / l;
 		var step = stepDelta;
@@ -55,7 +55,8 @@
 			var segmentCount = path.segments.length;
 
 			var sl = path.segments.length;
-			radius = curveStyleConeMin2Max(sl);
+			radius = curveStyleConeMax2Min(sl);
+			radius = radius.reverse();
 			for (var s = 0;s<sl;s++) {
 				var c = new Path.Circle({
 					center: path.segments[s].point,
