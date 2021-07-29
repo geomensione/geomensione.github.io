@@ -6,6 +6,8 @@
 			height: 100%;
 		}
 	</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <script src="js/paper.js"></script>
   <script src="js/tangents.js"></script>
 <script>
@@ -134,7 +136,7 @@
 				+ options.data + '"/></form>').appendTo('body').submit().remove();
 		}
 
-		document.getElementById('export-button').click(function() {
+		$('#export-button').click(function() {
 			var svg = project.exportSVG({ asString: true });
 			downloadDataUri({
 				data: 'data:image/svg+xml;base64,' + btoa(svg),
