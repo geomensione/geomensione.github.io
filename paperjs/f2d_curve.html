@@ -64,7 +64,7 @@
 					strokeColor: 'black',
 					fillColor: 'white'
 				});
-				if(union) union.unite(c)
+				if(union) union = union.unite(c)
 				else union = c.clone()
 				if(s<sl-1) draw_tangents(path.segments,s,s+1)
 
@@ -121,7 +121,7 @@
 				myPathLine.add(new paper.Point(points[p].x, points[p].y));
 			}
 			myPathLine.closed = true;
-			union.unite(myPathLine)
+			union = union.unite(myPathLine)
 			
 		}
 	}
