@@ -134,7 +134,7 @@
 				+ options.data + '"/></form>').appendTo('body').submit().remove();
 		}
 
-		$('#export-button').click(function() {
+		document.getElementById('export-button').click(function() {
 			var svg = project.exportSVG({ asString: true });
 			downloadDataUri({
 				data: 'data:image/svg+xml;base64,' + btoa(svg),
