@@ -137,11 +137,14 @@
 		}
 
 		$('#export-button').click(function() {
+			/*
 			var svg = project.exportSVG({ asString: true });
 			downloadDataUri({
 				data: 'data:image/svg+xml;base64,' + btoa(svg),
 				filename: 'export.svg'
 			});
+			*/
+			project.exportSVG({ asString: true });
 		});
 
 	}
