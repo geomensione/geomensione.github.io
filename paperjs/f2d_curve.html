@@ -17,6 +17,7 @@
 	var tool1, tool2;
 	var defaultRadius = 30;
 	var union;
+	var myPathLine;
 	var curveStyleConeMax2Min = function(l){
 		var radius=[];
 		var stepDelta = defaultRadius / l;
@@ -113,7 +114,7 @@
 			{
 				paper.project.activeLayer.children[tangentName].remove();
 			}
-			var myPathLine = new paper.Path({
+			myPathLine = new paper.Path({
 				name: tangentName,
 				fillColor: { hue: hue, saturation: 1, lightness: lightness }
 			});
