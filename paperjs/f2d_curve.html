@@ -69,6 +69,7 @@
 				});
 				if(union) union = union.unite(c)
 				else union = c.clone()
+				c.delete()
 				if(s<sl-1) draw_tangents(path.segments,s,s+1)
 
 				
@@ -125,6 +126,7 @@
 			}
 			myPathLine.closed = true;
 			union = union.unite(myPathLine)
+			myPathLine.delete()
 			
 		}
 		
