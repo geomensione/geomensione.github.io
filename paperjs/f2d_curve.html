@@ -140,7 +140,9 @@
 		}
 
 		$('#export-button').click(function() {
-			var svg = union.exportSVG({ asString: true });
+			//così esporta un solo path ma non aggiunge i tag svg
+			//var svg = union.exportSVG({ asString: true });
+			var svg = project.exportSVG({ asString: true });
 			downloadDataUri({
 				data: 'data:image/svg+xml;base64,' + btoa(svg),
 				filename: 'export.svg'
