@@ -140,9 +140,10 @@
 		}
 
 		$('#export-button').click(function() {
-			//così esporta un solo path ma non aggiunge i tag svg
-			//var svg = union.exportSVG({ asString: true });
-			var svg = project.exportSVG({ asString: true });
+			let start = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1534" height="811"><g fill="none" fill-rule="nonzero" stroke="#000000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">';
+			let end = '</g></svg>';
+			var svg = start + union.exportSVG({ asString: true }) + end;
+			//var svg = project.exportSVG({ asString: true });
 			downloadDataUri({
 				data: 'data:image/svg+xml;base64,' + btoa(svg),
 				filename: 'export.svg'
