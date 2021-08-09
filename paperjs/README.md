@@ -4,6 +4,8 @@ https://geomensione.github.io/paperjs/f2d_curve.html
 
 https://geomensione.github.io/paperjs/f2d_curve01.html stroke and circles
 
+https://geomensione.github.io/paperjs/f2d_curve02.html export svg of path and project
+
 made using http://paperjs.org/
 
 TODO:
