@@ -1,0 +1,174 @@
+<html>
+<head>
+	<style>
+		#myCanvas{
+			width:100%;
+			height: 100%;
+		}
+	</style>
+  <script src="js/jquery-3.6.0.min.js"></script>
+
+  <script src="js/paper.js"></script>
+  <script src="js/tangents.js"></script>
+<script>
+	paper.install(window);
+	// Keep global references to both tools, so the HTML
+	// links below can access them.
+	var tool1, tool2;
+	var defaultRadius = 30;
+	var union;
+	var myPathLine;
+	var curveStyleConeMax2Min = function(l){
+		var radius=[];
+		var stepDelta = defaultRadius / l;
+		var step = stepDelta;
+		for(var rl = 0;rl < l;rl++){
+			radius.push(step);
+			step += stepDelta;
+		}
+		return radius;
+	};
+	window.onload = function() {
+		paper.setup('myCanvas');
+
+		// Create two drawing tools.
+		// tool1 will draw straight lines,
+		// tool2 will draw clouds.
+
+		// Both share the mouseDown event:
+		var path;
+		function onMouseDown(event) {
+			path = new Path();
+			path.strokeColor = 'black';
+			path.add(event.point);
+		}
+
+		tool1 = new Tool();
+		tool1.onMouseDown = onMouseDown;
+
+		tool1.onMouseDrag = function(event) {
+			path.add(event.point);
+		}
+		var childrens_array,radius;
+		tool1.onMouseUp = function(event){
+			childrens_array = paper.project.activeLayer.children;
+			var childrens_array_length = childrens_array.length;
+			path.simplify(10);
+			path.flatten(4);
+			var segmentCount = path.segments.length;
+
+			var sl = path.segments.length;
+			radius = curveStyleConeMax2Min(sl);
+			radius = radius.reverse();
+			for (var s = 0;s<sl;s++) {
+				var c = new Path.Circle({
+					center: path.segments[s].point,
+					radius: radius[s],
+					strokeColor: 'black',
+					fillColor: 'white'
+				});
+				if(union) union = union.unite(c)
+				else union = c.clone()
+				c.remove()
+				if(s<sl-1) draw_tangents(path.segments,s,s+1)
+
+				
+			}
+			//updateTangents();
+
+		}
+
+		tool2 = new Tool();
+		tool2.minDistance = 20;
+		tool2.onMouseDown = onMouseDown;
+
+		tool2.onMouseDrag = function(event) {
+			// Use the arcTo command to draw cloudy lines
+			path.arcTo(event.point);
+		}
+		var skeleton = 1;
+		function updateTangents(){
+			let l = path.segments.length;
+			if(l > 1)
+			{
+				for(let s = 0;s<=l-2;s++){
+					//for(let b = 1;b<scene[s];b++){
+						draw_tangents(path.segments,s,s+1)
+					//}
+				}
+			}
+		}
+		
+		function draw_tangents(ca, sk,bo){
+			let now = sk+'_'+bo+'_'+'f2d';
+			let prev = sk+'_'+(bo-1)+'_'+'f2d';
+			var center1 = ca[bo].point;
+			var radius1 = radius[bo];
+			var center2 = ca[sk].point;
+			var radius2= radius[sk];
+			var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+			var points_length = points.length;
+			let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
+			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+			var hue = Math.random() * 360;
+			if(paper.project.activeLayer.children[tangentName])
+			{
+				paper.project.activeLayer.children[tangentName].remove();
+			}
+			myPathLine = new paper.Path({
+				name: tangentName,
+				fillColor: { hue: hue, saturation: 1, lightness: lightness }
+			});
+			myPathLine.strokeColor = 'black';
+			for(var p = 0;p<points_length;p++)
+			{
+				myPathLine.add(new paper.Point(points[p].x, points[p].y));
+			}
+			myPathLine.closed = true;
+			union = union.unite(myPathLine)
+			myPathLine.remove()
+			
+		}
+		
+		function downloadDataUri(options) {
+			if (!options.url)
+				options.url = "http://download-data-uri.appspot.com/";
+			$('<form method="post" action="' + options.url
+				+ '" style="display:none"><input type="hidden" name="filename" value="'
+				+ options.filename + '"/><input type="hidden" name="data" value="'
+				+ options.data + '"/></form>').appendTo('body').submit().remove();
+		}
+
+		$('#export-path-button').click(function() {
+			let start = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1534" height="811"><g fill="none" fill-rule="nonzero" stroke="#000000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">';
+			let end = '</g></svg>';
+			var svg = start + union.exportSVG({ asString: true }) + end;
+			//var svg = project.exportSVG({ asString: true });
+			downloadDataUri({
+				data: 'data:image/svg+xml;base64,' + btoa(svg),
+				filename: 'export.svg'
+			});
+		});
+		
+		$('#export-project-button').click(function() {
+			var svg = project.exportSVG({ asString: true });
+			downloadDataUri({
+				data: 'data:image/svg+xml;base64,' + btoa(svg),
+				filename: 'export.svg'
+			});
+		});
+
+	}
+</script>
+</head>
+<body>
+<a href="#" onclick="tool1.activate();">Lines</a>
+<p>
+	<input type="button" value="Download selected path as SVG" id="export-path-button">
+</p>
+<p>
+	<input type="button" value="Download project as SVG" id="export-project-button">
+</p>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
