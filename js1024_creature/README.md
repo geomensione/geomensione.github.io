@@ -6,5 +6,5 @@ left to create white content, right to create black content and middle button to
 
 https://p5js.org/
 
-https://geomensione.github.io/js1024_creature/improved.html
+https://geomensione.github.io/js1024_creature/improved.html for https://github.com/kchan2000/p5.js-showcase/wiki/p5.js-2021-Showcase:-The-Love-Ethic-Submission
 
