@@ -20,7 +20,7 @@ var title = "Title"; // this will be assigned automatically
 
 // Your entry goes here 👇
 // =======================
-var sizex = sizey = 50,creature = [],c,scalex,scaley,f,rot,r=0;
+var sizex = sizey = 50,creature = [],c,scalex,scaley,vscalex,vscaley,f,rot,r=0;
 document.oncontextmenu = function() {
     return false;
 }
@@ -47,17 +47,19 @@ function draw() {
 	//let sizey = mouseY - pmouseY;
 	noStroke();
 	creature.forEach((c) => {
+		push()
 		translate(c.x,c.y)
 		fill(c.c);
 		rotate(c.r);
-		ellipse(0,0,c.sx,c.sy);
-		rotate(-c.r);
-		translate(-c.x,-c.y)
+		scale(c.sx,c.sy);
+		ellipse(0,0,sizex,sizey);
+		pop();
 	})
 	stroke('black')
 	push()
 	translate(mouseX, mouseY)
 	rotate(r);
+	scale(vscalex,vscaley)
 	fill('white')
 	ellipse(0, 0,sizex,sizey)
 	pop()
@@ -65,9 +67,9 @@ function draw() {
 
 function mouseWheel(event) {
 	if(scalex){
-		  sizex += event.delta/4;
+		  vscalex += event.delta/4;
 	}else if(scaley){
-		  sizey += event.delta/4;
+		  vscaley += event.delta/4;
 	}else{
 		  sizex += event.delta/4;
 		  sizey += event.delta/4;
@@ -80,7 +82,7 @@ function mouseWheel(event) {
 }
 
 function mouseReleased() {
-	creature.push({x:mouseX, y:mouseY, sx:sizex, sy:sizey,c:f,r:r});
+	creature.push({x:mouseX, y:mouseY, sx:vscalex, sy:vscaley,c:f,r:r});
 	// prevent default
 	return false;
 }
