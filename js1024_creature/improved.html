@@ -55,12 +55,13 @@ function draw() {
 		translate(-c.x,-c.y)
 	})
 	stroke('black')
+	rotate(r);
 	translate(mouseX, mouseY)
 	fill('white')
-	rotate(r);
 	ellipse(0, 0,sizex,sizey)
-	rotate(-r);
 	translate(-mouseX, -mouseY)
+	rotate(-r);
+	
 }
 
 function mouseWheel(event) {
