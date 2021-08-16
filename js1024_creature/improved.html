@@ -40,11 +40,7 @@ function draw() {
 		  f = 'pink'
 		}
 	}
-	//Line from prev pt to current pt
-	//of mouse position
 	background('pink')
-	//let sizex = mouseX - pmouseX;
-	//let sizey = mouseY - pmouseY;
 	noStroke();
 	creature.forEach((c) => {
 		push()
@@ -78,9 +74,6 @@ function mouseWheel(event) {
 		}else{
 		  vscaley += 0.1;
 		}
-	}else{
-		  //sizex += event.delta/4;
-		  //sizey += event.delta/4;
 	}
 	if(rot){
 		if (event.deltaY < 0) {
@@ -90,8 +83,6 @@ function mouseWheel(event) {
 		}
 		
 	}
-  //uncomment to block page scrolling
-  //return false;
 }
 
 function mouseReleased() {
