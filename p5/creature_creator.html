@@ -20,7 +20,7 @@ var title = "Title"; // this will be assigned automatically
 
 // Your entry goes here 👇
 // =======================
-var sizex = sizey = 50,creature = [],c,scalex,scaley,vscalex = 1,vscaley = 1,f,rot,r=0,text = "";
+var sizex = sizey = 50,creature = [],c,scalex,scaley,vscalex = 1,vscaley = 1,f,rot,r=0,toolText = "";
 document.oncontextmenu = function() {
     return false;
 }
@@ -59,7 +59,7 @@ function draw() {
 	stroke('black')
 	push();
 	translate(100, 180);
-	text(text, 0, 0);
+	text(toolText, 0, 0);
 	pop();
 	push()
 	translate(mouseX, mouseY)
@@ -109,22 +109,22 @@ function keyPressed() {
 		//r
 		case 82:
 			rot = true;
-			text = 'rotate'
+			toolText = 'rotate'
 			break;
 		//s
 		case 83:
 			saveCanvas(c, 'cc', 'jpg');
-			text = 'save image'
+			toolText = 'save image'
 			break;
 		//x
 		case 88:
 			scalex = true;
-			text = 'scale x'
+			toolText = 'scale x'
 			break;
 		//y
 		case 89:
 			scaley = true;
-			text = 'scale y'
+			toolText = 'scale y'
 			break;
 	}
 }
@@ -141,7 +141,7 @@ function keyReleased() {
 			scaley = false;
 			break;
 	}
-	text = '';
+	toolText = '';
 }
 // =======================
 </script>
