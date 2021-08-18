@@ -20,7 +20,7 @@ var title = "Title"; // this will be assigned automatically
 
 // Your entry goes here 👇
 // =======================
-var sizex = sizey = 50,creature = [],c,scalex,scaley,vscalex = 1,vscaley = 1,f,rot,r=0,toolText = "";
+var sizex = sizey = 50,creature = [],c,scalex,scaley,vscalex = 1,vscaley = 1,f,rot,r=0,toolText = '',suggest='Press x to scale on x axis, press y to scale on y axis, press r to rotate, press s to save canvas as image';
 document.oncontextmenu = function() {
     return false;
 }
@@ -58,8 +58,8 @@ function draw() {
 	})
 	stroke('black')
 	push();
-	translate(100, 180);
-	text(toolText, 0, 0);
+	translate(50, 50);
+	text(suggest + ' ' + toolText, 0, 0);
 	pop();
 	push()
 	translate(mouseX, mouseY)
