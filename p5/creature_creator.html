@@ -20,7 +20,7 @@ var title = "Title"; // this will be assigned automatically
 
 // Your entry goes here 👇
 // =======================
-var sizex = sizey = 50,creature = [],c,scalex,scaley,vscalex = 1,vscaley = 1,f,rot,r=0;
+var sizex = sizey = 50,creature = [],c,scalex,scaley,vscalex = 1,vscaley = 1,f,rot,r=0,text = "";
 document.oncontextmenu = function() {
     return false;
 }
@@ -29,6 +29,7 @@ function setup() {
 }
 
 function draw() {
+	
 	if (mouseIsPressed) {
 		if (mouseButton === LEFT) {
 		  f = 'white'
@@ -56,6 +57,10 @@ function draw() {
 		pop();
 	})
 	stroke('black')
+	push();
+	translate(100, 180);
+	text(text, 0, 0);
+	pop();
 	push()
 	translate(mouseX, mouseY)
 	rotate(r);
@@ -104,18 +109,22 @@ function keyPressed() {
 		//r
 		case 82:
 			rot = true;
+			text = 'rotate'
 			break;
 		//s
 		case 83:
 			saveCanvas(c, 'cc', 'jpg');
+			text = 'save image'
 			break;
 		//x
 		case 88:
 			scalex = true;
+			text = 'scale x'
 			break;
 		//y
 		case 89:
 			scaley = true;
+			text = 'scale y'
 			break;
 	}
 }
@@ -132,6 +141,7 @@ function keyReleased() {
 			scaley = false;
 			break;
 	}
+	text = '';
 }
 // =======================
 </script>
