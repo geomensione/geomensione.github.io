@@ -18,6 +18,12 @@
 	var defaultRadius = 30;
 	var union;
 	var myPathLine;
+	var hitOptions = {
+		segments: true,
+		stroke: true,
+		fill: true,
+		tolerance: 5
+	};
 	var curveStyleConeMax2Min = function(l){
 		var radius=[];
 		var stepDelta = defaultRadius / l;
@@ -45,7 +51,11 @@
 
 		tool1 = new Tool();
 		tool1.onMouseDown = onMouseDown;
-
+		tool1.onMouseMove = function (event) {
+			paper.project.activeLayer.selected = false;
+			if (event.item)
+				event.item.selected = true;
+		}
 		tool1.onMouseDrag = function(event) {
 			path.add(event.point);
 		}
