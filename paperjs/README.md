@@ -8,6 +8,8 @@ https://geomensione.github.io/paperjs/f2d_curve02.html export svg of path and pr
 
 made using http://paperjs.org/
 
+paperjs hit test http://paperjs.org/examples/hit-testing/
+
 TODO:
 
 https://observablehq.com/@taniki/hello-paperjs
