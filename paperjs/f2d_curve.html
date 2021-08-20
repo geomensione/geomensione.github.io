@@ -77,10 +77,11 @@
 					segment = p_path.insert(location.index + 1, event.point);
 					p_path.smooth();
 				}
+				movePath = hitResult.type == 'fill';
+				if (movePath)
+					project.activeLayer.addChild(hitResult.item);
 			}
-			movePath = hitResult.type == 'fill';
-			if (movePath)
-				project.activeLayer.addChild(hitResult.item);
+			
 		}
 
 		tool1 = new Tool();
