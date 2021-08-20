@@ -42,11 +42,45 @@
 		// tool2 will draw clouds.
 
 		// Both share the mouseDown event:
-		var path;
+		var stroke;
+		/*
 		function onMouseDown(event) {
-			path = new Path();
-			path.strokeColor = 'black';
-			path.add(event.point);
+			stroke = new Path();
+			stroke.strokeColor = 'black';
+			stroke.add(event.point);
+		}
+		*/
+		var segment, p_path;
+		var movePath = false;
+		function onMouseDown(event) {
+			segment = p_path = null;
+			var hitResult = project.hitTest(event.point, hitOptions);
+			if (!hitResult){
+				stroke = new Path();
+				stroke.strokeColor = 'black';
+				stroke.add(event.point);
+			}
+
+			if (event.modifiers.shift) {
+				if (hitResult.type == 'segment') {
+					hitResult.segment.remove();
+				};
+				return;
+			}
+
+			if (hitResult) {
+				p_path = hitResult.item;
+				if (hitResult.type == 'segment') {
+					segment = hitResult.segment;
+				} else if (hitResult.type == 'stroke') {
+					var location = hitResult.location;
+					segment = p_path.insert(location.index + 1, event.point);
+					p_path.smooth();
+				}
+			}
+			movePath = hitResult.type == 'fill';
+			if (movePath)
+				project.activeLayer.addChild(hitResult.item);
 		}
 
 		tool1 = new Tool();
@@ -56,18 +90,27 @@
 			if (event.item)
 				event.item.selected = true;
 		}
-		tool1.onMouseDrag = function(event) {
-			path.add(event.point);
+		
+		function onMouseDrag(event) {
+			if (segment) {
+				segment.point += event.delta;
+				p_path.smooth();
+			} else if (p_path) {
+				p_path.position += event.delta;
+			} else {
+				stroke.add(event.point);
+			}
 		}
+		tool1.onMouseDrag = onMouseDrag
 		var childrens_array,radius;
 		tool1.onMouseUp = function(event){
 			childrens_array = paper.project.activeLayer.children;
 			var childrens_array_length = childrens_array.length;
-			path.simplify(10);
-			path.flatten(4);
-			var segmentCount = path.segments.length;
+			stroke.simplify(10);
+			stroke.flatten(4);
+			var segmentCount = stroke.segments.length;
 
-			var sl = path.segments.length;
+			var sl = stroke.segments.length;
 			radius = curveStyleConeMax2Min(sl);
 			radius = radius.reverse();
 			for (var s = 0;s<sl;s++) {
@@ -80,7 +123,7 @@
 				if(union) union = union.unite(c)
 				else union = c.clone()
 				c.remove()
-				if(s<sl-1) draw_tangents(path.segments,s,s+1)
+				if(s<sl-1) draw_tangents(stroke.segments,s,s+1)
 
 				
 			}
@@ -88,22 +131,14 @@
 
 		}
 
-		tool2 = new Tool();
-		tool2.minDistance = 20;
-		tool2.onMouseDown = onMouseDown;
-
-		tool2.onMouseDrag = function(event) {
-			// Use the arcTo command to draw cloudy lines
-			path.arcTo(event.point);
-		}
 		var skeleton = 1;
 		function updateTangents(){
-			let l = path.segments.length;
+			let l = stroke.segments.length;
 			if(l > 1)
 			{
 				for(let s = 0;s<=l-2;s++){
 					//for(let b = 1;b<scene[s];b++){
-						draw_tangents(path.segments,s,s+1)
+						draw_tangents(stroke.segments,s,s+1)
 					//}
 				}
 			}
