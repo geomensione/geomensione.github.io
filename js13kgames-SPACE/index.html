@@ -30,17 +30,18 @@
 			directionalLight.position.z = 1;
 			scene.add( directionalLight );
 			
+			const direction = '';
+			
 			const animate = function () {
 				requestAnimationFrame( animate );
 
 				//sphere.rotation.x += 0.01;
 				//sphere.rotation.y += 0.01;
-
+				rotateEarth(direction);
 				renderer.render( scene, camera );
 			};
-			
-			document.addEventListener('keydown',  (e) => {
-				switch(e.keyCode){
+			const rotateEarth = function(dir){
+				switch(dir){
 					//left = 37
 					case 37:
 						sphere.rotation.y += 0.01;
@@ -58,6 +59,12 @@
 						sphere.rotation.x += 0.01;
 						break;
 				}
+			}
+			document.addEventListener('keydown',  (e) => {
+				direction = e.keyCode;
+			})
+			document.addEventListener('keyup',  (e) => {
+				direction = '';
 			})
 
 			animate();
