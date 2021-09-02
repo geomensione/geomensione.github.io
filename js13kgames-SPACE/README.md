@@ -4,6 +4,6 @@ resources:
 
 https://threejs.org
 
-js13kgames-SPACE
+https://cdnjs.com/libraries/three.js
 
-project wip https://geomensione.github.io/js13kgames-SPACE
+js13kgames-SPACE project wip https://geomensione.github.io/js13kgames-SPACE
