@@ -20,7 +20,7 @@
 			const geometry = new THREE.SphereGeometry( 15, 32, 16 );
 			//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 			//const material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
-			const material = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x666666, emissive: 0xff0000, shininess: 10, opacity: 0.9, transparent: true } );
+			const material = new THREE.MeshBasicMaterial( { color: 0xffaa00, wireframe: true } );
 			const sphere = new THREE.Mesh( geometry, material );
 			scene.add( sphere );
 
