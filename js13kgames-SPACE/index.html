@@ -39,7 +39,7 @@
 				renderer.render( scene, camera );
 			};
 			
-			const keyDown = function (e) {
+			document.addEventListener('keydown',  (e) => {
 				switch(e){
 					//left = 37
 					case 37:
@@ -54,8 +54,7 @@
 					case 40:
 						sphere.rotation.x += 0.01;
 				}
-			};
-			document.addEventListener('keydown', keyDown)
+			};)
 
 			animate();
 		</script>
