@@ -24,7 +24,10 @@
 			scene.add( sphere );
 
 			camera.position.z = 30;
-
+			
+			const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+			scene.add( light );
+			
 			const animate = function () {
 				requestAnimationFrame( animate );
 
