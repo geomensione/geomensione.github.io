@@ -32,10 +32,27 @@
 			const animate = function () {
 				requestAnimationFrame( animate );
 
-				sphere.rotation.x += 0.01;
-				sphere.rotation.y += 0.01;
+				//sphere.rotation.x += 0.01;
+				//sphere.rotation.y += 0.01;
 
 				renderer.render( scene, camera );
+			};
+			
+			const keyDown = function (e) {
+				switch(e){
+					//left = 37
+					case 37:
+						sphere.rotation.y += 0.01;
+					//up = 38
+					case 40:
+						sphere.rotation.x -= 0.01;
+					//right = 39
+					case 39:
+						sphere.rotation.y -= 0.01;
+					//down = 40
+					case 40:
+						sphere.rotation.x += 0.01;
+				}
 			};
 
 			animate();
