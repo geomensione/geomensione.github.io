@@ -7,3 +7,5 @@ https://threejs.org
 https://cdnjs.com/libraries/three.js
 
 js13kgames-SPACE project wip https://geomensione.github.io/js13kgames-SPACE
+
+procedural planet https://blogg.bekk.no/procedural-planet-in-webgl-and-three-js-fc77f14f5505 https://github.com/holgerl
