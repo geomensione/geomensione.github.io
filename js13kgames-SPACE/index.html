@@ -18,13 +18,34 @@
 			document.body.appendChild( renderer.domElement );
 
 			const geometry = new THREE.SphereGeometry( 15, 32, 16 );
-			//const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-			//const material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
-			const material = new THREE.MeshBasicMaterial( { color: 0xffaa00, wireframe: true } );
+			//const material = new THREE.MeshBasicMaterial( { color: 0xffaa00, wireframe: true } );
+			const material = new THREE.MeshStandardMaterial( { color: 0xffaa00 } );
 			const sphere = new THREE.Mesh( geometry, material );
 			scene.add( sphere );
 
+			const conegeometry = new THREE.ConeGeometry( 5, 20, 32 );
+			const conematerial = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+			const cone = new THREE.Mesh( conegeometry, conematerial );
+			scene.add( cone );
+
+			const radius = 3;
+			const radialSegments = 32;
+			const hemimaterial = new THREE.MeshStandardMaterial({
+				color: "grey"
+			});
+			const hemiSphereGeom = new THREE.SphereBufferGeometry(radius, radialSegments, Math.round(radialSegments / 4), 0, Math.PI * 2, 0, Math.PI * 0.5);
+			const hemiSphere = new THREE.Mesh(hemiSphereGeom, hemimaterial);
+			scene.add( hemiSphere );
+
+			hemiSphere.position.y = 18;
+
+			cone.position.y = 17;
+			cone.scale.set(0.2,0.2,0.2);
+
 			camera.position.z = 30;
+			camera.position.y = 30;
+
+			camera.lookAt(0,0,0);
 			
 			const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
 			directionalLight.position.z = 1;
