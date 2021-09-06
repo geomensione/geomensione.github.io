@@ -1,94 +1,88 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>My first three.js app</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script>
-			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-			const renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.body.appendChild( renderer.domElement );
+<head>
+  <meta charset="utf-8">
+  <title>My first three.js app</title>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
 
-			const geometry = new THREE.SphereGeometry( 15, 32, 16 );
-			//const material = new THREE.MeshStandardMaterial( { color: 0xffaa00 } );
-			const material = new THREE.MeshBasicMaterial( { color: 0xffaa00, transparent: true, blending: THREE.AdditiveBlending } ) );
-			const sphere = new THREE.Mesh( geometry, material );
-			scene.add( sphere );
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    const geometry = new THREE.SphereGeometry(15, 32, 16);
+    //const material = new THREE.MeshStandardMaterial( { color: 0xffaa00 } );
+    const material = new THREE.MeshNormalMaterial( { flatShading: true } )
+    const sphere = new THREE.Mesh(geometry, material);
+    scene.add(sphere);
+    const conegeometry = new THREE.ConeGeometry(5, 20, 32);
+    const conematerial = new THREE.MeshBasicMaterial({
+      color: 0xffff00
+    });
+    const cone = new THREE.Mesh(conegeometry, conematerial);
+    scene.add(cone);
+    const radius = 3;
+    const radialSegments = 32;
+    const hemimaterial = new THREE.MeshStandardMaterial({
+      color: "grey"
+    });
+    const hemiSphereGeom = new THREE.SphereBufferGeometry(radius, radialSegments, Math.round(radialSegments / 4), 0, Math.PI * 2, 0, Math.PI * 0.5);
+    const hemiSphere = new THREE.Mesh(hemiSphereGeom, hemimaterial);
+    scene.add(hemiSphere);
+    hemiSphere.position.y = 18;
+    cone.position.y = 17;
+    cone.scale.set(0.2, 0.2, 0.2);
+    camera.position.z = 30;
+    camera.position.y = 30;
+    camera.lookAt(0, 0, 0);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.z = 1;
+    scene.add(directionalLight);
+    var direction = '';
+    const animate = function() {
+      requestAnimationFrame(animate);
+      //sphere.rotation.x += 0.01;
+      //sphere.rotation.y += 0.01;
+      rotateEarth(direction);
+      renderer.render(scene, camera);
+    };
+    const rotateEarth = function(dir) {
+      switch (dir) {
+        //left = 37
+        case 37:
+          sphere.rotation.y += 0.01;
+          break;
+          //up = 38
+        case 38:
+          sphere.rotation.x -= 0.01;
+          break;
+          //right = 39
+        case 39:
+          sphere.rotation.y -= 0.01;
+          break;
+          //down = 40
+        case 40:
+          sphere.rotation.x += 0.01;
+          break;
+      }
+    }
+    document.addEventListener('keydown', (e) => {
+      direction = e.keyCode;
+    })
+    document.addEventListener('keyup', (e) => {
+      direction = '';
+    })
+    animate();
+  </script>
+</body>
 
-			const conegeometry = new THREE.ConeGeometry( 5, 20, 32 );
-			const conematerial = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-			const cone = new THREE.Mesh( conegeometry, conematerial );
-			scene.add( cone );
-
-			const radius = 3;
-			const radialSegments = 32;
-			const hemimaterial = new THREE.MeshStandardMaterial({
-				color: "grey"
-			});
-			const hemiSphereGeom = new THREE.SphereBufferGeometry(radius, radialSegments, Math.round(radialSegments / 4), 0, Math.PI * 2, 0, Math.PI * 0.5);
-			const hemiSphere = new THREE.Mesh(hemiSphereGeom, hemimaterial);
-			scene.add( hemiSphere );
-
-			hemiSphere.position.y = 18;
-
-			cone.position.y = 17;
-			cone.scale.set(0.2,0.2,0.2);
-
-			camera.position.z = 30;
-			camera.position.y = 30;
-
-			camera.lookAt(0,0,0);
-			
-			const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-			directionalLight.position.z = 1;
-			scene.add( directionalLight );
-			
-			var direction = '';
-			
-			const animate = function () {
-				requestAnimationFrame( animate );
-
-				//sphere.rotation.x += 0.01;
-				//sphere.rotation.y += 0.01;
-				rotateEarth(direction);
-				renderer.render( scene, camera );
-			};
-			const rotateEarth = function(dir){
-				switch(dir){
-					//left = 37
-					case 37:
-						sphere.rotation.y += 0.01;
-						break;
-					//up = 38
-					case 38:
-						sphere.rotation.x -= 0.01;
-						break;
-					//right = 39
-					case 39:
-						sphere.rotation.y -= 0.01;
-						break;
-					//down = 40
-					case 40:
-						sphere.rotation.x += 0.01;
-						break;
-				}
-			}
-			document.addEventListener('keydown',  (e) => {
-				direction = e.keyCode;
-			})
-			document.addEventListener('keyup',  (e) => {
-				direction = '';
-			})
-
-			animate();
-		</script>
-	</body>
 </html>
