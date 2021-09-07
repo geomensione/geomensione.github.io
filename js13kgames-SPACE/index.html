@@ -58,7 +58,7 @@
     const pmaterial = new THREE.MeshNormalMaterial( { flatShading: true } )
     const psphere = new THREE.Mesh(pgeometry, pmaterial);
     psphere.position.setFromSphericalCoords( 15, phi, theta );
-
+    pssphere.lookAt(sphere);
     scene.add(psphere);
     
 
