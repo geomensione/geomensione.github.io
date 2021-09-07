@@ -70,8 +70,7 @@
       renderer.render(scene, camera);
     };
     const rotateEarth = function(dir) {
-      i++;
-      l++;
+      
       const phi = Math.acos( - 1 + ( 2 * i ) / l );
       const theta = Math.sqrt( i * Math.PI ) * phi;
       psphere.position.setFromSphericalCoords( 15, phi, theta );
@@ -96,6 +95,8 @@
       }
     }
     document.addEventListener('keydown', (e) => {
+      i++;
+      l++;
       direction = e.keyCode;
     })
     document.addEventListener('keyup', (e) => {
