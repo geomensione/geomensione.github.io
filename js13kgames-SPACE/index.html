@@ -51,7 +51,7 @@
     const phi = Math.acos( - 1 + ( 2 * 10 ) / 15 );
     const theta = Math.sqrt( 15 * Math.PI ) * phi;
 
-    const pgeometry = new THREE.SphereGeometry(1, 32, 16);
+    const pgeometry = new THREE.SphereGeometry(5, 4, 4);
     //const material = new THREE.MeshStandardMaterial( { color: 0xffaa00 } );
     const pmaterial = new THREE.MeshNormalMaterial( { flatShading: true } )
     const psphere = new THREE.Mesh(pgeometry, pmaterial);
