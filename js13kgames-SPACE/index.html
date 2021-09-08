@@ -78,22 +78,22 @@
         //left = 37
         case 37:
           sphere.rotation.y += 0.01;
-          phi += 0.01;
+          theta -= 0.01;
           break;
           //up = 38
         case 38:
           sphere.rotation.x -= 0.01;
-          theta -= 0.01;
+          phi += 0.01;
           break;
           //right = 39
         case 39:
           sphere.rotation.y -= 0.01;
-          phi -= 0.01;
+          theta -= 0.01;
           break;
           //down = 40
         case 40:
           sphere.rotation.x += 0.01;
-          theta += 0.01;
+          phi -= 0.01;
           break;
       }
     }
