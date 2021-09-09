@@ -29,7 +29,7 @@
       color: 0xffff00
     });
     const cone = new THREE.Mesh(conegeometry, conematerial);
-    //scene.add(cone);
+    scene.add(cone);
     const radius = 3;
     const radialSegments = 32;
     const hemimaterial = new THREE.MeshStandardMaterial({
@@ -42,15 +42,7 @@
     var cap = new THREE.Mesh(capGeom, hemimaterial);
     hemiSphere.add(cap);
     
-    const group = new THREE.Group();
-    group.add( cone );
-    group.add( hemiSphere );
-
-    scene.add( group );
-    group.position.set(0,-15,0);
-    group.lookAt(0,0,0);
-
-    //scene.add(hemiSphere);
+    scene.add(hemiSphere);
     hemiSphere.position.y = 18;
     cone.position.y = 17;
     cone.scale.set(0.2, 0.2, 0.2);
