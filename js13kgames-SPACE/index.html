@@ -69,7 +69,7 @@
     const pmaterial = new THREE.MeshNormalMaterial( { flatShading: true } )
     const psphere = new THREE.Mesh(pgeometry, pmaterial);
     psphere.position.setFromSphericalCoords( 15, phi, theta );
-    scene.add(psphere);
+    //scene.add(psphere);
     
 
     const animate = function() {
@@ -82,7 +82,7 @@
     const rotateEarth = function(dir) {
       
      
-      psphere.position.setFromSphericalCoords( 15, phi, theta );
+      group.position.setFromSphericalCoords( 15, phi, theta );
   
       switch (dir) {
         //left = 37
@@ -106,7 +106,7 @@
           phi += 0.01;
           break;
       }
-      sphere.lookAt(psphere.position);
+      sphere.lookAt(group.position);
 
     }
     document.addEventListener('keydown', (e) => {
