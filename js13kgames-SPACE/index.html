@@ -58,7 +58,6 @@
     const pmaterial = new THREE.MeshNormalMaterial( { flatShading: true } )
     const psphere = new THREE.Mesh(pgeometry, pmaterial);
     psphere.position.setFromSphericalCoords( 15, phi, theta );
-    sphere.lookAt(psphere.position);
     scene.add(psphere);
     
 
@@ -73,7 +72,7 @@
       
      
       psphere.position.setFromSphericalCoords( 15, phi, theta );
-
+  
       switch (dir) {
         //left = 37
         case 37:
@@ -96,6 +95,8 @@
           phi += 0.01;
           break;
       }
+      sphere.lookAt(psphere.position);
+
     }
     document.addEventListener('keydown', (e) => {
       direction = e.keyCode;
