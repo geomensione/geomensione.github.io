@@ -47,7 +47,8 @@
     group.add( hemiSphere );
 
     scene.add( group );
-    
+    group.lookAt(sphere.position);
+
     //scene.add(hemiSphere);
     hemiSphere.position.y = 18;
     cone.position.y = 17;
