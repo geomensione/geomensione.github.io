@@ -23,7 +23,7 @@
     //const material = new THREE.MeshStandardMaterial( { color: 0xffaa00 } );
     const material = new THREE.MeshNormalMaterial( { flatShading: true } )
     const sphere = new THREE.Mesh(geometry, material);
-    //scene.add(sphere);
+    scene.add(sphere);
     const conegeometry = new THREE.ConeGeometry(5, 20, 32);
     const conematerial = new THREE.MeshBasicMaterial({
       color: 0xffff00
@@ -48,7 +48,7 @@
 
     scene.add( group );
     
-    scene.add(hemiSphere);
+    //scene.add(hemiSphere);
     hemiSphere.position.y = 18;
     cone.position.y = 17;
     cone.scale.set(0.2, 0.2, 0.2);
