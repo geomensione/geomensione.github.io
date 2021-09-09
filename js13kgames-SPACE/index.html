@@ -37,6 +37,10 @@
     });
     const hemiSphereGeom = new THREE.SphereBufferGeometry(radius, radialSegments, Math.round(radialSegments / 4), 0, Math.PI * 2, 0, Math.PI * 0.5);
     const hemiSphere = new THREE.Mesh(hemiSphereGeom, hemimaterial);
+    var capGeom = new THREE.CircleBufferGeometry(radius, radialSegments);
+    capGeom.rotateX(Math.PI * 0.5);
+    var cap = new THREE.Mesh(capGeom, hemimaterial);
+    hemiSphere.add(cap);
     scene.add(hemiSphere);
     hemiSphere.position.y = 18;
     cone.position.y = 17;
