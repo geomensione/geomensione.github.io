@@ -39,7 +39,7 @@
 
 				const aspect = window.innerWidth / window.innerHeight;
 
-				perspectiveCamera = new THREE.PerspectiveCamera( 2, aspect, 1, 1000 );
+				perspectiveCamera = new THREE.PerspectiveCamera( 5, aspect, 1, 1000 );
 				perspectiveCamera.position.z = 500;
 
 				orthographicCamera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 1, 1000 );
