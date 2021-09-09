@@ -23,13 +23,13 @@
     //const material = new THREE.MeshStandardMaterial( { color: 0xffaa00 } );
     const material = new THREE.MeshNormalMaterial( { flatShading: true } )
     const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
+    //scene.add(sphere);
     const conegeometry = new THREE.ConeGeometry(5, 20, 32);
     const conematerial = new THREE.MeshBasicMaterial({
       color: 0xffff00
     });
     const cone = new THREE.Mesh(conegeometry, conematerial);
-    scene.add(cone);
+    //scene.add(cone);
     const radius = 3;
     const radialSegments = 32;
     const hemimaterial = new THREE.MeshStandardMaterial({
@@ -41,6 +41,13 @@
     capGeom.rotateX(Math.PI * 0.5);
     var cap = new THREE.Mesh(capGeom, hemimaterial);
     hemiSphere.add(cap);
+    
+    const group = new THREE.Group();
+    group.add( cone );
+    group.add( hemiSphere );
+
+    scene.add( group );
+    
     scene.add(hemiSphere);
     hemiSphere.position.y = 18;
     cone.position.y = 17;
