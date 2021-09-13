@@ -82,7 +82,7 @@
 				document.body.appendChild( stats.dom );
 
 				var raycaster = new THREE.Raycaster();
-				raycaster.setFromCamera( new THREE.Vector2(0,0), perspectiveCamera );
+				raycaster.setFromCamera( new THREE.Vector2(window.innerWidth/2,window.innerHeight/2), perspectiveCamera );
 				var intersects = raycaster.intersectObjects(scene);
 
 				const gui = new GUI();
