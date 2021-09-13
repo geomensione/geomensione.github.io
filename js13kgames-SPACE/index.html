@@ -82,7 +82,7 @@
 				document.body.appendChild( stats.dom );
 
 				var raycaster = new THREE.Raycaster();
-				raycaster.set( camera.getWorldPosition(), camera.getWorldDirection() );
+				raycaster.set( perspectiveCamera.getWorldPosition(), perspectiveCamera.getWorldDirection() );
 				var intersects = raycaster.intersectObjects(scene);
 
 				const gui = new GUI();
