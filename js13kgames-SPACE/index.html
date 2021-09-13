@@ -150,7 +150,7 @@
 				renderer.render( scene, camera );
 				
 				var raycaster = new THREE.Raycaster();
-				raycaster.setFromCamera( new THREE.Vector2(window.innerWidth/2,window.innerHeight/2), perspectiveCamera );
+				raycaster.setFromCamera( new THREE.Vector2(), perspectiveCamera );
 				var intersects = raycaster.intersectObjects(scene);
 
 			}
