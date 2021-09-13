@@ -81,9 +81,7 @@
 				stats = new Stats();
 				document.body.appendChild( stats.dom );
 
-				var raycaster = new THREE.Raycaster();
-				raycaster.setFromCamera( new THREE.Vector2(window.innerWidth/2,window.innerHeight/2), perspectiveCamera );
-				var intersects = raycaster.intersectObjects(scene);
+				
 
 				const gui = new GUI();
 				gui.add( params, 'orthographicCamera' ).name( 'use orthographic' ).onChange( function ( value ) {
@@ -150,6 +148,10 @@
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
 
 				renderer.render( scene, camera );
+				
+				var raycaster = new THREE.Raycaster();
+				raycaster.setFromCamera( new THREE.Vector2(window.innerWidth/2,window.innerHeight/2), perspectiveCamera );
+				var intersects = raycaster.intersectObjects(scene);
 
 			}
 
