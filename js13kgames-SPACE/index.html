@@ -81,7 +81,9 @@
 				stats = new Stats();
 				document.body.appendChild( stats.dom );
 
-				//
+				var raycaster = new THREE.Raycaster();
+				raycaster.set( camera.getWorldPosition(), camera.getWorldDirection() );
+				var intersects = raycaster.intersectObjects(scene);
 
 				const gui = new GUI();
 				gui.add( params, 'orthographicCamera' ).name( 'use orthographic' ).onChange( function ( value ) {
