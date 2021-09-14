@@ -151,9 +151,11 @@
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
 
 				renderer.render( scene, camera );
-				
+				const mouse = new THREE.Vector2();
+				mouse.x = ( (window.innerWidth/2) / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( (window.innerHeight/2) / window.innerHeight ) * 2 + 1;
 				var raycaster = new THREE.Raycaster();
-				raycaster.setFromCamera( new THREE.Vector2(0,0.005), camera );
+				raycaster.setFromCamera( mouse, camera );
 				var intersects = raycaster.intersectObjects( pickArray );
 				
 				if(intersects.length > 0){
