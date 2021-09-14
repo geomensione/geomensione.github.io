@@ -153,7 +153,7 @@
 				renderer.render( scene, camera );
 				
 				var raycaster = new THREE.Raycaster();
-				raycaster.setFromCamera( new THREE.Vector2(), camera );
+				raycaster.setFromCamera( new THREE.Vector2(0,0), camera );
 				var intersects = raycaster.intersectObjects( pickArray );
 				
 				if(intersects.length > 0){
