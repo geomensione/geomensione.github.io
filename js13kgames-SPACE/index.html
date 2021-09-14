@@ -168,7 +168,7 @@
 						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
 						scene.add( pickmesh );
 					}
-					pickmesh.lookAt(mesh.position);
+					pickmesh.lookAt(camera.position);
 					pickmesh.position.x = intersects[0].point.x;
 					pickmesh.position.y = intersects[0].point.y;
 					pickmesh.position.z = intersects[0].point.z;
