@@ -161,7 +161,7 @@
 						const pickgeometry = new THREE.SphereGeometry( 5, 32, 32 );
 						const pickmaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
-						pickmesh.position.set(intersect[0].position);
+						pickmesh.position.set(intersects[0].position);
 						scene.add( pickmesh );
 					}
 					
