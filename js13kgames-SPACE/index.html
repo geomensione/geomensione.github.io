@@ -163,7 +163,7 @@
 						const pickgeometry = new THREE.SphereGeometry( 5, 32, 32 );
 						const pickmaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
-						//pickmesh.lookAt(camera);
+						pickmesh.lookAt(camera.position);
 						scene.add( pickmesh );
 					}
 					pickmesh.position.x = intersects[0].point.x;
