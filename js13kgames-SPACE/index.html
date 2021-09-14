@@ -29,6 +29,10 @@
 			};
 
 			const frustumSize = 400;
+	  
+	  		var pickArray = [];
+	  
+	  		var pickmesh = {};
 
 			init();
 			animate();
@@ -55,6 +59,7 @@
 				mesh.updateMatrix();
 				mesh.matrixAutoUpdate = false;
 				scene.add( mesh );
+				pickArray.push( mesh )
 
 				// lights
 
@@ -149,7 +154,17 @@
 				
 				var raycaster = new THREE.Raycaster();
 				raycaster.setFromCamera( new THREE.Vector2(), camera );
-				var intersects = raycaster.intersectObjects(scene.children );
+				var intersects = raycaster.intersectObjects( pickArray );
+				
+				if(intersects.length > 0){
+					if(!pickmesh){
+						const pickgeometry = new THREE.SphereGeometry( 5, 32, 32 );
+						const pickmaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+						const pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
+						scene.add( pickmesh );
+					}
+					
+				}
 
 			}
 
