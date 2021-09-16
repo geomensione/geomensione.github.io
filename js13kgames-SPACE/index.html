@@ -102,6 +102,8 @@
 				window.addEventListener( 'resize', onWindowResize );
 
 				createControls( perspectiveCamera );
+				
+				createEnemies();
 
 			}
 
@@ -146,6 +148,18 @@
 
 				render();
 
+			}
+	  
+	  		function createEnemies() {
+				var phi = 50, theta = 50;
+				var spherical = new THREE.Spherical();
+				    const egeometry = new THREE.SphereGeometry( 15, 32, 32 );
+				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+				    var emesh = new THREE.Mesh( egeometry, ematerial );
+				scene.add( mesh );
+				
+				    spherical.set( 15, phi, theta );
+				    emesh.position.setFromSpherical( spherical );
 			}
 
 			function render() {
