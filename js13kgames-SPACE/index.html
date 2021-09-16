@@ -156,7 +156,7 @@
 				    const egeometry = new THREE.SphereGeometry( 15, 32, 32 );
 				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 				    var emesh = new THREE.Mesh( egeometry, ematerial );
-				scene.add( mesh );
+				scene.add( emesh );
 				
 				    spherical.set( 15, phi, theta );
 				    emesh.position.setFromSpherical( spherical );
