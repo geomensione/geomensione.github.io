@@ -38,6 +38,26 @@
 	  
 	  		var game = new Array();
 	  
+	  		class Enemy {
+				constructor(p,t){
+				    this.phi = p;
+				    this.theta = t;
+				    this.spherical = new THREE.Spherical();
+				    const egeometry = new THREE.SphereGeometry( 1, 32, 32 );
+				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+				    this.emesh = new THREE.Mesh( egeometry, ematerial );
+				    scene.add( this.emesh );
+				    this.spherical.set( 15, this.phi, this.theta );
+				    this.emesh.position.setFromSpherical( this.spherical );
+				}
+				
+				setPosition(){
+					this.spherical.set( 15, ++this.phi, ++this.theta );
+				    	this.emesh.position.setFromSpherical( this.spherical );
+				}
+				
+			}
+	  
 			init();
 			animate();
 
@@ -197,25 +217,7 @@
 
 			}
 			
-	  		class Enemy {
-				constructor(p,t){
-				    this.phi = p;
-				    this.theta = t;
-				    this.spherical = new THREE.Spherical();
-				    const egeometry = new THREE.SphereGeometry( 1, 32, 32 );
-				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
-				    this.emesh = new THREE.Mesh( egeometry, ematerial );
-				    scene.add( this.emesh );
-				    this.spherical.set( 15, this.phi, this.theta );
-				    this.emesh.position.setFromSpherical( this.spherical );
-				}
-				
-				setPosition(){
-					this.spherical.set( 15, ++this.phi, ++this.theta );
-				    	this.emesh.position.setFromSpherical( this.spherical );
-				}
-				
-			}
+	  		
 
 		</script>
 </body>
