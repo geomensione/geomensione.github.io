@@ -38,6 +38,8 @@
 			animate();
 	  
 	  		var mesh = {};
+	  
+	  		var game = [];
 
 			function init() {
 
@@ -103,7 +105,7 @@
 
 				createControls( perspectiveCamera );
 				
-				createEnemies();
+				game.push(new Enemy(1,1))
 
 			}
 
@@ -138,19 +140,19 @@
 
 			}
 
-			function animate() {
+			function animate(ts) {
 
 				requestAnimationFrame( animate );
 
-				controls.update();
+				//controls.update();
 
 				stats.update();
 
-				render();
+				render(ts);
 
 			}
-	  
-	  		function createEnemies() {
+	  		/*
+	  		function createEnemies(timestamp) {
 				var phi = 1, theta = 1;
 				var spherical = new THREE.Spherical();
 				    const egeometry = new THREE.SphereGeometry( 1, 32, 32 );
@@ -161,8 +163,8 @@
 				    spherical.set( 15, phi, theta );
 				    emesh.position.setFromSpherical( spherical );
 			}
-
-			function render() {
+			*/
+			function render(timestamp) {
 
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
 				
@@ -190,9 +192,30 @@
 					pickmesh.position.z = intersects[0].point.z;
 					
 				}
+				
+				game.forEach(e => e.setPosition())
 
 			}
-
+			
+	  		class Enemy {
+				constructor(p,t){
+				    this.phi = p;, 
+				    this.theta = t;
+				    this.spherical = new THREE.Spherical();
+				    const egeometry = new THREE.SphereGeometry( 1, 32, 32 );
+				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+				    this.emesh = new THREE.Mesh( egeometry, ematerial );
+				    scene.add( this.emesh );
+				    this.spherical.set( 15, this.phi, this.theta );
+				    this.emesh.position.setFromSpherical( this.spherical );
+				}
+				
+				setPosition(){
+					this.spherical.set( 15, ++this.phi, ++this.theta );
+				    	this.emesh.position.setFromSpherical( this.spherical );
+				}
+				
+			}
 
 		</script>
 </body>
