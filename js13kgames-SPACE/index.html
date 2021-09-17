@@ -52,7 +52,9 @@
 				}
 				
 				setPosition(){
-					this.spherical.set( 15, ++this.phi, ++this.theta );
+					this.phi += 0.01;
+					this.theta += 0.01;
+					this.spherical.set( 15, this.phi, this.theta );
 				    	this.emesh.position.setFromSpherical( this.spherical );
 				}
 				
