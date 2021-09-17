@@ -33,17 +33,21 @@
 	  		var pickArray = [];
 	  
 	  		var pickmesh = {};
+	  		const pickmeshRadius = 5;
 
 	  		var mesh = {};
 	  
 	  		var game = new Array();
 	  
+	  		var af;
+	  
 	  		class Enemy {
-				constructor(p,t){
+				constructor(p,t,r){
 				    this.phi = p;
 				    this.theta = t;
+			 	    this.r = r;
 				    this.spherical = new THREE.Spherical();
-				    const egeometry = new THREE.SphereGeometry( 1, 32, 32 );
+				    const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
 				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 				    this.emesh = new THREE.Mesh( egeometry, ematerial );
 				    scene.add( this.emesh );
@@ -55,9 +59,23 @@
 					this.theta += 0.01;
 					this.spherical.set( 15, this.phi, this.theta );
 				    	this.emesh.position.setFromSpherical( this.spherical );
+					this.hit();
 				}
 				
+				hit(){
+					var d = this.emesh.position.distanceTo( pickmesh.position )
+					if(d < (this.r + pickmeshRadius)) pickmesh.material.color = {r:1,g:0,b:0}
+					else pickmesh.material.color = {r:1, g:1, b:1}
+				}
+				
+				
 			}
+	  
+	  		//Utils
+	  		function distance3d(p,p2){
+			
+			}
+	  		//end Utils
 	  
 			init();
 			animate();
@@ -163,7 +181,7 @@
 
 			function animate(ts) {
 
-				requestAnimationFrame( animate );
+				af = requestAnimationFrame( animate );
 
 				controls.update();
 
@@ -200,7 +218,7 @@
 				
 				if(intersects.length > 0){
 					if(!pickmesh.type){
-						const pickgeometry = new THREE.SphereGeometry( 5, 32, 32 );
+						const pickgeometry = new THREE.SphereGeometry( pickmeshRadius, 32, 32 );
 						const pickmaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
 						scene.add( pickmesh );
