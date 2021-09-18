@@ -204,7 +204,7 @@
 				renderer.render( scene, camera );
 				const mouse = new THREE.Vector2();
 				mouse.x = ( (window.innerWidth/2) / window.innerWidth ) * 2 - 1;
-				const verticalOffset = -250;
+				const verticalOffset = -(window.innerHeight/5*1);
 				mouse.y = - ( ( ( window.innerHeight ) / 2 + verticalOffset ) / window.innerHeight ) * 2 + 1;
 				var raycaster = new THREE.Raycaster();
 				raycaster.setFromCamera( mouse, camera );
