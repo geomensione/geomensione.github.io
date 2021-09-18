@@ -40,6 +40,10 @@
 	  		var game = new Array();
 	  
 	  		var af;
+
+			var oldts;
+
+			var time = 1000;
 	  
 	  		class Enemy {
 				constructor(p,t,r){
@@ -59,13 +63,13 @@
 					this.theta += 0.01;
 					this.spherical.set( 15, this.phi, this.theta );
 				    	this.emesh.position.setFromSpherical( this.spherical );
-					this.hit();
+					//this.hit();
 				}
 				
 				hit(){
 					var d = this.emesh.position.distanceTo( pickmesh.position )
-					if(d < (this.r + pickmeshRadius)) pickmesh.material.color = {r:1,g:0,b:0}
-					else pickmesh.material.color = {r:1, g:1, b:1}
+					if(d < (this.r + pickmeshRadius)) return true;//pickmesh.material.color = {r:1,g:0,b:0}
+					else return false;//pickmesh.material.color = {r:1, g:1, b:1}
 				}
 				
 				
@@ -138,7 +142,7 @@
 
 				createControls( perspectiveCamera );
 				
-				game.push(new Enemy(1,1,1))
+				
 
 			}
 
@@ -215,6 +219,11 @@
 						const pickgeometry = new THREE.SphereGeometry( pickmeshRadius, 32, 32 );
 						const pickmaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
+						pickmesh.hit = function(){
+							let res = game.some(e => e.hit())
+							if(res) pickmesh.material.color = {r:1,g:0,b:0}
+							else pickmesh.material.color = {r:1,g:1,b:1}
+						}
 						scene.add( pickmesh );
 					}
 					pickmesh.lookAt(camera.position);
@@ -223,7 +232,18 @@
 					pickmesh.position.x = intersects[0].point.x;
 					pickmesh.position.y = intersects[0].point.y;
 					pickmesh.position.z = intersects[0].point.z;
+
+					pickmesh.hit();
 					
+				}
+				if(!oldts){
+					oldts = new Date().getTime();
+				}else{
+					var newts = new Date().getTime();
+					if((newts - oldts)>time){
+						game.push(new Enemy(1,1,1));
+						oldts = newts;
+					} 
 				}
 				
 				game.forEach(e => e.setPosition())
