@@ -45,11 +45,21 @@
 
 			var time = 1000;
 	  
+			function randomIntFromInterval(min, max) { // min and max included 
+				var u = Math.random();
+				var v = Math.random();
+				var theta = 2 * Math.PI * u;
+				var phi = Math.acos(2 * v - 1);
+			}
+
 	  		class Enemy {
-				constructor(p,t,r){
-				    this.phi = p;
-				    this.theta = t;
-			 	    this.r = r;
+				constructor(){
+					var u = Math.random();
+					var v = Math.random();
+					this.dir = Math.random();
+					this.theta = 2 * Math.PI * u;
+					this.phi = Math.acos(2 * v - 1);
+				    this.r = 1;
 				    this.spherical = new THREE.Spherical();
 				    const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
 				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
@@ -60,7 +70,10 @@
 				}
 				
 				setPosition(){
-					this.theta += 0.01;
+					if(this.dir>0.5)
+						this.theta += 0.01;
+					else
+						this.phi += 0.01;
 					this.spherical.set( 15, this.phi, this.theta );
 				    	this.emesh.position.setFromSpherical( this.spherical );
 					//this.hit();
@@ -241,7 +254,7 @@
 				}else{
 					var newts = new Date().getTime();
 					if((newts - oldts)>time){
-						game.push(new Enemy(1,1,1));
+						game.push(new Enemy());
 						oldts = newts;
 					} 
 				}
