@@ -70,19 +70,25 @@
 				}
 				
 				setPosition(){
-					if(this.dir>0.5)
-						this.theta += 0.01;
-					else
-						this.phi += 0.01;
-					this.spherical.set( 15, this.phi, this.theta );
-				    	this.emesh.position.setFromSpherical( this.spherical );
-					//this.hit();
+					if(this.emesh.visible){
+						if(this.dir>0.5)
+							this.theta += 0.01;
+						else
+							this.phi += 0.01;
+						this.spherical.set( 15, this.phi, this.theta );
+						this.emesh.position.setFromSpherical( this.spherical );
+					}
 				}
 				
 				hit(){
-					var d = this.emesh.position.distanceTo( pickmesh.position )
-					if(d < (this.r + pickmeshRadius)) return true;//pickmesh.material.color = {r:1,g:0,b:0}
-					else return false;//pickmesh.material.color = {r:1, g:1, b:1}
+					let d = this.emesh.position.distanceTo( pickmesh.position )
+					let r = false
+					if(d < (this.r + pickmeshRadius)) {
+						r = true;
+						this.emesh.visible = false;
+					}
+						
+					return r;
 				}
 				
 				
