@@ -98,7 +98,7 @@
 	  		const textureLoader = new THREE.TextureLoader();
 
 			const clearcoatNormaMap = textureLoader.load( 'Scratched_gold_01_1K_Normal.png' );
-	  		const normalMap2 = textureLoader.load( 'textures/water/Water_1_M_Normal.jpg' );
+	  		const normalMap2 = textureLoader.load( 'Water_1_M_Normal.jpg' );
 	  
 	  		function randomIntFromInterval(min, max) { // min and max included 
 				var u = Math.random();
@@ -120,7 +120,7 @@
 				    const ematerial = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
-								color: 0xffffff,
+								color: 0xff00ff,
 								normalMap: normalMap2,
 								normalScale: new THREE.Vector2( 0.15, 0.15 ),
 								clearcoatNormalMap: clearcoatNormaMap,
@@ -185,7 +185,17 @@
 				scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 
 				const geometry = new THREE.SphereGeometry( 15, 32, 32 );
-				const material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+				const material = new THREE.MeshPhysicalMaterial( {
+								clearcoat: 1.0,
+								metalness: 1.0,
+								color: 0x0000ff,
+								normalMap: normalMap2,
+								normalScale: new THREE.Vector2( 0.15, 0.15 ),
+								clearcoatNormalMap: clearcoatNormaMap,
+
+								// y scale is negated to compensate for normal map handedness.
+								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
+							} );
 				mesh = new THREE.Mesh( geometry, material );
 				mesh.updateMatrix();
 				mesh.matrixAutoUpdate = false;
@@ -311,7 +321,17 @@
 				if(intersects.length > 0){
 					if(!pickmesh.type){
 						const pickgeometry = new THREE.SphereGeometry( pickmeshRadius, 32, 32 );
-						const pickmaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+						const pickmaterial = new THREE.MeshPhysicalMaterial( {
+								clearcoat: 1.0,
+								metalness: 1.0,
+								color: 0xffffff,
+								normalMap: normalMap2,
+								normalScale: new THREE.Vector2( 0.15, 0.15 ),
+								clearcoatNormalMap: clearcoatNormaMap,
+
+								// y scale is negated to compensate for normal map handedness.
+								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
+							} );
 						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
 						pickmesh.hit = function(){
 							let res = game.some(e => e.hit())
