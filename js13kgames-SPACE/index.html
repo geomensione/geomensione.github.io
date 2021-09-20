@@ -68,13 +68,24 @@
 
 			var time = 1000;
 	  
-	  		var score = 0;
-	  
-	  		function printScore(){
-				document.getElementById('score').innerHTML = score;
+	  		const gameData = {
+			  score: 0
 			}
+
+			const handler = {
+			  get: function (target, prop) {
+			    return target[prop];
+			  },
+			  set: function (target, prop, value) {
+			    target[prop] = value;
+			    document.getElementById('score').innerHTML = value;  
+			    return true;
+			  }
+			}
+
+			const gameProxy = new Proxy(gameData, handler);
 	  
-			function randomIntFromInterval(min, max) { // min and max included 
+	  		function randomIntFromInterval(min, max) { // min and max included 
 				var u = Math.random();
 				var v = Math.random();
 				var theta = 2 * Math.PI * u;
@@ -116,7 +127,7 @@
 						if(d < (this.r + pickmeshRadius)) {
 							r = true;
 							this.emesh.visible = false;
-							score++;
+							gameProxy.score++;
 						}
 						return r;
 					}
@@ -252,7 +263,6 @@
 			}
 			*/
 			function render(timestamp) {
-				printScore();
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
 				
 				renderer.render( scene, camera );
