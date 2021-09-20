@@ -8,11 +8,34 @@
     body {
       margin: 0;
     }
+    .textStyle{
+      font-size:75px;
+      font-family:sans-serif;
+      font-weight:bold;
+      text-align:center;
+      -webkit-text-stroke:5px gray;
+      -webkit-text-fill-color:blue;
+    }
+    .gData{
+      float:right;
+    }
+    .printString{
+      display:none;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  </style>
   </style>
 </head>
 
 <body>
-  
+  <div id="gamesdata" class="textStyle gData">
+    <div id="score"></div>
+    
+  </div>
   <script type="module">
 
 			import * as THREE from 'https://threejs.org/build/three.module.js';
