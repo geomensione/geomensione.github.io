@@ -33,7 +33,7 @@
 
 <body>
   <div id="gamesdata" class="textStyle gData">
-    <div id="score"></div>
+    <div id="score"></div> - <div id="healt"></div>
     
   </div>
   <script type="module">
@@ -69,7 +69,8 @@
 			var time = 1000;
 	  
 	  		const gameData = {
-			  score: 0
+			  score: 0,
+			  healt: 0
 			}
 
 			const handler = {
@@ -78,7 +79,7 @@
 			  },
 			  set: function (target, prop, value) {
 			    target[prop] = value;
-			    document.getElementById('score').innerHTML = value;  
+			    document.getElementById(prop).innerHTML = value;  
 			    return true;
 			  }
 			}
@@ -247,6 +248,11 @@
 			function animate(ts) {
 
 				af = requestAnimationFrame( animate );
+				if (game.healt <= 0){
+					cancelAnimationFrame(af);
+					document.getElementById('score').innderHTML = 'GAME'
+					document.getElementById('healt').innderHTML = 'OVER'
+				} 
 
 				controls.update();
 
@@ -287,8 +293,10 @@
 						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
 						pickmesh.hit = function(){
 							let res = game.some(e => e.hit())
-							if(res) pickmesh.material.color = {r:1,g:0,b:0}
-							else pickmesh.material.color = {r:1,g:1,b:1}
+							if(res) {
+								pickmesh.material.color = {r:1,g:0,b:0}
+								game.healt -= 1;
+							}else{ pickmesh.material.color = {r:1,g:1,b:1} }
 						}
 						scene.add( pickmesh );
 					}
