@@ -85,6 +85,8 @@
 
 			const gameProxy = new Proxy(gameData, handler);
 	  
+	  		gameProxy.score = 0;
+	  
 	  		function randomIntFromInterval(min, max) { // min and max included 
 				var u = Math.random();
 				var v = Math.random();
