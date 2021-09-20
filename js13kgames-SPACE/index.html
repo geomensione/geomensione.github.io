@@ -112,7 +112,7 @@
 				}
 				
 				setPosition(){
-					if(this.emesh.visible){
+					if(!this.dead){
 						if(this.dir>0.5)
 							this.theta += 0.01;
 						else
@@ -123,15 +123,18 @@
 				}
 				
 				hit(){
-					if(this.emesh.visible){
+					if(!this.dead){
 						let d = this.emesh.position.distanceTo( pickmesh.position )
 						let r = false
 						if(d < (this.r + pickmeshRadius)) {
 							r = true;
-							this.emesh.visible = false;
+							this.dead = true
 							gameProxy.score++;
 						}
 						return r;
+					}else{
+						if(this.emesh.material.opacity > 0)
+							this.emesh.material.opacity -= 0.1;
 					}
 				}
 				
