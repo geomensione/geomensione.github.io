@@ -129,6 +129,7 @@
 						if(d < (this.r + pickmeshRadius)) {
 							r = true;
 							this.dead = true
+							object.material.transparent = true;
 							gameProxy.score++;
 						}
 						return r;
