@@ -19,8 +19,8 @@
     .gData{
       float:right;
 	}
-	#score{
-	  float:left;
+	#healt{
+	  float:right;
 	}
     .printString{
       display:none;
@@ -90,6 +90,7 @@
 			const gameProxy = new Proxy(gameData, handler);
 	  
 	  		gameProxy.score = 0;
+	  		gameProxy.healt = 100;
 	  
 	  		function randomIntFromInterval(min, max) { // min and max included 
 				var u = Math.random();
