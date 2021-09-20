@@ -81,14 +81,15 @@
 				}
 				
 				hit(){
-					let d = this.emesh.position.distanceTo( pickmesh.position )
-					let r = false
-					if(d < (this.r + pickmeshRadius)) {
-						r = true;
-						this.emesh.visible = false;
+					if(this.emesh.visible){
+						let d = this.emesh.position.distanceTo( pickmesh.position )
+						let r = false
+						if(d < (this.r + pickmeshRadius)) {
+							r = true;
+							this.emesh.visible = false;
+						}
+						return r;
 					}
-						
-					return r;
 				}
 				
 				
