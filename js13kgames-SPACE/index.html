@@ -255,7 +255,7 @@
 			function animate(ts) {
 
 				af = requestAnimationFrame( animate );
-				if (game.healt <= 0){
+				if (gameProxy.healt <= 0){
 					cancelAnimationFrame(af);
 					document.getElementById('score').innderHTML = 'GAME'
 					document.getElementById('healt').innderHTML = 'OVER'
