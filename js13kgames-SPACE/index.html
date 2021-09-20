@@ -19,8 +19,8 @@
     .gData{
       float:right;
 	}
-	#healt{
-	  float:right;
+	#score{
+	  float:left;
 	}
     .printString{
       display:none;
@@ -299,7 +299,7 @@
 							let res = game.some(e => e.hit())
 							if(res) {
 								pickmesh.material.color = {r:1,g:0,b:0}
-								game.healt -= 1;
+								gameProxy.healt -= 1;
 							}else{ pickmesh.material.color = {r:1,g:1,b:1} }
 						}
 						scene.add( pickmesh );
