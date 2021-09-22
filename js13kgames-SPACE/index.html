@@ -224,19 +224,19 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				stats = new Stats();
-				document.body.appendChild( stats.dom );
+				//stats = new Stats();
+				//document.body.appendChild( stats.dom );
 
 				
 
-				const gui = new GUI();
-				gui.add( params, 'orthographicCamera' ).name( 'use orthographic' ).onChange( function ( value ) {
+				//const gui = new GUI();
+				//gui.add( params, 'orthographicCamera' ).name( 'use orthographic' ).onChange( function ( value ) {
 
-					controls.dispose();
+				//	controls.dispose();
 
-					createControls( value ? orthographicCamera : perspectiveCamera );
+				//	createControls( value ? orthographicCamera : perspectiveCamera );
 
-				} );
+				//} );
 
 				//
 
