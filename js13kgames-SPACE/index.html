@@ -176,7 +176,7 @@
 								gameProxy.healt -= 1;
 							} else {
 								gameProxy.healt += 1;
-								mesh.grow();
+								pickmesh.grow();
 							}
 								
 						}
@@ -209,7 +209,7 @@
 				//scene.background = new THREE.Color( 0xcccccc );
 				//scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 
-				const geometry = new THREE.SphereGeometry( 1, 32, 32 );
+				const geometry = new THREE.SphereGeometry( 15, 32, 32 );
 				const material = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
@@ -222,11 +222,7 @@
 								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
 							} );
 				mesh = new THREE.Mesh( geometry, material );
-				mesh.radius = 1;
-				mesh.grow = function(){
-					mesh.radius++;
-					mesh.geometry.setScale(mesh.radius,mesh.radius,mesh.radius);
-				}
+				
 				mesh.updateMatrix();
 				mesh.matrixAutoUpdate = false;
 				scene.add( mesh );
@@ -371,6 +367,11 @@
 								pickmesh.material.color = {r:1,g:0,b:0}
 								//gameProxy.healt -= 1;
 							}else{ pickmesh.material.color = {r:1,g:1,b:1} }
+						}
+						pickmesh.radius = 1;
+						pickmesh.grow = function(){
+							pickmesh.radius++;
+							pickmesh.geometry.setScale(mesh.radius,mesh.radius,mesh.radius);
 						}
 						scene.add( pickmesh );
 					}
