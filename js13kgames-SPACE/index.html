@@ -170,7 +170,12 @@
 							r = true;
 							this.dead = true
 							this.emesh.material.transparent = true;
-							gameProxy.score++;
+							if(this.materialColor == 0x00ff00)
+								gameProxy.score++;
+							else if(this.materialColor == 0xff0000)
+								gameProxy.healt -= 1;
+							else gameProxy.healt += 1;
+								
 						}
 						return r;
 					}else{
@@ -356,7 +361,7 @@
 							let res = game.some(e => e.hit())
 							if(res) {
 								pickmesh.material.color = {r:1,g:0,b:0}
-								gameProxy.healt -= 1;
+								//gameProxy.healt -= 1;
 							}else{ pickmesh.material.color = {r:1,g:1,b:1} }
 						}
 						scene.add( pickmesh );
