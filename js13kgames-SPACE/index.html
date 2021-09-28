@@ -371,7 +371,7 @@
 						pickmesh.radius = 1;
 						pickmesh.grow = function(){
 							pickmeshRadius++;
-							pickmesh.geometry.scale.set(pickmeshRadius,pickmeshRadius,pickmeshRadius);
+							pickmesh.geometry.scale(pickmeshRadius,pickmeshRadius,pickmeshRadius);
 						}
 						scene.add( pickmesh );
 					}
