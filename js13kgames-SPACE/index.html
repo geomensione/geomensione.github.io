@@ -78,7 +78,7 @@
 	  		var pickArray = [];
 	  
 	  		var pickmesh = {};
-	  		const pickmeshRadius = 5;
+	  		const pickmeshRadius = 1;
 
 	  		var mesh = {};
 	  
@@ -370,8 +370,8 @@
 						}
 						pickmesh.radius = 1;
 						pickmesh.grow = function(){
-							pickmesh.radius++;
-							pickmesh.geometry.setScale(mesh.radius,mesh.radius,mesh.radius);
+							pickmeshRadius++;
+							pickmesh.geometry.scale.set(pickmeshRadius,pickmeshRadius,pickmeshRadius);
 						}
 						scene.add( pickmesh );
 					}
