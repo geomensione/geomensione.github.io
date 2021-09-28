@@ -124,7 +124,7 @@
 			}
 
 	  		class Enemy {
-				constructor(){
+				constructor(t){
 					var u = Math.random();
 					var v = Math.random();
 					this.dir = Math.random();
@@ -133,10 +133,11 @@
 				    this.r = 1;
 				    this.spherical = new THREE.Spherical();
 				    const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
+					let materialColor = (t<0.3)?0xff0000:(t>=0.3 && t<0.6)?0x00ff00:0x0000ff;
 				    const ematerial = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
-								color: 0xff00ff,
+								color: materialColor,
 								normalMap: normalMap2,
 								normalScale: new THREE.Vector2( 0.15, 0.15 ),
 								clearcoatNormalMap: clearcoatNormaMap,
@@ -375,7 +376,8 @@
 				}else{
 					var newts = new Date().getTime();
 					if((newts - oldts)>time){
-						game.push(new Enemy());
+						let t = Math.random();
+						game.push(new Enemy(t));
 						oldts = newts;
 					} 
 				}
