@@ -92,7 +92,8 @@
 	  
 	  		const gameData = {
 			  score: 0,
-			  healt: 100
+			  healt: 100,
+			  scale: 1.2
 			}
 
 			const handler = {
@@ -370,8 +371,8 @@
 						}
 						pickmesh.radius = 1;
 						pickmesh.grow = function(){
-							pickmeshRadius*=1.1;
-							pickmesh.geometry.scale(1.1,1.1,1.1);
+							pickmeshRadius*=gameData.scale;
+							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale);
 						}
 						scene.add( pickmesh );
 					}
