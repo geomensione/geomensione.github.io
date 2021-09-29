@@ -370,8 +370,8 @@
 						}
 						pickmesh.radius = 1;
 						pickmesh.grow = function(){
-							pickmeshRadius++;
-							pickmesh.geometry.scale(pickmeshRadius,pickmeshRadius,pickmeshRadius);
+							pickmeshRadius*=1.1;
+							pickmesh.geometry.scale(1.1,1.1,1.1);
 						}
 						scene.add( pickmesh );
 					}
