@@ -20,4 +20,10 @@ https://bl.ocks.org/duhaime/801daaa005c373eab6847741bd3f497a
 
 a similar game https://playcanv.as/p/3G3RnfUz/
 
+SPRITES
+
+https://threejs.org/examples/?q=spr#webgl_sprites
+
+3D CSS
+
 https://stackoverflow.com/questions/44492158/three-js-spherical-coordinates-formula
