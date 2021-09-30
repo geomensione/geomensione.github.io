@@ -175,6 +175,7 @@
 								gameProxy.score++;
 							} else if(this.materialColor == 0xff0000) {
 								gameProxy.healt -= 1;
+								pickmesh.shrink();
 							} else {
 								gameProxy.healt += 1;
 								pickmesh.grow();
@@ -372,6 +373,10 @@
 						pickmesh.radius = 1;
 						pickmesh.grow = function(){
 							pickmeshRadius*=gameData.scale;
+							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale);
+						}
+						pickmesh.shrink = function(){
+							pickmeshRadius/=gameData.scale;
 							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale);
 						}
 						scene.add( pickmesh );
