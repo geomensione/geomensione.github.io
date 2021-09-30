@@ -19,3 +19,5 @@ procedural planet https://blogg.bekk.no/procedural-planet-in-webgl-and-three-js-
 https://bl.ocks.org/duhaime/801daaa005c373eab6847741bd3f497a
 
 a similar game https://playcanv.as/p/3G3RnfUz/
+
+https://stackoverflow.com/questions/44492158/three-js-spherical-coordinates-formula
