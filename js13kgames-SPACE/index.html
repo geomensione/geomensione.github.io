@@ -377,7 +377,7 @@
 						}
 						pickmesh.shrink = function(){
 							pickmeshRadius/=gameData.scale;
-							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale);
+							pickmesh.geometry.scale(-gameData.scale,-gameData.scale,-gameData.scale);
 						}
 						scene.add( pickmesh );
 					}
