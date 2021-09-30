@@ -55,7 +55,7 @@
 
 <body>
   <div id="gamesdata" class="textStyle gData">
-    <div id="score"></div> - <div id="healt"></div>
+    <div id="score"></div> - <div id="pickmeshRadius"></div>
     
   </div>
   <script type="module">
@@ -78,7 +78,7 @@
 	  		var pickArray = [];
 	  
 	  		var pickmesh = {};
-	  		var pickmeshRadius = 1;
+	  		//var pickmeshRadius = 1;
 
 	  		var mesh = {};
 	  
@@ -111,7 +111,8 @@
 			const gameProxy = new Proxy(gameData, handler);
 	  
 	  		gameProxy.score = 0;
-	  		gameProxy.healt = 100;
+	  		//gameProxy.healt = 100;
+	  		gameProxy.pickmeshRadius = 1;
 	  
 	  		const textureLoader = new THREE.TextureLoader();
 
@@ -168,7 +169,7 @@
 					if(!this.dead){
 						let d = this.emesh.position.distanceTo( pickmesh.position )
 						let r = false
-						if(d < (this.r + pickmeshRadius)) {
+						if(d < (this.r + gameProxy.pickmeshRadius)) {
 							r = true;
 							this.dead = true
 							this.emesh.material.transparent = true;
@@ -351,7 +352,7 @@
 				
 				if(intersects.length > 0){
 					if(!pickmesh.type){
-						const pickgeometry = new THREE.SphereGeometry( pickmeshRadius, 32, 32 );
+						const pickgeometry = new THREE.SphereGeometry( gameProxy.pickmeshRadius, 32, 32 );
 						const pickmaterial = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
@@ -373,11 +374,11 @@
 						}
 						pickmesh.radius = 1;
 						pickmesh.grow = function(){
-							pickmeshRadius*=gameData.scale;
+							gameProxy.pickmeshRadius*=gameData.scale;
 							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale);
 						}
 						pickmesh.shrink = function(){
-							pickmeshRadius/=gameData.scale;
+							gameProxy.pickmeshRadius/=gameData.scale;
 							pickmesh.geometry.scale(gameData.shrinkscale,gameData.shrinkscale,gameData.shrinkscale);
 						}
 						scene.add( pickmesh );
