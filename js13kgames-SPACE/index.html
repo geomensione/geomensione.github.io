@@ -93,7 +93,8 @@
 	  		const gameData = {
 			  score: 0,
 			  healt: 100,
-			  scale: 1.2
+			  scale: 1.2,
+			  shrinkscale: 0.8
 			}
 
 			const handler = {
@@ -377,7 +378,7 @@
 						}
 						pickmesh.shrink = function(){
 							pickmeshRadius/=gameData.scale;
-							pickmesh.geometry.scale(-gameData.scale,-gameData.scale,-gameData.scale);
+							pickmesh.geometry.scale(gameData.shrinkscale,gameData.shrinkscale,gameData.shrinkscale);
 						}
 						scene.add( pickmesh );
 					}
