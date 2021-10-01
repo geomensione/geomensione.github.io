@@ -380,7 +380,7 @@
 							pickmesh.geometry.computeBoundingBox()
 							const bb = new THREE.Vector3()
 							pickmesh.geometry.boundingBox.getSize(bb)
-							gameProxy.pickmeshRadius*=(bb.x/2).toFixed(2);
+							gameProxy.pickmeshRadius=(bb.x/2).toFixed(2);
 							
 						}
 						scene.add( pickmesh );
