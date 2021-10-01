@@ -18,6 +18,14 @@ material, scale hero, collision detection https://geomensione.github.io/js13kgam
 
 ToDo: music (adioloader), wait till assets and material are loaded (LoadingManager), splash page
 
+GAME PLAY
+
+GROW: hit only blue sphere of the same size or smaller then hero
+
+when hero grows, velocity increase else became slow
+
+also enemies have different size and velocity
+
 procedural planet https://blogg.bekk.no/procedural-planet-in-webgl-and-three-js-fc77f14f5505 https://github.com/holgerl
 
 https://bl.ocks.org/duhaime/801daaa005c373eab6847741bd3f497a
