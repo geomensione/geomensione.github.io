@@ -14,6 +14,10 @@ Score https://geomensione.github.io/js13kgames-SPACE/v2.html
 
 Healt and game over https://geomensione.github.io/js13kgames-SPACE/v3.html
 
+material, scale hero, collision detection https://geomensione.github.io/js13kgames-SPACE/v4.html
+
+ToDo: music, wait till assets and material are loaded,
+
 procedural planet https://blogg.bekk.no/procedural-planet-in-webgl-and-three-js-fc77f14f5505 https://github.com/holgerl
 
 https://bl.ocks.org/duhaime/801daaa005c373eab6847741bd3f497a
