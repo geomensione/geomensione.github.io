@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My first three.js app</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    .textStyle{
+      font-size:75px;
+      font-family:sans-serif;
+      font-weight:bold;
+      text-align:center;
+      -webkit-text-stroke:5px gray;
+      -webkit-text-fill-color:blue;
+    }
+    .gData{
+      float:right;
+	}
+	#score{
+	  float:left;
+	}
+	  #pickmeshRadius{
+	  float:right;
+	}
+    .printString{
+      display:none;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+	  #gamesdata {
+		position: absolute;
+		top: 0px;
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		text-align: center;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		pointer-events: none;
+		z-index: 1;
+	}	
+  </style>
+  </style>
+</head>
+
+<body>
+  <div id="gamesdata" class="textStyle gData">
+    <div id="score"></div> - <div id="pickmeshRadius"></div>
+    
+  </div>
+  <script type="module">
+
+			import * as THREE from 'https://threejs.org/build/three.module.js';
+
+			import Stats from 'https://threejs.org/examples/jsm/libs/stats.module.js';
+			import { GUI } from 'https://threejs.org/examples/jsm/libs/dat.gui.module.js';
+
+			import { TrackballControls } from 'https://threejs.org/examples/jsm/controls/TrackballControls.js';
+
+			let perspectiveCamera, orthographicCamera, controls, scene, renderer, stats;
+
+			const params = {
+				orthographicCamera: false
+			};
+
+			const frustumSize = 400;
+	  
+	  		var pickArray = [];
+	  
+	  		var pickmesh = {};
+	  		//var pickmeshRadius = 1;
+
+	  		var mesh = {};
+	  
+	  		var game = new Array();
+	  
+	  		var af;
+
+			var oldts;
+
+			var time = 1000;
+	  
+	  		const gameData = {
+			  score: 0,
+			  healt: 100,
+			  scale: 1.2,
+			  shrinkscale: 0.8
+			}
+
+			const handler = {
+			  get: function (target, prop) {
+			    return target[prop];
+			  },
+			  set: function (target, prop, value) {
+			    target[prop] = value;
+			    document.getElementById(prop).innerHTML = value;  
+			    return true;
+			  }
+			}
+
+			const gameProxy = new Proxy(gameData, handler);
+	  
+	  		gameProxy.score = 0;
+	  		//gameProxy.healt = 100;
+	  		gameProxy.pickmeshRadius = 1;
+	  
+	  		const textureLoader = new THREE.TextureLoader();
+
+			const clearcoatNormaMap = textureLoader.load( 'Scratched_gold_01_1K_Normal.png' );
+	  		const normalMap2 = textureLoader.load( 'Water_1_M_Normal.jpg' );
+	  
+	  		function randomIntFromInterval(min, max) { // min and max included 
+				var u = Math.random();
+				var v = Math.random();
+				var theta = 2 * Math.PI * u;
+				var phi = Math.acos(2 * v - 1);
+			}
+
+	  		class Enemy {
+				constructor(t){
+					var u = Math.random();
+					var v = Math.random();
+					this.dir = Math.random();
+					this.theta = 2 * Math.PI * u;
+					this.phi = Math.acos(2 * v - 1);
+				    this.r = 1;
+				    this.spherical = new THREE.Spherical();
+				    const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
+				    this.materialColor = (t<0.3)?0xff0000:(t>=0.3 && t<0.6)?0x00ff00:0x0000ff;
+				    const ematerial = new THREE.MeshPhysicalMaterial( {
+								clearcoat: 1.0,
+								metalness: 1.0,
+								color: this.materialColor,
+								normalMap: normalMap2,
+								normalScale: new THREE.Vector2( 0.15, 0.15 ),
+								clearcoatNormalMap: clearcoatNormaMap,
+
+								// y scale is negated to compensate for normal map handedness.
+								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
+							} );
+				    this.emesh = new THREE.Mesh( egeometry, ematerial );
+				    scene.add( this.emesh );
+				    this.spherical.set( 15, this.phi, this.theta );
+				    this.emesh.position.setFromSpherical( this.spherical );
+				}
+				
+				setPosition(){
+					if(!this.dead){
+						if(this.dir>0.5)
+							this.theta += 0.01;
+						else
+							this.phi += 0.01;
+						this.spherical.set( 15, this.phi, this.theta );
+						this.emesh.position.setFromSpherical( this.spherical );
+					}
+				}
+				
+				hit(){
+					if(!this.dead){
+						let d = this.emesh.position.distanceTo( pickmesh.position )
+						let r = false
+						if(d < (this.r + gameProxy.pickmeshRadius)) {
+							r = true;
+							this.dead = true
+							this.emesh.material.transparent = true;
+							if(this.materialColor == 0x00ff00) {
+								gameProxy.score++;
+							} else if(this.materialColor == 0xff0000) {
+								//gameProxy.healt -= 1;
+								pickmesh.shrink();
+							} else {
+								//gameProxy.healt += 1;
+								pickmesh.grow();
+							}
+								
+						}
+						return r;
+					}else{
+						if(this.emesh.material.opacity > 0)
+							this.emesh.material.opacity -= 0.1;
+					}
+				}
+				
+				
+			}
+	  
+			init();
+			animate();
+
+			function init() {
+
+				const aspect = window.innerWidth / window.innerHeight;
+
+				perspectiveCamera = new THREE.PerspectiveCamera( 5, aspect, 1, 1000 );
+				perspectiveCamera.position.z = 500;
+
+				orthographicCamera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 1, 1000 );
+				orthographicCamera.position.z = 500;
+
+				// world
+
+				scene = new THREE.Scene();
+				//scene.background = new THREE.Color( 0xcccccc );
+				//scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
+
+				const geometry = new THREE.SphereGeometry( 15, 32, 32 );
+				const material = new THREE.MeshPhysicalMaterial( {
+								clearcoat: 1.0,
+								metalness: 1.0,
+								color: 0x0000ff,
+								normalMap: normalMap2,
+								normalScale: new THREE.Vector2( 0.15, 0.15 ),
+								clearcoatNormalMap: clearcoatNormaMap,
+
+								// y scale is negated to compensate for normal map handedness.
+								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
+							} );
+				mesh = new THREE.Mesh( geometry, material );
+				
+				mesh.updateMatrix();
+				mesh.matrixAutoUpdate = false;
+				scene.add( mesh );
+				pickArray.push( mesh )
+
+				// lights
+
+				const dirLight1 = new THREE.DirectionalLight( 0xffffff, 2);
+				dirLight1.position.set( 1, 1, 1 );
+				scene.add( dirLight1 );
+
+				const dirLight3 = new THREE.DirectionalLight( 0xffffff, 2 );
+				dirLight3.position.set( - 1, - 1, 1 );
+				scene.add( dirLight3 );
+				
+				// renderer
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				//stats = new Stats();
+				//document.body.appendChild( stats.dom );
+
+				
+
+				//const gui = new GUI();
+				//gui.add( params, 'orthographicCamera' ).name( 'use orthographic' ).onChange( function ( value ) {
+
+				//	controls.dispose();
+
+				//	createControls( value ? orthographicCamera : perspectiveCamera );
+
+				//} );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+				createControls( perspectiveCamera );
+				
+				
+
+			}
+
+			function createControls( camera ) {
+
+				controls = new TrackballControls( camera, renderer.domElement );
+
+				controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+
+				controls.keys = [ 'KeyA', 'KeyS', 'KeyD' ];
+
+			}
+
+			function onWindowResize() {
+
+				const aspect = window.innerWidth / window.innerHeight;
+
+				perspectiveCamera.aspect = aspect;
+				perspectiveCamera.updateProjectionMatrix();
+
+				orthographicCamera.left = - frustumSize * aspect / 2;
+				orthographicCamera.right = frustumSize * aspect / 2;
+				orthographicCamera.top = frustumSize / 2;
+				orthographicCamera.bottom = - frustumSize / 2;
+				orthographicCamera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				controls.handleResize();
+
+			}
+
+			function animate(ts) {
+
+				af = requestAnimationFrame( animate );
+				if (gameProxy.healt <= 0){
+					cancelAnimationFrame(af);
+					document.getElementById('score').innerHTML = 'GAME'
+					document.getElementById('healt').innerHTML = 'OVER'
+				} 
+
+				controls.update();
+
+				//stats.update();
+
+				render(ts);
+
+			}
+	  		/*
+	  		function createEnemies(timestamp) {
+				var phi = 1, theta = 1;
+				var spherical = new THREE.Spherical();
+				    const egeometry = new THREE.SphereGeometry( 1, 32, 32 );
+				    const ematerial = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+				    var emesh = new THREE.Mesh( egeometry, ematerial );
+				scene.add( emesh );
+				
+				    spherical.set( 15, phi, theta );
+				    emesh.position.setFromSpherical( spherical );
+			}
+			*/
+			function render(timestamp) {
+				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
+				
+				renderer.render( scene, camera );
+				const mouse = new THREE.Vector2();
+				mouse.x = ( (window.innerWidth/2) / window.innerWidth ) * 2 - 1;
+				const verticalOffset = -(window.innerHeight/5*1);
+				mouse.y = - ( ( ( window.innerHeight ) / 2 + verticalOffset ) / window.innerHeight ) * 2 + 1;
+				var raycaster = new THREE.Raycaster();
+				raycaster.setFromCamera( mouse, camera );
+				var intersects = raycaster.intersectObjects( pickArray );
+				
+				if(intersects.length > 0){
+					if(!pickmesh.type){
+						const pickgeometry = new THREE.SphereGeometry( gameProxy.pickmeshRadius, 32, 32 );
+						const pickmaterial = new THREE.MeshPhysicalMaterial( {
+								clearcoat: 1.0,
+								metalness: 1.0,
+								color: 0xffffff,
+								normalMap: normalMap2,
+								normalScale: new THREE.Vector2( 0.15, 0.15 ),
+								clearcoatNormalMap: clearcoatNormaMap,
+
+								// y scale is negated to compensate for normal map handedness.
+								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
+							} );
+						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
+						pickmesh.hit = function(){
+							let res = game.some(e => e.hit())
+							if(res) {
+								pickmesh.material.color = {r:1,g:0,b:0}
+								//gameProxy.healt -= 1;
+							}else{ pickmesh.material.color = {r:1,g:1,b:1} }
+						}
+						pickmesh.radius = 1;
+						pickmesh.grow = function(){
+							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale)
+							pickmesh.calculateRadius();
+						}
+						pickmesh.shrink = function(){
+							pickmesh.geometry.scale(gameData.shrinkscale,gameData.shrinkscale,gameData.shrinkscale);
+							pickmesh.calculateRadius();
+						}
+						pickmesh.calculateRadius = function(){
+							pickmesh.geometry.computeBoundingBox()
+							const bb = new THREE.Vector3()
+							pickmesh.geometry.boundingBox.getSize(bb)
+							gameProxy.pickmeshRadius=Number((bb.x/2).toFixed(2));
+							
+						}
+						scene.add( pickmesh );
+					}
+					pickmesh.lookAt(camera.position);
+					//pickmesh.lookAt(mesh.position);
+					pickmesh.rotation.z = camera.rotation.z;
+					pickmesh.position.x = intersects[0].point.x;
+					pickmesh.position.y = intersects[0].point.y;
+					pickmesh.position.z = intersects[0].point.z;
+
+					pickmesh.hit();
+					
+				}
+				if(!oldts){
+					oldts = new Date().getTime();
+				}else{
+					var newts = new Date().getTime();
+					if((newts - oldts)>time){
+						let t = Math.random();
+						game.push(new Enemy(t));
+						oldts = newts;
+					} 
+				}
+				
+				game.forEach(e => e.setPosition())
+
+			}
+			
+	  		
+
+		</script>
+</body>
+
+</html>
