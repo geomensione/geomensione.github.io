@@ -378,7 +378,9 @@
 						}
 						pickmesh.calculateRadius = function(){
 							pickmesh.geometry.computeBoundingBox()
-							gameProxy.pickmeshRadius*=pickmesh.geometry.boundingBox.getSize().x/2;
+							const bb = new THREE.Vector3()
+							pickmesh.geometry.boundingBox.getSize(bb)
+							gameProxy.pickmeshRadius*=bb.x/2;
 							
 						}
 						scene.add( pickmesh );
