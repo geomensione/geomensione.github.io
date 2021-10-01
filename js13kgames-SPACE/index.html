@@ -114,10 +114,7 @@
 	  		//gameProxy.healt = 100;
 	  		gameProxy.pickmeshRadius = 1;
 	  
-	  		const textureLoader = new THREE.TextureLoader();
-
-			const clearcoatNormaMap = textureLoader.load( 'Scratched_gold_01_1K_Normal.png' );
-	  		const normalMap2 = textureLoader.load( 'Water_1_M_Normal.jpg' );
+	  		
 	  
 	  		function randomIntFromInterval(min, max) { // min and max included 
 				var u = Math.random();
@@ -194,9 +191,19 @@
 				
 			}
 	  
-			init();
-			animate();
+			const textureLoader = new THREE.TextureLoader();
+			const clearcoatNormaMap, normalMap2;
+			textureLoader.load( 'Scratched_gold_01_1K_Normal.png', (t)=>{
+				clearcoatNormaMap = t;
+				textureLoader.load( 'Water_1_M_Normal.jpg', (t)=>{
+					normalMap2 = t;	
+					
+					init();
+					animate();
 
+				} );
+			} );
+	  		
 			function init() {
 
 				const aspect = window.innerWidth / window.innerHeight;
