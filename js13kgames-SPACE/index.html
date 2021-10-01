@@ -369,12 +369,17 @@
 						}
 						pickmesh.radius = 1;
 						pickmesh.grow = function(){
-							gameProxy.pickmeshRadius*=gameData.scale;
-							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale);
+							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale)
+							pickmesh.calculateRadius();
 						}
 						pickmesh.shrink = function(){
-							gameProxy.pickmeshRadius/=gameData.scale;
 							pickmesh.geometry.scale(gameData.shrinkscale,gameData.shrinkscale,gameData.shrinkscale);
+							pickmesh.calculateRadius();
+						}
+						pickmesh.calculateRadius = function(){
+							pickmesh.geometry.computeBoundingBox()
+							gameProxy.pickmeshRadius*=pickmesh.geometry.boundingBox.getSize().x/2;
+							
 						}
 						scene.add( pickmesh );
 					}
