@@ -39,3 +39,7 @@ https://threejs.org/examples/?q=spr#webgl_sprites
 3D CSS
 
 https://stackoverflow.com/questions/44492158/three-js-spherical-coordinates-formula
+
+js13kgames webpack starter
+
+https://github.com/sz-piotr/js13k-webpack-starter
