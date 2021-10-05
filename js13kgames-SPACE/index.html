@@ -86,15 +86,15 @@
 	  
 	  		var af;
 
-			var oldts;
-
-			var time = 1000;
-	  
-	  		const gameData = {
+			const gameData = {
 			  score: 0,
 			  healt: 100,
 			  scale: 1.2,
-			  shrinkscale: 0.8
+			  shrinkscale: 0.8,
+			  timeCreation: 1000,
+			  interval: 20000,
+			  oldts: undefined,
+			  oldInterv: undefined
 			}
 
 			const handler = {
@@ -402,15 +402,23 @@
 					pickmesh.hit();
 					
 				}
-				if(!oldts){
-					oldts = new Date().getTime();
+				if(!gameData.oldts){
+					gameData.oldts = new Date().getTime();
 				}else{
 					var newts = new Date().getTime();
-					if((newts - oldts)>time){
+					if((newts - gameData.oldts)>gameData.timeCreation){
 						let t = Math.random();
 						game.push(new Enemy(t));
-						oldts = newts;
+						gameData.oldts = newts;
 					} 
+				}
+				if(!gameData.oldInterv){
+					gameData.oldInterv = new Date().getTime();
+				}else{
+					var newts = new Date().getTime();
+					if((newts - gameData.oldInterv)>gameData.interval){
+						gameData.timeCreation -= 0.1;
+					}
 				}
 				
 				game.forEach(e => e.setPosition())
