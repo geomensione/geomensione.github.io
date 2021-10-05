@@ -417,7 +417,10 @@
 				}else{
 					var newts = new Date().getTime();
 					if((newts - gameData.oldInterv)>gameData.interval){
-						gameData.timeCreation -= 0.1;
+						if((gameData.timeCreation - 100)>0){
+							gameData.timeCreation -= 100;
+							gameData.oldInterv = newts;
+						}
 					}
 				}
 				
