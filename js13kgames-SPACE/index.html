@@ -134,6 +134,9 @@
 				    this.spherical = new THREE.Spherical();
 				    const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
 				    this.materialColor = (t<0.3)?0xff0000:(t>=0.3 && t<0.6)?0x00ff00:0x0000ff;
+				    if(t>=0.3 && t<0.6){
+				    	this.r *= gameData.scale;
+				    }
 				    const ematerial = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
