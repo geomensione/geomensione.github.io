@@ -43,3 +43,9 @@ https://stackoverflow.com/questions/44492158/three-js-spherical-coordinates-form
 js13kgames webpack starter
 
 https://github.com/sz-piotr/js13k-webpack-starter
+
+scale
+
+https://discourse.threejs.org/t/scaling-different-objects-to-a-particular-size/19672/2
+
+https://discourse.threejs.org/t/does-three-have-any-kind-of-independent-unit-i-understand-that-a-unit-in-three-is-abstract-but-scale-set-seems-to-be-relative-to-the-models-imported-size/16019/3
