@@ -170,21 +170,24 @@
 					if(!this.dead){
 						let d = this.emesh.position.distanceTo( pickmesh.position )
 						let r = false
-						if(d < (this.r + gameProxy.pickmeshRadius)) {
-							r = true;
-							this.dead = true
-							this.emesh.material.transparent = true;
-							if(this.materialColor == 0x00ff00) {
-								gameProxy.score++;
-							} else if(this.materialColor == 0xff0000) {
-								//gameProxy.healt -= 1;
-								pickmesh.shrink();
-							} else {
-								//gameProxy.healt += 1;
-								pickmesh.grow();
+						if( gameProxy.pickmeshRadius >= this.r ){
+							if(d < (this.r + gameProxy.pickmeshRadius)) {
+								r = true;
+								this.dead = true
+								this.emesh.material.transparent = true;
+								if(this.materialColor == 0x00ff00) {
+									gameProxy.score++;
+								} else if(this.materialColor == 0xff0000) {
+									//gameProxy.healt -= 1;
+									pickmesh.shrink();
+								} else {
+									//gameProxy.healt += 1;
+									pickmesh.grow();
+								}
+
 							}
-								
 						}
+						
 						return r;
 					}else{
 						if(this.emesh.material.opacity > 0)
