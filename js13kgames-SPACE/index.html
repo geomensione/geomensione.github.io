@@ -77,7 +77,7 @@
 	  
 	  		var pickArray = [];
 	  
-	  		var pickmesh = {};
+	  		var pickmesh = null;
 	  		//var pickmeshRadius = 1;
 
 	  		var mesh = {};
@@ -394,7 +394,7 @@
 				var intersects = raycaster.intersectObjects( pickArray );
 				
 				if(intersects.length > 0){
-					if(!pickmesh.type){
+					if(!pickmesh){
 						addPickedMesh( gameProxy.pickmeshRadius );
 					}
 					pickmesh.lookAt(camera.position);
