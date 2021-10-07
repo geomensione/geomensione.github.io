@@ -63,6 +63,20 @@
 		pointer-events: none;
 		z-index: 2;
 	}	
+	  #gameTitle {
+		position: absolute;
+		top: 0px;
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		text-align: center;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		pointer-events: none;
+		z-index: 3;
+	}	
   </style>
   </style>
 </head>
@@ -73,6 +87,7 @@
     <div id="score"></div> - <div id="pickmeshRadius"></div>
     
   </div>
+	<div id="gameTitle" class="textStyle gData"><div id="title">Webglanet</div><div id="info">Press S to start, blue to grow and take green at least of the same size</div></div>
   <script type="module">
 
 			import * as THREE from 'https://threejs.org/build/three.module.js';
