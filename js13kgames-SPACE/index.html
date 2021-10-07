@@ -69,7 +69,7 @@
 
 <body>
 	<div id="gameWait" class="textStyle gData">Loading resource, please wait<div>
-  <div id="gamesdata" class="textStyle gData">
+  <div id="gamesdata" class="textStyle gData" style="display:none">
     <div id="score"></div> - <div id="pickmeshRadius"></div>
     
   </div>
@@ -218,6 +218,8 @@
 			textureLoader.load( 'Scratched_gold_01_1K_Normal.png', (t)=>{
 				clearcoatNormaMap = t;
 				textureLoader.load( 'Water_1_M_Normal.jpg', (t)=>{
+					document.getElementById('gamesdata').style.display = 'block';
+					document.getElementById('gameWait').style.display = 'nome';
 					normalMap2 = t;	
 					
 					init();
