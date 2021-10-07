@@ -210,7 +210,45 @@
 
 				} );
 			} );
-	  		
+	  		function addPickedMesh(r){
+				const pickgeometry = new THREE.SphereGeometry( r, 32, 32 );
+				const pickmaterial = new THREE.MeshPhysicalMaterial( {
+						clearcoat: 1.0,
+						metalness: 1.0,
+						color: 0xffffff,
+						normalMap: normalMap2,
+						normalScale: new THREE.Vector2( 0.15, 0.15 ),
+						clearcoatNormalMap: clearcoatNormaMap,
+
+						// y scale is negated to compensate for normal map handedness.
+						clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
+					} );
+				pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
+				pickmesh.hit = function(){
+					let res = game.some(e => e.hit())
+					if(res) {
+						pickmesh.material.color = {r:1,g:0,b:0}
+						//gameProxy.healt -= 1;
+					}else{ pickmesh.material.color = {r:1,g:1,b:1} }
+				}
+				pickmesh.radius = 1;
+				pickmesh.grow = function(){
+					pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale)
+					pickmesh.calculateRadius();
+				}
+				pickmesh.shrink = function(){
+					pickmesh.geometry.scale(gameData.shrinkscale,gameData.shrinkscale,gameData.shrinkscale);
+					pickmesh.calculateRadius();
+				}
+				pickmesh.calculateRadius = function(){
+					pickmesh.geometry.computeBoundingBox()
+					const bb = new THREE.Vector3()
+					pickmesh.geometry.boundingBox.getSize(bb)
+					gameProxy.pickmeshRadius=Number((bb.x/2).toFixed(2));
+
+				}
+				scene.add( pickmesh );
+			}
 			function init() {
 
 				const aspect = window.innerWidth / window.innerHeight;
@@ -361,43 +399,7 @@
 				
 				if(intersects.length > 0){
 					if(!pickmesh.type){
-						const pickgeometry = new THREE.SphereGeometry( gameProxy.pickmeshRadius, 32, 32 );
-						const pickmaterial = new THREE.MeshPhysicalMaterial( {
-								clearcoat: 1.0,
-								metalness: 1.0,
-								color: 0xffffff,
-								normalMap: normalMap2,
-								normalScale: new THREE.Vector2( 0.15, 0.15 ),
-								clearcoatNormalMap: clearcoatNormaMap,
-
-								// y scale is negated to compensate for normal map handedness.
-								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
-							} );
-						pickmesh = new THREE.Mesh( pickgeometry, pickmaterial );
-						pickmesh.hit = function(){
-							let res = game.some(e => e.hit())
-							if(res) {
-								pickmesh.material.color = {r:1,g:0,b:0}
-								//gameProxy.healt -= 1;
-							}else{ pickmesh.material.color = {r:1,g:1,b:1} }
-						}
-						pickmesh.radius = 1;
-						pickmesh.grow = function(){
-							pickmesh.geometry.scale(gameData.scale,gameData.scale,gameData.scale)
-							pickmesh.calculateRadius();
-						}
-						pickmesh.shrink = function(){
-							pickmesh.geometry.scale(gameData.shrinkscale,gameData.shrinkscale,gameData.shrinkscale);
-							pickmesh.calculateRadius();
-						}
-						pickmesh.calculateRadius = function(){
-							pickmesh.geometry.computeBoundingBox()
-							const bb = new THREE.Vector3()
-							pickmesh.geometry.boundingBox.getSize(bb)
-							gameProxy.pickmeshRadius=Number((bb.x/2).toFixed(2));
-							
-						}
-						scene.add( pickmesh );
+						addPickedMesh( gameProxy.pickmeshRadius );
 					}
 					pickmesh.lookAt(camera.position);
 					//pickmesh.lookAt(mesh.position);
