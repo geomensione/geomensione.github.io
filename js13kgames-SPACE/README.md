@@ -16,6 +16,8 @@ Healt and game over https://geomensione.github.io/js13kgames-SPACE/v3.html
 
 material, scale hero, collision detection https://geomensione.github.io/js13kgames-SPACE/v4.html
 
+game play https://geomensione.github.io/js13kgames-SPACE/v5.html
+
 ToDo: music (adioloader), wait till assets and material are loaded (LoadingManager), splash page
 
 GAME PLAY
