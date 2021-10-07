@@ -235,10 +235,12 @@
 				pickmesh.grow = function(){
 					gameProxy.pickmeshRadius++;
 					scene.remove(pickmesh)
+					delete pickmesh;
 				}
 				pickmesh.shrink = function(){
 					if( ( gameProxy.pickmeshRadius - 1 ) > 0 ) gameProxy.pickmeshRadius--;
 					scene.remove(pickmesh)
+					delete pickmesh;
 
 				}
 				scene.add( pickmesh );
