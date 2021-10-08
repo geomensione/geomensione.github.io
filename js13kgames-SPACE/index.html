@@ -237,15 +237,18 @@
 					document.getElementById('gameTitle').style.display = 'block';
 					normalMap2 = t;	
 					
-					document.addEventListener('keyup',(e)=>{
+					function start_fn(e){
 						if(e.key == 's'){
-							document.removeEventListener('keyup')
+							document.removeEventListener('keyup',start_fn)
 							document.getElementById('gameTitle').style.display = 'none';
 							document.getElementById('gamesdata').style.display = 'block';
 							init();
-							animate();		
+							animate();
 						}
-					})
+						
+					}
+					
+					document.addEventListener('keyup',start_fn)
 					
 					
 
