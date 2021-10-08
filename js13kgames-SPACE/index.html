@@ -87,7 +87,7 @@
     <div id="score"></div> - <div id="pickmeshRadius"></div>
     
   </div>
-	<div id="gameTitle" class="textStyle gData"><div id="title">Webglanet</div><div id="info">Press S to start, blue to grow and take green at least of the same size</div></div>
+	<div id="gameTitle" class="textStyle gData"  style="display:none"><div id="title">Webglanet</div><div id="info">Press S to start, blue to grow and take green at least of the same size</div></div>
   <script type="module">
 
 			import * as THREE from 'https://threejs.org/build/three.module.js';
@@ -234,11 +234,13 @@
 				clearcoatNormaMap = t;
 				textureLoader.load( 'Water_1_M_Normal.jpg', (t)=>{
 					document.getElementById('gameWait').style.display = 'none';
+					document.getElementById('gameTitle').style.display = 'block';
 					normalMap2 = t;	
 					
 					document.addEventListener('keyup',(e)=>{
 						if(e.key == 's'){
 							document.removeEventListener('keyup')
+							document.getElementById('gameTitle').style.display = 'none';
 							document.getElementById('gamesdata').style.display = 'block';
 							init();
 							animate();		
