@@ -237,7 +237,8 @@
 					document.getElementById('gameTitle').style.display = 'block';
 					normalMap2 = t;	
 					function start_fn_cb() {
-						document.removeEventListener('keyup',start_fn)
+						document.removeEventListener('keyup',k_start_fn)
+						document.removeEventListener('touchstart',t_start_fn)
 							document.getElementById('gameTitle').style.display = 'none';
 							document.getElementById('gamesdata').style.display = 'block';
 							init();
