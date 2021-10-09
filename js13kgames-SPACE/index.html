@@ -236,20 +236,24 @@
 					document.getElementById('gameWait').style.display = 'none';
 					document.getElementById('gameTitle').style.display = 'block';
 					normalMap2 = t;	
-					
-					function start_fn(e){
-						if(e.key == 's'){
-							document.removeEventListener('keyup',start_fn)
+					function start_fn_cb() {
+						document.removeEventListener('keyup',start_fn)
 							document.getElementById('gameTitle').style.display = 'none';
 							document.getElementById('gamesdata').style.display = 'block';
 							init();
 							animate();
+					} 
+					function k_start_fn(e){
+						if(e.key == 's'){
+							start_fn_cb() ;
 						}
 						
 					}
-					
-					document.addEventListener('keyup',start_fn)
-					
+					function t_start_fn(e){
+							start_fn_cb() ;
+					}
+					document.addEventListener('keyup',k_start_fn)
+					document.addEventListener('touchstart',t_start_fn)
 					
 
 				} );
