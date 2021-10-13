@@ -230,9 +230,9 @@
 	  
 			const textureLoader = new THREE.TextureLoader();
 			var clearcoatNormaMap, normalMap2;
-			textureLoader.load( 'Scratched_gold_01_1K_Normal.png', (t)=>{
+			textureLoader.load( 'assets/images/Scratched_gold_01_1K_Normal.png', (t)=>{
 				clearcoatNormaMap = t;
-				textureLoader.load( 'Water_1_M_Normal.jpg', (t)=>{
+				textureLoader.load( 'assets/images/Water_1_M_Normal.jpg', (t)=>{
 					document.getElementById('gameWait').style.display = 'none';
 					document.getElementById('gameTitle').style.display = 'block';
 					normalMap2 = t;	
