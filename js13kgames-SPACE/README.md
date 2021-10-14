@@ -53,3 +53,7 @@ scale
 https://discourse.threejs.org/t/scaling-different-objects-to-a-particular-size/19672/2
 
 https://discourse.threejs.org/t/does-three-have-any-kind-of-independent-unit-i-understand-that-a-unit-in-three-is-abstract-but-scale-set-seems-to-be-relative-to-the-models-imported-size/16019/3
+
+plane tangent
+
+https://www.tutorialguruji.com/javascript/three-js-building-a-tangent-plane-through-point-on-a-sphere/
