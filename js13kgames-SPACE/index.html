@@ -167,7 +167,7 @@
 				    }
 				    this.spherical = new THREE.Spherical();
 				    //const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
-				    const egeometry = new THREE.SphereGeometry( this.r, this.r );
+				    const egeometry = new THREE.PlaneGeometry( this.r, this.r );
 				    
 				    const ematerial = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
