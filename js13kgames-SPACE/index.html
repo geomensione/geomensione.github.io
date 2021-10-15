@@ -168,7 +168,7 @@
 				    this.spherical = new THREE.Spherical();
 				    //const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
 				    const egeometry = new THREE.PlaneGeometry( this.r, this.r );
-				    
+				    /*
 				    const ematerial = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
@@ -179,6 +179,10 @@
 								side: THREE.DoubleSide,
 								// y scale is negated to compensate for normal map handedness.
 								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
+							} );*/
+				    const ematerial = new THREE.MeshBasicMaterial( {
+								color: this.materialColor,
+								side: THREE.DoubleSide								
 							} );
 				    this.emesh = new THREE.Mesh( egeometry, ematerial );
 				    scene.add( this.emesh );
