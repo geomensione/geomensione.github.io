@@ -166,7 +166,8 @@
 				    	this.r = ( gameProxy.pickmeshRadius + 1 );
 				    }
 				    this.spherical = new THREE.Spherical();
-				    const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
+				    //const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
+				    const egeometry = new THREE.SphereGeometry( this.r, this.r );
 				    
 				    const ematerial = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
@@ -183,6 +184,7 @@
 				    scene.add( this.emesh );
 				    this.spherical.set( 15, this.phi, this.theta );
 				    this.emesh.position.setFromSpherical( this.spherical );
+					this.lookAt(mesh);
 				}
 				
 				setPosition(){
