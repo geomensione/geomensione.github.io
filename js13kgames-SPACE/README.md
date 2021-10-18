@@ -20,7 +20,7 @@ game play https://geomensione.github.io/js13kgames-SPACE/v5.html
 
 titles https://geomensione.github.io/js13kgames-SPACE/v5.html
 
-ToDo: music (adioloader), wait till assets and material are loaded (LoadingManager), splash page
+ToDo: music (audioloader)
 
 GAME PLAY
 
@@ -30,7 +30,7 @@ when hero grows, velocity increase else became slow
 
 also enemies have different size and velocity
 
-Params: color and size of planet, color and size and shape and velocity and number of enemies, velocity and shape of hero
+Params: color and size of planet, background color, color and size and shape and velocity and number of enemies, velocity and shape of hero.
 
 procedural planet https://blogg.bekk.no/procedural-planet-in-webgl-and-three-js-fc77f14f5505 https://github.com/holgerl
 
