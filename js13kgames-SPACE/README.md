@@ -30,6 +30,8 @@ when hero grows, velocity increase else became slow
 
 also enemies have different size and velocity
 
+Params: color and size of planet, color and size and shape and velocity and number of enemies, velocity and shape of hero
+
 procedural planet https://blogg.bekk.no/procedural-planet-in-webgl-and-three-js-fc77f14f5505 https://github.com/holgerl
 
 https://bl.ocks.org/duhaime/801daaa005c373eab6847741bd3f497a
