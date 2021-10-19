@@ -317,8 +317,9 @@
 				// world
 
 				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xFFFFcc );
+				/* shader background 
 				sscene = new THREE.Scene();
-				//scene.background = new THREE.Color( 0xFFFFcc );
 				//scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 				scamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
 
@@ -342,6 +343,7 @@
 
 				const quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2, 1, 1 ), smaterial );
 				sscene.add( quad );	
+				*/
 				const geometry = new THREE.SphereGeometry( 15, 32, 32 );
 				const material = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
@@ -462,10 +464,10 @@
 			*/
 			function render(timestamp) {
 				//renderer.autoClear = false; 
-				renderer.clear();
+				//renderer.clear();
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
 				
-				renderer.render( sscene, scamera );
+				//renderer.render( sscene, scamera );
 				renderer.render( scene, camera );
 				const mouse = new THREE.Vector2();
 				mouse.x = ( (window.innerWidth/2) / window.innerWidth ) * 2 - 1;
