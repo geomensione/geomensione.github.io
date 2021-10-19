@@ -97,7 +97,7 @@
 
 			import { TrackballControls } from 'https://threejs.org/examples/jsm/controls/TrackballControls.js';
 
-			let perspectiveCamera, orthographicCamera, controls, scene, renderer, stats;
+			let perspectiveCamera, orthographicCamera, scamera, controls, scene, sscene, renderer, stats;
 
 			const params = {
 				orthographicCamera: false
@@ -317,9 +317,11 @@
 				// world
 
 				scene = new THREE.Scene();
+				sscene = new THREE.Scene();
 				//scene.background = new THREE.Color( 0xFFFFcc );
 				//scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
-				
+				scamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
+
 				const smaterial = new THREE.ShaderMaterial({
 				vertexShader: `
 					varying vec2 vUv;
@@ -339,7 +341,7 @@
 				});
 
 				const quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2, 1, 1 ), smaterial );
-				scene.add( quad );	
+				sscene.add( quad );	
 				const geometry = new THREE.SphereGeometry( 15, 32, 32 );
 				const material = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
@@ -464,6 +466,7 @@
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
 				
 				renderer.render( scene, camera );
+				renderer.render( sscene, scamera );
 				const mouse = new THREE.Vector2();
 				mouse.x = ( (window.innerWidth/2) / window.innerWidth ) * 2 - 1;
 				const verticalOffset = -(window.innerHeight/5*1);
