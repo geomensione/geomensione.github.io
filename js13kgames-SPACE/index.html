@@ -467,8 +467,8 @@
 				renderer.clear();
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
 				
-				renderer.render( sscene, scamera );
 				renderer.render( scene, camera );
+				renderer.render( sscene, scamera );
 				const mouse = new THREE.Vector2();
 				mouse.x = ( (window.innerWidth/2) / window.innerWidth ) * 2 - 1;
 				const verticalOffset = -(window.innerHeight/5*1);
