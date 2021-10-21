@@ -97,7 +97,7 @@
 
 			import { TrackballControls } from 'https://threejs.org/examples/jsm/controls/TrackballControls.js';
 
-			let perspectiveCamera, orthographicCamera, scamera, controls, scene, sscene, renderer, stats, uniforms;
+			let perspectiveCamera, orthographicCamera, scamera, controls, scene, sscene, renderer, stats;
 
 			const params = {
 				orthographicCamera: false
@@ -323,31 +323,25 @@
 				//scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 				scamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
 
-				
 				const smaterial = new THREE.ShaderMaterial({
 				vertexShader: `
-					uniform float time;
-					uniform vec2 resolution;
-					void main()	{
-					    gl_Position = vec4( position, 1.0 );
+					varying vec2 vUv;
+					
+					void main() {
+						vUv = uv;
+						gl_Position = vec4( position, 1.0 );    
 					}
 				`,
 				fragmentShader: `
-					uniform float time;
-					uniform vec2 resolution;
-					void main()	{
-					    float x = mod(time + gl_FragCoord.x, 20.) < 10. ? 1. : 0.;
-					    float y = mod(time + gl_FragCoord.y, 20.) < 10. ? 1. : 0.;
-					    gl_FragColor = vec4(vec3(min(x, y)), 1.);
+					varying vec2 vUv;
+					
+					void main() {
+						gl_FragColor = vec4( 0.0, vUv.x, vUv.y, 1.0 );
 					}
 				`,
-				uniform:{
-					time: { type: "f", value: 1.0 },
-					resolution: { type: "v2", value: new THREE.Vector2() }
-				    },
 				depthWrite: false
 				});
-				
+
 				const quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2, 1, 1 ), smaterial );
 				sscene.add( quad );	
 				//
