@@ -20,7 +20,7 @@ game play https://geomensione.github.io/js13kgames-SPACE/v5.html
 
 titles https://geomensione.github.io/js13kgames-SPACE/v6.html
 
-background shader https://geomensione.github.io/js13kgames-SPACE/v7.html
+background shader https://geomensione.github.io/js13kgames-SPACE/v7.html https://threejsfundamentals.org/threejs/lessons/threejs-shadertoy.html
 
 ToDo: music (audioloader)
 
