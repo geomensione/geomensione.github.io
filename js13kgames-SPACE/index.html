@@ -323,7 +323,7 @@
 				//scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 				scamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
 
-				const fragmentShader = `
+				const sfragmentShader = `
 				  #include <common>
 
 				  uniform vec3 iResolution;
@@ -347,13 +347,13 @@
 				    mainImage(gl_FragColor, gl_FragCoord.xy);
 				  }
 				  `;
-				  const uniforms = {
+				  const suniforms = {
 				    iTime: { value: 0 },
 				    iResolution:  { value: new THREE.Vector3() },
 				  };
 				  const smaterial = new THREE.ShaderMaterial({
-				    fragmentShader,
-				    uniforms,
+				    fragmentShader: sfragmentShader,
+				    uniforms: suniforms,
 					depthWrite: false
 				  });
 				/*
