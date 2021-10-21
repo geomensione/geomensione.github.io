@@ -18,7 +18,9 @@ material, scale hero, collision detection https://geomensione.github.io/js13kgam
 
 game play https://geomensione.github.io/js13kgames-SPACE/v5.html
 
-titles https://geomensione.github.io/js13kgames-SPACE/v5.html
+titles https://geomensione.github.io/js13kgames-SPACE/v6.html
+
+background shader https://geomensione.github.io/js13kgames-SPACE/v7.html
 
 ToDo: music (audioloader)
 
