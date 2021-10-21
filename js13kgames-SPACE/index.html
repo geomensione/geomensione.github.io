@@ -351,7 +351,7 @@
 				    iTime: { value: 0 },
 				    iResolution:  { value: new THREE.Vector3() },
 				  };
-				  material = new THREE.ShaderMaterial({
+				  const smaterial = new THREE.ShaderMaterial({
 				    fragmentShader,
 				    uniforms,
 					depthWrite: false
