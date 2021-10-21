@@ -338,7 +338,8 @@
 					void main() {
 						gl_FragColor = vec4( 0.0, vUv.x, vUv.y, 1.0 );
 					}
-				`
+				`,
+				depthWrite: false
 				});
 
 				const quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2, 1, 1 ), smaterial );
