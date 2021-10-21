@@ -97,7 +97,7 @@
 
 			import { TrackballControls } from 'https://threejs.org/examples/jsm/controls/TrackballControls.js';
 
-			let perspectiveCamera, orthographicCamera, scamera, controls, scene, sscene, renderer, stats;
+			let perspectiveCamera, orthographicCamera, scamera, controls, scene, sscene, renderer, stats, uniforms;
 
 			const params = {
 				orthographicCamera: false
@@ -323,7 +323,7 @@
 				//scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 				scamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
 
-				const sfragmentShader = `
+				const fragmentShader = `
 				  #include <common>
 
 				  uniform vec3 iResolution;
@@ -347,16 +347,15 @@
 				    mainImage(gl_FragColor, gl_FragCoord.xy);
 				  }
 				  `;
-				  const suniforms = {
+				  uniforms = {
 				    iTime: { value: 0 },
 				    iResolution:  { value: new THREE.Vector3() },
 				  };
 				  const smaterial = new THREE.ShaderMaterial({
-				    fragmentShader: sfragmentShader,
-				    uniforms: suniforms,
-					  vertexShader: '',
-					depthWrite: false
+				    fragmentShader,
+				    uniforms,					
 				  });
+				smaterial.option.depthWrite = false;
 				/*
 				const smaterial = new THREE.ShaderMaterial({
 				vertexShader: `
@@ -504,6 +503,11 @@
 			}
 			*/
 			function render(timestamp) {
+				const t = timestamp *= 0.001;  // convert to seconds
+
+				  const canvas = renderer.domElement;
+				  uniforms.iResolution.value.set(canvas.width, canvas.height, 1);
+				  uniforms.iTime.value = time;
 				renderer.autoClear = false; 
 				renderer.clear();
 				const camera = ( params.orthographicCamera ) ? orthographicCamera : perspectiveCamera;
