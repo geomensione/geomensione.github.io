@@ -32,9 +32,11 @@ also enemies have different size and velocity
 
 Params: color and size of planet, color and size and shape and velocity and number of enemies, velocity and shape of hero.
 
-background shader
+**background shader**
 
 https://codepen.io/Fyrestar/pen/abOEOda
+
+https://discourse.threejs.org/t/how-do-i-use-my-own-custom-shader-as-a-scene-background/13598/10
 
 Background css houdini
 
