@@ -48,6 +48,8 @@ https://codepen.io/Fyrestar/pen/abOEOda
 
 https://discourse.threejs.org/t/how-do-i-use-my-own-custom-shader-as-a-scene-background/13598/10
 
+https://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html
+
 # Background css houdini
 
 https://houdini.how/
