@@ -50,6 +50,8 @@ https://discourse.threejs.org/t/how-do-i-use-my-own-custom-shader-as-a-scene-bac
 
 https://webgl-shaders.com/index.html
 
+https://thebookofshaders.com/
+
 # Background css houdini
 
 https://houdini.how/
