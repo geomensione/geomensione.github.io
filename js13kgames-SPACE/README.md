@@ -52,6 +52,8 @@ https://webgl-shaders.com/index.html
 
 https://thebookofshaders.com/
 
+https://github.com/patriciogonzalezvivo/glslCanvas
+
 # Background css houdini
 
 https://houdini.how/
