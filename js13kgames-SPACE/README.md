@@ -56,6 +56,10 @@ https://github.com/patriciogonzalezvivo/glslCanvas
 
 https://threejsfundamentals.org/threejs/lessons/threejs-shadertoy.html
 
+https://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html
+
+https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders
+
 # Background css houdini
 
 https://houdini.how/
