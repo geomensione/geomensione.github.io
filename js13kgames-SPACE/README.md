@@ -60,6 +60,8 @@ https://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html
 
 https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders
 
+https://glslsandbox.com/
+
 # Background css houdini
 
 https://houdini.how/
