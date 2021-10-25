@@ -54,6 +54,8 @@ https://thebookofshaders.com/
 
 https://github.com/patriciogonzalezvivo/glslCanvas
 
+https://threejsfundamentals.org/threejs/lessons/threejs-shadertoy.html
+
 # Background css houdini
 
 https://houdini.how/
