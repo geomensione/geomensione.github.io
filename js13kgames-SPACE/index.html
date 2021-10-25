@@ -88,6 +88,21 @@
     
   </div>
 	<div id="gameTitle" class="textStyle gData"  style="display:none"><div id="title">Webglanet</div><div id="info">Press S to start, blue to grow and take green at least of the same size</div></div>
+	<script id="fragmentshader" type="x-shader/x-fragment">
+		varying vec2 vUv;
+					
+		void main() {
+			gl_FragColor = vec4( 0.0, vUv.x, vUv.y, 1.0 );
+		}
+	</script>
+	 <script id="vertexShader" type="x-shader/x-vertex">
+	 	varying vec2 vUv;
+					
+		void main() {
+			vUv = uv;
+			gl_Position = vec4( position, 1.0 );    
+		}
+	</script>
   <script type="module">
 
 			import * as THREE from 'https://threejs.org/build/three.module.js';
@@ -324,22 +339,9 @@
 				scamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
 
 				const smaterial = new THREE.ShaderMaterial({
-				vertexShader: `
-					varying vec2 vUv;
-					
-					void main() {
-						vUv = uv;
-						gl_Position = vec4( position, 1.0 );    
-					}
-				`,
-				fragmentShader: `
-					varying vec2 vUv;
-					
-					void main() {
-						gl_FragColor = vec4( 0.0, vUv.x, vUv.y, 1.0 );
-					}
-				`,
-				depthWrite: false
+					vertexShader: document.getElementById('vertexShader').textContent,
+					fragmentShader: document.getElementById('fragmentShader').textContent,
+					depthWrite: false
 				});
 
 				const quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2, 1, 1 ), smaterial );
