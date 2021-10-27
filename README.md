@@ -192,6 +192,11 @@ game programming patterns
 
 [http://gameprogrammingpatterns.com/contents.html](http://gameprogrammingpatterns.com/contents.html)
 
+Resources
+=========
+
+https://htmldog.com/
+
 TODO:
 =====
 
