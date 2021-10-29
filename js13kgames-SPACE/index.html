@@ -169,7 +169,7 @@
 			}
 
 	  		class Enemy {
-				constructor(t){
+				constructor(t,s){
 					var u = Math.random();
 					var v = Math.random();
 					this.dir = Math.random();
@@ -177,13 +177,26 @@
 					this.phi = Math.acos(2 * v - 1);
 				    this.r = 1;
 				    this.materialColor = (t<0.3)?0xff0000:(t>=0.3 && t<0.6)?0x00ff00:0x0000ff;
+					this.shape = (t<0.3)?'cone':(t>=0.3 && t<0.6)?'plane':'sphere';
 				    if(t>=0.3 && t<0.6){
 				    	this.r = ( gameProxy.pickmeshRadius + 1 );
 				    }
 				    this.spherical = new THREE.Spherical();
+					switch(this.shape){
+						case 'cone':
+							this.egeometry = new THREE.CylinderGeometry( 0, this.r, 5, 12 );
+							this.egeometry.rotateX( Math.PI / 2 );
+						break;
+						case 'plane':
+							this.egeometry = new THREE.PlaneGeometry( this.r*2, this.r*2 );
+						break;
+						case 'sphere':
+							this.egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
+						break;
+					}
 				    //const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
-					const egeometry = new THREE.CylinderGeometry( 0, this.r, 5, 12 );
-					egeometry.rotateX( Math.PI / 2 );
+					//const egeometry = new THREE.CylinderGeometry( 0, this.r, 5, 12 );
+					//egeometry.rotateX( Math.PI / 2 );
 
 				    //const egeometry = new THREE.PlaneGeometry( this.r*2, this.r*2 );
 				    /*
@@ -202,7 +215,7 @@
 								color: this.materialColor,
 								side: THREE.DoubleSide								
 							} );
-				    this.emesh = new THREE.Mesh( egeometry, ematerial );
+				    this.emesh = new THREE.Mesh( this.egeometry, ematerial );
 				    scene.add( this.emesh );
 				    this.spherical.set( 15, this.phi, this.theta );
 				    this.emesh.position.setFromSpherical( this.spherical );
@@ -500,7 +513,8 @@
 					var newts = new Date().getTime();
 					if((newts - gameData.oldts)>gameData.timeCreation){
 						let t = Math.random();
-						game.push(new Enemy(t));
+						let s = Math.random();
+						game.push(new Enemy(t,s));
 						gameData.oldts = newts;
 					} 
 				}
