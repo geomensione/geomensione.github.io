@@ -131,6 +131,8 @@
 	  
 	  		var af;
 
+			var moved;
+
 			const gameData = {
 			  score: 0,
 			  healt: 100,
@@ -139,7 +141,8 @@
 			  timeCreation: 1000,
 			  interval: 20000,
 			  oldts: undefined,
-			  oldInterv: undefined
+			  oldInterv: undefined,
+			  type: 'sphere'
 			}
 
 			const handler = {
@@ -159,8 +162,12 @@
 	  		//gameProxy.healt = 100;
 	  		gameProxy.pickmeshRadius = 1;
 	  
-	  		
-	  
+	  		const shapeGeometry = ['cone','plane','sphere'];
+			
+			function randomFromInterval(min, max) { // min and max included 
+				return Math.floor(Math.random() * (max - min + 1) + min)
+			}
+
 	  		function randomIntFromInterval(min, max) { // min and max included 
 				var u = Math.random();
 				var v = Math.random();
@@ -182,6 +189,7 @@
 				    	this.r = ( gameProxy.pickmeshRadius + 1 );
 				    }
 				    this.spherical = new THREE.Spherical();
+					/*
 					switch(this.shape){
 						case 'cone':
 							this.egeometry = new THREE.CylinderGeometry( 0, this.r, 5, 12 );
@@ -194,6 +202,8 @@
 							this.egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
 						break;
 					}
+					*/
+					this.egeometry = getGeometry(this.shape,this.r);
 				    //const egeometry = new THREE.SphereGeometry( this.r, 32, 32 );
 					//const egeometry = new THREE.CylinderGeometry( 0, this.r, 5, 12 );
 					//egeometry.rotateX( Math.PI / 2 );
@@ -265,7 +275,24 @@
 				
 				
 			}
-	  
+			
+			function getGeometry(type,radius){
+				var geometry;
+				switch(type){
+					case 'cone':
+						geometry = new THREE.CylinderGeometry( 0, radius, 5, 12 );
+						geometry.rotateX( Math.PI / 2 );
+					break;
+					case 'plane':
+						geometry = new THREE.PlaneGeometry( radius*2, radius*2 );
+					break;
+					case 'sphere':
+						geometry = new THREE.SphereGeometry( radius, 32, 32 );
+					break;
+				}
+				return geometry;
+			}
+
 			const textureLoader = new THREE.TextureLoader();
 			var clearcoatNormaMap, normalMap2;
 			textureLoader.load( 'assets/images/Scratched_gold_01_1K_Normal.png', (t)=>{
@@ -297,8 +324,9 @@
 
 				} );
 			} );
-	  		function addPickedMesh(r){
-				const pickgeometry = new THREE.SphereGeometry( r, 32, 32 );
+	  		function addPickedMesh(t,r){
+				//const pickgeometry = new THREE.SphereGeometry( r, 32, 32 );
+				const pickgeometry = getGeometry(t,r)
 				const pickmaterial = new THREE.MeshPhysicalMaterial( {
 						clearcoat: 1.0,
 						metalness: 1.0,
@@ -413,6 +441,19 @@
 				//
 
 				window.addEventListener( 'resize', onWindowResize );
+				document.addEventListener( 'click', onDocumentClick );
+				document.addEventListener('touchstart', function () {
+					moved=0;
+				})
+				document.addEventListener('touchmove', function () {
+					moved=1;
+				})
+				document.addEventListener('touchend', function () {
+					if(moved == 0){
+						onDocumentClick() 					
+					}
+				});
+					
 
 				createControls( perspectiveCamera );
 				
@@ -429,7 +470,12 @@
 				controls.noZoom = true;
 				
 			}
-
+			function onDocumentClick() {
+				let newShape = shapeGeometry[randomFromInterval(0,2)];
+				gameData.type = newShape;
+				scene.remove(pickmesh)
+				pickmesh = null;
+			}
 			function onWindowResize() {
 
 				const aspect = window.innerWidth / window.innerHeight;
@@ -495,7 +541,7 @@
 				
 				if(intersects.length > 0){
 					if(!pickmesh){
-						addPickedMesh( gameProxy.pickmeshRadius );
+						addPickedMesh( gameData.type, gameProxy.pickmeshRadius );
 					}
 					pickmesh.lookAt(camera.position);
 					//pickmesh.lookAt(mesh.position);
