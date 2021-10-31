@@ -276,7 +276,7 @@
 				
 			}
 			
-			function getGeometry(type,radius){
+			function getGeometry(type,radius,location){
 				var geometry;
 				switch(type){
 					case 'cone':
@@ -285,6 +285,7 @@
 					break;
 					case 'plane':
 						geometry = new THREE.PlaneGeometry( radius*2, radius*2 );
+						if(location) geometry.rotateX( Math.PI );
 					break;
 					case 'sphere':
 						geometry = new THREE.SphereGeometry( radius, 32, 32 );
@@ -324,9 +325,9 @@
 
 				} );
 			} );
-	  		function addPickedMesh(t,r){
+	  		function addPickedMesh(t,r,location){
 				//const pickgeometry = new THREE.SphereGeometry( r, 32, 32 );
-				const pickgeometry = getGeometry(t,r)
+				const pickgeometry = getGeometry(t,r,location)
 				const pickmaterial = new THREE.MeshPhysicalMaterial( {
 						clearcoat: 1.0,
 						metalness: 1.0,
@@ -541,7 +542,7 @@
 				
 				if(intersects.length > 0){
 					if(!pickmesh){
-						addPickedMesh( gameData.type, gameProxy.pickmeshRadius );
+						addPickedMesh( gameData.type, gameProxy.pickmeshRadius, 'pickedMesh' );
 					}
 					//pickmesh.lookAt(camera.position);
 					pickmesh.lookAt(mesh.position);
