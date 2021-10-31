@@ -38,6 +38,8 @@ when hero grows, velocity increase else became slow
 
 also enemies have different size and velocity
 
+yellow enemies are bonus to change shape
+
 # Params
 
 color and size of planet, color and size and shape and velocity and number of enemies, velocity and shape of hero.
