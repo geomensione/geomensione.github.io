@@ -100,4 +100,6 @@ https://discourse.threejs.org/t/does-three-have-any-kind-of-independent-unit-i-u
 
 https://www.tutorialguruji.com/javascript/three-js-building-a-tangent-plane-through-point-on-a-sphere/
 
-# theme game off 2021 -> Get Ready!
+# theme game off 2021 -> BUG!
+
+https://itch.io/jam/game-off-2021
