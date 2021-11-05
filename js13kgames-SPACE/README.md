@@ -64,6 +64,10 @@ https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Sha
 
 https://glslsandbox.com/
 
+Pass data to shader via uniform
+
+https://threejs.org/docs/#api/en/materials/ShaderMaterial.uniforms
+
 # Background css houdini
 
 https://houdini.how/
