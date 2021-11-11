@@ -132,7 +132,7 @@
 	  		var af;
 
 			var moved;
-			const levels = {
+			const levels = [{
 				g:1,
 				g_s:1,
 				b:0,
@@ -142,7 +142,7 @@
 				r:0,
 				r_s:0,
 				time_spawn: 1000
-			};
+			}];
 			const gameData = {
 			  score: 0,
 			  healt: 100,
@@ -152,7 +152,9 @@
 			  interval: 20000,
 			  oldts: undefined,
 			  oldInterv: undefined,
-			  type: 'sphere'
+			  type: 'sphere',
+			  levels_game: levels,
+				level: 1,
 			}
 
 			const handler = {
