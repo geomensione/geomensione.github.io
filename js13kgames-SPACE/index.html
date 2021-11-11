@@ -572,8 +572,8 @@
 				}else{
 					var newts = new Date().getTime();
 					if((newts - gameData.oldts)>gameData.timeCreation){
-						if(gameData.levels[gameData.level].g){
-							gameData.levels[gameData.level].g--;
+						if(gameData.levels[gameData.level-1].g){
+							gameData.levels[gameData.level-1].g--;
 							game.push(new Enemy("green",s));
 							gameData.oldts = newts;
 						}
