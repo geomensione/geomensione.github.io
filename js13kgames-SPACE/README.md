@@ -40,7 +40,7 @@ also enemies have different size and velocity
 
 yellow enemies are bonus to change shape
 
-s -> inizia livello 1 ->invece dei random guardo i valori in levels e se sono > 1 allora li passo a enemy. fino a quando non saranno creati tutti i valori del livello continuo a crearli. ogni volta che prendo un bug il punteggio del livello incrementa e se diventa uguale al numero dei bug del livello allora passo il livello ed il punteggio viene sommato a quello globale. Se finiscono i livelli allora game over. Se perdo tutte le vite perché prendo troppi rossi o neri, allora game over.
+s -> inizia livello 1 ->invece dei random guardo i valori in levels e se sono > 1 allora li passo a enemy. fino a quando non saranno creati tutti i valori del livello continuo a crearli. ogni volta che prendo un bug il punteggio del livello incrementa e se diventa uguale al numero dei bug del livello allora passo il livello ed il punteggio viene sommato a quello globale. Se finiscono i livelli allora game over. Se perdo tutte le vite perché prendo troppi rossi o neri, allora game over. Le vite si incrementano con quelli viola.
 
 # Params
 
