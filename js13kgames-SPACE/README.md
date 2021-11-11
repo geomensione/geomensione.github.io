@@ -40,6 +40,8 @@ also enemies have different size and velocity
 
 yellow enemies are bonus to change shape
 
+s -> inizia livello 1 ->invece dei random guardo i valori in levels e se sono > 1 allora li passo a enemy. fino a quando non saranno creati tutti i valori del livello continuo a crearli. ogni volta che prendo un bug il punteggio del livello incrementa e se diventa uguale al numero dei bug del livello allora passo il livello ed il punteggio viene sommato a quello globale.
+
 # Params
 
 color and size of planet, color and size and shape and velocity and number of enemies, velocity and shape of hero.
