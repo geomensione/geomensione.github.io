@@ -574,7 +574,7 @@
 					if((newts - gameData.oldts)>gameData.timeCreation){
 						if(gameData.levels_game[gameData.level-1].g){
 							gameData.levels_game[gameData.level-1].g--;
-							game.push(new Enemy("green",s));
+							game.push(new Enemy("green",gameData.levels_game[gameData.level-1].g_s));
 							gameData.oldts = newts;
 						}
 						//let t = Math.random();
