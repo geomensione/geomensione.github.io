@@ -572,10 +572,15 @@
 				}else{
 					var newts = new Date().getTime();
 					if((newts - gameData.oldts)>gameData.timeCreation){
-						let t = Math.random();
-						let s = Math.random();
-						game.push(new Enemy(t,s));
-						gameData.oldts = newts;
+						if(gameData.levels[gameData.level].g){
+							gameData.levels[gameData.level].g--;
+							game.push(new Enemy("green",s));
+							gameData.oldts = newts;
+						}
+						//let t = Math.random();
+						//let s = Math.random();
+						//game.push(new Enemy(t,s));
+						//gameData.oldts = newts;
 					} 
 				}
 				if(!gameData.oldInterv){
