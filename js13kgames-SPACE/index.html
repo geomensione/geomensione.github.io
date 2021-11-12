@@ -134,7 +134,7 @@
 			var moved;
 			const levels = [{
 				g:1,
-				g_s:1,
+				g_s:'sphere',
 				b:0,
 				b_s:0,
 				y:0,
@@ -196,8 +196,8 @@
 					this.theta = 2 * Math.PI * u;
 					this.phi = Math.acos(2 * v - 1);
 				    this.r = 1;
-				    this.materialColor = (t<0.25)?0xff0000:(t>=0.25 && t<0.5)?0x00ff00:(t>=0.5 && t<0.75)?0xffff00:0x0000ff;
-					this.shape = (s<0.3)?'cone':(s>=0.3 && s<0.6)?'plane':'sphere';
+				    this.materialColor = t;//(t<0.25)?0xff0000:(t>=0.25 && t<0.5)?0x00ff00:(t>=0.5 && t<0.75)?0xffff00:0x0000ff;
+					this.shape = s;//(s<0.3)?'cone':(s>=0.3 && s<0.6)?'plane':'sphere';
 				    if(t>=0.3 && t<0.6){
 				    	this.r = ( gameProxy.pickmeshRadius + 1 );
 				    }
@@ -574,7 +574,7 @@
 					if((newts - gameData.oldts)>gameData.timeCreation){
 						if(gameData.levels_game[gameData.level-1].g){
 							gameData.levels_game[gameData.level-1].g--;
-							game.push(new Enemy("green",gameData.levels_game[gameData.level-1].g_s));
+							game.push(new Enemy(0x00FF00,gameData.levels_game[gameData.level-1].g_s));
 							gameData.oldts = newts;
 						}
 						//let t = Math.random();
