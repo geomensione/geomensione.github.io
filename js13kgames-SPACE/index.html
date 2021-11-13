@@ -135,8 +135,9 @@
 			const levels = [{
 				g:1,
 				g_s:'sphere',
-				b:0,
-				b_s:0,
+				pass_level:1,
+				b:1,
+				b_s:'sphere',
 				y:0,
 				y_s:0,
 				r:0,
@@ -187,7 +188,13 @@
 				var theta = 2 * Math.PI * u;
 				var phi = Math.acos(2 * v - 1);
 			}
-
+			function checkScore(){
+				if(gameData.levels_game[gameData.level-1].pass_level){
+					if((gameData.levels_game[gameData.level-1].pass_level-1) > 0)gameData.levels_game[gameData.level-1].pass_level--;
+					else gameProxy.score = 'GAME OVER'
+				}
+				
+			}
 	  		class Enemy {
 				constructor(t,s){
 					var u = Math.random();
@@ -198,7 +205,7 @@
 				    this.r = 1;
 				    this.materialColor = t;//(t<0.25)?0xff0000:(t>=0.25 && t<0.5)?0x00ff00:(t>=0.5 && t<0.75)?0xffff00:0x0000ff;
 					this.shape = s;//(s<0.3)?'cone':(s>=0.3 && s<0.6)?'plane':'sphere';
-				    if(t>=0.3 && t<0.6){
+				    if(t==0x00ff00){
 				    	this.r = ( gameProxy.pickmeshRadius + 1 );
 				    }
 				    this.spherical = new THREE.Spherical();
@@ -268,6 +275,7 @@
 								this.emesh.material.transparent = true;
 								if(this.materialColor == 0x00ff00) {
 									gameProxy.score++;
+									checkScore();
 								} else if(this.materialColor == 0xff0000) {
 									//gameProxy.healt -= 1;
 									pickmesh.shrink();
@@ -455,7 +463,7 @@
 				//
 
 				window.addEventListener( 'resize', onWindowResize );
-				document.addEventListener( 'click', onDocumentClick );
+				// document.addEventListener( 'click', onDocumentClick );
 				document.addEventListener('touchstart', function () {
 					moved=0;
 				})
@@ -575,12 +583,17 @@
 						if(gameData.levels_game[gameData.level-1].g){
 							gameData.levels_game[gameData.level-1].g--;
 							game.push(new Enemy(0x00FF00,gameData.levels_game[gameData.level-1].g_s));
-							gameData.oldts = newts;
+							//gameData.oldts = newts;
+						}
+						if(gameData.levels_game[gameData.level-1].b){
+							gameData.levels_game[gameData.level-1].b--;
+							game.push(new Enemy(0x0000FF,gameData.levels_game[gameData.level-1].b_s));
+							//gameData.oldts = newts;
 						}
 						//let t = Math.random();
 						//let s = Math.random();
 						//game.push(new Enemy(t,s));
-						//gameData.oldts = newts;
+						gameData.oldts = newts;
 					} 
 				}
 				if(!gameData.oldInterv){
