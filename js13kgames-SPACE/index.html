@@ -191,7 +191,7 @@
 			function checkScore(){
 				if(gameData.levels_game[gameData.level-1].pass_level){
 					if((gameData.levels_game[gameData.level-1].pass_level-1) > 0)gameData.levels_game[gameData.level-1].pass_level--;
-					else gameProxy.score = 'GAME OVER'
+					else{ if( gameData.levels_game[gameData.level] ) {gameData.level++} else { gameProxy.score = 'GAME OVER'} 
 				}
 				
 			}
