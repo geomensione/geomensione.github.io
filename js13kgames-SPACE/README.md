@@ -34,6 +34,8 @@ music (audioloader)
 
 fire
 
+"real" game over
+
 # GAME PLAY
 
 GROW: hit only blue sphere of the same size or smaller then hero
