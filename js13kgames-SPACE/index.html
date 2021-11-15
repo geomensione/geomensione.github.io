@@ -132,8 +132,8 @@
 	  		var af;
 
 			var moved;
-			const levels = [{g:1,g_s:'sphere',pass_level:1,b:1,b_s:'sphere',y:0,y_s:'sphere',r:0,r_s:'sphere',time_spawn: 1000},
-							{g:1,g_s:'sphere',pass_level:1,b:1,b_s:'sphere',y:0,y_s:'sphere',r:2,r_s:'sphere',time_spawn: 1000}];
+			const levels = [{g:1,g_s:'sphere',pass_level:1,b:1,b_s:'sphere',y:0,y_s:'sphere',r:0,r_s:'sphere',k:0,k_s:'sphere',time_spawn: 1000},
+							{g:1,g_s:'sphere',pass_level:1,b:1,b_s:'sphere',y:0,y_s:'sphere',r:2,r_s:'sphere',k:0,k_s:'sphere',time_spawn: 1000}];
 			const gameData = {
 			  score: 0,
 			  healt: 100,
@@ -584,6 +584,16 @@
 						if(gameData.levels_game[gameData.level-1].r){
 							gameData.levels_game[gameData.level-1].r--;
 							game.push(new Enemy(0xFF0000,gameData.levels_game[gameData.level-1].r_s));
+							//gameData.oldts = newts;
+						}
+						if(gameData.levels_game[gameData.level-1].y){
+							gameData.levels_game[gameData.level-1].y--;
+							game.push(new Enemy(0xFFFF00,gameData.levels_game[gameData.level-1].y_s));
+							//gameData.oldts = newts;
+						}
+						if(gameData.levels_game[gameData.level-1].k){
+							gameData.levels_game[gameData.level-1].k--;
+							game.push(new Enemy(0x000000,gameData.levels_game[gameData.level-1].k_s));
 							//gameData.oldts = newts;
 						}
 						//let t = Math.random();
