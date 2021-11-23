@@ -36,6 +36,8 @@ fire
 
 "real" game over
 
+use of x11 colors https://en.wikipedia.org/wiki/X11_color_names
+
 # GAME PLAY
 
 GROW: hit only blue sphere of the same size or smaller then hero
