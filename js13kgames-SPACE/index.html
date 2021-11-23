@@ -195,7 +195,7 @@
 				    this.r = 1;
 				    this.materialColor = t;//(t<0.25)?0xff0000:(t>=0.25 && t<0.5)?0x00ff00:(t>=0.5 && t<0.75)?0xffff00:0x0000ff;
 					this.shape = s;//(s<0.3)?'cone':(s>=0.3 && s<0.6)?'plane':'sphere';
-				    if(t=='0x00ff00'){
+				    if(t==0x00ff00){
 				    	this.r = ( gameProxy.pickmeshRadius + 1 );
 				    }
 				    this.spherical = new THREE.Spherical();
@@ -263,10 +263,10 @@
 								r = true;
 								this.dead = true
 								this.emesh.material.transparent = true;
-								if(this.materialColor == '0x00ff00') {
+								if(this.materialColor == 0x00ff00) {
 									gameProxy.score++;
 									checkScore();
-								} else if(this.materialColor == '0xff0000') {
+								} else if(this.materialColor == 0xff0000) {
 									//gameProxy.healt -= 1;
 									pickmesh.shrink();
 								} else {
@@ -342,7 +342,7 @@
 				const pickmaterial = new THREE.MeshPhysicalMaterial( {
 						clearcoat: 1.0,
 						metalness: 1.0,
-						color: '0xffffff',
+						color: 0xffffff,
 						normalMap: normalMap2,
 						normalScale: new THREE.Vector2( 0.15, 0.15 ),
 						clearcoatNormalMap: clearcoatNormaMap,
@@ -405,7 +405,7 @@
 				const material = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
-								color: '0x0000ff',
+								color: 0x0000ff,
 								normalMap: normalMap2,
 								normalScale: new THREE.Vector2( 0.15, 0.15 ),
 								clearcoatNormalMap: clearcoatNormaMap,
@@ -422,11 +422,11 @@
 
 				// lights
 
-				const dirLight1 = new THREE.DirectionalLight( '0xffffff', 2);
+				const dirLight1 = new THREE.DirectionalLight( 0xffffff, 2);
 				dirLight1.position.set( 1, 1, 1 );
 				scene.add( dirLight1 );
 
-				const dirLight3 = new THREE.DirectionalLight( '0xffffff', 2 );
+				const dirLight3 = new THREE.DirectionalLight( 0xffffff, 2 );
 				dirLight3.position.set( - 1, - 1, 1 );
 				scene.add( dirLight3 );
 				
@@ -573,27 +573,27 @@
 					if((newts - gameData.oldts)>gameData.timeCreation){
 						if(gameData.levels_game[gameData.level-1].g){
 							gameData.levels_game[gameData.level-1].g--;
-							game.push(new Enemy('0x00FF00',gameData.levels_game[gameData.level-1].g_s));
+							game.push(new Enemy(0x00FF00,gameData.levels_game[gameData.level-1].g_s));
 							//gameData.oldts = newts;
 						}
 						if(gameData.levels_game[gameData.level-1].b){
 							gameData.levels_game[gameData.level-1].b--;
-							game.push(new Enemy('0x0000FF',gameData.levels_game[gameData.level-1].b_s));
+							game.push(new Enemy(0x0000FF,gameData.levels_game[gameData.level-1].b_s));
 							//gameData.oldts = newts;
 						}
 						if(gameData.levels_game[gameData.level-1].r){
 							gameData.levels_game[gameData.level-1].r--;
-							game.push(new Enemy('0xFF0000',gameData.levels_game[gameData.level-1].r_s));
+							game.push(new Enemy(0xFF0000,gameData.levels_game[gameData.level-1].r_s));
 							//gameData.oldts = newts;
 						}
 						if(gameData.levels_game[gameData.level-1].y){
 							gameData.levels_game[gameData.level-1].y--;
-							game.push(new Enemy('0xFFFF00',gameData.levels_game[gameData.level-1].y_s));
+							game.push(new Enemy(0xFFFF00,gameData.levels_game[gameData.level-1].y_s));
 							//gameData.oldts = newts;
 						}
 						if(gameData.levels_game[gameData.level-1].k){
 							gameData.levels_game[gameData.level-1].k--;
-							game.push(new Enemy('0x000000',gameData.levels_game[gameData.level-1].k_s));
+							game.push(new Enemy(0x000000,gameData.levels_game[gameData.level-1].k_s));
 							//gameData.oldts = newts;
 						}
 						//let t = Math.random();
