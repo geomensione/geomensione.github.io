@@ -1,0 +1,92 @@
+let fr = 5;
+
+function setup() {
+  createCanvas(400, 400);
+  frameRate(fr);
+  
+}
+//tutti gli elementi simmetrici devono essere sequenziali ed il primo deve avere l'attributo "sim" per indicare che il suo raggio calcolato deve essere salvato nell'attributo r_sim dell'elemento successivo. Se l'elemento presenta tale attributo, allora questo viene usato al posto del calcolo casuale del raggio, ottenendo la simmetria.
+const itemArea = [
+  {xm:150,xM:250,ym:200,yM:300,r:50}, //BODY
+  {xm:75,xM:125,ym:225,yM:275,r:50,sim:""}, //LEFT ARM
+  {xm:275,xM:325,ym:225,yM:275,r:50},//RIGHT ARM
+  [{xm:175,xM:225,ym:125,yM:175,r:50},{xm:75,xM:125,ym:25,yM:75,r:50,sim:""},{xm:275,xM:325,ym:25,yM:75,r:50}],//HEAD
+  {xm:75,xM:125,ym:325,yM:375,r:50,sim:""},//LEFT LEG
+  {xm:275,xM:325,ym:325,yM:375,r:50} //RIGHT LEG
+]
+
+function draw() {
+  background(220);
+  fill(0);
+  recursiveDrawRect(itemArea);
+  recursiveDraw(itemArea)
+  //noLoop();
+}
+
+function recursiveDrawRect(item){
+  for(let i = 0,l = item.length;i<l;i++){
+    //console.log(item[i])
+    if(!item[i].length){
+      rect(item[i].xm,item[i].ym,item[i].xM-item[i].xm,item[i].yM-item[i].ym)
+    } else {
+      recursiveDrawRect(item[i])
+    }
+  }
+}
+function recursiveDraw(item){
+  let ro2 = item[0], x2, y2, r2;
+  if(ro2.x2 && ro2.y2 && ro2.r2){
+    x2 = ro2.x2;
+    y2 = ro2.y2;
+    r2 = ro2.r2;
+  }else{
+    x2 = random(ro2.xm,ro2.xM);
+    y2 = random(ro2.ym,ro2.yM);
+    r2 = random(ro2.r);
+    
+  }
+  let blueValue = color(random(255),random(255),random(255));
+  fill(blueValue);
+  for(let i = 1,l = item.length;i<l;i++){
+    if(!item[i].length){
+      let ro1 = item[i];
+      let x1 = random(ro1.xm,ro1.xM);
+      let y1 = random(ro1.ym,ro1.yM);
+      let r1;
+      console.log(ro1)
+      if(ro1.r_sim){
+        r1 = ro1.r_sim;
+      } else {
+        r1 = random(ro1.r);
+        
+        if (ro1.sim == "") item[i+1].r_sim = r1;
+      } 
+      circle(x1,y1,r1);
+      interpolate(10,x1,y1,r1,x2,y2,r2); 
+    }else{
+      let ro1 = item[i][0];
+      let x1 = random(ro1.xm,ro1.xM);
+      let y1 = random(ro1.ym,ro1.yM);
+      let r1= random(ro1.r);
+      
+      //circle(x1,y1,r1);
+      interpolate(10,x1,y1,r1,x2,y2,r2); 
+      item[i][0].x2=x1;
+      item[i][0].y2=y1;
+      item[i][0].r2=r1;
+      recursiveDraw(item[i])
+    }
+  }
+  
+  circle(x2,y2,r2);
+  
+}
+
+function interpolate(n,x1,y1,r1,x2,y2,r2){
+  let nx = (x2-x1)/n;
+  let ny = (y2-y1)/n;
+  let nr = (r2-r1)/n;
+  for(let i = 0;i<n;i++){
+    circle(x1+=nx,y1+=ny,r1+=nr)
+  }
+}
