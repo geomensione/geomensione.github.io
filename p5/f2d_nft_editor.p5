@@ -1,0 +1,100 @@
+let areas = [];
+let pickedShape = null;
+let create = false;
+class area {
+  constructor(x, y) {
+    this.x1 = x;
+    this.y1 = y;
+    this.x2 = x;
+    this.y2 = y;
+    this.width = 1;
+    this.height = 1;
+    this.color = "black";
+    this.grip_radius = 5;
+    this.modifying = false;
+  }
+  drag(x, y) {
+    if (this.modifying) {
+      this.x2 = x;
+      this.y2 = y;
+      this.width = this.x2 - this.x1;
+      this.height = this.y2 - this.y1;
+    } else {
+      this.x1 += x - pmouseX;
+      this.y1 += y - pmouseY;
+      this.x2 += x - pmouseX;
+      this.y2 += y - pmouseY;
+    }
+  }
+  update() {
+    this.width = this.x2 - this.x1;
+    this.height = this.y2 - this.y1;
+  }
+  draw() {
+    stroke(this.color);
+    rect(this.x1, this.y1, this.width, this.height);
+    if (this.color == "red") {
+      fill("blue");
+      circle(this.x2, this.y2, this.grip_radius);
+      fill("white");
+    }
+  }
+  hit(x, y) {
+    this.modify(x, y);
+    if (this.x1 <= x && x <= this.x2 && this.y1 <= y && y <= this.y2)
+      return true;
+    else return false;
+  }
+  modify(x, y) {
+    if (
+      this.x2 - this.grip_radius <= x &&
+      x <= this.x2 + this.grip_radius &&
+      this.y2 - this.grip_radius <= y &&
+      y <= this.y2 + this.grip_radius
+    )
+      this.modifying = true;
+    else this.modifying = false;
+  }
+}
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(220);
+  areas.forEach((e) => e.draw());
+}
+
+function mouseDragged() {
+  areas[pickedShape].drag(mouseX, mouseY);
+}
+
+function mousePressed() {
+  console.log(pickedShape);
+  if (!pickedShape && pickedShape != 0) {
+    areas.push(new area(mouseX, mouseY));
+    pickedShape = areas.length - 1;
+    areas[pickedShape].modifying = true;
+  }
+}
+
+function mouseReleased() {
+  areas[pickedShape].update();
+  pickedShape = null;
+}
+
+function mouseMoved() {
+  let i = 0;
+  pickedShape = null;
+  for (const value of areas) {
+    let picked = areas[i].hit(mouseX, mouseY);
+    if (picked) {
+      pickedShape = i;
+      areas[i].color = "red";
+    } else {
+      areas[i].color = "black";
+      i++;
+    }
+  }
+}
