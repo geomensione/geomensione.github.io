@@ -14,6 +14,8 @@ TODO:
 
 https://observablehq.com/@taniki/hello-paperjs
 
+https://pomax.github.io/bezierinfo/#offsetting offsetting
+
 F2D (wip):
 
 001: cicles and tangents
