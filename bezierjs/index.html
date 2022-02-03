@@ -1,6 +1,19 @@
 <html>
   <head></head>
   <body>
-    <script type="module" src="js/app.js"></script>
+    <script type="module">
+      import { Bezier } from  "./js/bezier.js";
+      window.Bezier = Bezier;
+    </script>
+    <script script type="text/beziercode">
+      new Bezier(150,40 , 80,30 , 105,150);
+      var draw = function() {
+        this.drawSkeleton(curve);
+        this.drawCurve(curve);
+        this.setColor("red");
+        var outline = curve.outline(5,5,25,25);
+        outline.curves.forEach(c => this.drawCurve(c));
+      }
+    </script>
   </body>
 </html>
