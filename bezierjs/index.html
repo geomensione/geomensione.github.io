@@ -7,20 +7,21 @@
   </head>
   <body>
     <section id="inflections">
-        <a href="#inflections"><h1>.inflections()</h1></a>
-
-        <figures>
-          <figure class="quadratic">
-            <script type="text/beziercode">
-      new Bezier(150,40 , 80,30 , 105,150);
-      var draw = function() {
-        this.drawSkeleton(curve);
-        this.drawCurve(curve);
-        this.setColor("red");
-        var outline = curve.outline(5,5,25,25);
-        outline.curves.forEach(c => this.drawCurve(c));
-      }
-            </script></figure></figures></section>
+      <figures>
+        <figure class="quadratic">
+          <script type="text/beziercode">
+            new Bezier(150,40 , 80,30 , 105,150);
+            var draw = function() {
+              this.drawSkeleton(curve);
+              this.drawCurve(curve);
+              this.setColor("red");
+              var outline = curve.outline(5,5,25,25);
+              outline.curves.forEach(c => this.drawCurve(c));
+            }
+          </script>
+        </figure>
+      </figures>
+    </section>
     
     
   </body>
