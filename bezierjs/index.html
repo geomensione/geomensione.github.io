@@ -1,11 +1,12 @@
 <html>
   <head></head>
   <body>
-    <script type="module">
-      import { Bezier } from  "./js/bezier.js";
-      window.Bezier = Bezier;
-    </script>
-    <script script type="text/beziercode">
+    <section id="inflections">
+        <a href="#inflections"><h1>.inflections()</h1></a>
+
+        <figures>
+          <figure class="quadratic">
+            <script type="text/beziercode">
       new Bezier(150,40 , 80,30 , 105,150);
       var draw = function() {
         this.drawSkeleton(curve);
@@ -14,6 +15,11 @@
         var outline = curve.outline(5,5,25,25);
         outline.curves.forEach(c => this.drawCurve(c));
       }
+            </script></figure></figures></section>
+    <script type="module">
+      import { Bezier } from  "./js/bezier.js";
+      window.Bezier = Bezier;
     </script>
+    
   </body>
 </html>
