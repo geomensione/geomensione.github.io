@@ -1,5 +1,10 @@
 <html>
-  <head></head>
+  <head>
+  <script type="module">
+      import { Bezier } from  "./js/bezier.js";
+      window.Bezier = Bezier;
+    </script>
+  </head>
   <body>
     <section id="inflections">
         <a href="#inflections"><h1>.inflections()</h1></a>
@@ -16,10 +21,7 @@
         outline.curves.forEach(c => this.drawCurve(c));
       }
             </script></figure></figures></section>
-    <script type="module">
-      import { Bezier } from  "./js/bezier.js";
-      window.Bezier = Bezier;
-    </script>
+    
     
   </body>
 </html>
