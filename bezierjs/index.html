@@ -8,36 +8,60 @@
 
   </head>
   <body>
-    <div class="dev" style="display: none;">
-			DEV PREVIEW ONLY
-			<script>
-				(function () {
-					var loc = window.location.toString();
-					if (loc.includes("localhost") || loc.includes("BezierInfo-2")) {
-						var e = document.querySelector("div.dev");
-						e.removeAttribute("style");
-					}
-				})();
-			</script>
-		</div>
-    <main>
-    <section id="inflections">
-      <figures>
-        <figure class="quadratic">
-          <script type="text/beziercode">
-            new Bezier(150,40 , 80,30 , 105,150);
-            var draw = function() {
-              this.drawSkeleton(curve);
-              this.drawCurve(curve);
-              this.setColor("red");
-              var outline = curve.outline(5,5,25,25);
-              outline.curves.forEach(c => this.drawCurve(c));
-            }
-          </script>
-        </figure>
-      </figures>
-    </section>
-    </main>
     
+    <main>
+   <figure class="quadratic"><div class="textarea" style="height: 208px!important;">new Bezier(48, 84, 100, 187, 166, 37);
+var curve2 = new Bezier(68, 150, 74, 6, 143, 150);
+var draw = function() {
+  this.drawSkeleton(curve);
+  this.drawCurve(curve);
+  this.setColor("red");
+  this.drawCurve(curve2);
+  this.setColor("black");
+  curve.intersects(curve2).forEach(pair =&gt; {
+    var t = pair.split("/").map(v =&gt; parseFloat(v));
+    this.drawPoint(curve.get(t[0]));
+  });
+}
+          </div><canvas width="200" height="200"></canvas><button>view source</button></figure>
+    </main>
+    <script type="module">
+      import { Bezier } from "./js/bezier.js";
+      import { CodeExample } from "./js/code-example.js";
+      import handleInteraction from "./js/interaction.js";
+
+      
+      var curve = false;
+var B = {x: 100, y: 50};
+var tvalues = [0.2, 0.3, 0.4, 0.5];
+var curves = tvalues.map(t => Bezier.quadraticFromPoints({x:150, y: 40}, B, {x:35, y:160}, t));
+var draw = function() {
+  var offset = {x:45,y:30};
+  curves.forEach((b,i) => {
+    this.drawSkeleton(b, offset, true);
+    this.setColor("rgba(0,0,0,0.2)");
+    this.drawCircle(b.points[1], 3, offset);
+    this.drawText("t=" + tvalues[i], {
+      x: b.points[1].x + offset.x - 15,
+      y: b.points[1].y + offset.y - 10,
+    });
+    this.setRandomColor();
+    this.drawCurve(b, offset);
+  });
+  this.setColor("black");
+  this.drawCircle(curves[0].points[0], 3, offset);
+  this.drawCircle(curves[0].points[2], 3, offset);
+  this.drawCircle(B, 3, offset);
+}
+          ;
+      var code = new CodeExample(2);
+      code.draw = draw.bind(code);
+      handleInteraction(code.getCanvas(), curve).onupdate = evt => {
+        code.reset();
+        code.draw(evt);
+      };
+      code.draw();
+    
+    </script>
   </body>
 </html>
