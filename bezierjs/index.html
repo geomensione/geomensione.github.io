@@ -11,14 +11,9 @@
     </script>
   </head>
   <body>
-    <header>
-      <h1>F2D using bezierjs</h1>
-    </header>
-
-    <main>
-      <section id="outline">
-        <figures>
-          <figure class="cubic"><script type="text/beziercode">
+    
+        <figure class="cubic">
+          <script type="text/beziercode">
             new Bezier(102, 33, 16, 99, 101, 129, 132, 173 );
             var draw = function() {
               this.drawSkeleton(curve);
@@ -27,14 +22,10 @@
               var outline = curve.outline(5,5,25,25);
               outline.curves.forEach(c => this.drawCurve(c));
             }
-          </script></figure>
-        </figures>
-      </section>
+          </script>
+        </figure>
+        
 
-    </main>
-
-    <footer>
-      FOOTER
-    </footer>
+    
   </body>
 </html>
