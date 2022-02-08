@@ -26,10 +26,10 @@ figure.cubic {
   margin-left: 1em;
 }
 figure {
-  /*
-  width: 200px;
-  height: 200px;
-  */
+  
+  width: calc(100%);
+  height: calc(100%);
+  
   display: block;
   margin:0;
   padding: 0;
