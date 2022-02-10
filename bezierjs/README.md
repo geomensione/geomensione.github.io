@@ -12,6 +12,6 @@ ISSUE OPENED IN BEZIERJS REPO
 
 https://github.com/Pomax/bezierjs/issues/174
 
-https://codesandbox.io/s/modest-banzai-lv747?file=/src/index.js:6668-6730
+https://codepen.io/morticcino/pen/VwrbPoR
 
 
