@@ -1,31 +1,6 @@
-<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Creature creator using bezierjs</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="js/loader.js" async defer></script>                 
-    <script type="module">
-      import { Bezier } from  "./js/bezier.js";
-      window.Bezier = Bezier;
-    </script>
-  </head>
-  <body>
-    
-        <figure width="100%" height="100%">
-          <script type="text/beziercode">
-            new Bezier(102, 33, 16, 99, 101, 129, 132, 173 );
-            var draw = function() {
-              this.drawSkeleton(curve);
-              this.drawCurve(curve);
-              this.setColor("red");
-              var outline = curve.outline(5,5,25,25);
-              outline.curves.forEach(c => this.drawCurve(c));
-            }
-          </script>
-        </figure>
-        
-
-    
-  </body>
+        <head></head>
+        <body>
+            <script type="module" src="./script.js"></script>
+        </body>
 </html>
