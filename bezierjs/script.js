@@ -5,7 +5,6 @@ const { Bezier } = bezierJs;
 class CodeExample {
   constructor(c) {
     var cvs = (this.cvs = c);
-    console.log(cvs);
     document.body.append(cvs);
     cvs.width = window.innerWidth;
     cvs.height = window.innerHeight;
@@ -271,6 +270,7 @@ function handleInteraction(cvs, curve) {
   };
 
   var lpts = curve.points;
+  var pointToMove;
   var bbx = curve.bbox();
   var showbbx = curve.showbbx;
   var moving = false,
@@ -299,6 +299,8 @@ function handleInteraction(cvs, curve) {
     });
     if (showbbx) {
       movingcurve = true;
+      //pointToMove = [...lpts] ...pointToMove chamge
+      pointToMove = JSON.parse(JSON.stringify(lpts))
     } else {
       movingcurve = false;
     }
@@ -308,8 +310,6 @@ function handleInteraction(cvs, curve) {
     fix(evt);
 
     var found = false;
-    var showbbx = false;
-    console.log(lpts);
     if (!lpts) return;
     lpts.forEach(function (p) {
       var mx = evt.offsetX;
@@ -320,6 +320,7 @@ function handleInteraction(cvs, curve) {
     });
     cvs.style.cursor = found ? "pointer" : "default";
     //console.log(bbx, evt.offsetX, evt.offsetY);
+    bbx = curve.bbox();
     if (
       bbx.x.min <= evt.offsetX &&
       evt.offsetX <= bbx.x.max &&
@@ -328,32 +329,35 @@ function handleInteraction(cvs, curve) {
     )
       showbbx = curve.showbbx = true;
     else showbbx = curve.showbbx = false;
-    console.log(moving, movingcurve);
+    ox = evt.offsetX - mx;
+    oy = evt.offsetY - my;
+    
     if (!moving && !movingcurve) {
       return handler.onupdate(evt);
     }
-
-    ox = evt.offsetX - mx;
-    oy = evt.offsetY - my;
-    console.log(mp, curve.showbbx);
-    if (!mp && curve.showbbx) {
-      lpts.forEach(function (p) {
-        p.x = cx + ox;
-        p.y = cx + oy;
-      });
-    } else {
+    
+    if (moving) {
       mp.x = cx + ox;
       mp.y = cy + oy;
     }
+    
+    if (!mp && curve.showbbx) {
+      for(let i = 0;i<lpts.length;i++){
+        console.log(ox, oy, pointToMove[i].x, pointToMove[i].y);
+        lpts[i].x = pointToMove[i].x + ox;
+        lpts[i].y = pointToMove[i].y + oy;
+      }
+    } 
     curve.update();
     handler.onupdate();
   });
 
   cvs.addEventListener("mouseup", function (evt) {
-    if (!moving) return;
+    //if (!moving) return;
     // console.log(curve.points.map(function(p) { return p.x+", "+p.y; }).join(", "));
     moving = false;
     mp = false;
+    movingcurve = false;
   });
 
   cvs.addEventListener("click", function (evt) {
