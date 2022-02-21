@@ -5,9 +5,6 @@ const { Bezier } = bezierJs;
 class CodeExample {
   constructor(c) {
     var cvs = (this.cvs = c);
-    document.body.append(cvs);
-    cvs.width = window.innerWidth;
-    cvs.height = window.innerHeight;
     this.ctx = cvs.getContext("2d");
 
     this.randomColors = [];
@@ -371,6 +368,8 @@ function handleInteraction(cvs, curve) {
 
 var canvas = document.createElement("canvas");
 document.body.append(canvas);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
   const ce = new CodeExample(canvas);
