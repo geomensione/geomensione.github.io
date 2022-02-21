@@ -371,23 +371,29 @@ function handleInteraction(cvs, curve) {
 
 var canvas = document.createElement("canvas");
 document.body.append(canvas);
-const ce = new CodeExample(canvas);
-var curve = new Bezier(102, 33, 16, 99, 101, 129, 132, 173);
-curve.showbbx = false;
-var draw = function () {
-  this.drawSkeleton(curve);
-  this.drawCurve(curve);
-  this.setColor("red");
 
-  this.drawStartAndEnd(curve);
-  this.drawbbox(curve.bbox(), null, curve.showbbx);
-  var outline = curve.outline(1, 1, 25, 25);
-  outline.curves.forEach((c) => this.drawCurve(c));
-};
-ce.draw = draw.bind(ce);
+function addBezier(canvas){
+  const ce = new CodeExample(canvas);
+  var curve = new Bezier(102, 33, 16, 99, 101, 129, 132, 173);
+  curve.showbbx = false;
+  var draw = function () {
+    this.drawSkeleton(curve);
+    this.drawCurve(curve);
+    this.setColor("red");
 
-handleInteraction(ce.getCanvas(), curve).onupdate = (evt) => {
-  ce.reset();
-  ce.draw(evt);
-};
-ce.draw();
+    this.drawStartAndEnd(curve);
+    this.drawbbox(curve.bbox(), null, curve.showbbx);
+    var outline = curve.outline(1, 1, 25, 25);
+    outline.curves.forEach((c) => this.drawCurve(c));
+  };
+  ce.draw = draw.bind(ce);
+
+  handleInteraction(ce.getCanvas(), curve).onupdate = (evt) => {
+    ce.reset();
+    ce.draw(evt);
+  };
+  ce.draw();
+
+}
+
+addBezier(canvas);
