@@ -1,3 +1,7 @@
+/*
+this script add one bezier curve.
+This curve is draggable and modifiable.
+*/
 import * as bezierJs from "./js/bezier.js";
 
 const { Bezier } = bezierJs;
