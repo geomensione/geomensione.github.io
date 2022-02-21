@@ -372,9 +372,9 @@ function handleInteraction(cvs, curve) {
 var canvas = document.createElement("canvas");
 document.body.append(canvas);
 
-function addBezier(canvas){
+function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
   const ce = new CodeExample(canvas);
-  var curve = new Bezier(102, 33, 16, 99, 101, 129, 132, 173);
+  var curve = new Bezier(x1,y1,x2,y2,x3,y3,x4,y4);
   curve.showbbx = false;
   var draw = function () {
     this.drawSkeleton(curve);
@@ -396,4 +396,5 @@ function addBezier(canvas){
 
 }
 
-addBezier(canvas);
+addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173);
+addBezier(canvas,152, 83, 66, 149, 151, 179, 182, 223);
