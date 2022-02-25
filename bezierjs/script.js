@@ -433,11 +433,12 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
     outline.curves.forEach((c) => this.drawCurve(c));
   };
   ce.draw = draw.bind(ce);
-
+  /*
   handleInteraction(ce.getCanvas(), curve).onupdate = (evt) => {
     ce.reset();
     ce.draw(evt);
   };
+  */
   ce.draw();
 
 }
