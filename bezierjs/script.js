@@ -343,6 +343,8 @@ function handleInteraction(cvs) {
       } else {
         movingcurve = false;
       }
+      
+      console.log('movingcurve = '+movingcurve)
     })
     
   });
