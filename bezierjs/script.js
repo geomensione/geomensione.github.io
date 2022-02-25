@@ -362,7 +362,7 @@ function handleInteraction(cvs) {
       });
       cvs.style.cursor = found ? "pointer" : "default";
       //console.log(bbx, evt.offsetX, evt.offsetY);
-      bbx = e.bbox();
+      var bbx = e.bbox();
       if (
         bbx.x.min <= evt.offsetX &&
         evt.offsetX <= bbx.x.max &&
