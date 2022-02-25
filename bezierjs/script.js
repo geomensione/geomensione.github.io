@@ -373,6 +373,7 @@ function handleInteraction(cvs) {
       else e.showbbx = false;
       ox = evt.offsetX - mx;
       oy = evt.offsetY - my;
+      console.log(moving,movingcurve)
 
       if (!moving && !movingcurve) {
         return handler.onupdate(evt);
