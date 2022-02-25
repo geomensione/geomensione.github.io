@@ -310,8 +310,6 @@ function handleInteraction(cvs) {
 
   
   var pointToMove;
-  var bbx = curve.bbox();
-  var showbbx = curve.showbbx;
   var moving = false,
     movingcurve = false,
     mx = 0,
