@@ -303,8 +303,7 @@ class CodeExample {
   }
 }
 //start handler interaction
-function handleInteraction(cvs, curve) {
-  if (!curve) return {};
+function handleInteraction(cvs) {
 
   curve.mouse = false;
 
@@ -312,7 +311,7 @@ function handleInteraction(cvs, curve) {
     return e;
   };
 
-  var lpts = curve.points;
+  
   var pointToMove;
   var bbx = curve.bbox();
   var showbbx = curve.showbbx;
@@ -332,67 +331,72 @@ function handleInteraction(cvs, curve) {
     fix(evt);
     mx = evt.offsetX;
     my = evt.offsetY;
-    lpts.forEach(function (p) {
-      if (Math.abs(mx - p.x) < 10 && Math.abs(my - p.y) < 10) {
-        moving = true;
-        mp = p;
-        cx = p.x;
-        cy = p.y;
+    curves.forEach( (e) => {
+      var lpts = e.points;
+      lpts.forEach(function (p) {
+        if (Math.abs(mx - p.x) < 10 && Math.abs(my - p.y) < 10) {
+          moving = true;
+          mp = p;
+          cx = p.x;
+          cy = p.y;
+        }
+      });
+      if (e.showbbx) {
+        movingcurve = true;
+        //pointToMove = [...lpts] ...pointToMove chamge
+        pointToMove = JSON.parse(JSON.stringify(lpts))
+      } else {
+        movingcurve = false;
       }
-    });
-    if (showbbx) {
-      movingcurve = true;
-      //pointToMove = [...lpts] ...pointToMove chamge
-      pointToMove = JSON.parse(JSON.stringify(lpts))
-    } else {
-      movingcurve = false;
-    }
+    })
+    
   });
 
   cvs.addEventListener("mousemove", function (evt) {
     fix(evt);
 
     var found = false;
-    if (!lpts) return;
-    lpts.forEach(function (p) {
-      var mx = evt.offsetX;
-      var my = evt.offsetY;
-      if (Math.abs(mx - p.x) < 10 && Math.abs(my - p.y) < 10) {
-        found = found || true;
+    curves.forEach( (e) => {
+      var lpts = e.points;
+      lpts.forEach(function (p) {
+        var mx = evt.offsetX;
+        var my = evt.offsetY;
+        if (Math.abs(mx - p.x) < 10 && Math.abs(my - p.y) < 10) {
+          found = found || true;
+        }
+      });
+      cvs.style.cursor = found ? "pointer" : "default";
+      //console.log(bbx, evt.offsetX, evt.offsetY);
+      bbx = e.bbox();
+      if (
+        bbx.x.min <= evt.offsetX &&
+        evt.offsetX <= bbx.x.max &&
+        bbx.y.min <= evt.offsetY &&
+        evt.offsetY <= bbx.y.max
+      )
+        showbbx = e.showbbx = true;
+      else showbbx = e.showbbx = false;
+      ox = evt.offsetX - mx;
+      oy = evt.offsetY - my;
+
+      if (!moving && !movingcurve) {
+        return handler.onupdate(evt);
       }
-    });
-    cvs.style.cursor = found ? "pointer" : "default";
-    //console.log(bbx, evt.offsetX, evt.offsetY);
-    bbx = curve.bbox();
-    if (
-      bbx.x.min <= evt.offsetX &&
-      evt.offsetX <= bbx.x.max &&
-      bbx.y.min <= evt.offsetY &&
-      evt.offsetY <= bbx.y.max
-    )
-      showbbx = curve.showbbx = true;
-    else showbbx = curve.showbbx = false;
-    ox = evt.offsetX - mx;
-    oy = evt.offsetY - my;
-    
-    if (!moving && !movingcurve) {
-      return handler.onupdate(evt);
-    }
-    
-    if (moving) {
-      mp.x = cx + ox;
-      mp.y = cy + oy;
-    }
-    
-    if (!mp && curve.showbbx) {
-      for(let i = 0;i<lpts.length;i++){
-        console.log(ox, oy, pointToMove[i].x, pointToMove[i].y);
-        lpts[i].x = pointToMove[i].x + ox;
-        lpts[i].y = pointToMove[i].y + oy;
+
+      if (moving) {
+        mp.x = cx + ox;
+        mp.y = cy + oy;
       }
-    } 
-    curve.update();
-    handler.onupdate();
+
+      if (!mp && e.showbbx) {
+        for(let i = 0;i<lpts.length;i++){
+          lpts[i].x = pointToMove[i].x + ox;
+          lpts[i].y = pointToMove[i].y + oy;
+        }
+      } 
+      e.update();
+      handler.onupdate();
+    })
   });
 
   cvs.addEventListener("mouseup", function (evt) {
@@ -431,12 +435,12 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
     this.drawOutline();
   };
   ce.draw = draw.bind(ce);
-  /*
-  handleInteraction(ce.getCanvas(), curve).onupdate = (evt) => {
+  
+  handleInteraction(ce.getCanvas()).onupdate = (evt) => {
     ce.reset();
     ce.draw(evt);
   };
-  */
+  
   ce.draw();
 
 }
