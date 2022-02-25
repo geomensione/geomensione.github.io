@@ -18,6 +18,8 @@ todo
 
 regulate circle radius with mouse wheel
 
+generative art with a lot of curve (use rough to add artistic style?)
+
 button to add curve
 
 save and load scene
