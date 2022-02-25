@@ -337,11 +337,11 @@ function handleInteraction(cvs) {
         }
       });
       if (e.showbbx) {
-        movingcurve = true;
+        e.movingcurve = true;
         //pointToMove = [...lpts] ...pointToMove chamge
         pointToMove = JSON.parse(JSON.stringify(lpts))
       } else {
-        movingcurve = false;
+        e.movingcurve = false;
       }
       
       console.log('movingcurve = '+movingcurve)
@@ -375,9 +375,9 @@ function handleInteraction(cvs) {
       else e.showbbx = false;
       ox = evt.offsetX - mx;
       oy = evt.offsetY - my;
-      console.log(moving,movingcurve)
+      console.log(moving,e.movingcurve)
 
-      if (!moving && !movingcurve) {
+      if (!moving && !e.movingcurve) {
         return handler.onupdate(evt);
       }
 
@@ -402,7 +402,9 @@ function handleInteraction(cvs) {
     // console.log(curve.points.map(function(p) { return p.x+", "+p.y; }).join(", "));
     moving = false;
     mp = false;
-    movingcurve = false;
+    curves.forEach( (e) => {
+      e.movingcurve = false;
+    })
   });
 
   cvs.addEventListener("click", function (evt) {
