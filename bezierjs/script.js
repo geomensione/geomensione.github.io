@@ -371,8 +371,8 @@ function handleInteraction(cvs) {
         bbx.y.min <= evt.offsetY &&
         evt.offsetY <= bbx.y.max
       )
-        showbbx = e.showbbx = true;
-      else showbbx = e.showbbx = false;
+        e.showbbx = true;
+      else e.showbbx = false;
       ox = evt.offsetX - mx;
       oy = evt.offsetY - my;
 
