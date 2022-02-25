@@ -304,9 +304,6 @@ class CodeExample {
 }
 //start handler interaction
 function handleInteraction(cvs) {
-
-  curve.mouse = false;
-
   var fix = function (e) {
     return e;
   };
@@ -425,6 +422,7 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
   const ce = new CodeExample(canvas);
   curves.push(new Bezier(x1,y1,x2,y2,x3,y3,x4,y4));
   curves[curves.length-1].showbbx = false;
+  curves[curves.length-1].mouse = false;
   var draw = function () {
     this.drawSkeleton();
     this.drawCurves();
