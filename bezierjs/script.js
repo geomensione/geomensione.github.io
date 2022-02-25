@@ -422,15 +422,13 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
   curves.push(new Bezier(x1,y1,x2,y2,x3,y3,x4,y4));
   curves[curves.length-1].showbbx = false;
   var draw = function () {
-    this.drawSkeleton(curve);
-    this.drawCurves(curve);
+    this.drawSkeleton();
+    this.drawCurves();
     this.setColor("red");
 
-    this.drawStartAndEnd(curve);
-    this.drawbbox(curve.bbox(), null, curve.showbbx);
+    this.drawStartAndEnd();
+    this.drawbbox();
     this.drawOutline();
-    var outline = curve.outline(1, 1, 25, 25);
-    outline.curves.forEach((c) => this.drawCurve(c));
   };
   ce.draw = draw.bind(ce);
   /*
