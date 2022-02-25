@@ -18,7 +18,7 @@ todo
 
 regulate circle radius with mouse wheel
 
-generative art with a lot of curve (use rough to add artistic style?)
+generative art with a lot of curve (use rough to add artistic style? https://github.com/rough-stuff/rough/wiki#curve-points--options )
 
 button to add curve
 
