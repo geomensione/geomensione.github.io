@@ -6,6 +6,8 @@ class CodeExample {
   constructor(c) {
     var cvs = (this.cvs = c);
     this.ctx = cvs.getContext("2d");
+    //this.ctx = rough.canvas(c);
+
 
     this.randomColors = [];
     for (var i = 0, j; i < 360; i++) {
