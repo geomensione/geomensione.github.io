@@ -109,7 +109,7 @@ class CodeExample {
       ctx.stroke();
       ctx.closePath();
   
-    )}
+    })
   }
 
   drawCurve(curve, offset) {
@@ -204,7 +204,7 @@ class CodeExample {
         ctx.closePath();
         ctx.stroke();
       }
-    )}
+    })
     
   }
 
@@ -299,7 +299,7 @@ class CodeExample {
     curves.forEach( (e) => {
       var outline = e.outline(1, 1, 25, 25);
       outline.curves.forEach((c) => this.drawCurve(c));
-    )}
+    })
   }
 }
 //start handler interaction
