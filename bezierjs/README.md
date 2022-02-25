@@ -14,4 +14,12 @@ https://github.com/Pomax/bezierjs/issues/174
 
 https://codepen.io/morticcino/pen/VwrbPoR
 
+todo
+
+regulate circle radius with mouse wheel
+
+button to add curve
+
+save and load scene
+
 
