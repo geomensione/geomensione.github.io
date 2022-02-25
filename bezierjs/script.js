@@ -60,29 +60,63 @@ class CodeExample {
   }
 
   drawSkeleton(curve, offset, nocoords) {
-    offset = offset || { x: 0, y: 0 };
-    var pts = curve.points;
-    this.ctx.strokeStyle = "lightgrey";
-    this.drawLine(pts[0], pts[1], offset);
-    if (pts.length === 3) {
-      this.drawLine(pts[1], pts[2], offset);
-    } else {
-      this.drawLine(pts[2], pts[3], offset);
-    }
-    this.ctx.strokeStyle = "black";
-    if (!nocoords) this.drawPoints(pts, offset);
+    curves.forEach( (e) => {
+      offset = offset || { x: 0, y: 0 };
+      var pts = e.points;
+      this.ctx.strokeStyle = "lightgrey";
+      this.drawLine(pts[0], pts[1], offset);
+      if (pts.length === 3) {
+        this.drawLine(pts[1], pts[2], offset);
+      } else {
+        this.drawLine(pts[2], pts[3], offset);
+      }
+      this.ctx.strokeStyle = "black";
+      if (!nocoords) this.drawPoints(pts, offset);
+    })
+    
   }
   drawStartAndEnd(curve) {
-    var pts = curve.points;
-    this.drawCircle(pts[0], 1, null);
-    this.drawCircle(pts[3], 25, null);
+    curves.forEach( (e) => {
+      var pts = e.points;
+      this.drawCircle(pts[0], 1, null);
+      this.drawCircle(pts[3], 25, null);
+    })
+    
   }
+  drawCurves(curve, offset) {
+    const ctx = this.ctx;
+    offset = offset || { x: 0, y: 0 };
+    var ox = offset.x;
+    var oy = offset.y;
+    curves.forEach( (e) => {
+      ctx.beginPath();
+      var p = e.points,
+        i;
+      ctx.moveTo(p[0].x + ox, p[0].y + oy);
+      if (p.length === 3) {
+        ctx.quadraticCurveTo(p[1].x + ox, p[1].y + oy, p[2].x + ox, p[2].y + oy);
+      }
+      if (p.length === 4) {
+        ctx.bezierCurveTo(
+          p[1].x + ox,
+          p[1].y + oy,
+          p[2].x + ox,
+          p[2].y + oy,
+          p[3].x + ox,
+          p[3].y + oy
+        );
+      }
+      ctx.stroke();
+      ctx.closePath();
+  
+    )}
+  }
+
   drawCurve(curve, offset) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-
     ctx.beginPath();
     var p = curve.points,
       i;
@@ -102,8 +136,9 @@ class CodeExample {
     }
     ctx.stroke();
     ctx.closePath();
-  }
 
+  }
+                   
   drawLine(p1, p2, offset) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
@@ -158,15 +193,19 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    if (showbbx) {
-      ctx.beginPath();
-      ctx.moveTo(bbox.x.min + ox, bbox.y.min + oy);
-      ctx.lineTo(bbox.x.min + ox, bbox.y.max + oy);
-      ctx.lineTo(bbox.x.max + ox, bbox.y.max + oy);
-      ctx.lineTo(bbox.x.max + ox, bbox.y.min + oy);
-      ctx.closePath();
-      ctx.stroke();
-    }
+    curves.forEach( (e) => {
+      if (e.showbbx) {
+        let bbox = e.bbox();
+        ctx.beginPath();
+        ctx.moveTo(bbox.x.min + ox, bbox.y.min + oy);
+        ctx.lineTo(bbox.x.min + ox, bbox.y.max + oy);
+        ctx.lineTo(bbox.x.max + ox, bbox.y.max + oy);
+        ctx.lineTo(bbox.x.max + ox, bbox.y.min + oy);
+        ctx.closePath();
+        ctx.stroke();
+      }
+    )}
+    
   }
 
   drawHull(hull, offset) {
@@ -254,6 +293,13 @@ class CodeExample {
   drawText(text, offset) {
     offset = offset || { x: 0, y: 0 };
     this.ctx.fillText(text, offset.x, offset.y);
+  }
+    
+  drawOutline(){
+    curves.forEach( (e) => {
+      var outline = e.outline(1, 1, 25, 25);
+      outline.curves.forEach((c) => this.drawCurve(c));
+    )}
   }
 }
 //start handler interaction
@@ -365,7 +411,7 @@ function handleInteraction(cvs, curve) {
   return handler;
 }
 //end handler interaction
-
+var curves = [];
 var canvas = document.createElement("canvas");
 document.body.append(canvas);
 canvas.width = window.innerWidth;
@@ -373,15 +419,16 @@ canvas.height = window.innerHeight;
 
 function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
   const ce = new CodeExample(canvas);
-  var curve = new Bezier(x1,y1,x2,y2,x3,y3,x4,y4);
-  curve.showbbx = false;
+  curves.push(new Bezier(x1,y1,x2,y2,x3,y3,x4,y4));
+  curves[curves.length-1].showbbx = false;
   var draw = function () {
     this.drawSkeleton(curve);
-    this.drawCurve(curve);
+    this.drawCurves(curve);
     this.setColor("red");
 
     this.drawStartAndEnd(curve);
     this.drawbbox(curve.bbox(), null, curve.showbbx);
+    this.drawOutline();
     var outline = curve.outline(1, 1, 25, 25);
     outline.curves.forEach((c) => this.drawCurve(c));
   };
