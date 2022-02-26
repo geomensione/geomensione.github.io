@@ -1,12 +1,13 @@
 import * as bezierJs from "./js/bezier.js";
 
+
 const { Bezier } = bezierJs;
 
 class CodeExample {
   constructor(c) {
     var cvs = (this.cvs = c);
-    this.ctx = cvs.getContext("2d");
-    //this.ctx = rough.canvas(c);
+    //this.ctx = cvs.getContext("2d");
+    this.ctx = rough.canvas(c);
 
 
     this.randomColors = [];
@@ -23,8 +24,8 @@ class CodeExample {
 
   reset(curve, evt) {
     this.cvs.width = this.cvs.width;
-    this.ctx.strokeStyle = "black";
-    this.ctx.fillStyle = "none";
+    this.ctx.stroke = "black";
+    this.ctx.fill = "none";
     if (evt && curve) {
       curve.mouse = { x: evt.offsetX, y: evt.offsetY };
     }
@@ -32,17 +33,17 @@ class CodeExample {
   }
 
   setColor(c) {
-    this.ctx.strokeStyle = c;
+    this.ctx.stroke = c;
   }
 
   noColor(c) {
-    this.ctx.strokeStyle = "transparent";
+    this.ctx.stroke = "transparent";
   }
 
   setRandomColor() {
     this.randomIndex = (this.randomIndex + 1) % this.randomColors.length;
     var c = this.randomColors[this.randomIndex];
-    this.ctx.strokeStyle = c;
+    this.ctx.stroke = c;
   }
 
   setRandomFill(a) {
@@ -50,29 +51,29 @@ class CodeExample {
     a = typeof a === "undefined" ? 1 : a;
     var c = this.randomColors[this.randomIndex];
     c = c.replace("hsl(", "hsla(").replace(")", "," + a + ")");
-    this.ctx.fillStyle = c;
+    this.ctx.fill = c;
   }
 
   setFill(c) {
-    this.ctx.fillStyle = c;
+    this.ctx.fill = c;
   }
 
   noFill() {
-    this.ctx.fillStyle = "transparent";
+    this.ctx.fill = "transparent";
   }
 
   drawSkeleton(curve, offset, nocoords) {
     curves.forEach( (e) => {
       offset = offset || { x: 0, y: 0 };
       var pts = e.points;
-      this.ctx.strokeStyle = "lightgrey";
+      this.ctx.stroke = "lightgrey";
       this.drawLine(pts[0], pts[1], offset);
       if (pts.length === 3) {
         this.drawLine(pts[1], pts[2], offset);
       } else {
         this.drawLine(pts[2], pts[3], offset);
       }
-      this.ctx.strokeStyle = "black";
+      this.ctx.stroke = "black";
       if (!nocoords) this.drawPoints(pts, offset);
     })
     
@@ -80,8 +81,8 @@ class CodeExample {
   drawStartAndEnd(curve) {
     curves.forEach( (e) => {
       var pts = e.points;
-      this.drawCircle(pts[0], 1, null);
-      this.drawCircle(pts[3], 25, null);
+      this.drawCircle(pts[0], 1*2, null);
+      this.drawCircle(pts[3], 25*2, null);
     })
     
   }
@@ -91,26 +92,14 @@ class CodeExample {
     var ox = offset.x;
     var oy = offset.y;
     curves.forEach( (e) => {
-      ctx.beginPath();
-      var p = e.points,
-        i;
-      ctx.moveTo(p[0].x + ox, p[0].y + oy);
-      if (p.length === 3) {
-        ctx.quadraticCurveTo(p[1].x + ox, p[1].y + oy, p[2].x + ox, p[2].y + oy);
-      }
-      if (p.length === 4) {
-        ctx.bezierCurveTo(
-          p[1].x + ox,
-          p[1].y + oy,
-          p[2].x + ox,
-          p[2].y + oy,
-          p[3].x + ox,
-          p[3].y + oy
-        );
-      }
-      ctx.stroke();
-      ctx.closePath();
-  
+      var p = [];
+      e.points.forEach(e => p.push([e.x,e.y]))
+      ctx.curve(
+        p,{
+          stroke: 'red', strokeWidth: 1
+        }
+      );
+    
     })
   }
 
@@ -119,26 +108,16 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    ctx.beginPath();
-    var p = curve.points,
-      i;
-    ctx.moveTo(p[0].x + ox, p[0].y + oy);
-    if (p.length === 3) {
-      ctx.quadraticCurveTo(p[1].x + ox, p[1].y + oy, p[2].x + ox, p[2].y + oy);
-    }
-    if (p.length === 4) {
-      ctx.bezierCurveTo(
-        p[1].x + ox,
-        p[1].y + oy,
-        p[2].x + ox,
-        p[2].y + oy,
-        p[3].x + ox,
-        p[3].y + oy
-      );
-    }
-    ctx.stroke();
-    ctx.closePath();
-
+    var p = [];
+    curve.points.forEach(e => p.push([e.x,e.y]))
+      
+    ctx.curve(
+      p,{
+        stroke: 'red', strokeWidth: 1
+      }
+    );
+    
+    
   }
                    
   drawLine(p1, p2, offset) {
@@ -146,10 +125,7 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    ctx.beginPath();
-    ctx.moveTo(p1.x + ox, p1.y + oy);
-    ctx.lineTo(p2.x + ox, p2.y + oy);
-    ctx.stroke();
+    ctx.line(p1.x + ox, p1.y + oy,p2.x + ox, p2.y + oy, {strokeWidth: 1});
   }
 
   drawPoint(p, offset) {
@@ -157,9 +133,8 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    ctx.beginPath();
-    ctx.arc(p.x + ox, p.y + oy, 5, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.circle(p.x + ox, p.y + oy, 5);
+    
   }
 
   drawPoints(points, offset) {
@@ -185,9 +160,7 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    ctx.beginPath();
-    ctx.arc(p.x + ox, p.y + oy, r, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.circle(p.x + ox, p.y + oy, r);
   }
 
   drawbbox(bbox, offset, showbbx) {
@@ -198,13 +171,9 @@ class CodeExample {
     curves.forEach( (e) => {
       if (e.showbbx) {
         let bbox = e.bbox();
-        ctx.beginPath();
-        ctx.moveTo(bbox.x.min + ox, bbox.y.min + oy);
-        ctx.lineTo(bbox.x.min + ox, bbox.y.max + oy);
-        ctx.lineTo(bbox.x.max + ox, bbox.y.max + oy);
-        ctx.lineTo(bbox.x.max + ox, bbox.y.min + oy);
-        ctx.closePath();
-        ctx.stroke();
+        let width = bbox.x.max - bbox.x.min;
+        let height = bbox.y.max - bbox.y.min;
+        ctx.rectangle(bbox.x.min + ox, bbox.y.min + oy,width,height, { fill: 'red'});
       }
     })
     
@@ -430,7 +399,7 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
   curves[curves.length-1].mouse = false;
   var draw = function () {
     this.drawSkeleton();
-    this.drawCurves();
+    //this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
     this.setColor("red");
 
     this.drawStartAndEnd();
