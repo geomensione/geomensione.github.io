@@ -317,7 +317,6 @@ function handleInteraction(cvs) {
         e.movingcurve = false;
       }
       
-      console.log('movingcurve = '+movingcurve)
     })
     
   });
@@ -351,7 +350,6 @@ function handleInteraction(cvs) {
         
       });
       cvs.style.cursor = found ? "pointer" : "default";
-      //console.log(bbx, evt.offsetX, evt.offsetY);
       var bbx = e.bbox();
       if (
         bbx.x.min <= evt.offsetX &&
@@ -363,7 +361,6 @@ function handleInteraction(cvs) {
       else e.showbbx = false;
       ox = evt.offsetX - mx;
       oy = evt.offsetY - my;
-      console.log(moving,e.movingcurve)
 
       if (!moving && !e.movingcurve) {
         return handler.onupdate(evt);
@@ -386,8 +383,6 @@ function handleInteraction(cvs) {
   });
 
   cvs.addEventListener("mouseup", function (evt) {
-    //if (!moving) return;
-    // console.log(curve.points.map(function(p) { return p.x+", "+p.y; }).join(", "));
     moving = false;
     mp = false;
     curves.forEach( (e) => {
@@ -400,6 +395,8 @@ function handleInteraction(cvs) {
     var mx = evt.offsetX;
     var my = evt.offsetY;
   });
+
+  
   return handler;
 }
 //end handler interaction
@@ -432,7 +429,45 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
     ce.reset();
     ce.draw(evt);
   };
+
+  document.addEventListener("keydown", function (evt) {
+    let aggiornare = false;
+    if (evt.defaultPrevented) {
+      return; // Should do nothing if the default action has been cancelled
+    }
   
+    var handled = false;
+    if (evt.key !== undefined) {
+      switch(evt.key){
+        case '-':
+          curves.forEach((e)=>{
+            if(e.showBBoxMin)e.outlinemin--
+            if(e.showBBoxMax)e.outlinemax--
+            aggiornare = true;
+          })
+          break;
+        case '+':
+          curves.forEach((e)=>{
+            if(e.showBBoxMin)e.outlinemin++
+            if(e.showBBoxMax)e.outlinemax++
+            aggiornare = true;
+          })
+          break;
+      }
+    }
+  
+    if (handled) {
+      // Suppress "double action" if event handled
+      evt.preventDefault();
+    }
+    if(aggiornare){
+      ce.reset();
+      ce.draw();
+    }
+
+  });
+
+
   ce.draw();
 
 }
