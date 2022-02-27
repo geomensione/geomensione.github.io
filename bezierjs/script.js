@@ -81,8 +81,8 @@ class CodeExample {
   drawStartAndEnd(curve) {
     curves.forEach( (e) => {
       var pts = e.points;
-      this.drawCircle(pts[0], e.outlinemin*2, null);
-      this.drawCircle(pts[3], e.outlinemax*2, null);
+      this.drawCircle(pts[0], e.outlinemin*2, null, e.showBBoxMin);
+      this.drawCircle(pts[3], e.outlinemax*2, null, e.showBBoxMax);
     })
     
   }
@@ -155,12 +155,14 @@ class CodeExample {
     ctx.stroke();
   }
 
-  drawCircle(p, r, offset) {
+  drawCircle(p, r, offset, showBBox) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
     ctx.circle(p.x + ox, p.y + oy, r);
+    if(showBBox) ctx.rectangle(p.x-r/2, p.y-r/2, r, r, { fill: 'red'});
+
   }
 
   drawbbox(bbox, offset, showbbx) {
@@ -325,13 +327,28 @@ function handleInteraction(cvs) {
 
     var found = false;
     curves.forEach( (e) => {
+      e.showBBoxMax = false;
+      e.showBBoxMin = false;
       var lpts = e.points;
+      let indexPoint = 0;
       lpts.forEach(function (p) {
         var mx = evt.offsetX;
         var my = evt.offsetY;
+        
         if (Math.abs(mx - p.x) < 10 && Math.abs(my - p.y) < 10) {
           found = found || true;
         }
+        if (indexPoint == 0){
+          if (Math.abs(mx - p.x) < 10 && Math.abs(my - p.y) < 10) {
+            e.showBBoxMin = true;
+          }
+        }else if(indexPoint == 3){
+          if (Math.abs(mx - p.x) < e.outlinemax && Math.abs(my - p.y) < e.outlinemax) {
+            e.showBBoxMax = true;
+          }
+        }
+        indexPoint++;
+        
       });
       cvs.style.cursor = found ? "pointer" : "default";
       //console.log(bbx, evt.offsetX, evt.offsetY);
