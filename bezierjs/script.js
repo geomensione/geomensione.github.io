@@ -81,8 +81,8 @@ class CodeExample {
   drawStartAndEnd(curve) {
     curves.forEach( (e) => {
       var pts = e.points;
-      this.drawCircle(pts[0], 1*2, null);
-      this.drawCircle(pts[3], 25*2, null);
+      this.drawCircle(pts[0], e.outlinemin*2, null);
+      this.drawCircle(pts[3], e.outlinemax*2, null);
     })
     
   }
@@ -268,7 +268,7 @@ class CodeExample {
     
   drawOutline(){
     curves.forEach( (e) => {
-      var outline = e.outline(1, 1, 25, 25);
+      var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
       outline.curves.forEach((c) => this.drawCurve(c));
     })
   }
@@ -397,6 +397,9 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
   curves.push(new Bezier(x1,y1,x2,y2,x3,y3,x4,y4));
   curves[curves.length-1].showbbx = false;
   curves[curves.length-1].mouse = false;
+  curves[curves.length-1].outlinemin = 1;
+  curves[curves.length-1].outlinemax = 25;
+  
   var draw = function () {
     this.drawSkeleton();
     //this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
