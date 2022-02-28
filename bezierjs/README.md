@@ -20,12 +20,14 @@ https://codepen.io/morticcino/pen/VwrbPoR
 
 todo
 
-regulate circle radius with mouse wheel
+DONE regulate circle radius with mouse wheel -> pressing '+' or '-' when on mouse on circles
 
 generative art with a lot of curve (use rough to add artistic style? https://github.com/rough-stuff/rough/wiki#curve-points--options )
 
-button to add curve
+DONE button to add curve -> pressing 'c'
 
 save and load scene
+
+fill tentacle
 
 
