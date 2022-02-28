@@ -180,10 +180,11 @@ class CodeExample {
 	      );
 	    }
 	    
-	    ctx.stroke();
+	    
 	    
     })
-    //ctx.closePath();
+    ctx.closePath();
+	  ctx.stroke();
     ctx.fill();
     //
 	  //ctx.fill();
