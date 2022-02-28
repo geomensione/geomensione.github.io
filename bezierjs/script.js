@@ -153,11 +153,16 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-	  
+    let firstLapDone = false;  
     ctx.beginPath();
     curves.forEach((e)=>{
     	    var p = e.points;
-	    ctx.moveTo(p[0].x + ox, p[0].y + oy);
+	    if(!firstLapDone){
+		    ctx.moveTo(p[0].x + ox, p[0].y + oy);
+		    firstLapDone=true;
+	    }else{
+	    	ctx.LineTo(p[0].x + ox, p[0].y + oy);
+	    }
 	    if (p.length === 3) {
 	      ctx.quadraticCurveTo(p[1].x + ox, p[1].y + oy, p[2].x + ox, p[2].y + oy);
 	    }
