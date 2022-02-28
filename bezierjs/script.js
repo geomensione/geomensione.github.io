@@ -149,7 +149,7 @@ class CodeExample {
   }
   
 	
-  drawFillTentacle(curves, offset, firstLapDone) {
+  drawFillTentacle(curves, offset) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
@@ -157,10 +157,7 @@ class CodeExample {
     ctx.beginPath();
     curves.forEach((e)=>{
     	    var p = e.points;
-	    if(firstLapDone){
-		    ctx.lineTo(p[0].x + ox, p[0].y + oy);
-		    firstLapDone = false;
-	    }
+	    
 	    ctx.moveTo(p[0].x + ox, p[0].y + oy);
 	    
 		    
@@ -349,12 +346,11 @@ class CodeExample {
   }
     
   drawOutline(){
-    let firstLapDone = false;
     curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
       //outline.curves.forEach((c) => this.drawCurve(c));
-      this.drawFillTentacle(outline.curves,null,firstLapDone)
-      firstLapDone = true;
+      this.drawFillTentacle(outline.curves,null)
+      
     })
   }
 }
