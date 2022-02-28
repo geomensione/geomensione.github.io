@@ -138,6 +138,7 @@ class CodeExample {
       );
     }
     ctx.stroke();
+	  ctx.fill();
     ctx.closePath();
   }
                    
