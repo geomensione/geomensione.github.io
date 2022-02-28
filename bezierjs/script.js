@@ -146,7 +146,51 @@ class CodeExample {
 	  //ctx.fill();
     
   }
-                   
+  
+	
+  drawFillTentacle(curves, offset) {
+    const ctx = this.ctx;
+    offset = offset || { x: 0, y: 0 };
+    var ox = offset.x;
+    var oy = offset.y;
+    ctx.beginPath();
+    var p = curves[0].points;
+    ctx.moveTo(p[0].x + ox, p[0].y + oy);
+    if (p.length === 3) {
+      ctx.quadraticCurveTo(p[1].x + ox, p[1].y + oy, p[2].x + ox, p[2].y + oy);
+    }
+    if (p.length === 4) {
+      ctx.bezierCurveTo(
+        p[1].x + ox,
+        p[1].y + oy,
+        p[2].x + ox,
+        p[2].y + oy,
+        p[3].x + ox,
+        p[3].y + oy
+      );
+    }
+    p = curves[1].points;
+    ctx.lineTo(p[0].x + ox, p[0].y + oy);
+    if (p.length === 3) {
+      ctx.quadraticCurveTo(p[1].x + ox, p[1].y + oy, p[2].x + ox, p[2].y + oy);
+    }
+    if (p.length === 4) {
+      ctx.bezierCurveTo(
+        p[1].x + ox,
+        p[1].y + oy,
+        p[2].x + ox,
+        p[2].y + oy,
+        p[3].x + ox,
+        p[3].y + oy
+      );
+    }
+    ctx.stroke();
+    ctx.fill();
+    //ctx.closePath();
+	  //ctx.fill();
+    
+  }
+	
   drawLine(p1, p2, offset) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
@@ -307,7 +351,8 @@ class CodeExample {
   drawOutline(){
     curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
-      outline.curves.forEach((c) => this.drawCurve(c));
+      //outline.curves.forEach((c) => this.drawCurve(c));
+      this.drawFillTentacle(outline.curves)
     })
   }
 }
