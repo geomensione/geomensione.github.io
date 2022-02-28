@@ -351,8 +351,8 @@ class CodeExample {
   drawOutline(){
     curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
-      //outline.curves.forEach((c) => this.drawCurve(c));
-      this.drawFillTentacle(outline.curves)
+      outline.curves.forEach((c) => this.drawCurve(c));
+      //this.drawFillTentacle(outline.curves)
     })
   }
 }
