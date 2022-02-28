@@ -159,9 +159,9 @@ class CodeExample {
 	    if(firstLapDone){
 		    ctx.LineTo(p[0].x + ox, p[0].y + oy);
 		    firstLapDone = false;
-	    }else{
-	    	ctx.moveTo(p[0].x + ox, p[0].y + oy);
 	    }
+	    ctx.moveTo(p[0].x + ox, p[0].y + oy);
+	    
 		    
 	    
 	    
