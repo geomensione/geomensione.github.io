@@ -441,73 +441,76 @@ var canvas = document.createElement("canvas");
 document.body.append(canvas);
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+const ce = new CodeExample(canvas);
+
+
+var draw = function () {
+	this.drawSkeleton();
+	this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
+	this.setColor("red");
+
+	this.drawStartAndEnd();
+	this.drawbbox();
+	this.drawOutline();
+};
+ce.draw = draw.bind(ce);
+
+handleInteraction(ce.getCanvas()).onupdate = (evt) => {
+	ce.reset();
+	ce.draw(evt);
+};
+
+document.addEventListener("keydown", function (evt) {
+	let aggiornare = false;
+	if (evt.defaultPrevented) {
+		return; // Should do nothing if the default action has been cancelled
+	}
+
+	var handled = false;
+	if (evt.key !== undefined) {
+		switch(evt.key){
+			case '-':
+			  curves.forEach((e)=>{
+			    if(e.showBBoxMin)e.outlinemin--
+			    if(e.showBBoxMax)e.outlinemax--
+			    aggiornare = true;
+			  })
+			  break;
+			case '+':
+			  curves.forEach((e)=>{
+			    if(e.showBBoxMin)e.outlinemin++
+			    if(e.showBBoxMax)e.outlinemax++
+			    aggiornare = true;
+			  })
+			  break;
+			case 'c':
+			  addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173);
+			  break;
+
+		}
+	}
+
+	if (handled) {
+		// Suppress "double action" if event handled
+		evt.preventDefault();
+	}
+	if(aggiornare){
+		ce.reset();
+		ce.draw();
+	}
+
+});
+
+
 
 function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
-  const ce = new CodeExample(canvas);
+  
   curves.push(new Bezier(x1,y1,x2,y2,x3,y3,x4,y4));
   curves[curves.length-1].showbbx = false;
   curves[curves.length-1].mouse = false;
   curves[curves.length-1].outlinemin = 1;
   curves[curves.length-1].outlinemax = 25;
   
-  var draw = function () {
-    this.drawSkeleton();
-    this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
-    this.setColor("red");
-
-    this.drawStartAndEnd();
-    this.drawbbox();
-    this.drawOutline();
-  };
-  ce.draw = draw.bind(ce);
-  
-  handleInteraction(ce.getCanvas()).onupdate = (evt) => {
-    ce.reset();
-    ce.draw(evt);
-  };
-
-  document.addEventListener("keydown", function (evt) {
-    let aggiornare = false;
-    if (evt.defaultPrevented) {
-      return; // Should do nothing if the default action has been cancelled
-    }
-  
-    var handled = false;
-    if (evt.key !== undefined) {
-      switch(evt.key){
-        case '-':
-          curves.forEach((e)=>{
-            if(e.showBBoxMin)e.outlinemin--
-            if(e.showBBoxMax)e.outlinemax--
-            aggiornare = true;
-          })
-          break;
-        case '+':
-          curves.forEach((e)=>{
-            if(e.showBBoxMin)e.outlinemin++
-            if(e.showBBoxMax)e.outlinemax++
-            aggiornare = true;
-          })
-          break;
-        case 'c':
-          addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173);
-          break;
-
-      }
-    }
-  
-    if (handled) {
-      // Suppress "double action" if event handled
-      evt.preventDefault();
-    }
-    if(aggiornare){
-      ce.reset();
-      ce.draw();
-    }
-
-  });
-
-
   ce.draw();
 
 }
