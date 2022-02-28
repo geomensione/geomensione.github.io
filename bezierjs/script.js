@@ -157,7 +157,7 @@ class CodeExample {
     curves.forEach((e)=>{
     	    var p = e.points;
 	    if(firstLapDone){
-		    ctx.LineTo(p[0].x + ox, p[0].y + oy);
+		    ctx.lineTo(p[0].x + ox, p[0].y + oy);
 		    firstLapDone = false;
 	    }
 	    ctx.moveTo(p[0].x + ox, p[0].y + oy);
