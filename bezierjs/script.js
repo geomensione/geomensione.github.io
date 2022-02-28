@@ -179,9 +179,9 @@ class CodeExample {
 		p[3].y + oy
 	      );
 	    }
-	    
-	    ctx.stroke();
 	    ctx.fill();
+	    ctx.stroke();
+	    
     })
     ctx.closePath();
     
