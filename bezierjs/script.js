@@ -161,7 +161,7 @@ class CodeExample {
 	    
 	    if(!moveDone){
 	    	ctx.moveTo(p[0].x + ox, p[0].y + oy);
-	    	movaDone = true;
+	    	moveDone = true;
 	    }
 	    
 		    
