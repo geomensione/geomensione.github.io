@@ -1,3 +1,5 @@
+![First prototype](https://geomensione.github.io/bezierjs/img/f2dtest.png)
+
 https://pomax.github.io/bezierjs/js/bezier.js
 
 https://github.com/Pomax/bezierjs/blob/master/docs/index.html
