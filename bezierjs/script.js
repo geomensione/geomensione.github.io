@@ -148,21 +148,23 @@ class CodeExample {
   }
   
 	
-  drawFillTentacle(curves, offset) {
+  drawFillTentacle(curves, offset, firstLapDone) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    let firstLapDone = false;  
     ctx.beginPath();
     curves.forEach((e)=>{
     	    var p = e.points;
-	    if(!firstLapDone){
-		    ctx.moveTo(p[0].x + ox, p[0].y + oy);
-		    firstLapDone=true;
+	    if(firstLapDone){
+		    ctx.LineTo(p[0].x + ox, p[0].y + oy);
+		    firstLapDone = false;
 	    }else{
-	    	ctx.LineTo(p[0].x + ox, p[0].y + oy);
+	    	ctx.moveTo(p[0].x + ox, p[0].y + oy);
 	    }
+		    
+	    
+	    
 	    if (p.length === 3) {
 	      ctx.quadraticCurveTo(p[1].x + ox, p[1].y + oy, p[2].x + ox, p[2].y + oy);
 	    }
@@ -344,10 +346,12 @@ class CodeExample {
   }
     
   drawOutline(){
+	  let firstLapDone = false;
     curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
       //outline.curves.forEach((c) => this.drawCurve(c));
-      this.drawFillTentacle(outline.curves)
+      this.drawFillTentacle(outline.curves,null,firstLapDone)
+	    firstLapDone = true;
     })
   }
 }
