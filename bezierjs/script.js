@@ -179,12 +179,12 @@ class CodeExample {
 		p[3].y + oy
 	      );
 	    }
-	    ctx.fill();
+	    
 	    ctx.stroke();
 	    
     })
-    ctx.closePath();
-    
+    //ctx.closePath();
+    ctx.fill();
     //
 	  //ctx.fill();
     
@@ -348,12 +348,12 @@ class CodeExample {
   }
     
   drawOutline(){
-    //let firstLapDone = false;
+    let firstLapDone = false;
     curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
-      outline.curves.forEach((c) => this.drawCurve(c));
-      //this.drawFillTentacle(outline.curves,null,firstLapDone)
-      //firstLapDone = true;
+      //outline.curves.forEach((c) => this.drawCurve(c));
+      this.drawFillTentacle(outline.curves,null,firstLapDone)
+      firstLapDone = true;
     })
   }
 }
