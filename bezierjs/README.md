@@ -1,4 +1,4 @@
-![First prototype](https://geomensione.github.io/bezierjs/img/f2dtest.png)
+![First prototype](https://geomensione.github.io/bezierjs/img/testf2d.png)
 
 https://pomax.github.io/bezierjs/js/bezier.js
 
