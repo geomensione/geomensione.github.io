@@ -82,8 +82,8 @@ class CodeExample {
   drawStartAndEnd(curve) {
     curves.forEach( (e) => {
 	  var pts = e.points;
-      this.drawCircle(pts[0], e.outlinemin, null, e.showBBoxMin);
-      this.drawCircle(pts[3], e.outlinemax, null, e.showBBoxMax);
+      this.drawCircle(pts[0], e.outlinemin, null, e.showBBoxMin, e.color);
+      this.drawCircle(pts[3], e.outlinemax, null, e.showBBoxMax, e.color);
     })
     
   }
@@ -149,11 +149,12 @@ class CodeExample {
   }
   
 	
-  drawFillTentacle(curves, offset) {
+  drawFillTentacle(curves, offset, color) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
+    ctx.fillStyle=color;
     ctx.beginPath();
 	  let moveDone = false;
     curves.forEach((e)=>{
@@ -186,6 +187,7 @@ class CodeExample {
     })
     //ctx.closePath();
     //ctx.stroke();
+    ctx.fillStyle=curves.color;
     ctx.fill();
     //
 	  //ctx.fill();
@@ -208,6 +210,7 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
+    ctx.strokeStyle = 'black';
     ctx.beginPath();
     ctx.arc(p.x + ox, p.y + oy, 5, 0, 2 * Math.PI);
     ctx.stroke();
@@ -231,15 +234,17 @@ class CodeExample {
     ctx.stroke();
   }
 
-  drawCircle(p, r, offset, showBBox) {
+  drawCircle(p, r, offset, showBBox,color) {
     const ctx = this.ctx;
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
+    ctx.fillStyle = color||'transparent';
     ctx.beginPath();
     ctx.arc(p.x + ox, p.y + oy, r, 0, 2 * Math.PI);
     if(showBBox) ctx.rect(p.x-r, p.y-r, r*2, r*2);
     ctx.stroke();
+    ctx.fill();
 
   }
 
@@ -353,7 +358,7 @@ class CodeExample {
     curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
       //outline.curves.forEach((c) => this.drawCurve(c));
-      this.drawFillTentacle(outline.curves,null)
+      this.drawFillTentacle(outline.curves,null,e.color)
       
     })
   }
@@ -498,13 +503,14 @@ const ce = new CodeExample(canvas);
 
 
 var draw = function () {
-	this.drawSkeleton();
 	this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
 	this.setColor("red");
 
 	this.drawStartAndEnd();
 	this.drawbbox();
 	this.drawOutline();
+  this.drawSkeleton();
+
 };
 ce.draw = draw.bind(ce);
 
@@ -556,17 +562,18 @@ document.addEventListener("keydown", function (evt) {
 
 
 
-function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4){
+function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4,color){
   
   curves.push(new Bezier(x1,y1,x2,y2,x3,y3,x4,y4));
   curves[curves.length-1].showbbx = false;
   curves[curves.length-1].mouse = false;
   curves[curves.length-1].outlinemin = 1;
   curves[curves.length-1].outlinemax = 25;
+  curves[curves.length-1].color = color;
   
   ce.draw();
 
 }
 
-addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173);
-addBezier(canvas,152, 83, 66, 149, 151, 179, 182, 223);
+addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173,'blue');
+addBezier(canvas,152, 83, 66, 149, 151, 179, 182, 223,'lightblue');
