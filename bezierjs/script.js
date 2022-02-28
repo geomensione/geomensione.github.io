@@ -181,7 +181,7 @@ class CodeExample {
 	    
     })
     //ctx.closePath();
-    ctx.stroke();
+    //ctx.stroke();
     ctx.fill();
     //
 	  //ctx.fill();
