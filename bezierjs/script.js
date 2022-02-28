@@ -155,10 +155,14 @@ class CodeExample {
     var ox = offset.x;
     var oy = offset.y;
     ctx.beginPath();
+	  let moveDone = false;
     curves.forEach((e)=>{
     	    var p = e.points;
 	    
-	    ctx.moveTo(p[0].x + ox, p[0].y + oy);
+	    if(!moveDone){
+	    	ctx.moveTo(p[0].x + ox, p[0].y + oy);
+	    	movaDone = true;
+	    }
 	    
 		    
 	    
