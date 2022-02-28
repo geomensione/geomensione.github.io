@@ -109,8 +109,10 @@ class CodeExample {
           p[3].y + oy
         );
       }
-      ctx.stroke();
       ctx.closePath();
+      ctx.stroke();
+      ctx.fill();
+      
   
     })
   }
@@ -137,9 +139,10 @@ class CodeExample {
         p[3].y + oy
       );
     }
+	  ctx.closePath();
     ctx.stroke();
 	  ctx.fill();
-    ctx.closePath();
+    
   }
                    
   drawLine(p1, p2, offset) {
