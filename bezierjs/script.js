@@ -369,6 +369,18 @@ class CodeExample {
       
     })
   }
+	
+  function drawFrame(offset){
+	  let bkpWidth = this.ctx.lineWidth;
+	  let bkmStrokeStyle = this.ctx.strokeStyle;
+	this.ctx.lineWidth = 5;
+	  this.ctx.strokeStyle = 'black';
+		this.ctx.rect(offset,offset,window.innerWidth-offset*2,winwdow.innerHeight-offset*2)
+	  this.stroke();
+	  this.ctx.lineWidth = bkpWidth;
+	  this.ctx.strokeStyle = bkmStrokeStyle;
+  }
+
 }
 //start handler interaction
 function handleInteraction(cvs, curve) {
@@ -612,6 +624,9 @@ document.addEventListener("keydown", function (evt) {
 				aggiornare = true;
 			  break;
 			case 'r':
+				drawFrame(5)
+				drawFrame(10)
+				drawFrame(20)
 				let numberOfCurves = 50;
 				curves.length = 0;
 			        for(let i = 0;i<numberOfCurves;i++){
