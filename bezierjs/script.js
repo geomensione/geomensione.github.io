@@ -600,7 +600,7 @@ document.addEventListener("keydown", function (evt) {
 			case 'l':
 				scene = JSON.parse(localStorage['F2D']);
 				curves.length = 0;
-			        scene.forEach((e)=>{
+			        
 					let pts = e.points;
 					curves.push(new Bezier(pts[0][0],pts[0][1],pts[1][0],pts[1][1],pts[2][0],pts[2][1],pts[3][0],pts[3][1]));
 					curves[curves.length-1].showbbx = e.showbbx;
@@ -608,7 +608,25 @@ document.addEventListener("keydown", function (evt) {
 					curves[curves.length-1].outlinemin = e.outlinemin;
 					curves[curves.length-1].outlinemax = e.outlinemax;
 					curves[curves.length-1].color = e.color;	
-				})
+				
+				aggiornare = true;
+			  break;
+			case 'r':
+				let numberOfCurves = 50;
+				curves.length = 0;
+			        for(let i = 0;i<numberOfCurves;i++){
+					let pts = [];
+					pts.push([getRandomX(),getRandomY()])
+					pts.push([getRandomX(),getRandomY()])
+					pts.push([getRandomX(),getRandomY()])
+					pts.push([getRandomX(),getRandomY()])
+					curves.push(new Bezier(pts[0][0],pts[0][1],pts[1][0],pts[1][1],pts[2][0],pts[2][1],pts[3][0],pts[3][1]));
+					curves[curves.length-1].showbbx = false;
+					curves[curves.length-1].mouse = false;
+					curves[curves.length-1].outlinemin = getRandomY();
+					curves[curves.length-1].outlinemax = getRandomY();
+					curves[curves.length-1].color = getRandomColor();	
+				}
 				aggiornare = true;
 			  break;
 
@@ -626,7 +644,15 @@ document.addEventListener("keydown", function (evt) {
 
 });
 
+function getRandomX(){
+  let width = document.innerWidth;
+  return Math.round(Math.random() * width) + 1;
+}
 
+function getRandomY(){
+  let height = document.innerHeight;
+  return Math.round(Math.random() * height) + 1;
+}
 
 function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4,color){
   
