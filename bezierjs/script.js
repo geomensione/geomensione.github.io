@@ -593,7 +593,7 @@ document.addEventListener("keydown", function (evt) {
 					curveString.color = e.color;
 					scene.push(curveString);
 				})
-				localstorage['F2D'] = JSON.stringify(scene)
+				localStorage['F2D'] = JSON.stringify(scene)
 			  break;
 
 		}
