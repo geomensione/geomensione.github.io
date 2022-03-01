@@ -3,7 +3,7 @@ FIRST PROTOTYPE OF F2D! https://geomensione.github.io/bezierjs/index_v5.html . P
 
 ![First prototype](https://geomensione.github.io/bezierjs/img/testf2d.png)
 
-![F2D POLLOC ART GENERATOR](https://geomensione.github.io/bezierjs/img/artGenerator.png)
+![F2D POLLOC ART GENERATOR](https://geomensione.github.io/bezierjs/img/generativeArt.png)
 
 https://pomax.github.io/bezierjs/js/bezier.js
 
