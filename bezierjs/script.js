@@ -629,12 +629,12 @@ document.addEventListener("keydown", function (evt) {
 				}
 				
 				var draw = function () {
-					this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
+					//this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
 					//this.setColor("red");
 
 					this.drawStartAndEnd();
 					//this.drawbbox();
-					//this.drawOutline();
+					this.drawOutline();
 				  this.drawSkeleton();
 
 				};
