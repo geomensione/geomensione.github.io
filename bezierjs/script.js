@@ -546,12 +546,12 @@ document.addEventListener("keydown", function (evt) {
 			  curves.forEach((e)=>{
 			    if(!scaleFirst){
 					if(e.showBBoxMin){
-						e.outlinemin--
+						if((e.outlinemin-1)>0) e.outlinemin--
 						scaleFirst = true;
 						aggiornare = true;
 					}
 					if(e.showBBoxMax){
-						e.outlinemax--
+						if((e.outlinemax-1)>0) e.outlinemax--
 						scaleFirst = true;
 						aggiornare = true;
 					}	  
