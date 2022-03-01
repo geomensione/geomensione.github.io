@@ -28,6 +28,8 @@ DONE button to add curve -> pressing 'c'
 
 save and load scene
 
-fill tentacle
+DONE fill tentacle
+
+pick only one element to move
 
 
