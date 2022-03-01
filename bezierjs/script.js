@@ -1,5 +1,6 @@
 //build 20220228 1848
 import * as bezierJs from "./js/bezier.js";
+import getRandomColor from "./js/color.js"
 
 
 const { Bezier } = bezierJs;
@@ -543,7 +544,8 @@ document.addEventListener("keydown", function (evt) {
 			  })
 			  break;
 			case 'c':
-			  addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173);
+			  let c = getRandomColor();
+			  addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173,c);
 			  break;
 
 		}
