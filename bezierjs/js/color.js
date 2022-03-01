@@ -4427,5 +4427,5 @@ let hexCode = [
 export function getRandomColor(){
   let hexCodeLength = hexCode.length;
   let randomIndex = Math.round(Math.random() * hexCodeLength) + 1;
-  return hexCode[randomIndex].color;
+  return hexCode[randomIndex].code.hex;
 }
