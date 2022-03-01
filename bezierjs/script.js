@@ -394,6 +394,7 @@ function handleInteraction(cvs, curve) {
     fix(evt);
     mx = evt.offsetX;
     my = evt.offsetY;
+	  let selectOnlyFirst = false;
     curves.forEach( (e) => {
       var lpts = e.points;
       lpts.forEach(function (p) {
@@ -405,7 +406,10 @@ function handleInteraction(cvs, curve) {
         }
       });
       if (e.showbbx) {
-        e.movingcurve = true;
+	      if(!selectOnlyFirst){
+		      e.movingcurve = true;
+        	      selectOnlyFirst = true;
+	      }
         //pointToMove = [...lpts] ...pointToMove chamge
         pointToMove = JSON.parse(JSON.stringify(lpts))
       } else {
