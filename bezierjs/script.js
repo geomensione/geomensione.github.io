@@ -539,6 +539,8 @@ document.addEventListener("keydown", function (evt) {
 	var handled = false;
 	if (evt.key !== undefined) {
 		let scaleFirst = false;
+		let scene = [];
+
 		switch(evt.key){
 			case '-':
 			  curves.forEach((e)=>{
@@ -579,7 +581,7 @@ document.addEventListener("keydown", function (evt) {
 			  addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173,c);
 			  break;
 			case 's':
-				let scene = [];
+				scene = [];
 			        curves.forEach((e)=>{
 					let curveString = {};
 					curveString.points = [];
@@ -596,7 +598,7 @@ document.addEventListener("keydown", function (evt) {
 				localStorage['F2D'] = JSON.stringify(scene)
 			  break;
 			case 'l':
-				let scene = JSON.parse(localStorage['F2D']);
+				scene = JSON.parse(localStorage['F2D']);
 				curves.length = 0;
 			        scene.forEach((e)=>{
 					let pts = e.points;
