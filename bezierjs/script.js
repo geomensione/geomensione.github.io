@@ -370,7 +370,7 @@ class CodeExample {
     })
   }
 	
-  function drawFrame(offset){
+  drawFrame(offset){
 	  let bkpWidth = this.ctx.lineWidth;
 	  let bkmStrokeStyle = this.ctx.strokeStyle;
 	this.ctx.lineWidth = 5;
