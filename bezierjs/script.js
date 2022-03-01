@@ -76,6 +76,7 @@ class CodeExample {
         this.drawLine(pts[2], pts[3], offset);
       }
       this.ctx.strokeStyle = "black";
+      this.ctx.fillStyle = "white";
       if (!nocoords) this.drawPoints(pts, offset);
     })
     
