@@ -627,6 +627,19 @@ document.addEventListener("keydown", function (evt) {
 					curves[curves.length-1].outlinemax = 25;
 					curves[curves.length-1].color = getRandomColor();	
 				}
+				
+				var draw = function () {
+					this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
+					//this.setColor("red");
+
+					this.drawStartAndEnd();
+					//this.drawbbox();
+					//this.drawOutline();
+				  this.drawSkeleton();
+
+				};
+				ce.draw = draw.bind(ce);
+				
 				aggiornare = true;
 			  break;
 
