@@ -648,9 +648,9 @@ document.addEventListener("keydown", function (evt) {
 					this.drawStartAndEnd();
 					//this.drawbbox();
 					this.drawOutline();
-					this.drawFrame(5)
-					this.drawFrame(15)
-					this.drawFrame(30)
+					//this.drawFrame(5)
+					//this.drawFrame(15)
+					//this.drawFrame(30)
 				  //this.drawSkeleton();
 
 				};
