@@ -26,10 +26,10 @@ generative art with a lot of curve (use rough to add artistic style? https://git
 
 DONE button to add curve -> pressing 'c'
 
-save and load scene
+DONE save and load scene
 
 DONE fill tentacle
 
-pick only one element to move
+DONE pick only one element to move
 
 
