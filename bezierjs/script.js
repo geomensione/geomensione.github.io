@@ -535,17 +535,38 @@ document.addEventListener("keydown", function (evt) {
 	if (evt.key !== undefined) {
 		switch(evt.key){
 			case '-':
+				let scaleFirst = false;
 			  curves.forEach((e)=>{
-			    if(e.showBBoxMin)e.outlinemin--
-			    if(e.showBBoxMax)e.outlinemax--
-			    aggiornare = true;
+			    if(!scaleFirst){
+					if(e.showBBoxMin){
+						e.outlinemin--
+						scaleFirst = true;
+						aggiornare = true;
+					}
+					if(e.showBBoxMax){
+						e.outlinemax--
+						scaleFirst = true;
+						aggiornare = true;
+					}	  
+				  }
 			  })
 			  break;
 			case '+':
+				let scaleFirst = false;
 			  curves.forEach((e)=>{
-			    if(e.showBBoxMin)e.outlinemin++
-			    if(e.showBBoxMax)e.outlinemax++
-			    aggiornare = true;
+				  if(!scaleFirst){
+					if(e.showBBoxMin){
+						e.outlinemin++
+						scaleFirst = true;
+						aggiornare = true;
+					}
+					if(e.showBBoxMax){
+						e.outlinemax++
+						scaleFirst = true;
+						aggiornare = true;
+					}	  
+				  }
+			    
 			  })
 			  break;
 			case 'c':
