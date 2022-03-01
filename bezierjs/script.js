@@ -578,6 +578,23 @@ document.addEventListener("keydown", function (evt) {
 			  let c = getRandomColor();
 			  addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173,c);
 			  break;
+			case 's':
+				let scene = [];
+			        curves.forEach((e)=>{
+					let curveString = {};
+					curveString.points = [];
+					e.points.forEach((p)=>{
+						curveString.points.push([p.x,p.y])
+					})
+					curveString.showbbx = e.showbbx;
+					curveString.mouse = e.mouse;
+					curveString.outlinemin = e.outlinemin;
+					curveString.outlinemax = e.outlinemax;
+					curveString.color = e.color;
+					scene.push(curveString);
+				})
+				localstorage['F2D'] = JSON.stringify(scene)
+			  break;
 
 		}
 	}
