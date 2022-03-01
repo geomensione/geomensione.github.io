@@ -1,6 +1,9 @@
-FIRST PROTOTYPE OF F2D! https://geomensione.github.io/bezierjs/index_v5.html . Press 'c' to add curve, + or - on start or end circle to scale. Grab control point to modify curve, grab curve bbox to move it.
+FIRST PROTOTYPE OF F2D! https://geomensione.github.io/bezierjs/index_v5.html . Press 'c' to add curve, + or - on start or end circle to scale. Grab control point to modify curve, grab curve bbox to move it, 's' to save scene in localStorage, 'l' to load saved scene and...
+'r' to Polloc Art Generator!
 
 ![First prototype](https://geomensione.github.io/bezierjs/img/testf2d.png)
+
+![F2D POLLOC ART GENERATOR](https://geomensione.github.io/bezierjs/img/artGenerator.png)
 
 https://pomax.github.io/bezierjs/js/bezier.js
 
