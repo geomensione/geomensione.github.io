@@ -189,7 +189,7 @@ class CodeExample {
     })
     //ctx.closePath();
     //ctx.stroke();
-    ctx.fillStyle=curves.color;
+    //ctx.fillStyle=curves.color;
     ctx.fill();
     //
 	  //ctx.fill();
