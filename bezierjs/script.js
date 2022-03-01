@@ -624,9 +624,7 @@ document.addEventListener("keydown", function (evt) {
 				aggiornare = true;
 			  break;
 			case 'r':
-				ce.drawFrame(5)
-				ce.drawFrame(10)
-				ce.drawFrame(20)
+				
 				let numberOfCurves = 50;
 				curves.length = 0;
 			        for(let i = 0;i<numberOfCurves;i++){
@@ -650,6 +648,9 @@ document.addEventListener("keydown", function (evt) {
 					this.drawStartAndEnd();
 					//this.drawbbox();
 					this.drawOutline();
+					this.drawFrame(5)
+					this.drawFrame(15)
+					this.drawFrame(30)
 				  //this.drawSkeleton();
 
 				};
