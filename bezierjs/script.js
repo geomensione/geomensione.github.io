@@ -376,7 +376,7 @@ class CodeExample {
 	this.ctx.lineWidth = 5;
 	  this.ctx.strokeStyle = 'black';
 		this.ctx.rect(offset,offset,window.innerWidth-offset*2,window.innerHeight-offset*2)
-	  this.stroke();
+	  this.ctx.stroke();
 	  this.ctx.lineWidth = bkpWidth;
 	  this.ctx.strokeStyle = bkmStrokeStyle;
   }
