@@ -635,7 +635,7 @@ document.addEventListener("keydown", function (evt) {
 					this.drawStartAndEnd();
 					//this.drawbbox();
 					this.drawOutline();
-				  this.drawSkeleton();
+				  //this.drawSkeleton();
 
 				};
 				ce.draw = draw.bind(ce);
