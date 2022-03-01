@@ -4424,7 +4424,8 @@ let hexCode = [
   }
 ];
 
-export function getRandomColor(){
+//export function getRandomColor(){
+function getRandomColor(){
   let hexCodeLength = hexCode.length;
   let randomIndex = Math.round(Math.random() * hexCodeLength) + 1;
   return hexCode[randomIndex].color;
