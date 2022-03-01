@@ -1,6 +1,6 @@
 //build 20220228 1848
 import * as bezierJs from "./js/bezier.js";
-import getRandomColor from "./js/color.js"
+import { getRandomColor } from "./js/color.js"
 
 
 const { Bezier } = bezierJs;
