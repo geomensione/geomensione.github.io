@@ -605,8 +605,8 @@ document.addEventListener("keydown", function (evt) {
 					curves.push(new Bezier(pts[0][0],pts[0][1],pts[1][0],pts[1][1],pts[2][0],pts[2][1],pts[3][0],pts[3][1]));
 					curves[curves.length-1].showbbx = e.showbbx;
 					curves[curves.length-1].mouse = e.mouse;
-					curves[curves.length-1].outlinemin = e.outlinemin;
-					curves[curves.length-1].outlinemax = e.outlinemax;
+					curves[curves.length-1].outlinemin = 1;
+					curves[curves.length-1].outlinemax = 25;
 					curves[curves.length-1].color = e.color;	
 				
 				aggiornare = true;
