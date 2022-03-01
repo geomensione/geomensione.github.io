@@ -645,12 +645,12 @@ document.addEventListener("keydown", function (evt) {
 });
 
 function getRandomX(){
-  let width = document.innerWidth;
+  let width = window.innerWidth;
   return Math.round(Math.random() * width) + 1;
 }
 
 function getRandomY(){
-  let height = document.innerHeight;
+  let height = window.innerHeight;
   return Math.round(Math.random() * height) + 1;
 }
 
