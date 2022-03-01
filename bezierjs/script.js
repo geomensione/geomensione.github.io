@@ -533,9 +533,9 @@ document.addEventListener("keydown", function (evt) {
 
 	var handled = false;
 	if (evt.key !== undefined) {
+		let scaleFirst = false;
 		switch(evt.key){
 			case '-':
-				let scaleFirst = false;
 			  curves.forEach((e)=>{
 			    if(!scaleFirst){
 					if(e.showBBoxMin){
@@ -552,7 +552,7 @@ document.addEventListener("keydown", function (evt) {
 			  })
 			  break;
 			case '+':
-				let scaleFirst = false;
+				
 			  curves.forEach((e)=>{
 				  if(!scaleFirst){
 					if(e.showBBoxMin){
