@@ -26,8 +26,8 @@ class CodeExample {
   reset(curve, evt) {
     //this.cvs.width = this.cvs.width;
     this.ctx.reset();  
-    this.ctx.strokeStyle = "black";
-    this.ctx.fillStyle = "none";
+    //this.ctx.strokeStyle = "black";
+    //this.ctx.fillStyle = "none";
     if (evt && curve) {
       curve.mouse = { x: evt.offsetX, y: evt.offsetY };
     }
