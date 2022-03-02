@@ -691,7 +691,7 @@ function getRandomY(){
 }
 
 export function getRandomThick(){
-	let thick = [1,5,10.20.50.100];
+	let thick = [1,5,10,20,50,100];
   let thickLength = thick.length;
   let randomIndex = Math.round(Math.random() * thickLength) + 1;
   return thick[randomIndex];
