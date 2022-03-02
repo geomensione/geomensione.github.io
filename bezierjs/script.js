@@ -626,7 +626,7 @@ document.addEventListener("keydown", function (evt) {
 			  break;
 			case 'i':
 				//https://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
-				var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  
+				var image = canvas.toDataURL("image/png")
 
 
 				window.location.href=image; 
