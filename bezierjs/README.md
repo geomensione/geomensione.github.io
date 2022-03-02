@@ -41,4 +41,6 @@ DONE pick only one element to move
 
 https://github.com/fserb/canvas2d use of new canvas2d features!
 
+bbox over curve
+
 
