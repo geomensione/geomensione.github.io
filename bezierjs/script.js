@@ -525,7 +525,6 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const ce = new CodeExample(canvas);
 
-
 var draw = function () {
 	this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
 	this.setColor("red");
@@ -644,8 +643,8 @@ document.addEventListener("keydown", function (evt) {
 					curves.push(new Bezier(pts[0][0],pts[0][1],pts[1][0],pts[1][1],pts[2][0],pts[2][1],pts[3][0],pts[3][1]));
 					curves[curves.length-1].showbbx = false;
 					curves[curves.length-1].mouse = false;
-					curves[curves.length-1].outlinemin = 1;
-					curves[curves.length-1].outlinemax = 25;
+					curves[curves.length-1].outlinemin = getRandomThick();
+					curves[curves.length-1].outlinemax = getRandomThick();
 					curves[curves.length-1].color = getRandomColor();	
 				}
 				
@@ -689,6 +688,13 @@ function getRandomX(){
 function getRandomY(){
   let height = window.innerHeight;
   return Math.round(Math.random() * height) + 1;
+}
+
+export function getRandomThick(){
+	let thick = [1,5,10.20.50.100];
+  let thickLength = thick.length;
+  let randomIndex = Math.round(Math.random() * thickLength) + 1;
+  return thick[randomIndex];
 }
 
 function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4,color){
