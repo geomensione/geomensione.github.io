@@ -25,7 +25,9 @@ todo
 
 DONE regulate circle radius with mouse wheel -> pressing '+' or '-' when on mouse on circles
 
-generative art with a lot of curve (use rough to add artistic style? https://github.com/rough-stuff/rough/wiki#curve-points--options )
+DONE generative art with a lot of curve 
+
+DONE use rough to add artistic style? https://github.com/rough-stuff/rough/wiki#curve-points--options
 
 DONE button to add curve -> pressing 'c'
 
@@ -34,5 +36,7 @@ DONE save and load scene
 DONE fill tentacle
 
 DONE pick only one element to move
+
+https://github.com/fserb/canvas2d use of new canvas2d features!
 
 
