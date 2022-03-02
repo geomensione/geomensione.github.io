@@ -21,6 +21,8 @@ https://github.com/Pomax/bezierjs/issues/174
 
 https://codepen.io/morticcino/pen/VwrbPoR
 
+https://pages.mtu.edu/~shene/COURSES/cs3621/NOTES/
+
 todo
 
 DONE regulate circle radius with mouse wheel -> pressing '+' or '-' when on mouse on circles
