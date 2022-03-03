@@ -153,19 +153,6 @@ var offscreen = htmlCanvas.transferControlToOffscreen();
 var worker = new Worker("./js/offscreencanvas.js");
 
 
-const ce = new CodeExample(canvas);
-
-var draw = function () {
-	this.drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
-	this.setColor("red");
-	this.drawbbox();
-	this.drawOutline();
-	this.drawStartAndEnd();
-  this.drawSkeleton();
-
-};
-ce.draw = draw.bind(ce);
-
 handleInteraction(ce.getCanvas()).onupdate = (evt) => {
 	worker.postMessage({canvas: offscreen}, [offscreen]);
 };
