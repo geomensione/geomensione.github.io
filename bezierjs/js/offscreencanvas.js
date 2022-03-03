@@ -1,3 +1,5 @@
+importScripts('bezier.js');
+
 onmessage = function(evt) {
   var cvs = evt.data.canvas;
   var curves = evt.data.curves;
