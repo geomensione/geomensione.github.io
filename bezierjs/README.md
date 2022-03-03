@@ -43,4 +43,4 @@ https://github.com/fserb/canvas2d use of new canvas2d features!
 
 bbox over curve
 
-https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas
+https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas, problems when pass Bezier object via messagepost
