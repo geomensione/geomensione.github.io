@@ -1,4 +1,4 @@
-import { Bezier } from "./bezier.js";
+import { Bezier } from "./bezier.mjs";
 
 // math-inlining.
 const { abs, cos, sin, acos, atan2, sqrt, pow } = Math;
