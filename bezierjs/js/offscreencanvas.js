@@ -1,4 +1,4 @@
-importScripts('bezier.js');
+importScripts('bezier.mjs');
 
 onmessage = function(evt) {
   var cvs = evt.data.canvas;
