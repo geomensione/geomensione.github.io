@@ -1,5 +1,6 @@
 onmessage = function(evt) {
   var cvs = evt.data.canvas;
+  var curves = evt.data.curves;
   var ctx = cvs.getContext("2d");
   
   reset();
@@ -53,7 +54,7 @@ drawStartAndEnd();
   }
 
   function drawSkeleton(curve, offset, nocoords) {
-    window.curves.forEach( (e) => {
+    curves.forEach( (e) => {
       offset = offset || { x: 0, y: 0 };
 		  
       var pts = e.points;
@@ -71,7 +72,7 @@ drawStartAndEnd();
     
   }
   function drawStartAndEnd(curve) {
-    window.curves.forEach( (e) => {
+    curves.forEach( (e) => {
 	  var pts = e.points;
       drawCircle(pts[0], e.outlinemin, null, e.showBBoxMin, e.color);
       drawCircle(pts[3], e.outlinemax, null, e.showBBoxMax, e.color);
@@ -82,7 +83,7 @@ drawStartAndEnd();
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    window.curves.forEach( (e) => {
+    curves.forEach( (e) => {
       ctx.beginPath();
       var p = e.points,
         i;
@@ -241,7 +242,7 @@ drawStartAndEnd();
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    window.curves.forEach( (e) => {
+    curves.forEach( (e) => {
       if (e.showbbx) {
         let bbox = e.bbox();
         ctx.beginPath();
@@ -341,7 +342,7 @@ drawStartAndEnd();
   }
     
   function drawOutline(){
-    window.curves.forEach( (e) => {
+    curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
       //outline.curves.forEach((c) => this.drawCurve(c));
       drawFillTentacle(outline.curves,null,e.color)
