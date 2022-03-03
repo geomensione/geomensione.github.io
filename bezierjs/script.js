@@ -523,6 +523,13 @@ var canvas = document.createElement("canvas");
 document.body.append(canvas);
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+var htmlCanvas = document.getElementById("canvas");
+var offscreen = htmlCanvas.transferControlToOffscreen();
+
+var worker = new Worker("./js/offscreencanvas.js");
+worker.postMessage({canvas: offscreen}, [offscreen]);
+
 const ce = new CodeExample(canvas);
 
 var draw = function () {
