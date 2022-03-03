@@ -321,7 +321,7 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4,color){
   curves[curves.length-1].outlinemax = 25;
   curves[curves.length-1].color = color;
   
-  ce.draw();
+  worker.postMessage({canvas: offscreen}, [offscreen]);
 
 }
 
