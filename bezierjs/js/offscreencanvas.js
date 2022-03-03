@@ -18,7 +18,7 @@ drawStartAndEnd();
   }
 
   function reset(curve, evt) {
-    ctx.reset();  
+    //ctx.reset();  
     if (evt && curve) {
       curve.mouse = { x: evt.offsetX, y: evt.offsetY };
     }
