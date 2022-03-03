@@ -4,17 +4,17 @@ onmessage = function(evt) {
   
   reset();
   drawCurves(); //curve non crea una cubic bezier con 4 punti di controllo, ma una curva che passa nei 4 punti dati
-	setColor("red");
-	drawbbox();
-	drawOutline();
-	drawStartAndEnd();
+setColor("red");
+drawbbox();
+drawOutline();
+drawStartAndEnd();
   drawSkeleton();
   
-  getCanvas() {
+  function getCanvas() {
     return cvs;
   }
 
-  reset(curve, evt) {
+  function reset(curve, evt) {
     ctx.reset();  
     if (evt && curve) {
       curve.mouse = { x: evt.offsetX, y: evt.offsetY };
@@ -22,21 +22,21 @@ onmessage = function(evt) {
     this.randomIndex = 0;
   }
 
-  setColor(c) {
+  function setColor(c) {
     ctx.strokeStyle = c;
   }
 
-  noColor(c) {
+  function noColor(c) {
     ctx.strokeStyle = "transparent";
   }
 
-  setRandomColor() {
+  function setRandomColor() {
     this.randomIndex = (this.randomIndex + 1) % this.randomColors.length;
     var c = this.randomColors[this.randomIndex];
     ctx.strokeStyle = c;
   }
 
-  setRandomFill(a) {
+  function setRandomFill(a) {
     this.randomIndex = (this.randomIndex + 1) % this.randomColors.length;
     a = typeof a === "undefined" ? 1 : a;
     var c = this.randomColors[this.randomIndex];
@@ -44,15 +44,15 @@ onmessage = function(evt) {
     ctx.fillStyle = c;
   }
 
-  setFill(c) {
+  function setFill(c) {
     ctx.fillStyle = c;
   }
 
-  noFill() {
+  function noFill() {
     ctx.fillStyle = "transparent";
   }
 
-  drawSkeleton(curve, offset, nocoords) {
+  function drawSkeleton(curve, offset, nocoords) {
     curves.forEach( (e) => {
       offset = offset || { x: 0, y: 0 };
 		  
@@ -70,7 +70,7 @@ onmessage = function(evt) {
     })
     
   }
-  drawStartAndEnd(curve) {
+  function drawStartAndEnd(curve) {
     curves.forEach( (e) => {
 	  var pts = e.points;
       drawCircle(pts[0], e.outlinemin, null, e.showBBoxMin, e.color);
@@ -78,7 +78,7 @@ onmessage = function(evt) {
     })
     
   }
-  drawCurves(curve, offset) {
+  function drawCurves(curve, offset) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -109,7 +109,7 @@ onmessage = function(evt) {
     })
   }
 
-  drawCurve(curve, offset) {
+  function drawCurve(curve, offset) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -138,7 +138,7 @@ onmessage = function(evt) {
   }
   
 	
-  drawFillTentacle(curves, offset, color) {
+  function drawFillTentacle(curves, offset, color) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -182,7 +182,7 @@ onmessage = function(evt) {
     
   }
 	
-  drawLine(p1, p2, offset) {
+  function drawLine(p1, p2, offset) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -192,7 +192,7 @@ onmessage = function(evt) {
     ctx.stroke();
   }
 
-  drawPoint(p, offset) {
+  function drawPoint(p, offset) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -202,12 +202,12 @@ onmessage = function(evt) {
     ctx.stroke();
   }
 
-  drawPoints(points, offset) {
+  function drawPoints(points, offset) {
     offset = offset || { x: 0, y: 0 };
     points.forEach((p) => drawCircle(p, 3, offset));
   }
 
-  drawArc(p, offset) {
+  function drawArc(p, offset) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -219,7 +219,7 @@ onmessage = function(evt) {
     ctx.stroke();
   }
 
-  drawCircle(p, r, offset, showBBox,color) {
+  function drawCircle(p, r, offset, showBBox,color) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -237,7 +237,7 @@ onmessage = function(evt) {
 
   }
 
-  drawbbox(bbox, offset, showbbx) {
+  function drawbbox(bbox, offset, showbbx) {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
@@ -255,7 +255,7 @@ onmessage = function(evt) {
     })
   }
 
-  drawHull(hull, offset) {
+  function drawHull(hull, offset) {
     ctx.beginPath();
     if (hull.length === 6) {
       ctx.moveTo(hull[0].x, hull[0].y);
@@ -277,7 +277,7 @@ onmessage = function(evt) {
     ctx.stroke();
   }
 
-  drawShape(shape, offset) {
+  function drawShape(shape, offset) {
     offset = offset || { x: 0, y: 0 };
     var order = shape.forward.points.length - 1;
     var scl = shape.startcap.points.length;
@@ -335,12 +335,12 @@ onmessage = function(evt) {
     ctx.stroke();
   }
 
-  drawText(text, offset) {
+  function drawText(text, offset) {
     offset = offset || { x: 0, y: 0 };
     ctx.fillText(text, offset.x, offset.y);
   }
     
-  drawOutline(){
+  function drawOutline(){
     curves.forEach( (e) => {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
       //outline.curves.forEach((c) => this.drawCurve(c));
@@ -349,7 +349,7 @@ onmessage = function(evt) {
     })
   }
 	
-  drawFrame(offset){
+  function drawFrame(offset){
 	  let bkpWidth = ctx.lineWidth;
 	  let bkmStrokeStyle = ctx.strokeStyle;
 	  ctx.lineWidth = 5;
