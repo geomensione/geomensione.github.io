@@ -153,7 +153,7 @@ var offscreen = htmlCanvas.transferControlToOffscreen();
 var worker = new Worker("./js/offscreencanvas.js");
 
 
-handleInteraction(ce.getCanvas()).onupdate = (evt) => {
+handleInteraction(canvas).onupdate = (evt) => {
 	worker.postMessage({canvas: offscreen}, [offscreen]);
 };
 
