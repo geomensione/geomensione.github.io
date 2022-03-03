@@ -524,7 +524,7 @@ document.body.append(canvas);
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-var htmlCanvas = document.getElementById("canvas");
+var htmlCanvas = document.getElementsByTagName("canvas")[0];
 var offscreen = htmlCanvas.transferControlToOffscreen();
 
 var worker = new Worker("./js/offscreencanvas.js");
