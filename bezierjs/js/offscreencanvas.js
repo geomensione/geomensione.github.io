@@ -2,7 +2,7 @@
 
 onmessage = function(evt) {
   var cvs = evt.data.canvas;
-  var curves = JSON.parse(evt.data.curves);
+  var curves = JSONfn.parse(evt.data.curves);
   var ctx = cvs.getContext("2d");
   
   reset();
