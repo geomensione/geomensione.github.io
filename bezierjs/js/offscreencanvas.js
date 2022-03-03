@@ -1,4 +1,4 @@
-importScripts('jsonfn.min.js');
+importScripts('jsonfn.js');
 
 onmessage = function(evt) {
   var cvs = evt.data.canvas;
