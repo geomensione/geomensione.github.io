@@ -155,7 +155,7 @@ var worker = new Worker("./js/offscreencanvas.js");
 
 handleInteraction(canvas).onupdate = (evt) => {
 	//https://www.hongkiat.com/blog/shared-memory-in-javascript/
-	worker.postMessage({canvas: offscreen, curves: JSON.strinify(curves)}, [offscreen]);
+	worker.postMessage({canvas: offscreen, curves: JSON.stringify(curves)}, [offscreen]);
 };
 
 document.addEventListener("keydown", function (evt) {
@@ -290,7 +290,7 @@ document.addEventListener("keydown", function (evt) {
 		evt.preventDefault();
 	}
 	if(aggiornare){
-			worker.postMessage({canvas: offscreen, curves: JSON.strinify(curves)}, [offscreen]);
+			worker.postMessage({canvas: offscreen, curves: JSON.stringify(curves)}, [offscreen]);
 
 	}
 
@@ -322,7 +322,7 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4,color){
   curves[curves.length-1].outlinemax = 25;
   curves[curves.length-1].color = color;
   
-  worker.postMessage({canvas: offscreen, curves: JSON.strinify(curves)}, [offscreen]);
+  worker.postMessage({canvas: offscreen, curves: JSON.stringify(curves)}, [offscreen]);
 
 }
 
