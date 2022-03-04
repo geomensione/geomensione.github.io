@@ -668,6 +668,8 @@ document.addEventListener("keydown", function (evt) {
 			  break;
 			case 't':
 				curves.length = 0;
+				//set first draw fn
+				ce.draw = draw.bind(ce);
 				aggiornare = true;
 				break;
 
