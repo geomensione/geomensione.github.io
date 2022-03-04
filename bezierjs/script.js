@@ -669,6 +669,7 @@ document.addEventListener("keydown", function (evt) {
 			case 't':
 				curves.length = 0;
 				ce.reset();
+				aggiornare = true;
 				break;
 
 		}
