@@ -241,10 +241,11 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    ctx.fillStyle = color||'black';
+    ctx.fillStyle = color||'white';
+	  ctx.strokeStyle = color||'white';
     ctx.beginPath();
     ctx.arc(p.x + ox, p.y + oy, r, 0, 2 * Math.PI);
-    //ctx.stroke();
+    ctx.stroke();
     ctx.fill();
 	  
     if(showBBox) {
