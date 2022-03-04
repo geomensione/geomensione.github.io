@@ -666,6 +666,9 @@ document.addEventListener("keydown", function (evt) {
 				
 				aggiornare = true;
 			  break;
+			case 't':
+				ce.reset();
+				break;
 
 		}
 	}
