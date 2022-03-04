@@ -366,6 +366,9 @@ class CodeExample {
       var outline = e.outline(e.outlinemin, e.outlinemin, e.outlinemax, e.outlinemax);
       //outline.curves.forEach((c) => this.drawCurve(c));
       this.drawFillTentacle(outline.curves,null,e.color)
+      var pts = e.points;
+      this.drawCircle(pts[0], e.outlinemin, null, e.showBBoxMin, e.color);
+      this.drawCircle(pts[3], e.outlinemax, null, e.showBBoxMax, e.color);
       
     })
   }
@@ -529,7 +532,7 @@ var draw = function () {
 	this.setColor("red");
 	this.drawbbox();
 	this.drawOutline();
-	this.drawStartAndEnd();
+	//this.drawStartAndEnd();
   this.drawSkeleton();
 
 };
