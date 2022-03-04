@@ -241,7 +241,7 @@ class CodeExample {
     offset = offset || { x: 0, y: 0 };
     var ox = offset.x;
     var oy = offset.y;
-    ctx.fillStyle = color||'transparent';
+    ctx.fillStyle = color||'black';
     ctx.beginPath();
     ctx.arc(p.x + ox, p.y + oy, r, 0, 2 * Math.PI);
     //ctx.stroke();
