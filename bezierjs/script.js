@@ -244,7 +244,7 @@ class CodeExample {
     ctx.fillStyle = color||'transparent';
     ctx.beginPath();
     ctx.arc(p.x + ox, p.y + oy, r, 0, 2 * Math.PI);
-    ctx.stroke();
+    //ctx.stroke();
     ctx.fill();
 	  
     if(showBBox) {
