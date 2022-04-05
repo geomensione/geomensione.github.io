@@ -4,7 +4,7 @@ import * as mybezier from "./mybezier.js"
 
 const { Bezier } = bezierJs;
 
-var curves = [];
+
 var canvas = document.createElement("canvas");
 document.body.append(canvas);
 canvas.width = window.innerWidth;
