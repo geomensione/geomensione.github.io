@@ -1,5 +1,6 @@
 import * as bezierJs from "./js/bezier.js";
 import { getRandomColor } from "./js/color.js"
+import * from "mybezier.js"
 
 
 const { Bezier } = bezierJs;
