@@ -1,7 +1,7 @@
 import * as bezierJs from "./js/bezier.js";
 import { getRandomColor } from "./js/color.js"
 
-
+var curves = [];
 const { Bezier } = bezierJs;
 
 class CodeExample {
