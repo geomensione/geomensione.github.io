@@ -2,7 +2,7 @@ import * as bezierJs from "./js/bezier.js";
 import { getRandomColor } from "./js/color.js"
 import * as mybezier from "./mybezier.js"
 
-
+const { Bezier } = bezierJs;
 
 var curves = [];
 var canvas = document.createElement("canvas");
