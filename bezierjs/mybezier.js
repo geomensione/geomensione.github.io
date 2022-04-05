@@ -520,3 +520,4 @@ function handleInteraction(cvs, curve) {
   
   return handler;
 }
+export {CodeExample, handleInteraction}
