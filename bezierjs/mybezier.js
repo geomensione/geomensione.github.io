@@ -24,7 +24,9 @@ class CodeExample {
 
   reset(curve, evt) {
     //this.cvs.width = this.cvs.width;
-    this.ctx.reset();  
+	  if(this.ctx.reset) this.ctx.reset();
+	  let canvas = document.getElementsByTagName('canvas')[0]
+	  else this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     //this.ctx.strokeStyle = "black";
     //this.ctx.fillStyle = "none";
     if (evt && curve) {
