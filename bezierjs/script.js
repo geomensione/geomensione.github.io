@@ -209,5 +209,5 @@ function addBezier(canvas,x1,y1,x2,y2,x3,y3,x4,y4,color){
 
 }
 
-addBezier(canvas,102, 33, 16, 99, 101, 129, 132, 173,'blue');
+addBezier(canvas,132, 173, 101, 129, 16, 99, 102, 33, 'blue');
 addBezier(canvas,152, 83, 66, 149, 151, 179, 182, 223,'lightblue');
