@@ -118,6 +118,13 @@
 		var difference = segmentCount - newSegmentCount;
 		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
 		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+		if (project.activeLayer.children.length < 1){
+			for (var i = 0; i < project.activeLayer.children.length; i++) {
+				for (var j = 1; j < project.activeLayer.children.length; j++) {
+					showIntersections(project.activeLayer.children[j], project.activeLayer.children[i])
+				}
+			}
+		}
 	}
 	
 	function onMouseDrag(event) {
@@ -133,27 +140,22 @@
 		}
 		
 	}
-/*	
-function onMouseMove(event) {
-    noGroup.position = event.point;
-    for (var i = 0; i < yesGroup.children.length; i++) {
-        for (var j = 0; j < noGroup.children.length; j++) {
-            showIntersections(noGroup.children[j], yesGroup.children[i])
-        }
-    }
-}
+	
 
-function showIntersections(path1, path2) {
-    var intersections = path1.getIntersections(path2);
-    for (var i = 0; i < intersections.length; i++) {
-        new Path.Circle({
-            center: intersections[i].point,
-            radius: 5,
-            fillColor: '#009dec'
-        }).removeOnMove();
-    }
-}
-*/
+
+	function showIntersections(path1, path2) {
+		var intersections = path1.getIntersections(path2);
+		console.log('intersections ',intersections)
+
+		for (var i = 0; i < intersections.length; i++) {
+			new Path.Circle({
+				center: intersections[i].point,
+				radius: 5,
+				fillColor: '#009dec'
+			}).removeOnMove();
+		}
+	}
+
 </script>
 </head>
 <body>
