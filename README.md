@@ -70,6 +70,8 @@ paperjs experiments
 
 [https://geomensione.github.io/paperjs/f2d_008.html](https://geomensione.github.io/paperjs/f2d_008.html)
 
+[https://geomensione.github.io/paperjs/sketch.html](https://geomensione.github.io/paperjs/sketch.html)
+
 superformula
 
 [https://geomensione.github.io/superformula](https://geomensione.github.io/superformula)
