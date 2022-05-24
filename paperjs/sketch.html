@@ -105,6 +105,7 @@
 	}
 	
 	function onMouseUp(event) {
+	 	event.stopPropagation()
 		draw = false
 		var segmentCount = path.segments.length;
 	
