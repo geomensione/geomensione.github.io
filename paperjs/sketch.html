@@ -7,7 +7,12 @@
 		}
 	</style>
   <script src="js/paper-full.min.js"></script>
-  <script type="text/paperscript" canvas="myCanvas">
+  
+<script type="text/javascript">
+	/*La soluzione probabilmente è quella di creare un gruppo di path e ciclare solo fra i path che sono al suo interno, invece che quelli del progetto*/
+	paper.install(window);
+	window.onload = function() {
+		paper.setup('myCanvas');
 	var values = {
 		paths: 50,
 		minPoints: 5,
@@ -25,39 +30,11 @@
 	
 	var draw = false;
 	
-	//createPaths();
-	
-	function createPaths() {
-		var radiusDelta = values.maxRadius - values.minRadius;
-		var pointsDelta = values.maxPoints - values.minPoints;
-		for (var i = 0; i < values.paths; i++) {
-			var radius = values.minRadius + Math.random() * radiusDelta;
-			var points = values.minPoints + Math.floor(Math.random() * pointsDelta);
-			var path = createBlob(view.size * Point.random(), radius, points);
-			var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
-			var hue = Math.random() * 360;
-			path.fillColor = { hue: hue, saturation: 1, lightness: lightness };
-			path.strokeColor = 'black';
-		};
-	}
-	
-	function createBlob(center, maxRadius, points) {
-		var path = new Path();
-		path.closed = true;
-		for (var i = 0; i < points; i++) {
-			var delta = new Point({
-				length: (maxRadius * 0.5) + (Math.random() * maxRadius * 0.5),
-				angle: (360 / points) * i
-			});
-			path.add(center + delta);
-		}
-		path.smooth();
-		return path;
-	}
-	
-	var segment, path;
-	var movePath = false;
-	function onMouseDown(event) {
+	var tool = new Tool();
+	var path;
+
+	// Define a mousedown and mousedrag handler
+	tool.onMouseDown = function(event) {
 		segment = path = null;
 		var hitResult = project.hitTest(event.point, hitOptions);
 		if (!hitResult){
@@ -95,17 +72,18 @@
 	
 		}
 		if (movePath)
-			project.activeLayer.addChild(hitResult.item);
+			project.activeLayer.addChild(hitResult.item);	
 	}
+
+	var segment, path;
+	var movePath = false;
+	tool.onMouseMove = function(event) {
 	
-	function onMouseMove(event) {
 		project.activeLayer.selected = false;
 		if (event.item)
 			event.item.selected = true;
 	}
-	
-	function onMouseUp(event) {
-	 	event.stopPropagation()
+	tool.onMouseUp = function(event){
 		draw = false
 		var segmentCount = path.segments.length;
 	
@@ -121,17 +99,16 @@
 		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 		if (project.activeLayer.children.length > 1){
 			console.log('project.activeLayer.children.length',project.activeLayer.children.length)
-			for (var i = 0; i < project.activeLayer.children.length; i++) {
-			console.log('project.activeLayer.children.length',project.activeLayer.children.length,'i',i)
-				for (var j = 1; j < project.activeLayer.children.length; j++) {
-			console.log('project.activeLayer.children.length',project.activeLayer.children.length,'j',j)
-					showIntersections(project.activeLayer.children[j], project.activeLayer.children[i])
+			for (var index = 0; index < project.activeLayer.children.length; index++) {
+			console.log('project.activeLayer.children.length',project.activeLayer.children.length,'i',index)
+				for (var jndex = 1; jndex < project.activeLayer.children.length; jndex++) {
+			console.log('project.activeLayer.children.length',project.activeLayer.children.length,'j',jndex)
+					showIntersections(project.activeLayer.children[jndex], project.activeLayer.children[index])
 				}
 			}
 		}
 	}
-	
-	function onMouseDrag(event) {
+	tool.onMouseDrag = function(event){
 		if(draw){
 			path.add(event.point);
 		}else{
@@ -159,7 +136,7 @@
 			}).removeOnMove();
 		}
 	}
-
+	}
 </script>
 </head>
 <body>
