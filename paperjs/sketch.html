@@ -98,13 +98,13 @@
 		var difference = segmentCount - newSegmentCount;
 		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
 		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
-		if (group.length > 1){
-			console.log('group.length',group.length)
-			for (var index = 0; index < group.length; index++) {
-			console.log('group.length',group.length,'i',index)
-				for (var jndex = 1; jndex < group.length; jndex++) {
-			console.log('children.length',group.length,'j',jndex)
-					showIntersections(group[jndex], group[index])
+		if (group.children.length > 1){
+			console.log('group.children.length',group.children.length)
+			for (var index = 0; index < group.children.length; index++) {
+			console.log('group.children.length',group.children.length,'i',index)
+				for (var jndex = 1; jndex < group.children.length; jndex++) {
+			console.log('children.children.length',group.children.length,'j',jndex)
+					showIntersections(group.children[jndex], group.children[index])
 				}
 			}
 		}
