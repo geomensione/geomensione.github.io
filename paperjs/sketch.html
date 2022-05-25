@@ -99,12 +99,12 @@
 		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
 		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 		if (project.activeLayer.group.length > 1){
-			console.log('project.activeLayer.group.length',project.activeLayer.group.length)
-			for (var index = 0; index < project.activeLayer.group.length; index++) {
-			console.log('project.activeLayer.group.length',project.activeLayer.group.length,'i',index)
-				for (var jndex = 1; jndex < project.activeLayer.group.length; jndex++) {
-			console.log('project.activeLayer.children.length',project.activeLayer.group.length,'j',jndex)
-					showIntersections(project.activeLayer.group[jndex], project.activeLayer.group[index])
+			console.log('group.length',group.length)
+			for (var index = 0; index < group.length; index++) {
+			console.log('group.length',group.length,'i',index)
+				for (var jndex = 1; jndex < group.length; jndex++) {
+			console.log('children.length',group.length,'j',jndex)
+					showIntersections(group[jndex], group[index])
 				}
 			}
 		}
