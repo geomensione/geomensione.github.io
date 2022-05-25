@@ -98,7 +98,7 @@
 		var difference = segmentCount - newSegmentCount;
 		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
 		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
-		if (project.activeLayer.group.length > 1){
+		if (group.length > 1){
 			console.log('group.length',group.length)
 			for (var index = 0; index < group.length; index++) {
 			console.log('group.length',group.length,'i',index)
