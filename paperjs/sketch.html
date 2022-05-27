@@ -33,6 +33,24 @@
 	var tool = new Tool();
 	var path;
 	var group = new Group();
+	
+	function isIntersecting(p1, p2, p3, p4) {
+	    function CCW(p1, p2, p3) {
+		return (p3.y - p1.y) * (p2.x - p1.x) > (p2.y - p1.y) * (p3.x - p1.x);
+	    }
+	    return (CCW(p1, p3, p4) != CCW(p2, p3, p4)) && (CCW(p1, p2, p3) != CCW(p1, p2, p4));
+	}
+		
+	Path.prototype.checkIsClosed = ()=>{
+		var newSegmentCount = this.segments.length;
+		if (newSegmentCount > 1){
+			for (var index = 0; index < this.segments.length; index++) {
+				for (var jndex = 1; jndex < this.segments.length; jndex++) {
+					showIntersections(group.children[jndex], group.children[index])
+				}
+			}
+		}
+	}
 	// Define a mousedown and mousedrag handler
 	tool.onMouseDown = function(event) {
 		segment = path = null;
