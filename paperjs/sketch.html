@@ -42,13 +42,14 @@
 	}
 		
 	Path.prototype.checkIsClosed = ()=>{
-		var newSegmentCount = this.segments.length;
-		if (newSegmentCount > 1){
-			for (var index = 0; index < this.segments.length; index++) {
-				for (var jndex = 1; jndex < this.segments.length; jndex++) {
-					showIntersections(group.children[jndex], group.children[index])
-				}
-			}
+		//https://groups.google.com/g/paperjs/c/SkNV46wOIOE/m/RJto2piq49YJ to improve: loop from o to length-1, avoid the segments closer to each other
+		for (i=path.curves.length - 1; i >= 0; i--) {
+		  var curve0 = path.curves[i];
+		  for (j = path.curves.length - 1; j > i; j--) {
+		    var curve1 =  path.curves[j];
+		    var intersections = curves0.getIntersections(path.curves[j]);
+		    // if intersections is not empty or array of zero length, do something with the intersections
+		  }
 		}
 	}
 	// Define a mousedown and mousedrag handler
