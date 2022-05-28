@@ -43,14 +43,26 @@
 		
 	Path.prototype.checkIsClosed = ()=>{
 		//https://groups.google.com/g/paperjs/c/SkNV46wOIOE/m/RJto2piq49YJ to improve: loop from o to length-1, avoid the segments closer to each other
-		for (i=path.curves.length - 1; i >= 0; i--) {
-		  var curve0 = path.curves[i];
-		  for (j = path.curves.length - 1; j > i; j--) {
-		    var curve1 =  path.curves[j];
-		    var intersections = curves0.getIntersections(path.curves[j]);
-		    // if intersections is not empty or array of zero length, do something with the intersections
-		  }
+	    let intersect = false
+		const l = path.curves.length
+		if (l>2){
+			for (let i=0,l=path.curves.length - 1; i <= l ; i++) {
+				var curve0 = path.curves[i];
+				for (let j =0, l2 = path.curves.length - 1; j <= l2; j++) {
+					if(j==i) if((j+2)<=l2) j+=2
+					if(j==i-1) if((j+3)<=l2) j+=3
+					if(j==i+1) if((j+1)<=l2) j+=1
+					
+					var curve1 =  path.curves[j];
+					intersections = curve0.getIntersections(path.curves[j]);
+					if(intersections) intersect = true
+					// if intersections is not empty or array of zero length, do something with the intersections
+
+				}
+			}
+			if (intersect){path.strokeColor='#ff0000'}	
 		}
+		
 	}
 	// Define a mousedown and mousedrag handler
 	tool.onMouseDown = function(event) {
@@ -111,7 +123,7 @@
 	
 		// Select the path, so we can see its segments:
 		path.fullySelected = true;
-	
+		path.checkIsClosed()
 		var newSegmentCount = path.segments.length;
 		group.addChild(path);
 		var difference = segmentCount - newSegmentCount;
