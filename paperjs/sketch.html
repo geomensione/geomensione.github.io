@@ -55,7 +55,7 @@
 					
 					var curve1 =  path.curves[j];
 					intersections = curve0.getIntersections(path.curves[j]);
-					if(intersections) intersect = true
+					if(intersections?.length > 0) intersect = true
 					// if intersections is not empty or array of zero length, do something with the intersections
 
 				}
