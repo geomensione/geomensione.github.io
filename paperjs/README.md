@@ -42,3 +42,5 @@ F2D (wip):
 CHANGE (wip):
 
 change shape to finish the game!
+
+ToDp sketch: fill path between intersections point with a "tube", tentacle from intersection point to end of path
