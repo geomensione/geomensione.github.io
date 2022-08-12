@@ -46,3 +46,7 @@ bbox over curve
 https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas, problems when pass Bezier object via messagepost -> https://localazy.com/blog/how-to-pass-function-to-web-workers -> problem again using JSONfn, in worker window is not defined! -> https://github.com/vkiryukhin/jsonfn/issues/3 -> not works
 
 distance between start and end vertex must be greater than the max radius
+
+INSPIRATION
+
+https://forum.unity.com/threads/splinemesh-the-plugin-to-create-curved-content.508853/#post-5660200
