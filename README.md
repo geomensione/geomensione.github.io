@@ -58,6 +58,8 @@ Bezierjs generative art
 
 [https://geomensione.github.io/bezierjs](https://geomensione.github.io/bezierjs)
 
+[https://www.fxhash.xyz/doc/artist/guide-publish-generative-token](https://www.fxhash.xyz/doc/artist/guide-publish-generative-token)
+
 js1024 Creature
 
 [https://geomensione.github.io/js1024_creature](https://geomensione.github.io/js1024_creature)
