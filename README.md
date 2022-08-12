@@ -54,6 +54,10 @@ js13kGames-404
 TOOLS
 =====
 
+Bezierjs generative art
+
+[https://geomensione.github.io/bezierjs](https://geomensione.github.io/bezierjs)
+
 js1024 Creature
 
 [https://geomensione.github.io/js1024_creature](https://geomensione.github.io/js1024_creature)
