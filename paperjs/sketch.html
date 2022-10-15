@@ -31,8 +31,13 @@
 	var draw = false;
 	
 	var tool = new Tool();
-	var path;
+	var path = new Path();
+	path.strokeColor = 'black';
+	path.add(new Point(0, 0));
+	path.add(new Point(100, 50));
 	var group = new Group();
+	group.addChild(path);
+
 	
 	function isIntersecting(p1, p2, p3, p4) {
 	    function CCW(p1, p2, p3) {
@@ -129,7 +134,7 @@
 		var difference = segmentCount - newSegmentCount;
 		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
 		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
-		if (group.children.length > 1){
+		if (group.children.length > 0){
 			console.log('group.children.length',group.children.length)
 			for (var index = 0; index < group.children.length; index++) {
 			console.log('group.children.length',group.children.length,'i',index)
