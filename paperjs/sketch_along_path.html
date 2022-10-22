@@ -1,0 +1,213 @@
+<html>
+<head>
+	<style>
+		#myCanvas{
+			width:100%;
+			height: 100%;
+		}
+	</style>
+  <script src="js/paper-full.min.js"></script>
+  <script src="js/tangents.js"></script>
+
+<script type="text/javascript">
+	/*La soluzione probabilmente è quella di creare un gruppo di path e ciclare solo fra i path che sono al suo interno, invece che quelli del progetto*/
+	paper.install(window);
+	window.onload = function() {
+		paper.setup('myCanvas');
+	var values = {
+		paths: 50,
+		minPoints: 5,
+		maxPoints: 15,
+		minRadius: 30,
+		maxRadius: 90
+	};
+	
+	var hitOptions = {
+		segments: true,
+		stroke: true,
+		fill: true,
+		tolerance: 5
+	};
+	
+	var draw = false;
+	
+	var tool = new Tool();
+	var path = new Path();
+	path.strokeColor = 'black';
+	path.add(new Point(0, 0));
+	path.add(new Point(100, 50));
+	var group = new Group();
+	group.addChild(path);
+
+	var center1 = new Point(50, 50);
+	var radius1 = 10;
+	var myCircle1 = new paper.Path.Circle({
+					center: center1,
+					radius: radius1,
+					name: 'brush circle 1',
+					strokeColor: 'black'
+				});
+	var center2 = new Point(50, 100);
+	var radius2 = 20;
+	var myCircle2 = new paper.Path.Circle({
+		center: center2,
+		radius: radius2,
+		name: 'brush circle 2',
+		strokeColor: 'black'
+	});
+	var points = getTangents(center1.x, center1.y, radius1, center2.x, center2.y, radius2);
+	var points_length = points.length;
+	var myPathLine = new paper.Path();
+	myPathLine.strokeColor = 'black';
+	for(var p = 0;p<points_length;p++)
+	{
+		myPathLine.add(new paper.Point(points[p].x, points[p].y));
+	}
+	var unio1 = myCircle1.unite(myPathLine);
+	
+	var unio2 = unio1.unite(myCircle2);
+	unio2.fillColor = 'orange';
+	var symbol = new Symbol(unio2);
+
+	function isIntersecting(p1, p2, p3, p4) {
+	    function CCW(p1, p2, p3) {
+		return (p3.y - p1.y) * (p2.x - p1.x) > (p2.y - p1.y) * (p3.x - p1.x);
+	    }
+	    return (CCW(p1, p3, p4) != CCW(p2, p3, p4)) && (CCW(p1, p2, p3) != CCW(p1, p2, p4));
+	}
+		
+	Path.prototype.checkIsClosed = ()=>{
+		//https://groups.google.com/g/paperjs/c/SkNV46wOIOE/m/RJto2piq49YJ to improve: loop from o to length-1, avoid the segments closer to each other
+	    let intersect = false
+		const l = path.curves.length
+		if (l>2){
+			for (let i=0,l=path.curves.length - 1; i <= l ; i++) {
+				var curve0 = path.curves[i];
+				for (let j =0, l2 = path.curves.length - 1; j <= l2; j++) {
+					if(j==i) if((j+2)<=l2) j+=2
+					if(j==i-1) if((j+3)<=l2) j+=3
+					if(j==i+1) if((j+1)<=l2) j+=1
+					
+					var curve1 =  path.curves[j];
+					intersections = curve0.getIntersections(path.curves[j]);
+					if(intersections?.length > 0) intersect = true
+					// if intersections is not empty or array of zero length, do something with the intersections
+
+				}
+			}
+			if (intersect){path.strokeColor='#ff0000'}	
+		}
+		
+	}
+	// Define a mousedown and mousedrag handler
+	tool.onMouseDown = function(event) {
+		segment = path = null;
+		var hitResult = project.hitTest(event.point, hitOptions);
+		if (!hitResult){
+			draw = true
+			if (path) {
+				path.selected = false;
+			}
+		
+			// Create a new path and set its stroke color to black:
+			path = new Path({
+				segments: [event.point],
+				strokeColor: 'black',
+				// Select the path, so we can see its segment points:
+				fullySelected: true
+			});
+		}
+	
+		if (event.modifiers.shift) {
+			if (hitResult.type == 'segment') {
+				hitResult.segment.remove();
+			};
+			return;
+		}
+	
+		if (hitResult) {
+			path = hitResult.item;
+			if (hitResult.type == 'segment') {
+				segment = hitResult.segment;
+			} else if (hitResult.type == 'stroke') {
+				var location = hitResult.location;
+				segment = path.insert(location.index + 1, event.point);
+				path.smooth();
+			}
+			movePath = hitResult.type == 'fill';
+	
+		}
+		if (movePath)
+			project.activeLayer.addChild(hitResult.item);	
+	}
+
+	var segment, path;
+	var movePath = false;
+	tool.onMouseMove = function(event) {
+	
+		project.activeLayer.selected = false;
+		if (event.item)
+			event.item.selected = true;
+	}
+	tool.onMouseUp = function(event){
+		draw = false
+		var segmentCount = path.segments.length;
+	
+		// When the mouse is released, simplify it:
+		path.simplify(10);
+	
+		// Select the path, so we can see its segments:
+		path.fullySelected = true;
+		path.checkIsClosed()
+		var newSegmentCount = path.segments.length;
+		group.addChild(path);
+		var difference = segmentCount - newSegmentCount;
+		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
+		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+		if (group.children.length > 0){
+			console.log('group.children.length',group.children.length)
+			for (var index = 0; index < group.children.length; index++) {
+			console.log('group.children.length',group.children.length,'i',index)
+				for (var jndex = 1; jndex < group.children.length; jndex++) {
+			console.log('children.children.length',group.children.length,'j',jndex)
+					showIntersections(group.children[jndex], group.children[index])
+				}
+			}
+		}
+	}
+	tool.onMouseDrag = function(event){
+		if(draw){
+			path.add(event.point);
+		}else{
+			if (segment) {
+				segment.point += event.delta;
+				path.smooth();
+			} else if (path) {
+				path.position += event.delta;
+			}
+		}
+		var placed = symbol.place(event.point);
+		
+	}
+	
+
+
+	function showIntersections(path1, path2) {
+		var intersections = path1.getIntersections(path2);
+		console.log('intersections ',intersections)
+
+		for (var i = 0; i < intersections.length; i++) {
+			new Path.Circle({
+				center: intersections[i].point,
+				radius: 10,
+				fillColor: '#009dec'
+			}).removeOnDrag();
+		}
+	}
+	}
+</script>
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
