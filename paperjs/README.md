@@ -6,6 +6,10 @@ Math
 
 https://microbians.com/mathcode
 
+Blender
+
+https://gitlab.com/ideasman42/blender-curve-draw-addon/-/blob/master/curve_freehand.py
+
 Curve
 
 https://geomensione.github.io/paperjs/f2d_curve.html
