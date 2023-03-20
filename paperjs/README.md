@@ -10,6 +10,10 @@ Blender
 
 https://gitlab.com/ideasman42/blender-curve-draw-addon/-/blob/master/curve_freehand.py
 
+Pages
+
+http://paperjs.org/reference/path/#getlocationat-offset
+
 Curve
 
 https://geomensione.github.io/paperjs/f2d_curve.html
