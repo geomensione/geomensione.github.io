@@ -135,15 +135,39 @@
 		var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
 		//textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 		if (group.children.length > 0){
-			console.log('group.children.length',group.children.length)
+			//console.log('group.children.length',group.children.length)
 			for (var index = 0; index < group.children.length; index++) {
-			console.log('group.children.length',group.children.length,'i',index)
+			//console.log('group.children.length',group.children.length,'i',index)
 				for (var jndex = 1; jndex < group.children.length; jndex++) {
-			console.log('children.children.length',group.children.length,'j',jndex)
+			//console.log('children.children.length',group.children.length,'j',jndex)
 					showIntersections(group.children[jndex], group.children[index])
 				}
 			}
 		}
+
+		var curves = path.curves;
+		var numParts = 20;
+		var pathLength = path.length;
+		var step = pathLength/numParts;
+		var offset = step;
+		var radius = 20;
+		var radiusStep = radius/numParts;
+		var progressiveRadius = radiusStep;
+		//for(var ic = 0; ic < curves.length;ic++) {
+		//	var c = curves[ic];
+		for( ; offset <= pathLength; ){
+			//console.log('offset',offset)
+			var pointOf = path.getLocationAt(offset).point;
+			console.log('offset',pointOf)
+			offset += step;
+			var circle = new Path.Circle({
+				center: pointOf,
+				radius: progressiveRadius,
+				fillColor: '#ff0000'
+			});
+			progressiveRadius += radiusStep;
+		}
+		//}
 	}
 	tool.onMouseDrag = function(event){
 		if(draw){
@@ -163,7 +187,7 @@
 
 	function showIntersections(path1, path2) {
 		var intersections = path1.getIntersections(path2);
-		console.log('intersections ',intersections)
+		//console.log('intersections ',intersections)
 
 		for (var i = 0; i < intersections.length; i++) {
 			new Path.Circle({
