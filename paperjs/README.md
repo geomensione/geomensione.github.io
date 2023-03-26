@@ -28,9 +28,7 @@ paperjs hit test http://paperjs.org/examples/hit-testing/
 
 TODO:
 
-https://observablehq.com/@taniki/hello-paperjs
-
-https://pomax.github.io/bezierinfo/#offsetting offsetting
+f2d circle tangent in sketch
 
 F2D (wip):
 
