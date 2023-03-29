@@ -155,9 +155,12 @@
 		var progressiveRadius = radiusStep;
 		//for(var ic = 0; ic < curves.length;ic++) {
 		//	var c = curves[ic];
+		var prev_point;
+		var prev_radius;
 		for( ; offset <= pathLength; ){
 			//console.log('offset',offset)
 			var pointOf = path.getLocationAt(offset).point;
+			
 			console.log('offset',pointOf)
 			offset += step;
 			var circle = new Path.Circle({
@@ -165,6 +168,14 @@
 				radius: progressiveRadius,
 				fillColor: '#ff0000'
 			});
+			if(!prev_point && !prev_radius){
+				prev_point = pointOf;
+				prev_radius = progressiveRadius;
+			}else{
+				drawTangents(prev_point.x,prev_point.y,prev_radius,pointOf.x,pointOf.y,progressiveRadius);
+				prev_point=pointOf;
+				prev_radius=progressiveRadius;
+			}
 			progressiveRadius += radiusStep;
 		}
 		//}
@@ -183,7 +194,28 @@
 		
 	}
 	
-
+	function drawTangents(x,y,r,x2,y2,r2){
+		var points = getTangents(x, y, r, x2, y2, r2);
+		var points_length = points.length;
+		let tangentName = sk+'_'+bo+'-'+(bo-1)+'_'+'tangents';
+		var lightness = (Math.random() - 0.5) * 0.4 + 0.4;
+		var hue = Math.random() * 360;
+		/*
+		if(paper.project.activeLayer.children[tangentName])
+		{
+			paper.project.activeLayer.children[tangentName].remove();
+		}*/
+		var myPathLine = new paper.Path({
+			name: tangentName,
+			fillColor: { hue: hue, saturation: 1, lightness: lightness }
+		});
+		myPathLine.strokeColor = 'black';
+		for(var p = 0;p<points_length;p++)
+		{
+			myPathLine.add(new paper.Point(points[p].x, points[p].y));
+		}
+		myPathLine.closed = true;
+	}
 
 	function showIntersections(path1, path2) {
 		var intersections = path1.getIntersections(path2);
