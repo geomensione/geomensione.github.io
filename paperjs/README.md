@@ -1,6 +1,6 @@
 WIP
 
-https://geomensione.github.io/paperjs/sketch.html (sketch has drawTangents)
+https://geomensione.github.io/paperjs/sketch.html (sketch has drawTangents) <- remove this and execute only after all strokes has been drawn
 
 1-sketch
 
