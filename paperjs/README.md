@@ -2,6 +2,16 @@ WIP
 
 https://geomensione.github.io/paperjs/sketch.html (sketch has drawTangents)
 
+1-sketch
+
+2-count intersections
+
+3- if intersections 1 -> cone
+
+    if intersections > 1 -> cylinder
+    
+    ...
+
 Math
 
 https://microbians.com/mathcode
