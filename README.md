@@ -207,6 +207,8 @@ Resources
 
 https://htmldog.com/
 
+https://github.com/ondras/rot.js#usage
+
 TODO:
 =====
 
