@@ -6,11 +6,15 @@ https://geomensione.github.io/paperjs/sketch.html (sketch has drawTangents) <- r
 
 2-count intersections
 
-3- if intersections 1 -> cone
-
-    if intersections > 1 -> cylinder
+3- if closed
+        if intersections 1 -> thorus
+    else
     
-    ...
+        if intersections 1 -> cone
+
+        if intersections > 1 -> cylinder
+    
+        ...
 
 Math
 
