@@ -165,15 +165,17 @@
 			
 			console.log('offset',pointOf)
 			offset += step;
-			var circle = new Path.Circle({
-				center: pointOf,
-				radius: progressiveRadius,
-				fillColor: '#ff0000'
-			});
+			//show only stroke
+			//var circle = new Path.Circle({
+			//	center: pointOf,
+			//	radius: progressiveRadius,
+			//	fillColor: '#ff0000'
+			//});
 			if(!prev_point && !prev_radius){
 				prev_point = pointOf;
 				prev_radius = progressiveRadius;
 			}else{
+				//show only stroke
 				//drawTangents(prev_point.x,prev_point.y,prev_radius,pointOf.x,pointOf.y,progressiveRadius);
 				prev_point=pointOf;
 				prev_radius=progressiveRadius;
