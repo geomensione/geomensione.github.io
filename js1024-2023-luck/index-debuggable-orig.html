@@ -1,0 +1,100 @@
+<html>
+<head></head>
+<body>
+<canvas id=c>
+</canvas>
+<script>
+
+	window.a = document.getElementsByTagName('canvas')[0];
+	window.b = document.getElementsByTagName('body')[0];
+	window.c = window.a.getContext('2d');
+	window.d = document;
+	a.width = window.innerWidth;
+	a.height = window.innerHeight;
+	/*
+	JS1K start
+	*/
+	//Init
+	g = {};
+	g.fr = 100;
+	g.w = window;
+	g.c = {s:20, x:0, y:0};
+	g.h = {s:80, x:0, y:g.w.innerHeight - 50};
+	g.hi = 0;
+	c.sr = c.strokeRect;
+	c.bp = c.beginPath;
+	
+	a.onmousemove = (e) => {
+		if(!g.c.u){
+			g.c.x = e.clientX;
+			
+		}
+		
+	}; 
+	a.onmouseup = (e) => {
+		g.c.u = 1;
+	}
+	g.init = () => {
+	   g.c.y = 100;
+	}
+	g.gr = () => {
+		
+		c.bp();
+		c.fillStyle = 'black';
+		c.fillRect(0,0,a.width,a.height);
+		c.bp();
+		(!g.h.x)?
+			g.h.x+=40
+			:
+			(g.h.x>g.w.innerWidth)?
+				g.h.x=0
+				:
+				g.h.x+=40;
+		c.strokeStyle = 'white';
+		c.sr(g.h.x,g.h.y,g.h.s,10);
+		c.sr(g.h.x-10,g.h.y-10,g.h.s+20,10+20);
+		c.sr(g.h.x-10,g.h.y+20,g.h.s+20,10+20);
+		c.fillStyle = "white";
+		c.font = "30px Arial";
+		c.fillText(g.hi+' coins',300,500);
+		if(g.c.x >= g.h.x && (g.c.x+g.c.s) <= (g.h.x+g.h.s) && (g.c.y+g.c.s) >= g.h.y)
+			g.hit('h');
+		
+	}
+	g.dr = () => {
+		(g.c.u)?
+		(g.c.y>g.w.innerHeight)?
+			g.hit()
+		:
+		g.c.y+=20
+		:
+		g;
+		c.arc(g.c.x, g.c.y, g.c.s, 0, 2 * Math.PI, false);
+		
+		c.fillStyle = 'white';
+		c.fill();
+		c.bp();
+		c.strokeStyle = 'black';
+		c.arc(g.c.x, g.c.y, g.c.s-5, 0, 1.8 * Math.PI, false);
+		c.stroke();
+	}
+	
+	g.l = () => {
+		g.init();
+		g.lo = setInterval(function() {
+			g.gr();
+			g.dr();
+		}, g.fr);
+	}
+	
+	g.hit = (h) => {
+		g.c.u = 0;
+		g.init();
+		if(h)
+		g.hi += 1;
+	}
+	g.l();
+
+</script>
+</body>
+</html>

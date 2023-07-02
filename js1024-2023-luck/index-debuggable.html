@@ -1,0 +1,126 @@
+<html>
+<head></head>
+<body>
+<canvas id=c>
+</canvas>
+<script>
+
+	window.a = document.getElementsByTagName('canvas')[0];
+	window.b = document.getElementsByTagName('body')[0];
+	window.c = window.a.getContext('2d',{'willReadFrequently':true})
+	window.d = document;
+	a.width = window.innerWidth;
+	a.height = window.innerHeight;
+	/*
+	JS1K start
+	*/
+	//Init
+	var g = {}
+	g.fr = 50
+	dw = a.width
+    dh = a.height
+    fs = (dw>=dh?dh:dw)/3*2.2
+    c.font = fs+'px Arial'
+	document.addEventListener('keydown',(e)=>{
+						switch(event.keyCode){
+							case 37:
+								h.dir = 'l'
+								break
+							case 38:
+								h.dir = 'u'
+								break
+							case 39:
+								h.dir = 'r'
+								break
+							case 40:
+								h.dir = 'd'
+								break
+						}
+					})
+					document.addEventListener('keyup',(e)=>{
+						h.dir = '';
+					})
+	rd = Math.round
+	h = {
+		x:50,y:10,r:10,dir:"",tx:0,ty:0,p:{},
+		move: () => {
+			p = {}
+			h.tx = 0
+			h.ty = 0
+			switch(h.dir){
+				case '':
+				h.tx=h.x
+				h.ty=h.y + h.r
+					break
+				case 'l':
+				h.tx=h.x - h.r
+				h.ty=h.y
+					break
+				case 'u':
+				h.tx=h.x
+				h.ty=h.y - h.r
+					break
+				case 'r':
+				h.tx=h.x + h.r
+				h.ty=h.y
+					break
+			}
+			
+			updateCoord = () => {
+				h.tp = c.getImageData(h.tx, h.ty, 1, 1, { colorSpace: "srgb" }).data 
+				
+				h.hex = h.tp[0] + h.tp[1] + h.tp[2]
+				if(h.hex != 0){
+					switch(h.dir){
+						case '':
+							if(h.y<a.height) h.y += h.r
+							return
+						case 'l':
+							if(h.x>0) h.x -= h.r
+							return
+						case 'u':
+							if(h.y>0) h.y -= h.r
+							return
+						case 'r':
+							if(h.x<a.width) h.x += h.r
+							return
+						
+					}
+					
+				}
+			}
+			updateCoord()
+			/*
+			if(h.dir!=''){
+				h.tx=h.x
+				h.ty=h.y + h.r
+			}
+			updateCoord()
+			*/ 
+		},
+		d: () => {
+			c.beginPath();
+			c.arc(h.x,h.y,h.r,0,2 * Math.PI)
+			c.stroke();
+			h.move()
+		},
+	}
+	dr = () => {
+		c.fillStyle = '#FFFFFF'
+		c.fillRect(0,0,a.width,a.height)
+		c.fillStyle = '#000000'
+		c.strokeStyle = '#000000'
+		c.fillText('LUCK',0,fs)
+		h.d()
+	}
+    
+	function l(){
+		g.l = setInterval(function() {
+			dr();
+		}, g.fr);
+	}
+	 
+	l();
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+
+<head>
+<title>work in progress ~ js1024</title>
+<meta name="author" content="author">
+<meta name="description" content="description">
+<meta name="title" content="title">
+<meta charset=utf-8>
+</head>
+
+<body id=b>
+<canvas id=a></canvas>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    #a {
+        position: relative;
+        display: block;
+    }
+    
+    .play {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%)translateY(-50%);
+        font-size: 30px;
+        font-family: arial, sans-serif;
+        background: #f3f4f5;
+        padding: 15px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    /* for mobile */
+    :root {
+        touch-action: pan-x pan-y;
+        height: 100%;
+    }
+</style>
+
+<script>
+    // Entry configuration
+    // ===================
+
+    var title = "title";
+
+    // Shim setup and polyfills (do not edit)
+    // ======================================
+
+    a = document.getElementById("a");
+    a.width = innerWidth;
+    a.height = innerHeight;
+
+    b = document.getElementById("b");
+
+    c = a.getContext("2d");
+    d = document;
+
+    var M = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); // detects if the user is on mobile
+
+    if (M) {
+        a.oncontextmenu = function(e) {
+                e.preventDefault();
+            } // prevents context menu on mobile
+    }
+
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    a.requestPointerLock = a.requestPointerLock || a.mozRequestPointerLock || a.webkitRequestPointerLock;
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    if (typeof OscillatorNode !== 'undefined' && OscillatorNode.prototype) {
+        OscillatorNode.prototype.start = OscillatorNode.prototype.start || OscillatorNode.prototype.noteOn;
+        OscillatorNode.prototype.stop = OscillatorNode.prototype.stop || OscillatorNode.prototype.noteOff;
+    }
+
+    // Add a start button if sound is present in the code
+    onload = () => {
+        var entry_code = entry.innerText;
+        var has_sound = false;
+        if(entry_code.includes('eval')) {
+            try {
+                eval(entry_code.replace(/eval\(/g, 'throw(').replace(/eval\`/g, 'throw`'));
+            }
+            catch(e){
+                entry_code = e;
+            }
+        }
+        
+        try {
+        if(entry_code.includes("AudioContext")||entry_code.includes("Oscillator")||entry_code.includes("speak")||entry_code.includes("play")||entry_code.includes("autoplay")){
+            b.insertAdjacentHTML("beforeEnd", "<button class='play' onclick='start_demo(this)'>PLAY</button>");
+        } else {
+            eval(entry.innerText);
+        }
+        } catch(e) {
+            // I have no idea what this does but I think it will make demos that contain eval naturally (no compressor used) work
+            entry_code = entry.innerText;
+            eval(entry_code);
+        }
+    };
+
+    // Makes the "window." be optional in the demo code
+    function start_demo(button) {
+        console.log(entry.innerText);
+        eval(entry.innerText);
+    button.remove()
+    }
+
+    console.log(
+        a, // canvas
+        b, // body
+        c, // 2D canvas context
+        d // document
+    );
+</script>
+
+<script type=text id=entry>
+    // Your entry goes here 👇
+    // =======================
+    dw = document.innerWeigth
+    dh = document.innerHeight
+    fs = dw>=dh?dw:dh
+    c.font = fs+'px Arial'
+    c.fillText('LUCK',0,fs)
+    // =======================
+</script>
+</body>
