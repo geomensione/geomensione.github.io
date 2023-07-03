@@ -42,7 +42,7 @@
 					})
 	rd = Math.round
 	h = {
-		x:50,y:10,r:10,dir:"",tx:0,ty:0,p:{},
+		x:50,y:10,r:10,dir:"",tx:0,ty:0,p:{},vj:[],ij:0,
 		move: () => {
 			p = {}
 			h.tx = 0
@@ -57,8 +57,21 @@
 				h.ty=h.y
 					break
 				case 'j':
+					//qundo salto la coordinata x è uguale
 				h.tx=h.x
-				h.ty=h.y - h.r
+					//se il vettore del salto è vuoto lo inizializzo
+				if h.vj.lenght == 0 { h.vj.push(50/2) }
+					//altrimenti aggiungo il precedente valore / 2
+				else {h.vj.push( h.vj[h.ij-1]/2 }
+					//prendo il valore per il salto
+				let jv = h.vj[h.ij]
+					// nella salita controllo che sia != 0
+				if jv > 0 {
+				h.ty=h.y - h.vj[h.ij]
+				}else{
+					
+				}
+					
 					break
 				case 'r':
 				h.tx=h.x + h.r
