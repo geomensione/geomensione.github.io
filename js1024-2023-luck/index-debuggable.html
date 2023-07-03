@@ -27,7 +27,7 @@
 								h.dir = 'l'
 								break
 							case 38:
-								h.dir = 'u'
+								h.dir = 'j'
 								break
 							case 39:
 								h.dir = 'r'
@@ -56,7 +56,7 @@
 				h.tx=h.x - h.r
 				h.ty=h.y
 					break
-				case 'u':
+				case 'j':
 				h.tx=h.x
 				h.ty=h.y - h.r
 					break
@@ -78,7 +78,7 @@
 						case 'l':
 							if(h.x>0) h.x -= h.r
 							return
-						case 'u':
+						case 'j':
 							if(h.y>0) h.y -= h.r
 							return
 						case 'r':
