@@ -61,9 +61,9 @@
 					h.tx=h.x
 					//se il vettore del salto è vuoto lo inizializzo
 					if(h.sal){
-						if (h.vj.length == 0) h.vj.push(50/2)
+						if (h.vj.length == 0) { h.vj.push(50/2) }
 							//altrimenti aggiungo il precedente valore / 2
-						else {h.vj.push( h.vj[h.ij-1]/2 ) }
+						else { h.vj.push( h.vj[h.ij-1]/2 ) }
 							//prendo il valore per il salto
 						let jv = h.vj[h.ij]
 							// nella salita controllo che sia != 0
