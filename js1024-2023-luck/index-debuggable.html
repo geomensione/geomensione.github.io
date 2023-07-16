@@ -28,6 +28,7 @@
 								break
 							case 38:
 								h.dir = 'j'
+								h.jump = true
 								break
 							case 39:
 								h.dir = 'r'
@@ -41,74 +42,89 @@
 						h.dir = '';
 					})
 	rd = Math.round
+	let radius = 10
 	h = {
-		x:50,y:10,r:10,dir:"",tx:0,ty:0,p:{},vj:[],ij:0,sal:true,
+		x:50,y:10,r:radius,dir:"",tx:0,ty:0,p:{},vj:[radius,radius,radius,0,0,radius,radius,radius],ij:0,sal:true,jump:false,
 		move: () => {
 			p = {}
 			h.tx = 0
 			h.ty = 0
-			switch(h.dir){
-				case '':
+			
+			if(h.jump==true){
+				//qundo salto la coordinata x è uguale
 				h.tx=h.x
-				h.ty=h.y + h.r
-					break
-				case 'l':
-				h.tx=h.x - h.r
-				h.ty=h.y
-					break
-				case 'j':
-					//qundo salto la coordinata x è uguale
-					h.tx=h.x
-					//se il vettore del salto è vuoto lo inizializzo
-					if(h.sal){
-						if (h.vj.length == 0) { h.vj.push(50/2) }
-							//altrimenti aggiungo il precedente valore / 2
-						else { h.vj.push( h.vj[h.ij-1]/2 ) }
-							//prendo il valore per il salto
-						let jv = h.vj[h.ij]
-							// nella salita controllo che sia != 0
-						if (jv > 0) {
+				//se il vettore del salto è vuoto lo inizializzo
+				if(h.sal){
+					//if (h.vj.length == 0) { h.vj.push(50/2) }
+						//altrimenti aggiungo il precedente valore / 2
+					//else if (!h.vj.done) { h.vj.push( h.vj[h.vj.length-1]/2 ) }
+						//prendo il valore per il salto
+					let jv = Math.floor(h.vj[h.ij])
+						// nella salita controllo che sia != 0
+					if (jv > 0) {
 						h.ty=h.y - h.vj[h.ij]
 						h.ij++
-
-						}else{
-							h.sal=false
-						}
 					}else{
-						h.ty=h.y - h.vj[h.ij]
-						if ((h.ij-1)>0) h.ij--
-						else{
-							h.sal = true
-							h.dir=''
-						}
+						h.vj.done = true
+						h.sal=false
 					}
+				}else{
+					h.ty=h.y + h.vj[h.ij-1]
+					if ((h.ij-1)>0) {h.ij--}
+					else{
+						h.sal = true
+						h.jump = false
+						//h.tx = null
+						//h.ty = null
+						h.ij = 0
+
+					}
+				}
+			}else{
+				switch(h.dir){
+					case '':
+						h.tx=h.x
+						h.ty=h.y + h.r
+						break
+					case 'l':
+					h.tx=h.x - h.r
+					h.ty=h.y
+						break
 					
-					break
-				case 'r':
-				h.tx=h.x + h.r
-				h.ty=h.y
-					break
+					case 'r':
+					h.tx=h.x + h.r
+					h.ty=h.y
+						break
+				}
 			}
-			
 			updateCoord = () => {
+				//c.fillStyle = "red"
+				//c.fillRect(h.tx,h.ty,2,2)
+				//c.fillStyle = "black"
 				h.tp = c.getImageData(h.tx, h.ty, 1, 1, { colorSpace: "srgb" }).data 
 				
 				h.hex = h.tp[0] + h.tp[1] + h.tp[2]
 				if(h.hex != 0){
-					switch(h.dir){
-						case '':
-							if(h.y<a.height) h.y += h.r
-							return
-						case 'l':
-							if(h.x>0) h.x -= h.r
-							return
-						case 'j':
-							if(h.y>0) h.y -= h.r
-							return
-						case 'r':
-							if(h.x<a.width) h.x += h.r
-							return
-						
+					
+					if(h.jump==true){
+						if(h.sal){
+							h.y -= h.vj[h.ij-1]
+						}else{
+							h.y += h.vj[h.ij-1]
+						}
+					}else{
+						switch(h.dir){
+							case '':
+								if(h.y<a.height) h.y += h.r
+								break
+							case 'l':
+								if(h.x>0) h.x -= h.r
+								break
+							case 'r':
+								if(h.x<a.width) h.x += h.r
+								break
+							
+						}
 					}
 					
 				}
@@ -123,10 +139,11 @@
 			*/ 
 		},
 		d: () => {
-			c.beginPath();
+			c.beginPath()
 			c.arc(h.x,h.y,h.r,0,2 * Math.PI)
-			c.stroke();
+			c.stroke()
 			h.move()
+			
 		},
 	}
 	dr = () => {
