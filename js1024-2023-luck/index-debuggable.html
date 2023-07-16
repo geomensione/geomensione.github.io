@@ -22,6 +22,9 @@
     fs = (dw>=dh?dh:dw)/3*2.2
     c.font = fs+'px Arial'
 	document.addEventListener('keydown',(e)=>{
+						h.dirA.push(event.keyCode)
+						if(event.keyCode == 38) h.jump = true
+						/*
 						switch(event.keyCode){
 							case 37:
 								h.dir = 'l'
@@ -37,14 +40,16 @@
 								h.dir = 'd'
 								break
 						}
+						*/
 					})
 					document.addEventListener('keyup',(e)=>{
-						h.dir = '';
+						let index = h.dirA.indexOf(e.keyCode)
+						h.dirA.splice(index,1)
 					})
 	rd = Math.round
 	let radius = 10
 	h = {
-		x:50,y:10,r:radius,dir:"",tx:0,ty:0,p:{},vj:[radius,radius,radius,0,0,radius,radius,radius],ij:0,sal:true,jump:false,
+		x:50,y:10,r:radius,dir:"",dirA:[],tx:0,ty:0,p:{},vj:[radius,radius,radius,0,0,radius,radius,radius],ij:0,sal:true,jump:false,
 		move: () => {
 			p = {}
 			h.tx = 0
@@ -80,23 +85,26 @@
 
 					}
 				}
-			}else{
-				switch(h.dir){
-					case '':
-						h.tx=h.x
-						h.ty=h.y + h.r
-						break
-					case 'l':
-					h.tx=h.x - h.r
-					h.ty=h.y
-						break
-					
-					case 'r':
-					h.tx=h.x + h.r
-					h.ty=h.y
-						break
-				}
+			} else {
+				h.tx=h.x
+				h.ty=h.y + h.r
 			}
+			if( h.dirA.length > 0 ) {
+				h.dirA.forEach(element => {
+					switch(element){
+						case 37:
+							h.tx=h.x - h.r
+							h.ty=h.y
+							break
+						case 39:
+							h.tx=h.x + h.r
+							h.ty=h.y
+							break
+					}	
+				})
+			} 	
+			
+		
 			updateCoord = () => {
 				//c.fillStyle = "red"
 				//c.fillRect(h.tx,h.ty,2,2)
@@ -112,21 +120,21 @@
 						}else{
 							h.y += h.vj[h.ij-1]
 						}
-					}else{
-						switch(h.dir){
-							case '':
-								if(h.y<a.height) h.y += h.r
-								break
-							case 'l':
-								if(h.x>0) h.x -= h.r
-								break
-							case 'r':
-								if(h.x<a.width) h.x += h.r
-								break
-							
-						}
+					} else {
+						if(h.y<a.height) h.y += h.r
 					}
-					
+					if( h.dirA.length > 0 ) {
+						h.dirA.forEach(element => {
+							switch(element){
+								case 37:
+									if(h.x>0) h.x -= h.r
+									break
+								case 39:
+									if(h.x<a.width) h.x += h.r
+									break
+							}	
+						})
+					}
 				}
 			}
 			updateCoord()
@@ -143,7 +151,6 @@
 			c.arc(h.x,h.y,h.r,0,2 * Math.PI)
 			c.stroke()
 			h.move()
-			
 		},
 	}
 	dr = () => {
