@@ -4,6 +4,10 @@ https://www.digitalocean.com/community/tools/minify
 
 https://geomensione.github.io/js1024-2023-luck/index-debuggable.html
 
+Bugs:
+
+sprofonda nel pavimento con gli eventi combinati
+
 ToDo:
 
 implement jump instead of fly
