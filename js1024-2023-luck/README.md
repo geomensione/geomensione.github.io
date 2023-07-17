@@ -6,7 +6,7 @@ https://geomensione.github.io/js1024-2023-luck/index-debuggable.html
 
 Bugs:
 
-sprofonda nel pavimento con gli eventi combinati
+sprofonda nel pavimento se vado a dx
 
 ToDo:
 
