@@ -6,7 +6,7 @@ https://geomensione.github.io/js1024-2023-luck/index-debuggable.html
 
 Bugs:
 
-sprofonda nel pavimento se vado a dx
+sprofonda nel pavimento -> la grafica deve essere modulare con la crandezza dell'erore, altrimenti il test di intersezione avviene quando l'erore è già sprofondato
 
 ToDo:
 
