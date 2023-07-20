@@ -19,8 +19,8 @@
 	g.fr = 50
 	dw = a.width
     dh = a.height
-    fs = (dw>=dh?dh:dw)/3*2.2
-    c.font = 500+'px Arial'
+    fs = 500//(dw>=dh?dh:dw)/3*2.2
+    c.font = fs +'px Arial'
 	document.addEventListener('keydown',(e)=>{
 						h.dirA.push(event.keyCode)
 						//devo pensare a come gestire salto e direzione
