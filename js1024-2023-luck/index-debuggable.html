@@ -90,6 +90,7 @@
 				h.tx=h.x
 				h.ty=h.y + h.r
 			}
+			updateJump()
 			if( h.dirA.length > 0 ) {
 				h.dirA.forEach(element => {
 					switch(element){
@@ -103,10 +104,32 @@
 							break
 					}	
 				})
-			} 	
-			
-		
-			updateCoord = () => {
+			} 		
+			updateDir = () => {
+				//c.fillStyle = "red"
+				//c.fillRect(h.tx,h.ty,2,2)
+				//c.fillStyle = "black"
+				h.tp = c.getImageData(h.tx, h.ty, 1, 1, { colorSpace: "srgb" }).data 
+				
+				h.hex = h.tp[0] + h.tp[1] + h.tp[2]
+				if(h.hex != 0){
+					
+					
+					if( h.dirA.length > 0 ) {
+						h.dirA.forEach(element => {
+							switch(element){
+								case 37:
+									if(h.x>0) h.x -= h.r
+									break
+								case 39:
+									if(h.x<a.width) h.x += h.r
+									break
+							}	
+						})
+					}
+				}
+			}
+			updateJump = () => {
 				//c.fillStyle = "red"
 				//c.fillRect(h.tx,h.ty,2,2)
 				//c.fillStyle = "black"
@@ -124,21 +147,10 @@
 					} else {
 						if(h.y<a.height) h.y += h.r
 					}
-					if( h.dirA.length > 0 ) {
-						h.dirA.forEach(element => {
-							switch(element){
-								case 37:
-									if(h.x>0) h.x -= h.r
-									break
-								case 39:
-									if(h.x<a.width) h.x += h.r
-									break
-							}	
-						})
-					}
+					
 				}
 			}
-			updateCoord()
+			updateDir()
 			/*
 			if(h.dir!=''){
 				h.tx=h.x
