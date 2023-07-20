@@ -90,7 +90,7 @@
 				h.tx=h.x
 				h.ty=h.y + h.r
 			}
-			updateJump()
+			
 			if( h.dirA.length > 0 ) {
 				h.dirA.forEach(element => {
 					switch(element){
@@ -150,6 +150,7 @@
 					
 				}
 			}
+			updateJump()
 			updateDir()
 			/*
 			if(h.dir!=''){
