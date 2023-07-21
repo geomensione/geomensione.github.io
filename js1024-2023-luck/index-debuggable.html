@@ -127,6 +127,17 @@
 							}	
 						})
 					}
+				}else{
+					h.dirA.forEach(element => {
+							switch(element){
+								case 37:
+									h.x += h.r
+									break
+								case 39:
+									h.x -= h.r
+									break
+							}	
+						})
 				}
 			}
 			updateJump = () => {
@@ -148,6 +159,16 @@
 						if(h.y<a.height) h.y += h.r
 					}
 					
+				}else{
+					if(h.jump==true){
+						if(h.sal){
+							h.y += h.vj[h.ij-1]
+						}else{
+							h.y -= h.vj[h.ij-1]
+						}
+					} else {
+						h.y -= h.r
+					}
 				}
 			}
 			updateJump()
