@@ -1,0 +1,209 @@
+<html>
+<head></head>
+<body>
+<canvas id=c>
+</canvas>
+<script>
+
+	window.a = document.getElementsByTagName('canvas')[0];
+	window.b = document.getElementsByTagName('body')[0];
+	window.c = window.a.getContext('2d',{'willReadFrequently':true})
+	window.d = document;
+	a.width = window.innerWidth;
+	a.height = window.innerHeight;
+	/*
+	JS1K start
+	*/
+	//Init
+	var g = {}
+	g.fr = 50
+	dw = a.width
+    dh = a.height
+    fs = 500//(dw>=dh?dh:dw)/3*2.2
+    c.font = fs +'px Arial'
+	document.addEventListener('keydown',(e)=>{
+						h.dirA.push(event.keyCode)
+						//devo pensare a come gestire salto e direzione
+						if(event.keyCode == 38) h.jump = true
+						/*
+						switch(event.keyCode){
+							case 37:
+								h.dir = 'l'
+								break
+							case 38:
+								h.dir = 'j'
+								h.jump = true
+								break
+							case 39:
+								h.dir = 'r'
+								break
+							case 40:
+								h.dir = 'd'
+								break
+						}
+						*/
+					})
+					document.addEventListener('keyup',(e)=>{
+						let index = h.dirA.indexOf(e.keyCode)
+						h.dirA.splice(index,1)
+					})
+	rd = Math.round
+	let radius = 10
+	h = {
+		x:50,y:10,r:radius,dir:"",dirA:[],tx:0,ty:0,p:{},vj:[radius,radius,radius,0,0,radius,radius,radius],ij:0,sal:true,jump:false,
+		move: () => {
+			p = {}
+			h.tx = 0
+			h.ty = 0
+			
+			if(h.jump==true){
+				//qundo salto la coordinata x è uguale
+				h.tx=h.x
+				//se il vettore del salto è vuoto lo inizializzo
+				if(h.sal){
+					//if (h.vj.length == 0) { h.vj.push(50/2) }
+						//altrimenti aggiungo il precedente valore / 2
+					//else if (!h.vj.done) { h.vj.push( h.vj[h.vj.length-1]/2 ) }
+						//prendo il valore per il salto
+					let jv = Math.floor(h.vj[h.ij])
+						// nella salita controllo che sia != 0
+					if (jv > 0) {
+						h.ty=h.y - h.vj[h.ij]
+						h.ij++
+					}else{
+						h.vj.done = true
+						h.sal=false
+					}
+				}else{
+					h.ty=h.y + h.vj[h.ij-1]
+					if ((h.ij-1)>0) {h.ij--}
+					else{
+						h.sal = true
+						h.jump = false
+						//h.tx = null
+						//h.ty = null
+						h.ij = 0
+
+					}
+				}
+			} else {
+				h.tx=h.x
+				h.ty=h.y + h.r
+			}
+			
+			if( h.dirA.length > 0 ) {
+				h.dirA.forEach(element => {
+					switch(element){
+						case 37:
+							h.tx=h.x - h.r
+							h.ty=h.y
+							break
+						case 39:
+							h.tx=h.x + h.r
+							h.ty=h.y
+							break
+					}	
+				})
+			} 		
+			updateDir = () => {
+				//c.fillStyle = "red"
+				//c.fillRect(h.tx,h.ty,2,2)
+				//c.fillStyle = "black"
+				h.tp = c.getImageData(h.tx, h.ty, 1, 1, { colorSpace: "srgb" }).data 
+				
+				h.hex = h.tp[0] + h.tp[1] + h.tp[2]
+				if(h.hex != 0){
+					
+					
+					if( h.dirA.length > 0 ) {
+						h.dirA.forEach(element => {
+							switch(element){
+								case 37:
+									if(h.x>0) h.x -= h.r
+									break
+								case 39:
+									if(h.x<a.width) h.x += h.r
+									break
+							}	
+						})
+					}
+				}else{
+					h.dirA.forEach(element => {
+							switch(element){
+								case 37:
+									h.x += h.r
+									break
+								case 39:
+									h.x -= h.r
+									break
+							}	
+						})
+				}
+			}
+			updateJump = () => {
+				//c.fillStyle = "red"
+				//c.fillRect(h.tx,h.ty,2,2)
+				//c.fillStyle = "black"
+				h.tp = c.getImageData(h.tx, h.ty, 1, 1, { colorSpace: "srgb" }).data 
+				
+				h.hex = h.tp[0] + h.tp[1] + h.tp[2]
+				if(h.hex != 0){
+					
+					if(h.jump==true){
+						if(h.sal){
+							h.y -= h.vj[h.ij-1]
+						}else{
+							h.y += h.vj[h.ij-1]
+						}
+					} else {
+						if(h.y<a.height) h.y += h.r
+					}
+					
+				}else{
+					if(h.jump==true){
+						if(h.sal){
+							h.y += h.vj[h.ij-1]
+						}else{
+							h.y -= h.vj[h.ij-1]
+						}
+					} else {
+						h.y -= h.r
+					}
+				}
+			}
+			updateJump()
+			updateDir()
+			/*
+			if(h.dir!=''){
+				h.tx=h.x
+				h.ty=h.y + h.r
+			}
+			updateCoord()
+			*/ 
+		},
+		d: () => {
+			c.beginPath()
+			c.arc(h.x,h.y,h.r,0,2 * Math.PI)
+			c.stroke()
+			h.move()
+		},
+	}
+	dr = () => {
+		c.fillStyle = '#FFFFFF'
+		c.fillRect(0,0,a.width,a.height)
+		c.fillStyle = '#000000'
+		c.strokeStyle = '#000000'
+		c.fillText('LUCK',0,fs)
+		h.d()
+	}
+    
+	function l(){
+		g.l = setInterval(function() {
+			dr();
+		}, g.fr);
+	}
+	 
+	l();
+</script>
+</body>
+</html>
