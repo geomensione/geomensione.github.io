@@ -7,78 +7,35 @@
 
 	window.a = document.getElementsByTagName('canvas')[0];
 	window.b = document.getElementsByTagName('body')[0];
-	window.c = window.a.getContext('2d',{'willReadFrequently':true})
-	window.d = document;
-	a.width = window.innerWidth;
-	a.height = window.innerHeight;
+	window.c = window.a.getContext('2d')
+	window.d = document
+	a.width = window.innerWidth
+	a.height = window.innerHeight
+	w = window
 	/*
 	JS1K start
 	*/
 	//Init
-	var g = {}
-	g.fr = 50
-	dw = a.width
-    dh = a.height
-    fs = 500//(dw>=dh?dh:dw)/3*2.2
-    c.font = fs +'px Arial'
-	document.addEventListener('keydown',(e)=>{
-						hero.dirA.push(event.keyCode)
-						//devo pensare a come gestire salto e direzione
-						if(event.keyCode == 38) hero.jump = true
-						/*
-						switch(event.keyCode){
-							case 37:
-								h.dir = 'l'
-								break
-							case 38:
-								h.dir = 'j'
-								h.jump = true
-								break
-							case 39:
-								h.dir = 'r'
-								break
-							case 40:
-								h.dir = 'd'
-								break
-						}
-						*/
-					})
-					document.addEventListener('keyup',(e)=>{
-						let index = hero.dirA.indexOf(e.keyCode)
-						hero.dirA.splice(index,1)
-					})
-	rd = Math.round
-	let radius = 10
-	var gameAssets = []
-	class O{
-		x=50
-		y=10
-		r=radius
-		dir=""
-		dirA=[]
-		tx=0
-		ty=0
-		p={}
-		vj=[radius,radius,radius,0,0,radius,radius,radius]
-		ij=0
-		sal=true
-		jump=false
-		constructor(x,y,r){
-			this.x = x
-			this.y = y
-			this.r = r
+	class GameObject{
+		constructor(x,y,s){
+			this.x=x
+			this.y=y
+			this.s=s
 		}
 		move(){}
-		d = () => {
-			c.rect(this.x,this.y,this.r*2,this.r*2)
-			c.stroke()
+		draw(){
+			c.beginPath()
+			c.arc(this.x, this.y, this.s/2, 0, Math.PI*2)
+			c.fillStyle = "#000"
+			c.fill()
+			c.closePath()
 		}
 		hit = (rect2) => {
 			if (
-				this.x < rect2.x + rect2.r*2 &&
-				this.x + this.r*2 > rect2.x &&
-				this.y < rect2.y + rect2.r*2 &&
-				this.y + this.r*2 > rect2.y
+				this.x < rect2.x + rect2.s &&
+				this.x + this.s > rect2.x &&
+				this.y < rect2.y + rect2.s &&
+				this.y + this.s > rect2.y
 			) {
 				// Collision detected!
 				return true
@@ -88,170 +45,44 @@
 			}
 		}
 	}
-	gameAssets.push(new O(50,100,10))
-	class h extends O{
-		updateDir = () => {
-			let hit = false
-			gameAssets.forEach(o =>
-				hit = !hit ? this.hit(o) : hit
-			)
-			
-			if(hit == false){
-				
-				
-				if( this.dirA.length > 0 ) {
-					this.dirA.forEach(element => {
-						switch(element){
-							case 37:
-								if(this.x>0) this.x -= this.r
-								break
-							case 39:
-								if(this.x<a.width) this.x += this.r
-								break
-						}	
-					})
-				}
-			}else{
-				this.dirA.forEach(element => {
-						switch(element){
-							case 37:
-								this.x += this.r
-								break
-							case 39:
-								this.x -= this.r
-								break
-						}	
-					})
-			}
+	class blockMove extends GameObject{
+		constructor(x,y,s){
+			super(x,y,s)
 		}
-		updateJump = () => {
-			let hit = false
-			gameAssets.forEach(o =>
-				hit = !hit ? this.hit(o) : hit
-			)
-			
-			if(hit == false){
-				
-				if(this.jump==true){
-					if(this.sal){
-						this.y -= this.vj[this.ij-1]
-					}else{
-						this.y += this.vj[this.ij-1]
-					}
-				} else {
-					if(this.y<a.height) this.y += this.r
-				}
-				
-			}else{
-				if(this.jump==true){
-					if(this.sal){
-						this.y += this.vj[this.ij-1]
-					}else{
-						this.y -= this.vj[this.ij-1]
-					}
-				} else {
-					this.y -= this.r
-				}
-			}
+		move(){
+			this.x++
 		}
-		constructor(x,y,z){
-			super(x,y,z)
-		}
-		move = () => {
-			this.p = {}
-			this.tx = 0
-			this.ty = 0
-			
-			if(this.jump==true){
-				//qundo salto la coordinata x è uguale
-				this.tx=this.x
-				//se il vettore del salto è vuoto lo inizializzo
-				if(this.sal){
-					//if (h.vj.length == 0) { h.vj.push(50/2) }
-						//altrimenti aggiungo il precedente valore / 2
-					//else if (!h.vj.done) { h.vj.push( h.vj[h.vj.length-1]/2 ) }
-						//prendo il valore per il salto
-					let jv = Math.floor(this.vj[this.ij])
-						// nella salita controllo che sia != 0
-					if (jv > 0) {
-						this.ty=this.y - this.vj[this.ij]
-						this.ij++
-					}else{
-						this.vj.done = true
-						this.sal=false
-					}
-				}else{
-					this.ty=this.y + this.vj[this.ij-1]
-					if ((this.ij-1)>0) {this.ij--}
-					else{
-						this.sal = true
-						this.jump = false
-						//h.tx = null
-						//h.ty = null
-						this.ij = 0
-
-					}
-				}
-			} else {
-				this.tx=this.x
-				this.ty=this.y + this.r
-			}
-			
-			if( this.dirA.length > 0 ) {
-				this.dirA.forEach(element => {
-					switch(element){
-						case 37:
-							this.tx=this.x - this.r
-							this.ty=this.y
-							break
-						case 39:
-							this.tx=this.x + this.r
-							this.ty=this.y
-							break
-					}	
-				})
-			} 		
-			
-			this.updateJump()
-			this.updateDir()
-			/*
-			if(h.dir!=''){
-				h.tx=h.x
-				h.ty=h.y + h.r
-			}
-			updateCoord()
-			*/ 
-		}
-		d = function() {
-			
-			c.beginPath()
-			c.arc(this.x,this.y,this.r,0,2 * Math.PI)
-			c.stroke()
-		}
-		u = function(){
-			this.move()
-		}
-
+		
 	}
-	hero = new h(50,10,10)
-	reset = () => {
-		c.clearRect(0,0,a.width,a.height)
-	} 
-	dr = (ts) => {
+	class player extends GameObject{
+		constructor(x,y,s){
+			super(x,y,s)
+		}
+		move(){
+			this.y++
+		}
+		
+	}
+	gameAssets=[]
+	gameAssets.push(new blockMove(50,100,10))
+	gameAssets.push(new player(50,100,10))
+	timeToUpdate = 100
+	dr = function(ts){
+		function reset(){
+			c.fillStyle = "#fff"
+			c.fillRect(0, 0, a.width, a.height)
+			c.fill()
+		}
 		reset()
-		
-		gameAssets.forEach(o =>
-			o.d()
-		)
-		
-		hero.u()
-		hero.d()
+		gameAssets.forEach(element => {
+			element.move()
+			element.draw()
+		});
 
-		
-		requestAnimationFrame(dr)
 	}
 
-	requestAnimationFrame(dr)
+	setInterval(dr, 100)
+	//end init
 </script>
 </body>
 </html>
