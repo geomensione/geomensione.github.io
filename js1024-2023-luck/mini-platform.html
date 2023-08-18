@@ -16,19 +16,28 @@
 	JS1K start
 	*/
 	//Init
+	document.addEventListener('keydown',(e)=>{
+						hero.dirA.push(event.keyCode)
+						if(event.keyCode == 38) hero.jump = true
+					})
+					document.addEventListener('keyup',(e)=>{
+						let index = hero.dirA.indexOf(e.keyCode)
+						hero.dirA.splice(index,1)
+					})
+
+
 	class GameObject{
 		constructor(x,y,s){
 			this.x=x
 			this.y=y
 			this.s=s
+			
 		}
 		move(){}
 		draw(){
-			c.beginPath()
-			c.arc(this.x, this.y, this.s/2, 0, Math.PI*2)
-			c.fillStyle = "#000"
-			c.fill()
-			c.closePath()
+			c.beginPath();
+			c.arc(this.x, this.y, this.s, 0, Math.PI * 2);
+			c.stroke();
 		}
 		hit = (rect2) => {
 			if (
@@ -45,6 +54,7 @@
 			}
 		}
 	}
+
 	class blockMove extends GameObject{
 		constructor(x,y,s){
 			super(x,y,s)
@@ -53,31 +63,170 @@
 			this.x++
 		}
 		
+		
 	}
+
 	class player extends GameObject{
 		constructor(x,y,s){
 			super(x,y,s)
+			this.dir=""
+			this.dirA=[]
+			this.p = {}
+			this.tx = 0
+			this.ty = 0
+			this.jump=false
+			this.sal=true
+			//velocity jump
+			this.vj=[s,s,s,0,0,s,s,s]
+			//index jump
+			this.ij=0
+		}
+		updateDir() {
+			let hit = false
+			gameAssets.forEach(o =>
+				hit = !hit ? this.hit(o) : hit
+			)
+			
+			if(hit == false){
+				
+				
+				if( this.dirA.length > 0 ) {
+					this.dirA.forEach(element => {
+						switch(element){
+							case 37:
+								if(this.x>0) this.x -= this.s
+								break
+							case 39:
+								if(this.x<a.width) this.x += this.s
+								break
+						}	
+					})
+				}
+			}else{
+				this.dirA.forEach(element => {
+						switch(element){
+							case 37:
+								this.x += this.s
+								break
+							case 39:
+								this.x -= this.s
+								break
+						}	
+					})
+			}
+		}
+		updateJump() {
+			let hit = false
+			gameAssets.forEach(o =>
+				hit = !hit ? this.hit(o) : hit
+			)
+			
+			if(hit == false){
+				
+				if(this.jump==true){
+					if(this.sal){
+						this.y -= this.vj[this.ij-1]
+					}else{
+						this.y += this.vj[this.ij-1]
+					}
+				} else {
+					if(this.y<a.height) this.y += this.s
+				}
+				
+			}else{
+				if(this.jump==true){
+					if(this.sal){
+						this.y += this.vj[this.ij-1]
+					}else{
+						this.y -= this.vj[this.ij-1]
+					}
+				} else {
+					this.y -= this.s
+				}
+			}
 		}
 		move(){
-			this.y++
+			this.p = {}
+			this.tx = 0
+			this.ty = 0
+			
+			
+
+			if(this.jump==true){
+				//qundo salto la coordinata x è uguale
+				this.tx=this.x
+				//se il vettore del salto è vuoto lo inizializzo
+				if(this.sal){
+					//if (h.vj.length == 0) { h.vj.push(50/2) }
+						//altrimenti aggiungo il precedente valore / 2
+					//else if (!h.vj.done) { h.vj.push( h.vj[h.vj.length-1]/2 ) }
+						//prendo il valore per il salto
+					let jv = Math.floor(this.vj[this.ij])
+						// nella salita controllo che sia != 0
+					if (jv > 0) {
+						this.ty=this.y - this.vj[this.ij]
+						this.ij++
+					}else{
+						this.vj.done = true
+						this.sal=false
+					}
+				}else{
+					this.ty=this.y + this.vj[this.ij-1]
+					if ((this.ij-1)>0) {this.ij--}
+					else{
+						this.sal = true
+						this.jump = false
+						//h.tx = null
+						//h.ty = null
+						this.ij = 0
+
+					}
+				}
+			} else {
+				this.tx=this.x
+				this.ty=this.y + this.s
+			}
+			
+			if( this.dirA.length > 0 ) {
+				this.dirA.forEach(element => {
+					switch(element){
+						case 37:
+							this.tx=this.x - this.s
+							this.ty=this.y
+							break
+						case 39:
+							this.tx=this.x + this.s
+							this.ty=this.y
+							break
+					}	
+				})
+			} 		
+			
+			this.updateJump()
+			this.updateDir()
 		}
 		
 	}
+	let radius = 10
 	gameAssets=[]
-	gameAssets.push(new blockMove(50,100,10))
-	gameAssets.push(new player(50,100,10))
+	gameAssets.push(new blockMove(50,110,radius))
+	let hero = new player(50,10,radius)
 	timeToUpdate = 100
 	dr = function(ts){
 		function reset(){
 			c.fillStyle = "#fff"
 			c.fillRect(0, 0, a.width, a.height)
 			c.fill()
+			c.fillStyle = "#000"
+			c.strokeStyle = "#000"
+			
 		}
 		reset()
 		gameAssets.forEach(element => {
-			element.move()
 			element.draw()
 		});
+		hero.move()
+		hero.draw()
 
 	}
 
