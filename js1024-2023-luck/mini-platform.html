@@ -31,13 +31,20 @@
 			this.x=x
 			this.y=y
 			this.s=s
+			this.p= new Path2D()
 			
 		}
 		move(){}
 		draw(){
-			c.beginPath();
-			c.arc(this.x, this.y, this.s, 0, Math.PI * 2);
-			c.stroke();
+			
+			c.save()
+			c.beginPath()
+			this.p.rect(this.x,this.y,this.s,this.s)
+			c.strokeStyle = "black"
+			c.stroke(this.p)
+			c.closePath()
+			this.p = new Path2D()
+			c.restore()
 		}
 		hit = (rect2) => {
 			if (
@@ -56,7 +63,7 @@
 	}
 
 	class blockMove extends GameObject{
-		constructor(x,y,s){
+		constructor(x,y,s,p){
 			super(x,y,s)
 		}
 		move(){
@@ -67,11 +74,10 @@
 	}
 
 	class player extends GameObject{
-		constructor(x,y,s){
+		constructor(x,y,s,p){
 			super(x,y,s)
 			this.dir=""
 			this.dirA=[]
-			this.p = {}
 			this.tx = 0
 			this.ty = 0
 			this.jump=false
@@ -102,17 +108,6 @@
 						}	
 					})
 				}
-			}else{
-				this.dirA.forEach(element => {
-						switch(element){
-							case 37:
-								this.x += this.s
-								break
-							case 39:
-								this.x -= this.s
-								break
-						}	
-					})
 			}
 		}
 		updateJump() {
@@ -140,13 +135,10 @@
 					}else{
 						this.y -= this.vj[this.ij-1]
 					}
-				} else {
-					this.y -= this.s
-				}
+				} 
 			}
 		}
 		move(){
-			this.p = {}
 			this.tx = 0
 			this.ty = 0
 			
@@ -205,11 +197,28 @@
 			this.updateJump()
 			this.updateDir()
 		}
+		hit = (rect2) => {
+			if (
+				this.tx < rect2.x + rect2.s &&
+				this.tx + this.s > rect2.x &&
+				this.ty < rect2.y + rect2.s &&
+				this.ty + this.s > rect2.y
+			) {
+				// Collision detected!
+				return true
+			} else {
+				// No collision
+				return false
+			}
+		}
 		
 	}
 	let radius = 10
 	gameAssets=[]
 	gameAssets.push(new blockMove(50,110,radius))
+	gameAssets.push(new blockMove(60,100,radius))
+	gameAssets.push(new blockMove(70,90,radius))
+
 	let hero = new player(50,10,radius)
 	timeToUpdate = 100
 	dr = function(ts){
