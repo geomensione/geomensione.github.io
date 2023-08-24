@@ -262,6 +262,7 @@
 		}
 		reset()
 		gameAssets.forEach(element => {
+			element.move()
 			element.draw()
 		});
 		hero.move()
