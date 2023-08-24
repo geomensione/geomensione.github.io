@@ -36,12 +36,12 @@
 			
 		}
 		move(){}
-		draw(strolecolor){
+		draw(strokecolor){
 			
 			c.save()
 			c.beginPath()
 			this.p.rect(this.x,this.y,this.s,this.s)
-			c.strokeStyle = strolecolor?strolecolor:"black"
+			c.strokeStyle = strokecolor?strokecolor:"black"
 			c.stroke(this.p)
 			c.closePath()
 			this.p = new Path2D()
@@ -63,6 +63,15 @@
 		}
 	}
 
+	class blueMove extends GameObject{
+		constructor(x,y,s,p){
+			super(x,y,s)
+		}
+		draw(){
+			super.draw("blue")
+		}
+	}
+	
 	class blockMove extends GameObject{
 		constructor(x,y,s,p){
 			super(x,y,s)
@@ -220,7 +229,7 @@
 	gameAssets.push(new blockMove(90,100,radius))
 	gameAssets.push(new blockMove(100,90,radius))
 	gameAssets.push(new blockMove(130,90,radius))
-	gameAssets.push(new blockMove(140,90,radius))
+	gameAssets.push(new blueMove(140,90,radius))
 	let hero = new player(50,10,radius)
 	timeToUpdate = 100
 	dr = function(ts){
