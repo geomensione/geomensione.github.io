@@ -63,23 +63,42 @@
 		}
 	}
 
-	class blueMove extends GameObject{
-		constructor(x,y,s,p){
+	class blueMoveVertical extends GameObject{
+		constructor(x,y,s,o){
 			super(x,y,s)
+			this.offset = o
+			this.low = this.y + o
+			this.high = this.y - o
+			this.up = true
 		}
 		draw(){
 			super.draw("blue")
 		}
+		move(){
+			if(this.up){
+				if(this.y>=this.high){
+					this.y--
+				}else{
+					this.up = false	
+				}
+			}else{
+				if(this.y<this.low){
+					this.y++
+				}else{
+					this.up = true	
+				}
+			}
+		}
 	}
 	
 	class blockMove extends GameObject{
-		constructor(x,y,s,p){
+		constructor(x,y,s){
 			super(x,y,s)
 		}
 	}
 
 	class player extends GameObject{
-		constructor(x,y,s,p){
+		constructor(x,y,s){
 			super(x,y,s)
 			this.dir=""
 			this.dirA=[]
@@ -229,7 +248,7 @@
 	gameAssets.push(new blockMove(90,100,radius))
 	gameAssets.push(new blockMove(100,90,radius))
 	gameAssets.push(new blockMove(130,90,radius))
-	gameAssets.push(new blueMove(140,90,radius))
+	gameAssets.push(new blueMoveVertical(140,90,radius,10))
 	let hero = new player(50,10,radius)
 	timeToUpdate = 100
 	dr = function(ts){
