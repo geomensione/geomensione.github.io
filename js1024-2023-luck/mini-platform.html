@@ -221,10 +221,10 @@
 			}
 
 			let hit = false
-			gameAssets.forEach(o =>
+			gameAssets.forEach(o => {
 				let hit_test = this.hit(o)
 				hit = !hit ? hit_test : hit
-			)
+			})
 			
 			if(hit == false){
 				
