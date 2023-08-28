@@ -222,7 +222,8 @@
 
 			let hit = false
 			gameAssets.forEach(o =>
-				hit = !hit ? this.hit(o) : hit
+				let hittest = this.hit(o)
+				hit = !hit ? hittest : hit
 			)
 			
 			if(hit == false){
