@@ -12,6 +12,6 @@ sprofonda nel pavimento -> la grafica deve essere modulare con la crandezza dell
 
 ToDo:
 
-stay on block when it moves
+stay on block when it moves: when player hit a moving block, this stop gravity in player and update his coordinate 
 
 implement portal (???)
