@@ -70,20 +70,34 @@
 			this.low = this.y + o
 			this.high = this.y - o
 			this.up = true
+			this.hitplayer = {}
 		}
 		draw(){
 			super.draw("blue")
+		}
+		hit(o){
+			let test = super.hit(o)
+			//da rivedere: se ora cono su una piattaforma, il test con una piattaforma dove non sono sopra resetterà tutti i valori nel giocatore
+			if (test) {
+				o.onplatform = true
+				this.hitplayer = {}
+			} else {
+				o.onplayform = false
+				this.hitplayer = {}
+			}
 		}
 		move(){
 			if(this.up){
 				if(this.y>=this.high){
 					this.y--
+					if(this.hitplayer) this.hitplayer.y--
 				}else{
 					this.up = false	
 				}
 			}else{
 				if(this.y<this.low){
 					this.y++
+					if(this.hitplayer) this.hitplayer.y--
 				}else{
 					this.up = true	
 				}
@@ -138,6 +152,7 @@
 			this.vj=[s,s,s,0,0,s,s,s]
 			//index jump
 			this.ij=0
+			this.onplatform=false
 		}
 		draw(){
 			super.draw("red")
