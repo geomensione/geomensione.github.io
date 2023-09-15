@@ -75,17 +75,7 @@
 		draw(){
 			super.draw("blue")
 		}
-		hit(o){
-			let test = super.hit(o)
-			//da rivedere: se ora cono su una piattaforma, il test con una piattaforma dove non sono sopra resetterà tutti i valori nel giocatore
-			if (test) {
-				o.onplatform = true
-				this.hitplayer = {}
-			} else {
-				o.onplayform = false
-				this.hitplayer = {}
-			}
-		}
+		
 		move(){
 			if(this.up){
 				if(this.y>=this.high){
@@ -238,6 +228,13 @@
 			let hit = false
 			gameAssets.forEach(o => {
 				let hit_test = this.hit(o)
+				if (hit_test && o instanceof blueMoveVertical) {
+					onplatform = true
+					o.hitplayer = this
+				} else {
+					onplayform = false
+					o.hitplayer = {}
+				}
 				hit = !hit ? hit_test : hit
 			})
 			
@@ -250,7 +247,10 @@
 						this.y += this.vj[this.ij-1]
 					}
 				} else {
-					if(this.y<a.height) this.y += this.s
+					//gravity!
+					if(!onplatform)
+						if(this.y<a.height) 
+							this.y += this.s
 				}
 				
 			}
