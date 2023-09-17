@@ -62,14 +62,20 @@
 			}
 		}
 	}
-
+    //wrong name: this block does not move
 	class blockMove extends GameObject{
 		constructor(x,y,s){
 			super(x,y,s)
 		}
 	}
 
-	class blueMoveVertical extends blockMove{
+    class movingBlock extends GameObject{
+		constructor(x,y,s){
+			super(x,y,s)
+		}
+	}
+
+	class blueMoveVertical extends movingBlock{
 		constructor(x,y,s,o){
 			super(x,y,s)
 			this.offset = o
@@ -101,7 +107,7 @@
 		}
 	}
 
-	class greenMoveHorizontal extends blockMove{
+	class greenMoveHorizontal extends movingBlock{
 		constructor(x,y,s,o){
 			super(x,y,s)
 			this.offset = o
@@ -233,7 +239,7 @@
 			let hit = false
 			gameAssets.forEach(o => {
 				let hit_test = this.hit(o)
-				if (o instanceof blockMove) {	
+				if (o instanceof movingBlock) {	
 					if (hit_test) {
 						this.onplatform = true
 						o.hitplayer = this
