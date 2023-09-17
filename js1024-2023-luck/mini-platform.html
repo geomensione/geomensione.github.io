@@ -63,7 +63,13 @@
 		}
 	}
 
-	class blueMoveVertical extends GameObject{
+	class blockMove extends GameObject{
+		constructor(x,y,s){
+			super(x,y,s)
+		}
+	}
+
+	class blueMoveVertical extends blockMove{
 		constructor(x,y,s,o){
 			super(x,y,s)
 			this.offset = o
@@ -79,15 +85,15 @@
 		move(){
 			if(this.up){
 				if(this.y>=this.high){
-					this.y--
-					if(this.hitplayer) this.hitplayer.y--
+					this.y-=this.s
+					if(this.hitplayer) this.hitplayer.y-=this.s
 				}else{
 					this.up = false	
 				}
 			}else{
 				if(this.y<this.low){
-					this.y++
-					if(this.hitplayer) this.hitplayer.y--
+					this.y+=this.s
+					if(this.hitplayer) this.hitplayer.y+=this.s
 				}else{
 					this.up = true	
 				}
@@ -95,13 +101,15 @@
 		}
 	}
 
-	class greenMoveHorizontal extends GameObject{
+	class greenMoveHorizontal extends blockMove{
 		constructor(x,y,s,o){
 			super(x,y,s)
 			this.offset = o
 			this.low = this.x
 			this.high = this.x + o
 			this.up = true
+			this.hitplayer = {}
+
 		}
 		draw(){
 			super.draw("green")
@@ -109,23 +117,20 @@
 		move(){
 			if(this.up){
 				if(this.x<=this.high){
-					this.x++
+					this.x+=this.s
+					if(this.hitplayer) this.hitplayer.x+=this.s
+
 				}else{
 					this.up = false	
 				}
 			}else{
 				if(this.x>=this.low){
-					this.x--
+					this.x-=this.s
+					if(this.hitplayer) this.hitplayer.x-=this.s
 				}else{
 					this.up = true	
 				}
 			}
-		}
-	}
-	
-	class blockMove extends GameObject{
-		constructor(x,y,s){
-			super(x,y,s)
 		}
 	}
 
@@ -228,11 +233,16 @@
 			let hit = false
 			gameAssets.forEach(o => {
 				let hit_test = this.hit(o)
-				if (hit_test && o instanceof blueMoveVertical) {
-					this.onplatform = true
-					o.hitplayer = this
-				} else {
-					this.onplayform = false
+				if (o instanceof blockMove) {	
+					if (hit_test) {
+						this.onplatform = true
+						o.hitplayer = this
+					} else {
+						this.onplatform = false
+						o.hitplayer = {}
+					}
+				}else {
+					this.onplatform = false
 					o.hitplayer = {}
 				}
 				hit = !hit ? hit_test : hit
