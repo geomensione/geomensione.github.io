@@ -63,7 +63,7 @@
 		}
 	}
     //wrong name: this block does not move
-	class blockMove extends GameObject{
+	class block extends GameObject{
 		constructor(x,y,s){
 			super(x,y,s)
 		}
@@ -297,18 +297,18 @@
 	}
 	let radius = 10
 	gameAssets=[]
-	gameAssets.push(new blockMove(10,110,radius))
-	gameAssets.push(new blockMove(20,110,radius))
-	gameAssets.push(new blockMove(30,110,radius))
-	gameAssets.push(new blockMove(40,110,radius))
+	gameAssets.push(new block(10,110,radius))
+	gameAssets.push(new block(20,110,radius))
+	gameAssets.push(new block(30,110,radius))
+	gameAssets.push(new block(40,110,radius))
 	gameAssets.push(new blueMoveVertical(50,90,radius,10))
-	gameAssets.push(new blockMove(60,100,radius))
-	gameAssets.push(new blockMove(70,90,radius))
-	gameAssets.push(new blockMove(80,90,radius))
-	gameAssets.push(new blockMove(90,100,radius))
-	gameAssets.push(new blockMove(100,90,radius))
-	gameAssets.push(new blockMove(130,90,radius))
-	gameAssets.push(new blockMove(140,110,radius))
+	gameAssets.push(new block(60,100,radius))
+	gameAssets.push(new block(70,90,radius))
+	gameAssets.push(new block(80,90,radius))
+	gameAssets.push(new block(90,100,radius))
+	gameAssets.push(new block(100,90,radius))
+	gameAssets.push(new block(130,90,radius))
+	gameAssets.push(new block(140,110,radius))
 	gameAssets.push(new greenMoveHorizontal(150,90,radius,20))
 	let hero = new player(50,10,radius)
 	timeToUpdate = 100
