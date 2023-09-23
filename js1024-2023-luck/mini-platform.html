@@ -75,6 +75,26 @@
 		}
 	}
 
+	class ladderBlock extends block{
+		constructor(x,y,s){
+			super(x,y,s)
+		}
+		draw(strokecolor){
+			
+			c.save()
+			c.beginPath()
+			c.moveTo(this.x,this.y+(this.s/6))
+			c.lineTo(this.x+this.s,this.y+(this.s/6))
+			c.moveTo(this.x,this.y+(this.s/2))
+			c.lineTo(this.x+this.s,this.y+(this.s/2))
+			c.moveTo(this.x,this.y+(this.s/6+this.s/2))
+			c.lineTo(this.x+this.s,this.y+(this.s/6+this.s/2))
+			c.strokeStyle = "black"
+			c.stroke()
+			c.closePath()
+		}
+	}
+
 	class blueMoveVertical extends movingBlock{
 		constructor(x,y,s,o){
 			super(x,y,s)
@@ -297,6 +317,9 @@
 	}
 	let radius = 10
 	gameAssets=[]
+	gameAssets.push(new ladderBlock(10,100,radius))
+	gameAssets.push(new ladderBlock(10,90,radius))
+
 	gameAssets.push(new block(10,110,radius))
 	gameAssets.push(new block(20,110,radius))
 	gameAssets.push(new block(30,110,radius))
