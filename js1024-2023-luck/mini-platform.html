@@ -80,15 +80,15 @@
 			super(x,y,s)
 		}
 		draw(strokecolor){
-			
+			let step = this.s/6;
 			c.save()
 			c.beginPath()
-			c.moveTo(this.x,this.y+(this.s/6))
-			c.lineTo(this.x+this.s,this.y+(this.s/6))
-			c.moveTo(this.x,this.y+(this.s/2))
-			c.lineTo(this.x+this.s,this.y+(this.s/2))
-			c.moveTo(this.x,this.y+(this.s/6+this.s/2))
-			c.lineTo(this.x+this.s,this.y+(this.s/6+this.s/2))
+			c.moveTo(this.x,this.y+(step))
+			c.lineTo(this.x+this.s,this.y+(step))
+			c.moveTo(this.x,this.y+(step*3))
+			c.lineTo(this.x+this.s,this.y+(step*3))
+			c.moveTo(this.x,this.y+(step*5))
+			c.lineTo(this.x+this.s,this.y+(step*5))
 			c.strokeStyle = "black"
 			c.stroke()
 			c.closePath()
@@ -174,6 +174,7 @@
 			//index jump
 			this.ij=0
 			this.onplatform=false
+			this.onLadder = false
 		}
 		draw(){
 			super.draw("red")
@@ -220,7 +221,6 @@
 			this.ty = 0
 			
 			
-
 			if(this.jump==true){
 				//qundo salto la coordinata x è uguale
 				this.tx=this.x
@@ -319,6 +319,7 @@
 	gameAssets=[]
 	gameAssets.push(new ladderBlock(10,100,radius))
 	gameAssets.push(new ladderBlock(10,90,radius))
+	gameAssets.push(new ladderBlock(10,80,radius))
 
 	gameAssets.push(new block(10,110,radius))
 	gameAssets.push(new block(20,110,radius))
@@ -333,7 +334,7 @@
 	gameAssets.push(new block(130,90,radius))
 	gameAssets.push(new block(140,110,radius))
 	gameAssets.push(new greenMoveHorizontal(150,90,radius,20))
-	let hero = new player(50,10,radius)
+	let hero = new player(10,100,radius)
 	timeToUpdate = 100
 	dr = function(ts){
 		function reset(){
