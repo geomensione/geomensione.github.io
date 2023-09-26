@@ -267,7 +267,11 @@
 						this.onplatform = false
 						o.hitplayer = {}
 					}
-				}else {
+				}else if (o instanceof ladderBlock) {	
+					if (hit_test) {
+						o.y += this.s
+					}
+				}else{
 					this.onplatform = false
 					o.hitplayer = {}
 				}
