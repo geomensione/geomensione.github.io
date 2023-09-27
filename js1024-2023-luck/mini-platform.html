@@ -196,7 +196,9 @@
 			}
 			let hit = false
 			gameAssets.forEach(o =>
-				hit = !hit ? this.hit(o) : hit
+				if !(o instanceof ladderBlock) {
+					hit = !hit ? this.hit(o) : hit
+				}
 			)
 			
 			if(hit == false){
