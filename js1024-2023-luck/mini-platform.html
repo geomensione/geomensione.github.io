@@ -22,6 +22,7 @@
 						e.preventDefault()
 					})
 					document.addEventListener('keyup',(e)=>{
+						if(event.keyCode == 38) hero.jump = false
 						let index = hero.dirA.indexOf(e.keyCode)
 						hero.dirA.splice(index,1)
 					})
