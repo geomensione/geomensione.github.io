@@ -272,7 +272,7 @@
 						o.hitplayer = {}
 					}
 				}else if (o instanceof ladderBlock) {	
-					if (hit_test) {
+					if (hit_test && this.jump == true) {
 						this.y -= this.s
 					}
 				}else{
