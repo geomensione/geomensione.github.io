@@ -1,6 +1,6 @@
 DEMO FILE [https://geomensione.github.io/demos.html](https://geomensione.github.io/demos.html)
 
-STORY FILE [https://geomensione.github.io/racconto/README.md](https://geomensione.github.io/racconto/README.md)
+STORY FILE [https://geomensione.github.io/racconto/README.md](https://github.com/geomensione/geomensione.github.io/tree/master/racconto)
 
 GAMES
 =====
